@@ -5,7 +5,6 @@ import i18n, { availableLanguage } from "src/translation/i18n";
 import { getLocalStorage } from "src/util/common";
 import { useLocation } from "react-router-dom";
 export default function Footer() {
-  //
   const { t } = useTranslation();
   const location = useLocation();
   useEffect(() => {
@@ -18,7 +17,6 @@ export default function Footer() {
     }
   }, []);
 
-  //
   return (
     <footer className="footer">
       <div className="container sereso-container">
