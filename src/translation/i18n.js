@@ -16,6 +16,8 @@ import EStranslate from "./locales/EStranslation.json";
 import DEtranslate from "./locales/DEtranslation.json";
 import ITtranslate from "./locales/ITtranslation.json";
 import PTtranslate from "./locales/PTtranslation.json";
+import RUtranslate from "./locales/RUtranslation.json";
+import TRtranslate from "./locales/TRtranslation.json";
 export const availableLanguage = {
   vi: "vi",
   en: "en",
@@ -31,6 +33,8 @@ export const availableLanguage = {
   it: "it",
   de: "de",
   pt: "pt",
+  tr: "tr",
+  ru: "ru",
 };
 export const availableLanguageCodeMapper = {
   vi: "vi-VN", // Tiếng Việt, Việt Nam
@@ -47,6 +51,8 @@ export const availableLanguageCodeMapper = {
   it: "it-IT", // Italian, Italy
   de: "de-DE", // German, Germany
   pt: "pt-PT", // Portuguese, Portugal
+  tr: "tr-TR", // Turkish, Turkey
+  ru: "ru-RU", // Russian, Russia
 };
 export const availableLanguageMapper = {
   vi: "Vietnamese",
@@ -63,6 +69,8 @@ export const availableLanguageMapper = {
   it: "Italian",
   de: "German",
   pt: "Portuguese",
+  tr: "Turkish",
+  ru: "Russian",
 };
 // the translations
 const resources = {
@@ -107,6 +115,12 @@ const resources = {
   },
   de: {
     translation: DEtranslate,
+  },
+  ru: {
+    translation: RUtranslate,
+  },
+  tr: {
+    translation: TRtranslate,
   },
 };
 

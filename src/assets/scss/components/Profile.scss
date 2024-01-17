@@ -224,9 +224,21 @@
                         flex-direction: column;
                     }
 
+                    .profile__payment-header {
+                        width: 33.333333%;
+                        padding: 5px 0;
+                        opacity: 0.5;
+                    }
+
                     .profile__payment-cell {
                         width: 33.333333%;
                         padding: 5px 0;
+
+                        img {
+                            width: 20px;
+                            height: 20px;
+                            object-fit: cover;
+                        }
                     }
                 }
             }

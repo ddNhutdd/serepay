@@ -60,7 +60,7 @@ function Profile() {
   const [paymentError, setPaymentError] = useState({});
   const listPaymentPageSize = useRef(5);
   const listBank = useRef(getBankListV2());
-  //
+
   const { t } = useTranslation();
   const history = useHistory();
   const [is2FAModalOpen, setIs2FAModalOpen] = useState(false);
@@ -116,7 +116,7 @@ function Profile() {
   }, []);
 
   const inputFileLogo = useRef(null);
-  //
+
   const handleFileChange = function (e) {
     const file = e.target.files[0];
     switch (e.target.name) {
@@ -909,7 +909,6 @@ function Profile() {
     }
     return Object.keys(paymentTourched).length <= 0 || Boolean(valid);
   };
-
   const paymentControlFocusHandle = function (e) {
     const name = e.target.name;
     paymentTourched.current[name] = true;
@@ -971,15 +970,23 @@ function Profile() {
       );
     } else {
       return listPayment.map((item) => {
+        const bankInfo = findBankInfo(item.name_banking);
         return (
           <div key={item.id} className="profile__payment-record">
-            <div className="profile__payment-cell">{item.name_banking}</div>
+            <div className="profile__payment-cell">
+              <img src={bankInfo?.logo || "www.abc.com"} alt={bankInfo?.code} />{" "}
+              {item.name_banking}
+            </div>
             <div className="profile__payment-cell">{item.owner_banking}</div>
             <div className="profile__payment-cell">{item.number_banking}</div>
           </div>
         );
       });
     }
+  };
+  const findBankInfo = function (bankName) {
+    const result = listBank.current.find((item) => item.name === bankName);
+    return result;
   };
   const listPaymentPageChangeHandle = function (page) {
     setListPaymentCurrentPage(page);
@@ -1028,7 +1035,7 @@ function Profile() {
   const closeAllDropdown = function () {
     setIsShowBankDropdown(() => false);
   };
-  //
+
   return (
     <div className="profile">
       <div className="container">
@@ -1169,7 +1176,18 @@ function Profile() {
               </form>
             </div>
             <div className="profile__title">{t("yourListBank")}:</div>
-            <div className="profile__payment-list">{renderPaymenList()}</div>
+            <div className="profile__payment-list">
+              <div className="profile__payment-record">
+                <div className="profile__payment-header">{t("bankName")}</div>
+                <div className="profile__payment-header">
+                  {t("accountName")}
+                </div>
+                <div className="profile__payment-header">
+                  {t("accountNumber")}
+                </div>
+              </div>
+              {renderPaymenList()}
+            </div>
             <div className="profile__paging">
               <Pagination
                 defaultCurrent={1}

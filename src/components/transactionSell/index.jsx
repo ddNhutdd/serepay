@@ -186,6 +186,10 @@ function TransactionSell() {
     fetchApiGetListBank()
       .then((resp) => {
         if (resp) {
+          if (!resp || resp.length <= 0) {
+            callToastError(t("noBankFoundInAccount"));
+            history.push(url.profile);
+          }
           setUserListBank(() => resp);
           setSelectedBank(() => resp.at(0));
         }
