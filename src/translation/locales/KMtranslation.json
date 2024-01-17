@@ -310,5 +310,6 @@
     "marketSellPrice": "តម្លៃលក់ផ្សារ",
     "toAddress": "ទៅ​អាសយដ្ឋាន",
     "reject": "បដិសេធ",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "ចំនួនទឹកដីអប្បបរមាមិនអាចធ្វើការច្រើនជាងចំនួនដែលអ្នកចង់លក់"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "ចំនួនទឹកដីអប្បបរមាមិនអាចធ្វើការច្រើនជាងចំនួនដែលអ្នកចង់លក់",
+    "receivedPaymentAndUnlocked": "ទទួលបានការទូទាត់និងបើកចោល។"
 }

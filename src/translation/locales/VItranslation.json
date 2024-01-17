@@ -310,5 +310,6 @@
     "marketSellPrice": "Giá Bán Trên Thị Trường",
     "toAddress": "Đến Địa chỉ",
     "reject": "Từ chối",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Số lượng bán tối thiểu không thể lớn hơn số lượng bạn muốn bán"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Số lượng bán tối thiểu không thể lớn hơn số lượng bạn muốn bán",
+    "receivedPaymentAndUnlocked": "Đã nhận thanh toán và mở khóa."
 }

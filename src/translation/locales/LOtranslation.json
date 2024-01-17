@@ -310,5 +310,6 @@
     "marketSellPrice": "ລາຄາຂາຍຕະຫຼາດ",
     "toAddress": "ການສົ່ງຜົນ",
     "reject": "ປະຕິບ",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "ຈຳນວນຂາຍຕ້ອງບໍ່ສາມາດຫຼາຍກວ່າຈຳນວນທ່ານຕໍ່ວົງ"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "ຈຳນວນຂາຍຕ້ອງບໍ່ສາມາດຫຼາຍກວ່າຈຳນວນທ່ານຕໍ່ວົງ",
+    "receivedPaymentAndUnlocked": "ຮັບການຊຳລະແລະເປີດລົງ."
 }

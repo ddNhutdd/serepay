@@ -310,5 +310,6 @@
     "marketSellPrice": "Market Sell Price",
     "toAddress": "Para la Dirección",
     "reject": "Rechazar",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "La cantidad mínima de venta no puede ser mayor que la cantidad que deseas vender"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "La cantidad mínima de venta no puede ser mayor que la cantidad que deseas vender",
+    "receivedPaymentAndUnlocked": "Pago recibido y desbloqueado."
 }

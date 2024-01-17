@@ -45,7 +45,7 @@ function SwaptobeWallet() {
     if (!isLogin) {
       setLocalStorage(localStorageVariable.previousePage, { ...location });
       const { coin } = useParams;
-      dispatch(coinSetCoin(coin ?? "BTC"));
+      dispatch(coinSetCoin(coin ?? coinString.USDT));
       history.push(url.login);
       return;
     }

@@ -1,10 +1,11 @@
+import { coinString } from "src/constant";
 import { defaultState, coin } from "../constant/coin.constant";
 export const coinReducer = (state = defaultState, action) => {
   switch (action.type) {
     case coin.setCoin:
       return {
         ...state,
-        coin: action.payload,
+        coin: coinString.USDT,
       };
     case coin.userWalletFetchCount:
       let cre = ++state.userWalletFetchCount;

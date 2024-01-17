@@ -310,5 +310,6 @@
     "marketSellPrice": "市場販売価格",
     "toAddress": "宛先に",
     "reject": "却下",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "最小販売数量は、販売したい数量を超えることはできません"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "最小販売数量は、販売したい数量を超えることはできません",
+    "receivedPaymentAndUnlocked": "支払いを受け取り、解除しました。"
 }

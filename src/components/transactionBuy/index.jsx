@@ -114,7 +114,7 @@ function TransactionBuy() {
         return resolve(false);
       else setCallApiLoadTraderStatus(() => api_status.fetching);
       searchBuyQuick({
-        limit: 999999999999999999,
+        limit: 100,
         page: 1,
         symbol: selectedCoin,
         amount,
@@ -226,7 +226,7 @@ function TransactionBuy() {
         return resolve(false);
       else setCallApiLoadPaymentStatus(() => api_status.fetching);
       getListBanking({
-        limit: "999999999999999999",
+        limit: "100",
         page: "1",
       })
         .then((resp) => {
@@ -513,6 +513,11 @@ function TransactionBuy() {
             case "The quantity is too much and the order cannot be created":
               callToastError(
                 t("theQuantityIsTooMuchAndTheOrderCannotBeCreated")
+              );
+              break;
+            case "You have a transaction order that has not yet been processed":
+              callToastError(
+                t("youHaveATransactionOrderThatHasNotYetBeenProcessed")
               );
               break;
             default:

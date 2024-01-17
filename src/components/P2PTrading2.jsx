@@ -31,7 +31,8 @@ import { Button } from "./Common/Button";
 export default function P2PTrading2({ history }) {
   // The list of users selling coins must be placed in the buy section on the interface.
   // The list of users buying coins must be placed in the sell section on the interface.
-  const coin = getLocalStorage(localStorageVariable.coin);
+  // const coin = getLocalStorage(localStorageVariable.coin);
+  const coin = coinString.USDT;
   const { t } = useTranslation();
   const coinFromRedux = useSelector(getCoin);
   const callApiSellListStatus = useRef(api_status.pending);

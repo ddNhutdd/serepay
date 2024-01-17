@@ -310,5 +310,6 @@
     "marketSellPrice": "Harga Jual Pasar",
     "toAddress": "Ke Alamat",
     "reject": "Tolak",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Jumlah penjualan minimum tidak boleh lebih dari jumlah yang ingin Anda jual"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Jumlah penjualan minimum tidak boleh lebih dari jumlah yang ingin Anda jual",
+    "receivedPaymentAndUnlocked": "Pembayaran diterima dan terbuka kunci."
 }

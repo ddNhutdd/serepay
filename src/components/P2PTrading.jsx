@@ -13,6 +13,7 @@ import {
 } from "src/util/common";
 import {
   actionTrading,
+  coinString,
   currency,
   currencyMapper,
   defaultLanguage,
@@ -42,7 +43,7 @@ export default function P2PTrading({ history }) {
   const [sellPrice, setSellPrice] = useState(0);
   const [buyPrice, setBuyPrice] = useState(0);
   const [coinImage, setCoinImage] = useState(DOMAIN + "images/USDT.png");
-  const { coin } = useSelector((root) => root.coinReducer);
+  const coin = coinString.USDT;
   const userSelectedCurrency = useSelector(getCurrent);
   const exChangeFromRedux = useSelector(getExchange);
   const exchangeRateDisparityFromRedux = useSelector(getExchangeRateDisparity);
@@ -218,9 +219,9 @@ export default function P2PTrading({ history }) {
   const handleOk = () => setIsModalVisible(false);
   const handleCancel = () => setIsModalVisible(false);
   const handleSelectedRow = (record) => {
-    setIsModalVisible(false);
-    setLocalStorage(localStorageVariable.coin, record.name);
-    dispatch(coinSetCoin(record.name));
+    // setIsModalVisible(false);
+    // setLocalStorage(localStorageVariable.coin, record.name);
+    // dispatch(coinSetCoin(record.name));
   };
   const renderClassTypeAds = function () {
     switch (typeAds) {
@@ -315,11 +316,12 @@ export default function P2PTrading({ history }) {
                     >
                       {t("buyNow")}
                     </ButtonAntd>
+
                     <button
-                      onClick={createAdsBuy}
-                      className={`p2pTrading__createAds + ${renderClassTypeAds()}`}
+                      onClick={createAdsSell}
+                      className={`p2pTrading__createAds ${renderClassTypeAds()}`}
                     >
-                      {t("creatingYourBuyingAd")}
+                      {t("creatingYourSellingAd")}
                     </button>
                   </div>
                 </div>
@@ -345,10 +347,10 @@ export default function P2PTrading({ history }) {
                       {t("sellNow")}
                     </ButtonAntd>
                     <button
-                      onClick={createAdsSell}
-                      className={`p2pTrading__createAds ${renderClassTypeAds()}`}
+                      onClick={createAdsBuy}
+                      className={`p2pTrading__createAds + ${renderClassTypeAds()}`}
                     >
-                      {t("creatingYourSellingAd")}
+                      {t("creatingYourBuyingAd")}
                     </button>
                   </div>
                 </div>

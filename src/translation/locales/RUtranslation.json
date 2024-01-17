@@ -310,5 +310,6 @@
     "marketSellPrice": "Рыночная цена",
     "toAddress": "Адресовать",
     "reject": "Отклонять",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Минимальное количество продаж не может быть больше, чем число, которое вы хотите продать"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Минимальное количество продаж не может быть больше, чем число, которое вы хотите продать",
+    "receivedPaymentAndUnlocked": "Получено платежа и разблокировано."
 }

@@ -310,5 +310,6 @@
     "marketSellPrice": "Piyasa Satış Fiyatı",
     "toAddress": "Adrese",
     "reject": "Reddetmek",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Minimum satış miktarı, satmak istediğiniz numaradan daha fazla olamaz"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Minimum satış miktarı, satmak istediğiniz numaradan daha fazla olamaz",
+    "receivedPaymentAndUnlocked": "Ödeme alındı ve kilidi açıldı."
 }

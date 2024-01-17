@@ -24,6 +24,7 @@ function Confirm() {
   const [data, setData] = useState(null);
   const [render, setRender] = useState(1);
   const { t } = useTranslation();
+
   useEffect(() => {
     loadData();
   }, [render]);
@@ -41,6 +42,7 @@ function Confirm() {
       dispatch(userWalletFetchCount());
     };
   }, []);
+
   const fetchApiGetInfoP2p = function () {
     return new Promise((resolve, rejected) => {
       console.log("fetch ", idAds);
@@ -112,6 +114,7 @@ function Confirm() {
     gap: "30px",
     flexDirection: "column",
   };
+
   return (
     <>
       <div

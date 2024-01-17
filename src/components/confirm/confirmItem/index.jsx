@@ -73,7 +73,7 @@ function ConfirmItem(props) {
         return;
       }
     });
-    //
+
     const intervalId = timer();
     if (counter === `00 : 00`) clearInterval(intervalId);
     return () => {
@@ -294,7 +294,7 @@ function ConfirmItem(props) {
     if (typeUser === 2 && userId === profileId) {
       // confirm button
       const confirmButton = document.createElement("button");
-      confirmButton.innerHTML = t("confirmedTransfer");
+      confirmButton.innerHTML = t("receivedPaymentAndUnlocked");
       confirmButton.className = "confirm__action-main";
       confirmButton.addEventListener("click", userConfirmClickHandle);
       actionContainer.appendChild(confirmButton);

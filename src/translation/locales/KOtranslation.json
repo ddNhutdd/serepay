@@ -310,5 +310,6 @@
     "marketSellPrice": "시장 판매 가격",
     "toAddress": "받는 사람 주소",
     "reject": "거부",
-    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "최소 판매 수량은 판매하려는 수량보다 많을 수 없습니다"
+    "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "최소 판매 수량은 판매하려는 수량보다 많을 수 없습니다",
+    "receivedPaymentAndUnlocked": "지불 받음 및 잠금 해제됨."
 }

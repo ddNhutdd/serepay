@@ -569,7 +569,7 @@ export default function CreateBuy() {
                 />
               </div>
             </div>
-            <div className="review-area">
+            <div className="review-area --d-none">
               <span onClick={showModalPreview}>
                 <i className="fa-solid fa-eye"></i>
                 <span>{t("reviewYourAd")}</span>
