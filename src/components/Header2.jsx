@@ -301,6 +301,9 @@ export default function Header2({ history }) {
               "--d-none"
             )}`}
           >
+            <span className="header2__wallet__bag">
+              <i className="fa-regular fa-clock"></i>
+            </span>
             <div onClick={walletToggle} className="header2__wallet-title">
               {t("wallet")}
             </div>
@@ -328,6 +331,7 @@ export default function Header2({ history }) {
                 data-page={url.p2p_management}
                 className="header2__wallet-item"
               >
+                <span className="header2__wallet-item-bag">9</span>
                 <i className="fa-solid fa-comments-dollar"></i>
                 <span>{t("p2PHistory")}</span>
               </div>

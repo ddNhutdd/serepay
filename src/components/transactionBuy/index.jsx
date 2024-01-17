@@ -8,6 +8,7 @@ import {
   currencyMapper,
   defaultLanguage,
   localStorageVariable,
+  regularExpress,
   url,
 } from "src/constant";
 import {
@@ -80,15 +81,50 @@ function TransactionBuy() {
     let valid = true;
     if (touchedControl.current[control.current.amount]) {
       const moneyInput = inputMoneyElement.current?.value;
+      const coinString = inputCoinElement.current?.value.replaceAll(",", "");
+      const availableCoin =
+        selectedTrader.amount - selectedTrader.amountSuccess;
+      let amountValid = true;
+
+      // range
+      if (regularExpress.strongCheckNumber.test(coinString)) {
+        if (
+          +coinString > selectedTrader.amount ||
+          +coinString > availableCoin
+        ) {
+          valid &= false;
+          amountValid &= false;
+          setErrorControl((error) => {
+            return {
+              ...error,
+              [control.current.amount]: t("Too big."),
+            };
+          });
+        }
+        if (+coinString < selectedTrader.amountMinimum) {
+          valid &= false;
+          amountValid &= false;
+          setErrorControl((error) => {
+            return {
+              ...error,
+              [control.current.amount]: t("Too small."),
+            };
+          });
+        }
+      }
+      // require
       if (!moneyInput) {
         valid &= false;
+        amountValid &= false;
         setErrorControl((error) => {
           return {
             ...error,
             [control.current.amount]: t("require"),
           };
         });
-      } else {
+      }
+      // remove error
+      if (amountValid) {
         setErrorControl((error) => {
           const newError = { ...error };
           delete newError[control.current.amount];
@@ -599,6 +635,7 @@ function TransactionBuy() {
     } catch (error) {
       inputCoinElement.current.value = 0;
     }
+    validate();
 
     // calculates the value for input vnd
     if (
@@ -760,4 +797,5 @@ function TransactionBuy() {
     </div>
   );
 }
+
 export default TransactionBuy;

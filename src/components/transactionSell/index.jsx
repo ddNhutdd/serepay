@@ -14,9 +14,10 @@ import {
   currencyMapper,
   defaultLanguage,
   localStorageVariable,
+  regularExpress,
   url,
 } from "src/constant";
-import i18n from "src/translation/i18n";
+import i18n, { availableLanguage } from "src/translation/i18n";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -30,6 +31,7 @@ import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constan
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { math } from "src/App";
+import { getUserWallet } from "src/redux/constant/coin.constant";
 
 function TransactionSell() {
   const amount = getLocalStorage(localStorageVariable.coinFromP2pExchange || 0);
@@ -39,6 +41,7 @@ function TransactionSell() {
   );
   const exchangeRedux = useSelector(getExchange);
   const currencyRedux = useSelector(getCurrent);
+  const userWalletRedux = useSelector(getUserWallet);
   const listCoinRealTime = useSelector(getListCoinRealTime);
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
   const getExchangeRateDisparityFromRedux = useSelector(
@@ -68,6 +71,7 @@ function TransactionSell() {
   const payInputElement = useRef();
   const receiveInputElement = useRef();
   const isSelectedDropdownRandom = useRef(true); // for multilingual part
+  const numberCoinsOwned = useRef(9999999999999);
 
   const [callApiLoadPaymentStatus, setCallApiLoadPaymentStatus] = useState(
     api_status.pending
@@ -114,10 +118,12 @@ function TransactionSell() {
     if (!amountVnd || isNaN(amountVnd)) {
       receiveInputElement.current.value = 0;
     } else {
-      receiveInputElement.current.value = new Intl.NumberFormat(
-        currencyMapper.USD,
-        roundIntl(3)
-      ).format(amountVnd);
+      receiveInputElement.current.value = formatCurrency(
+        availableLanguage.en,
+        "VND",
+        amountVnd,
+        false
+      );
     }
   }, [
     listCoinRealTime,
@@ -126,6 +132,10 @@ function TransactionSell() {
     currencyRedux,
     getExchangeRateDisparityFromRedux,
   ]);
+  useEffect(() => {
+    if (!userWalletRedux || userWalletRedux.length <= 0) return;
+    setCoinOwned();
+  }, [userWalletRedux]);
 
   const validationPageLoad = function () {
     if (!isLogin) {
@@ -183,6 +193,7 @@ function TransactionSell() {
       setSelectedDropdownTrader(() => ({ userName: "Random" }));
       setSelectedTrader(() => getRandomElementFromArray(resp));
     });
+
     fetchApiGetListBank()
       .then((resp) => {
         if (resp) {
@@ -203,6 +214,10 @@ function TransactionSell() {
       currencyMapper.USD,
       roundIntl(10)
     ).format(amount);
+  };
+  const setCoinOwned = function () {
+    const amountCoin = userWalletRedux[selectedCoin.toLowerCase() + "_balance"];
+    numberCoinsOwned.current = amountCoin;
   };
   const fetchApiGetListBank = function () {
     return new Promise((resolve, reject) => {
@@ -396,16 +411,54 @@ function TransactionSell() {
   const validate = function () {
     let valid = true;
     if (touchedControl.current[control.current.amount]) {
+      let amountValid = true;
       const coinInput = payInputElement.current?.value;
+      // range
+      const numberString = coinInput.replaceAll(",", "");
+      const amountAvailable =
+        selectedTrader.amount - selectedTrader.amountSuccess;
+      if (regularExpress.strongCheckNumber.test(numberString)) {
+        if (
+          +numberString > amountAvailable ||
+          +numberString > selectedTrader.amount
+        ) {
+          valid &= false;
+          amountValid &= false;
+          setErrorControl((error) => ({
+            ...error,
+            [control.current.amount]: t("Too big."),
+          }));
+        }
+        if (+numberString > numberCoinsOwned.current) {
+          valid &= false;
+          amountValid &= false;
+          setErrorControl((error) => ({
+            ...error,
+            [control.current.amount]: t("Insufficient wallet balance."),
+          }));
+        }
+        if (+numberString < selectedTrader.amountMinimum) {
+          valid &= false;
+          amountValid &= false;
+          setErrorControl((error) => ({
+            ...error,
+            [control.current.amount]: t("Too small."),
+          }));
+        }
+      }
+      // require
       if (!coinInput) {
         valid &= false;
+        amountValid &= false;
         setErrorControl((error) => {
           return {
             ...error,
             [control.current.amount]: t("require"),
           };
         });
-      } else {
+      }
+      // clear error
+      if (amountValid) {
         setErrorControl((error) => {
           const newError = { ...error };
           delete newError[control.current.amount];
@@ -413,6 +466,7 @@ function TransactionSell() {
         });
       }
     }
+
     return Object.keys(touchedControl).length <= 0 ? false : Boolean(valid);
   };
   const inputCoinFocusHandle = function () {
@@ -657,4 +711,5 @@ function TransactionSell() {
     </div>
   );
 }
+
 export default TransactionSell;

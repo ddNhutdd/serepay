@@ -69,6 +69,7 @@ export const defaultLanguage = availableLanguage.en;
 export const defaultCurrency = "USD";
 export const regularExpress = {
   checkNumber: /^[+-]?([0-9]*[.])?[0-9]*$/,
+  strongCheckNumber: /^(?!$)\d+(\.\d+)?$/,
 };
 
 export const actionTrading = {

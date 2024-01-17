@@ -5,12 +5,12 @@ var socket = io(DOMAIN, {
   transports: ["websocket", "polling", "flashsocket"],
 });
 
-socket.on("connect", () => {
-  console.log("socketIO: Connected to server");
-});
+// socket.on("connect", () => {
+//   console.log("socketIO: Connected to server");
+// });
 
-socket.on("disconnect", () => {
-  console.log("socketIO: Disconnected from server");
-});
+// socket.on("disconnect", () => {
+//   console.log("socketIO: Disconnected from server");
+// });
 
 export default socket;

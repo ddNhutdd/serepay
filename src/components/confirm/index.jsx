@@ -32,7 +32,6 @@ function Confirm() {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
-    //
     socket.off("operationP2p");
     socket.on("operationP2p", (idP2p) => {
       console.log(idP2p, "operationP2p");
@@ -40,12 +39,12 @@ function Confirm() {
     });
     return () => {
       dispatch(userWalletFetchCount());
+      socket.off("operationP2p");
     };
   }, []);
 
   const fetchApiGetInfoP2p = function () {
     return new Promise((resolve, rejected) => {
-      console.log("fetch ", idAds);
       getInfoP2p({
         idP2p: idAds,
       })

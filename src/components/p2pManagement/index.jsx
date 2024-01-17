@@ -80,7 +80,7 @@ function P2pManagement() {
     document.addEventListener("click", closeDropdown);
     fetchApiGetListAllCoin();
     socket.on("createP2p", (res) => {
-      console.log(res, "createP2p");
+      console.log(res, "createP2p ffff");
       loadData(currentPage);
     });
     return () => {
@@ -337,7 +337,7 @@ function P2pManagement() {
         </td>
         <td>
           <div>
-            <div>{calcMoney(item.pay)}</div>
+            <div>{formatCurrency(i18n.language, "VND", item.pay)}</div>
             <div>{item.created_at}</div>
           </div>
         </td>
@@ -667,4 +667,5 @@ function P2pManagement() {
     </div>
   );
 }
+
 export default P2pManagement;

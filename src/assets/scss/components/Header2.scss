@@ -273,6 +273,25 @@
       .header2__wallet {
         position: relative;
 
+        .header2__wallet__bag {
+          position: absolute;
+          height: 20px;
+          width: 20px;
+          right: -8px;
+          top: -8px;
+          font-size: 12px;
+          padding: 3px;
+          border-radius: 20px;
+          background-color: $new-primary-color-6;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          @media screen and (max-width: 992px) {
+            display: none;
+          }
+        }
+
         .header2__wallet-title {
           @include hover-cursor;
         }
@@ -283,6 +302,7 @@
 
           .header2__wallet-item {
             @include menu-item;
+            position: relative;
 
             @media screen and (max-width:992px) {
               width: 100%
@@ -293,6 +313,22 @@
                 background-color: $transparent;
                 border-radius: 0;
               }
+            }
+
+            .header2__wallet-item-bag {
+              font-size: 12px;
+              position: absolute;
+              height: 20px;
+              width: fit-content;
+              right: 10px;
+              top: 10px;
+              min-width: 20px;
+              border-radius: 20px;
+              padding: 5px;
+              background-color: $new-primary-color-6;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
           }
         }

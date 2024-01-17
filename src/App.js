@@ -82,7 +82,7 @@ function App() {
         resolve(res);
       });
     });
-    //
+
     listAllCoinPromise.then((listAllCoin) => {
       getWalletApi()
         .then((resp) => {
