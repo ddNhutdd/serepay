@@ -1,4 +1,4 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
   notifyP2p: {
@@ -16,7 +16,6 @@ const notifyP2pSlice = createSlice({
   },
 });
 
-
 export default notifyP2pSlice.reducer;
-export {setNotify} from notifyP2pSlice.actions;
-export const getNotify = state => state.notifyP2pSlice.notifyP2p; 
+export const { setNotify } = notifyP2pSlice.actions;
+export const getNotify = (state) => state.notifyP2pSlice.notifyP2p;
