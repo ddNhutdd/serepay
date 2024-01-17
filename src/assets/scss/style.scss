@@ -1,0 +1,47 @@
+@import "./base/base.scss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", "Roboto", "Open Sans", sans-serif !important;
+}
+
+@import "./base/gridSerepay.scss";
+@import "./components/MainTemplate.scss";
+@import "./components/AdminWidthdraw.scss";
+@import "./components/Header1.scss";
+@import "./components/Header2.scss";
+@import "./components/P2PTrading.scss";
+@import "./components/P2PTrading2.scss";
+@import "./components/Footer.scss";
+@import "./components/Swap.scss";
+@import "./components/CreateBuy.scss";
+@import "./components/Login.scss";
+@import "./components/Wallet.scss";
+@import "./components/Home.scss";
+@import "./components/SwaptobeWallet.scss";
+@import "./components/FormWithdraw.scss";
+@import "./components/SwaptobeWalletList.scss";
+@import "./components/SwaptobeWalletDeposit.scss";
+@import "./components/Profile.scss";
+@import "./components/AdminTemplate.scss";
+@import "./components/AdminHeader.scss";
+@import "./components/AdminSidebar.scss";
+@import "./components/AdminDashboard.scss";
+@import "./components/AdminKyc.scss";
+@import "./components/PhoneApps.scss";
+@import "./components/AdminExchangeRateDisparity.scss";
+@import "./components/AdminAds.scss";
+@import "./components/Transaction.scss";
+@import "./components/Confirm.scss";
+@import "./components/AdsHistory.scss";
+@import "./components/AdminExchange.scss";
+@import "./components/P2pManagement.scss";
+@import "./components/P2pExchange.scss";
+@import "./components/AdminUser.scss";
+@import "./base/common.scss";

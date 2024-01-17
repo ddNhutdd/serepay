@@ -1,0 +1,64 @@
+.admin-exchange-rate-disparity {
+    color: $white;
+
+    .admin-exchange-rate-disparity__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .admin-exchange-rate-disparity__title {
+            @extend .titleContainerAdmin;
+        }
+    }
+
+    .admin-exchange-rate-disparity__content {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+
+        .admin-exchange-rate-disparity__control-input {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                border: 1px solid #7575755d;
+                padding: 5px 10px;
+                outline: none;
+                background-color: transparent;
+                border-radius: 5px;
+
+                &.disabled {
+                    &:hover {
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            small {
+                margin-top: 5px;
+                color: $red-1;
+            }
+        }
+
+
+        .admin-exchange-rate-disparity__form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .admin-exchange-rate-disparity__action {
+                button {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 5px;
+                }
+            }
+        }
+    }
+}

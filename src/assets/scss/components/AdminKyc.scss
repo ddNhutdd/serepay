@@ -1,0 +1,245 @@
+.admin-kyc-users {
+    color: $white;
+
+    .admin-kyc-users__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        @media screen and (max-width:768px) {
+            flex-direction: column;
+            gap: 20px;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .admin-kyc-users__title {
+            @extend .titleContainerAdmin;
+        }
+
+        .admin-kyc-users__search-form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+
+            @media screen and (max-width:768px) {
+                width: auto;
+            }
+
+            @media screen and (max-width:576px) {
+                flex-direction: column;
+                gap: 20px;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+
+            .admin-kyc-users__search-input {
+                border: 1px solid $background-color-4;
+                padding: 5px 10px;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                outline: none;
+                background-color: $transparent;
+                flex: 1;
+
+                @media screen and (max-width:576px) {
+                    border-radius: 5px
+                }
+            }
+
+            .admin-kyc-users__search-button {
+                width: 100px;
+                flex-grow: 0;
+                flex-shrink: 0;
+                padding: 6px 10px;
+                border: none;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                outline: none;
+                background-color: $background-color-4;
+                transition: .2s;
+
+                @media screen and (max-width:576px) {
+                    border-radius: 5px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.8;
+                }
+
+            }
+        }
+
+        .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon,
+        .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon {
+            color: $admin-text-color;
+        }
+
+        .admin-kyc-users__paging {
+            li {
+                background-color: $transparent;
+                border: none;
+
+                &.ant-pagination-item-active {
+                    border: 1px solid $background-color-4;
+                }
+
+                .ant-pagination-item-ellipsis {
+                    color: $admin-text-color;
+                }
+
+                a {
+                    color: $admin-text-color;
+                    border: none;
+                }
+
+                button {
+                    background-color: $transparent;
+                    color: $admin-text-color;
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .admin-kyc-users__content {
+        overflow-x: auto;
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid $background-color-4;
+            transition: .2s;
+
+            thead {
+                tr {
+                    background-color: $background-color-4;
+
+                    &:hover {
+                        background-color: $background-color-4;
+                    }
+                }
+            }
+
+            tr {
+                transition: .4s;
+
+                &:hover {
+                    background-color: $background-color-5;
+                }
+
+                &:last-child {
+                    td {
+                        border-bottom: none
+                    }
+                }
+            }
+
+            th {
+                padding: 10px;
+                border-left: 1px solid $background-color-4;
+                border-bottom: 1px solid $background-color-4;
+
+                &:first-child {
+                    border-left: none;
+                    border-bottom: 1px solid $background-color-4;
+                }
+            }
+
+            td {
+                padding: 10px;
+                border-left: 1px solid $background-color-4;
+                text-align: left;
+                border-bottom: 1px solid $background-color-4;
+
+                &:first-child {
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+
+.admin-kyc-users__modal {
+    width: 1000px !important;
+
+    .ant-modal-content {
+        background-color: $transparent;
+
+        .admin-kyc-users__modal-container {
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            background-color: $background-color-18;
+            color: $white;
+            border: 2px solid $header2-background;
+            border-radius: 5px;
+
+            .admin-kyc-users__modal-left {
+                width: 50%;
+                border: 1px solid $background-color-4;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                overflow: hidden;
+            }
+
+            .admin-kyc-user__modal-right {
+                width: 50%;
+                border: 1px solid $background-color-4;
+                border-left: none;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+
+            .admin-kyc-users__modal-item {
+                display: flex;
+                border-bottom: 1px solid $background-color-4;
+
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .admin-kyc-users__modal-item-header {
+                    width: 40%;
+                    background-color: $background-color-19;
+                    padding: 10px;
+                    border-right: 1px solid $background-color-4;
+                }
+
+                .admin-kyc-users__modal-item-content {
+                    padding: 10px;
+                }
+            }
+
+            .admin-kyc-user__modal-image-container {
+                width: 100%;
+                margin-top: 20px;
+                display: flex;
+                gap: 20px;
+                justify-content: space-between;
+
+
+                img {
+                    display: block;
+                    width: 30%;
+                }
+            }
+
+            .admin-kyc-users__modal-control {
+                margin-top: 20px;
+                width: 100%;
+                justify-content: flex-end;
+                align-items: flex-end;
+                gap: 15px;
+                display: flex;
+            }
+        }
+    }
+}

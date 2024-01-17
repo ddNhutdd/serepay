@@ -1,0 +1,367 @@
+.profile {
+    width: 100%;
+    padding: 50px 0;
+    padding-top: 125px;
+    background-color: $new-background-level-0;
+
+    .container {
+        @include container;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .profile__card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background-color: $new-background-level-1;
+            color: $new-text-color-white;
+
+            .profile__title {
+                font-weight: bolder;
+                font-size: 1.5em;
+                color: $new-text-color-white;
+            }
+
+            .profile__user-img {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                @media screen and (max-width: 576px) {
+                    flex-direction: column;
+                    gap: 20px;
+                }
+
+                .profile__icon {
+                    width: 120px;
+                    height: 120px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background-color: $background-color-8;
+
+                    i.fa-solid.fa-user {
+                        font-size: 50px;
+                    }
+                }
+            }
+
+            .profile__info-user {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 30px;
+
+                @media screen and(max-width:576px) {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+            }
+
+            .profile__account-content {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                li {
+                    display: flex;
+                    gap: 10px;
+                    align-items: flex-start;
+
+                    img {
+                        display: block;
+                        margin-top: 4px;
+                    }
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+
+            .profile__form {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+
+                @media screen and (max-width: 768px) {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                @media screen and (max-width: 576px) {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+
+            .profile__verified {
+                padding: 15px;
+                background-color: $new-background-level-2;
+                border-radius: 5px;
+                color: $green;
+                font-size: 20px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .profile__verifing {
+                padding: 15px;
+                background-color: $new-background-level-2;
+                border-radius: 5px;
+                color: $blue-1;
+                font-size: 20px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .profile__fileInput {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                color: $new-text-color-white;
+
+                .profile__fileInput__error {
+                    color: $red-1;
+                }
+
+                button {
+                    @extend .buttonContainer--outline;
+                    margin-right: 10px;
+                }
+            }
+
+            .profile__security-item {
+                display: flex;
+
+                @media screen and (max-width: 576px) {
+                    flex-direction: column;
+                    gap: 15px;
+                    align-items: flex-start;
+                }
+
+                .profile__left {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-end;
+
+                    p {
+                        margin-bottom: 0;
+                    }
+
+                    h4 {
+                        color: $new-text-color-white;
+                    }
+                }
+
+                .profile__right {
+                    flex: 1;
+                    width: 300px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    align-items: flex-end;
+                    justify-content: flex-end;
+
+                    @media screen and (max-width: 576px) {
+                        width: 100%;
+                        align-items: flex-start;
+                    }
+
+                    p {
+                        color: $red-1;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .profile__formSumit {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+            }
+
+            .profile__payment-content {
+                form {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 20px;
+
+                    @media screen and (max-width: 576px) {
+                        grid-template-columns: repeat(1, 1fr);
+                    }
+
+                    .profile__payment-action {
+                        .profile__payment-button {
+                            @include userMainButton;
+                            transform: translateY(30px);
+
+                            @media screen and (max-width: 576px) {
+                                transform: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .profile__payment-list {
+                @media screen and (max-width: 768px) {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .profile__payment-record {
+                    display: flex;
+
+                    @media screen and (max-width: 768px) {
+                        flex-direction: column;
+                    }
+
+                    .profile__payment-cell {
+                        width: 33.333333%;
+                        padding: 5px 0;
+                    }
+                }
+            }
+        }
+
+        .profile__payment {
+            .profile__title {
+                &:last-child {
+                    font-size: 18px;
+                }
+            }
+
+            .profile__paging {
+                text-align: right;
+            }
+        }
+    }
+
+    // phần dùng chung
+    .profile__input {
+        width: 100%;
+
+        label {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        input {
+            height: 35.56px;
+        }
+
+        .profile__dropdown {
+            position: relative;
+
+            .profile__dropdown__selector {
+                @include userDropdownSelected;
+            }
+
+            .profile__dropdown__menu-container {
+                @include userDropdownMenu;
+                position: absolute;
+                top: 33px;
+                left: 0;
+                width: 100%;
+            }
+        }
+
+        .input__error {
+            color: $red-1;
+            height: 22px;
+        }
+    }
+
+    .profile__button {
+        @include userMainButton;
+    }
+}
+
+.profile__2faModal {
+    // border: 1px solid $background-color-4;
+    min-height: 454px;
+    border-radius: 5px !important;
+    display: flex;
+    flex-direction: column;
+
+    .profile__2faModel__header {
+        background: $new-background-header-modal-antd;
+        border-bottom: 1px solid;
+        border-color: #797979;
+        color: #fff;
+        padding-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        font-weight: 500;
+        font-size: 17px;
+        padding: 15px;
+
+        .profile__2faModel__close {
+            cursor: pointer;
+        }
+    }
+
+    .profile__2faModel__stepQR,
+    .profile__2faModel__stepVerify {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .profile__2faModel__body {
+            color: #fff;
+            padding: 15px;
+
+            .profile__2faModel__qr {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                div {
+                    margin-top: 5px;
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .profile__2faModal__footer {
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: auto;
+        }
+    }
+
+    .profile__button {
+        @include userMainButton;
+
+        &.ghost {
+            @include userSecondButton;
+        }
+    }
+
+    .profile__input {
+        width: 100%;
+
+        label {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        input {
+            height: 35.56px;
+            text-align: center;
+        }
+    }
+}

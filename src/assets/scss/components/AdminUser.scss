@@ -1,0 +1,18 @@
+.adminUser {
+    color: white;
+
+    .adminUser__tittle {
+        @extend .titleContainerAdmin;
+    }
+
+    .adminUser__paging {
+        padding: 15px 0;
+        text-align: right;
+    }
+
+    .adminUser__content {
+        table {
+            @include adminTable;
+        }
+    }
+}

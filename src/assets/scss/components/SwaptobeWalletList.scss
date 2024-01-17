@@ -1,0 +1,146 @@
+.swaptobeWalletList {
+    .list {
+        list-style: none;
+
+        .list-item {
+            margin-bottom: 16px;
+            border-radius: 6px;
+            padding: 25px 20px;
+            background: $new-background-level-1;
+            box-shadow: 0 6px 4px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-wrap: nowrap;
+            transition: background 0.2s ease-in;
+
+            &:hover {
+                background: $new-background-level-2;
+            }
+
+            @media screen and(max-width:768px) {
+                flex-wrap: wrap;
+            }
+
+            @media screen and (max-width: 576px) {
+                flex-direction: column;
+            }
+
+            .name {
+                display: flex;
+                align-items: center;
+                color: $new-text-color-white;
+                font-weight: 400;
+                letter-spacing: 0.5px;
+                font-size: 14px;
+                width: 35%;
+                line-height: 1;
+
+                @media screen and (max-width: 768px) {
+                    width: 50%;
+                }
+
+                @media screen and (max-width: 576px) {
+                    width: 100%;
+                }
+
+                img {
+                    width: 45px;
+                    height: 45px;
+                    margin-right: 10px;
+                }
+
+                span {
+                    font-weight: 700;
+                    letter-spacing: 0.5px;
+                    font-size: 16px;
+                    margin-right: 4px;
+                }
+
+                div {
+                    margin-left: 3px;
+                }
+            }
+
+            .price {
+                align-self: center;
+                font-weight: 600;
+                color: $new-text-color-white;
+                display: flex;
+                flex-direction: column;
+
+                @media screen and (max-width: 576px) {
+                    margin-left: 0;
+                    margin-top: 15px;
+                    align-self: flex-start;
+                }
+
+                .swaptobeWalletList__own {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 5px;
+
+                    @media screen and (max-width:992px) {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        justify-content: flex-end;
+                    }
+
+                    span {
+                        font-weight: normal;
+                        color: $new-text-color-white;
+                        margin-top: 4px;
+                        display: flex;
+                        justify-content: center;
+
+                        word-wrap: none;
+
+                        img {
+                            margin-left: 5px;
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+            }
+
+            .action {
+                margin-left: auto;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                padding-left: 10px;
+
+                gap: 15px;
+                align-items: center;
+
+                @media screen and (max-width: 992px) {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+
+                @media screen and (max-width: 768px) {
+                    width: 100%;
+                    margin-top: 20px;
+                }
+
+                @media screen and (max-width: 576px) {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+
+                @media screen and (max-width: 340px) {
+                    flex-direction: column;
+                }
+
+                .primary-button {
+                    @media screen and (max-width: 480px) {
+                        width: fit-content;
+                    }
+                }
+
+                .seconary-button {
+                    @media screen and (max-width: 480px) {
+                        width: fit-content;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+.admin-exchange {
+    color: $white;
+
+    .admin-exchange__header {
+        margin-bottom: 20px;
+
+        .admin-exchange__title {
+            @extend .titleContainerAdmin;
+        }
+    }
+
+    .admin-exchange__content {
+        overflow-x: auto;
+
+        table {
+            @include adminTable;
+            min-width: 500px;
+
+            input {
+                height: 35.56px;
+            }
+
+            .exchange__action {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    }
+}

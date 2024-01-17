@@ -1,0 +1,155 @@
+.ads-history {
+    margin-top: 100px;
+    padding: 30px 0;
+    font-size: 15px;
+    background: $new-background-level-0;
+    min-height: 70vh;
+
+    .container {
+        @include container;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .ads-history__content {
+            background: $new-background-level-1;
+            padding: 15px;
+
+            @media screen and (min-width: 480px) {
+                padding: 24px;
+            }
+
+            h3 {
+                color: $new-text-color-6;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+            }
+
+            input[type="checkbox"]#pendingCheckbox:checked+label {
+                i {
+                    display: block;
+                }
+            }
+
+            .ads-history__checkbox {
+                display: flex;
+                gap: 5px;
+                margin-bottom: 15px;
+                align-items: center;
+                color: $new-text-color-white;
+                font-size: 14px;
+
+                label {
+                    margin-bottom: 0;
+                }
+
+                .ads-history__square {
+                    width: 15px;
+                    height: 15px;
+                    border: 1px solid $background-color-4;
+                    background-color: $transparent;
+                    border-radius: 3px;
+                    position: relative;
+
+                    i {
+                        position: absolute;
+                        top: -1px;
+                        left: 0;
+                        display: none;
+                        color: $new-primary-color-6;
+                    }
+                }
+            }
+
+            .ads-history__filter-tabs-container {
+                border-bottom: 1px solid $new-primary-background-6;
+                display: flex;
+                margin-bottom: 10px;
+
+                .ads-history__filter-tabs {
+                    padding: 8px 24px;
+                    font-weight: 600;
+                    color: $new-text-color-6;
+                    cursor: pointer;
+                    font-size: 14px;
+
+                    @media screen and (min-width: 480px) {
+                        font-size: 16px;
+                    }
+
+                    &.active {
+                        background-color: $new-primary-background-6;
+                        border-top-right-radius: 5px;
+                        border-top-left-radius: 5px;
+                        color: $new-text-color-white;
+                        border-bottom: 2px solid $header2-background;
+                    }
+                }
+            }
+        }
+
+        .ads-history__paging {
+            text-align: right;
+            margin-top: 20px;
+        }
+    }
+}
+
+.ads-history__modal-container {
+    padding: 16px 24px;
+    color: $new-text-color-white;
+
+    .ads-history__modal-header {
+        font-size: 20px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        span {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .ads-history__modal-content {
+        text-align: center;
+    }
+
+    .ads-history__modal-footer {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        .ads-history__modal-cancel {
+            @include adminButtonGhost;
+            padding: 8px 20px;
+            background-color: transparent;
+            color: $new-primary-color-6;
+            border-color: $new-primary-color-6;
+
+            &:hover {
+                color: $new-primary-color-6;
+                border-color: $new-primary-color-6;
+            }
+
+            &.disabled {
+                color: $new-primary-color-5;
+
+                &:hover {
+                    cursor: not-allowed;
+                    color: $new-primary-color-5;
+                    border-color: $new-primary-color-5;
+                }
+            }
+        }
+
+        .ads-history__modal-ok {
+            @include userMainButton;
+        }
+    }
+}

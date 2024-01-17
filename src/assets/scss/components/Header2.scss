@@ -1,0 +1,365 @@
+.header2 {
+  width: 100%;
+  height: 100px;
+  background-color: $transparent;
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  @media screen and (max-width:992px) {
+    background-color: #0d0d0d;
+  }
+
+  @media screen and (max-width: 992px) {
+    height: auto;
+  }
+
+  @mixin hover-cursor() {
+    transition: color .2s;
+
+    @media screen and (max-width:992px) {
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $new-primary-color-6
+    }
+  }
+
+  @mixin menu () {
+    background-color: $neutral-4;
+    border-radius: 8px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: .3125rem;
+    position: absolute;
+    top: 39px;
+    right: 0;
+    display: none;
+    pointer-events: none;
+    min-width: 80px;
+
+    @media screen and (max-width:992px) {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      margin-bottom: 10px;
+      flex-direction: row;
+      position: static;
+      background-color: transparent;
+      pointer-events: auto;
+    }
+
+    &.show {
+      display: block;
+      pointer-events: auto;
+    }
+  }
+
+  @mixin menu-item () {
+    padding: 7px 10px;
+    display: flex;
+    gap: .625rem;
+    align-items: center;
+    transition: background-color .2s;
+
+    @media screen and (max-width:992px) {
+      border-radius: 5px;
+      padding-left: 0;
+      height: 50px;
+    }
+
+    &:hover {
+      background-color: $neutral-5;
+      cursor: pointer;
+
+      @media screen and (max-width: 992px) {
+        background-color: $transparent;
+        color: $new-primary-color-6;
+      }
+    }
+
+    &.active {
+      background-color: $neutral-5;
+
+      @media screen and (max-width:992px) {
+        border-bottom: 2px solid $new-primary-color-6;
+      }
+    }
+  }
+
+  .container {
+    @include container;
+    color: $white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: 992px) {
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      cursor: pointer;
+
+      img {
+        width: 120px;
+        object-fit: cover;
+      }
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      margin-right: auto;
+      margin-left: 15px;
+      transition: .2s;
+
+      @media screen and (max-width: 992px) {
+        order: 1;
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        margin-bottom: 10px;
+
+        &.show {
+          display: flex;
+        }
+      }
+
+      .navlink {
+        display: inline-block;
+        text-decoration: none;
+        color: $white;
+        cursor: pointer;
+        font-size: 15px;
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+
+        @media screen and (max-width: 992px) {
+          display: block;
+          text-align: left;
+          width: 100%;
+        }
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        &.active {
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            border-radius: 20px;
+            background-color: $new-primary-color-10;
+          }
+        }
+      }
+
+      .navlink+.navlink {
+        margin-left: 30px;
+
+        @media screen and (max-width: 992px) {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .header__bar-button-container {
+      margin-left: auto;
+      display: none;
+
+      @media screen and(max-width:992px) {
+        display: block;
+      }
+    }
+
+    .header2__right {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      transition: .2s;
+
+      @media screen and (max-width:992px) {
+        order: 2;
+        display: none;
+        width: 100%;
+        padding-left: 15px;
+
+        &.show {
+          display: block;
+        }
+      }
+
+      .header2__language {
+        position: relative;
+
+        .header2__language-seletor {
+          @include hover-cursor;
+
+          img {
+            display: block;
+            width: 33px;
+            height: 33px;
+            object-fit: cover;
+          }
+        }
+
+        .header2__language-menu {
+          @include menu;
+
+          .header2__language-item {
+            @include menu-item;
+
+            @media screen and (max-width:992px) {
+              padding-left: 10px;
+
+              &:hover {
+                background-color: $neutral-5;
+                color: $new-text-color-white;
+              }
+            }
+
+            img {
+              display: block;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+
+      .header2__currency {
+        position: relative;
+
+        .header2__currency-selector {
+          @include hover-cursor;
+        }
+
+        .header2__currrency-menu {
+          @include menu;
+
+          .header2__currrency-item {
+            @include menu-item;
+            justify-content: center;
+
+            @media screen and (max-width:992px) {
+              padding-left: 10px;
+
+              &:hover {
+                background-color: $neutral-5;
+                color: $new-text-color-white;
+              }
+            }
+
+            text-align: center;
+          }
+        }
+      }
+
+      .header2__wallet {
+        position: relative;
+
+        .header2__wallet-title {
+          @include hover-cursor;
+        }
+
+        .header2__wallet-menu {
+          @include menu;
+          min-width: 250px;
+
+          .header2__wallet-item {
+            @include menu-item;
+
+            @media screen and (max-width:992px) {
+              width: 100%
+            }
+
+            &.active {
+              @media screen and (max-width:992px) {
+                background-color: $transparent;
+                border-radius: 0;
+              }
+            }
+          }
+        }
+      }
+
+      .header2__user {
+        position: relative;
+
+        .header2__username {
+          @include hover-cursor;
+        }
+
+        .header2__user-info {
+          @include menu;
+          min-width: 110px;
+
+          .header2__user-info-item {
+            @include menu-item;
+
+
+            @media screen and (max-width:992px) {
+              width: 100%;
+
+              &.active {
+                background-color: $transparent;
+                border-radius: 0;
+              }
+            }
+
+            span {
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+
+      .header2__login {
+        @include hover-cursor;
+
+        @media screen and (max-width:992px) {
+          display: block;
+        }
+      }
+    }
+
+    .bar-button {
+      margin-left: 30px;
+      border: 1px solid $border-color-1;
+      border-radius: 3px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
+
+      @media screen and (max-width: 992px) {
+        display: flex;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+}

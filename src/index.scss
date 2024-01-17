@@ -1,0 +1,169 @@
+@import "./assets/scss/base/base.scss";
+
+// Modal
+.ant-modal-content {
+  background-color: $new-background-modal-antd;
+
+  .ant-modal-close {
+    display: none;
+  }
+
+  .ant-modal-header {
+    background-color: $new-background-header-modal-antd;
+    border-color: $neutral-10;
+
+    .ant-modal-title {
+      color: #fff;
+    }
+  }
+
+  .ant-modal-body {
+    padding: 0;
+
+    .ant-table-pagination {
+      margin-right: 20px;
+    }
+  }
+}
+
+// paging antd
+.ant-pagination {
+
+  .ant-pagination-disabled .ant-pagination-item-link,
+  .ant-pagination-disabled:hover .ant-pagination-item-link {
+    background-color: $transparent;
+    color: $new-text-color-white;
+    border: none;
+  }
+
+  .ant-pagination-item {
+    background-color: $transparent;
+    color: $new-text-color-white;
+    border: none;
+
+    &:hover {
+      background-color: $new-primary-color-6;
+    }
+
+    a {
+      color: $new-text-color-white;
+    }
+
+    &.ant-pagination-item-active {
+      background-color: $new-primary-color-6 !important;
+    }
+  }
+
+  .ant-pagination-prev .ant-pagination-item-link,
+  .ant-pagination-next .ant-pagination-item-link {
+    background-color: $transparent;
+    color: $new-text-color-white;
+    border: none;
+  }
+
+  .ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+  .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
+    color: $new-text-color-white;
+  }
+}
+
+// empty antd
+.ant-empty {
+  font-size: 14px;
+
+  .ant-empty-image svg {
+    path {
+      &:nth-of-type(1) {
+        fill: $new-primary-background-5;
+      }
+
+      &:nth-of-type(3) {
+        fill: $new-primary-background-6;
+      }
+
+      &:nth-of-type(4) {
+        fill: $new-primary-background-8;
+      }
+    }
+
+    ellipse {
+      fill: $new-primary-background-4;
+    }
+  }
+
+  .ant-empty-description {
+    color: $new-primary-background-6;
+  }
+}
+
+// ant-tag
+.ant-tag {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+// fix button antd issue when add tailwind
+button[type="button"],
+button[type="submit"],
+button[type="reset"] {
+  &.ant-btn-primary {
+    color: #fff;
+    background-color: #cb9950;
+
+    &:disabled {
+      color: #dfdfdf;
+      background-color: #c49652;
+    }
+  }
+
+  &.ant-btn-dangerous {
+    background-color: #ff4d4f;
+  }
+
+  &.ant-btn-default {
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+}
+
+.no-border {
+  border: 0 !important;
+}
+
+// Progress
+.ant-progress-text {
+  display: none !important;
+}
+
+.ant-progress-outer {
+  padding: 0 !important;
+}
+
+.ant-progress-success-bg {
+  background-color: $green;
+}
+
+.ant-progress-bg {
+  background-color: $red;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $new-primary-color-6;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5;
+}

@@ -1,0 +1,7 @@
+node_modules/
+build/
+public/videos
+*.zip
+*.rar
+*.mp4
+*.mkv

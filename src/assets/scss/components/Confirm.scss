@@ -1,0 +1,208 @@
+.confirm {
+    .confirm--green {
+        color: $green-16;
+        font-weight: bold;
+    }
+
+    .confirm--red {
+        color: $red-1;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .confirm--blue {
+        color: $blue;
+        font-weight: bold;
+    }
+
+    .confirm--break {
+        word-break: break-all;
+    }
+
+    .container {
+        @include container2;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        table {
+            @include adminTable;
+            color: $neutral-19;
+            background-color: $new-background-level-1;
+
+            tr {
+                &:hover {
+                    cursor: default;
+                    background-color: transparent;
+                }
+            }
+
+            .confirm__header {
+                td {
+                    padding: 15px;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        &:first-child {
+                            width: 112px;
+                            min-width: 112px;
+                            font-weight: bold;
+
+                            @media screen and (max-width: 576px) {
+                                min-width: auto;
+                            }
+                        }
+                    }
+                }
+
+                .confirm__status {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+
+                    .confirm__status-text {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        gap: 5px;
+
+                        .loader {
+                            border-top-color: $blue;
+                        }
+                    }
+
+                    .confirm__status-time {
+                        font-size: 18px;
+                    }
+                }
+
+                .confirm__payment {
+                    button {
+                        display: inline-flex;
+                    }
+
+                    span {
+                        margin-left: 5px;
+                    }
+                }
+
+                .confirm__comment {
+                    padding: 20px;
+                }
+
+                button {
+                    @include userMainButton;
+                    padding: 5px 10px;
+                }
+
+                .confirm__action {
+                    display: flex;
+                    gap: 10px;
+
+                    .confirm__action-danger {
+                        background-color: $red-1;
+
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.confirm-modal {
+    .descriptionText {
+        margin-top: 10px;
+        padding: 0 20px;
+        color: $new-text-color-white;
+
+        .descriptionText__remind {
+            display: block;
+        }
+    }
+
+    .paymentContent {
+        padding: 10px 20px 20px 20px;
+        color: $new-text-color-white;
+
+        .ant-descriptions-bordered .ant-descriptions-row {
+            border-color: $neutral-8;
+        }
+
+        .ant-descriptions-bordered .ant-descriptions-view {
+            border-color: $neutral-8;
+        }
+
+        .ant-descriptions-bordered .ant-descriptions-item-label,
+        .ant-descriptions-bordered .ant-descriptions-item-content {
+            border-color: $neutral-8;
+        }
+
+        .ant-descriptions-item-content {
+            color: $new-text-color-white;
+        }
+
+        .ant-descriptions-item-label {
+            color: $new-text-color-white;
+            background-color: $transparent !important;
+        }
+
+        .ant-descriptions-item-content {
+            span {
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: flex-start;
+
+                @media screen and (min-width: 600px) {
+                    justify-content: space-between;
+                    flex-direction: row;
+                    align-items: center;
+                }
+
+                div {
+                    &:first-of-type {
+                        flex-grow: 1;
+                    }
+                }
+            }
+        }
+
+        .icon-copy {
+            color: $neutral-18;
+            cursor: pointer;
+        }
+    }
+
+    .ant-modal-footer {
+        border-color: $neutral-8;
+
+        button {
+            @extend .buttonContainer--primary;
+        }
+    }
+}
+
+.green-text {
+    font-weight: 600;
+    color: $green-14;
+    display: inline-block;
+}
+
+.blue-text {
+    font-weight: 600;
+    display: inline-block;
+    color: $blue-16 !important;
+}
+
+.red-text {
+    font-weight: 600;
+    display: inline-block;
+    color: $text-color-4;
+}

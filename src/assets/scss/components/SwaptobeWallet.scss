@@ -1,0 +1,85 @@
+.swaptobe-wallet {
+    width: 100%;
+    padding: 50px 0;
+    padding-top: 140px;
+    background: $new-background-level-0;
+
+    .container {
+        @include container;
+
+        .title {
+            font-weight: 500;
+            color: $new-text-color-white;
+            margin-bottom: 0;
+            margin-left: 10px;
+            font-size: 24px;
+            margin-bottom: 40px;
+
+            .title__header {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+
+                i {
+                    display: inline-block;
+                    margin-right: 5px;
+                    color: $new-primary-color-6;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
+        }
+
+        .info {
+            padding: 20px 15px;
+            background-color: $new-background-level-1;
+            border-radius: 12px;
+            align-items: center;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+            gap: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: $new-text-color-white;
+
+            @media screen and (max-width: 768px) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            @media screen and (min-width: 480px) {
+                padding: 24px;
+            }
+
+            div:nth-of-type(2) {
+                font-size: 28px;
+                font-weight: 700;
+                word-break: break-word;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    object-fit: cover;
+                }
+            }
+
+
+        }
+    }
+}

@@ -1,0 +1,122 @@
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: $footer-background;
+  display: block;
+  padding: 90px 0 45px;
+
+
+  .container {
+    @include container;
+    display: flex;
+
+    @media screen and (max-width:991px) {
+      flex-direction: column;
+    }
+
+    .footer__community {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+
+      @media screen and (max-width: 991px) {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      @media screen and (max-width: 767px) {
+        flex-direction: column;
+      }
+
+      .footer__community-title {
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 40px;
+        text-align: center;
+        margin-bottom: 20px;
+        color: $footer-text-1;
+
+        @media screen and(max-width:991px) {
+          width: 50%;
+        }
+
+        @media screen and(max-width:767px) {
+          width: 100%;
+        }
+      }
+
+      .footer__social-list {
+        @media screen and (max-width:991px) {
+          width: 50%;
+        }
+
+        @media screen and (max-width:767px) {
+          width: 100%;
+        }
+
+        .footer__social-row {
+          margin-top: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          span {
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    .footer__list {
+      display: flex;
+      width: 75%;
+
+      @media screen and (max-width:991px) {
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      @media screen and (max-width:767px) {
+        flex-wrap: wrap;
+      }
+
+      .footer__list-item {
+        text-align: right;
+        width: 25%;
+
+        @media screen and (max-width:767px) {
+          width: 50%;
+        }
+
+        .footer__title {
+          font-weight: 700;
+          font-size: 22px;
+          line-height: 40px;
+          margin-bottom: 20px;
+          color: $footer-text-1;
+        }
+
+        .footer__list-content {
+          list-style: none;
+
+          li {
+            span {
+              font-size: 15px;
+              line-height: 1.8;
+              color: $footer-text-1;
+              transition: .2s;
+
+              &:hover {
+                color: $neutral-16;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

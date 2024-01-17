@@ -1,0 +1,17 @@
+@import 'src/assets/scss/base/base.scss';
+
+.toast-header {
+    color: $neutral-20;
+    display: flex;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: center;
+
+    .toast-header-error-icon {
+        color: $red-16;
+    }
+
+    .toast-header-success-icon {
+        color: $green-10;
+    }
+}
