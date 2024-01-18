@@ -159,6 +159,7 @@ $new-background-level-2: #242424;
 
 // input
 $new-width-input: 100%;
+$new-padding-input: 0 8px;
 $new-padding-input-sm: 0 12px;
 $new-padding-input-md: 0 14px;
 $new-padding-input-lg: 0 16px;
@@ -325,7 +326,7 @@ $blue-light: #ceceff;
   @media screen and (max-width: 767px) {
     padding-right: 15px;
     padding-left: 15px;
-    max-width: 400px;
+    max-width: 600px;
   }
 
   @media screen and (max-width: 575px) {

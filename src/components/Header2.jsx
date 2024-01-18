@@ -5,7 +5,6 @@ import {
   getLocalStorage,
   setLocalStorage,
   removeLocalStorage,
-  roundIntl,
 } from "../util/common";
 import {
   currencyMapper,
@@ -23,9 +22,11 @@ import {
   getTotalAssetsBtcRealTime,
   getTotalAssetsRealTime,
 } from "src/redux/constant/listCoinRealTime.constant";
+import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 
 export default function Header2({ history }) {
   const { isLogin, username } = useSelector((root) => root.loginReducer);
+  const notifyRedux = useSelector(getNotify);
   const currencyFromRedux = useSelector(getCurrent);
   const [currentLanguage, setCurrentLanguage] = useState(
     getLocalStorage(localStorageVariable.lng) || defaultLanguage
@@ -70,9 +71,9 @@ export default function Header2({ history }) {
     for (const item of listItem) {
       item.classList.remove("active");
     }
-    const url = e.currentTarget.dataset.page;
+    const urlLocal = e.currentTarget.dataset.page;
     e.currentTarget.classList.add("active");
-    history.push(url);
+    history.push(urlLocal);
     setIsShowMenu(() => false);
     return;
   };
@@ -224,6 +225,9 @@ export default function Header2({ history }) {
       }
     }
   };
+  const renderClassShowNotify = function () {
+    return notifyRedux > 0 ? "" : "--d-none";
+  };
 
   useEffect(() => {
     const language =
@@ -301,7 +305,7 @@ export default function Header2({ history }) {
               "--d-none"
             )}`}
           >
-            <span className="header2__wallet__bag">
+            <span className={`${renderClassShowNotify()} header2__wallet__bag`}>
               <i className="fa-regular fa-clock"></i>
             </span>
             <div onClick={walletToggle} className="header2__wallet-title">
@@ -331,7 +335,11 @@ export default function Header2({ history }) {
                 data-page={url.p2p_management}
                 className="header2__wallet-item"
               >
-                <span className="header2__wallet-item-bag">9</span>
+                <span
+                  className={`${renderClassShowNotify()} header2__wallet-item-bag`}
+                >
+                  {notifyRedux}
+                </span>
                 <i className="fa-solid fa-comments-dollar"></i>
                 <span>{t("p2PHistory")}</span>
               </div>

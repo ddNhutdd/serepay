@@ -16,6 +16,7 @@ import Home from "./components/home/index.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getExchange as getExchangeApi,
+  getListHistoryP2pPendding,
   getWalletApi,
 } from "./util/userCallApi";
 import {
@@ -51,9 +52,24 @@ import TransactionBuy from "./components/transactionBuy";
 import Widthdraw from "./components/admin/widthdraw";
 import User from "./components/admin/user";
 import { create, all } from "mathjs";
+import { setNotify } from "./redux/reducers/notifiyP2pSlice";
 
 const config = {};
 export const math = create(all, config);
+
+export const fetchNotify = function (dispatchHook) {
+  return new Promise((resolve, reject) => {
+    getListHistoryP2pPendding({ limit: 1000, page: 1 })
+      .then((resp) => {
+        const data = resp?.data?.data?.total || 0;
+        dispatchHook(setNotify(data));
+        resolve(true);
+      })
+      .catch((error) => {
+        reject(false);
+      });
+  });
+};
 
 function App() {
   const dispatch = useDispatch();
@@ -118,41 +134,6 @@ function App() {
         console.log(error);
       });
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      const user = JSON.parse(localStorage.getItem("user"));
-      socket.emit("join", user.id);
-      socket.on("ok", (res) => {
-        console.log(res, "joined");
-      });
-      if (user.expiresInRefreshToken < Date.now()) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-      }
-    }
-    //
-    socket.connect();
-    socket.on("listCoin", (resp) => {
-      dispatch(setListCoinRealtime(resp));
-      const total = calTotalAssets(resp, userWallet.current);
-      dispatch(setTotalAssetsRealTime(total));
-      dispatch(setTotalAssetsBtcRealTime(calTotalAssetsBtc(total, resp)));
-    });
-    //
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-  useEffect(() => {
-    getExchange();
-  }, [fetchExchangeCount]);
-  useEffect(() => {
-    isLogin && getUserWallet();
-  }, [userWalletFetch, isLogin]);
-  useEffect(() => {
-    getExchangeRateDisparityApi();
-  }, [getExchangeRateDisparityFetch]);
   const calTotalAssets = function (listCoinRealTime, userWallet) {
     if (
       !listCoinRealTime ||
@@ -187,6 +168,52 @@ function App() {
     )?.price;
     return roundDecimalValues(totalUsd / priceBtc, 100000000);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      socket.emit("join", user.id);
+      socket.on("ok", (res) => {
+        console.log(res, "joined");
+      });
+      if (user.expiresInRefreshToken < Date.now()) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
+    }
+    //
+    socket.connect();
+    socket.on("listCoin", (resp) => {
+      dispatch(setListCoinRealtime(resp));
+      const total = calTotalAssets(resp, userWallet.current);
+      dispatch(setTotalAssetsRealTime(total));
+      dispatch(setTotalAssetsBtcRealTime(calTotalAssetsBtc(total, resp)));
+    });
+    //
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+  useEffect(() => {
+    if (isLogin) {
+      fetchNotify(dispatch);
+      socket.on("createP2p", (res) => {
+        fetchNotify(dispatch);
+      });
+    } else {
+      dispatch(setNotify(-1));
+      socket.off("createP2p");
+    }
+  }, [isLogin]);
+  useEffect(() => {
+    getExchange();
+  }, [fetchExchangeCount]);
+  useEffect(() => {
+    isLogin && getUserWallet();
+  }, [userWalletFetch, isLogin]);
+  useEffect(() => {
+    getExchangeRateDisparityApi();
+  }, [getExchangeRateDisparityFetch]);
 
   return (
     <BrowserRouter>

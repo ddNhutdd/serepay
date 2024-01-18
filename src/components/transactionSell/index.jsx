@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Spin } from "antd";
 import { Input } from "../Common/Input";
 import {
+  findMin,
   formatCurrency,
   formatStringNumberCultureUS,
   getLocalStorage,
@@ -63,6 +64,7 @@ function TransactionSell() {
   const [errorControl, setErrorControl] = useState({});
   const [callApiCreateP2p, setCallApiCreateP2p] = useState(api_status.pending);
   const [eulaChecked, setEulaChecked] = useState(false);
+  const [showComponentLoader, setShowComponentLoader] = useState(true);
 
   const touchedControl = useRef({});
   const control = useRef({
@@ -71,7 +73,7 @@ function TransactionSell() {
   const payInputElement = useRef();
   const receiveInputElement = useRef();
   const isSelectedDropdownRandom = useRef(true); // for multilingual part
-  const numberCoinsOwned = useRef(9999999999999);
+  const numberCoinsOwned = useRef(-1);
 
   const [callApiLoadPaymentStatus, setCallApiLoadPaymentStatus] = useState(
     api_status.pending
@@ -136,6 +138,14 @@ function TransactionSell() {
     if (!userWalletRedux || userWalletRedux.length <= 0) return;
     setCoinOwned();
   }, [userWalletRedux]);
+  useEffect(() => {
+    if (
+      selectedTrader &&
+      userWalletRedux &&
+      Object.keys(userWalletRedux).length > 0
+    )
+      setShowComponentLoader(() => false);
+  }, [selectedTrader, userWalletRedux]);
 
   const validationPageLoad = function () {
     if (!isLogin) {
@@ -177,8 +187,8 @@ function TransactionSell() {
         amount,
       })
         .then((resp) => {
-          setCallApiLoadTraderStatus(api_status.fulfilled);
           setListTrader(() => resp.data.data.array);
+          setCallApiLoadTraderStatus(api_status.fulfilled);
           return resolve(resp.data.data.array);
         })
         .catch((err) => {
@@ -210,6 +220,7 @@ function TransactionSell() {
         history.push(url.profile);
         return;
       });
+
     payInputElement.current.value = new Intl.NumberFormat(
       currencyMapper.USD,
       roundIntl(10)
@@ -567,6 +578,15 @@ function TransactionSell() {
     if (condition1 || condition2 || condition3 || condition4) return "disable";
     else return "";
   };
+  const maxClickHandle = function (e) {
+    e.stopPropagation();
+    const result = findMin(
+      numberCoinsOwned.current,
+      selectedTrader.amount,
+      selectedTrader.amount - selectedTrader.amountSuccess
+    );
+    payInputElement.current.value = result;
+  };
   const submitHandle = function (e) {
     e.preventDefault();
     touchedControl.current[control.current.amount] = true;
@@ -581,10 +601,18 @@ function TransactionSell() {
       })
       .catch((error) => {});
   };
+  const renderClassSpinComponent = function () {
+    return showComponentLoader ? "" : "--d-none";
+  };
+  const renderClassMainContent = function () {
+    return showComponentLoader ? "--d-none" : "";
+  };
 
   return (
-    <div className={`transaction fadeInBottomToTop`}>
-      <div className="container">
+    <div className={`transaction `}>
+      <div
+        className={`container fadeInBottomToTop ${renderClassMainContent()}`}
+      >
         <div className="box transaction__box transaction__header">
           <div>{renderHeader()}</div>
         </div>
@@ -624,12 +652,19 @@ function TransactionSell() {
                   onFocus={inputCoinFocusHandle}
                   errorMes={errorControl[control.current.amount]}
                 />
-                <span className="transaction__unit">{selectedCoin}</span>
+                <span className="transaction__action">
+                  <span className="transaction__unit">{selectedCoin}</span>
+                  <span onClick={maxClickHandle} className="transaction__max">
+                    MAX
+                  </span>
+                </span>
               </div>
               <div className="transaction__input">
                 <label>{t("toReceive")}:</label>
                 <Input ref={receiveInputElement} disabled type="text" />
-                <span className="transaction__unit">VND</span>
+                <span className="transaction__action">
+                  <span className="transaction__unit">VND</span>
+                </span>
               </div>
             </div>
             <div
@@ -707,6 +742,9 @@ function TransactionSell() {
             </div>
           </div>
         </div>
+      </div>
+      <div className={`spin-container ${renderClassSpinComponent()}`}>
+        <Spin />
       </div>
     </div>
   );

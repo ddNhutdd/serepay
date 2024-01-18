@@ -28,7 +28,7 @@ import {
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
-import i18n from "src/translation/i18n";
+import i18n, { availableLanguageCodeMapper } from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
 import { math } from "src/App";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
@@ -65,6 +65,7 @@ function TransactionBuy() {
   const listCoinRealTime = useSelector(getListCoinRealTime);
   const exchangeRedux = useSelector(getExchange);
   const [price, setPrice] = useState();
+  const [showComponentSpin, setShowComponentSpin] = useState(true);
 
   const inputCoinElement = useRef();
   const inputMoneyElement = useRef();
@@ -583,6 +584,47 @@ function TransactionBuy() {
     };
     return processString(str, listSubString, callback);
   };
+  const renderClassShowComponentSpin = function () {
+    return showComponentSpin ? "" : "--d-none";
+  };
+  const renderClassShowComponentMainContent = function () {
+    return showComponentSpin ? "--d-none" : "";
+  };
+  const maxClickHandle = function () {
+    const coinAvailable = selectedTrader.amount - selectedTrader.amountSuccess;
+    const coinName = selectedTrader.symbol;
+    const price = listCoinRealTime.find(
+      (item) => item.name === coinName
+    )?.price;
+    const rate = exchangeRedux.find((item) => item.title === "VND")?.rate;
+
+    const coinAvailableFraction = math.fraction(coinAvailable);
+    const priceFraction = math.fraction(price);
+    const rateFraction = math.fraction(rate);
+    const rateDisparityFraction = math.fraction(
+      getExchangeRateDisparityFromRedux
+    );
+
+    const priceBuyFraction = math.add(
+      priceFraction,
+      math
+        .chain(priceFraction)
+        .multiply(rateDisparityFraction)
+        .divide(100)
+        .done()
+    );
+
+    const resultFraction = math
+      .chain(coinAvailableFraction)
+      .multiply(priceBuyFraction)
+      .multiply(rateFraction)
+      .done();
+    const resultString = new Intl.NumberFormat(
+      availableLanguageCodeMapper.en
+    ).format(math.number(resultFraction));
+
+    inputMoneyElement.current.value = resultString;
+  };
 
   useEffect(() => {
     const language =
@@ -645,10 +687,12 @@ function TransactionBuy() {
       exchangeRedux &&
       exchangeRedux.length > 0 &&
       currencyRedux &&
+      selectedTrader &&
       !hasRunFlag.current
     ) {
       loadInputCoin();
       hasRunFlag.current = true;
+      setShowComponentSpin(() => false);
     }
   }, [
     listCoinRealTime,
@@ -659,8 +703,10 @@ function TransactionBuy() {
   ]);
 
   return (
-    <div className={`transaction fadeInBottomToTop`}>
-      <div className="container">
+    <div className={`transaction `}>
+      <div
+        className={`container fadeInBottomToTop ${renderClassShowComponentMainContent()}`}
+      >
         <div className="box transaction__box transaction__header">
           <div>{renderHeader()}</div>
         </div>
@@ -700,7 +746,12 @@ function TransactionBuy() {
                   type="text"
                   errorMes={errorControl[control.current.amount]}
                 />
-                <span className="transaction__unit">VND</span>
+                <span className="transaction__action">
+                  <span className="transaction__unit">VND</span>
+                  <span onClick={maxClickHandle} className="transaction__max">
+                    MAX
+                  </span>
+                </span>
               </div>
               <div className="transaction__input">
                 <label htmlFor="receiveInput">{t("toReceive")}:</label>
@@ -708,13 +759,15 @@ function TransactionBuy() {
                   ref={inputCoinElement}
                   disabled
                   type="text"
-                  className="transaction__input-result"
+                  // className="transaction__input-result"
                 />
-                <span
-                  id="receiveUnitTransaction"
-                  className="transaction__unit result"
-                >
-                  {selectedCoin}
+                <span className="transaction__action">
+                  <span
+                    id="receiveUnitTransaction"
+                    className="transaction__unit result"
+                  >
+                    {selectedCoin}
+                  </span>
                 </span>
               </div>
             </div>
@@ -793,6 +846,9 @@ function TransactionBuy() {
             </div>
           </div>
         </div>
+      </div>
+      <div className={`spin-container ${renderClassShowComponentSpin()}`}>
+        <Spin />
       </div>
     </div>
   );

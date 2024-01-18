@@ -395,3 +395,6 @@ export const formatNumber = function (number, locale, digits) {
     roundIntl(digits)
   ).format(number);
 };
+export const findMin = function (...params) {
+  return Math.min(...params);
+};

@@ -21,7 +21,7 @@ import {
   getListHistoryP2pPendding,
   getListHistoryP2pWhere,
 } from "src/util/userCallApi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   getCurrent,
   getExchange,
@@ -29,9 +29,11 @@ import {
 } from "src/redux/constant/currency.constant";
 import { EmptyCustom } from "../Common/Empty";
 import { math } from "src/App";
+import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 
 function P2pManagement() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const advertisingStatusType = {
     all: "all",
     buy: "buy",
@@ -65,28 +67,29 @@ function P2pManagement() {
   const exchange = useSelector(getExchange);
   const exchangeFetchApiStatus = useSelector(getExchangeFetchStatus);
   const currency = useSelector(getCurrent);
+  const notifyRedux = useSelector(getNotify);
 
   useEffect(() => {
     const element = document.querySelector(".p2pManagement");
     element.classList.add("fadeInBottomToTop");
-    //
+
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
     i18n.on("languageChanged", () => {
       loadDropdown();
     });
-    //
+
     document.addEventListener("click", closeDropdown);
     fetchApiGetListAllCoin();
-    socket.on("createP2p", (res) => {
-      console.log(res, "createP2p ffff");
-      loadData(currentPage);
-    });
+
     return () => {
       document.removeEventListener("click", closeDropdown);
     };
   }, []);
+  useEffect(() => {
+    loadData(currentPage);
+  }, [notifyRedux]);
   useEffect(() => {
     if (exchangeFetchApiStatus === api_status.fulfilled) {
       loadData(currentPage);

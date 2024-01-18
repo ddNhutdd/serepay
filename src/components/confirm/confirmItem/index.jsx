@@ -39,7 +39,7 @@ function ConfirmItem(props) {
   const { t } = useTranslation();
   const exchange = useSelector(getExchange);
   const currentCurrency = useSelector(getCurrent);
-  const { index, content, profileId, render } = props;
+  const { index, content, profileId, render, fee } = props;
   const deadLine = useRef(calculateTime(content.created_at, 15, 0));
   const [counter, setCounter] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -439,6 +439,7 @@ function ConfirmItem(props) {
       callback
     );
   };
+
   return (
     <div className="confirm">
       <div className="container">
@@ -518,7 +519,12 @@ function ConfirmItem(props) {
                       currency: "VND",
                     }).format(pay)}
                   </span>
-                  <span>{t("transactionFee")}</span>
+                  <span>
+                    {t("transactionFee").replace(
+                      "48,000",
+                      formatCurrency(i18n.language, "VND", fee.value, false)
+                    )}
+                  </span>
                 </div>
               </td>
             </tr>

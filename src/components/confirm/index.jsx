@@ -8,7 +8,11 @@ import {
 } from "src/constant";
 import { useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { getInfoP2p, getProfile } from "src/util/userCallApi";
+import {
+  exchangeRateDisparity,
+  getInfoP2p,
+  getProfile,
+} from "src/util/userCallApi";
 import ConfirmItem from "./confirmItem";
 import { Spin } from "antd";
 import { getElementById, getLocalStorage, hideElement } from "src/util/common";
@@ -16,6 +20,7 @@ import { callToastError } from "src/function/toast/callToast";
 import { useTranslation } from "react-i18next";
 import socket from "src/util/socket";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
+
 function Confirm() {
   const { id: idAds } = useParams();
   const dispatch = useDispatch();
@@ -32,14 +37,13 @@ function Confirm() {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
+
     socket.off("operationP2p");
     socket.on("operationP2p", (idP2p) => {
-      console.log(idP2p, "operationP2p");
       loadData();
     });
     return () => {
       dispatch(userWalletFetchCount());
-      socket.off("operationP2p");
     };
   }, []);
 
@@ -49,15 +53,10 @@ function Confirm() {
         idP2p: idAds,
       })
         .then((resp) => {
-          setCallApiStatus(() => api_status.fulfilled);
           resolve(resp.data.data);
         })
         .catch((error) => {
-          setCallApiStatus(() => api_status.rejected);
           rejected(false);
-        })
-        .finally(() => {
-          hideElement(getElementById("confirm__spinner"));
         });
     });
   };
@@ -74,6 +73,18 @@ function Confirm() {
         });
     });
   };
+  const fetchApiGetFee = function () {
+    return new Promise((resolve, reject) => {
+      exchangeRateDisparity({
+        name: "feeP2p",
+      })
+        .then((resp) => resolve(resp.data.data))
+        .catch(() => {
+          console.log("error fetchApiGetFee");
+          reject(false);
+        });
+    });
+  };
   /**
    * fetch data and render html
    */
@@ -87,23 +98,36 @@ function Confirm() {
       return;
     }
     const { id: profileId } = profile;
-    fetchApiGetInfoP2p()
-      .then((respon) => {
-        if (!respon) return;
-        const result = respon.map((item, index) => (
+    const promiseFetchInfo = fetchApiGetInfoP2p();
+    const promistFetchFee = fetchApiGetFee();
+    Promise.all([promistFetchFee, promiseFetchInfo])
+      .then((resp) => {
+        const fee = resp.at(0).at(0);
+        const info = resp?.at(1);
+
+        if (!info) return;
+
+        const result = info.map((item, index) => (
           <ConfirmItem
             key={index}
             index={index}
             content={item}
             profileId={profileId}
             render={setRender}
+            fee={fee}
           />
         ));
         setData(() => result);
+
+        setCallApiStatus(() => api_status.fulfilled);
       })
-      .catch((error) => {
+      .catch((err) => {
+        setCallApiStatus(() => api_status.rejected);
         history.push(url.p2p_management);
         return;
+      })
+      .finally(() => {
+        hideElement(getElementById("confirm__spinner"));
       });
   };
   const classStyle = {
