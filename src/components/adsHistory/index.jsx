@@ -32,8 +32,13 @@ function AdsHistory() {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
-    i18n.on("languageChanged", () => {
-      loadData(currentPage);
+    let currentLanguage = i18n.language;
+    i18n.on("languageChanged", (newLanguage) => {
+      if (newLanguage !== currentLanguage) {
+        loadData(currentPage);
+      }
+      currentLanguage = newLanguage;
+      return;
     });
     // get list coin
     fetchListCoin().then((resp) => {
@@ -43,6 +48,7 @@ function AdsHistory() {
       i18n.off();
     };
   }, []);
+
   const history = useHistory();
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const listCoin = useRef();
@@ -204,26 +210,8 @@ function AdsHistory() {
       }
       setListRecord(() => listRecord);
     }
-    //
-    const listId = apiRes.map((item) => item.id);
-    fetchMultiApiGetInfoP2p(listId);
-    // set total items
+    setCurrentPage(() => page);
     setTotalItem(total);
-  };
-  const actionFulfilled = function (id) {
-    const loader = getElementById("adsHistoryActionSpinner" + id);
-    const btn = getElementById("adsHistoryActionCheckButton" + id);
-    console.log(loader, btn);
-    if (!loader || !btn) return;
-    hideElement(loader);
-    showElement(btn);
-  };
-  const actionRejected = function (id) {
-    const loader = getElementById("adsHistoryActionSpinner" + id);
-    const btn = getElementById("adsHistoryActionCheckButton" + id);
-    if (!loader || !btn) return;
-    hideElement(loader);
-    hideElement(btn);
   };
   const cancelAds = function (id) {
     if (callApiCancelStatus === api_status.fetching) return;
@@ -241,20 +229,21 @@ function AdsHistory() {
       });
   };
   const loadData = function (page) {
+    console.log(page);
     const act = action.current;
     const pending = getElementById("pendingCheckbox")?.checked;
     if (pending === null || pending === undefined) return;
     if (act === actionType.buy) {
       if (pending) {
-        renderTable(page, fetchListAdsBuyPenddingToUser);
+        renderTable(page, fetchListAdsSellPenddingToUser);
       } else if (!pending) {
-        renderTable(page, fetchListAdsBuyToUser);
+        renderTable(page, fetchListAdsSellToUser);
       }
     } else if (act === actionType.sell) {
       if (pending) {
-        renderTable(page, fetchListAdsSellPenddingToUser);
+        renderTable(page, fetchListAdsBuyPenddingToUser);
       } else {
-        renderTable(page, fetchListAdsSellToUser);
+        renderTable(page, fetchListAdsBuyToUser);
       }
     }
   };
@@ -276,32 +265,6 @@ function AdsHistory() {
       setTabActive(() => actionType.buy);
     }
     loadData(1);
-  };
-  /**
-   * If there is no returned data, the api informs the core
-   * The function both calls the api and renders the action
-   * @param {number | string} id AdsId
-   * @returns Promise
-   */
-  const fetchApiGetInfoP2p = function (id) {
-    return new Promise((resolve) => {
-      getInfoP2p({
-        idP2p: id,
-      })
-        .then((resp) => {
-          actionFulfilled(id);
-          resolve(true);
-        })
-        .catch((error) => {
-          actionRejected(id);
-          resolve(null);
-        });
-    });
-  };
-  const fetchMultiApiGetInfoP2p = function (listId) {
-    for (const id of listId) {
-      fetchApiGetInfoP2p(id);
-    }
   };
   const fetchListCoin = function () {
     return new Promise((resolve) => {
@@ -330,9 +293,7 @@ function AdsHistory() {
   const renderClassActiveTabSell = function () {
     return tabActive === actionType.sell ? "active" : "";
   };
-  useEffect(() => {
-    console.log(tabActive);
-  }, [tabActive]);
+
   return (
     <div className="ads-history">
       <div className="container">

@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { fetchNotify } from "./App";
 
-const ScrollToTop = (props) => {
+const Config = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -18,4 +18,4 @@ const ScrollToTop = (props) => {
   return <>{props.children}</>;
 };
 
-export default ScrollToTop;
+export default Config;

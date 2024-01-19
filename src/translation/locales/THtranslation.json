@@ -309,5 +309,8 @@
     "ifYouDidntReceiveTransactionsWithin15MinutesPleaseContactSerepaySupportAtSupportAtSerepayDotNet": "หากคุณไม่ได้รับธุรกรรมภายใน 15 นาที กรุณาติดต่อฝ่ายสนับสนุน Serepay ที่ support@serepay.net",
     "marketSellPrice": "ราคาขายในตลาด",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "ปริมาณขายขั้นต่ำต้องไม่เกินจำนวนที่คุณต้องการขาย",
-    "receivedPaymentAndUnlocked": "ได้รับการชำระเงินและปลดล็อก"
+    "receivedPaymentAndUnlocked": "ได้รับการชำระเงินและปลดล็อก",
+    "tooBig": "ใหญ่เกินไป",
+    "tooSmall": "เล็กเกินไป",
+    "insufficientWalletBalance": "ยอดเงินในกระเป๋าไม่เพียงพอ"
 }

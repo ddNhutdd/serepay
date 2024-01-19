@@ -1,4 +1,3 @@
-import { Spin } from "antd";
 import React, { useEffect } from "react";
 import css from "./adsHistoryRecord.module.scss";
 import {
@@ -22,6 +21,7 @@ export const AdsHistoryRecordType = {
   admin: "admin",
   user: "user",
 };
+
 function AdsHistoryRecord(props) {
   const {
     item,
@@ -136,21 +136,7 @@ function AdsHistoryRecord(props) {
                 id={"adsHistoryAction" + item.id}
                 colSpan="2"
               >
-                <div
-                  className="spin-container"
-                  id={"adsHistoryActionSpinner" + item.id}
-                >
-                  <Spin />
-                </div>
                 <div className={css["ads-history-action-container"]}>
-                  <Button
-                    type={buttonClassesType.primary}
-                    className="--d-none"
-                    id={"adsHistoryActionCheckButton" + item.id}
-                    onClick={redirectConfirm.bind(null, item.id)}
-                  >
-                    Check
-                  </Button>
                   <Button
                     type={buttonClassesType.outline}
                     className={`${

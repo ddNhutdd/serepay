@@ -311,5 +311,8 @@
   "toAddress": "Zu adressieren",
   "reject": "Ablehnen",
   "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Die minimale Verkaufsquantität darf nicht mehr als die Menge sein, die Sie verkaufen möchten",
-  "receivedPaymentAndUnlocked": "Zahlung erhalten und entsperrt."
+  "receivedPaymentAndUnlocked": "Zahlung erhalten und entsperrt.",
+  "tooBig": "Zu groß.",
+  "tooSmall": "Zu klein.",
+  "insufficientWalletBalance": "Unzureichendes Wallet-Guthaben."
 }

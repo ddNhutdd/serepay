@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
@@ -17,6 +16,7 @@ import i18n from "src/translation/i18n";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import socket from "src/util/socket";
+import { Button } from "antd";
 export default function Login({ history }) {
   //
   const [isLoading, setIsLoading] = useState(false);
@@ -139,16 +139,18 @@ export default function Login({ history }) {
                 <i className="fa-solid fa-eye-slash"></i>
               </span>
             </div>
+
+            <Button
+              loading={isLoading}
+              type="primary"
+              size="large"
+              className="loginBtn"
+              onClick={formik.handleSubmit}
+              htmlType="submit"
+            >
+              {t("logIn")}
+            </Button>
           </form>
-          <Button
-            loading={isLoading}
-            type="primary"
-            size="large"
-            className="loginBtn"
-            onClick={formik.handleSubmit}
-          >
-            {t("logIn")}
-          </Button>
           <div className="toSignUp" onClick={() => history.replace(url.signup)}>
             {t("dontHaveAnAccount")}{" "}
             <span style={{ fontWeight: 500 }}>{t("letsSignUp")}</span>

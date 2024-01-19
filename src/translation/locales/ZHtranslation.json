@@ -311,5 +311,8 @@
     "toAddress": "寄往地址",
     "reject": "拒绝",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "最低销售数量不能超过您想要销售的数量",
-    "receivedPaymentAndUnlocked": "收到付款并解锁。"
+    "receivedPaymentAndUnlocked": "收到付款并解锁。",
+    "tooBig": "太大了。",
+    "tooSmall": "太小了。",
+    "insufficientWalletBalance": "钱包余额不足。"
 }

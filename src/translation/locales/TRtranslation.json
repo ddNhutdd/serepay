@@ -311,5 +311,8 @@
     "toAddress": "Adrese",
     "reject": "Reddetmek",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Minimum satış miktarı, satmak istediğiniz numaradan daha fazla olamaz",
-    "receivedPaymentAndUnlocked": "Ödeme alındı ve kilidi açıldı."
+    "receivedPaymentAndUnlocked": "Ödeme alındı ve kilidi açıldı.",
+    "tooBig": "Çok Büyük.",
+    "tooSmall": "Çok Küçük.",
+    "insufficientWalletBalance": "Cüzdan Bakiyesi Yetersiz."
 }

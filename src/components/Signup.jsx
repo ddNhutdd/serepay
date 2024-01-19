@@ -197,17 +197,18 @@ export default function Signup({ history }) {
                 value={formik.values.referral}
               />
             </div>
-          </form>
 
-          <Button
-            loading={loading}
-            type="primary"
-            size="large"
-            className="loginBtn"
-            onClick={formik.handleSubmit}
-          >
-            {t("createAccount")}
-          </Button>
+            <Button
+              loading={loading}
+              type="primary"
+              size="large"
+              className="loginBtn"
+              onClick={formik.handleSubmit}
+              htmlType="submit"
+            >
+              {t("createAccount")}
+            </Button>
+          </form>
 
           <div className="toSignUp" onClick={() => history.replace("/login")}>
             {t("alreadyHadAnAccount")}{" "}

@@ -311,5 +311,8 @@
     "toAddress": "宛先に",
     "reject": "却下",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "最小販売数量は、販売したい数量を超えることはできません",
-    "receivedPaymentAndUnlocked": "支払いを受け取り、解除しました。"
+    "receivedPaymentAndUnlocked": "支払いを受け取り、解除しました。",
+    "tooBig": "大きすぎます。",
+    "tooSmall": "小さすぎます。",
+    "insufficientWalletBalance": "ウォレットの残高が不足しています。"
 }

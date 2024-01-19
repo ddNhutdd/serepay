@@ -40,6 +40,7 @@ function Confirm() {
 
     socket.off("operationP2p");
     socket.on("operationP2p", (idP2p) => {
+      console.log("operationp2p");
       loadData();
     });
     return () => {

@@ -311,5 +311,8 @@
     "toAddress": "받는 사람 주소",
     "reject": "거부",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "최소 판매 수량은 판매하려는 수량보다 많을 수 없습니다",
-    "receivedPaymentAndUnlocked": "지불 받음 및 잠금 해제됨."
+    "receivedPaymentAndUnlocked": "지불 받음 및 잠금 해제됨.",
+    "tooBig": "너무 큽니다.",
+    "tooSmall": "너무 작습니다.",
+    "insufficientWalletBalance": "지갑 잔액이 부족합니다."
 }

@@ -6,7 +6,7 @@ import P2PTrading from "./components/P2PTrading";
 import Signup from "./components/Signup";
 import Swap from "./components/Swap";
 import Wallet from "./components/Wallet";
-import ScrollToTop from "./ScrollToTop";
+import Config from "./Config";
 import MainTemplate from "./templates/MainTemplate";
 import SwaptobeWallet from "./components/seresoWallet";
 import Profile from "./components/profile";
@@ -65,9 +65,7 @@ export const fetchNotify = function (dispatchHook) {
         dispatchHook(setNotify(data));
         resolve(true);
       })
-      .catch((error) => {
-        reject(false);
-      });
+      .catch((error) => {});
   });
 };
 
@@ -217,7 +215,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ScrollToTop>
+      <Config>
         <Switch>
           <MainTemplate path={url.ads_history} component={AdsHistory} />
           <MainTemplate path={url.confirm} component={Confirm} />
@@ -248,7 +246,7 @@ function App() {
           />
           <Route exact path="/" component={Home} />
         </Switch>
-      </ScrollToTop>
+      </Config>
     </BrowserRouter>
   );
 }

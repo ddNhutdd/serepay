@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import {
   formatCurrency,
+  formatNumber,
   formatStringNumberCultureUS,
   getLocalStorage,
   processString,
@@ -97,7 +98,9 @@ export default function P2PTrading({ history }) {
           color = "#B31312";
         }
         return (
-          <span style={{ color: color, fontWeight: 500 }}>{percent}%</span>
+          <span style={{ color: color, fontWeight: 500 }}>
+            {formatNumber(percent, i18n.language, 4)}%
+          </span>
         );
       },
     },
@@ -107,20 +110,16 @@ export default function P2PTrading({ history }) {
       dataIndex: "price",
       width: "25%",
       render: (_, { price }) => {
-        return (
-          <span>
-            {formatStringNumberCultureUS(convertCurrency(price).toFixed(3))}
-            {userSelectedCurrency === currency.usd && "$"}
-            {userSelectedCurrency === currency.eur && "€"}
-            {userSelectedCurrency === currency.vnd && "đ"}
-          </span>
-        );
+        return <span>{formatCurrency(i18n.language, "USD", price)}</span>;
       },
     },
     {
       title: t("24hVolume"),
       key: "24hVolume",
       dataIndex: "volume",
+      render: (amountVolume) => {
+        return <span>{formatNumber(amountVolume, i18n.language, 6)}</span>;
+      },
     },
   ];
 

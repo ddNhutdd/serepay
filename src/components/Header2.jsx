@@ -135,6 +135,7 @@ export default function Header2({ history }) {
     ));
   };
   const currencyItemClickHandle = function () {
+    setLocalStorage(localStorageVariable.currency, this);
     setCurrentCurrency(() => this);
     setIsShowMenuCurrency(() => false);
     setIsShowMenu(() => false);

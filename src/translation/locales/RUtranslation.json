@@ -311,5 +311,8 @@
     "toAddress": "Адресовать",
     "reject": "Отклонять",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Минимальное количество продаж не может быть больше, чем число, которое вы хотите продать",
-    "receivedPaymentAndUnlocked": "Получено платежа и разблокировано."
+    "receivedPaymentAndUnlocked": "Получено платежа и разблокировано.",
+    "tooBig": "Слишком большой.",
+    "tooSmall": "Слишком маленький.",
+    "insufficientWalletBalance": "Недостаточно средств в кошельке."
 }

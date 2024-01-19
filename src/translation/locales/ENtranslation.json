@@ -311,5 +311,8 @@
     "toAddress": "To Address",
     "reject": "Reject",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "The minimum selling quantity cannot be more than the number you want to sell",
-    "receivedPaymentAndUnlocked": "Received payment and unlocked."
+    "receivedPaymentAndUnlocked": "Received payment and unlocked.",
+    "tooBig": "Too Big.",
+    "tooSmall": "Too Small.",
+    "insufficientWalletBalance": "Insufficient Wallet Balance."
 }

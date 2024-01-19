@@ -311,5 +311,8 @@
     "toAddress": "Ke Alamat",
     "reject": "Tolak",
     "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "Jumlah penjualan minimum tidak boleh lebih dari jumlah yang ingin Anda jual",
-    "receivedPaymentAndUnlocked": "Pembayaran diterima dan terbuka kunci."
+    "receivedPaymentAndUnlocked": "Pembayaran diterima dan terbuka kunci.",
+    "tooBig": "Terlalu Besar.",
+    "tooSmall": "Terlalu Kecil.",
+    "insufficientWalletBalance": "Saldo Dompet Tidak Cukup."
 }

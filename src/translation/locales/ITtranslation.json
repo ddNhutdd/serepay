@@ -311,5 +311,8 @@
   "toAddress": "Indirizzare",
   "reject": "Rifiutare",
   "theMinimumSellingQuantityCannotBeMoreThanTheNumberYouWantToSell": "La quantità minima di vendita non può essere superiore al numero che desideri vendere",
-  "receivedPaymentAndUnlocked": "Pagamento ricevuto e sbloccato."
+  "receivedPaymentAndUnlocked": "Pagamento ricevuto e sbloccato.",
+  "tooBig": "Troppo Grande.",
+  "tooSmall": "Troppo Piccolo.",
+  "insufficientWalletBalance": "Saldo del Portafoglio Insufficiente."
 }

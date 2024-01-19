@@ -18,6 +18,15 @@ import ITtranslate from "./locales/ITtranslation.json";
 import PTtranslate from "./locales/PTtranslation.json";
 import RUtranslate from "./locales/RUtranslation.json";
 import TRtranslate from "./locales/TRtranslation.json";
+
+import ARtranslate from "./locales/ARtranslation.json";
+import ELtranslate from "./locales/ELtranslation.json";
+import HEtranslate from "./locales/HEtranslation.json";
+import HItranslate from "./locales/HItranslation.json";
+import MStranslate from "./locales/MStranslation.json";
+import NLtranslate from "./locales/NLtranslation.json";
+import PLtranslate from "./locales/PLtranslation.json";
+
 export const availableLanguage = {
   vi: "vi",
   en: "en",
@@ -35,6 +44,13 @@ export const availableLanguage = {
   pt: "pt",
   tr: "tr",
   ru: "ru",
+  nl: "nl",
+  ms: "ms",
+  ar: "ar",
+  he: "he",
+  el: "el",
+  pl: "pl",
+  hi: "hi",
 };
 export const availableLanguageCodeMapper = {
   vi: "vi-VN", // Tiếng Việt, Việt Nam
@@ -53,24 +69,38 @@ export const availableLanguageCodeMapper = {
   pt: "pt-PT", // Portuguese, Portugal
   tr: "tr-TR", // Turkish, Turkey
   ru: "ru-RU", // Russian, Russia
+  nl: "nl-NL", // Dutch, Netherlands
+  ms: "ms-MY", // Malay, Malaysia
+  ar: "ar-SA", // Arabic, Saudi Arabia (hoặc quốc gia khác nếu bạn muốn)
+  he: "he-IL", // Hebrew, Israel
+  el: "el-GR", // Greek, Greece
+  pl: "pl-PL", // Polish, Poland
+  hi: "hi-IN", // Hindi, India
 };
 export const availableLanguageMapper = {
-  vi: "Vietnamese",
-  en: "English",
-  ko: "Korean",
-  ja: "Japanese",
-  zh: "Chinese",
-  th: "Thai",
-  km: "Cambodian",
-  lo: "Lao",
-  id: "Indonesian",
-  fr: "French",
-  es: "Spanish",
-  it: "Italian",
-  de: "German",
-  pt: "Portuguese",
-  tr: "Turkish",
-  ru: "Russian",
+  vi: "Vietnam", // Vietnamese
+  en: "United States", // English
+  ko: "South Korea", // Korean
+  ja: "Japan", // Japanese
+  zh: "China", // Chinese
+  th: "Thailand", // Thai
+  km: "Cambodia", // Cambodian
+  lo: "Laos", // Lao
+  id: "Indonesia", // Indonesian
+  fr: "France", // French
+  es: "Spain", // Spanish
+  it: "Italy", // Italian
+  de: "Germany", // German
+  pt: "Portugal", // Portuguese
+  tr: "Turkey", // Turkish
+  ru: "Russia", // Russian
+  nl: "Netherlands", // Dutch
+  ms: "Malaysia", // Malay
+  ar: "Saudi Arabia", // Arabic
+  he: "Israel", // Hebrew
+  el: "Greece", // Greek
+  pl: "Poland", // Polish
+  hi: "India", // Hindi
 };
 // the translations
 const resources = {
@@ -121,6 +151,27 @@ const resources = {
   },
   tr: {
     translation: TRtranslate,
+  },
+  nl: {
+    translation: NLtranslate,
+  },
+  ms: {
+    translation: MStranslate,
+  },
+  ar: {
+    translation: ARtranslate,
+  },
+  he: {
+    translation: HEtranslate,
+  },
+  el: {
+    translation: ELtranslate,
+  },
+  pl: {
+    translation: PLtranslate,
+  },
+  hi: {
+    translation: HItranslate,
   },
 };
 
