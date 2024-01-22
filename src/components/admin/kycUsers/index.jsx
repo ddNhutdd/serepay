@@ -28,15 +28,15 @@ function KYC() {
   const fetchKYCTable = function (page) {
     if (callApiStatus === api_status.fetching) return;
     else if (callApiStatus !== api_status.fetching)
-      setCallApiStatus(api_status.fetching);
+      setCallApiStatus(() => api_status.fetching);
     getKycUserPendding({ limit: "10", page: page })
       .then((resp) => {
         setListKycUserData(resp.data.data.array);
         setListKycUserDataTotalPage(resp.data.data.total);
-        setCallApiStatus(api_status.fulfilled);
+        setCallApiStatus(() => api_status.fulfilled);
       })
       .catch((error) => {
-        setCallApiStatus(api_status.rejected);
+        setCallApiStatus(() => api_status.rejected);
         console.log(error);
       });
   };
