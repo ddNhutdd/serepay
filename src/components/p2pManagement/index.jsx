@@ -84,7 +84,9 @@ function P2pManagement() {
     };
   }, []);
   useEffect(() => {
-    if (exchangeFetchApiStatus === api_status.fulfilled) loadData(currentPage);
+    if (exchangeFetchApiStatus === api_status.fulfilled) {
+      loadData(currentPage);
+    }
   }, [notifyRedux, exchangeFetchApiStatus, currency]);
   useEffect(() => {
     loadDropdown();

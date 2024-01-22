@@ -14,7 +14,7 @@ export const localStorageVariable = {
   coinNameFromP2pExchange: "cnfP2PE",
 };
 
-export const deploy_domain = "http://192.168.0.109:3000/wallet-2";
+export const deploy_domain = "https://serepay.net/wallet-2";
 
 export const url = {
   home: "/",
@@ -44,7 +44,7 @@ export const api_url = {
   refreshToken: "api/user/refreshToken",
 };
 
-export const image_domain = "https://remitano.dk-tech.vn/images/USDT.png";
+export const image_domain = "https://serepay.net/images/USDT.png";
 
 export const api_status = {
   pending: "pending",

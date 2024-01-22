@@ -1,5 +1,6 @@
 import axios from "axios";
 export const DOMAIN = "https://remitano.dk-tech.vn/";
+// export const DOMAIN = "https://serepay.net/";
 export const axiosService = axios.create({
   baseURL: DOMAIN,
   timeout: 180000,

@@ -17,14 +17,14 @@ function KYC() {
   const [listKycUserDataTotalPage, setListKycUserDataTotalPage] = useState(1);
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const listKycUserDataCurrentPage = useRef(1);
-  //
+
   useEffect(() => {
     //fetch kyc table
     fetchKYCTable(1);
     // render kyc table
     renderKYCTable();
   }, []);
-  //
+
   const fetchKYCTable = function (page) {
     if (callApiStatus === api_status.fetching) return;
     else if (callApiStatus !== api_status.fetching)
@@ -139,10 +139,10 @@ function KYC() {
   };
   const acceptKyc = function (userid) {
     if (callApiStatus === api_status.fetching) return;
-    else setCallApiStatus(api_status.fetching);
+    else setCallApiStatus(() => api_status.fetching);
     activeUserKyc({ userid: String(userid) })
       .then((resp) => {
-        setCallApiStatus(api_status.fulfilled);
+        setCallApiStatus(() => api_status.fulfilled);
         const message = resp.data.message;
         callToastSuccess(message);
         handleCancel();
@@ -159,17 +159,17 @@ function KYC() {
             callToastError("có lõi xảy ra");
             break;
         }
-        setCallApiStatus(api_status.rejected);
+        setCallApiStatus(() => api_status.rejected);
       });
   };
   const rejectKyc = function (userid) {
     if (callApiStatus === api_status.fetching) return;
-    else setCallApiStatus(api_status.fetching);
+    else setCallApiStatus(() => api_status.fetching);
     cancelUserKyc({
       userid: String(userid),
     })
       .then((resp) => {
-        setCallApiStatus(api_status.fulfilled);
+        setCallApiStatus(() => api_status.fulfilled);
         const message = resp.data.message;
         callToastSuccess(message);
         handleCancel();
@@ -177,7 +177,7 @@ function KYC() {
       })
       .catch((error) => {
         console.log(error);
-        setCallApiStatus(api_status.rejected);
+        setCallApiStatus(() => api_status.rejected);
       });
   };
   const pagingChangeHandle = function (page) {
@@ -188,7 +188,7 @@ function KYC() {
     <div className="admin-kyc-users">
       <div className="admin-kyc-users__header">
         <h3 className="admin-kyc-users__title">All users</h3>
-        <form className="admin-kyc-users__search-form">
+        <form className="admin-kyc-users__search-form --d-none">
           <input
             placeholder="Search"
             className="admin-kyc-users__search-input"

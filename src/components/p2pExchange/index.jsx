@@ -20,9 +20,12 @@ import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { searchBuyQuick, searchSellQuick } from "src/util/userCallApi";
 import {
   debounce,
+  formatCurrency,
+  formatNumber,
   formatStringNumberCultureUS,
   getLocalStorage,
   roundDecimalValues,
+  rountRange,
   setLocalStorage,
 } from "src/util/common";
 import { coinSetCoin } from "src/redux/actions/coin.action";
@@ -61,8 +64,8 @@ const P2pExchange = memo(function () {
   const [listCoin, setListCoin] = useState();
   const currencyFromRedux = useSelector(getCurrent);
   const listExchangeFromRedux = useSelector(getExchange);
-  const amountCoin = useRef(); // coin that the user enters in the input, if the user filters money, then change that money to coin
-  const amountMoney = useRef(null); // The amount of money that the user enters in the input. If the user enters coin, the value of the variable is set to null
+  const [amountCoin, setAmountCoin] = useState(0); // coin that the user enters in the input, if the user filters money, then change that money to coin
+  const [amountMoney, setAmountMoney] = useState(0); // The amount of money that the user enters in the input. If the user enters coin, the value of the variable is set to null
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -234,24 +237,35 @@ const P2pExchange = memo(function () {
     if (callApiSearchStatus === api_status.fetching) return;
     setCallApiSearchStatus(api_status.fetching);
     let amount = +inputElement?.current?.value.toString().replaceAll(",", "");
-    amountCoin.current = amount;
-    amountMoney.current = amount;
+
     if (filter === filterType.coin) {
-      amountMoney.current = null;
+      setAmountCoin(() => null);
+      setAmountMoney(() =>
+        calcCoinToCurrency(
+          amount,
+          currencyFromRedux,
+          selectedCoin,
+          listExchangeFromRedux,
+          listCoin
+        )
+      );
       searchAds(selectedCoin, amount);
-    } else {
+    } else if (filter === filterType.currency) {
       await fetchListCoin();
       const coinPrice = listCoin.find(
         (item) => item.name === selectedCoin
       )?.price;
-      const amountCoinlc = convertCurrencyToCoin(
+      const amountCoinlc = calcCurrencyToCoin(
         amount,
         currencyFromRedux,
         selectedCoin,
         listExchangeFromRedux,
         listCoin
       );
-      amountCoin.current = roundDecimalValues(amountCoinlc, coinPrice);
+      setAmountMoney(() => null);
+      setAmountCoin(() =>
+        roundDecimalValues(amountCoinlc, rountRange(coinPrice))
+      );
       searchAds(selectedCoin, amountCoinlc);
     }
   };
@@ -277,7 +291,7 @@ const P2pExchange = memo(function () {
     }
   };
   const searchAdsExDebounce = debounce(searchAdsEx, 1000);
-  const convertCurrencyToCoin = function (
+  const calcCurrencyToCoin = function (
     amountMoney,
     currency,
     coinName,
@@ -289,6 +303,7 @@ const P2pExchange = memo(function () {
     const price = listCoin.find((item) => item.name === coinName).price;
 
     const priceFraction = math.fraction(price);
+
     const rateDisparityFraction = math.fraction(
       getExchangeRateDisparityFromRedux
     );
@@ -315,10 +330,55 @@ const P2pExchange = memo(function () {
     const amountMoneyFraction = math.fraction(amountMoney);
     const rateFraction = math.fraction(rate);
 
+    const result = math.divide(
+      amountMoneyFraction,
+      math.multiply(rateFraction, newPriceFraction)
+    );
+    return math.number(result);
+  };
+  const calcCoinToCurrency = function (
+    amountCoin,
+    currency,
+    coinName,
+    listExchange,
+    listCoin
+  ) {
+    if (!getExchangeRateDisparityFromRedux) return;
+    const rate = listExchange.find((item) => item.title === currency)?.rate;
+    const price = listCoin.find((item) => item.name === coinName)?.price;
+
+    const priceFraction = math.fraction(price);
+
+    const rateDisparityFraction = math.fraction(
+      getExchangeRateDisparityFromRedux
+    );
+    let newPriceFraction = 0;
+    if (currentAction === actionTrading.buy) {
+      newPriceFraction = math.add(
+        priceFraction,
+        math
+          .chain(priceFraction)
+          .multiply(rateDisparityFraction)
+          .divide(100)
+          .done()
+      );
+    } else {
+      newPriceFraction = math.subtract(
+        priceFraction,
+        math
+          .chain(priceFraction)
+          .multiply(rateDisparityFraction)
+          .divide(100)
+          .done()
+      );
+    }
+    const amountCoinFraction = math.fraction(amountCoin);
+    const rateFraction = math.fraction(rate);
+
     const result = math
-      .chain(amountMoneyFraction)
-      .multiply(rateFraction)
+      .chain(amountCoinFraction)
       .multiply(newPriceFraction)
+      .multiply(rateFraction)
       .done();
     return math.number(result);
   };
@@ -345,36 +405,31 @@ const P2pExchange = memo(function () {
     else return "--d-none";
   };
   const buyClickHandle = function () {
-    setLocalStorage(
-      localStorageVariable.coinFromP2pExchange,
-      amountCoin.current
-    );
-    setLocalStorage(
-      localStorageVariable.moneyFromP2pExchange,
-      amountMoney.current
-    );
+    setLocalStorage(localStorageVariable.coinFromP2pExchange, amountCoin);
+    setLocalStorage(localStorageVariable.moneyFromP2pExchange, amountMoney);
     setLocalStorage(localStorageVariable.coinNameFromP2pExchange, selectedCoin);
     history.push(url.transaction_buy);
     return;
   };
   const sellClickHandle = function () {
-    setLocalStorage(
-      localStorageVariable.coinFromP2pExchange,
-      amountCoin.current
-    );
-    setLocalStorage(
-      localStorageVariable.moneyFromP2pExchange,
-      amountMoney.current
-    );
+    setLocalStorage(localStorageVariable.coinFromP2pExchange, amountCoin);
+    setLocalStorage(localStorageVariable.moneyFromP2pExchange, amountMoney);
     setLocalStorage(localStorageVariable.coinNameFromP2pExchange, selectedCoin);
     history.push(url.transaction_sell);
     return;
+  };
+  const renderClassEstimateCoin = function () {
+    return filter === filterType.currency ? "" : "--d-none";
+  };
+  const renderClassEstimateMoney = function () {
+    return filter === filterType.coin ? "" : "--d-none";
   };
 
   useEffect(() => {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
+
     fetchListCoin();
     return () => {
       dispatch(setShow([showP2pType.p2pTrading, actionTrading.buy]));
@@ -382,19 +437,13 @@ const P2pExchange = memo(function () {
   }, []);
   useEffect(() => {
     searchWhenInputHasValue();
-  }, [currentAction]);
-  useEffect(() => {
-    searchWhenInputHasValue();
-  }, [currencyFromRedux]);
-  useEffect(() => {
-    searchWhenInputHasValue();
-  }, [getExchangeRateDisparityFromRedux]);
+  }, [currentAction, currencyFromRedux, getExchangeRateDisparityFromRedux]);
 
   return (
     <div className="p2pExchange">
       <div className="container">
         <div className="p2pExchange__title">{t("p2pExchange")}</div>
-        <div className="p2pExchange__selected  --d-none">
+        <div className="p2pExchange__selected --d-none">
           <span className="p2pExchange__coin">
             <img
               src={image_domain.replace("USDT", selectedCoin.toUpperCase())}
@@ -437,6 +486,22 @@ const P2pExchange = memo(function () {
                 {selectedCoin}
               </span>
             </span>
+            <div>
+              <span className={renderClassEstimateMoney()}>
+                {t("amountOfMoney")}:{" "}
+                {formatCurrency(i18n.language, currencyFromRedux, amountMoney)}
+              </span>
+              <span
+                className={`p2pExchange__input-estimate ${renderClassEstimateCoin()}`}
+              >
+                {t("amountOf")}: {formatNumber(amountCoin, i18n.language, 8)}
+                <img
+                  className="p2pExchange__input-image"
+                  src="https://remitano.dk-tech.vn/images/USDT.png"
+                  alt="USDT"
+                />
+              </span>
+            </div>
           </div>
           <div className="p2pExchange__type">
             <div className="p2pExchange__type-title">{t("enterWith")}:</div>
@@ -454,7 +519,7 @@ const P2pExchange = memo(function () {
                 {selectedCoin}
               </div>
               <div className="p2pExchange__type-item">
-                <div className={renderClassEmpty()}>Không có</div>
+                <div className={renderClassEmpty()}>Không có dữ liệu</div>
                 <div className={renderClassSpin()}>
                   <Spin />
                 </div>
@@ -462,13 +527,13 @@ const P2pExchange = memo(function () {
                   onClick={buyClickHandle}
                   className={`p2pExchange__type-button ${renderClassMainButton()} ${renderClassButtonBuy()}`}
                 >
-                  Mua
+                  {t("buy")}
                 </div>
                 <div
                   onClick={sellClickHandle}
                   className={`p2pExchange__type-button ${renderClassMainButton()} ${renderClassButtonSell()}`}
                 >
-                  Bán
+                  {t("sell")}
                 </div>
               </div>
             </div>
