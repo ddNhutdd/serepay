@@ -130,12 +130,8 @@ function KYC() {
       });
       imageContainer.appendChild(imgElement);
     }
-    buttonConfirm.addEventListener("click", () => {
-      acceptKyc(id);
-    });
-    buttonReject.addEventListener("click", () => {
-      rejectKyc(id);
-    });
+    buttonConfirm.onclick = acceptKyc.bind(null, id);
+    buttonReject.onclick = rejectKyc.bind(null, id);
   };
   const acceptKyc = function (userid) {
     if (callApiStatus === api_status.fetching) return;
@@ -184,6 +180,7 @@ function KYC() {
     fetchKYCTable(page);
     listKycUserDataCurrentPage.current = page;
   };
+
   return (
     <div className="admin-kyc-users">
       <div className="admin-kyc-users__header">
@@ -293,7 +290,7 @@ function KYC() {
             </div>
             <div className="admin-kyc-users__modal-item">
               <div className="admin-kyc-users__modal-item-header">Status</div>
-              <div className="admin-kyc-users__modal-item-content">12</div>
+              <div className="admin-kyc-users__modal-item-content">Pending</div>
             </div>
             <div className="admin-kyc-users__modal-left-item"></div>
           </div>
