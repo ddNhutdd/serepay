@@ -42,7 +42,7 @@ function AdsHistory() {
     });
     // get list coin
     fetchListCoin().then((resp) => {
-      renderTable(1, fetchListAdsBuyToUser);
+      renderTable(1, fetchListAdsSellToUser);
     });
     return () => {
       i18n.off();

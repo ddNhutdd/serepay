@@ -1,19 +1,24 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
 import { fetchNotify } from "./App";
+import socket from "./util/socket";
 
 const Config = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.loginReducer.isLogin);
 
   useEffect(() => {
-    fetchNotify(dispatch);
     window.scrollTo(0, 0);
-  }, [location]);
-  useEffect(() => {
     fetchNotify(dispatch);
-  }, []);
+  }, [location]);
+
+  useEffect(() => {
+    if (isLogin) {
+    }
+  }, [isLogin, location]);
 
   return <>{props.children}</>;
 };
