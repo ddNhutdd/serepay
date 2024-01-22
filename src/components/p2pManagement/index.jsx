@@ -70,9 +70,6 @@ function P2pManagement() {
   const notifyRedux = useSelector(getNotify);
 
   useEffect(() => {
-    const element = document.querySelector(".p2pManagement");
-    element.classList.add("fadeInBottomToTop");
-
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
@@ -81,20 +78,16 @@ function P2pManagement() {
     });
 
     document.addEventListener("click", closeDropdown);
-    fetchApiGetListAllCoin();
 
     return () => {
       document.removeEventListener("click", closeDropdown);
     };
   }, []);
   useEffect(() => {
-    loadData(currentPage);
-  }, [notifyRedux]);
-  useEffect(() => {
     if (exchangeFetchApiStatus === api_status.fulfilled) {
       loadData(currentPage);
     }
-  }, [exchangeFetchApiStatus, currency]);
+  }, [notifyRedux, exchangeFetchApiStatus, currency]);
   useEffect(() => {
     loadDropdown();
   }, [advertisingStatus]);
@@ -471,7 +464,7 @@ function P2pManagement() {
   };
 
   return (
-    <div className="p2pManagement">
+    <div className="p2pManagement fadeInBottomToTop">
       <div className="container">
         <div className="p2pManagement__header">
           <div className="p2pManagement__header-tab">

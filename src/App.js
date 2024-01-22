@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import CreateBuySell from "./components/CreateBuySell";
 import Login from "./components/Login";
@@ -59,7 +60,7 @@ export const math = create(all, config);
 
 export const fetchNotify = function (dispatchHook) {
   return new Promise((resolve, reject) => {
-    getListHistoryP2pPendding({ limit: 1000, page: 1 })
+    getListHistoryP2pPendding({ limit: 100, page: 1 })
       .then((resp) => {
         const data = resp?.data?.data?.total || 0;
         dispatchHook(setNotify(data));
@@ -78,6 +79,7 @@ function App() {
     getExchangeRateDisparityFetchCount
   );
   const userWallet = useRef([]);
+
   const getExchange = function () {
     dispatch(currencySetExchangeFetchStatus(api_status.fetching));
     getExchangeApi()
@@ -192,9 +194,9 @@ function App() {
       socket.disconnect();
     };
   }, []);
+
   useEffect(() => {
     if (isLogin) {
-      fetchNotify(dispatch);
       socket.on("createP2p", (res) => {
         fetchNotify(dispatch);
       });
@@ -203,6 +205,7 @@ function App() {
       socket.off("createP2p");
     }
   }, [isLogin]);
+
   useEffect(() => {
     getExchange();
   }, [fetchExchangeCount]);

@@ -94,20 +94,39 @@
             }
 
             .p2pExchange__input-container {
+                background-color: $new-background-color-input;
+                padding: 5px 10px 10px 10px;
+                border-radius: 8px;
+
                 input {
                     font-size: 14px;
+                    padding: 0;
                 }
 
                 .p2pExchange__input-span {
                     position: absolute;
-                    top: 36px;
-                    right: 6px;
+                    top: 42px;
+                    right: 10px;
                     background-color: $new-primary-color-6;
                     font-size: 14px;
                     padding: 5px 20px;
                     border-radius: 4px;
                     user-select: none;
                 }
+
+                .p2pExchange__input-estimate {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: 5px;
+
+                    .p2pExchange__input-image {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+
             }
 
             .p2pExchange__type {
@@ -140,6 +159,13 @@
                         &:last-child {
                             border: none;
                             margin-left: auto;
+
+                            @media screen and (max-width:576px) {
+                                margin-left: 0;
+                                padding-left: 0 !important;
+                                width: 100%;
+                                justify-content: flex-start;
+                            }
 
                             &:hover {
                                 background-color: #1A1A1A !important;

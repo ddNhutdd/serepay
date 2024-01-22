@@ -24,12 +24,16 @@ import {
 } from "src/redux/actions/coin.action";
 import {
   actionContent,
-  getShow,
+  getShow as getShowActiveContent,
   setShow,
 } from "src/redux/reducers/wallet2Slice";
 import { getUserWallet } from "src/redux/constant/coin.constant";
 import { DOMAIN } from "src/util/service";
 import { Button, buttonClassesType } from "../Common/Button";
+import {
+  form,
+  getShow as getShowTabWithdraw,
+} from "src/redux/reducers/walletWithdraw";
 function SwaptobeWallet() {
   const { t } = useTranslation();
   const history = useHistory();
@@ -37,8 +41,10 @@ function SwaptobeWallet() {
   const { search } = useLocation();
   const userWallet = useSelector(getUserWallet);
   const isLogin = useSelector((root) => root.loginReducer.isLogin);
+  const withdrawTab = useSelector(getShowTabWithdraw);
+  console.log(withdrawTab);
   const dispatch = useDispatch();
-  const showActionContent = useSelector(getShow);
+  const showActionContent = useSelector(getShowActiveContent);
 
   useEffect(() => {
     // check is login
@@ -94,7 +100,14 @@ function SwaptobeWallet() {
     return showActionContent === actionContent.main ? {} : { display: "none" };
   };
   const renderStyleShowWidthdraw = function () {
-    return showActionContent === actionContent.withdraw
+    return showActionContent === actionContent.withdraw &&
+      withdrawTab === form.Wallet
+      ? {}
+      : { display: "none" };
+  };
+  const renderStyleShowWidthdrawUser = function () {
+    return showActionContent === actionContent.withdraw &&
+      withdrawTab === form.UserName
       ? {}
       : { display: "none" };
   };
@@ -111,20 +124,28 @@ function SwaptobeWallet() {
           <span className="title__header" style={renderStyleShowMain()}>
             <span>{t("walletOverview")}</span>
           </span>
-          <span
-            className="title__header"
-            style={renderStyleShowWidthdraw()}
-            onClick={backToActionContentMainClickHandle}
-          >
-            <i className="fa-solid fa-arrow-left-long"></i>
+          <span className="title__header" style={renderStyleShowWidthdraw()}>
+            <i
+              onClick={backToActionContentMainClickHandle}
+              className="fa-solid fa-arrow-left-long"
+            ></i>
             <span>{t("withdraw")}</span>
           </span>
           <span
             className="title__header"
-            style={renderStyleShowDesposite()}
-            onClick={backToActionContentMainClickHandle}
+            style={renderStyleShowWidthdrawUser()}
           >
-            <i className="fa-solid fa-arrow-left-long"></i>
+            <i
+              onClick={backToActionContentMainClickHandle}
+              className="fa-solid fa-arrow-left-long"
+            ></i>
+            <span>{t("transfer")}</span>
+          </span>
+          <span className="title__header" style={renderStyleShowDesposite()}>
+            <i
+              onClick={backToActionContentMainClickHandle}
+              className="fa-solid fa-arrow-left-long"
+            ></i>
             <span>{t("deposit")} Cryto</span>
           </span>
         </h5>
