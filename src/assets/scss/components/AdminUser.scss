@@ -8,9 +8,15 @@
     .adminUser__paging {
         padding: 15px 0;
         text-align: right;
+
+        @media screen and (max-width:576px) {
+            text-align: left;
+        }
     }
 
     .adminUser__content {
+        overflow-x: auto;
+
         table {
             @include adminTable;
         }

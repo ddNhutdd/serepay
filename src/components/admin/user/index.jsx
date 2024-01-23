@@ -220,7 +220,7 @@ const User = function () {
               <th>UserName</th>
               <th>Email</th>
               <th>Create Ads</th>
-              <th>KYC</th>
+              <th>Two FA</th>
               <th>Active</th>
             </tr>
           </thead>

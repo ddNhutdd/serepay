@@ -334,6 +334,7 @@ const P2pExchange = memo(function () {
       amountMoneyFraction,
       math.multiply(rateFraction, newPriceFraction)
     );
+    console.log("1", math.number(amountMoneyFraction));
     return math.number(result);
   };
   const calcCoinToCurrency = function (
@@ -438,6 +439,9 @@ const P2pExchange = memo(function () {
   useEffect(() => {
     searchWhenInputHasValue();
   }, [currentAction, currencyFromRedux, getExchangeRateDisparityFromRedux]);
+  useEffect(() => {
+    inputElement.current.value = "";
+  }, [filter]);
 
   return (
     <div className="p2pExchange">
