@@ -239,7 +239,7 @@ const P2pExchange = memo(function () {
     let amount = +inputElement?.current?.value.toString().replaceAll(",", "");
 
     if (filter === filterType.coin) {
-      setAmountCoin(() => null);
+      setAmountCoin(() => amount);
       setAmountMoney(() =>
         calcCoinToCurrency(
           amount,
@@ -262,7 +262,7 @@ const P2pExchange = memo(function () {
         listExchangeFromRedux,
         listCoin
       );
-      setAmountMoney(() => null);
+      setAmountMoney(() => amount);
       setAmountCoin(() =>
         roundDecimalValues(amountCoinlc, rountRange(coinPrice))
       );

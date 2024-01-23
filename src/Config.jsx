@@ -12,13 +12,10 @@ const Config = (props) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchNotify(dispatch);
-  }, [location]);
-
-  useEffect(() => {
     if (isLogin) {
+      fetchNotify(dispatch);
     }
-  }, [isLogin, location]);
+  }, [location]);
 
   return <>{props.children}</>;
 };
