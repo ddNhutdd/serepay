@@ -18,7 +18,6 @@ const User = function () {
   const [callApiMainDataStatus, setCallApiMainDataStatus] = useState(
     api_status.pending
   );
-
   const limit = useRef(10);
 
   useEffect(() => {
