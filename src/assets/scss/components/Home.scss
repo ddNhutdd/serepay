@@ -53,7 +53,7 @@
           padding: 20px;
 
           @media screen and(max-width:991px) {
-            border-bottom: 1px solid $background-color-4;
+            border-top: 1px solid $background-color-4;
             padding: 10px 20px;
           }
 
@@ -69,46 +69,36 @@
               font-weight: 500;
             }
           }
+
+          .home__header__login-container {
+            .home__header__login {
+              padding: 5px 20px;
+              border-radius: 5px;
+              background-color: $background-color-13;
+              border: none;
+              color: $white;
+              font-size: 15px;
+              background-image: linear-gradient($background-color-11, $background-color-12);
+              border: 1px solid $border-color-7;
+              border-radius: 4px;
+              box-shadow: $boxShadown-color-1 0 1px 1px;
+              color: $white;
+              cursor: pointer;
+              line-height: 100%;
+              margin: 0;
+              outline: 0;
+              text-align: center;
+              transition:
+                box-shadow 0.05s ease-in-out,
+                opacity 0.05s ease-in-out;
+              user-select: none;
+              -webkit-user-select: none;
+            }
+          }
         }
       }
 
-      .home__header__login-container {
-        @media screen and (max-width: 991px) {
-          position: fixed;
-          top: 231px;
-          right: 0px;
-          padding: 10px 20px;
-          background-color: $white;
-          border-bottom: 1px solid $background-color-4;
-          width: 100%;
-          display: none;
-          z-index: 0;
-        }
 
-        .home__header__login {
-          padding: 5px 20px;
-          border-radius: 5px;
-          background-color: $background-color-13;
-          border: none;
-          color: $white;
-          font-size: 15px;
-          background-image: linear-gradient($background-color-11, $background-color-12);
-          border: 1px solid $border-color-7;
-          border-radius: 4px;
-          box-shadow: $boxShadown-color-1 0 1px 1px;
-          color: $white;
-          cursor: pointer;
-          line-height: 100%;
-          margin: 0;
-          outline: 0;
-          text-align: center;
-          transition:
-            box-shadow 0.05s ease-in-out,
-            opacity 0.05s ease-in-out;
-          user-select: none;
-          -webkit-user-select: none;
-        }
-      }
 
       .home__header__bar {
         margin-left: auto;

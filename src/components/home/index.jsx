@@ -161,16 +161,22 @@ function Home() {
                 FAQ
               </div>
             </li>
+            <li>
+              {!isLogin ? (
+                <div className="home__header__login-container  fadeIn">
+                  <button
+                    onClick={redirectToLogin}
+                    className="home__header__login"
+                  >
+                    Login
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
+            </li>
           </ul>
-          {!isLogin ? (
-            <div className="home__header__login-container  fadeIn">
-              <button onClick={redirectToLogin} className="home__header__login">
-                Login
-              </button>
-            </div>
-          ) : (
-            <></>
-          )}
+
           <div
             onClick={headerBarButtonClickHandle}
             className="home__header__bar"
