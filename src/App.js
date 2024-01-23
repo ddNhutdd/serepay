@@ -54,6 +54,8 @@ import Widthdraw from "./components/admin/widthdraw";
 import User from "./components/admin/user";
 import { create, all } from "mathjs";
 import { setNotify } from "./redux/reducers/notifiyP2pSlice";
+import RecoveryPassword from "./components/recoveryPassword";
+import ForgotPassword from "./components/forgotPassword";
 
 const config = {};
 export const math = create(all, config);
@@ -194,7 +196,6 @@ function App() {
       socket.disconnect();
     };
   }, []);
-
   useEffect(() => {
     if (isLogin) {
       socket.on("createP2p", (res) => {
@@ -205,7 +206,6 @@ function App() {
       socket.off("createP2p");
     }
   }, [isLogin]);
-
   useEffect(() => {
     getExchange();
   }, [fetchExchangeCount]);
@@ -236,6 +236,11 @@ function App() {
           <MainTemplate path="/create-ads/sell" component={CreateBuySell} />
           <MainTemplate path="/login" component={Login} />
           <MainTemplate path="/signup" component={Signup} />
+          <MainTemplate
+            path={url.recovery_password}
+            component={RecoveryPassword}
+          />
+          <MainTemplate path={url.forgot_password} component={ForgotPassword} />
           <MainTemplate path="/wallet" component={Wallet} />
           <AdminTemplate path="/admin/dashboard" component={Dashboard} />
           <AdminTemplate path="/admin/ads" component={Ads} />

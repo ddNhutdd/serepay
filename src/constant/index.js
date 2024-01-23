@@ -37,6 +37,8 @@ export const url = {
   confirm: "/confirm/:id",
   p2p_management: "/p2p-management",
   admin_user: "/admin/user",
+  recovery_password: "/recovery-password",
+  forgot_password: "/forget-password/:token",
 };
 
 export const api_url = {

@@ -155,6 +155,12 @@ export default function Login({ history }) {
             {t("dontHaveAnAccount")}{" "}
             <span style={{ fontWeight: 500 }}>{t("letsSignUp")}</span>
           </div>
+          <div
+            className="toSignUp"
+            onClick={() => history.replace(url.recovery_password)}
+          >
+            {t("forgot Password")}
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
     color: $new-text-color-white;
 
     .container {
-        @include container1;
+        @include container2;
 
         .p2pExchange__title {
             font-size: 28px;
@@ -27,7 +27,7 @@
             border-radius: 8px;
             position: relative;
             margin-bottom: 40px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
 
             @media screen and (max-width: 576px) {
@@ -88,7 +88,7 @@
             position: relative;
 
             .p2pExchange__search-title {
-                font-size: 14px;
+                font-size: 15px;
                 line-height: 1;
                 font-weight: 500;
             }
@@ -99,7 +99,7 @@
                 border-radius: 8px;
 
                 input {
-                    font-size: 14px;
+                    font-size: 15px !important;
                     padding: 0;
                 }
 
@@ -108,7 +108,7 @@
                     top: 42px;
                     right: 10px;
                     background-color: $new-primary-color-6;
-                    font-size: 14px;
+                    font-size: 15px;
                     padding: 5px 20px;
                     border-radius: 4px;
                     user-select: none;
@@ -134,7 +134,7 @@
                 border-radius: 8px;
                 padding: 14px;
                 color: #fff;
-                font-size: 14px;
+                font-size: 15px;
 
                 .p2pExchange__type-list {
                     margin-top: 16px;
@@ -148,8 +148,9 @@
                         align-items: center;
                         justify-content: center;
                         gap: 10px;
+                        font-size: 15px !important;
 
-                        padding: 3px 16px !important;
+                        padding: 3px 15px !important;
                         height: 36px;
 
                         &.active {
@@ -175,7 +176,6 @@
 
                         .p2pExchange__type-button {
                             @extend .buttonContainer--primary;
-
                         }
                     }
                 }
@@ -280,7 +280,7 @@
             margin-top: 20px;
             display: flex;
             flex-direction: column;
-            font-size: 14px;
+            font-size: 15px;
             gap: 4px;
             justify-content: flex-start;
             align-items: flex-start;

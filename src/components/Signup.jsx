@@ -68,9 +68,7 @@ export default function Signup({ history }) {
     setLoading(true);
     try {
       let response = await axiosService.post("/api/user/signup", info);
-      const verifyToken = response?.data?.data;
       callToastSuccess(t(commontString.success));
-      axiosService.get("/api/user/verifyEmail/" + verifyToken);
       history.replace("/login");
     } catch (error) {
       callToastError(commontString.error);

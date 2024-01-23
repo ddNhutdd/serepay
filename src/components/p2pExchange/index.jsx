@@ -523,7 +523,7 @@ const P2pExchange = memo(function () {
                 {selectedCoin}
               </div>
               <div className="p2pExchange__type-item">
-                <div className={renderClassEmpty()}>Không có dữ liệu</div>
+                <div className={renderClassEmpty()}>{t("noData")}</div>
                 <div className={renderClassSpin()}>
                   <Spin />
                 </div>
@@ -568,4 +568,5 @@ const P2pExchange = memo(function () {
     </div>
   );
 });
+
 export default P2pExchange;

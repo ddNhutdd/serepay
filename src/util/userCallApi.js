@@ -280,3 +280,10 @@ export const createWalletBEP20 = function () {
     console.log(error);
   }
 };
+export const sendMailForGetPassword = function (data) {
+  try {
+    return axiosService.post("/api/user/sendmailforgetpassword", data);
+  } catch (error) {
+    console.log(error);
+  }
+};
