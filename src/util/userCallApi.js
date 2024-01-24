@@ -287,3 +287,10 @@ export const sendMailForGetPassword = function (data) {
     console.log(error);
   }
 };
+export const forGetPassword = function (data) {
+  try {
+    return axiosService.post("api/user/forgetpassword", data);
+  } catch (error) {
+    console.log(error);
+  }
+};

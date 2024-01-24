@@ -312,5 +312,11 @@
     "receivedPaymentAndUnlocked": "ได้รับการชำระเงินและปลดล็อก",
     "tooBig": "ใหญ่เกินไป",
     "tooSmall": "เล็กเกินไป",
-    "insufficientWalletBalance": "ยอดเงินในกระเป๋าไม่เพียงพอ"
+    "insufficientWalletBalance": "ยอดเงินในกระเป๋าไม่เพียงพอ",
+    "forgotPassword": "ลืมรหัสผ่าน",
+    "recoveryPassword": "การกู้คืนรหัสผ่าน",
+    "invalidEmail": "อีเมลไม่ถูกต้อง",
+    "newPassword": "รหัสผ่านใหม่",
+    "newPasswordConfirm": "ยืนยันรหัสผ่านใหม่",
+    "passwordNotMatch": "รหัสผ่านไม่ตรงกัน"
 }

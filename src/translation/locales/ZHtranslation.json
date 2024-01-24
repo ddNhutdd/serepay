@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "收到付款并解锁。",
     "tooBig": "太大了。",
     "tooSmall": "太小了。",
-    "insufficientWalletBalance": "钱包余额不足。"
+    "insufficientWalletBalance": "钱包余额不足。",
+    "forgotPassword": "忘记密码",
+    "recoveryPassword": "恢复密码",
+    "invalidEmail": "无效的电子邮件",
+    "newPassword": "新密码",
+    "newPasswordConfirm": "确认新密码",
+    "passwordNotMatch": "密码不匹配"
 }

@@ -314,5 +314,11 @@
   "receivedPaymentAndUnlocked": "Pagamento ricevuto e sbloccato.",
   "tooBig": "Troppo Grande.",
   "tooSmall": "Troppo Piccolo.",
-  "insufficientWalletBalance": "Saldo del Portafoglio Insufficiente."
+  "insufficientWalletBalance": "Saldo del Portafoglio Insufficiente.",
+  "forgotPassword": "Password dimenticata",
+  "recoveryPassword": "Recupero password",
+  "invalidEmail": "Email non valida",
+  "newPassword": "Nuova password",
+  "newPasswordConfirm": "Conferma nuova password",
+  "passwordNotMatch": "La password non corrisponde"
 }

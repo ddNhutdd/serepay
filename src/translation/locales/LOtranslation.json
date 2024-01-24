@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "ຮັບການຊຳລະແລະເປີດລົງ.",
     "tooBig": "ໃຫຍ່ເກີນໄປ.",
     "tooSmall": "ນ້ອຍເກີນໄປ.",
-    "insufficientWalletBalance": "ຍອດເງິນໃນກະສານບໍ່ພໍ."
+    "insufficientWalletBalance": "ຍອດເງິນໃນກະສານບໍ່ພໍ.",
+    "forgotPassword": "ລືມລະຫັດຜ່ານ",
+    "recoveryPassword": "ການຮຽນລະຫັດຜ່ານ",
+    "invalidEmail": "ອີເມວບໍ່ຖືກຕ້ອງ",
+    "newPassword": "ລະຫັດຜ່ານໃຫມ່",
+    "newPasswordConfirm": "ຢືນຢັນລະຫັດຜ່ານໃຫມ່",
+    "passwordNotMatch": "ລະຫັດຜ່ານບໍ່ກົງກັນ"
 }

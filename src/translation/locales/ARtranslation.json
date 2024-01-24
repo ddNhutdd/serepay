@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "استلمت الدفع وفتح.",
     "tooBig": "كبير جدًا.",
     "tooSmall": "صغير جدًا.",
-    "insufficientWalletBalance": "رصيد المحفظة غير كاف."
+    "insufficientWalletBalance": "رصيد المحفظة غير كاف.",
+    "forgotPassword": "نسيت كلمة المرور",
+    "recoveryPassword": "استعادة كلمة المرور",
+    "invalidEmail": "بريد إلكتروني خاطئ",
+    "newPassword": "كلمة مرور جديدة",
+    "newPasswordConfirm": "تأكيد كلمة المرور الجديدة",
+    "passwordNotMatch": "كلمة المرور غير متطابقة"
 }

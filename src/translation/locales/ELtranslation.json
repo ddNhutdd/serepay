@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Έλαβε πληρωμή και ξεκλειδωμένο.",
     "tooBig": "Πολύ μεγάλο.",
     "tooSmall": "Πολύ μικρό.",
-    "insufficientWalletBalance": "Ανεπαρκές υπόλοιπο πορτοφολιού."
+    "insufficientWalletBalance": "Ανεπαρκές υπόλοιπο πορτοφολιού.",
+    "forgotPassword": "Ξέχασα τον κωδικό πρόσβασης",
+    "recoveryPassword": "Ανάκτηση κωδικού πρόσβασης",
+    "invalidEmail": "Μη έγκυρο email",
+    "newPassword": "Νέος κωδικός πρόσβασης",
+    "newPasswordConfirm": "Επιβεβαίωση νέου κωδικού πρόσβασης",
+    "passwordNotMatch": "Ο κωδικός πρόσβασης δεν ταιριάζει"
 }

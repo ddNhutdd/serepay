@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "支払いを受け取り、解除しました。",
     "tooBig": "大きすぎます。",
     "tooSmall": "小さすぎます。",
-    "insufficientWalletBalance": "ウォレットの残高が不足しています。"
+    "insufficientWalletBalance": "ウォレットの残高が不足しています。",
+    "forgotPassword": "パスワードを忘れた",
+    "recoveryPassword": "パスワードの回復",
+    "invalidEmail": "無効なメールアドレス",
+    "newPassword": "新しいパスワード",
+    "newPasswordConfirm": "新しいパスワードの確認",
+    "passwordNotMatch": "パスワードが一致しません"
 }

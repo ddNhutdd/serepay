@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Pembayaran diterima dan terbuka kunci.",
     "tooBig": "Terlalu Besar.",
     "tooSmall": "Terlalu Kecil.",
-    "insufficientWalletBalance": "Saldo Dompet Tidak Cukup."
+    "insufficientWalletBalance": "Saldo Dompet Tidak Cukup.",
+    "forgotPassword": "Lupa kata sandi",
+    "recoveryPassword": "Pemulihan kata sandi",
+    "invalidEmail": "Email tidak valid",
+    "newPassword": "Kata sandi baru",
+    "newPasswordConfirm": "Konfirmasi kata sandi baru",
+    "passwordNotMatch": "Kata sandi tidak cocok"
 }

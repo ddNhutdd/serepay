@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Получено платежа и разблокировано.",
     "tooBig": "Слишком большой.",
     "tooSmall": "Слишком маленький.",
-    "insufficientWalletBalance": "Недостаточно средств в кошельке."
+    "insufficientWalletBalance": "Недостаточно средств в кошельке.",
+    "forgotPassword": "Забыли пароль",
+    "recoveryPassword": "Восстановление пароля",
+    "invalidEmail": "Неверный адрес электронной почты",
+    "newPassword": "Новый пароль",
+    "newPasswordConfirm": "Подтвердите новый пароль",
+    "passwordNotMatch": "Пароль не совпадает"
 }

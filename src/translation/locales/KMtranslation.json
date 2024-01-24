@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "ទទួលបានការទូទាត់និងបើកចោល។",
     "tooBig": "ធំពេក។",
     "tooSmall": "តូចពេក។",
-    "insufficientWalletBalance": "សមតុល្យក្នុងកាបូបមិនគ្រប់គ្រាន់។"
+    "insufficientWalletBalance": "សមតុល្យក្នុងកាបូបមិនគ្រប់គ្រាន់។",
+    "forgotPassword": "ភ្លេចពាក្យសម្ងាត់",
+    "recoveryPassword": "ការស្តារពាក្យសម្ងាត់",
+    "invalidEmail": "អ៊ីមែលមិនត្រឹមត្រូវ",
+    "newPassword": "ពាក្យសម្ងាត់ថ្មី",
+    "newPasswordConfirm": "បញ្ជាក់ពាក្យសម្ងាត់ថ្មី",
+    "passwordNotMatch": "ពាក្យសម្ងាត់មិនត្រូវគ្នា"
 }

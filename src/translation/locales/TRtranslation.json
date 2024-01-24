@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Ödeme alındı ve kilidi açıldı.",
     "tooBig": "Çok Büyük.",
     "tooSmall": "Çok Küçük.",
-    "insufficientWalletBalance": "Cüzdan Bakiyesi Yetersiz."
+    "insufficientWalletBalance": "Cüzdan Bakiyesi Yetersiz.",
+    "forgotPassword": "Şifremi unuttum",
+    "recoveryPassword": "Şifre kurtarma",
+    "invalidEmail": "Geçersiz e-posta",
+    "newPassword": "Yeni şifre",
+    "newPasswordConfirm": "Yeni şifreyi onayla",
+    "passwordNotMatch": "Şifre eşleşmiyor"
 }

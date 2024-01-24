@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "קיבל תשלום ונעול.",
     "tooBig": "גדול מדי.",
     "tooSmall": "קטן מדי.",
-    "insufficientWalletBalance": "אין מספיק יתרה בארנק."
+    "insufficientWalletBalance": "אין מספיק יתרה בארנק.",
+    "forgotPassword": "שכחתי את הסיסמא",
+    "recoveryPassword": "שחזור סיסמא",
+    "invalidEmail": "דוא\"ל לא חוקי",
+    "newPassword": "סיסמה חדשה",
+    "newPasswordConfirm": "אשר סיסמה חדשה",
+    "passwordNotMatch": "הסיסמה אינה תואמת"
 }

@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Đã nhận thanh toán và mở khóa.",
     "tooBig": "Quá Lớn.",
     "tooSmall": "Quá Nhỏ.",
-    "insufficientWalletBalance": "Số Dư Ví Không Đủ."
+    "insufficientWalletBalance": "Số Dư Ví Không Đủ.",
+    "forgotPassword": "Quên mật khẩu",
+    "recoveryPassword": "Khôi phục mật khẩu",
+    "invalidEmail": "Email không hợp lệ",
+    "newPassword": "Mật khẩu mới",
+    "newPasswordConfirm": "Xác nhận mật khẩu mới",
+    "passwordNotMatch": "Mật khẩu không khớp"
 }

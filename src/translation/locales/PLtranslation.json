@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Otrzymane płatność i odblokowane.",
     "tooBig": "Liian suuri.",
     "tooSmall": "Liian pieni.",
-    "insufficientWalletBalance": "Lompakon saldo ei riitä."
+    "insufficientWalletBalance": "Lompakon saldo ei riitä.",
+    "forgotPassword": "Zapomniałem hasła",
+    "recoveryPassword": "Odzyskiwanie hasła",
+    "invalidEmail": "Nieprawidłowy adres e-mail",
+    "newPassword": "Nowe hasło",
+    "newPasswordConfirm": "Potwierdź nowe hasło",
+    "passwordNotMatch": "Hasło nie pasuje"
 }

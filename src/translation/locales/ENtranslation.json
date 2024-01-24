@@ -314,5 +314,13 @@
     "receivedPaymentAndUnlocked": "Received payment and unlocked.",
     "tooBig": "Too Big.",
     "tooSmall": "Too Small.",
-    "insufficientWalletBalance": "Insufficient Wallet Balance."
+    "insufficientWalletBalance": "Insufficient Wallet Balance.",
+    "forgotPassword": "Forgot Password",
+    "recoveryPassword": "Recovery Password",
+    "invalidEmail": "Invalid Email",
+    "newPassword": "New Password",
+    "newPasswordConfirm": "New Password Confirm",
+    "passwordNotMatch": "Password Not Match",
+    "emailHasBeenSent": "Email Has Been Sent",
+    "passwordChangedSuccessfully": "Password Changed Successfully"
 }

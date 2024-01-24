@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "भुगतान प्राप्त किया और अनलॉक किया।",
     "tooBig": "बहुत बड़ा है।",
     "tooSmall": "बहुत छोटा है।",
-    "insufficientWalletBalance": "बटुए की शेष राशि अपर्याप्त है।"
+    "insufficientWalletBalance": "बटुए की शेष राशि अपर्याप्त है।",
+    "forgotPassword": "पासवर्ड भूल गए",
+    "recoveryPassword": "पासवर्ड पुनर्प्राप्ति",
+    "invalidEmail": "अमान्य ईमेल",
+    "newPassword": "नया पासवर्ड",
+    "newPasswordConfirm": "नए पासवर्ड की पुष्टि करें",
+    "passwordNotMatch": "पासवर्ड मेल नहीं खाता"
 }

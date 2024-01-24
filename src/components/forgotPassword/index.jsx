@@ -1,8 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "antd";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { forGetPassword } from "src/util/userCallApi";
+import { callToastError, callToastSuccess } from "src/function/toast/callToast";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { commontString, localStorageVariable, url } from "src/constant";
+import { removeLocalStorage, setLocalStorage } from "src/util/common";
+
 function ForgotPassword() {
+  const history = useHistory();
+  const token = useParams().token;
+
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      password: "",
+      passwordConfirm: "",
+    },
+    validationSchema: Yup.object({
+      password: Yup.string().required("Required"),
+      passwordConfirm: Yup.string()
+        .required("Required")
+        .oneOf([Yup.ref("password"), null], "Password not match"),
+    }),
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: (values) => {
+      fetchApiUpdatePassword(values.password);
+    },
+  });
 
   const renderClassShowEyePassword = function () {
     return showPassword ? "" : "--d-none";
@@ -28,16 +58,52 @@ function ForgotPassword() {
   const renderTypePasswordConfirm = function () {
     return showPasswordConfirm ? "text" : "password";
   };
+  const fetchApiUpdatePassword = function (newPassword) {
+    return new Promise((resolve, reject) => {
+      if (isLoading) resolve(true);
+      else setIsLoading(() => true);
+      forGetPassword({
+        email: newPassword,
+      })
+        .then((resp) => {
+          callToastSuccess(commontString.success);
+          history.push(url.login);
+        })
+        .catch((error) => {
+          console.log(error);
+          callToastError(commontString.error);
+        })
+        .finally(() => {
+          setIsLoading(() => false);
+        });
+    });
+  };
+
+  useEffect(() => {
+    localStorage.setItem(localStorageVariable.token, token);
+    return () => {
+      removeLocalStorage(localStorageVariable.token);
+    };
+  }, []);
 
   return (
     <div className="login-register">
       <div className="container">
         <div className="box">
           <h2 className="title">Change Password</h2>
-          <form>
+          <form onSubmit={formik.handleSubmit}>
             <div className="field">
               <label htmlFor="password">New Password</label>
-              <input id="password" type={renderTypePassword()} />
+              <input
+                name="password"
+                id="password"
+                type={renderTypePassword()}
+                onChange={formik.handleChange}
+                value={formik.values.password}
+              />
+              {formik.errors.password ? (
+                <div className="error">{formik.errors.password}</div>
+              ) : null}
               <span
                 onClick={eyePasswordToggle}
                 id="eyeShow"
@@ -55,7 +121,16 @@ function ForgotPassword() {
             </div>
             <div className="field">
               <label htmlFor="passwordConfirm">New Password Confirm </label>
-              <input type={renderTypePasswordConfirm()} id="passwordConfirm" />
+              <input
+                type={renderTypePasswordConfirm()}
+                id="passwordConfirm"
+                name="passwordConfirm"
+                onChange={formik.handleChange}
+                value={formik.values.passwordConfirm}
+              />
+              {formik.errors.passwordConfirm ? (
+                <div className="error">{formik.errors.passwordConfirm}</div>
+              ) : null}
               <span
                 onClick={eyePasswordConfirmToggle}
                 id="eyeShow"
@@ -72,11 +147,10 @@ function ForgotPassword() {
               </span>
             </div>
             <Button
-              loading={false}
+              loading={isLoading}
               type="primary"
               size="large"
               className="loginBtn"
-              onClick={() => {}}
               htmlType="submit"
             >
               Change

@@ -314,5 +314,11 @@
   "receivedPaymentAndUnlocked": "Zahlung erhalten und entsperrt.",
   "tooBig": "Zu groß.",
   "tooSmall": "Zu klein.",
-  "insufficientWalletBalance": "Unzureichendes Wallet-Guthaben."
+  "insufficientWalletBalance": "Unzureichendes Wallet-Guthaben.",
+  "forgotPassword": "Passwort vergessen",
+  "recoveryPassword": "Passwort wiederherstellen",
+  "invalidEmail": "Ungültige E-Mail",
+  "newPassword": "Neues Passwort",
+  "newPasswordConfirm": "Neues Passwort bestätigen",
+  "passwordNotMatch": "Passwort stimmt nicht überein"
 }

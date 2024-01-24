@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Menerima pembayaran dan dibuka.",
     "tooBig": "Terlalu Besar.",
     "tooSmall": "Terlalu Kecil.",
-    "insufficientWalletBalance": "Baki Dompet Tidak Mencukupi."
+    "insufficientWalletBalance": "Baki Dompet Tidak Mencukupi.",
+    "forgotPassword": "Lupa kata laluan",
+    "recoveryPassword": "Pemulihan kata laluan",
+    "invalidEmail": "E-mel tidak sah",
+    "newPassword": "Kata laluan baru",
+    "newPasswordConfirm": "Sahkan kata laluan baru",
+    "passwordNotMatch": "Kata laluan tidak sepadan"
 }

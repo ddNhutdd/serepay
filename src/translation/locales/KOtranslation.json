@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "지불 받음 및 잠금 해제됨.",
     "tooBig": "너무 큽니다.",
     "tooSmall": "너무 작습니다.",
-    "insufficientWalletBalance": "지갑 잔액이 부족합니다."
+    "insufficientWalletBalance": "지갑 잔액이 부족합니다.",
+    "forgotPassword": "비밀번호를 잊으셨나요",
+    "recoveryPassword": "비밀번호 복구",
+    "invalidEmail": "잘못된 이메일",
+    "newPassword": "새 비밀번호",
+    "newPasswordConfirm": "새 비밀번호 확인",
+    "passwordNotMatch": "비밀번호가 일치하지 않습니다"
 }

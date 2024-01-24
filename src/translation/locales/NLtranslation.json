@@ -314,5 +314,11 @@
     "receivedPaymentAndUnlocked": "Ontvangen betaling en ontgrendeld.",
     "tooBig": "Te Groot.",
     "tooSmall": "Te Klein.",
-    "insufficientWalletBalance": "Onvoldoende Portemonnee Saldo."
+    "insufficientWalletBalance": "Onvoldoende Portemonnee Saldo.",
+    "forgotPassword": "Wachtwoord vergeten",
+    "recoveryPassword": "Wachtwoord herstellen",
+    "invalidEmail": "Ongeldige e-mail",
+    "newPassword": "Nieuw wachtwoord",
+    "newPasswordConfirm": "Bevestig nieuw wachtwoord",
+    "passwordNotMatch": "Wachtwoord komt niet overeen"
 }

@@ -17,7 +17,6 @@ import { useTranslation } from "react-i18next";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 
 export default function Signup({ history }) {
-  //
   const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
@@ -63,7 +62,7 @@ export default function Signup({ history }) {
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
   }, []);
-  //
+
   const signup = async (info) => {
     setLoading(true);
     try {
@@ -80,7 +79,7 @@ export default function Signup({ history }) {
   if (isLogin) {
     return <Redirect to={"/"} />;
   }
-  //
+
   return (
     <div className="login-register">
       <div className="container">
