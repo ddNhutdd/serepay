@@ -58,7 +58,7 @@
     "24hChange": "Thay đổi 24h",
     "24hVolume": "Khối lượng 24h",
     "wallet": "Ví",
-    "email": "Email",
+    "email": "Địa Chỉ Email",
     "password": "Mật khẩu",
     "confirmPassword": "Xác nhận mật khẩu",
     "referralCode": "Mã giới thiệu",
@@ -320,5 +320,7 @@
     "invalidEmail": "Email không hợp lệ",
     "newPassword": "Mật khẩu mới",
     "newPasswordConfirm": "Xác nhận mật khẩu mới",
-    "passwordNotMatch": "Mật khẩu không khớp"
+    "passwordNotMatch": "Mật khẩu không khớp",
+    "emailHasBeenSent": "Email đã được gửi",
+    "passwordChangedSuccessfully": "Mật khẩu đã được thay đổi thành công"
 }

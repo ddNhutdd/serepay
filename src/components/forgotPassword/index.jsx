@@ -5,11 +5,23 @@ import * as Yup from "yup";
 import { forGetPassword } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { useHistory, useLocation, useParams } from "react-router-dom";
-import { commontString, localStorageVariable, url } from "src/constant";
-import { removeLocalStorage, setLocalStorage } from "src/util/common";
+import i18n from "src/translation/i18n";
+import { useTranslation } from "react-i18next";
+import {
+  commontString,
+  defaultLanguage,
+  localStorageVariable,
+  url,
+} from "src/constant";
+import {
+  getLocalStorage,
+  removeLocalStorage,
+  setLocalStorage,
+} from "src/util/common";
 
 function ForgotPassword() {
   const history = useHistory();
+  const { t } = useTranslation();
   const token = useParams().token;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,10 +34,10 @@ function ForgotPassword() {
       passwordConfirm: "",
     },
     validationSchema: Yup.object({
-      password: Yup.string().required("Required"),
+      password: Yup.string().required(t("require")),
       passwordConfirm: Yup.string()
-        .required("Required")
-        .oneOf([Yup.ref("password"), null], "Password not match"),
+        .required(t("require"))
+        .oneOf([Yup.ref("password"), null], t("passwordNotMatch")),
     }),
     validateOnChange: false,
     validateOnBlur: false,
@@ -63,7 +75,7 @@ function ForgotPassword() {
       if (isLoading) resolve(true);
       else setIsLoading(() => true);
       forGetPassword({
-        email: newPassword,
+        passwordNew: newPassword,
       })
         .then((resp) => {
           callToastSuccess(commontString.success);
@@ -80,6 +92,10 @@ function ForgotPassword() {
   };
 
   useEffect(() => {
+    const language =
+      getLocalStorage(localStorageVariable.lng) || defaultLanguage;
+    i18n.changeLanguage(language);
+
     localStorage.setItem(localStorageVariable.token, token);
     return () => {
       removeLocalStorage(localStorageVariable.token);
@@ -90,10 +106,10 @@ function ForgotPassword() {
     <div className="login-register">
       <div className="container">
         <div className="box">
-          <h2 className="title">Change Password</h2>
+          <h2 className="title">{t("changePassword")}</h2>
           <form onSubmit={formik.handleSubmit}>
             <div className="field">
-              <label htmlFor="password">New Password</label>
+              <label htmlFor="password">{t("newPassword")}</label>
               <input
                 name="password"
                 id="password"
@@ -120,7 +136,7 @@ function ForgotPassword() {
               </span>
             </div>
             <div className="field">
-              <label htmlFor="passwordConfirm">New Password Confirm </label>
+              <label htmlFor="passwordConfirm">{t("newPasswordConfirm")}</label>
               <input
                 type={renderTypePasswordConfirm()}
                 id="passwordConfirm"
@@ -153,7 +169,7 @@ function ForgotPassword() {
               className="loginBtn"
               htmlType="submit"
             >
-              Change
+              {t("change")}
             </Button>
           </form>
         </div>

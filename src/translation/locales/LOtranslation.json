@@ -320,5 +320,7 @@
     "invalidEmail": "ອີເມວບໍ່ຖືກຕ້ອງ",
     "newPassword": "ລະຫັດຜ່ານໃຫມ່",
     "newPasswordConfirm": "ຢືນຢັນລະຫັດຜ່ານໃຫມ່",
-    "passwordNotMatch": "ລະຫັດຜ່ານບໍ່ກົງກັນ"
+    "passwordNotMatch": "ລະຫັດຜ່ານບໍ່ກົງກັນ",
+    "emailHasBeenSent": "ອີເມວຖືກສົ່ງສຳເລັດ",
+    "passwordChangedSuccessfully": "ປ່ຽນລະຫັດຜ່ານສຳເລັດ"
 }

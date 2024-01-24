@@ -320,5 +320,7 @@
     "invalidEmail": "Email tidak valid",
     "newPassword": "Kata sandi baru",
     "newPasswordConfirm": "Konfirmasi kata sandi baru",
-    "passwordNotMatch": "Kata sandi tidak cocok"
+    "passwordNotMatch": "Kata sandi tidak cocok",
+    "emailHasBeenSent": "Email telah dikirim",
+    "passwordChangedSuccessfully": "Kata sandi berhasil diubah"
 }

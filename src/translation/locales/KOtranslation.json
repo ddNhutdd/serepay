@@ -320,5 +320,7 @@
     "invalidEmail": "잘못된 이메일",
     "newPassword": "새 비밀번호",
     "newPasswordConfirm": "새 비밀번호 확인",
-    "passwordNotMatch": "비밀번호가 일치하지 않습니다"
+    "passwordNotMatch": "비밀번호가 일치하지 않습니다",
+    "emailHasBeenSent": "이메일이 전송되었습니다",
+    "passwordChangedSuccessfully": "비밀번호가 성공적으로 변경되었습니다"
 }

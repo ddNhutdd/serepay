@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { Button } from "antd";
 import * as Yup from "yup";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { sendMailForGetPassword } from "src/util/userCallApi";
+import { useTranslation } from "react-i18next";
+import { getLocalStorage } from "src/util/common";
+import { defaultLanguage, localStorageVariable } from "src/constant";
+import i18n from "src/translation/i18n";
 
 function RecoveryPassword() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const fetchApiSendEmail = function () {
@@ -16,18 +21,17 @@ function RecoveryPassword() {
         email: formik.values.email,
       })
         .then((resp) => {
-          callToastSuccess("email da được gửi");
+          callToastSuccess(t("emailHasBeenSent"));
         })
         .catch((error) => {
-          //email khoong toonf tai
           const mes = error.response.data.message;
           switch (mes) {
             case "Email is not define":
-              callToastError("Email không tồn tại trên hệ thống");
+              callToastError(t("theEmailDoesNotExistInTheSystem"));
               break;
 
             default:
-              callToastError("co loi xay ra");
+              callToastError(t("error"));
               break;
           }
         })
@@ -42,24 +46,29 @@ function RecoveryPassword() {
       email: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().required("Required").email("Invalid email"),
+      email: Yup.string().required(t("require")).email(t("invalidEmail")),
     }),
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: (values, e) => {
-      console.log("1", e);
       fetchApiSendEmail();
     },
   });
+
+  useEffect(() => {
+    const language =
+      getLocalStorage(localStorageVariable.lng) || defaultLanguage;
+    i18n.changeLanguage(language);
+  }, []);
 
   return (
     <div className="login-register">
       <div className="container">
         <div className="box">
-          <h2 className="title">Recover Password</h2>
+          <h2 className="title">{t("recoveryPassword")}</h2>
           <form onSubmit={formik.handleSubmit}>
             <div className="field">
-              <label htmlFor="email">Email: </label>
+              <label htmlFor="email">{t("email")}: </label>
               <input
                 id="email"
                 name="email"
@@ -78,7 +87,7 @@ function RecoveryPassword() {
               className="loginBtn"
               htmlType="submit"
             >
-              Send
+              {t("send")}
             </Button>
           </form>
         </div>

@@ -320,5 +320,7 @@
     "invalidEmail": "无效的电子邮件",
     "newPassword": "新密码",
     "newPasswordConfirm": "确认新密码",
-    "passwordNotMatch": "密码不匹配"
+    "passwordNotMatch": "密码不匹配",
+    "emailHasBeenSent": "电子邮件已发送",
+    "passwordChangedSuccessfully": "密码已成功更改"
 }

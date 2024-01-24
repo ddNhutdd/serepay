@@ -320,5 +320,7 @@
   "invalidEmail": "Email inválido",
   "newPassword": "Nova senha",
   "newPasswordConfirm": "Confirmar nova senha",
-  "passwordNotMatch": "A senha não corresponde"
+  "passwordNotMatch": "A senha não corresponde",
+  "emailHasBeenSent": "O email foi enviado",
+  "passwordChangedSuccessfully": "Senha alterada com sucesso"
 }

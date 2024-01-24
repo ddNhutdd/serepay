@@ -320,5 +320,7 @@
     "invalidEmail": "अमान्य ईमेल",
     "newPassword": "नया पासवर्ड",
     "newPasswordConfirm": "नए पासवर्ड की पुष्टि करें",
-    "passwordNotMatch": "पासवर्ड मेल नहीं खाता"
+    "passwordNotMatch": "पासवर्ड मेल नहीं खाता",
+    "emailHasBeenSent": "ईमेल भेज दिया गया है",
+    "passwordChangedSuccessfully": "पासवर्ड सफलतापूर्वक बदल दिया गया है"
 }

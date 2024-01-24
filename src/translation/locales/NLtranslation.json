@@ -320,5 +320,7 @@
     "invalidEmail": "Ongeldige e-mail",
     "newPassword": "Nieuw wachtwoord",
     "newPasswordConfirm": "Bevestig nieuw wachtwoord",
-    "passwordNotMatch": "Wachtwoord komt niet overeen"
+    "passwordNotMatch": "Wachtwoord komt niet overeen",
+    "emailHasBeenSent": "E-mail is verzonden",
+    "passwordChangedSuccessfully": "Wachtwoord is succesvol gewijzigd"
 }

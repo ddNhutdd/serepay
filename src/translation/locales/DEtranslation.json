@@ -320,5 +320,7 @@
   "invalidEmail": "Ungültige E-Mail",
   "newPassword": "Neues Passwort",
   "newPasswordConfirm": "Neues Passwort bestätigen",
-  "passwordNotMatch": "Passwort stimmt nicht überein"
+  "passwordNotMatch": "Passwort stimmt nicht überein",
+  "emailHasBeenSent": "E-Mail wurde gesendet",
+  "passwordChangedSuccessfully": "Passwort erfolgreich geändert"
 }

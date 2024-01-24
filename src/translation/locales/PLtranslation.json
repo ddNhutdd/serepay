@@ -320,5 +320,7 @@
     "invalidEmail": "Nieprawidłowy adres e-mail",
     "newPassword": "Nowe hasło",
     "newPasswordConfirm": "Potwierdź nowe hasło",
-    "passwordNotMatch": "Hasło nie pasuje"
+    "passwordNotMatch": "Hasło nie pasuje",
+    "emailHasBeenSent": "E-mail został wysłany",
+    "passwordChangedSuccessfully": "Hasło zostało zmienione pomyślnie"
 }

@@ -320,5 +320,7 @@
     "invalidEmail": "Μη έγκυρο email",
     "newPassword": "Νέος κωδικός πρόσβασης",
     "newPasswordConfirm": "Επιβεβαίωση νέου κωδικού πρόσβασης",
-    "passwordNotMatch": "Ο κωδικός πρόσβασης δεν ταιριάζει"
+    "passwordNotMatch": "Ο κωδικός πρόσβασης δεν ταιριάζει",
+    "emailHasBeenSent": "Το email έχει σταλεί",
+    "passwordChangedSuccessfully": "Ο κωδικός πρόσβασης άλλαξε επιτυχώς"
 }

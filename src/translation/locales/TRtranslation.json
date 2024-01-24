@@ -320,5 +320,7 @@
     "invalidEmail": "Geçersiz e-posta",
     "newPassword": "Yeni şifre",
     "newPasswordConfirm": "Yeni şifreyi onayla",
-    "passwordNotMatch": "Şifre eşleşmiyor"
+    "passwordNotMatch": "Şifre eşleşmiyor",
+    "emailHasBeenSent": "E-posta gönderildi",
+    "passwordChangedSuccessfully": "Şifre başarıyla değiştirildi"
 }

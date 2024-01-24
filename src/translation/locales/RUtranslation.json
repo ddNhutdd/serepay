@@ -320,5 +320,7 @@
     "invalidEmail": "Неверный адрес электронной почты",
     "newPassword": "Новый пароль",
     "newPasswordConfirm": "Подтвердите новый пароль",
-    "passwordNotMatch": "Пароль не совпадает"
+    "passwordNotMatch": "Пароль не совпадает",
+    "emailHasBeenSent": "Электронное письмо отправлено",
+    "passwordChangedSuccessfully": "Пароль успешно изменен"
 }

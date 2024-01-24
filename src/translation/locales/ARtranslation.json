@@ -320,5 +320,7 @@
     "invalidEmail": "بريد إلكتروني خاطئ",
     "newPassword": "كلمة مرور جديدة",
     "newPasswordConfirm": "تأكيد كلمة المرور الجديدة",
-    "passwordNotMatch": "كلمة المرور غير متطابقة"
+    "passwordNotMatch": "كلمة المرور غير متطابقة",
+    "emailHasBeenSent": "تم إرسال البريد الإلكتروني",
+    "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح"
 }

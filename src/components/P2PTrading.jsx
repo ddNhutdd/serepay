@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import {
   formatCurrency,
   formatNumber,
-  formatStringNumberCultureUS,
   getLocalStorage,
   processString,
   setLocalStorage,

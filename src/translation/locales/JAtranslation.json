@@ -320,5 +320,7 @@
     "invalidEmail": "無効なメールアドレス",
     "newPassword": "新しいパスワード",
     "newPasswordConfirm": "新しいパスワードの確認",
-    "passwordNotMatch": "パスワードが一致しません"
+    "passwordNotMatch": "パスワードが一致しません",
+    "emailHasBeenSent": "メールが送信されました",
+    "passwordChangedSuccessfully": "パスワードが正常に変更されました"
 }

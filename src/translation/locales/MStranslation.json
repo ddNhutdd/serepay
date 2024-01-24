@@ -320,5 +320,7 @@
     "invalidEmail": "E-mel tidak sah",
     "newPassword": "Kata laluan baru",
     "newPasswordConfirm": "Sahkan kata laluan baru",
-    "passwordNotMatch": "Kata laluan tidak sepadan"
+    "passwordNotMatch": "Kata laluan tidak sepadan",
+    "emailHasBeenSent": "E-mel telah dihantar",
+    "passwordChangedSuccessfully": "Kata laluan berjaya ditukar"
 }

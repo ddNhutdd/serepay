@@ -318,5 +318,7 @@
     "invalidEmail": "อีเมลไม่ถูกต้อง",
     "newPassword": "รหัสผ่านใหม่",
     "newPasswordConfirm": "ยืนยันรหัสผ่านใหม่",
-    "passwordNotMatch": "รหัสผ่านไม่ตรงกัน"
+    "passwordNotMatch": "รหัสผ่านไม่ตรงกัน",
+    "emailHasBeenSent": "อีเมลถูกส่งแล้ว",
+    "passwordChangedSuccessfully": "เปลี่ยนรหัสผ่านสำเร็จ"
 }

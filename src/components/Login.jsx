@@ -159,7 +159,7 @@ export default function Login({ history }) {
             className="toSignUp"
             onClick={() => history.replace(url.recovery_password)}
           >
-            {t("forgot Password")}
+            {t("forgotPassword")}
           </div>
         </div>
       </div>

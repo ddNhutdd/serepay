@@ -320,5 +320,7 @@
     "invalidEmail": "דוא\"ל לא חוקי",
     "newPassword": "סיסמה חדשה",
     "newPasswordConfirm": "אשר סיסמה חדשה",
-    "passwordNotMatch": "הסיסמה אינה תואמת"
+    "passwordNotMatch": "הסיסמה אינה תואמת",
+    "emailHasBeenSent": "האימייל נשלח",
+    "passwordChangedSuccessfully": "הסיסמה השתנתה בהצלחה"
 }
