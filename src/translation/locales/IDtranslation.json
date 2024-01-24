@@ -322,5 +322,7 @@
     "newPasswordConfirm": "Konfirmasi kata sandi baru",
     "passwordNotMatch": "Kata sandi tidak cocok",
     "emailHasBeenSent": "Email telah dikirim",
-    "passwordChangedSuccessfully": "Kata sandi berhasil diubah"
+    "passwordChangedSuccessfully": "Kata sandi berhasil diubah",
+    "change": "Ubah",
+    "theEmailDoesNotExistInTheSystem": "Email tidak ada dalam sistem."
 }

@@ -30,7 +30,7 @@ import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import socket from "src/util/socket";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import { Input } from "./Common/Input";
+import { Input, inputColor, inputType } from "./Common/Input";
 import { getCoin, getCoinAmount } from "src/redux/reducers/wallet2Slice";
 import { EmptyCustom } from "./Common/Empty";
 export default function Swap() {
@@ -378,6 +378,8 @@ export default function Swap() {
             <div className="input-area">
               <div className="input-area-input">
                 <Input
+                  type={inputType.number}
+                  color={inputColor.red}
                   value={fromCoinValueString}
                   onChange={fromCoinOnChange}
                   style={{ paddingRight: "60px" }}
@@ -402,13 +404,15 @@ export default function Swap() {
             </div>
             <div className="balance">
               <span className="balance-title">{t("balance")}: </span>
-              {isLogin
-                ? formatNumber(
-                    userWallet[swapFromCoin.toLowerCase() + "_balance"] ?? 0,
-                    i18n.language,
-                    8
-                  )
-                : ""}
+              <span className="hightLightNumber">
+                {isLogin
+                  ? formatNumber(
+                      userWallet[swapFromCoin.toLowerCase() + "_balance"] ?? 0,
+                      i18n.language,
+                      8
+                    )
+                  : ""}
+              </span>
             </div>
           </div>
           <div style={{ textAlign: "center", margin: 20 }}>
@@ -426,12 +430,17 @@ export default function Swap() {
               {t("amountOf")} {swapToCoin}
             </label>
             <div className="input-area">
-              <Input value={toCoinValueString} disabled />
+              <Input
+                value={toCoinValueString}
+                type={inputType.number}
+                color={inputColor.green}
+                disabled
+              />
               <button
                 className="selectBtn buttonContainer--transparent"
                 onClick={showModal2}
               >
-                <div className="selectBtn-container  ">
+                <div className="selectBtn-container">
                   <img
                     src={`https://remitano.dk-tech.vn/images/${swapToCoin}.png`}
                     alt="swapToCoin"
@@ -442,7 +451,11 @@ export default function Swap() {
               </button>
             </div>
             <span style={{ display: "block", marginTop: 8 }}>
-              1 {swapFromCoin} = {coinPriceDifference()} {swapToCoin}
+              <span className="hightLightNumber red">1</span> {swapFromCoin} ={" "}
+              <span className="hightLightNumber green">
+                {coinPriceDifference()}
+              </span>{" "}
+              {swapToCoin}
             </span>
           </div>
           <button

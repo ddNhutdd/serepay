@@ -322,5 +322,7 @@
     "newPasswordConfirm": "नए पासवर्ड की पुष्टि करें",
     "passwordNotMatch": "पासवर्ड मेल नहीं खाता",
     "emailHasBeenSent": "ईमेल भेज दिया गया है",
-    "passwordChangedSuccessfully": "पासवर्ड सफलतापूर्वक बदल दिया गया है"
+    "passwordChangedSuccessfully": "पासवर्ड सफलतापूर्वक बदल दिया गया है",
+    "change": "बदलें",
+    "theEmailDoesNotExistInTheSystem": "ईमेल सिस्टम में मौजूद नहीं है।"
 }

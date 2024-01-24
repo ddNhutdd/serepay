@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spin } from "antd";
-import { Input } from "../Common/Input";
+import { Input, inputColor, inputType } from "../Common/Input";
 import {
   findMin,
   formatCurrency,
@@ -321,7 +321,7 @@ function TransactionSell() {
       <>
         <div className="transaction__box-item">
           <span>{t("price")}:</span>
-          <span>{price}</span>
+          <span className="hightLightNumber green">{price}</span>
         </div>
         <div className="transaction__box-item amount">
           <span>{t("amountLimits")}:</span>
@@ -646,9 +646,10 @@ function TransactionSell() {
               <div className="transaction__input">
                 <label>{t("iPay")}:</label>
                 <Input
+                  color={inputColor.red}
                   ref={payInputElement}
                   onChange={payInputChangeHandle}
-                  type="text"
+                  type={inputType.number}
                   onFocus={inputCoinFocusHandle}
                   errorMes={errorControl[control.current.amount]}
                 />
@@ -661,7 +662,12 @@ function TransactionSell() {
               </div>
               <div className="transaction__input">
                 <label>{t("toReceive")}:</label>
-                <Input ref={receiveInputElement} disabled type="text" />
+                <Input
+                  color={inputColor.green}
+                  ref={receiveInputElement}
+                  disabled
+                  type={inputType.number}
+                />
                 <span className="transaction__action">
                   <span className="transaction__unit">VND</span>
                 </span>

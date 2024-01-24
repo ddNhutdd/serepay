@@ -11,6 +11,7 @@ body {
   font-family: "Montserrat", "Roboto", "Open Sans", sans-serif !important;
 }
 
+
 @import "./base/gridSerepay.scss";
 @import "./components/MainTemplate.scss";
 @import "./components/AdminWidthdraw.scss";
@@ -19,6 +20,7 @@ body {
 @import "./components/P2PTrading.scss";
 @import "./components/P2PTrading2.scss";
 @import "./components/Footer.scss";
+@import "./components/Verify.scss";
 @import "./components/Swap.scss";
 @import "./components/CreateBuy.scss";
 @import "./components/Login.scss";

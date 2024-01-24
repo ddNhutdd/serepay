@@ -1,0 +1,16 @@
+.verify {
+    padding-top: 90px;
+    color: $new-text-color-white;
+
+    .container {
+        @include container2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            text-align: center;
+        }
+    }
+}

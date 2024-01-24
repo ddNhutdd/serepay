@@ -21,6 +21,7 @@ import {
 import { DOMAIN } from "src/util/service";
 import { companyAddAds, getProfile } from "src/util/userCallApi";
 import {
+  actionTrading,
   api_status,
   currencyMapper,
   defaultLanguage,
@@ -30,7 +31,7 @@ import {
 } from "src/constant";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import { Input } from "./Common/Input";
+import { Input, inputColor, inputType } from "./Common/Input";
 import { math } from "src/App";
 
 export default function CreateBuy() {
@@ -435,6 +436,16 @@ export default function CreateBuy() {
     modalPreviewHandleCancel();
     submitHandle();
   };
+  const renderInputColor = function () {
+    switch (action) {
+      case actionTrading.buy:
+        return inputColor.green;
+      case actionTrading.sell:
+        return inputColor.red;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="create-buy-ads fadeInBottomToTop">
@@ -491,6 +502,8 @@ export default function CreateBuy() {
                   {t("amountOf")} {currentCoin}:
                 </label>
                 <Input
+                  type={inputType.number}
+                  color={renderInputColor()}
                   onChange={controlOnChangeHandle}
                   onFocus={controlOnfocusHandle}
                   name="amount"
@@ -504,6 +517,8 @@ export default function CreateBuy() {
                   {t("minimumBTCAmount").replace("BTC", currentCoin)}:
                 </label>
                 <Input
+                  type={inputType.number}
+                  color={renderInputColor()}
                   onChange={controlOnChangeHandle}
                   onFocus={controlOnfocusHandle}
                   name="mini"

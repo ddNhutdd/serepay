@@ -320,5 +320,7 @@
     "newPasswordConfirm": "ยืนยันรหัสผ่านใหม่",
     "passwordNotMatch": "รหัสผ่านไม่ตรงกัน",
     "emailHasBeenSent": "อีเมลถูกส่งแล้ว",
-    "passwordChangedSuccessfully": "เปลี่ยนรหัสผ่านสำเร็จ"
+    "passwordChangedSuccessfully": "เปลี่ยนรหัสผ่านสำเร็จ",
+    "change": "เปลี่ยน",
+    "theEmailDoesNotExistInTheSystem": "อีเมลไม่มีอยู่ในระบบ."
 }

@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as Yup from "yup";
-import { Button } from "antd";
 import { axiosService } from "../util/service";
 import { useState } from "react";
 import i18n from "src/translation/i18n";
@@ -12,11 +11,17 @@ import {
   commontString,
   defaultLanguage,
   localStorageVariable,
+  url,
 } from "src/constant";
 import { useTranslation } from "react-i18next";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
+import { Input, inputType } from "./Common/Input";
+import { Button } from "./Common/Button";
 
 export default function Signup({ history }) {
+  const { isLogin } = useSelector((root) => root.loginReducer);
+  const { t } = useTranslation();
+
   const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
@@ -29,12 +34,12 @@ export default function Signup({ history }) {
       referral: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Required"),
-      email: Yup.string().required("Required").email("Invalid email"),
-      password: Yup.string().required("Required"),
+      username: Yup.string().required(t("require")),
+      email: Yup.string().required(t("require")).email(t("invalidEmail")),
+      password: Yup.string().required(t("require")),
       password2: Yup.string()
-        .required("Required")
-        .oneOf([Yup.ref("password"), null], "Password not match"),
+        .required(t("require"))
+        .oneOf([Yup.ref("password"), null], t("passwordNotMatch")),
     }),
     validateOnChange: false,
     validateOnBlur: false,
@@ -48,16 +53,8 @@ export default function Signup({ history }) {
       });
     },
   });
-  const [typeInputPassword, setTypeInputPassword] = useState("password");
-  const [typeInputPasswordConfirm, setTypeInputPasswordConfirm] =
-    useState("password");
 
-  const { isLogin } = useSelector((root) => root.loginReducer);
-  const { t } = useTranslation();
   useEffect(() => {
-    const element = document.querySelector(".login-register");
-    element.classList.add("fadeInBottomToTop");
-    //
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
@@ -68,7 +65,7 @@ export default function Signup({ history }) {
     try {
       let response = await axiosService.post("/api/user/signup", info);
       callToastSuccess(t(commontString.success));
-      history.replace("/login");
+      history.replace(url.login);
     } catch (error) {
       callToastError(commontString.error);
     } finally {
@@ -81,112 +78,58 @@ export default function Signup({ history }) {
   }
 
   return (
-    <div className="login-register">
+    <div className="login-register fadeInBottomToTop">
       <div className="container">
         <div className="box">
           <h2 className="title">{t("createAccount")}</h2>
           <form>
             <div className="field">
               <label htmlFor="username">{t("userName")}</label>
-              <input
-                size="large"
+              <Input
                 id="username"
                 name="username"
                 value={formik.values.username}
                 onChange={formik.handleChange}
+                errorMes={formik.errors.username}
               />
-              {formik.errors.username ? (
-                <div className="error">{formik.errors.username}</div>
-              ) : null}
             </div>
-
             <div className="field">
               <label htmlFor="email">{t("email")}</label>
-              <input
-                size="large"
+              <Input
                 id="email"
                 name="email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
+                errorMes={formik.errors.email}
               />
-              {formik.errors.email ? (
-                <div className="error">{formik.errors.email}</div>
-              ) : null}
             </div>
-
             <div className="field">
               <label htmlFor="password">{t("password")}</label>
-              <input
-                size="large"
+              <Input
                 id="password"
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                type={typeInputPassword}
+                type={inputType.password}
+                errorMes={formik.errors.password}
               />
-              {formik.errors.password ? (
-                <div className="error">{formik.errors.password}</div>
-              ) : null}
-              <span
-                id="eyeShow"
-                className={typeInputPassword === "text" ? "" : "--d-none"}
-                onClick={() => {
-                  setTypeInputPassword(() => "password");
-                }}
-              >
-                <i className="fa-regular fa-eye"></i>
-              </span>
-              <span
-                className={typeInputPassword === "password" ? "" : "--d-none"}
-                onClick={() => {
-                  setTypeInputPassword(() => "text");
-                }}
-                id="eyeHide"
-              >
-                <i className="fa-solid fa-eye-slash"></i>
-              </span>
             </div>
 
             <div className="field">
               <label htmlFor="password2">{t("confirmPassword")}</label>
-              <input
-                size="large"
+              <Input
                 id="password2"
                 name="password2"
                 value={formik.values.password2}
                 onChange={formik.handleChange}
-                type={typeInputPasswordConfirm}
+                type={inputType.password}
+                errorMes={formik.errors.password2}
               />
-              {formik.errors.password2 ? (
-                <div className="error">{formik.errors.password2}</div>
-              ) : null}
-              <span
-                id="eyeShow"
-                className={
-                  typeInputPasswordConfirm === "text" ? "" : "--d-none"
-                }
-                onClick={() => {
-                  setTypeInputPasswordConfirm(() => "password");
-                }}
-              >
-                <i className="fa-regular fa-eye"></i>
-              </span>
-              <span
-                className={
-                  typeInputPasswordConfirm === "password" ? "" : "--d-none"
-                }
-                onClick={() => {
-                  setTypeInputPasswordConfirm(() => "text");
-                }}
-                id="eyeHide"
-              >
-                <i className="fa-solid fa-eye-slash"></i>
-              </span>
             </div>
 
             <div className="field">
               <label htmlFor="referral">{t("referralCode")}</label>
-              <input
+              <Input
                 disabled
                 size="large"
                 id="referral"
@@ -197,8 +140,6 @@ export default function Signup({ history }) {
 
             <Button
               loading={loading}
-              type="primary"
-              size="large"
               className="loginBtn"
               onClick={formik.handleSubmit}
               htmlType="submit"

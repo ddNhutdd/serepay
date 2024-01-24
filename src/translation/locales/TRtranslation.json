@@ -322,5 +322,7 @@
     "newPasswordConfirm": "Yeni şifreyi onayla",
     "passwordNotMatch": "Şifre eşleşmiyor",
     "emailHasBeenSent": "E-posta gönderildi",
-    "passwordChangedSuccessfully": "Şifre başarıyla değiştirildi"
+    "passwordChangedSuccessfully": "Şifre başarıyla değiştirildi",
+    "change": "Değiştir",
+    "theEmailDoesNotExistInTheSystem": "E-posta sistemde mevcut değil."
 }

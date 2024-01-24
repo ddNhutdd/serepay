@@ -294,3 +294,10 @@ export const forGetPassword = function (data) {
     console.log(error);
   }
 };
+export const verifyEmail = function (verifyToken) {
+  try {
+    return axiosService.get("/api/user/verifyEmail/" + verifyToken);
+  } catch (error) {
+    console.log(error);
+  }
+};

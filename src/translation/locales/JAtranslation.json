@@ -322,5 +322,7 @@
     "newPasswordConfirm": "新しいパスワードの確認",
     "passwordNotMatch": "パスワードが一致しません",
     "emailHasBeenSent": "メールが送信されました",
-    "passwordChangedSuccessfully": "パスワードが正常に変更されました"
+    "passwordChangedSuccessfully": "パスワードが正常に変更されました",
+    "change": "変更",
+    "theEmailDoesNotExistInTheSystem": "そのメールアドレスはシステムに存在しません。"
 }

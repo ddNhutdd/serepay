@@ -8,7 +8,7 @@ import {
   localStorageVariable,
   url,
 } from "src/constant";
-import { Input } from "../Common/Input";
+import { Input, inputColor, inputType } from "../Common/Input";
 import socket from "src/util/socket";
 import { DOMAIN } from "src/util/service";
 import { useTranslation } from "react-i18next";
@@ -344,7 +344,8 @@ const P2pExchange = memo(function () {
     listExchange,
     listCoin
   ) {
-    if (!getExchangeRateDisparityFromRedux) return;
+    if (!getExchangeRateDisparityFromRedux || !listCoin || listCoin.length <= 0)
+      return;
     const rate = listExchange.find((item) => item.title === currency)?.rate;
     const price = listCoin.find((item) => item.name === coinName)?.price;
 
@@ -425,6 +426,16 @@ const P2pExchange = memo(function () {
   const renderClassEstimateMoney = function () {
     return filter === filterType.coin ? "" : "--d-none";
   };
+  const renderColorInput = function () {
+    switch (currentAction) {
+      case actionTrading.buy:
+        return inputColor.green;
+      case actionTrading.sell:
+        return inputColor.red;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     const language =
@@ -472,13 +483,14 @@ const P2pExchange = memo(function () {
           <div className="p2pExchange__input-container">
             <Input
               ref={inputElement}
+              color={renderColorInput()}
               onChange={inputAmountChangeHandle}
               placeholder={renderPlaceHolder()}
-              type="text"
+              type={inputType.number}
               style={{
                 height: "45px",
-                fontSize: "14px",
                 border: 0,
+                padding: 0,
                 letterSpacing: "0.5px",
               }}
             />
@@ -493,12 +505,21 @@ const P2pExchange = memo(function () {
             <div>
               <span className={renderClassEstimateMoney()}>
                 {t("amountOfMoney")}:{" "}
-                {formatCurrency(i18n.language, currencyFromRedux, amountMoney)}
+                <span className="hightLightNumber">
+                  {formatCurrency(
+                    i18n.language,
+                    currencyFromRedux,
+                    amountMoney
+                  )}
+                </span>
               </span>
               <span
                 className={`p2pExchange__input-estimate ${renderClassEstimateCoin()}`}
               >
-                {t("amountOf")}: {formatNumber(amountCoin, i18n.language, 8)}
+                {t("amountOf")}:{" "}
+                <span className="hightLightNumber">
+                  {formatNumber(amountCoin, i18n.language, 8)}
+                </span>
                 <img
                   className="p2pExchange__input-image"
                   src="https://remitano.dk-tech.vn/images/USDT.png"

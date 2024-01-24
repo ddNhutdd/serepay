@@ -16,18 +16,19 @@ import i18n from "src/translation/i18n";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import socket from "src/util/socket";
-import { Button } from "antd";
+import { Input, inputType } from "./Common/Input";
+import { Button } from "./Common/Button";
 export default function Login({ history }) {
-  //
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required("Required"),
-      password: Yup.string().required("Required"),
+      username: Yup.string().required(t("require")),
+      password: Yup.string().required(t("require")),
     }),
     validateOnChange: false,
     validateOnBlur: false,
@@ -35,9 +36,9 @@ export default function Login({ history }) {
       login(values.username, values.password);
     },
   });
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const [typeInputPassword, setTypeInputPassword] = useState("password");
+
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
@@ -46,7 +47,7 @@ export default function Login({ history }) {
     const element = document.querySelector(".login-register");
     if (element) element.classList.add("fadeInBottomToTop");
   }, []);
-  //
+
   const login = async (e, p) => {
     setIsLoading(true);
     try {
@@ -96,55 +97,29 @@ export default function Login({ history }) {
           <form>
             <div className="field">
               <label htmlFor="email">{t("userName")}</label>
-              <input
+              <Input
                 id="username"
                 name="username"
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                size="large"
+                errorMes={formik.errors.username}
               />
-              {formik.errors.username ? (
-                <div className="error">{formik.errors.username}</div>
-              ) : null}
             </div>
             <div className="field">
               <label htmlFor="password">{t("password")}</label>
-              <input
+              <Input
                 size="large"
                 id="password"
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
-                type={typeInputPassword}
+                type={inputType.password}
+                errorMes={formik.errors.password}
               />
-              {formik.errors.password ? (
-                <div className="error">{formik.errors.password}</div>
-              ) : null}
-              <span
-                id="eyeShow"
-                className={typeInputPassword === "text" ? "" : "--d-none"}
-                onClick={() => {
-                  setTypeInputPassword(() => "password");
-                }}
-              >
-                <i className="fa-regular fa-eye"></i>
-              </span>
-              <span
-                className={typeInputPassword === "password" ? "" : "--d-none"}
-                onClick={() => {
-                  setTypeInputPassword(() => "text");
-                }}
-                id="eyeHide"
-              >
-                <i className="fa-solid fa-eye-slash"></i>
-              </span>
             </div>
-
             <Button
-              loading={isLoading}
-              type="primary"
-              size="large"
               className="loginBtn"
+              loading={isLoading}
               onClick={formik.handleSubmit}
               htmlType="submit"
             >

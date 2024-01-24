@@ -322,5 +322,7 @@
     "newPasswordConfirm": "Sahkan kata laluan baru",
     "passwordNotMatch": "Kata laluan tidak sepadan",
     "emailHasBeenSent": "E-mel telah dihantar",
-    "passwordChangedSuccessfully": "Kata laluan berjaya ditukar"
+    "passwordChangedSuccessfully": "Kata laluan berjaya ditukar",
+    "change": "Tukar",
+    "theEmailDoesNotExistInTheSystem": "Emel tidak wujud dalam sistem."
 }

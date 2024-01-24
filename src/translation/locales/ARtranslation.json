@@ -322,5 +322,7 @@
     "newPasswordConfirm": "تأكيد كلمة المرور الجديدة",
     "passwordNotMatch": "كلمة المرور غير متطابقة",
     "emailHasBeenSent": "تم إرسال البريد الإلكتروني",
-    "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح"
+    "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح",
+    "change": "تغيير",
+    "theEmailDoesNotExistInTheSystem": "البريد الإلكتروني غير موجود في النظام."
 }

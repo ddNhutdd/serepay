@@ -439,6 +439,11 @@ function ConfirmItem(props) {
       callback
     );
   };
+  const renderClassBuyAction = function () {
+    if (userCurrentAction === actionType.buy) {
+      return "confirm--green";
+    } else return "confirm--red";
+  };
 
   return (
     <div className="confirm">
@@ -501,8 +506,11 @@ function ConfirmItem(props) {
                   ? t("youAreBuying")
                   : t("youAreSelling")}
               </td>
-              <td className="confirm--red">
-                {amount} {symbol}
+              <td>
+                <span className={`hightLightNumber ${renderClassBuyAction()}`}>
+                  {amount}
+                </span>{" "}
+                {symbol}
               </td>
             </tr>
             <tr>

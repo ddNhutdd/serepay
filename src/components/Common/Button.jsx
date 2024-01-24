@@ -24,6 +24,7 @@ export const buttonClassesType = {
  */
 export const Button = ({
   className,
+  loading = false,
   onClick,
   id,
   style,
@@ -33,7 +34,12 @@ export const Button = ({
   disabled,
 }) => {
   let typeClassesDefault = getButtonClasses(type);
-
+  const renderClassLoader = function () {
+    return loading ? "" : "--d-none";
+  };
+  const renderLoading = function () {
+    return loading ? true : disabled;
+  };
   return (
     <button
       id={id}
@@ -41,8 +47,9 @@ export const Button = ({
       style={style}
       onClick={onClick}
       name={name}
-      disabled={disabled}
+      disabled={renderLoading()}
     >
+      <div className={`loader ${renderClassLoader()}`}></div>
       {children}
     </button>
   );

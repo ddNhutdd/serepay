@@ -22,6 +22,7 @@ export const url = {
   profile: "/profile",
   wallet: "/wallet-2",
   swap: "/swap",
+  verify: "/verify/:token",
   login: "/login",
   p2pTrading: "/p2p-trading",
   admin_kyc: "/admin/kyc",

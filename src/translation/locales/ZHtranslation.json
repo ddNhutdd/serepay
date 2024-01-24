@@ -322,5 +322,7 @@
     "newPasswordConfirm": "确认新密码",
     "passwordNotMatch": "密码不匹配",
     "emailHasBeenSent": "电子邮件已发送",
-    "passwordChangedSuccessfully": "密码已成功更改"
+    "passwordChangedSuccessfully": "密码已成功更改",
+    "change": "变更",
+    "theEmailDoesNotExistInTheSystem": "该电子邮件在系统中不存在。"
 }

@@ -322,5 +322,7 @@
     "newPasswordConfirm": "Επιβεβαίωση νέου κωδικού πρόσβασης",
     "passwordNotMatch": "Ο κωδικός πρόσβασης δεν ταιριάζει",
     "emailHasBeenSent": "Το email έχει σταλεί",
-    "passwordChangedSuccessfully": "Ο κωδικός πρόσβασης άλλαξε επιτυχώς"
+    "passwordChangedSuccessfully": "Ο κωδικός πρόσβασης άλλαξε επιτυχώς",
+    "change": "Αλλαγή",
+    "theEmailDoesNotExistInTheSystem": "Το email δεν υπάρχει στο σύστημα."
 }

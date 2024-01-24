@@ -322,5 +322,7 @@
     "newPasswordConfirm": "Подтвердите новый пароль",
     "passwordNotMatch": "Пароль не совпадает",
     "emailHasBeenSent": "Электронное письмо отправлено",
-    "passwordChangedSuccessfully": "Пароль успешно изменен"
+    "passwordChangedSuccessfully": "Пароль успешно изменен",
+    "change": "Изменить",
+    "theEmailDoesNotExistInTheSystem": "Электронная почта не существует в системе."
 }

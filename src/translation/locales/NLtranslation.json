@@ -322,5 +322,7 @@
     "newPasswordConfirm": "Bevestig nieuw wachtwoord",
     "passwordNotMatch": "Wachtwoord komt niet overeen",
     "emailHasBeenSent": "E-mail is verzonden",
-    "passwordChangedSuccessfully": "Wachtwoord is succesvol gewijzigd"
+    "passwordChangedSuccessfully": "Wachtwoord is succesvol gewijzigd",
+    "change": "Veranderen",
+    "theEmailDoesNotExistInTheSystem": "De e-mail bestaat niet in het systeem."
 }

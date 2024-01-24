@@ -322,5 +322,7 @@
     "newPasswordConfirm": "אשר סיסמה חדשה",
     "passwordNotMatch": "הסיסמה אינה תואמת",
     "emailHasBeenSent": "האימייל נשלח",
-    "passwordChangedSuccessfully": "הסיסמה השתנתה בהצלחה"
+    "passwordChangedSuccessfully": "הסיסמה השתנתה בהצלחה",
+    "change": "שינוי",
+    "theEmailDoesNotExistInTheSystem": "האימייל אינו קיים במערכת."
 }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { Button } from "antd";
 import * as Yup from "yup";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { sendMailForGetPassword } from "src/util/userCallApi";
@@ -8,6 +7,8 @@ import { useTranslation } from "react-i18next";
 import { getLocalStorage } from "src/util/common";
 import { defaultLanguage, localStorageVariable } from "src/constant";
 import i18n from "src/translation/i18n";
+import { Input } from "../Common/Input";
+import { Button } from "../Common/Button";
 
 function RecoveryPassword() {
   const { t } = useTranslation();
@@ -69,24 +70,15 @@ function RecoveryPassword() {
           <form onSubmit={formik.handleSubmit}>
             <div className="field">
               <label htmlFor="email">{t("email")}: </label>
-              <input
+              <Input
                 id="email"
                 name="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                size="large"
+                errorMes={formik.errors.email}
               />
-              {formik.errors.email ? (
-                <div className="error">{formik.errors.email}</div>
-              ) : null}
             </div>
-            <Button
-              loading={loading}
-              type="primary"
-              size="large"
-              className="loginBtn"
-              htmlType="submit"
-            >
+            <Button loading={loading} className="loginBtn" htmlType="submit">
               {t("send")}
             </Button>
           </form>

@@ -166,7 +166,7 @@ $new-padding-input-lg: 0 16px;
 $new-text-color-input: #eaecef;
 $new-background-color-input: #181a20;
 $new-background-color-input-disabled: #1e2027;
-$new-font-size-input: 14px;
+$new-font-size-input: 15px;
 $new-transition-border-color-input: border-color 0.3s ease;
 $new-border-input: 1px solid $neutral-10;
 $new-border-input-hover: 1px solid $new-border-color-hover;
@@ -800,6 +800,18 @@ h2.title {
   }
 }
 
+.hightLightNumber {
+  font-weight: bolder;
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}
+
 .error {
   font-weight: 500;
   color: red;
@@ -935,11 +947,11 @@ h2.title {
 }
 
 .loader {
-  border: 3px solid transparent;
-  border-top: 3px solid $white;
+  border: 2px solid transparent;
+  border-top: 2px solid $white;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   animation: spin 0.8s linear infinite;
 }
 

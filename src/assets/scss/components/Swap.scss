@@ -24,10 +24,6 @@
     .field {
       .balance {
         margin-top: 5px;
-
-        .balance-title {
-          font-weight: 500;
-        }
       }
 
       label {
@@ -45,10 +41,6 @@
         .input-area-input {
           width: 100%;
           position: relative;
-
-          input {
-            height: 35.56px;
-          }
 
           button.max {
             position: absolute;
@@ -252,10 +244,6 @@
 
 .swap__modal-coin {
   padding: 16px 24px;
-
-  input {
-    height: 35.56px;
-  }
 
   .swap__modal-list {
     margin-top: 20px;

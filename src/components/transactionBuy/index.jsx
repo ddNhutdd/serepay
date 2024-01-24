@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Spin } from "antd";
-import { Input } from "../Common/Input";
+import { Input, inputColor, inputType } from "../Common/Input";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
@@ -226,7 +226,7 @@ function TransactionBuy() {
       <>
         <div className="transaction__box-item">
           <span>{t("price")}:</span>
-          <span>{price}</span>
+          <span className="hightLightNumber red">{price}</span>
         </div>
         <div className="transaction__box-item amount">
           <span>{t("amountLimits")}:</span>
@@ -740,10 +740,11 @@ function TransactionBuy() {
               <div className="transaction__input">
                 <label htmlFor="amountInput">{t("iWillPay")}:</label>
                 <Input
+                  type={inputType.number}
+                  color={inputColor.red}
                   onChange={inputCoinChangeHandle}
                   onFocus={inputCoinFocusHandle}
                   ref={inputMoneyElement}
-                  type="text"
                   errorMes={errorControl[control.current.amount]}
                 />
                 <span className="transaction__action">
@@ -756,10 +757,10 @@ function TransactionBuy() {
               <div className="transaction__input">
                 <label htmlFor="receiveInput">{t("toReceive")}:</label>
                 <Input
+                  type={inputType.number}
+                  color={inputColor.green}
                   ref={inputCoinElement}
                   disabled
-                  type="text"
-                  // className="transaction__input-result"
                 />
                 <span className="transaction__action">
                   <span

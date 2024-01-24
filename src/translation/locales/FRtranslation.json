@@ -322,5 +322,7 @@
     "newPasswordConfirm": "Confirmer le nouveau mot de passe",
     "passwordNotMatch": "Le mot de passe ne correspond pas",
     "emailHasBeenSent": "L'email a été envoyé",
-    "passwordChangedSuccessfully": "Mot de passe modifié avec succès"
+    "passwordChangedSuccessfully": "Mot de passe modifié avec succès",
+    "change": "Changer",
+    "theEmailDoesNotExistInTheSystem": "L'e-mail n'existe pas dans le système."
 }

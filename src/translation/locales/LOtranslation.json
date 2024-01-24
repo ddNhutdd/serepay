@@ -322,5 +322,7 @@
     "newPasswordConfirm": "ຢືນຢັນລະຫັດຜ່ານໃຫມ່",
     "passwordNotMatch": "ລະຫັດຜ່ານບໍ່ກົງກັນ",
     "emailHasBeenSent": "ອີເມວຖືກສົ່ງສຳເລັດ",
-    "passwordChangedSuccessfully": "ປ່ຽນລະຫັດຜ່ານສຳເລັດ"
+    "passwordChangedSuccessfully": "ປ່ຽນລະຫັດຜ່ານສຳເລັດ",
+    "change": "ປ່ຽນແປງ",
+    "theEmailDoesNotExistInTheSystem": "ອີເມວບໍ່ມີຢູ່ໃນລະບົບ."
 }
