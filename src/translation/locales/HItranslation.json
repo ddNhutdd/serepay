@@ -324,5 +324,9 @@
     "emailHasBeenSent": "ईमेल भेज दिया गया है",
     "passwordChangedSuccessfully": "पासवर्ड सफलतापूर्वक बदल दिया गया है",
     "change": "बदलें",
-    "theEmailDoesNotExistInTheSystem": "ईमेल सिस्टम में मौजूद नहीं है।"
+    "theEmailDoesNotExistInTheSystem": "ईमेल सिस्टम में मौजूद नहीं है।",
+    "thereWasAnErrorInTheProcessing": "प्रोसेसिंग में एक त्रुटि हुई थी",
+    "accountHasBeenConfirmedEmailBeforehand": "खाता पहले ही ईमेल से कन्फर्म किया गया है",
+    "goToTheLoginPage": "लॉगिन पेज पर जाएं",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "खाता सफलतापूर्वक प्रमाणित हो गया है। नीचे दिए गए बटन पर क्लिक करें या ##### सेकंड्स इंतजार करें लॉगिन पेज पर जाने के लिए"
 }

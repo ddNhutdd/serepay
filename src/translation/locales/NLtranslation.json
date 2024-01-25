@@ -324,5 +324,9 @@
     "emailHasBeenSent": "E-mail is verzonden",
     "passwordChangedSuccessfully": "Wachtwoord is succesvol gewijzigd",
     "change": "Veranderen",
-    "theEmailDoesNotExistInTheSystem": "De e-mail bestaat niet in het systeem."
+    "theEmailDoesNotExistInTheSystem": "De e-mail bestaat niet in het systeem.",
+    "thereWasAnErrorInTheProcessing": "Er is een fout opgetreden in de verwerking",
+    "accountHasBeenConfirmedEmailBeforehand": "Account is van tevoren bevestigd via e-mail",
+    "goToTheLoginPage": "Ga naar de inlogpagina",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Account succesvol geauthenticeerd. Klik op de knop hieronder of wacht ##### seconden om naar de inlogpagina te gaan"
 }

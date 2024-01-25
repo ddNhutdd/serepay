@@ -324,5 +324,9 @@
     "emailHasBeenSent": "E-mail został wysłany",
     "passwordChangedSuccessfully": "Hasło zostało zmienione pomyślnie",
     "change": "Zmiana",
-    "theEmailDoesNotExistInTheSystem": "Adres e-mail nie istnieje w systemie."
+    "theEmailDoesNotExistInTheSystem": "Adres e-mail nie istnieje w systemie.",
+    "thereWasAnErrorInTheProcessing": "Wystąpił błąd podczas przetwarzania",
+    "accountHasBeenConfirmedEmailBeforehand": "Konto zostało potwierdzone wcześniej za pomocą e-maila",
+    "goToTheLoginPage": "Przejdź do strony logowania",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Konto zostało pomyślnie uwierzytelnione. Kliknij poniżej lub poczekaj ##### sekund, aby przejść do strony logowania"
 }

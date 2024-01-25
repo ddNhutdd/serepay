@@ -31,7 +31,7 @@ import { historytransfer as historytransferApi } from "src/util/userCallApi";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import { Input } from "src/components/Common/Input";
+import { Input, inputType } from "src/components/Common/Input";
 import {
   actionContent,
   getCoin,
@@ -477,9 +477,10 @@ function FormWithdraw() {
                 {t("amountOf")} {coin}
               </p>
               <Input
+                type={inputType.number}
                 value={inputAmountCurrency}
                 onChange={inputAmountCurrencyOnChangeHandles}
-                type="text"
+                style={{ paddingRight: 77 }}
               />
               <div className="list-tag">
                 <span>{coin}</span>
@@ -564,7 +565,8 @@ function FormWithdraw() {
               <Input
                 value={inputAmountCurrency}
                 onChange={inputAmountCurrencyOnChangeHandles}
-                type="text"
+                type={inputType.number}
+                style={{ paddingRight: 46 }}
               />
               <div className="list-tag">
                 <span>{coin}</span>

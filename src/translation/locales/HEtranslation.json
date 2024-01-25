@@ -324,5 +324,9 @@
     "emailHasBeenSent": "האימייל נשלח",
     "passwordChangedSuccessfully": "הסיסמה השתנתה בהצלחה",
     "change": "שינוי",
-    "theEmailDoesNotExistInTheSystem": "האימייל אינו קיים במערכת."
+    "theEmailDoesNotExistInTheSystem": "האימייל אינו קיים במערכת.",
+    "thereWasAnErrorInTheProcessing": "הייתה שגיאה בעיבוד",
+    "accountHasBeenConfirmedEmailBeforehand": "החשבון אושר בדואר אלקטרוני מראש",
+    "goToTheLoginPage": "עבור לדף ההתחברות",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "החשבון אומת בהצלחה. לחץ על הכפתור למטה או המתן ##### שניות כדי לעבור לדף ההתחברות"
 }

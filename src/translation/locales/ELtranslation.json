@@ -324,5 +324,9 @@
     "emailHasBeenSent": "Το email έχει σταλεί",
     "passwordChangedSuccessfully": "Ο κωδικός πρόσβασης άλλαξε επιτυχώς",
     "change": "Αλλαγή",
-    "theEmailDoesNotExistInTheSystem": "Το email δεν υπάρχει στο σύστημα."
+    "theEmailDoesNotExistInTheSystem": "Το email δεν υπάρχει στο σύστημα.",
+    "thereWasAnErrorInTheProcessing": "Υπήρξε ένα σφάλμα κατά την επεξεργασία",
+    "accountHasBeenConfirmedEmailBeforehand": "Το λογαριασμός έχει επιβεβαιωθεί με προγενέστερο ηλεκτρονικό ταχυδρομείο",
+    "goToTheLoginPage": "Μετάβαση στη σελίδα σύνδεσης",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Επιτυχής πιστοποίηση λογαριασμού. Κάντε κλικ στο κουμπί παρακάτω ή περιμένετε ##### δευτερόλεπτα για να μεταβείτε στη σελίδα σύνδεσης"
 }

@@ -324,5 +324,9 @@
     "emailHasBeenSent": "Электронное письмо отправлено",
     "passwordChangedSuccessfully": "Пароль успешно изменен",
     "change": "Изменить",
-    "theEmailDoesNotExistInTheSystem": "Электронная почта не существует в системе."
+    "theEmailDoesNotExistInTheSystem": "Электронная почта не существует в системе.",
+    "thereWasAnErrorInTheProcessing": "Произошла ошибка при обработке",
+    "accountHasBeenConfirmedEmailBeforehand": "Аккаунт был подтвержден заранее по электронной почте",
+    "goToTheLoginPage": "Перейти на страницу входа",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Аккаунт успешно аутентифицирован. Нажмите на кнопку ниже или подождите ##### секунд, чтобы перейти на страницу входа"
 }

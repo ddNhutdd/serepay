@@ -324,5 +324,9 @@
     "emailHasBeenSent": "メールが送信されました",
     "passwordChangedSuccessfully": "パスワードが正常に変更されました",
     "change": "変更",
-    "theEmailDoesNotExistInTheSystem": "そのメールアドレスはシステムに存在しません。"
+    "theEmailDoesNotExistInTheSystem": "そのメールアドレスはシステムに存在しません。",
+    "thereWasAnErrorInTheProcessing": "処理中にエラーが発生しました",
+    "accountHasBeenConfirmedEmailBeforehand": "アカウントは事前にメールで確認されています",
+    "goToTheLoginPage": "ログインページに移動",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "アカウントが正常に認証されました。下のボタンをクリックするか、##### 秒待ってログインページに移動します"
 }

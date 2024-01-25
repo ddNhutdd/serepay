@@ -324,5 +324,9 @@
     "emailHasBeenSent": "បាន​ផ្ញើ​អ៊ីមែល​ហើយ",
     "passwordChangedSuccessfully": "បាន​ផ្លាស់ប្ដូរ​ពាក្យសម្ងាត់​ដោយ​ជោគជ័យ",
     "change": "ផ្លាស់ប្ដូរ",
-    "theEmailDoesNotExistInTheSystem": "អ៊ីម៉ែលមិនមាននៅក្នុងប្រព័ន្ធ។"
+    "theEmailDoesNotExistInTheSystem": "អ៊ីម៉ែលមិនមាននៅក្នុងប្រព័ន្ធ។",
+    "thereWasAnErrorInTheProcessing": "មានកំហុសក្នុងការដំណើរការ",
+    "accountHasBeenConfirmedEmailBeforehand": "គណនីត្រូវបានបញ្ជាទុកតាមបណ្ដាញមុខងាររួចហើយ",
+    "goToTheLoginPage": "ទៅកាន់ទំព័រចូលប្រើ",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "គណនីបានផ្តល់បានជោគជ័យ។ ចុចលើប៊ូតុងខាងក្រោមឬរង់ចាំ ##### វិនាទីដើម្បីចូលទៅកាន់ទំព័រចូលប្រើ"
 }

@@ -64,7 +64,7 @@
     "createAccount": "Create account",
     "logIn": "Log in",
     "alreadyHadAnAccount": "Already had an account",
-    "community": "community",
+    "community": "Community",
     "dontHaveAnAccount": "Don't have an account?",
     "letsSignUp": "Let's sign up",
     "orSignInWith": "or sign in with",
@@ -324,5 +324,9 @@
     "emailHasBeenSent": "Email Has Been Sent",
     "passwordChangedSuccessfully": "Password Changed Successfully",
     "change": "Change",
-    "theEmailDoesNotExistInTheSystem": "The email does not exist in the system."
+    "theEmailDoesNotExistInTheSystem": "The email does not exist in the system.",
+    "thereWasAnErrorInTheProcessing": "There was an error in the processing",
+    "accountHasBeenConfirmedEmailBeforehand": "Account has been confirmed email beforehand",
+    "goToTheLoginPage": "Go to the login page",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Successfully authenticated account. Click on the button below or wait ##### seconds to go to the login page"
 }

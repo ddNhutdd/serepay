@@ -324,5 +324,9 @@
     "emailHasBeenSent": "E-mel telah dihantar",
     "passwordChangedSuccessfully": "Kata laluan berjaya ditukar",
     "change": "Tukar",
-    "theEmailDoesNotExistInTheSystem": "Emel tidak wujud dalam sistem."
+    "theEmailDoesNotExistInTheSystem": "Emel tidak wujud dalam sistem.",
+    "thereWasAnErrorInTheProcessing": "Terdapat ralat dalam pemprosesan",
+    "accountHasBeenConfirmedEmailBeforehand": "Akaun telah disahkan melalui emel sebelum ini",
+    "goToTheLoginPage": "Pergi ke halaman log masuk",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Akaun berjaya disahkan. Klik pada butang di bawah atau tunggu ##### saat untuk pergi ke halaman log masuk"
 }

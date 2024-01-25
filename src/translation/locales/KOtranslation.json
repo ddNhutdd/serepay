@@ -324,5 +324,9 @@
     "emailHasBeenSent": "이메일이 전송되었습니다",
     "passwordChangedSuccessfully": "비밀번호가 성공적으로 변경되었습니다",
     "change": "변경",
-    "theEmailDoesNotExistInTheSystem": "이 이메일은 시스템에 존재하지 않습니다."
+    "theEmailDoesNotExistInTheSystem": "이 이메일은 시스템에 존재하지 않습니다.",
+    "thereWasAnErrorInTheProcessing": "처리 중에 오류가 발생했습니다",
+    "accountHasBeenConfirmedEmailBeforehand": "계정은 미리 이메일로 확인되었습니다",
+    "goToTheLoginPage": "로그인 페이지로 이동",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "계정이 성공적으로 인증되었습니다. 아래 버튼을 클릭하거나 ##### 초 기다려 로그인 페이지로 이동하세요"
 }

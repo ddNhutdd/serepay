@@ -324,5 +324,9 @@
     "emailHasBeenSent": "ອີເມວຖືກສົ່ງສຳເລັດ",
     "passwordChangedSuccessfully": "ປ່ຽນລະຫັດຜ່ານສຳເລັດ",
     "change": "ປ່ຽນແປງ",
-    "theEmailDoesNotExistInTheSystem": "ອີເມວບໍ່ມີຢູ່ໃນລະບົບ."
+    "theEmailDoesNotExistInTheSystem": "ອີເມວບໍ່ມີຢູ່ໃນລະບົບ.",
+    "thereWasAnErrorInTheProcessing": "ມີຂໍ້ຜິດພາບໃນການລະບົບ",
+    "accountHasBeenConfirmedEmailBeforehand": "ບັນຊີໄດ້ຖືກຢືນຢັນກ່ອນໄດ້ອີເມວ",
+    "goToTheLoginPage": "ໄປທີ່ໜ້າເຂົ້າລະບົບ",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "ບັນຊີໄດ້ຢືນຢັນຮຽບຮ້ອຍ. ແຕ່ຄລິບຖອດລຸບົບຫຼັງຈາກ ##### ວິນາທີ ທີ່ຈະໄປທີ່ໜ້າເຂົ້າລະບົບ"
 }

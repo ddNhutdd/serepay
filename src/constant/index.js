@@ -1,4 +1,5 @@
 import { availableLanguage } from "src/translation/i18n";
+import { DOMAIN } from "src/util/service";
 
 export const localStorageVariable = {
   lng: "lng",
@@ -14,7 +15,7 @@ export const localStorageVariable = {
   coinNameFromP2pExchange: "cnfP2PE",
 };
 
-export const deploy_domain = "https://serepay.net/wallet-2";
+export const deploy_domain = DOMAIN + "wallet-2";
 
 export const url = {
   home: "/",

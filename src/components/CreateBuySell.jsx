@@ -255,7 +255,9 @@ export default function CreateBuy() {
       return false;
     if (controlsTourched.current[controls.current.amount]) {
       if (
-        !regularExpress.checkNumber.test(amountElement.value) &&
+        !regularExpress.checkNumber.test(
+          amountElement.value.replaceAll(",", "")
+        ) &&
         amountElement.value
       ) {
         valid &= false;
@@ -283,7 +285,9 @@ export default function CreateBuy() {
     }
     if (controlsTourched.current[controls.current.mini]) {
       if (
-        !regularExpress.checkNumber.test(miniElement.value) &&
+        !regularExpress.checkNumber.test(
+          miniElement.value.replaceAll(",", "")
+        ) &&
         miniElement.value
       ) {
         valid &= false;
@@ -348,8 +352,23 @@ export default function CreateBuy() {
     controlsTourched.current[name] = true;
     validate();
   };
-  const controlOnChangeHandle = function () {
+  const controlOnChangeHandle = function (formatNumber = false, e) {
+    if (formatNumber) {
+      formatInput(e.currentTarget, e.currentTarget.value.replaceAll(",", ""));
+    }
     validate();
+  };
+  const formatInput = function (input, inputValue) {
+    const inputValueWithoutComma = inputValue.replace(/,/g, "");
+    const regex = /^$|^[0-9]+(\.[0-9]*)?$/;
+    if (!regex.test(inputValueWithoutComma)) {
+      input.value = inputValue.slice(0, -1);
+      return;
+    }
+    const inputValueFormated = formatStringNumberCultureUS(
+      inputValueWithoutComma
+    );
+    input.value = inputValueFormated;
   };
   const callApiCreateAds = function (data) {
     return new Promise((resolve) => {
@@ -397,8 +416,8 @@ export default function CreateBuy() {
     if (!isValid) return;
     // get data
     showLoadingButtonSubmit();
-    const amout = getElementById("amoutInput").value;
-    const mini = getElementById("minimumAmoutInput").value;
+    const amout = getElementById("amoutInput").value.replaceAll(",", "");
+    const mini = getElementById("minimumAmoutInput").value.replaceAll(",", "");
     const fullname = getElementById("fullnameInput").value;
     const accountNumber = getElementById("accountNumberInput").value;
     const sendData = {};
@@ -504,7 +523,7 @@ export default function CreateBuy() {
                 <Input
                   type={inputType.number}
                   color={renderInputColor()}
-                  onChange={controlOnChangeHandle}
+                  onChange={controlOnChangeHandle.bind(null, true)}
                   onFocus={controlOnfocusHandle}
                   name="amount"
                   key={"a1va"}
@@ -519,7 +538,7 @@ export default function CreateBuy() {
                 <Input
                   type={inputType.number}
                   color={renderInputColor()}
-                  onChange={controlOnChangeHandle}
+                  onChange={controlOnChangeHandle.bind(null, true)}
                   onFocus={controlOnfocusHandle}
                   name="mini"
                   key={"a2va"}
@@ -562,7 +581,7 @@ export default function CreateBuy() {
               <div className="field">
                 <label htmlFor="fullnameInput">{t("fullName")}:</label>
                 <Input
-                  onChange={controlOnChangeHandle}
+                  onChange={controlOnChangeHandle.bind(null, false)}
                   onFocus={controlOnfocusHandle}
                   id="fullnameInput"
                   name="fullname"
@@ -575,7 +594,7 @@ export default function CreateBuy() {
                   {t("accountNumber")}:{" "}
                 </label>
                 <Input
-                  onChange={controlOnChangeHandle}
+                  onChange={controlOnChangeHandle.bind(null, false)}
                   onFocus={controlOnfocusHandle}
                   id="accountNumberInput"
                   name="accountNumber"

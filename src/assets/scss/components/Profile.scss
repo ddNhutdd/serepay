@@ -23,31 +23,6 @@
                 color: $new-text-color-white;
             }
 
-            .profile__user-img {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-
-                @media screen and (max-width: 576px) {
-                    flex-direction: column;
-                    gap: 20px;
-                }
-
-                .profile__icon {
-                    width: 120px;
-                    height: 120px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    background-color: $background-color-8;
-
-                    i.fa-solid.fa-user {
-                        font-size: 50px;
-                    }
-                }
-            }
-
             .profile__info-user {
                 display: flex;
                 align-items: center;

@@ -115,8 +115,6 @@ function Profile() {
     };
   }, []);
 
-  const inputFileLogo = useRef(null);
-
   const handleFileChange = function (e) {
     const file = e.target.files[0];
     switch (e.target.name) {
@@ -157,10 +155,6 @@ function Profile() {
       default:
         break;
     }
-  };
-  const inputFilelogoOnChangeHandle = function () {
-    console.log("chon file ", inputFileLogo.current.files[0].name);
-    // upload server
   };
   const showModal2FA = () => {
     // open modal
@@ -1042,27 +1036,6 @@ function Profile() {
         <div className="profile__info">
           <div className="profile__card-container box">
             <div className="profile__title">{t("profile")}</div>
-            <div className="profile__user-img">
-              <span className="profile__icon">
-                <i className="fa-solid fa-user"></i>
-              </span>
-              <div className="profile__upload-avatar">
-                <input
-                  type="file"
-                  className="--d-none"
-                  ref={inputFileLogo}
-                  onChange={inputFilelogoOnChangeHandle}
-                />
-                <button
-                  onClick={() => {
-                    inputFileLogo.current.click();
-                  }}
-                  className="profile__button"
-                >
-                  {t("uploadAvatar")}
-                </button>
-              </div>
-            </div>
             <div className="profile__info-user">
               <div className="profile__input">
                 <label htmlFor="profile__info-email">{t("email")}</label>

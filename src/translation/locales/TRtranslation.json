@@ -324,5 +324,9 @@
     "emailHasBeenSent": "E-posta gönderildi",
     "passwordChangedSuccessfully": "Şifre başarıyla değiştirildi",
     "change": "Değiştir",
-    "theEmailDoesNotExistInTheSystem": "E-posta sistemde mevcut değil."
+    "theEmailDoesNotExistInTheSystem": "E-posta sistemde mevcut değil.",
+    "thereWasAnErrorInTheProcessing": "İşlemlerde bir hata oluştu",
+    "accountHasBeenConfirmedEmailBeforehand": "Hesap önceden e-posta ile doğrulandı",
+    "goToTheLoginPage": "Giriş sayfasına git",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Hesap başarıyla doğrulandı. Aşağıdaki düğmeye tıklayın veya giriş sayfasına gitmek için ##### saniye bekleyin"
 }

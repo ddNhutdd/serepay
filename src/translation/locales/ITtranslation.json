@@ -324,5 +324,9 @@
   "emailHasBeenSent": "L'email è stato inviato",
   "passwordChangedSuccessfully": "Password modificata con successo",
   "change": "Cambia",
-  "theEmailDoesNotExistInTheSystem": "L'email non esiste nel sistema."
+  "theEmailDoesNotExistInTheSystem": "L'email non esiste nel sistema.",
+  "thereWasAnErrorInTheProcessing": "Si è verificato un errore durante l'elaborazione",
+  "accountHasBeenConfirmedEmailBeforehand": "L'account è stato confermato tramite email in precedenza",
+  "goToTheLoginPage": "Vai alla pagina di accesso",
+  "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Account autenticato con successo. Fai clic sul pulsante sottostante o attendi ##### secondi per accedere alla pagina di accesso"
 }

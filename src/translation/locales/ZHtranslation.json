@@ -324,5 +324,9 @@
     "emailHasBeenSent": "电子邮件已发送",
     "passwordChangedSuccessfully": "密码已成功更改",
     "change": "变更",
-    "theEmailDoesNotExistInTheSystem": "该电子邮件在系统中不存在。"
+    "theEmailDoesNotExistInTheSystem": "该电子邮件在系统中不存在。",
+    "thereWasAnErrorInTheProcessing": "处理过程中发生错误",
+    "accountHasBeenConfirmedEmailBeforehand": "帐户已通过电子邮件事先确认",
+    "goToTheLoginPage": "转到登录页面",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "帐户验证成功。点击下面的按钮或等待#####秒以转到登录页面"
 }

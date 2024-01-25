@@ -322,5 +322,9 @@
     "emailHasBeenSent": "อีเมลถูกส่งแล้ว",
     "passwordChangedSuccessfully": "เปลี่ยนรหัสผ่านสำเร็จ",
     "change": "เปลี่ยน",
-    "theEmailDoesNotExistInTheSystem": "อีเมลไม่มีอยู่ในระบบ."
+    "theEmailDoesNotExistInTheSystem": "อีเมลไม่มีอยู่ในระบบ.",
+    "thereWasAnErrorInTheProcessing": "มีข้อผิดพลาดในการประมวลผล",
+    "accountHasBeenConfirmedEmailBeforehand": "บัญชีได้รับการยืนยันทางอีเมลล์ล่วงหน้า",
+    "goToTheLoginPage": "ไปที่หน้าเข้าสู่ระบบ",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "บัญชีได้รับการรับรองสำเร็จ คลิกที่ปุ่มด้านล่างหรือรอ ##### วินาทีเพื่อไปที่หน้าเข้าสู่ระบบ"
 }

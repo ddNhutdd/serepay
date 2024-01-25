@@ -324,5 +324,9 @@
     "emailHasBeenSent": "Email telah dikirim",
     "passwordChangedSuccessfully": "Kata sandi berhasil diubah",
     "change": "Ubah",
-    "theEmailDoesNotExistInTheSystem": "Email tidak ada dalam sistem."
+    "theEmailDoesNotExistInTheSystem": "Email tidak ada dalam sistem.",
+    "thereWasAnErrorInTheProcessing": "Terjadi kesalahan dalam pemrosesan",
+    "accountHasBeenConfirmedEmailBeforehand": "Akun sudah dikonfirmasi melalui email sebelumnya",
+    "goToTheLoginPage": "Buka halaman login",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Akun berhasil diautentikasi. Klik tombol di bawah atau tunggu ##### detik untuk menuju ke halaman login"
 }

@@ -324,5 +324,9 @@
     "emailHasBeenSent": "تم إرسال البريد الإلكتروني",
     "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح",
     "change": "تغيير",
-    "theEmailDoesNotExistInTheSystem": "البريد الإلكتروني غير موجود في النظام."
+    "theEmailDoesNotExistInTheSystem": "البريد الإلكتروني غير موجود في النظام.",
+    "thereWasAnErrorInTheProcessing": "حدث خطأ في المعالجة",
+    "accountHasBeenConfirmedEmailBeforehand": "تم تأكيد الحساب بالبريد الإلكتروني مسبقًا",
+    "goToTheLoginPage": "انتقل إلى صفحة تسجيل الدخول",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "تم التوثيق بنجاح. انقر على الزر أدناه أو انتظر ##### ثانية للانتقال إلى صفحة تسجيل الدخول"
 }

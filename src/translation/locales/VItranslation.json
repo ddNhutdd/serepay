@@ -324,5 +324,9 @@
     "emailHasBeenSent": "Email đã được gửi",
     "passwordChangedSuccessfully": "Mật khẩu đã được thay đổi thành công",
     "change": "Thay đổi",
-    "theEmailDoesNotExistInTheSystem": "Email không tồn tại trong hệ thống."
+    "theEmailDoesNotExistInTheSystem": "Email không tồn tại trong hệ thống.",
+    "thereWasAnErrorInTheProcessing": "Có lỗi xảy ra trong quá trình xử lý",
+    "accountHasBeenConfirmedEmailBeforehand": "Tài khoản đã được xác nhận trước đó qua email",
+    "goToTheLoginPage": "Đến trang đăng nhập",
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Tài khoản được xác thực thành công. Nhấn vào nút bên dưới hoặc đợi ##### giây để đến trang đăng nhập"
 }
