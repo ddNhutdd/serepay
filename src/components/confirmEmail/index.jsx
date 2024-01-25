@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { defaultLanguage, localStorageVariable, url } from "src/constant";
 import { useTranslation } from "react-i18next";
 import { getLocalStorage } from "src/util/common";
+import i18n from "src/translation/i18n";
 
 function ConfirmEmail() {
   const history = useHistory();
@@ -30,19 +31,20 @@ function ConfirmEmail() {
         <div className="box">
           <div className="confirmEmail__title">{t("confirmYourEmail")}</div>
           <div className="confirmEmail__content">
-            <p>We've sent you an email with a link to verify your account.</p>
-            <p>Please check your email and click the link to continue.</p>
+            <p>{t("weveSentYouAnEmailWithALinkToVerifyYourAccount")}</p>
+            <p>{t("pleaseCheckYourEmailAndClickTheLinkToContinue")}</p>
           </div>
-          <Button onClick={redirectMailGoogle}>Go to your mailbox</Button>
+          <Button onClick={redirectMailGoogle}>{t("goToYourMailbox")}</Button>
           <ul className="confirmEmail__note">
             <li>
-              If you do not receive the email within a few minutes, please check
-              your spam folder.
+              {t(
+                "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder"
+              )}
             </li>
             <li>
-              Have you verified your account yet?{" "}
+              {t("haveYouVerifiedYourAccountYet")}{" "}
               <span onClick={redirectLogin} className="confirmEmail__login">
-                Log in
+                {t("login")}
               </span>
             </li>
           </ul>

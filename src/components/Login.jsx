@@ -28,8 +28,12 @@ export default function Login({ history }) {
       password: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required(t("require")),
-      password: Yup.string().required(t("require")),
+      username: Yup.string()
+        .required("require")
+        .min(3, "usernameMustBeGreaterThanOrEqualTo3Characters"),
+      password: Yup.string()
+        .required("require")
+        .min(6, "passwordMustBeGreaterThanOrEqualTo6Characters"),
     }),
     validateOnChange: false,
     validateOnBlur: false,
@@ -79,10 +83,8 @@ export default function Login({ history }) {
       //redirect to admin
       redirecToAdmin(response.data.data);
     } catch (error) {
-      console.log(error);
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
-      console.log(mess);
       switch (mess) {
         case apiResponseErrorMessage.usernameMini:
           callToastError(t("usernameMustBeGreaterThanOrEqualTo3Characters"));
@@ -91,6 +93,7 @@ export default function Login({ history }) {
           callToastError(t("passwordMustBeGreaterThanOrEqualTo6Characters"));
           break;
         case apiResponseErrorMessage.accountIncorrect:
+          console.log("here");
           callToastError(t("incorrectAccountOrPassword"));
           break;
         default:
@@ -120,7 +123,7 @@ export default function Login({ history }) {
                 name="username"
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                errorMes={formik.errors.username}
+                errorMes={t(formik.errors.username)}
               />
             </div>
             <div className="field">
@@ -132,7 +135,7 @@ export default function Login({ history }) {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 type={inputType.password}
-                errorMes={formik.errors.password}
+                errorMes={t(formik.errors.password)}
               />
             </div>
             <Button

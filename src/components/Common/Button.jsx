@@ -37,7 +37,7 @@ export const Button = ({
   const renderClassLoader = function () {
     return loading ? "" : "--d-none";
   };
-  const renderLoading = function () {
+  const renderDisable = function () {
     return loading ? true : disabled;
   };
   return (
@@ -47,7 +47,7 @@ export const Button = ({
       style={style}
       onClick={onClick}
       name={name}
-      disabled={renderLoading()}
+      disabled={renderDisable()}
     >
       <div className={`loader ${renderClassLoader()}`}></div>
       {children}

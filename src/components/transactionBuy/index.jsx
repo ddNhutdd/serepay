@@ -32,6 +32,7 @@ import i18n, { availableLanguageCodeMapper } from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
 import { math } from "src/App";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
+import { Button } from "../Common/Button";
 
 function TransactionBuy() {
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
@@ -98,7 +99,7 @@ function TransactionBuy() {
           setErrorControl((error) => {
             return {
               ...error,
-              [control.current.amount]: t("Too big."),
+              [control.current.amount]: "tooBig",
             };
           });
         }
@@ -108,7 +109,7 @@ function TransactionBuy() {
           setErrorControl((error) => {
             return {
               ...error,
-              [control.current.amount]: t("Too small."),
+              [control.current.amount]: "tooSmall",
             };
           });
         }
@@ -120,7 +121,7 @@ function TransactionBuy() {
         setErrorControl((error) => {
           return {
             ...error,
-            [control.current.amount]: t("require"),
+            [control.current.amount]: "require",
           };
         });
       }
@@ -510,14 +511,14 @@ function TransactionBuy() {
       })
       .catch(() => {});
   };
-  const renderClassMainButton = function () {
+  const renderDisableMainButton = function () {
     const condition1 = callApiLoadTraderStatus === api_status.fetching;
     const condition2 = callApiLoadPaymentStatus === api_status.fetching;
     let condition3 = !eulaChecked;
     const condition4 = callApiCreateP2p === api_status.fetching;
 
-    if (condition1 || condition2 || condition3 || condition4) return "disable";
-    else return "";
+    if (condition1 || condition2 || condition3 || condition4) return true;
+    else return false;
   };
   const eulaCheckboxChangeHandle = function () {
     setEulaChecked(!eulaChecked);
@@ -745,12 +746,12 @@ function TransactionBuy() {
                   onChange={inputCoinChangeHandle}
                   onFocus={inputCoinFocusHandle}
                   ref={inputMoneyElement}
-                  errorMes={errorControl[control.current.amount]}
+                  errorMes={t(errorControl[control.current.amount])}
                 />
                 <span className="transaction__action">
                   <span className="transaction__unit">VND</span>
                   <span onClick={maxClickHandle} className="transaction__max">
-                    MAX
+                    {t("max").toUpperCase()}
                   </span>
                 </span>
               </div>
@@ -814,9 +815,7 @@ function TransactionBuy() {
                 </span>
               </div>
             </label>
-            <button className={renderClassMainButton()} type="submit">
-              Buy
-            </button>
+            <Button disabled={renderDisableMainButton()}>{t("buy")}</Button>
           </form>
         </div>
         <h3 className="transaction__title transaction--bold">

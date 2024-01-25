@@ -337,5 +337,10 @@
     "authenticationFail": "Error de autenticación",
     "authenticationSuccess": "Autenticación exitosa",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Tu correo electrónico ha sido verificado exitosamente. Ahora puedes iniciar sesión en tu cuenta.",
-    "incorrectAccountOrPassword": "Cuenta o contraseña incorrecta"
+    "incorrectAccountOrPassword": "Cuenta o contraseña incorrecta",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Te hemos enviado un correo electrónico con un enlace para verificar tu cuenta.",
+    "goToYourMailbox": "Ve a tu buzón de correo",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Si no recibes el correo electrónico en unos minutos, por favor, revisa tu carpeta de correo no deseado.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Por favor, revisa tu correo electrónico y haz clic en el enlace para continuar.",
+    "haveYouVerifiedYourAccountYet": "¿Has verificado tu cuenta ya?"
 }

@@ -337,5 +337,10 @@
     "authenticationFail": "ការធ្វើអត្ថបទបរាជ័យ",
     "authenticationSuccess": "ការធ្វើអត្ថបទជោគជ័យ",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "អ៊ីមែលរបស់អ្នកត្រូវបានផ្ទុកទុកដោយជោគជ័យ។ អ្នកអាចចូលទៅកាន់គណនីរបស់អ្នកបានហើយ។",
-    "incorrectAccountOrPassword": "គណនីឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ"
+    "incorrectAccountOrPassword": "គណនីឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "We've sent you an email with a link to verify your account.",
+    "goToYourMailbox": "Go to your mailbox",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "If you do not receive the email within a few minutes, please check your spam folder.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
+    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?"
 }

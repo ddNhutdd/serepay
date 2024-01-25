@@ -98,5 +98,5 @@ export const apiResponseErrorMessage = {
   password_2: "password more than 6 degits",
   accountExist: "User does not exist !",
   emailExist: "Email already exists !",
-  accountIncorrect: "Email or password is incorrect!",
+  accountIncorrect: "Email or password is incorrect! ",
 };

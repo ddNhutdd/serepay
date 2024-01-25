@@ -337,5 +337,10 @@
     "authenticationFail": "प्रमाणीकरण असफल",
     "authenticationSuccess": "प्रमाणीकरण सफल",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "आपका ईमेल सफलतापूर्वक सत्यापित हो गया है। अब आप अपने खाते में लॉग इन कर सकते हैं।",
-    "incorrectAccountOrPassword": "गलत खाता या पासवर्ड"
+    "incorrectAccountOrPassword": "गलत खाता या पासवर्ड",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "हमने आपको एक ईमेल भेजा है जिसमें आपके खाते को सत्यापित करने के लिए एक लिंक है।",
+    "goToYourMailbox": "अपने मेलबॉक्स में जाएं",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "अगर आप कुछ मिनटों के भीतर ईमेल प्राप्त नहीं करते हैं, तो कृपया अपने स्पैम फ़ोल्डर की जाँच करें।",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "कृपया अपने ईमेल की जाँच करें और जारी रखने के लिए लिंक पर क्लिक करें।",
+    "haveYouVerifiedYourAccountYet": "क्या आपने अपने खाते को सत्यापित किया है?"
 }

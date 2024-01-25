@@ -337,5 +337,10 @@
     "authenticationFail": "ການກວດສອບລະຫັດຜ່ານຜິດພາດ",
     "authenticationSuccess": "ການກວດສອບລະຫັດຜ່ານສົ່ງສົ່ງ",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "ອີເມວຂອງທ່ານໄດ້ຮັບການຢືນຢັນສົມບູນສົມບູນແລ້ວ. ທ່ານສາມາດເຂົ້າສູ່ບັນຊີຂອງທ່ານໄດ້",
-    "incorrectAccountOrPassword": "ບັນຊີຫຼືລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ"
+    "incorrectAccountOrPassword": "ບັນຊີຫຼືລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "ພວກເຮົາໄດ້ສົ່ງອີເມວກັບລິ້ງເພື່ອຢືນຢັນບັນຊີຂອງທ່ານ.",
+    "goToYourMailbox": "ໄປຫາແຈັກດ້ວຍຂໍ້ມູນບັນຊີຂອງທ່ານ",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "ຖ້າທ່ານບໍ່ໄດ້ຮັບອີເມວໃນອາຍຸນມີອີເມວເຂົ້າມາ, ກະລຸນາກວດໄປໃຊ້ການຖືກອະນຸຍາດຂອງທ່ານ.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "ກະລຸນາກວດໄປໃຊ້ອີເມວຂອງທ່ານແລະຄລິບບັນຊີເພື່ອສືມັນ.",
+    "haveYouVerifiedYourAccountYet": "ທ່ານໄດ້ຢືນຢັນບັນຊີຂອງທ່ານແລະບໍ?"
 }

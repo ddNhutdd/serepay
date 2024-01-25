@@ -337,5 +337,10 @@
   "authenticationFail": "Authentifizierung fehlgeschlagen",
   "authenticationSuccess": "Authentifizierung erfolgreich",
   "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Ihre E-Mail wurde erfolgreich verifiziert. Sie können sich jetzt in Ihr Konto einloggen.",
-  "incorrectAccountOrPassword": "Falscher Benutzername oder falsches Passwort"
+  "incorrectAccountOrPassword": "Falscher Benutzername oder falsches Passwort",
+  "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Wir haben Ihnen eine E-Mail mit einem Link zur Überprüfung Ihres Kontos geschickt.",
+  "goToYourMailbox": "Gehe zu deinem Postfach",
+  "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Wenn Sie die E-Mail nicht innerhalb von wenigen Minuten erhalten, überprüfen Sie bitte Ihren Spam-Ordner.",
+  "pleaseCheckYourEmailAndClickTheLinkToContinue": "Bitte überprüfen Sie Ihre E-Mail und klicken Sie auf den Link, um fortzufahren.",
+  "haveYouVerifiedYourAccountYet": "Haben Sie Ihr Konto bereits überprüft?"
 }

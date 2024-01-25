@@ -337,5 +337,10 @@
     "authenticationFail": "אימות נכשל",
     "authenticationSuccess": "אימות הצלחה",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "האימייל שלך אומת בהצלחה. כעת ניתן להתחבר לחשבונך",
-    "incorrectAccountOrPassword": "חשבון או סיסמה שגויים"
+    "incorrectAccountOrPassword": "חשבון או סיסמה שגויים",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "שלחנו לך דוא\"ל עם קישור לאימות החשבון שלך.",
+    "goToYourMailbox": "עבור לתיקיית הדואר שלך",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "אם אינך מקבל את הדוא\"ל בתוך כמה דקות, בבקשה בדוק את תיקיית הדואר הזבל שלך.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "בבקשה בדוק את תיקיית הדואר האלקטרוני שלך ולחץ על הקישור כדי להמשיך.",
+    "haveYouVerifiedYourAccountYet": "האם אימתת את החשבון שלך כבר?"
 }

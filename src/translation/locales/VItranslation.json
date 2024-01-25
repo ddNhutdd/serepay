@@ -337,5 +337,10 @@
     "authenticationFail": "Xác thực thất bại",
     "authenticationSuccess": "Xác thực thành công",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Email của bạn đã được xác nhận thành công. Bây giờ bạn có thể đăng nhập vào tài khoản của mình.",
-    "incorrectAccountOrPassword": "Tài khoản hoặc mật khẩu không đúng"
+    "incorrectAccountOrPassword": "Tài khoản hoặc mật khẩu không đúng",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Chúng tôi đã gửi cho bạn một email với một liên kết để xác minh tài khoản của bạn.",
+    "goToYourMailbox": "Đi đến hộp thư của bạn",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Nếu bạn không nhận được email trong vài phút, vui lòng kiểm tra thư mục spam của bạn.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Vui lòng kiểm tra email của bạn và nhấp vào liên kết để tiếp tục.",
+    "haveYouVerifiedYourAccountYet": "Bạn đã xác minh tài khoản của mình chưa?"
 }

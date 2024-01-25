@@ -96,7 +96,7 @@ function Profile() {
       history.push(url.login);
       return;
     }
-    //
+
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
@@ -105,11 +105,11 @@ function Profile() {
     element.classList.add("fadeInBottomToTop");
     // load du lieu len cac control
     fetchUserProfile();
-    //`
+
     fetchApiGetListBankingUser(1);
-    //
+
     document.addEventListener("click", closeAllDropdown);
-    //
+
     return () => {
       document.removeEventListener("click", closeAllDropdown);
     };
@@ -227,7 +227,7 @@ function Profile() {
       isValid &= false;
       setKycError((state) => ({
         ...state,
-        [kycControl.fullName]: t("require"),
+        [kycControl.fullName]: "require",
       }));
     } else {
       setKycError((state) => {
@@ -249,7 +249,7 @@ function Profile() {
       setKycError((state) => {
         const newKycError = {
           ...state,
-          [kycControl.address]: t("require"),
+          [kycControl.address]: "require",
         };
         return newKycError;
       });
@@ -272,7 +272,7 @@ function Profile() {
         setKycError((state) => {
           const newState = {
             ...state,
-            [kycControl.phone]: t("invalidData"),
+            [kycControl.phone]: "invalidData",
           };
           return newState;
         });
@@ -282,7 +282,7 @@ function Profile() {
         setKycError((state) => {
           const newState = {
             ...state,
-            [kycControl.phone]: t("require"),
+            [kycControl.phone]: "require",
           };
           return newState;
         });
@@ -305,7 +305,7 @@ function Profile() {
       setKycError((state) => {
         const newState = {
           ...state,
-          [kycControl.company]: t("require"),
+          [kycControl.company]: "require",
         };
         return newState;
       });
@@ -324,7 +324,7 @@ function Profile() {
       setKycError((state) => {
         const newState = {
           ...state,
-          [kycControl.passport]: t("require"),
+          [kycControl.passport]: "require",
         };
         return newState;
       });
@@ -340,7 +340,7 @@ function Profile() {
     const frontIDElementValue = frontIDElement.files;
     if (kycTourch.current[kycControl.frontID]) {
       if (!frontIDElementValue || frontIDElementValue.length <= 0) {
-        kycError[kycControl.frontID] = t("require");
+        kycError[kycControl.frontID] = "require";
         isValid &= false;
       } else {
         delete kycError[kycControl.frontID];
@@ -351,7 +351,7 @@ function Profile() {
     const behindIDElementValue = behindIDElement.files;
     if (kycTourch.current[kycControl.behindID]) {
       if (!behindIDElementValue || behindIDElementValue.length <= 0) {
-        kycError[kycControl.behindID] = t("require");
+        kycError[kycControl.behindID] = "require";
         isValid &= false;
       } else {
         delete kycError[kycControl.behindID];
@@ -362,7 +362,7 @@ function Profile() {
     const portraitElementValue = portraitElement.files;
     if (kycTourch.current[kycControl.portrait]) {
       if (!portraitElementValue || portraitElementValue.length <= 0) {
-        kycError[kycControl.portrait] = t("require");
+        kycError[kycControl.portrait] = "require";
         isValid &= false;
       } else {
         delete kycError[kycControl.portrait];
@@ -444,11 +444,11 @@ function Profile() {
     const behindID = document.getElementById("behindIdentityCardFileError");
     const portraitID = document.getElementById("portraitIdentityCardFileError");
     if (kycTourch.current[kycControl.frontID])
-      frontID.innerHTML = kycError[kycControl.frontID] ?? "";
+      frontID.innerHTML = t(kycError[kycControl.frontID]) ?? "";
     if (kycTourch.current[kycControl.behindID])
-      behindID.innerHTML = kycError[kycControl.behindID] ?? "";
+      behindID.innerHTML = t(kycError[kycControl.behindID]) ?? "";
     if (kycTourch.current[kycControl.portrait])
-      portraitID.innerHTML = kycError[kycControl.portrait] ?? "";
+      portraitID.innerHTML = t(kycError[kycControl.portrait]) ?? "";
   };
   const fetchUserProfile = function () {
     if (callApiLoadInfoUserStatus === api_status.fetching) return;
@@ -518,7 +518,7 @@ function Profile() {
                 onChange={kycControlHandleChange}
                 id="profile__fullName"
                 type="text"
-                errorMes={kycError[kycControl.fullName]}
+                errorMes={t(kycError[kycControl.fullName])}
               />
             </div>
           </div>
@@ -532,7 +532,7 @@ function Profile() {
                 onChange={kycControlHandleChange}
                 id="profile__address"
                 type="text"
-                errorMes={kycError[kycControl.address]}
+                errorMes={t(kycError[kycControl.address])}
               />
             </div>
           </div>
@@ -546,7 +546,7 @@ function Profile() {
                 onChange={kycControlHandleChange}
                 id="profile__phone"
                 type="text"
-                errorMes={kycError[kycControl.phone]}
+                errorMes={t(kycError[kycControl.phone])}
               />
             </div>
           </div>
@@ -560,7 +560,7 @@ function Profile() {
                 onChange={kycControlHandleChange}
                 id="profile__company"
                 type="text"
-                errorMes={kycError[kycControl.company]}
+                errorMes={t(kycError[kycControl.company])}
               />
             </div>
           </div>
@@ -574,7 +574,7 @@ function Profile() {
                 onChange={kycControlHandleChange}
                 id="profile__passport"
                 type="text"
-                errorMes={kycError[kycControl.passport]}
+                errorMes={t(kycError[kycControl.passport])}
               />
             </div>
           </div>
@@ -871,7 +871,7 @@ function Profile() {
         setPaymentError((state) => {
           const newState = {
             ...state,
-            [paymentControl.current.accountNumber]: t("require"),
+            [paymentControl.current.accountNumber]: "require",
           };
           return newState;
         });
@@ -889,7 +889,7 @@ function Profile() {
         setPaymentError((state) => {
           const newState = {
             ...state,
-            [paymentControl.current.accountName]: t("require"),
+            [paymentControl.current.accountName]: "require",
           };
           return newState;
         });
@@ -1118,9 +1118,9 @@ function Profile() {
                     name="accountNumber"
                     id="profile__payment-account-number"
                     type="text"
-                    errorMes={
+                    errorMes={t(
                       paymentError[paymentControl.current.accountNumber]
-                    }
+                    )}
                   />
                 </div>
                 <div className="profile__input">
@@ -1133,7 +1133,9 @@ function Profile() {
                     name="accountName"
                     id="profile__payment-account-name"
                     type="text"
-                    errorMes={paymentError[paymentControl.current.accountName]}
+                    errorMes={t(
+                      paymentError[paymentControl.current.accountName]
+                    )}
                   />
                 </div>
                 <div className="profile__payment-action">

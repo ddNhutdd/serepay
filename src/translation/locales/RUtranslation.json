@@ -337,5 +337,10 @@
     "authenticationFail": "Ошибка аутентификации",
     "authenticationSuccess": "Успешная аутентификация",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Ваш Email успешно подтвержден. Теперь вы можете войти в свою учетную запись.",
-    "incorrectAccountOrPassword": "Неверная учетная запись или пароль"
+    "incorrectAccountOrPassword": "Неверная учетная запись или пароль",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Мы отправили вам электронное письмо с ссылкой для подтверждения вашей учетной записи.",
+    "goToYourMailbox": "Перейдите в свою почту",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте свою папку со спамом.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Пожалуйста, проверьте свой электронный адрес и нажмите на ссылку, чтобы продолжить.",
+    "haveYouVerifiedYourAccountYet": "Вы уже подтвердили свою учетную запись?"
 }

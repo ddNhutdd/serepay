@@ -337,5 +337,10 @@
     "authenticationFail": "Autentikasi Gagal",
     "authenticationSuccess": "Autentikasi Berhasil",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Email Anda telah berhasil diverifikasi. Anda sekarang dapat masuk ke akun Anda.",
-    "incorrectAccountOrPassword": "Akun atau kata sandi salah"
+    "incorrectAccountOrPassword": "Akun atau kata sandi salah",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Kami telah mengirimkan email kepada Anda dengan tautan untuk memverifikasi akun Anda.",
+    "goToYourMailbox": "Buka kotak surat Anda",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Jika Anda tidak menerima email dalam beberapa menit, harap periksa folder spam Anda.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Silakan periksa email Anda dan klik tautan untuk melanjutkan.",
+    "haveYouVerifiedYourAccountYet": "Apakah Anda sudah memverifikasi akun Anda?"
 }

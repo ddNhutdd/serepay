@@ -35,12 +35,16 @@ export default function Signup({ history }) {
       referral: "",
     },
     validationSchema: Yup.object({
-      username: Yup.string().required(t("require")),
-      email: Yup.string().required(t("require")).email(t("invalidEmail")),
-      password: Yup.string().required(t("require")),
+      username: Yup.string()
+        .required("require")
+        .min(3, "usernameMustBeGreaterThanOrEqualTo3Characters"),
+      email: Yup.string().required("require").email("invalidEmail"),
+      password: Yup.string()
+        .required("require")
+        .min(6, "passwordMustBeGreaterThanOrEqualTo6Characters"),
       password2: Yup.string()
-        .required(t("require"))
-        .oneOf([Yup.ref("password"), null], t("passwordNotMatch")),
+        .required("require")
+        .oneOf([Yup.ref("password"), null], "passwordNotMatch"),
     }),
     validateOnChange: false,
     validateOnBlur: false,
@@ -79,7 +83,7 @@ export default function Signup({ history }) {
           showError = t("emailAlreadyExistsInTheSystem");
           break;
         case apiResponseErrorMessage.password_2:
-          showError = t(passwordMustBeGreaterThanOrEqualTo6Characters"");
+          showError = t("passwordMustBeGreaterThanOrEqualTo6Characters");
           break;
         case apiResponseErrorMessage.usernameMini:
           showError = t("usernameMustBeGreaterThanOrEqualTo3Characters");
@@ -111,7 +115,7 @@ export default function Signup({ history }) {
                 name="username"
                 value={formik.values.username}
                 onChange={formik.handleChange}
-                errorMes={formik.errors.username}
+                errorMes={t(formik.errors.username)}
               />
             </div>
             <div className="field">
@@ -121,7 +125,7 @@ export default function Signup({ history }) {
                 name="email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
-                errorMes={formik.errors.email}
+                errorMes={t(formik.errors.email)}
               />
             </div>
             <div className="field">
@@ -132,7 +136,7 @@ export default function Signup({ history }) {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 type={inputType.password}
-                errorMes={formik.errors.password}
+                errorMes={t(formik.errors.password)}
               />
             </div>
             <div className="field">
@@ -143,7 +147,7 @@ export default function Signup({ history }) {
                 value={formik.values.password2}
                 onChange={formik.handleChange}
                 type={inputType.password}
-                errorMes={formik.errors.password2}
+                errorMes={t(formik.errors.password2)}
               />
             </div>
             <div className="field">

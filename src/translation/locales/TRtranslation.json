@@ -337,5 +337,10 @@
     "authenticationFail": "Kimlik doğrulama başarısız",
     "authenticationSuccess": "Kimlik doğrulama başarılı",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Email'iniz başarıyla doğrulandı. Şimdi hesabınıza giriş yapabilirsiniz.",
-    "incorrectAccountOrPassword": "Hesap bilgisi veya şifre yanlış"
+    "incorrectAccountOrPassword": "Hesap bilgisi veya şifre yanlış",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Size hesap doğrulama bağlantısı içeren bir e-posta gönderdik.",
+    "goToYourMailbox": "Posta kutunuza gidin",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "E-postayı birkaç dakika içinde almadıysanız, lütfen spam klasörünüzü kontrol edin.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Lütfen e-postanızı kontrol edin ve devam etmek için bağlantıya tıklayın.",
+    "haveYouVerifiedYourAccountYet": "Hesabınızı doğruladınız mı?"
 }

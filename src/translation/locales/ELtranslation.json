@@ -337,5 +337,10 @@
     "authenticationFail": "Αποτυχία πιστοποίησης",
     "authenticationSuccess": "Επιτυχής πιστοποίηση",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Το email σας έχει επιτυχώς επαληθευτεί. Μπορείτε τώρα να συνδεθείτε στον λογαριασμό σας",
-    "incorrectAccountOrPassword": "Λάθος λογαριασμός ή κωδικός πρόσβασης"
+    "incorrectAccountOrPassword": "Λάθος λογαριασμός ή κωδικός πρόσβασης",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Σας έχουμε στείλει ένα email με έναν σύνδεσμο για να επιβεβαιώσετε τον λογαριασμό σας.",
+    "goToYourMailbox": "Μεταβείτε στο ταχυδρομείο σας",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Εάν δεν λάβετε το email εντός λίγων λεπτών, παρακαλούμε ελέγξτε τον φάκελο ανεπιθύμητης αλληλογραφίας σας.",
+    "": "Παρακαλούμε ελέγξτε το email σας και κάντε κλικ στον σύνδεσμο για να συνεχίσετε.",
+    "haveYouVerifiedYourAccountYet": "Έχετε επιβεβαιώσει τον λογαριασμό σας ακόμη;"
 }

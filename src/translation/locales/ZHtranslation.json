@@ -337,5 +337,10 @@
     "authenticationFail": "身份验证失败",
     "authenticationSuccess": "身份验证成功",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "您的电子邮件已成功验证。您现在可以登录您的帐户。",
-    "incorrectAccountOrPassword": "帐户或密码不正确"
+    "incorrectAccountOrPassword": "帐户或密码不正确",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "我们已向您发送一封电子邮件，其中包含验证您帐户的链接。",
+    "goToYourMailbox": "进入您的邮箱",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "如果您在几分钟内没有收到邮件，请检查您的垃圾邮件文件夹。",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "请检查您的电子邮件并单击链接以继续。",
+    "haveYouVerifiedYourAccountYet": "您已验证您的帐户了吗？"
 }

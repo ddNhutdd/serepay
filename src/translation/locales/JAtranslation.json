@@ -337,5 +337,10 @@
     "authenticationFail": "認証失敗",
     "authenticationSuccess": "認証成功",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "あなたのメールは正常に確認されました。これでアカウントにログインできます。",
-    "incorrectAccountOrPassword": "アカウントまたはパスワードが正しくありません"
+    "incorrectAccountOrPassword": "アカウントまたはパスワードが正しくありません",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "We've sent you an email with a link to verify your account.",
+    "goToYourMailbox": "Go to your mailbox",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "If you do not receive the email within a few minutes, please check your spam folder.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
+    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?"
 }

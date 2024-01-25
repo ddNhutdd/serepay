@@ -335,5 +335,10 @@
     "authenticationFail": "การพิสูจน์ตัวตนล้มเหลว",
     "authenticationSuccess": "การพิสูจน์ตัวตนสำเร็จ",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "อีเมลของคุณได้รับการยืนยันเรียบร้อยแล้ว คุณสามารถเข้าสู่ระบบได้ทันที",
-    "incorrectAccountOrPassword": "บัญชีหรือรหัสผ่านไม่ถูกต้อง"
+    "incorrectAccountOrPassword": "บัญชีหรือรหัสผ่านไม่ถูกต้อง",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "เราได้ส่งอีเมลถึงคุณพร้อมลิงก์เพื่อยืนยันบัญชีของคุณ",
+    "goToYourMailbox": "ไปที่กล่องจดหมายของคุณ",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "หากคุณไม่ได้รับอีเมลภายในไม่กี่นาที กรุณาตรวจสอบโฟลเดอร์สแปมของคุณ",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "กรุณาตรวจสอบอีเมลของคุณและคลิกที่ลิงก์เพื่อดำเนินการต่อ",
+    "haveYouVerifiedYourAccountYet": "คุณได้ยืนยันบัญชีของคุณแล้วหรือยัง?"
 }

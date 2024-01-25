@@ -19,7 +19,6 @@ import { Button } from "src/components/Common/Button";
 function ChangePassword(props) {
   const { showSuccess } = props;
 
-  const history = useHistory();
   const { t } = useTranslation();
   const token = useParams().token;
 
@@ -32,11 +31,11 @@ function ChangePassword(props) {
     },
     validationSchema: Yup.object({
       password: Yup.string()
-        .required(t("require"))
-        .min(6, t("passwordMustBeGreaterThanOrEqualTo6Characters")),
+        .required("require")
+        .min(6, "passwordMustBeGreaterThanOrEqualTo6Characters"),
       passwordConfirm: Yup.string()
         .required(t("require"))
-        .oneOf([Yup.ref("password"), null], t("passwordNotMatch")),
+        .oneOf([Yup.ref("password"), null], "passwordNotMatch"),
     }),
     validateOnChange: false,
     validateOnBlur: false,
@@ -88,7 +87,7 @@ function ChangePassword(props) {
             type={inputType.password}
             onChange={formik.handleChange}
             value={formik.values.password}
-            errorMes={formik.errors.password}
+            errorMes={t(formik.errors.password)}
           />
         </div>
         <div className="field">
@@ -99,7 +98,7 @@ function ChangePassword(props) {
             name="passwordConfirm"
             onChange={formik.handleChange}
             value={formik.values.passwordConfirm}
-            errorMes={formik.errors.passwordConfirm}
+            errorMes={t(formik.errors.passwordConfirm)}
           />
         </div>
         <Button loading={isLoading} className="loginBtn" htmlType="submit">

@@ -337,5 +337,10 @@
     "authenticationFail": "Authenticatie mislukt",
     "authenticationSuccess": "Authenticatie succesvol",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Uw e-mail is succesvol geverifieerd. U kunt nu inloggen op uw account.",
-    "incorrectAccountOrPassword": "Onjuist account of wachtwoord"
+    "incorrectAccountOrPassword": "Onjuist account of wachtwoord",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "We hebben je een e-mail gestuurd met een link om je account te verifiëren.",
+    "goToYourMailbox": "Ga naar je mailbox",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Als je de e-mail niet binnen enkele minuten ontvangt, controleer dan je spammap.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Controleer je e-mail en klik op de link om door te gaan.",
+    "haveYouVerifiedYourAccountYet": "Heb je je account al geverifieerd?"
 }

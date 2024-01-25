@@ -337,5 +337,10 @@
     "authenticationFail": "Gagal pengesahan",
     "authenticationSuccess": "Berjaya pengesahan",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Emel anda telah berjaya disahkan. Anda kini boleh log masuk ke akaun anda.",
-    "incorrectAccountOrPassword": "Akaun atau kata laluan tidak sah"
+    "incorrectAccountOrPassword": "Akaun atau kata laluan tidak sah",
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "Kami telah menghantar e-mel kepada anda dengan pautan untuk mengesahkan akaun anda.",
+    "goToYourMailbox": "Pergi ke peti mel anda",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Jika anda tidak menerima e-mel dalam beberapa minit, sila periksa folder spam anda.",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Sila periksa e-mel anda dan klik pautan untuk teruskan.",
+    "haveYouVerifiedYourAccountYet": "Adakah anda telah mengesahkan akaun anda?"
 }
