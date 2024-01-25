@@ -20,8 +20,7 @@ function Verify() {
 
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const [errorMessage, setErrorMessage] = useState();
-  const [timer, setTimer] = useState(5);
-  const idTimer = useRef();
+  const errorMessageNotShow = useRef();
 
   const renderClassShowSpin = function () {
     return callApiStatus === api_status.fetching ? "" : "--d-none";
@@ -39,71 +38,69 @@ function Verify() {
   const fetchApiVerify = function () {
     return new Promise((resolve, reject) => {
       if (callApiStatus === api_status.fetching) resolve(true);
-      else setCallApiStatus(() => api_status.fetching);
+      setCallApiStatus(() => api_status.fetching);
       verifyEmail(token)
         .then((resp) => {
-          startTimer();
           setCallApiStatus(() => api_status.fulfilled);
           resolve(true);
         })
         .catch((error) => {
-          const errorMess = error.response.data.message;
-          let showError = "";
-          switch (errorMess) {
-            case "Có lỗi trong quá trình xử lý":
-              showError = t("thereWasAnErrorInTheProcessing");
-              break;
-            case "have you verified your email?":
-              showError = t("accountHasBeenConfirmedEmailBeforehand");
-              break;
-            default:
-              showError = t("thereWasAnErrorInTheProcessing");
-              break;
-          }
-          setErrorMessage(() => showError);
+          const errorMess = error?.response?.data?.message;
+          errorMessageNotShow.current = errorMess;
+          showError();
           setCallApiStatus(() => api_status.rejected);
           resolve(false);
         });
     });
   };
-  const startTimer = function () {
-    let countDown = timer;
-    const countDownFunction = function () {
-      setTimer((s) => --s);
-      countDown--;
-      if (countDown <= 0) redirectLogin();
-    };
-    idTimer.current = setInterval(countDownFunction, 1000);
+  const showError = function () {
+    switch (errorMessageNotShow.current) {
+      case "Có lỗi trong quá trình xử lý":
+        setErrorMessage(() => t("thereWasAnErrorInTheProcessing"));
+        break;
+      case "have you verified your email?":
+        setErrorMessage(() => t("accountHasBeenConfirmedEmailBeforehand"));
+        break;
+      default:
+        showMess = errorMessageNotShow.current || t("error");
+        break;
+    }
   };
 
   useEffect(() => {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
-
+    let currentLanguage = i18n.language;
+    i18n.on("languageChanged", (newLanguage) => {
+      if (newLanguage !== currentLanguage) {
+        showError();
+      }
+      currentLanguage = newLanguage;
+    });
     fetchApiVerify();
-
-    return () => {
-      clearInterval(idTimer.current);
-    };
   }, []);
 
   return (
     <div className="verify">
       <div className="container">
-        <div className={renderClassShowSpin()}>
-          <Spin />
-        </div>
-        <div className={`errorContent ${renderClassShowError()}`}>
-          {errorMessage}
-        </div>
-        <div className={`sucesssContent ${renderClassShowSuccessContent()}`}>
-          <p>
-            {t(
-              "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage"
-            ).replace(`#####`, timer)}
-          </p>
-          <Button onClick={redirectLogin}>{t("goToTheLoginPage")}</Button>
+        <div className="box">
+          <div className={renderClassShowSpin()}>
+            <Spin />
+          </div>
+          <div className={`errorContent ${renderClassShowError()}`}>
+            <div className="verify__title">{t("authenticationFail")}</div>
+            {errorMessage}
+          </div>
+          <div className={`sucesssContent ${renderClassShowSuccessContent()}`}>
+            <div className="verify__title">{t("authenticationSuccess")}</div>
+            <p>
+              {t(
+                "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount"
+              )}
+            </p>
+            <Button onClick={redirectLogin}>{t("goToTheLoginPage")}</Button>
+          </div>
         </div>
       </div>
     </div>

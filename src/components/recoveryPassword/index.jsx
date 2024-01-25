@@ -5,13 +5,16 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { sendMailForGetPassword } from "src/util/userCallApi";
 import { useTranslation } from "react-i18next";
 import { getLocalStorage } from "src/util/common";
-import { defaultLanguage, localStorageVariable } from "src/constant";
+import { defaultLanguage, localStorageVariable, url } from "src/constant";
 import i18n from "src/translation/i18n";
+import { useHistory } from "react-router-dom";
 import { Input } from "../Common/Input";
 import { Button } from "../Common/Button";
 
 function RecoveryPassword() {
   const { t } = useTranslation();
+  const history = useHistory();
+
   const [loading, setLoading] = useState(false);
 
   const fetchApiSendEmail = function () {
@@ -23,16 +26,16 @@ function RecoveryPassword() {
       })
         .then((resp) => {
           callToastSuccess(t("emailHasBeenSent"));
+          history.push(url.confirm_email);
         })
         .catch((error) => {
-          const mes = error.response.data.message;
+          const mes = error?.response?.data?.message;
           switch (mes) {
             case "Email is not define":
               callToastError(t("theEmailDoesNotExistInTheSystem"));
               break;
-
             default:
-              callToastError(t("error"));
+              callToastError(error || t("error"));
               break;
           }
         })

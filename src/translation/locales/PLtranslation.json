@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "Wystąpił błąd podczas przetwarzania",
     "accountHasBeenConfirmedEmailBeforehand": "Konto zostało potwierdzone wcześniej za pomocą e-maila",
     "goToTheLoginPage": "Przejdź do strony logowania",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Konto zostało pomyślnie uwierzytelnione. Kliknij poniżej lub poczekaj ##### sekund, aby przejść do strony logowania"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Konto zostało pomyślnie uwierzytelnione. Kliknij poniżej lub poczekaj ##### sekund, aby przejść do strony logowania",
+    "theAccountNameAlreadyExistsInTheSystem": "Nazwa konta już istnieje w systemie",
+    "emailAlreadyExistsInTheSystem": "Email już istnieje w systemie",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Nazwa użytkownika musi być większa niż lub równa 3 znakom",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Hasło musi być większe niż lub równe 6 znakom",
+    "confirmYourEmail": "Potwierdź swój adres email",
+    "authenticationFail": "Błąd autentykacji",
+    "authenticationSuccess": "Autentykacja powiodła się",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Twój email został pomyślnie zweryfikowany. Możesz teraz zalogować się na swoje konto.",
+    "incorrectAccountOrPassword": "Nieprawidłowe konto lub hasło"
 }

@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "処理中にエラーが発生しました",
     "accountHasBeenConfirmedEmailBeforehand": "アカウントは事前にメールで確認されています",
     "goToTheLoginPage": "ログインページに移動",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "アカウントが正常に認証されました。下のボタンをクリックするか、##### 秒待ってログインページに移動します"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "アカウントが正常に認証されました。下のボタンをクリックするか、##### 秒待ってログインページに移動します",
+    "theAccountNameAlreadyExistsInTheSystem": "アカウント名はすでにシステムに存在しています",
+    "emailAlreadyExistsInTheSystem": "メールアドレスはすでにシステムに存在しています",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "ユーザー名は3文字以上でなければなりません",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "パスワードは6文字以上でなければなりません",
+    "confirmYourEmail": "あなたのメールを確認",
+    "authenticationFail": "認証失敗",
+    "authenticationSuccess": "認証成功",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "あなたのメールは正常に確認されました。これでアカウントにログインできます。",
+    "incorrectAccountOrPassword": "アカウントまたはパスワードが正しくありません"
 }

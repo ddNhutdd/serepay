@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "处理过程中发生错误",
     "accountHasBeenConfirmedEmailBeforehand": "帐户已通过电子邮件事先确认",
     "goToTheLoginPage": "转到登录页面",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "帐户验证成功。点击下面的按钮或等待#####秒以转到登录页面"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "帐户验证成功。点击下面的按钮或等待#####秒以转到登录页面",
+    "theAccountNameAlreadyExistsInTheSystem": "帐户名已经存在于系统中",
+    "emailAlreadyExistsInTheSystem": "电子邮件已经存在于系统中",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "用户名必须大于或等于3个字符",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "密码必须大于或等于6个字符",
+    "confirmYourEmail": "确认您的电子邮件",
+    "authenticationFail": "身份验证失败",
+    "authenticationSuccess": "身份验证成功",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "您的电子邮件已成功验证。您现在可以登录您的帐户。",
+    "incorrectAccountOrPassword": "帐户或密码不正确"
 }

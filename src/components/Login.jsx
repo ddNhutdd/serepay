@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { axiosService } from "../util/service";
 import {
+  apiResponseErrorMessage,
   commontString,
   defaultLanguage,
   localStorageVariable,
@@ -78,7 +79,24 @@ export default function Login({ history }) {
       //redirect to admin
       redirecToAdmin(response.data.data);
     } catch (error) {
-      callToastError(t(commontString.error));
+      console.log(error);
+      const mess =
+        error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
+      console.log(mess);
+      switch (mess) {
+        case apiResponseErrorMessage.usernameMini:
+          callToastError(t("usernameMustBeGreaterThanOrEqualTo3Characters"));
+          break;
+        case apiResponseErrorMessage.password_1:
+          callToastError(t("passwordMustBeGreaterThanOrEqualTo6Characters"));
+          break;
+        case apiResponseErrorMessage.accountIncorrect:
+          callToastError(t("incorrectAccountOrPassword"));
+          break;
+        default:
+          callToastError(mess || t("error"));
+          break;
+      }
     } finally {
       setIsLoading(false);
     }

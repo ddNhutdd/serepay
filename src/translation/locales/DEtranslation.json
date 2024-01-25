@@ -328,5 +328,14 @@
   "thereWasAnErrorInTheProcessing": "Es gab einen Fehler bei der Verarbeitung",
   "accountHasBeenConfirmedEmailBeforehand": "Das Konto wurde zuvor per E-Mail bestätigt",
   "goToTheLoginPage": "Gehe zur Anmeldeseite",
-  "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Konto erfolgreich authentifiziert. Klicken Sie auf die Schaltfläche unten oder warten Sie ##### Sekunden, um zur Anmeldeseite zu gelangen"
+  "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Konto erfolgreich authentifiziert. Klicken Sie auf die Schaltfläche unten oder warten Sie ##### Sekunden, um zur Anmeldeseite zu gelangen",
+  "theAccountNameAlreadyExistsInTheSystem": "Der Kontoname existiert bereits im System",
+  "emailAlreadyExistsInTheSystem": "E-Mail existiert bereits im System",
+  "usernameMustBeGreaterThanOrEqualTo3Characters": "Benutzername muss größer oder gleich 3 Zeichen sein",
+  "passwordMustBeGreaterThanOrEqualTo6Characters": "Passwort muss größer oder gleich 6 Zeichen sein",
+  "confirmYourEmail": "Bestätigen Sie Ihre E-Mail",
+  "authenticationFail": "Authentifizierung fehlgeschlagen",
+  "authenticationSuccess": "Authentifizierung erfolgreich",
+  "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Ihre E-Mail wurde erfolgreich verifiziert. Sie können sich jetzt in Ihr Konto einloggen.",
+  "incorrectAccountOrPassword": "Falscher Benutzername oder falsches Passwort"
 }

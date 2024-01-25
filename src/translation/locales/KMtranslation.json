@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "មានកំហុសក្នុងការដំណើរការ",
     "accountHasBeenConfirmedEmailBeforehand": "គណនីត្រូវបានបញ្ជាទុកតាមបណ្ដាញមុខងាររួចហើយ",
     "goToTheLoginPage": "ទៅកាន់ទំព័រចូលប្រើ",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "គណនីបានផ្តល់បានជោគជ័យ។ ចុចលើប៊ូតុងខាងក្រោមឬរង់ចាំ ##### វិនាទីដើម្បីចូលទៅកាន់ទំព័រចូលប្រើ"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "គណនីបានផ្តល់បានជោគជ័យ។ ចុចលើប៊ូតុងខាងក្រោមឬរង់ចាំ ##### វិនាទីដើម្បីចូលទៅកាន់ទំព័រចូលប្រើ",
+    "theAccountNameAlreadyExistsInTheSystem": "ឈ្មោះគណនីមានរួចហើយក្នុងប្រព័ន្ធ",
+    "emailAlreadyExistsInTheSystem": "អ៊ីមែលមានរួចហើយក្នុងប្រព័ន្ធ",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "ឈ្មោះអ្នកប្រើត្រូវតែធំជាងឬស្មើនឹង 3 តួអក្សរ",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "ពាក្យសម្ងាត់ត្រូវតែធំជាងឬស្មើនឹង 6 តួអក្សរ",
+    "confirmYourEmail": "បញ្ជាក់អ៊ីមែលរបស់អ្នក",
+    "authenticationFail": "ការធ្វើអត្ថបទបរាជ័យ",
+    "authenticationSuccess": "ការធ្វើអត្ថបទជោគជ័យ",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "អ៊ីមែលរបស់អ្នកត្រូវបានផ្ទុកទុកដោយជោគជ័យ។ អ្នកអាចចូលទៅកាន់គណនីរបស់អ្នកបានហើយ។",
+    "incorrectAccountOrPassword": "គណនីឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ"
 }

@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "Terjadi kesalahan dalam pemrosesan",
     "accountHasBeenConfirmedEmailBeforehand": "Akun sudah dikonfirmasi melalui email sebelumnya",
     "goToTheLoginPage": "Buka halaman login",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Akun berhasil diautentikasi. Klik tombol di bawah atau tunggu ##### detik untuk menuju ke halaman login"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Akun berhasil diautentikasi. Klik tombol di bawah atau tunggu ##### detik untuk menuju ke halaman login",
+    "theAccountNameAlreadyExistsInTheSystem": "Nama akun sudah ada dalam sistem",
+    "emailAlreadyExistsInTheSystem": "Email sudah ada dalam sistem",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Username harus lebih besar dari atau sama dengan 3 karakter",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Password harus lebih besar dari atau sama dengan 6 karakter",
+    "confirmYourEmail": "Konfirmasi Email Anda",
+    "authenticationFail": "Autentikasi Gagal",
+    "authenticationSuccess": "Autentikasi Berhasil",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Email Anda telah berhasil diverifikasi. Anda sekarang dapat masuk ke akun Anda.",
+    "incorrectAccountOrPassword": "Akun atau kata sandi salah"
 }

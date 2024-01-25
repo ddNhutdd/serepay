@@ -8,6 +8,7 @@ import { useState } from "react";
 import i18n from "src/translation/i18n";
 import { getLocalStorage } from "src/util/common";
 import {
+  apiResponseErrorMessage,
   commontString,
   defaultLanguage,
   localStorageVariable,
@@ -65,11 +66,31 @@ export default function Signup({ history }) {
     try {
       let response = await axiosService.post("/api/user/signup", info);
       callToastSuccess(t(commontString.success));
-      history.replace(url.login);
+      history.replace(url.confirm_email);
     } catch (error) {
-      callToastError(commontString.error);
+      const errorMes =
+        error?.response?.data?.message || error?.response?.data?.errors[0]?.msg;
+      let showError = "";
+      switch (errorMes) {
+        case apiResponseErrorMessage.accountExist:
+          showError = t("theAccountNameAlreadyExistsInTheSystem");
+          break;
+        case apiResponseErrorMessage.emailExist:
+          showError = t("emailAlreadyExistsInTheSystem");
+          break;
+        case apiResponseErrorMessage.password_2:
+          showError = t(passwordMustBeGreaterThanOrEqualTo6Characters"");
+          break;
+        case apiResponseErrorMessage.usernameMini:
+          showError = t("usernameMustBeGreaterThanOrEqualTo3Characters");
+          break;
+        default:
+          showError = errorMes;
+          break;
+      }
+      callToastError(showError);
     } finally {
-      setLoading(false);
+      setLoading(() => false);
     }
   };
 
@@ -114,7 +135,6 @@ export default function Signup({ history }) {
                 errorMes={formik.errors.password}
               />
             </div>
-
             <div className="field">
               <label htmlFor="password2">{t("confirmPassword")}</label>
               <Input
@@ -126,7 +146,6 @@ export default function Signup({ history }) {
                 errorMes={formik.errors.password2}
               />
             </div>
-
             <div className="field">
               <label htmlFor="referral">{t("referralCode")}</label>
               <Input
@@ -137,7 +156,6 @@ export default function Signup({ history }) {
                 value={formik.values.referral}
               />
             </div>
-
             <Button
               loading={loading}
               className="loginBtn"
@@ -147,7 +165,6 @@ export default function Signup({ history }) {
               {t("createAccount")}
             </Button>
           </form>
-
           <div className="toSignUp" onClick={() => history.replace("/login")}>
             {t("alreadyHadAnAccount")}{" "}
             <span style={{ fontWeight: 500 }}>{t("logIn")}</span>

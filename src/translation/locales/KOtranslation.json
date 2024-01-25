@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "처리 중에 오류가 발생했습니다",
     "accountHasBeenConfirmedEmailBeforehand": "계정은 미리 이메일로 확인되었습니다",
     "goToTheLoginPage": "로그인 페이지로 이동",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "계정이 성공적으로 인증되었습니다. 아래 버튼을 클릭하거나 ##### 초 기다려 로그인 페이지로 이동하세요"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "계정이 성공적으로 인증되었습니다. 아래 버튼을 클릭하거나 ##### 초 기다려 로그인 페이지로 이동하세요",
+    "theAccountNameAlreadyExistsInTheSystem": "계정 이름이 이미 시스템에 존재합니다",
+    "emailAlreadyExistsInTheSystem": "이메일이 이미 시스템에 존재합니다",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "사용자 이름은 3자 이상이어야 합니다",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "비밀번호는 6자 이상이어야 합니다",
+    "confirmYourEmail": "이메일 확인",
+    "authenticationFail": "인증 실패",
+    "authenticationSuccess": "인증 성공",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "이메일이 성공적으로 확인되었습니다. 이제 계정에 로그인할 수 있습니다.",
+    "incorrectAccountOrPassword": "부정확한 계정 또는 비밀번호"
 }

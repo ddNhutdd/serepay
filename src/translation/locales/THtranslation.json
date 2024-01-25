@@ -326,5 +326,14 @@
     "thereWasAnErrorInTheProcessing": "มีข้อผิดพลาดในการประมวลผล",
     "accountHasBeenConfirmedEmailBeforehand": "บัญชีได้รับการยืนยันทางอีเมลล์ล่วงหน้า",
     "goToTheLoginPage": "ไปที่หน้าเข้าสู่ระบบ",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "บัญชีได้รับการรับรองสำเร็จ คลิกที่ปุ่มด้านล่างหรือรอ ##### วินาทีเพื่อไปที่หน้าเข้าสู่ระบบ"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "บัญชีได้รับการรับรองสำเร็จ คลิกที่ปุ่มด้านล่างหรือรอ ##### วินาทีเพื่อไปที่หน้าเข้าสู่ระบบ",
+    "theAccountNameAlreadyExistsInTheSystem": "ชื่อบัญชีนี้มีอยู่ในระบบแล้ว",
+    "emailAlreadyExistsInTheSystem": "อีเมลนี้มีอยู่ในระบบแล้ว",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "ชื่อผู้ใช้ต้องมี 3 ตัวอักษรขึ้นไป",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "รหัสผ่านต้องมี 6 ตัวอักษรขึ้นไป",
+    "confirmYourEmail": "ยืนยันอีเมลของคุณ",
+    "authenticationFail": "การพิสูจน์ตัวตนล้มเหลว",
+    "authenticationSuccess": "การพิสูจน์ตัวตนสำเร็จ",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "อีเมลของคุณได้รับการยืนยันเรียบร้อยแล้ว คุณสามารถเข้าสู่ระบบได้ทันที",
+    "incorrectAccountOrPassword": "บัญชีหรือรหัสผ่านไม่ถูกต้อง"
 }

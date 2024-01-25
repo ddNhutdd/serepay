@@ -57,6 +57,7 @@ import { setNotify } from "./redux/reducers/notifiyP2pSlice";
 import RecoveryPassword from "./components/recoveryPassword";
 import ForgotPassword from "./components/forgotPassword";
 import Verify from "./components/verify";
+import ConfirmEmail from "./components/confirmEmail";
 
 const config = {};
 export const math = create(all, config);
@@ -243,6 +244,7 @@ function App() {
           />
           <MainTemplate path={url.forgot_password} component={ForgotPassword} />
           <MainTemplate path="/wallet" component={Wallet} />
+          <MainTemplate path={url.confirm_email} component={ConfirmEmail} />
           <MainTemplate path={url.verify} component={Verify} />
           <AdminTemplate path="/admin/dashboard" component={Dashboard} />
           <AdminTemplate path="/admin/ads" component={Ads} />

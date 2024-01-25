@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "Υπήρξε ένα σφάλμα κατά την επεξεργασία",
     "accountHasBeenConfirmedEmailBeforehand": "Το λογαριασμός έχει επιβεβαιωθεί με προγενέστερο ηλεκτρονικό ταχυδρομείο",
     "goToTheLoginPage": "Μετάβαση στη σελίδα σύνδεσης",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Επιτυχής πιστοποίηση λογαριασμού. Κάντε κλικ στο κουμπί παρακάτω ή περιμένετε ##### δευτερόλεπτα για να μεταβείτε στη σελίδα σύνδεσης"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Επιτυχής πιστοποίηση λογαριασμού. Κάντε κλικ στο κουμπί παρακάτω ή περιμένετε ##### δευτερόλεπτα για να μεταβείτε στη σελίδα σύνδεσης",
+    "theAccountNameAlreadyExistsInTheSystem": "Το όνομα του λογαριασμού υπάρχει ήδη στο σύστημα",
+    "emailAlreadyExistsInTheSystem": "Το email υπάρχει ήδη στο σύστημα",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Το όνομα χρήστη πρέπει να είναι μεγαλύτερο από ή ίσο με 3 χαρακτήρες",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Ο κωδικός πρέπει να είναι μεγαλύτερος από ή ίσος με 6 χαρακτήρες",
+    "confirmYourEmail": "Επιβεβαίωση του email σας",
+    "authenticationFail": "Αποτυχία πιστοποίησης",
+    "authenticationSuccess": "Επιτυχής πιστοποίηση",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Το email σας έχει επιτυχώς επαληθευτεί. Μπορείτε τώρα να συνδεθείτε στον λογαριασμό σας",
+    "incorrectAccountOrPassword": "Λάθος λογαριασμός ή κωδικός πρόσβασης"
 }

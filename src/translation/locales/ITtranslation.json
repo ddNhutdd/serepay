@@ -328,5 +328,14 @@
   "thereWasAnErrorInTheProcessing": "Si è verificato un errore durante l'elaborazione",
   "accountHasBeenConfirmedEmailBeforehand": "L'account è stato confermato tramite email in precedenza",
   "goToTheLoginPage": "Vai alla pagina di accesso",
-  "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Account autenticato con successo. Fai clic sul pulsante sottostante o attendi ##### secondi per accedere alla pagina di accesso"
+  "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Account autenticato con successo. Fai clic sul pulsante sottostante o attendi ##### secondi per accedere alla pagina di accesso",
+  "theAccountNameAlreadyExistsInTheSystem": "Il nome dell'account esiste già nel sistema",
+  "emailAlreadyExistsInTheSystem": "L'email esiste già nel sistema",
+  "usernameMustBeGreaterThanOrEqualTo3Characters": "Il nome utente deve essere maggiore o uguale a 3 caratteri",
+  "passwordMustBeGreaterThanOrEqualTo6Characters": "La password deve essere maggiore o uguale a 6 caratteri",
+  "confirmYourEmail": "Conferma il tuo indirizzo email",
+  "authenticationFail": "Autenticazione fallita",
+  "authenticationSuccess": "Autenticazione riuscita",
+  "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "La tua email è stata verificata con successo. Ora puoi accedere al tuo account.",
+  "incorrectAccountOrPassword": "Account o password errati"
 }

@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "Er is een fout opgetreden in de verwerking",
     "accountHasBeenConfirmedEmailBeforehand": "Account is van tevoren bevestigd via e-mail",
     "goToTheLoginPage": "Ga naar de inlogpagina",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Account succesvol geauthenticeerd. Klik op de knop hieronder of wacht ##### seconden om naar de inlogpagina te gaan"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Account succesvol geauthenticeerd. Klik op de knop hieronder of wacht ##### seconden om naar de inlogpagina te gaan",
+    "theAccountNameAlreadyExistsInTheSystem": "De accountnaam bestaat al in het systeem",
+    "emailAlreadyExistsInTheSystem": "E-mail bestaat al in het systeem",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Gebruikersnaam moet groter zijn dan of gelijk zijn aan 3 tekens",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Wachtwoord moet groter zijn dan of gelijk zijn aan 6 tekens",
+    "confirmYourEmail": "Bevestig uw e-mail",
+    "authenticationFail": "Authenticatie mislukt",
+    "authenticationSuccess": "Authenticatie succesvol",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Uw e-mail is succesvol geverifieerd. U kunt nu inloggen op uw account.",
+    "incorrectAccountOrPassword": "Onjuist account of wachtwoord"
 }

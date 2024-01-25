@@ -379,7 +379,6 @@ export default function Swap() {
               <div className="input-area-input">
                 <Input
                   type={inputType.number}
-                  color={inputColor.red}
                   value={fromCoinValueString}
                   onChange={fromCoinOnChange}
                   style={{ paddingRight: "60px" }}
@@ -433,7 +432,6 @@ export default function Swap() {
               <Input
                 value={toCoinValueString}
                 type={inputType.number}
-                color={inputColor.green}
                 disabled
               />
               <button
@@ -451,10 +449,8 @@ export default function Swap() {
               </button>
             </div>
             <span style={{ display: "block", marginTop: 8 }}>
-              <span className="hightLightNumber red">1</span> {swapFromCoin} ={" "}
-              <span className="hightLightNumber green">
-                {coinPriceDifference()}
-              </span>{" "}
+              <span className="hightLightNumber">1</span> {swapFromCoin} ={" "}
+              <span className="hightLightNumber">{coinPriceDifference()}</span>{" "}
               {swapToCoin}
             </span>
           </div>

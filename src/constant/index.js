@@ -41,6 +41,7 @@ export const url = {
   admin_user: "/admin/user",
   recovery_password: "/recovery-password",
   forgot_password: "/forget-password/:token",
+  confirm_email: "/confirm-email",
 };
 
 export const api_url = {
@@ -89,4 +90,13 @@ export const commontString = {
 
 export const coinString = {
   USDT: "USDT",
+};
+
+export const apiResponseErrorMessage = {
+  usernameMini: "UserName more than 3 degits",
+  password_1: "password more than 5 degits",
+  password_2: "password more than 6 degits",
+  accountExist: "User does not exist !",
+  emailExist: "Email already exists !",
+  accountIncorrect: "Email or password is incorrect!",
 };

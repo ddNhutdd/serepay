@@ -1,23 +1,24 @@
 .verify {
-    padding-top: 90px;
+    padding-top: 120px;
     color: $new-text-color-white;
 
     .container {
-        @include container2;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        @include container;
 
-        p {
-            text-align: center;
-        }
-
-        .sucesssContent {
+        .box {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            gap: 30px;
+            align-items: flex-start;
+
+            .verify__title {
+                font-size: 24px;
+                font-weight: 500;
+                margin-bottom: 30px;
+            }
+
         }
+
     }
 }

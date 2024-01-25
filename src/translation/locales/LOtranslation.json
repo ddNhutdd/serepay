@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "ມີຂໍ້ຜິດພາບໃນການລະບົບ",
     "accountHasBeenConfirmedEmailBeforehand": "ບັນຊີໄດ້ຖືກຢືນຢັນກ່ອນໄດ້ອີເມວ",
     "goToTheLoginPage": "ໄປທີ່ໜ້າເຂົ້າລະບົບ",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "ບັນຊີໄດ້ຢືນຢັນຮຽບຮ້ອຍ. ແຕ່ຄລິບຖອດລຸບົບຫຼັງຈາກ ##### ວິນາທີ ທີ່ຈະໄປທີ່ໜ້າເຂົ້າລະບົບ"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "ບັນຊີໄດ້ຢືນຢັນຮຽບຮ້ອຍ. ແຕ່ຄລິບຖອດລຸບົບຫຼັງຈາກ ##### ວິນາທີ ທີ່ຈະໄປທີ່ໜ້າເຂົ້າລະບົບ",
+    "theAccountNameAlreadyExistsInTheSystem": "ຊື່ບັນຊີມີໃນລະບົບແລ້ວ",
+    "emailAlreadyExistsInTheSystem": "ອີເມວມີໃນລະບົບແລ້ວ",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "ຊື່ຜູ້ໃຊ້ຈະໜ້ອຍກວ່າຫຼາຍົວເລື່ອງຫຼາຍົວໄປ",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "ລະຫັດຜ່ານຈະໜ້ອຍກວ່າຫຼາຍົວເລື່ອງຫຼາຍົວໄປ",
+    "confirmYourEmail": "ຢືນຢັນອີເມວຂອງທ່ານ",
+    "authenticationFail": "ການກວດສອບລະຫັດຜ່ານຜິດພາດ",
+    "authenticationSuccess": "ການກວດສອບລະຫັດຜ່ານສົ່ງສົ່ງ",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "ອີເມວຂອງທ່ານໄດ້ຮັບການຢືນຢັນສົມບູນສົມບູນແລ້ວ. ທ່ານສາມາດເຂົ້າສູ່ບັນຊີຂອງທ່ານໄດ້",
+    "incorrectAccountOrPassword": "ບັນຊີຫຼືລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ"
 }

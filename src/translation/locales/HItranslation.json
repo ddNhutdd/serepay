@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "प्रोसेसिंग में एक त्रुटि हुई थी",
     "accountHasBeenConfirmedEmailBeforehand": "खाता पहले ही ईमेल से कन्फर्म किया गया है",
     "goToTheLoginPage": "लॉगिन पेज पर जाएं",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "खाता सफलतापूर्वक प्रमाणित हो गया है। नीचे दिए गए बटन पर क्लिक करें या ##### सेकंड्स इंतजार करें लॉगिन पेज पर जाने के लिए"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "खाता सफलतापूर्वक प्रमाणित हो गया है। नीचे दिए गए बटन पर क्लिक करें या ##### सेकंड्स इंतजार करें लॉगिन पेज पर जाने के लिए",
+    "theAccountNameAlreadyExistsInTheSystem": "खाता नाम पहले से ही सिस्टम में मौजूद है",
+    "emailAlreadyExistsInTheSystem": "ईमेल पहले से ही सिस्टम में मौजूद है",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "उपयोगकर्ता नाम 3 अक्षरों से अधिक या इसके बराबर होना चाहिए",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "पासवर्ड 6 अक्षरों से अधिक या इसके बराबर होना चाहिए",
+    "confirmYourEmail": "अपना ईमेल पुष्टि करें",
+    "authenticationFail": "प्रमाणीकरण असफल",
+    "authenticationSuccess": "प्रमाणीकरण सफल",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "आपका ईमेल सफलतापूर्वक सत्यापित हो गया है। अब आप अपने खाते में लॉग इन कर सकते हैं।",
+    "incorrectAccountOrPassword": "गलत खाता या पासवर्ड"
 }

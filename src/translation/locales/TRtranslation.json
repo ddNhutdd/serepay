@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "İşlemlerde bir hata oluştu",
     "accountHasBeenConfirmedEmailBeforehand": "Hesap önceden e-posta ile doğrulandı",
     "goToTheLoginPage": "Giriş sayfasına git",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Hesap başarıyla doğrulandı. Aşağıdaki düğmeye tıklayın veya giriş sayfasına gitmek için ##### saniye bekleyin"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Hesap başarıyla doğrulandı. Aşağıdaki düğmeye tıklayın veya giriş sayfasına gitmek için ##### saniye bekleyin",
+    "theAccountNameAlreadyExistsInTheSystem": "Hesap adı zaten sistemde mevcut",
+    "emailAlreadyExistsInTheSystem": "Email zaten sistemde mevcut",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Kullanıcı adı 3 karakterden büyük veya ona eşit olmalıdır",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Şifre 6 karakterden büyük veya ona eşit olmalıdır",
+    "confirmYourEmail": "Email'inizi Onaylayın",
+    "authenticationFail": "Kimlik doğrulama başarısız",
+    "authenticationSuccess": "Kimlik doğrulama başarılı",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Email'iniz başarıyla doğrulandı. Şimdi hesabınıza giriş yapabilirsiniz.",
+    "incorrectAccountOrPassword": "Hesap bilgisi veya şifre yanlış"
 }

@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "حدث خطأ في المعالجة",
     "accountHasBeenConfirmedEmailBeforehand": "تم تأكيد الحساب بالبريد الإلكتروني مسبقًا",
     "goToTheLoginPage": "انتقل إلى صفحة تسجيل الدخول",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "تم التوثيق بنجاح. انقر على الزر أدناه أو انتظر ##### ثانية للانتقال إلى صفحة تسجيل الدخول"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "تم التوثيق بنجاح. انقر على الزر أدناه أو انتظر ##### ثانية للانتقال إلى صفحة تسجيل الدخول",
+    "theAccountNameAlreadyExistsInTheSystem": "اسم الحساب موجود بالفعل في النظام",
+    "emailAlreadyExistsInTheSystem": "البريد الإلكتروني موجود بالفعل في النظام",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "يجب أن يكون اسم المستخدم أكبر من أو يساوي 3 أحرف",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "يجب أن تكون كلمة المرور أكبر من أو تساوي 6 أحرف",
+    "confirmYourEmail": "تأكيد بريدك الإلكتروني",
+    "authenticationFail": "فشل التوثيق",
+    "authenticationSuccess": "نجاح التوثيق",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "تم التحقق بنجاح من بريدك الإلكتروني. يمكنك الآن تسجيل الدخول إلى حسابك",
+    "incorrectAccountOrPassword": "الحساب أو كلمة المرور غير صحيحة"
 }

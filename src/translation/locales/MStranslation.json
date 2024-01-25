@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "Terdapat ralat dalam pemprosesan",
     "accountHasBeenConfirmedEmailBeforehand": "Akaun telah disahkan melalui emel sebelum ini",
     "goToTheLoginPage": "Pergi ke halaman log masuk",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Akaun berjaya disahkan. Klik pada butang di bawah atau tunggu ##### saat untuk pergi ke halaman log masuk"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Akaun berjaya disahkan. Klik pada butang di bawah atau tunggu ##### saat untuk pergi ke halaman log masuk",
+    "theAccountNameAlreadyExistsInTheSystem": "Nama akaun sudah wujud dalam sistem",
+    "emailAlreadyExistsInTheSystem": "Emel sudah wujud dalam sistem",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Nama pengguna mesti lebih besar atau sama dengan 3 aksara",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Kata laluan mesti lebih besar atau sama dengan 6 aksara",
+    "confirmYourEmail": "Sahkan Emel Anda",
+    "authenticationFail": "Gagal pengesahan",
+    "authenticationSuccess": "Berjaya pengesahan",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Emel anda telah berjaya disahkan. Anda kini boleh log masuk ke akaun anda.",
+    "incorrectAccountOrPassword": "Akaun atau kata laluan tidak sah"
 }

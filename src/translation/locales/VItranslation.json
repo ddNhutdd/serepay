@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "Có lỗi xảy ra trong quá trình xử lý",
     "accountHasBeenConfirmedEmailBeforehand": "Tài khoản đã được xác nhận trước đó qua email",
     "goToTheLoginPage": "Đến trang đăng nhập",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Tài khoản được xác thực thành công. Nhấn vào nút bên dưới hoặc đợi ##### giây để đến trang đăng nhập"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Tài khoản được xác thực thành công. Nhấn vào nút bên dưới hoặc đợi ##### giây để đến trang đăng nhập",
+    "theAccountNameAlreadyExistsInTheSystem": "Tên tài khoản đã tồn tại trong hệ thống",
+    "emailAlreadyExistsInTheSystem": "Email đã tồn tại trong hệ thống",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Tên người dùng phải lớn hơn hoặc bằng 3 kí tự",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Mật khẩu phải lớn hơn hoặc bằng 6 kí tự",
+    "confirmYourEmail": "Xác nhận Email của bạn",
+    "authenticationFail": "Xác thực thất bại",
+    "authenticationSuccess": "Xác thực thành công",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Email của bạn đã được xác nhận thành công. Bây giờ bạn có thể đăng nhập vào tài khoản của mình.",
+    "incorrectAccountOrPassword": "Tài khoản hoặc mật khẩu không đúng"
 }

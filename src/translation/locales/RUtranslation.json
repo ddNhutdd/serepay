@@ -328,5 +328,14 @@
     "thereWasAnErrorInTheProcessing": "Произошла ошибка при обработке",
     "accountHasBeenConfirmedEmailBeforehand": "Аккаунт был подтвержден заранее по электронной почте",
     "goToTheLoginPage": "Перейти на страницу входа",
-    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Аккаунт успешно аутентифицирован. Нажмите на кнопку ниже или подождите ##### секунд, чтобы перейти на страницу входа"
+    "successfullyAuthenticatedAccountClickOnTheButtonBelowOrWait#####SecondsToGoToTheLoginPage": "Аккаунт успешно аутентифицирован. Нажмите на кнопку ниже или подождите ##### секунд, чтобы перейти на страницу входа",
+    "theAccountNameAlreadyExistsInTheSystem": "Имя учетной записи уже существует в системе",
+    "emailAlreadyExistsInTheSystem": "Email уже существует в системе",
+    "usernameMustBeGreaterThanOrEqualTo3Characters": "Имя пользователя должно быть больше или равно 3 символам",
+    "passwordMustBeGreaterThanOrEqualTo6Characters": "Пароль должен быть больше или равен 6 символам",
+    "confirmYourEmail": "Подтвердите свой Email",
+    "authenticationFail": "Ошибка аутентификации",
+    "authenticationSuccess": "Успешная аутентификация",
+    "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "Ваш Email успешно подтвержден. Теперь вы можете войти в свою учетную запись.",
+    "incorrectAccountOrPassword": "Неверная учетная запись или пароль"
 }
