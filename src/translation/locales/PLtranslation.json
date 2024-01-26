@@ -275,7 +275,7 @@
     "onlineSupport": "Wsparcie online",
     "weAreAlwaysReadyToHelp": "Zawsze jesteśmy gotowi do pomocy",
     "iPay": "Ja płacę",
-    "sellEthViaBankTransferVnd": "122SE12ll122 45BTC54 poprzez przelew bankowy (VND)",
+    "sellEthViaBankTransferVnd": "122SE12LL122 45BTC54 poprzez przelew bankowy (VND)",
     "swapTo": "Zamień na",
     "swapFrom": "Zamiana z",
     "enterTheCoinName": "Wprowadź nazwę monet",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "Przejdź do swojej skrzynki pocztowej",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Jeśli nie otrzymasz e-maila w ciągu kilku minut, sprawdź folder ze spamem.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Proszę sprawdzić swoją skrzynkę e-mailową i kliknąć link, aby kontynuować.",
-    "haveYouVerifiedYourAccountYet": "Czy zweryfikowałeś już swoje konto?"
+    "haveYouVerifiedYourAccountYet": "Czy zweryfikowałeś już swoje konto?",
+    "selectToken": "Wybierz Token"
 }

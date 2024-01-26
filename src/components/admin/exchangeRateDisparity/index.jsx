@@ -24,6 +24,7 @@ function ExchangeRateDisparity() {
   const controlErrors = useRef({});
   const dispatch = useDispatch();
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
+
   useEffect(() => {
     return () => {
       dispatch(fetchExchangeRateDisparity());
@@ -32,7 +33,7 @@ function ExchangeRateDisparity() {
   useEffect(() => {
     setRate();
   }, [rateFromRedux, rateStatusFromRedux]);
-  //
+
   const showSpinner = function () {
     getClassListFromElementById("spinner").remove("--d-none");
   };

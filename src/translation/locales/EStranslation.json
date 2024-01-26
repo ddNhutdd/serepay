@@ -342,5 +342,6 @@
     "goToYourMailbox": "Ve a tu buzón de correo",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Si no recibes el correo electrónico en unos minutos, por favor, revisa tu carpeta de correo no deseado.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Por favor, revisa tu correo electrónico y haz clic en el enlace para continuar.",
-    "haveYouVerifiedYourAccountYet": "¿Has verificado tu cuenta ya?"
+    "haveYouVerifiedYourAccountYet": "¿Has verificado tu cuenta ya?",
+    "selectToken": "Seleccionar Token"
 }

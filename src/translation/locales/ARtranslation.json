@@ -342,5 +342,6 @@
     "goToYourMailbox": "انتقل إلى صندوق البريد الخاص بك",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "إذا لم تستلم البريد الإلكتروني في غضون بضع دقائق، يرجى التحقق من مجلد البريد العشوائي الخاص بك.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "يرجى التحقق من بريدك الإلكتروني والنقر على الرابط للمتابعة.",
-    "haveYouVerifiedYourAccountYet": "هل قمت بالتحقق من حسابك حتى الآن؟"
+    "haveYouVerifiedYourAccountYet": "هل قمت بالتحقق من حسابك حتى الآن؟",
+    "selectToken": "اختر الرمز"
 }

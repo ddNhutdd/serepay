@@ -275,7 +275,7 @@
     "onlineSupport": "Çevrimiçi destek",
     "weAreAlwaysReadyToHelp": "Her zaman yardım etmeye hazırız",
     "iPay": "Ben öderim",
-    "sellEthViaBankTransferVnd": "122se12ll122 45Btc54 Banka Transferi (VND)",
+    "sellEthViaBankTransferVnd": "122SE12LL122 45BTC54 Banka Transferi (VND)",
     "swapTo": "Takas etmek",
     "swapFrom": "Takas etmek",
     "enterTheCoinName": "Madeni para adını girin",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "Posta kutunuza gidin",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "E-postayı birkaç dakika içinde almadıysanız, lütfen spam klasörünüzü kontrol edin.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Lütfen e-postanızı kontrol edin ve devam etmek için bağlantıya tıklayın.",
-    "haveYouVerifiedYourAccountYet": "Hesabınızı doğruladınız mı?"
+    "haveYouVerifiedYourAccountYet": "Hesabınızı doğruladınız mı?",
+    "selectToken": "Token Seç"
 }

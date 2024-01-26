@@ -490,7 +490,7 @@ const P2pExchange = memo(function () {
               style={{
                 height: "45px",
                 border: 0,
-                padding: 0,
+                padding: "0 90px 0 0",
                 letterSpacing: "0.5px",
               }}
             />

@@ -22,6 +22,7 @@ import {
   formatStringNumberCultureUS,
   getLocalStorage,
   getRandomElementFromArray,
+  observeWidth,
   processString,
   roundIntl,
 } from "src/util/common";
@@ -67,6 +68,7 @@ function TransactionBuy() {
   const exchangeRedux = useSelector(getExchange);
   const [price, setPrice] = useState();
   const [showComponentSpin, setShowComponentSpin] = useState(true);
+  const [inputPadding, setInputPadding] = useState(0);
 
   const inputCoinElement = useRef();
   const inputMoneyElement = useRef();
@@ -568,7 +570,7 @@ function TransactionBuy() {
   };
   const renderHeader = function () {
     const str = t("buyBtcViaBankTransferVnd");
-    const listSubString = ["122bu12y122", "45BTC54"];
+    const listSubString = ["122BU12Y122", "45BTC54"];
     const callback = function (matched, index) {
       switch (matched) {
         case listSubString.at(0):
@@ -642,8 +644,13 @@ function TransactionBuy() {
     validationPageLoad();
     firstLoad();
     document.addEventListener("click", closeAllDrodown);
+
+    const inputObserver = observeWidth(setInputPadding);
+    inputObserver.observe(document.querySelector(".transaction__action"));
+
     return () => {
       document.removeEventListener("click", closeAllDrodown);
+      inputObserver.disconnect();
     };
   }, []);
   useEffect(() => {
@@ -704,7 +711,7 @@ function TransactionBuy() {
   ]);
 
   return (
-    <div className={`transaction `}>
+    <div className={`transaction`}>
       <div
         className={`container fadeInBottomToTop ${renderClassShowComponentMainContent()}`}
       >
@@ -741,6 +748,7 @@ function TransactionBuy() {
               <div className="transaction__input">
                 <label htmlFor="amountInput">{t("iWillPay")}:</label>
                 <Input
+                  style={{ paddingRight: inputPadding }}
                   type={inputType.number}
                   color={inputColor.red}
                   onChange={inputCoinChangeHandle}
@@ -762,6 +770,7 @@ function TransactionBuy() {
                   color={inputColor.green}
                   ref={inputCoinElement}
                   disabled
+                  style={{ paddingRight: 50 }}
                 />
                 <span className="transaction__action">
                   <span
@@ -815,7 +824,12 @@ function TransactionBuy() {
                 </span>
               </div>
             </label>
-            <Button disabled={renderDisableMainButton()}>{t("buy")}</Button>
+            <Button
+              loading={callApiCreateP2p === api_status.fetching}
+              disabled={renderDisableMainButton()}
+            >
+              {t("buy")}
+            </Button>
           </form>
         </div>
         <h3 className="transaction__title transaction--bold">

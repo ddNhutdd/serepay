@@ -270,12 +270,12 @@
     "amountOfMoney": "Jumlah Uang",
     "fromUser": "Dari Pengguna",
     "toUser": "Ke Pengguna",
-    "buyBtcViaBankTransferVnd": "122bu12y122 45BTC54 melalui Transfer Bank (VND)",
+    "buyBtcViaBankTransferVnd": "122BU12Y122 45BTC54 melalui Transfer Bank (VND)",
     "infomationAboutPartners": "Informasi Tentang Mitra",
     "onlineSupport": "Dukungan Online",
     "weAreAlwaysReadyToHelp": "Kami Selalu Siap Membantu",
     "iPay": "Saya Bayar",
-    "sellEthViaBankTransferVnd": "122se12ll122 45BTC54 melalui Transfer Bank (VND)",
+    "sellEthViaBankTransferVnd": "122SE12LL122 45BTC54 melalui Transfer Bank (VND)",
     "swapTo": "Tukar Ke",
     "swapFrom": "Tukar Dari",
     "enterTheCoinName": "Masukkan Nama Koin",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "Buka kotak surat Anda",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Jika Anda tidak menerima email dalam beberapa menit, harap periksa folder spam Anda.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Silakan periksa email Anda dan klik tautan untuk melanjutkan.",
-    "haveYouVerifiedYourAccountYet": "Apakah Anda sudah memverifikasi akun Anda?"
+    "haveYouVerifiedYourAccountYet": "Apakah Anda sudah memverifikasi akun Anda?",
+    "selectToken": "Pilih Token"
 }

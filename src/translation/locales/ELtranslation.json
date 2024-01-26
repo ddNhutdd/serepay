@@ -342,5 +342,6 @@
     "goToYourMailbox": "Μεταβείτε στο ταχυδρομείο σας",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Εάν δεν λάβετε το email εντός λίγων λεπτών, παρακαλούμε ελέγξτε τον φάκελο ανεπιθύμητης αλληλογραφίας σας.",
     "": "Παρακαλούμε ελέγξτε το email σας και κάντε κλικ στον σύνδεσμο για να συνεχίσετε.",
-    "haveYouVerifiedYourAccountYet": "Έχετε επιβεβαιώσει τον λογαριασμό σας ακόμη;"
+    "haveYouVerifiedYourAccountYet": "Έχετε επιβεβαιώσει τον λογαριασμό σας ακόμη;",
+    "selectToken": "Επιλέξτε Token"
 }

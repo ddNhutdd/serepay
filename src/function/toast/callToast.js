@@ -6,7 +6,7 @@ import { defaultLanguage, localStorageVariable } from "src/constant";
 import i18n from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
 const toastOption = {
-  position: "bottom-right",
+  position: "top-right",
   autoClose: 5000,
   hideProgressBar: true,
   closeOnClick: true,

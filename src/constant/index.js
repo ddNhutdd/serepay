@@ -33,6 +33,7 @@ export const url = {
   admin_ads: "/admin/ads",
   admin_exchange: "/admin/exchange",
   admin_widthdraw: "/admin/widthdraw",
+  admin_configData: "/admin/config-data",
   ads_history: "/ads-history",
   transaction_sell: "/transaction-sell",
   transaction_buy: "/transaction-buy",

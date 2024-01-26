@@ -270,12 +270,12 @@
     "amountOfMoney": "金额",
     "fromUser": "来自用户",
     "toUser": "寄给用户",
-    "buyBtcViaBankTransferVnd": "通过银行转账购买 122bu12y122 45BTC54（VND）",
+    "buyBtcViaBankTransferVnd": "通过银行转账购买 122BU12Y122 45BTC54（VND）",
     "infomationAboutPartners": "关于合作伙伴的信息",
     "onlineSupport": "在线支持",
     "weAreAlwaysReadyToHelp": "我们随时为您提供帮助",
     "iPay": "我支付",
-    "sellEthViaBankTransferVnd": "通过银行转账出售 122se12ll122 45BTC54（VND）",
+    "sellEthViaBankTransferVnd": "通过银行转账出售 122SE12LL122 45BTC54（VND）",
     "swapTo": "交换至",
     "swapFrom": "交换自",
     "enterTheCoinName": "输入币名",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "进入您的邮箱",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "如果您在几分钟内没有收到邮件，请检查您的垃圾邮件文件夹。",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "请检查您的电子邮件并单击链接以继续。",
-    "haveYouVerifiedYourAccountYet": "您已验证您的帐户了吗？"
+    "haveYouVerifiedYourAccountYet": "您已验证您的帐户了吗？",
+    "selectToken": "选择代币"
 }

@@ -59,6 +59,12 @@ function Sidebar() {
       case "user":
         addClassToElementById("user", "active");
         break;
+      case "widthdraw":
+        addClassToElementById("widthdraw", "active");
+        break;
+      case "config-data":
+        addClassToElementById("config-data", "active");
+        break;
       default:
         break;
     }
@@ -97,6 +103,11 @@ function Sidebar() {
     const element = e.target.closest("#exchange");
     element.classList.add("active");
     history.push(url.admin_exchange);
+  };
+  const redirectConfigData = function (e) {
+    clearSelectedItem();
+    e.currentTarget.classList.add("active");
+    history.push(url.admin_configData);
   };
   const logout = () => {
     localStorage.removeItem(localStorageVariable.user);
@@ -151,11 +162,17 @@ function Sidebar() {
           </span>
           <span className="admin-sidebar__item">Exchange</span>
         </li>
-        <li onClick={redirectWidthdraw}>
+        <li onClick={redirectWidthdraw} id="widthdraw">
           <span className="admin-sidebar__icon">
             <i className="fa-solid fa-money-bill"></i>
           </span>
           <span className="admin-sidebar__item">Widthdraw</span>
+        </li>
+        <li onClick={redirectConfigData} id="config-data">
+          <span className="admin-sidebar__icon">
+            <i className="fa-solid fa-database"></i>
+          </span>
+          <span className="admin-sidebar__item">Config Data</span>
         </li>
         <li
           className="--d-none"
@@ -200,12 +217,6 @@ function Sidebar() {
           <li>History Profit</li>
           <li>History Set Result</li>
         </ul>
-        <li className="--d-none">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-paper-plane"></i>
-          </span>
-          <span className="admin-sidebar__item">Send mail / otifications</span>
-        </li>
         <li className="--d-none">
           <span className="admin-sidebar__icon">
             <i className="fa-solid fa-circle-notch"></i>

@@ -34,7 +34,7 @@ function ChangePassword(props) {
         .required("require")
         .min(6, "passwordMustBeGreaterThanOrEqualTo6Characters"),
       passwordConfirm: Yup.string()
-        .required(t("require"))
+        .required("require")
         .oneOf([Yup.ref("password"), null], "passwordNotMatch"),
     }),
     validateOnChange: false,

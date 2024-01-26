@@ -270,12 +270,12 @@
     "amountOfMoney": "금액",
     "fromUser": "보내는 사용자",
     "toUser": "받는 사용자",
-    "buyBtcViaBankTransferVnd": "은행 송금을 통한 122bu12y122 45BTC54 (VND) 구매",
+    "buyBtcViaBankTransferVnd": "은행 송금을 통한 122BU12Y122 45BTC54 (VND) 구매",
     "infomationAboutPartners": "파트너에 관한 정보",
     "onlineSupport": "온라인 지원",
     "weAreAlwaysReadyToHelp": "언제든지 도움을 드릴 준비가 되어 있습니다",
     "iPay": "나는 지불합니다",
-    "sellEthViaBankTransferVnd": "은행 송금을 통한 122se12ll122 45BTC54 (VND) 판매",
+    "sellEthViaBankTransferVnd": "은행 송금을 통한 122SE12LL122 45BTC54 (VND) 판매",
     "swapTo": "스왑 대상",
     "swapFrom": "스왑 소스",
     "enterTheCoinName": "코인 이름 입력",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "우편함으로 이동",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "몇 분 이내에 이메일을 받지 못한 경우 스팸 폴더를 확인해주세요.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "이메일을 확인하고 계속 진행하려면 링크를 클릭하세요.",
-    "haveYouVerifiedYourAccountYet": "계정을 이미 확인했나요?"
+    "haveYouVerifiedYourAccountYet": "계정을 이미 확인했나요?",
+    "selectToken": "토큰 선택"
 }

@@ -42,7 +42,6 @@ function SwaptobeWallet() {
   const userWallet = useSelector(getUserWallet);
   const isLogin = useSelector((root) => root.loginReducer.isLogin);
   const withdrawTab = useSelector(getShowTabWithdraw);
-  console.log(withdrawTab);
   const dispatch = useDispatch();
   const showActionContent = useSelector(getShowActiveContent);
 

@@ -270,12 +270,12 @@
     "amountOfMoney": "Số tiền",
     "fromUser": "Từ Người Dùng",
     "toUser": "Đến Người Dùng",
-    "buyBtcViaBankTransferVnd": "122bu12y122 45BTC54 qua Chuyển Khoản Ngân Hàng (VND)",
+    "buyBtcViaBankTransferVnd": "122BU12Y122 45BTC54 qua Chuyển Khoản Ngân Hàng (VND)",
     "infomationAboutPartners": "Thông Tin Về Đối Tác",
     "onlineSupport": "Hỗ Trợ Trực Tuyến",
     "weAreAlwaysReadyToHelp": "Chúng Tôi Luôn Sẵn Sàng Hỗ Trợ",
     "iPay": "Tôi Thanh Toán",
-    "sellEthViaBankTransferVnd": "122se12ll122 45BTC54 qua Chuyển Khoản Ngân Hàng (VND)",
+    "sellEthViaBankTransferVnd": "122SE12LL122 45BTC54 qua Chuyển Khoản Ngân Hàng (VND)",
     "swapTo": "Chuyển Đến",
     "swapFrom": "Chuyển Từ",
     "enterTheCoinName": "Nhập Tên coin",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "Đi đến hộp thư của bạn",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Nếu bạn không nhận được email trong vài phút, vui lòng kiểm tra thư mục spam của bạn.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Vui lòng kiểm tra email của bạn và nhấp vào liên kết để tiếp tục.",
-    "haveYouVerifiedYourAccountYet": "Bạn đã xác minh tài khoản của mình chưa?"
+    "haveYouVerifiedYourAccountYet": "Bạn đã xác minh tài khoản của mình chưa?",
+    "selectToken": "Chọn Token"
 }

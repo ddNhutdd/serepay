@@ -342,5 +342,6 @@
     "goToYourMailbox": "עבור לתיקיית הדואר שלך",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "אם אינך מקבל את הדוא\"ל בתוך כמה דקות, בבקשה בדוק את תיקיית הדואר הזבל שלך.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "בבקשה בדוק את תיקיית הדואר האלקטרוני שלך ולחץ על הקישור כדי להמשיך.",
-    "haveYouVerifiedYourAccountYet": "האם אימתת את החשבון שלך כבר?"
+    "haveYouVerifiedYourAccountYet": "האם אימתת את החשבון שלך כבר?",
+    "selectToken": "בחר טוקן"
 }

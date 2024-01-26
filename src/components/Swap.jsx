@@ -293,9 +293,8 @@ export default function Swap() {
     setSwapHistoryCurrentPage(page);
   };
   const maxClickHandle = function () {
-    setFromCoinValueString(
-      () => userWallet[swapFromCoin.toLowerCase() + "_balance"] || "0"
-    );
+    const amount = userWallet[swapFromCoin.toLowerCase() + "_balance"] || "0";
+    formatInputFromCoin(amount.toString());
   };
   const modalConfirmOkClickHandle = function () {
     if (callApiSwapStatus === api_status.fetching) return;
@@ -384,7 +383,7 @@ export default function Swap() {
                   style={{ paddingRight: "60px" }}
                 />
                 <button onClick={maxClickHandle} className="max">
-                  {t("max")}
+                  {t("max").toUpperCase()}
                 </button>
               </div>
               <button

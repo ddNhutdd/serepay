@@ -342,5 +342,6 @@
     "goToYourMailbox": "Pergi ke peti mel anda",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Jika anda tidak menerima e-mel dalam beberapa minit, sila periksa folder spam anda.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Sila periksa e-mel anda dan klik pautan untuk teruskan.",
-    "haveYouVerifiedYourAccountYet": "Adakah anda telah mengesahkan akaun anda?"
+    "haveYouVerifiedYourAccountYet": "Adakah anda telah mengesahkan akaun anda?",
+    "selectToken": "Pilih Token"
 }

@@ -106,7 +106,7 @@ function SerepayWalletDeposit() {
             </div>
             <div className="wallet-deposite__history-content">
               <div className="wallet-deposite__history-name">
-                {item.coin_key.toUpperCase()}
+                {item.coin_key.toUpperCase()}:
               </div>
               <div className="wallet-deposite__history-amount">
                 {formatNumber(item.amount, i18n.language, 8)}{" "}

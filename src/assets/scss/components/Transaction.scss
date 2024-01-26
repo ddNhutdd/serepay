@@ -47,25 +47,27 @@
                     .transaction__input {
                         position: relative;
 
-                        input {
-                            height: 35.56px;
-                            padding-right: 90px;
-                        }
 
                         .transaction__action {
                             display: flex;
                             align-items: center;
-                            position: absolute;
-                            top: 24px;
-                            right: 0;
+                            width: fit-content;
                             height: 35.56px;
                             align-items: center;
                             justify-content: center;
                             border-radius: 8px;
+                            position: absolute;
+                            top: 23.5px;
+                            right: 0;
 
                             .transaction__unit {
                                 color: $neutral-20;
-                                padding-right: 5px;
+                                padding: 0 5px;
+                                height: 100%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                transition: border-color 0.3s ease;
 
                                 &.result {
                                     color: $neutral-20;
@@ -87,6 +89,7 @@
                                 }
                             }
                         }
+
                     }
                 }
 

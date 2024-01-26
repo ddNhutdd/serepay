@@ -69,7 +69,7 @@
                     cursor: pointer;
 
                     &.active {
-                        border: 1px solid $text-color-3;
+                        background-color: $new-primary-color-6;
                     }
                 }
             }
@@ -377,6 +377,21 @@
                         color: $new-text-color-white;
                         background-color: $new-background-level-2;
 
+                        .formWithdraw__Wallet-body__pending {
+                            color: $new-primary-color-6;
+                            font-weight: bold;
+                        }
+
+                        .formWithdraw__Wallet-body__success {
+                            color: $green;
+                            font-weight: bold;
+                        }
+
+                        .formWithdraw__Wallet-body__reject {
+                            color: $red;
+                            font-weight: bold;
+                        }
+
                         .formWithdraw__Wallet-body-amount {
                             display: flex;
                             align-items: center;
@@ -387,6 +402,8 @@
                                 width: 20px;
                                 height: 20px;
                             }
+
+
                         }
 
                         .formWithdraw__Wallet-address {

@@ -7,6 +7,7 @@ import {
   formatStringNumberCultureUS,
   getLocalStorage,
   getRandomElementFromArray,
+  observeWidth,
   processString,
   roundIntl,
 } from "src/util/common";
@@ -33,6 +34,7 @@ import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { math } from "src/App";
 import { getUserWallet } from "src/redux/constant/coin.constant";
+import { Button, htmlType } from "../Common/Button";
 
 function TransactionSell() {
   const amount = getLocalStorage(localStorageVariable.coinFromP2pExchange || 0);
@@ -62,9 +64,9 @@ function TransactionSell() {
   const [userListBank, setUserListBank] = useState();
   const [listTrader, setListTrader] = useState();
   const [errorControl, setErrorControl] = useState({});
-  const [callApiCreateP2p, setCallApiCreateP2p] = useState(api_status.pending);
   const [eulaChecked, setEulaChecked] = useState(false);
   const [showComponentLoader, setShowComponentLoader] = useState(true);
+  const [inputPaddingRight, setInputPaddingRight] = useState(0);
 
   const touchedControl = useRef({});
   const control = useRef({
@@ -81,6 +83,7 @@ function TransactionSell() {
   const [callApiLoadTraderStatus, setCallApiLoadTraderStatus] = useState(
     api_status.pending
   );
+  const [callApiCreateP2p, setCallApiCreateP2p] = useState(api_status.pending);
 
   useEffect(() => {
     const language =
@@ -97,8 +100,13 @@ function TransactionSell() {
     validationPageLoad();
     firstLoad();
     document.addEventListener("click", closeAllDrodown);
+
+    const inputObserver = observeWidth(setInputPaddingRight);
+    inputObserver.observe(document.querySelector(".transaction__action"));
+
     return () => {
       document.removeEventListener("click", closeAllDrodown);
+      inputObserver.disconnect();
     };
   }, []);
   useEffect(() => {
@@ -385,7 +393,7 @@ function TransactionSell() {
   };
   const renderHeader = function () {
     const str = t("sellEthViaBankTransferVnd");
-    const listSubString = ["122se12ll122", "45BTC54"];
+    const listSubString = ["122SE12LL122", "45BTC54"];
     const callback = function (matched, index) {
       switch (matched) {
         case listSubString.at(0):
@@ -437,7 +445,7 @@ function TransactionSell() {
           amountValid &= false;
           setErrorControl((error) => ({
             ...error,
-            [control.current.amount]: t("Too big."),
+            [control.current.amount]: "tooBig",
           }));
         }
         if (+numberString > numberCoinsOwned.current) {
@@ -445,7 +453,7 @@ function TransactionSell() {
           amountValid &= false;
           setErrorControl((error) => ({
             ...error,
-            [control.current.amount]: t("Insufficient wallet balance."),
+            [control.current.amount]: "insufficientWalletBalance",
           }));
         }
         if (+numberString < selectedTrader.amountMinimum) {
@@ -453,7 +461,7 @@ function TransactionSell() {
           amountValid &= false;
           setErrorControl((error) => ({
             ...error,
-            [control.current.amount]: t("Too small."),
+            [control.current.amount]: "tooSmall",
           }));
         }
       }
@@ -464,7 +472,7 @@ function TransactionSell() {
         setErrorControl((error) => {
           return {
             ...error,
-            [control.current.amount]: t("require"),
+            [control.current.amount]: "require",
           };
         });
       }
@@ -569,14 +577,14 @@ function TransactionSell() {
         });
     });
   };
-  const renderClassMainButton = function () {
+  const renderDisableMainButton = function () {
     const condition1 = callApiLoadTraderStatus === api_status.fetching;
     const condition2 = callApiLoadPaymentStatus === api_status.fetching;
     let condition3 = !eulaChecked;
     const condition4 = callApiCreateP2p === api_status.fetching;
 
-    if (condition1 || condition2 || condition3 || condition4) return "disable";
-    else return "";
+    if (condition1 || condition2 || condition3 || condition4) return true;
+    else return false;
   };
   const maxClickHandle = function (e) {
     e.stopPropagation();
@@ -609,7 +617,7 @@ function TransactionSell() {
   };
 
   return (
-    <div className={`transaction `}>
+    <div className={`transaction`}>
       <div
         className={`container fadeInBottomToTop ${renderClassMainContent()}`}
       >
@@ -651,12 +659,13 @@ function TransactionSell() {
                   onChange={payInputChangeHandle}
                   type={inputType.number}
                   onFocus={inputCoinFocusHandle}
-                  errorMes={errorControl[control.current.amount]}
+                  errorMes={t(errorControl[control.current.amount])}
+                  style={{ paddingRight: inputPaddingRight }}
                 />
                 <span className="transaction__action">
                   <span className="transaction__unit">{selectedCoin}</span>
                   <span onClick={maxClickHandle} className="transaction__max">
-                    MAX
+                    {t("max").toUpperCase()}
                   </span>
                 </span>
               </div>
@@ -667,6 +676,7 @@ function TransactionSell() {
                   ref={receiveInputElement}
                   disabled
                   type={inputType.number}
+                  style={{ paddingRight: 45 }}
                 />
                 <span className="transaction__action">
                   <span className="transaction__unit">VND</span>
@@ -715,9 +725,13 @@ function TransactionSell() {
                 </span>
               </div>
             </label>
-            <button className={renderClassMainButton()} type="submit">
+            <Button
+              loading={callApiCreateP2p === api_status.fetching}
+              htmlSubmit={htmlType.submit}
+              disabled={renderDisableMainButton()}
+            >
               {t("sell")}
-            </button>
+            </Button>
           </form>
         </div>
         <h3 className="transaction__title transaction--bold">

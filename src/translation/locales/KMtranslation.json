@@ -270,12 +270,12 @@
     "amountOfMoney": "ចំនួនទឹកប្រាក់",
     "fromUser": "ពីអ្នកប្រើ",
     "toUser": "ទៅអ្នកប្រើ",
-    "buyBtcViaBankTransferVnd": "ទិញ BTC តាមរយៈការផ្ទេរប្រាក់តាមធនាគារ (VND): 122bu12y122 45BTC54",
+    "buyBtcViaBankTransferVnd": "ទិញ BTC តាមរយៈការផ្ទេរប្រាក់តាមធនាគារ (VND): 122BU12Y122 45BTC54",
     "infomationAboutPartners": "ព័ត៌មានអំពីសារជាមួយអ្នកទុន",
     "onlineSupport": "ជំនួយតាមអ៊ីនធឺណិត",
     "weAreAlwaysReadyToHelp": "យើងក៏ត្រូវសង្ឃឹមគ្នាដោយសារ",
     "iPay": "ខ្ញុំបង់ប្រាក់",
-    "sellEthViaBankTransferVnd": "លក់ ETH តាមរយៈការផ្ទេរប្រាក់តាមធនាគារ (VND): 122se12ll122 45BTC54",
+    "sellEthViaBankTransferVnd": "លក់ ETH តាមរយៈការផ្ទេរប្រាក់តាមធនាគារ (VND): 122SE12LL122 45BTC54",
     "swapTo": "ប្ដូរទៅ",
     "swapFrom": "ប្ដូរពី",
     "enterTheCoinName": "បញ្ចូលឈ្មោះកូន",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "Go to your mailbox",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "If you do not receive the email within a few minutes, please check your spam folder.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
-    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?"
+    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?",
+    "selectToken": "ជ្រើសរើសតួឡើង"
 }

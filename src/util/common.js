@@ -398,3 +398,12 @@ export const formatNumber = function (number, locale, digits) {
 export const findMin = function (...params) {
   return Math.min(...params);
 };
+
+export const observeWidth = function (setWidth) {
+  return new ResizeObserver((entries) => {
+    for (let entry of entries) {
+      const { width, height } = entry.contentRect;
+      setWidth(width);
+    }
+  });
+};

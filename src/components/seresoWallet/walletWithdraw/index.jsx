@@ -9,6 +9,7 @@ import {
   formatStringNumberCultureUS,
   generateNewURL,
   getLocalStorage,
+  observeWidth,
   parseURLParameters,
 } from "src/util/common";
 import i18n from "src/translation/i18n";
@@ -50,7 +51,7 @@ function FormWithdraw() {
   const showFromRedux = useSelector(getShow);
   const [showForm, setShowForm] = useState(showFromRedux);
   const { t } = useTranslation();
-  const [withdrawType, setWithdrawType] = useState(withdrawTypeEnum.TRC20);
+  const [withdrawType, setWithdrawType] = useState(withdrawTypeEnum.BEP20);
   const [inputAmountCurrency, setInputAmountCurrency] = useState("");
   const inputNoteValue = useRef();
   const formWallet = useRef();
@@ -75,6 +76,9 @@ function FormWithdraw() {
   const [withdrawHistoryTotalItems, setWithdrawHistoryTotalItems] = useState(1);
   const [transferHistoryTotalItems, setTransferHistoryTotalItems] = useState(1);
   const [qrValue, setQrValue] = useState(deploy_domain);
+  const [inputAmoutWidthdrawPadding, setInputAmoutWidthdrawPadding] =
+    useState(0);
+  const [inputAmoutTransferPadding, setInputAmoutTransferPadding] = useState(0);
 
   useEffect(() => {
     const language =
@@ -90,13 +94,29 @@ function FormWithdraw() {
       userNameInputElement.current.value = username;
       messageElement.current.value = note;
     }
-    //
+
+    const observeInputWidthdrawWidth = observeWidth(
+      setInputAmoutWidthdrawPadding
+    );
+    observeInputWidthdrawWidth.observe(
+      document.getElementById("widthDrawListTag")
+    );
+
+    const observeInputTransferWidth = observeWidth(
+      setInputAmoutTransferPadding
+    );
+    observeInputTransferWidth.observe(
+      document.getElementById("transferListTag")
+    );
+
     document
       .getElementsByClassName("FormWithdraw")[0]
       .classList.add("fadeInBottomToTop");
     return () => {
       dispatch(setShow(actionContent.main));
       dispatch(setShowTabFromRedux(form.wallet));
+      observeInputWidthdrawWidth.disconnect();
+      observeInputTransferWidth.disconnect();
     };
   }, []);
 
@@ -208,9 +228,8 @@ function FormWithdraw() {
                 <div className="formWithdraw__Wallet-body">
                   <div>Coin: {item.wallet.toUpperCase()}</div>
                   <div>
-                    {`${t("status")}: ${renderStatusHistoryWidthdraw(
-                      item.status
-                    )}`}
+                    {`${t("status")}: `}{" "}
+                    {renderStatusHistoryWidthdraw(item.status)}
                   </div>
                   <div>
                     {t("note")}: {item.note}
@@ -243,11 +262,23 @@ function FormWithdraw() {
   const renderStatusHistoryWidthdraw = function (status) {
     switch (status) {
       case 0:
-        return t("reject");
+        return (
+          <span className="formWithdraw__Wallet-body__reject">
+            {t("reject")}
+          </span>
+        );
       case 1:
-        return t("success");
+        return (
+          <span className="formWithdraw__Wallet-body__success">
+            {t("success")}
+          </span>
+        );
       case 2:
-        return t("pending");
+        return (
+          <span className="formWithdraw__Wallet-body__pending">
+            {t("pending")}
+          </span>
+        );
       default:
         break;
     }
@@ -441,7 +472,7 @@ function FormWithdraw() {
             <div className="withdraw-type">
               <span
                 onClick={() => setWithdrawType("TRC20")}
-                className={`withdraw-type-items ${
+                className={`withdraw-type-items  --d-none ${
                   withdrawType === "TRC20" ? "active" : ""
                 }`}
               >
@@ -449,7 +480,7 @@ function FormWithdraw() {
               </span>
               <span
                 onClick={() => setWithdrawType("ERC20")}
-                className={`withdraw-type-items ${
+                className={`withdraw-type-items --d-none ${
                   withdrawType === "ERC20" ? "active" : ""
                 }`}
               >
@@ -457,7 +488,7 @@ function FormWithdraw() {
               </span>
               <span
                 onClick={() => setWithdrawType("BEP20")}
-                className={`withdraw-type-items ${
+                className={`withdraw-type-items  ${
                   withdrawType === "BEP20" ? "active" : ""
                 }`}
               >
@@ -480,9 +511,9 @@ function FormWithdraw() {
                 type={inputType.number}
                 value={inputAmountCurrency}
                 onChange={inputAmountCurrencyOnChangeHandles}
-                style={{ paddingRight: 77 }}
+                style={{ paddingRight: inputAmoutWidthdrawPadding + 5 }}
               />
-              <div className="list-tag">
+              <div id="widthDrawListTag" className="list-tag">
                 <span>{coin}</span>
                 <span onClick={maxButtonClickHandle} className="active">
                   MAX
@@ -566,9 +597,9 @@ function FormWithdraw() {
                 value={inputAmountCurrency}
                 onChange={inputAmountCurrencyOnChangeHandles}
                 type={inputType.number}
-                style={{ paddingRight: 46 }}
+                style={{ paddingRight: inputAmoutTransferPadding + 15 }}
               />
-              <div className="list-tag">
+              <div id="transferListTag" className="list-tag">
                 <span>{coin}</span>
               </div>
             </div>

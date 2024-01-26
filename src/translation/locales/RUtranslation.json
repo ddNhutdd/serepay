@@ -342,5 +342,6 @@
     "goToYourMailbox": "Перейдите в свою почту",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте свою папку со спамом.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Пожалуйста, проверьте свой электронный адрес и нажмите на ссылку, чтобы продолжить.",
-    "haveYouVerifiedYourAccountYet": "Вы уже подтвердили свою учетную запись?"
+    "haveYouVerifiedYourAccountYet": "Вы уже подтвердили свою учетную запись?",
+    "selectToken": "Выбрать токен"
 }

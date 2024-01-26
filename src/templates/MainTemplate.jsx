@@ -14,7 +14,7 @@ export default function MainTemplate(props) {
             <div className="main-template__bg-2"></div>
             <div className="main-template__bg-3"></div>
             <Header2 {...propsRoute} />
-            <div style={{ minHeight: "70vh" }}>
+            <div style={{ minHeight: "100vh" }}>
               <props.component {...propsRoute} />
             </div>
             <Footer {...propsRoute} />

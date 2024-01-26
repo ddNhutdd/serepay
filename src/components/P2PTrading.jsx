@@ -289,7 +289,7 @@ export default function P2PTrading({ history }) {
                   <span>{coinFullName}</span>
                 </div>
                 <Button type="primary" onClick={showModal}>
-                  {t("chooseAnother")}{" "}
+                  {t("selectToken")}{" "}
                 </Button>
               </div>
               <div className="center">

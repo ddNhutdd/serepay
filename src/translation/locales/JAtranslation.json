@@ -270,12 +270,12 @@
     "amountOfMoney": "金額",
     "fromUser": "送信元ユーザー",
     "toUser": "受信先ユーザー",
-    "buyBtcViaBankTransferVnd": "バンクトランスファー（VND）を使用してBTCを購入する：122bu12y122 45BTC54",
+    "buyBtcViaBankTransferVnd": "バンクトランスファー（VND）を使用してBTCを購入する：122BU12Y122 45BTC54",
     "infomationAboutPartners": "パートナーに関する情報",
     "onlineSupport": "オンラインサポート",
     "weAreAlwaysReadyToHelp": "いつでもお手伝いします",
     "iPay": "私は支払う",
-    "sellEthViaBankTransferVnd": "バンクトランスファー（VND）を使用してETHを売る：122se12ll122 45BTC54",
+    "sellEthViaBankTransferVnd": "バンクトランスファー（VND）を使用してETHを売る：122SE12LL122 45BTC54",
     "swapTo": "スワップ先",
     "swapFrom": "スワップ元",
     "enterTheCoinName": "コイン名を入力してください",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "Go to your mailbox",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "If you do not receive the email within a few minutes, please check your spam folder.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
-    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?"
+    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?",
+    "selectToken": "トークンを選択"
 }

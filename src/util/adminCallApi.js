@@ -132,3 +132,17 @@ export const activeuser = function (data) {
     console.log(error);
   }
 };
+export const getConfigAdmin = function () {
+  try {
+    return axiosService.post("/api/p2pBank/getConfigAdmin");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const updateConfigAdmin = function (data) {
+  try {
+    return axiosService.post("/api/p2pBank/updateConfigAdmin", data);
+  } catch (error) {
+    console.log(error);
+  }
+};

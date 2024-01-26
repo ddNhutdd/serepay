@@ -1,0 +1,49 @@
+.configData {
+    color: $new-text-color-white;
+
+    .configData__header {
+        .configData__title {
+            @extend .titleContainerAdmin;
+        }
+
+        margin-bottom: 15px;
+    }
+
+    .configData__content {
+        overflow-x: auto;
+
+        table {
+            @include adminTable;
+
+            thead {
+                tr {
+                    th {
+                        &:first-child {
+                            width: 150px;
+                        }
+
+                        &:last-child {
+                            width: 200px;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        .configData__action {
+                            display: flex;
+                            gap: 10px;
+
+                            button {
+                                width: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

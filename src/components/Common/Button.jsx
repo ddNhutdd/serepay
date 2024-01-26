@@ -17,6 +17,11 @@ export const buttonClassesType = {
   primary: "primary",
 };
 
+export const htmlType = {
+  button: "button",
+  submit: "submit",
+};
+
 /**
  *
  * @param {type}: primary, outline,
@@ -32,6 +37,7 @@ export const Button = ({
   name,
   type = "primary",
   disabled,
+  htmlSubmit = htmlType,
 }) => {
   let typeClassesDefault = getButtonClasses(type);
   const renderClassLoader = function () {
@@ -48,6 +54,7 @@ export const Button = ({
       onClick={onClick}
       name={name}
       disabled={renderDisable()}
+      type={htmlSubmit}
     >
       <div className={`loader ${renderClassLoader()}`}></div>
       {children}

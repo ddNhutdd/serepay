@@ -270,12 +270,12 @@
     "amountOfMoney": "จำนวนเงิน",
     "fromUser": "จากผู้ใช้",
     "toUser": "ถึงผู้ใช้",
-    "buyBtcViaBankTransferVnd": "ซื้อ 122bu12y122 45BTC54 ผ่านการโอนเงินทางธนาคาร (VND)",
+    "buyBtcViaBankTransferVnd": "ซื้อ 122BU12Y122 45BTC54 ผ่านการโอนเงินทางธนาคาร (VND)",
     "infomationAboutPartners": "ข้อมูลเกี่ยวกับพาร์ทเนอร์",
     "onlineSupport": "สนับสนุนออนไลน์",
     "weAreAlwaysReadyToHelp": "เราพร้อมช่วยเสมอตลอดเวลา",
     "iPay": "ฉันจ่าย",
-    "sellEthViaBankTransferVnd": "ขาย 122se12ll122 45BTC54 ผ่านการโอนเงินทางธนาคาร (VND)",
+    "sellEthViaBankTransferVnd": "ขาย 122SE12LL122 45BTC54 ผ่านการโอนเงินทางธนาคาร (VND)",
     "swapTo": "สลับไปที่",
     "swapFrom": "สลับจาก",
     "enterTheCoinName": "ป้อนชื่อเหรียญ",
@@ -340,5 +340,6 @@
     "goToYourMailbox": "ไปที่กล่องจดหมายของคุณ",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "หากคุณไม่ได้รับอีเมลภายในไม่กี่นาที กรุณาตรวจสอบโฟลเดอร์สแปมของคุณ",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "กรุณาตรวจสอบอีเมลของคุณและคลิกที่ลิงก์เพื่อดำเนินการต่อ",
-    "haveYouVerifiedYourAccountYet": "คุณได้ยืนยันบัญชีของคุณแล้วหรือยัง?"
+    "haveYouVerifiedYourAccountYet": "คุณได้ยืนยันบัญชีของคุณแล้วหรือยัง?",
+    "selectToken": "เลือกโทเค็น"
 }

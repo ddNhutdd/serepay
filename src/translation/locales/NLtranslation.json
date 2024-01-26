@@ -342,5 +342,6 @@
     "goToYourMailbox": "Ga naar je mailbox",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Als je de e-mail niet binnen enkele minuten ontvangt, controleer dan je spammap.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Controleer je e-mail en klik op de link om door te gaan.",
-    "haveYouVerifiedYourAccountYet": "Heb je je account al geverifieerd?"
+    "haveYouVerifiedYourAccountYet": "Heb je je account al geverifieerd?",
+    "selectToken": "Selecteer Token"
 }

@@ -58,6 +58,7 @@ import RecoveryPassword from "./components/recoveryPassword";
 import ForgotPassword from "./components/forgotPassword";
 import Verify from "./components/verify";
 import ConfirmEmail from "./components/confirmEmail";
+import ConfigData from "./components/admin/configData";
 
 const config = {};
 export const math = create(all, config);
@@ -130,6 +131,7 @@ function App() {
       name: "exchangeRate",
     })
       .then((resp) => {
+        console.log(resp);
         const rate = resp.data.data[0].value;
         dispatch(setExchangeRateDisparity(rate));
       })
@@ -248,6 +250,7 @@ function App() {
           <MainTemplate path={url.verify} component={Verify} />
           <AdminTemplate path="/admin/dashboard" component={Dashboard} />
           <AdminTemplate path="/admin/ads" component={Ads} />
+          <AdminTemplate path={url.admin_configData} component={ConfigData} />
           <AdminTemplate path={url.admin_widthdraw} component={Widthdraw} />
           <AdminTemplate path={url.admin_exchange} component={Exchange} />
           <AdminTemplate path="/admin/kyc" component={KYC} />

@@ -275,7 +275,7 @@
     "onlineSupport": "ऑनलाइन समर्थन",
     "weAreAlwaysReadyToHelp": "हम हमेशा मदद के लिए तैयार रहते हैं",
     "iPay": "मैं चुकाता हूँ",
-    "sellEthViaBankTransferVnd": "बैंक ट्रांसफर (VND) के माध्यम से 122Se12LL122 45BTC54",
+    "sellEthViaBankTransferVnd": "बैंक ट्रांसफर (VND) के माध्यम से 122SE12LL122 45BTC54",
     "swapTo": "स्वैप करना",
     "swapFrom": "से स्वैप करना",
     "enterTheCoinName": "सिक्का नाम दर्ज करें",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "अपने मेलबॉक्स में जाएं",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "अगर आप कुछ मिनटों के भीतर ईमेल प्राप्त नहीं करते हैं, तो कृपया अपने स्पैम फ़ोल्डर की जाँच करें।",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "कृपया अपने ईमेल की जाँच करें और जारी रखने के लिए लिंक पर क्लिक करें।",
-    "haveYouVerifiedYourAccountYet": "क्या आपने अपने खाते को सत्यापित किया है?"
+    "haveYouVerifiedYourAccountYet": "क्या आपने अपने खाते को सत्यापित किया है?",
+    "selectToken": "टोकन चुनें"
 }

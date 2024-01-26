@@ -150,13 +150,15 @@ function Ads() {
   };
   const renderTableContent = function () {
     return (mainData || []).map((item) => (
-      <AdsHistoryRecord
-        item={item}
-        price={100}
-        type={AdsHistoryRecordType.admin}
-        rejectClickHandle={rejectClickHandle}
-        acceptClickHandle={acceptClickHandle}
-      />
+      <div key={item.id}>
+        <AdsHistoryRecord
+          item={item}
+          price={100}
+          type={AdsHistoryRecordType.admin}
+          rejectClickHandle={rejectClickHandle}
+          acceptClickHandle={acceptClickHandle}
+        />
+      </div>
     ));
   };
   const rejectClickHandle = function (id) {

@@ -270,12 +270,12 @@
     "amountOfMoney": "ຈຳນວນເງິນ",
     "fromUser": "ຈາກຜູ້ໃຊ້",
     "toUser": "ເປັນຜູ້ຮັບ",
-    "buyBtcViaBankTransferVnd": "ຊື້ 122bu12y122 45BTC54 ຂື້ນອນດ້ານບັນຊີ (VND)",
+    "buyBtcViaBankTransferVnd": "ຊື້ 122BU12Y122 45BTC54 ຂື້ນອນດ້ານບັນຊີ (VND)",
     "infomationAboutPartners": "ຂໍ້ມູນກ່ຽວກັບຄູ່ຜູ້ດຽວ",
     "onlineSupport": "ສະຖານະຕິດຕາມອີກເທື່ອ",
     "weAreAlwaysReadyToHelp": "ພວກເຮົາປະຕິບັດຢູ່ກັບການຊ່ວຍເຫຼືອ",
     "iPay": "ຂ້ອຍຈ່າຍ",
-    "sellEthViaBankTransferVnd": "ຂາຍ 122se12ll122 45BTC54 ຂື້ນອນດ້ານບັນຊີ (VND)",
+    "sellEthViaBankTransferVnd": "ຂາຍ 122SE12LL122 45BTC54 ຂື້ນອນດ້ານບັນຊີ (VND)",
     "swapTo": "ປ່ຽນໄປ",
     "swapFrom": "ປ່ຽນຈາກ",
     "enterTheCoinName": "ພິມຊື່ເງິນ",
@@ -342,5 +342,6 @@
     "goToYourMailbox": "ໄປຫາແຈັກດ້ວຍຂໍ້ມູນບັນຊີຂອງທ່ານ",
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "ຖ້າທ່ານບໍ່ໄດ້ຮັບອີເມວໃນອາຍຸນມີອີເມວເຂົ້າມາ, ກະລຸນາກວດໄປໃຊ້ການຖືກອະນຸຍາດຂອງທ່ານ.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "ກະລຸນາກວດໄປໃຊ້ອີເມວຂອງທ່ານແລະຄລິບບັນຊີເພື່ອສືມັນ.",
-    "haveYouVerifiedYourAccountYet": "ທ່ານໄດ້ຢືນຢັນບັນຊີຂອງທ່ານແລະບໍ?"
+    "haveYouVerifiedYourAccountYet": "ທ່ານໄດ້ຢືນຢັນບັນຊີຂອງທ່ານແລະບໍ?",
+    "selectToken": "ເລືອກ​ຕໍ່​ໂນັດ"
 }
