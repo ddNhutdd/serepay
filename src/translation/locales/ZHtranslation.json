@@ -21,7 +21,7 @@
     "vietnamse": "越南语",
     "walletOverview": "钱包概述",
     "withdraw": "提取",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "您必须在钱包中保留至少20个TRX,以获取足够的TRC20代币交易Gas费",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "您必须在您的钱包中保留至少5 USDT，以确保有足够的燃气费用进行TRC20代币交易。",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "上层费用不固定,会根据区块链网络状态变化而变化",
     "settings": "设置",
     "application": "应用程序",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "如果您在几分钟内没有收到邮件，请检查您的垃圾邮件文件夹。",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "请检查您的电子邮件并单击链接以继续。",
     "haveYouVerifiedYourAccountYet": "您已验证您的帐户了吗？",
-    "selectToken": "选择代币"
+    "selectToken": "选择代币",
+    "theMinimumQuantityIsTooLarge": "最小数量太大"
 }

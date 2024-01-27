@@ -131,7 +131,6 @@ function App() {
       name: "exchangeRate",
     })
       .then((resp) => {
-        console.log(resp);
         const rate = resp.data.data[0].value;
         dispatch(setExchangeRateDisparity(rate));
       })

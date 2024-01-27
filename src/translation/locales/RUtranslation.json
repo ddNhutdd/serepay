@@ -13,7 +13,7 @@
     "vietnamse": "Вьетнамс",
     "walletOverview": "Обзор кошелька",
     "withdraw": "Отзывать",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Вы должны сохранить минимум 20 TRX в своем кошельке, чтобы обеспечить достаточную плату за газ для торговли токенами TRC20.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Вы должны сохранить минимум 5 USDT в своем кошельке, чтобы обеспечить достаточную плату за газ для торговли токенами TRC20.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "Накладные расходы не установлены, при условии изменения в зависимости от состояния сетей блокчейна",
     "send": "Отправлять",
     "message": "Сообщение",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Если вы не получили письмо в течение нескольких минут, пожалуйста, проверьте свою папку со спамом.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Пожалуйста, проверьте свой электронный адрес и нажмите на ссылку, чтобы продолжить.",
     "haveYouVerifiedYourAccountYet": "Вы уже подтвердили свою учетную запись?",
-    "selectToken": "Выбрать токен"
+    "selectToken": "Выбрать токен",
+    "theMinimumQuantityIsTooLarge": "Минимальное количество слишком большое"
 }

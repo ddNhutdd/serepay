@@ -51,14 +51,13 @@ function SerepayWalletDeposit() {
       createWalletBEP20()
         .then((resp) => {
           setCallApiCreateWalletStatus(() => api_status.fulfilled);
-          setAddress(() => resp.response.data.address);
+          setAddress(() => resp?.data?.data?.address);
           resolve(true);
         })
         .catch((error) => {
-          setAddress(() => error.response.data.errors.address);
+          setAddress(() => error?.response?.data?.errors?.address);
           setCallApiCreateWalletStatus(() => api_status.rejected);
           console.log(error);
-          console.log("1", error.response.data.errors.address);
           resolve(null);
         });
     });
@@ -141,7 +140,6 @@ function SerepayWalletDeposit() {
       showHistoryEmpty();
       closeHistory();
     }
-    console.log(renderHtml);
     setHistoryData(() => renderHtml);
   };
   const closeHistory = function () {

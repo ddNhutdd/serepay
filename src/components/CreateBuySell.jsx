@@ -272,7 +272,7 @@ export default function CreateBuy() {
         setControlsErrors((state) => {
           return {
             ...state,
-            [controls.current.amount]: t("require"),
+            [controls.current.amount]: "require",
           };
         });
       } else {
@@ -293,13 +293,22 @@ export default function CreateBuy() {
         valid &= false;
         setControlsErrors((state) => ({
           ...state,
-          [controls.current.mini]: t("formatIncorrect"),
+          [controls.current.mini]: "formatIncorrect",
+        }));
+      } else if (
+        +miniElement.value.replaceAll(",", "") >
+        amountElement.value.replaceAll(",", "")
+      ) {
+        valid &= false;
+        setControlsErrors((state) => ({
+          ...state,
+          [controls.current.mini]: "theMinimumQuantityIsTooLarge",
         }));
       } else if (!miniElement.value) {
         valid &= false;
         setControlsErrors((state) => ({
           ...state,
-          [controls.current.mini]: t("require"),
+          [controls.current.mini]: "require",
         }));
       } else {
         setControlsErrors((state) => {
@@ -315,7 +324,7 @@ export default function CreateBuy() {
           valid &= false;
           setControlsErrors((state) => ({
             ...state,
-            [controls.current.fullname]: t("require"),
+            [controls.current.fullname]: "require",
           }));
         } else {
           delete controlsErrors.current;
@@ -331,7 +340,7 @@ export default function CreateBuy() {
           valid &= false;
           setControlsErrors((state) => ({
             ...state,
-            [controls.current.accountNumber]: t("require"),
+            [controls.current.accountNumber]: "require",
           }));
         } else {
           delete controlsErrors.current;
@@ -528,7 +537,7 @@ export default function CreateBuy() {
                   name="amount"
                   key={"a1va"}
                   id="amoutInput"
-                  errorMes={controlsErrors[controls.current.amount]}
+                  errorMes={t(controlsErrors[controls.current.amount])}
                 />
               </div>
               <div className="field">
@@ -543,7 +552,7 @@ export default function CreateBuy() {
                   name="mini"
                   key={"a2va"}
                   id="minimumAmoutInput"
-                  errorMes={controlsErrors[controls.current.mini]}
+                  errorMes={t(controlsErrors[controls.current.mini])}
                 />
               </div>
             </div>
@@ -586,7 +595,7 @@ export default function CreateBuy() {
                   id="fullnameInput"
                   name="fullname"
                   type="text"
-                  errorMes={controlsErrors[controls.current.fullname]}
+                  errorMes={t(controlsErrors[controls.current.fullname])}
                 />
               </div>
               <div className="field">
@@ -599,7 +608,7 @@ export default function CreateBuy() {
                   id="accountNumberInput"
                   name="accountNumber"
                   type="text"
-                  errorMes={controlsErrors[controls.current.accountNumber]}
+                  errorMes={t(controlsErrors[controls.current.accountNumber])}
                 />
               </div>
             </div>

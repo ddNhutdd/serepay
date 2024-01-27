@@ -93,7 +93,6 @@ export default function Login({ history }) {
           callToastError(t("passwordMustBeGreaterThanOrEqualTo6Characters"));
           break;
         case apiResponseErrorMessage.accountIncorrect:
-          console.log("here");
           callToastError(t("incorrectAccountOrPassword"));
           break;
         default:

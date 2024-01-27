@@ -13,7 +13,7 @@
     "vietnamse": "Βιετνάμ",
     "walletOverview": "Επισκόπηση πορτοφολιού",
     "withdraw": "Αποσύρω",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Πρέπει να διατηρήσετε τουλάχιστον 20 TRX στο πορτοφόλι σας για να εξασφαλίσετε επαρκείς αμοιβές αερίου για τις συναλλαγές TRC20 Tokens.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Πρέπει να διατηρήσετε τουλάχιστον 5 USDT στο πορτοφόλι σας για να εξασφαλίσετε επαρκείς αμοιβές αερίου για τις συναλλαγές TRC20 Tokens.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "Τα γενικά τέλη δεν είναι σταθερά, υπόκεινται σε αλλαγές ανάλογα με την κατάσταση των δικτύων blockchain",
     "send": "Στείλετε",
     "message": "Μήνυμα",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Εάν δεν λάβετε το email εντός λίγων λεπτών, παρακαλούμε ελέγξτε τον φάκελο ανεπιθύμητης αλληλογραφίας σας.",
     "": "Παρακαλούμε ελέγξτε το email σας και κάντε κλικ στον σύνδεσμο για να συνεχίσετε.",
     "haveYouVerifiedYourAccountYet": "Έχετε επιβεβαιώσει τον λογαριασμό σας ακόμη;",
-    "selectToken": "Επιλέξτε Token"
+    "selectToken": "Επιλέξτε Token",
+    "theMinimumQuantityIsTooLarge": "Η ελάχιστη ποσότητα είναι πολύ μεγάλη"
 }

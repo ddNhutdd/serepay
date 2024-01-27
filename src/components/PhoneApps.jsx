@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { defaultLanguage, localStorageVariable } from "src/constant";
-import { getLocalStorage } from "src/util/common";
+import {
+  createIntersectionObserve,
+  getLocalStorage,
+  zoomImage,
+} from "src/util/common";
 import i18n, { availableLanguage } from "src/translation/i18n";
 import { useLocation } from "react-router-dom";
 function PhoneApps() {
@@ -15,12 +19,49 @@ function PhoneApps() {
         getLocalStorage(localStorageVariable.lng) || defaultLanguage;
       i18n.changeLanguage(language);
     }
+
+    const leftElement = document.querySelector("#homeAppLeft");
+    const leftElementObserve = createIntersectionObserve(
+      leftElementObserveHandle,
+      leftElement
+    );
+
+    const homeAppImage = document.querySelector("#homeAppImage");
+    const homeAppImageObserve = createIntersectionObserve(
+      homeAppImageObserveHandle,
+      homeAppImage
+    );
+
+    return () => {
+      leftElementObserve.disconnect();
+      homeAppImageObserve.disconnect();
+    };
   }, []);
+
+  const leftElementObserveHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("slideInUp") &&
+          element.classList.add("slideInUp");
+    }
+  };
+  const homeAppImageObserveHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("fadeInQuick") &&
+          element.classList.add("fadeInQuick");
+    }
+  };
+
   return (
     <div className="phone__apps">
       <div className="container">
         <div className="home__app__content">
-          <div className="home__app__left">
+          <div id="homeAppLeft" className="home__app__left">
             <h3>
               {t("seresoApps")} - {t("comingSoon")}
             </h3>
@@ -43,6 +84,8 @@ function PhoneApps() {
           <div className="home__app__right">
             <div className="home__app__right__image-container">
               <img
+                id="homeAppImage"
+                onClick={zoomImage}
                 src={process.env.PUBLIC_URL + "/img/home-16.png"}
                 alt="phone"
               />

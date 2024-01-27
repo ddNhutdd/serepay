@@ -85,22 +85,6 @@
     .buyBtn {
       margin-top: 15px;
       width: 100%;
-      padding: 8px 20px;
-      color: $white;
-      background-color: $new-primary-color-6;
-      border: none;
-      border-radius: 5px;
-      transition: background-color 0.3s ease-out;
-
-      &.disabled {
-        background-color: $background-color-5;
-        cursor: not-allowed;
-      }
-
-      &:hover {
-        background-color: $new-primary-color-5;
-        cursor: pointer;
-      }
     }
 
     .swap__history {

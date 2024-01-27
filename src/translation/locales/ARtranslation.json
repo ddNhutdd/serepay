@@ -13,7 +13,7 @@
     "vietnamse": "فيتنام",
     "walletOverview": "نظرة عامة على المحفظة",
     "withdraw": "ينسحب",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "يجب أن تحتفظ بحد أدنى 20 TRX في محفظتك لتأمين ما يكفي من رسوم الغاز لتداول الرموز TRC20.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "يجب أن تحتفظ بحد أدنى 5 USDT في محفظتك لتأمين ما يكفي من رسوم الغاز لتداول الرموز TRC20.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "لا يتم إصلاح رسوم النفقات العامة ، وتخضع للتغيير اعتمادًا على حالة شبكات blockchain",
     "send": "يرسل",
     "message": "رسالة",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "إذا لم تستلم البريد الإلكتروني في غضون بضع دقائق، يرجى التحقق من مجلد البريد العشوائي الخاص بك.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "يرجى التحقق من بريدك الإلكتروني والنقر على الرابط للمتابعة.",
     "haveYouVerifiedYourAccountYet": "هل قمت بالتحقق من حسابك حتى الآن؟",
-    "selectToken": "اختر الرمز"
+    "selectToken": "اختر الرمز",
+    "theMinimumQuantityIsTooLarge": "الحد الأدنى للكمية كبير جدًا"
 }

@@ -13,7 +13,7 @@
     "vietnamse": "Vietnamse",
     "walletOverview": "Portemonnee overzicht",
     "withdraw": "Terugtrekken",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "U moet minimaal 20 TRX in uw portemonnee houden om voldoende gaskosten te beveiligen voor het handelen van TRC20 -tokens.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "U moet minimaal 5 USDT in uw portemonnee houden om voldoende gaskosten te beveiligen voor het handelen van TRC20 -tokens.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "De overheadkosten zijn niet vastgesteld, onderhevig aan wijziging, afhankelijk van de status van de blockchain -netwerken",
     "send": "Versturen",
     "message": "Bericht",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Als je de e-mail niet binnen enkele minuten ontvangt, controleer dan je spammap.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Controleer je e-mail en klik op de link om door te gaan.",
     "haveYouVerifiedYourAccountYet": "Heb je je account al geverifieerd?",
-    "selectToken": "Selecteer Token"
+    "selectToken": "Selecteer Token",
+    "theMinimumQuantityIsTooLarge": "De minimumhoeveelheid is te groot"
 }

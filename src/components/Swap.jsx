@@ -1,4 +1,4 @@
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import {
   convertStringToNumber,
@@ -12,6 +12,7 @@ import {
 } from "src/util/common";
 import {
   api_status,
+  coinString,
   commontString,
   defaultLanguage,
   image_domain,
@@ -33,6 +34,7 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input, inputColor, inputType } from "./Common/Input";
 import { getCoin, getCoinAmount } from "src/redux/reducers/wallet2Slice";
 import { EmptyCustom } from "./Common/Empty";
+import { Button, buttonClassesType } from "./Common/Button";
 export default function Swap() {
   const { isLogin } = useSelector((root) => root.loginReducer);
   const history = useHistory();
@@ -219,7 +221,7 @@ export default function Swap() {
       callApiHistoryStatus !== api_status.fetching &&
       coinSwapHistory.length <= 0
     ) {
-      return <EmptyCustom />;
+      return <EmptyCustom stringData={t("noData")} />;
     } else if (
       callApiHistoryStatus !== api_status.fetching &&
       coinSwapHistory.length > 0
@@ -392,7 +394,7 @@ export default function Swap() {
               >
                 <div className="selectBtn-container">
                   <img
-                    src={`https://remitano.dk-tech.vn/images/${swapFromCoin}.png`}
+                    src={image_domain.replace(coinString.USDT, swapFromCoin)}
                     alt="swapFromCoin"
                   />
                   {swapFromCoin}
@@ -416,7 +418,11 @@ export default function Swap() {
           <div style={{ textAlign: "center", margin: 20 }}>
             <Button
               type="primary"
-              shape="circle"
+              style={{
+                marginLeft: "auto",
+                marginRight: "auto",
+                borderRadius: "50%",
+              }}
               onClick={transfer}
               size="large"
             >
@@ -453,14 +459,13 @@ export default function Swap() {
               {swapToCoin}
             </span>
           </div>
-          <button
+          <Button
             onClick={mainButtonOnClickHandle}
             className={`buyBtn`}
-            size="large"
-            type="primary"
+            type={buttonClassesType.success}
           >
-            {isLogin ? t("swap") : t("login")}
-          </button>
+            {isLogin ? t("swap").toUpperCase() : t("login")}
+          </Button>
         </div>
         <div className="box" style={{ marginTop: 30 }}>
           <h2 className="title">{t("swapOrder")}</h2>

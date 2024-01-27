@@ -21,7 +21,7 @@
     "vietnamse": "베트남",
     "walletOverview": "지갑 개요",
     "withdraw": "인출",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20 토큰 거래를 위한 충분한 가스 요금을 확보하려면 지갑에 최소 20TRX를 보유해야합니다.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20 토큰 거래를 위한 충분한 가스 요금을 확보하려면 지갑에 최소 5USDT를 보유해야합니다.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "간주비용은 변동되지 않으며 블록체인 네트워크 상태에 따라 변경 될 수 있습니다.",
     "settings": "설정",
     "application": "애플리케이션",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "몇 분 이내에 이메일을 받지 못한 경우 스팸 폴더를 확인해주세요.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "이메일을 확인하고 계속 진행하려면 링크를 클릭하세요.",
     "haveYouVerifiedYourAccountYet": "계정을 이미 확인했나요?",
-    "selectToken": "토큰 선택"
+    "selectToken": "토큰 선택",
+    "theMinimumQuantityIsTooLarge": "최소 수량이 너무 많습니다"
 }

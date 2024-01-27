@@ -35,6 +35,7 @@ import {
   setShow as setShowWithdrawTab,
 } from "src/redux/reducers/walletWithdraw";
 import { Button, buttonClassesType } from "src/components/Common/Button";
+import { math } from "src/App";
 function SerepayWalletList() {
   const history = useHistory();
   const allCoin = useSelector(getListCoinRealTime);
@@ -66,7 +67,9 @@ function SerepayWalletList() {
     if (!usd || !currency || !exchange || !exchange.length) return -1;
     const rate =
       exchange.filter((item) => item.title === currency)[0]?.rate ?? 0;
-    return (usd * rate).toFixed(3);
+    const rateFraction = math.fraction(rate);
+    const usdFraction = math.fraction(usd);
+    return math.number(math.multiply(rateFraction, usdFraction));
   };
   const renderButton = function (name) {
     return name === coinString.USDT ? (
@@ -94,7 +97,11 @@ function SerepayWalletList() {
         </div>
         <div className="price">
           <span>
-            {formatCurrency(i18n.language, userSelectedCurrency, item.price)}
+            {formatCurrency(
+              i18n.language,
+              userSelectedCurrency,
+              convertCurrency(item.price, userSelectedCurrency, exchange)
+            )}
           </span>
           <span className="swaptobeWalletList__own">
             <span>{t("own")}:</span>

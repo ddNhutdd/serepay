@@ -13,7 +13,7 @@
     "vietnamse": "וייטנמה",
     "walletOverview": "סקירת ארנק",
     "withdraw": "לָסֶגֶת",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "עליכם לשמור מינימום של 20 TRX בארנק כדי להבטיח מספיק דמי גז למסחר אסימוני TRC20.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "עליכם לשמור מינימום של 5 USDT בארנק כדי להבטיח מספיק דמי גז למסחר אסימוני TRC20.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "עמלות התקורה אינן קבועות, בכפוף לשינוי בהתאם למצב של רשתות blockchain",
     "send": "לִשְׁלוֹחַ",
     "message": "הוֹדָעָה",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "אם אינך מקבל את הדוא\"ל בתוך כמה דקות, בבקשה בדוק את תיקיית הדואר הזבל שלך.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "בבקשה בדוק את תיקיית הדואר האלקטרוני שלך ולחץ על הקישור כדי להמשיך.",
     "haveYouVerifiedYourAccountYet": "האם אימתת את החשבון שלך כבר?",
-    "selectToken": "בחר טוקן"
+    "selectToken": "בחר טוקן",
+    "theMinimumQuantityIsTooLarge": "הכמות המינימלית גדולה מדי"
 }

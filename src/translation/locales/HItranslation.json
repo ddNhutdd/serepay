@@ -13,7 +13,7 @@
     "vietnamse": "वियतनामी",
     "walletOverview": "बटुए अवलोकन",
     "withdraw": "निकालना",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20 टोकन के ट्रेडिंग के लिए पर्याप्त गैस शुल्क सुरक्षित करने के लिए आपको अपने बटुए में न्यूनतम 20 TRX रखना होगा।",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20 टोकन के ट्रेडिंग के लिए पर्याप्त गैस शुल्क सुरक्षित करने के लिए आपको अपने बटुए में न्यूनतम 5 USDT रखना होगा।",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "ओवरहेड शुल्क तय नहीं किया गया है, ब्लॉकचेन नेटवर्क की स्थिति के आधार पर परिवर्तन के अधीन है",
     "send": "भेजना",
     "message": "संदेश",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "अगर आप कुछ मिनटों के भीतर ईमेल प्राप्त नहीं करते हैं, तो कृपया अपने स्पैम फ़ोल्डर की जाँच करें।",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "कृपया अपने ईमेल की जाँच करें और जारी रखने के लिए लिंक पर क्लिक करें।",
     "haveYouVerifiedYourAccountYet": "क्या आपने अपने खाते को सत्यापित किया है?",
-    "selectToken": "टोकन चुनें"
+    "selectToken": "टोकन चुनें",
+    "theMinimumQuantityIsTooLarge": "न्यूनतम मात्रा बहुत बड़ी है"
 }

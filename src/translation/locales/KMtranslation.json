@@ -21,7 +21,7 @@
     "vietnamse": "ភាសា​វៀតណាម",
     "walletOverview": "ទិដ្ឋភាព​ទូទាត់",
     "withdraw": "ដក",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "អ្នកចាំបាច់ត្រូវរក្សាទុក TRX អប្បបរមា ២០ នៅក្នុងកាបូបអ្នក ដើម្បីធានាថាមានថ្លៃប្រើប្រាស់ហ្គាសគួរឱ្យកត់សម្គាល់ សម្រាប់ជួលដើម្បីជួញដូរនូវម៉ាកង់ TRC20។",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "អ្នកត្រូវរក្សាទុកជាយ៉ាងណាចង្អុល 5 USDT នៅក្នុងកញ្ចប់គណនីរបស់អ្នកដើម្បីទទួលបានការបង់ថ្លៃនៃការធ្វើពន្ធ TRC20។",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "ថ្លៃដើមមិនមែនកំណត់ អាចផ្លាស់ប្តូរអាស្រ័យលើស្ថានភាពបណ្តាញប្លុកខែន",
     "settings": "ការ​កំណត់",
     "application": "កម្មវិធី",
@@ -338,10 +338,11 @@
     "authenticationSuccess": "ការធ្វើអត្ថបទជោគជ័យ",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "អ៊ីមែលរបស់អ្នកត្រូវបានផ្ទុកទុកដោយជោគជ័យ។ អ្នកអាចចូលទៅកាន់គណនីរបស់អ្នកបានហើយ។",
     "incorrectAccountOrPassword": "គណនីឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ",
-    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "We've sent you an email with a link to verify your account.",
-    "goToYourMailbox": "Go to your mailbox",
-    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "If you do not receive the email within a few minutes, please check your spam folder.",
-    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
-    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?",
-    "selectToken": "ជ្រើសរើសតួឡើង"
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "យើងបានផ្ញើអ៊ីមែលមួយទាមទារមានតំណរក្សដើម្បីធ្វើការបញ្ជាក់គណនីរបស់អ្នក។",
+    "goToYourMailbox": "ទៅកាន់ប្រអប់សំបុត្ររបស់អ្នក",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "ប្រសិនបើអ្នកមិនទទួលបានអ៊ីមែលក្នុងរយៈពេលប៉ុន្មាននាទីសូមពិនិត្យមើលការដាក់បញ្ជាក់របស់អ្នក។",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "សូមពិនិត្យមើលអ៊ីមែលរបស់អ្នក ហើយចុចលើតំណរក្សដើម្បីបន្តរួចបន្ត។",
+    "haveYouVerifiedYourAccountYet": "តើអ្នកបានធ្វើការបញ្ជាក់គណនីរបស់អ្នកទេ?",
+    "selectToken": "ជ្រើសរើសតួឡើង",
+    "theMinimumQuantityIsTooLarge": "បរិមាណតូចបំផុតគឺធំពេក"
 }

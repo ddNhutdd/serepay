@@ -13,7 +13,7 @@
     "vietnamse": "Vietnamse",
     "walletOverview": "Descripción general de la billetera",
     "withdraw": "Retirar",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Debe mantener un mínimo de 20 TRX en su billetera para asegurar suficientes tarifas de gas para negociar tokens TRC20.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Debe mantener un mínimo de 5 USDT en su billetera para asegurar suficientes tarifas de gas para negociar tokens TRC20.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "Las tarifas generales no son fijas, sujetas a cambios dependiendo del estado de las redes blockchain",
     "send": "Enviar",
     "message": "Mensaje",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Si no recibes el correo electrónico en unos minutos, por favor, revisa tu carpeta de correo no deseado.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Por favor, revisa tu correo electrónico y haz clic en el enlace para continuar.",
     "haveYouVerifiedYourAccountYet": "¿Has verificado tu cuenta ya?",
-    "selectToken": "Seleccionar Token"
+    "selectToken": "Seleccionar Token",
+    "theMinimumQuantityIsTooLarge": "La cantidad mínima es demasiado grande"
 }

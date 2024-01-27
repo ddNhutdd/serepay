@@ -13,7 +13,7 @@
     "vietnamse": "Vietnam",
     "walletOverview": "Cüzdan Genel Bakış",
     "withdraw": "Geri çekilmek",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20 Tokenleri ticareti için yeterli gaz ücreti güvence altına almak için cüzdanınızda en az 20 TRX tutmalısınız.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20 Tokenleri ticareti için yeterli gaz ücreti güvence altına almak için cüzdanınızda en az 5 USDT tutmalısınız.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "Tepegöz ücretleri sabit değildir, blockchain ağlarının durumuna bağlı olarak değişebilir",
     "send": "Göndermek",
     "message": "İleti",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "E-postayı birkaç dakika içinde almadıysanız, lütfen spam klasörünüzü kontrol edin.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Lütfen e-postanızı kontrol edin ve devam etmek için bağlantıya tıklayın.",
     "haveYouVerifiedYourAccountYet": "Hesabınızı doğruladınız mı?",
-    "selectToken": "Token Seç"
+    "selectToken": "Token Seç",
+    "theMinimumQuantityIsTooLarge": "Minimum miktar çok büyük"
 }

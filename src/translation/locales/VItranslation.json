@@ -21,7 +21,7 @@
     "vietnamse": "Tiếng Việt",
     "walletOverview": "Tổng quan ví",
     "withdraw": "Rút tiền",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Bạn phải giữ tối thiểu 20 TRX trong ví của mình để bảo đảm phí gas cho việc giao dịch token TRC20.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Bạn phải giữ tối thiểu 5 USDT trong ví của mình để bảo đảm phí gas cho việc giao dịch token TRC20.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "Các khoản phí không cố định, có thể thay đổi tùy thuộc vào trạng thái của các mạng blockchain.",
     "settings": "Cài đặt",
     "application": "Ứng dụng",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Nếu bạn không nhận được email trong vài phút, vui lòng kiểm tra thư mục spam của bạn.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Vui lòng kiểm tra email của bạn và nhấp vào liên kết để tiếp tục.",
     "haveYouVerifiedYourAccountYet": "Bạn đã xác minh tài khoản của mình chưa?",
-    "selectToken": "Chọn Token"
+    "selectToken": "Chọn Token",
+    "theMinimumQuantityIsTooLarge": "Số lượng tối thiểu quá lớn"
 }

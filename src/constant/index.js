@@ -50,7 +50,7 @@ export const api_url = {
   refreshToken: "api/user/refreshToken",
 };
 
-export const image_domain = "https://serepay.net/images/USDT.png";
+export const image_domain = DOMAIN + "images/USDT.png";
 
 export const api_status = {
   pending: "pending",

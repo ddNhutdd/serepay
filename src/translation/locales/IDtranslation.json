@@ -21,7 +21,7 @@
     "vietnamse": "Vietnam",
     "walletOverview": "Ikhtisar dompet",
     "withdraw": "Tarik",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Anda harus menyimpan minimum 20 TRX di dompet Anda untuk mengamankan biaya gas yang cukup untuk memperdagangkan token TRC20.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "Anda harus menyimpan minimum 5 USDT di dompet Anda untuk mengamankan biaya gas yang cukup untuk memperdagangkan token TRC20.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "Biaya overhead tidak tetap, dapat berubah tergantung pada kondisi jaringan blockchain.",
     "settings": "Pengaturan",
     "application": "Aplikasi",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "Jika Anda tidak menerima email dalam beberapa menit, harap periksa folder spam Anda.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Silakan periksa email Anda dan klik tautan untuk melanjutkan.",
     "haveYouVerifiedYourAccountYet": "Apakah Anda sudah memverifikasi akun Anda?",
-    "selectToken": "Pilih Token"
+    "selectToken": "Pilih Token",
+    "theMinimumQuantityIsTooLarge": "Jumlah minimum terlalu besar"
 }

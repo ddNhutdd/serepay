@@ -41,6 +41,7 @@ import {
 import { form, getShow } from "src/redux/reducers/walletWithdraw";
 import { setShow as setShowTabFromRedux } from "src/redux/reducers/walletWithdraw";
 import { EmptyCustom } from "src/components/Common/Empty";
+import { Button, buttonClassesType } from "src/components/Common/Button";
 
 function FormWithdraw() {
   const withdrawTypeEnum = {
@@ -48,6 +49,7 @@ function FormWithdraw() {
     ERC20: "ERC20",
     BEP20: "BEP20",
   };
+
   const showFromRedux = useSelector(getShow);
   const [showForm, setShowForm] = useState(showFromRedux);
   const { t } = useTranslation();
@@ -145,7 +147,6 @@ function FormWithdraw() {
     );
   };
   const submitFormWalletHandle = function (e) {
-    console.log(inputNoteValue, addressElement);
     e.preventDefault();
     if (callApiSubmitStatus !== api_status.fetching) {
       setCallApiSubmitStatus(api_status.fetching);
@@ -523,7 +524,7 @@ function FormWithdraw() {
             <div className="max-available">
               <span>{t("maxAvailable")}:</span>{" "}
               <span>
-                {formatNumber(getMaxAvailable(), i18n.language, 8)} {coin}
+                {formatNumber(getMaxAvailable() || 0, i18n.language, 8)} {coin}
               </span>
             </div>
             <ul className="list-notify">
@@ -533,7 +534,7 @@ function FormWithdraw() {
                 </span>
                 <p>
                   {t(
-                    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens"
+                    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens"
                   )}
                 </p>
               </li>
@@ -543,7 +544,7 @@ function FormWithdraw() {
                 </span>
                 <p>
                   {t(
-                    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens"
+                    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens"
                   )}
                 </p>
               </li>
@@ -565,15 +566,13 @@ function FormWithdraw() {
               </li>
             </ul>
             <div className="button-submit-container">
-              <button
-                className={`${
-                  callApiSubmitStatus === api_status.fetching ? "disabled" : ""
-                }`}
-                type="submit"
+              <Button
+                loading={callApiSubmitStatus === api_status.fetching}
+                type={buttonClassesType.success}
                 onClick={submitFormWalletHandle}
               >
-                {t("send")}
-              </button>
+                {t("send").toUpperCase()}
+              </Button>
             </div>
           </form>
           <form
@@ -606,7 +605,7 @@ function FormWithdraw() {
             <div className="max-available">
               <span>{t("maxAvailable")}:</span>{" "}
               <span>
-                {formatNumber(getMaxAvailable(), i18n.language, 8)} {coin}
+                {formatNumber(getMaxAvailable() || 0, i18n.language, 8)} {coin}
               </span>
             </div>
             <div className="input">
@@ -621,14 +620,13 @@ function FormWithdraw() {
               ></textarea>
             </div>
             <div className="button-submit-container">
-              <button
-                className={`${
-                  callApiSubmitStatus === api_status.fetching ? "disabled" : ""
-                }`}
+              <Button
+                type={buttonClassesType.success}
+                loading={callApiSubmitStatus === api_status.fetching}
                 onClick={transferToUserNameSubmitHandle}
               >
-                {t("send")}
-              </button>
+                {t("send").toUpperCase()}
+              </Button>
             </div>
           </form>
         </div>

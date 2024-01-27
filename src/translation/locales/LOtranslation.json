@@ -21,7 +21,7 @@
     "vietnamse": "ຫວຽດນາມ",
     "walletOverview": "ພາບຮວມກະເປົາເງິນ",
     "withdraw": "ຖອນ",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "ເຈົ້າຕ້ອງຮັກສາ TRX ຢ່າງຫນ້ອຍ 20 ໃນກະເປົາເງິນຂອງເຈົ້າ ເພື່ອຮັບປະກັນຄ່າບໍລິການແກັສເພີງພໍສໍາລັບການຊື້ຂາຍໂທເຄັນ TRC20.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "ເຈົ້າຕ້ອງຮັກສາ USDT ຢ່າງຫນ້ອຍ 5 ໃນກະເປົາເງິນຂອງເຈົ້າ ເພື່ອຮັບປະກັນຄ່າບໍລິການແກັສເພີງພໍສໍາລັບການຊື້ຂາຍໂທເຄັນ TRC20.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "ຄ່າໃຊ້ຈ່າຍພື້ນຖານບໍ່ມີການກໍານົດໄວ້, ເປັນໄປໄດ້ວ່າຈະມີການປ່ຽນແປງຂຶ້ນຢູ່ກັບສະພາບເຄືອຂ່າຍບລັອກເຈນ.",
     "settings": "ການຕັ້ງຄ່າ",
     "application": "ແອັບພລິເຄຊັນ",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "ຖ້າທ່ານບໍ່ໄດ້ຮັບອີເມວໃນອາຍຸນມີອີເມວເຂົ້າມາ, ກະລຸນາກວດໄປໃຊ້ການຖືກອະນຸຍາດຂອງທ່ານ.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "ກະລຸນາກວດໄປໃຊ້ອີເມວຂອງທ່ານແລະຄລິບບັນຊີເພື່ອສືມັນ.",
     "haveYouVerifiedYourAccountYet": "ທ່ານໄດ້ຢືນຢັນບັນຊີຂອງທ່ານແລະບໍ?",
-    "selectToken": "ເລືອກ​ຕໍ່​ໂນັດ"
+    "selectToken": "ເລືອກ​ຕໍ່​ໂນັດ",
+    "theMinimumQuantityIsTooLarge": "ຈໍານວນສູງສຸດແມ່ນຂະຫນາດ"
 }

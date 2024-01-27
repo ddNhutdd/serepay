@@ -21,7 +21,7 @@
     "vietnamse": "เวียดนาม",
     "walletOverview": "ภาพรวมกระเป๋าสตางค์",
     "withdraw": "ถอน",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "คุณต้องเก็บ TRX ขั้นต่ํา 20 ในกระเป๋าสตางค์ของคุณเพื่อประกันค่าธรรมเนียมแก๊สเพียงพอสําหรับการซื้อขายโทเค็น TRC20",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "คุณต้องเก็บ USDT ขั้นต่ํา 5 ในกระเป๋าสตางค์ของคุณเพื่อประกันค่าธรรมเนียมแก๊สเพียงพอสําหรับการซื้อขายโทเค็น TRC20",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "ค่าธรรมเนียมโครงสร้างพื้นฐานไม่คงที่ อาจเปลี่ยนแปลงขึ้นอยู่กับสถานะของเครือข่ายบล็อกเชน",
     "settings": "การตั้งค่า",
     "application": "แอปพลิเคชัน",
@@ -341,5 +341,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "หากคุณไม่ได้รับอีเมลภายในไม่กี่นาที กรุณาตรวจสอบโฟลเดอร์สแปมของคุณ",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "กรุณาตรวจสอบอีเมลของคุณและคลิกที่ลิงก์เพื่อดำเนินการต่อ",
     "haveYouVerifiedYourAccountYet": "คุณได้ยืนยันบัญชีของคุณแล้วหรือยัง?",
-    "selectToken": "เลือกโทเค็น"
+    "selectToken": "เลือกโทเค็น",
+    "theMinimumQuantityIsTooLarge": "ปริมาณขั้นต่ำมากเกินไป"
 }

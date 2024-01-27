@@ -97,7 +97,6 @@ export const roundDecimalValues = function (value, coinValue) {
 };
 //
 export const zoomImage = function (e) {
-  console.log("image click", e.target.src);
   const body = document.body;
   let angel = 0,
     size = 1.2;
@@ -406,4 +405,15 @@ export const observeWidth = function (setWidth) {
       setWidth(width);
     }
   });
+};
+export const createIntersectionObserve = function (callback, htmlElement) {
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver(callback, options);
+  observer.observe(htmlElement);
+  return observer;
 };

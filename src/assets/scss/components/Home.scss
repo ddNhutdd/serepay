@@ -13,7 +13,7 @@
     position: fixed;
     top: 0px;
     left: 0;
-    height: 100px;
+    height: fit-content;
     padding-bottom: 15px;
     padding-top: 15px;
 
@@ -26,7 +26,7 @@
 
       .home__header__icon {
         img {
-          width: 120px;
+          width: 140px;
           object-fit: cover;
           display: block;
         }
@@ -108,6 +108,10 @@
         display: none;
         z-index: 3;
 
+        &:hover {
+          cursor: pointer;
+        }
+
         @media screen and (max-width: 991px) {
           display: flex;
           flex-direction: column;
@@ -157,7 +161,7 @@
 
   .home__carousel {
     width: 100%;
-    height: fit-content;
+    height: 800px;
     background: transparent;
     color: $new-text-color-white;
     font-size: 18px;
@@ -334,6 +338,7 @@
         }
 
         .home__benefit__left {
+          opacity: 0;
           width: 50%;
           display: flex;
           gap: 20px;
@@ -388,6 +393,7 @@
         }
 
         .home__benefit__right {
+          opacity: 0;
           width: 50%;
           display: flex;
           flex-direction: column;
@@ -454,19 +460,24 @@
         position: relative;
         z-index: 2;
 
-        span {
-          font-size: 36px;
-          color: $new-text-color-white;
-        }
+        .home__faqs-content-title {
+          opacity: 0;
 
-        h3 {
-          font-weight: 100;
-          color: $new-text-color-white;
-          font-size: 40px;
-          padding-bottom: 100px;
+          span {
+            font-size: 36px;
+            color: $new-text-color-white;
+          }
+
+          h3 {
+            font-weight: 100;
+            color: $new-text-color-white;
+            font-size: 40px;
+            padding-bottom: 100px;
+          }
         }
 
         .home__faqs-tabs {
+          opacity: 0;
           display: flex;
           gap: 40px;
 

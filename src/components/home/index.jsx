@@ -4,8 +4,11 @@ import Footer from "../Footer";
 import { url } from "src/constant";
 import { useSelector } from "react-redux";
 import PhoneApps from "../PhoneApps";
+import { createIntersectionObserve } from "src/util/common";
 function Home() {
   const history = useHistory();
+  const isLogin = useSelector((state) => state.loginReducer.isLogin);
+
   useEffect(() => {
     const animationHeader = function () {
       var header = document.querySelector(".home__header");
@@ -40,13 +43,155 @@ function Home() {
     };
     window.addEventListener("click", closeMenu);
     window.addEventListener("scroll", animationHeader);
+
+    const homeCarouselTitle = document.querySelector("#homeCarouselTitle");
+    const homeCarouselTitleObserve = createIntersectionObserve(
+      homeCarouselTitleObserverHandle,
+      homeCarouselTitle
+    );
+
+    const homeCarouselText = document.querySelector("#homeCarouselText");
+    const homeCarouselTextObserve = createIntersectionObserve(
+      homeCarouselTextObserverHandle,
+      homeCarouselText
+    );
+
+    const homeCarouselImage = document.querySelector("#homeCarouselImage");
+    const homeCarouselImageObserve = createIntersectionObserve(
+      homeCarouselTextObserverHandle,
+      homeCarouselImage
+    );
+
+    const homeWhyTitle = document.querySelector("#homeWhyTitle");
+    const homeWhyTitleObserve = createIntersectionObserve(
+      homeWhyTitleObserverHandle,
+      homeWhyTitle
+    );
+
+    const homeWhyPara = document.querySelector("#homeWhyPara");
+    const homeWhyParaObserve = createIntersectionObserve(
+      homeWhyParaObServerHandle,
+      homeWhyPara
+    );
+
+    const homeWhySmall = document.querySelector("#homeWhySmall");
+    const homeWhySmallObserve = createIntersectionObserve(
+      homeWhyParaObServerHandle,
+      homeWhySmall
+    );
+
+    const homeBenefitLeft = document.querySelector("#homeBenefitLeft");
+    const homeBenefitLeftObserve = createIntersectionObserve(
+      homeBenefitLeftObServerHandle,
+      homeBenefitLeft
+    );
+
+    const homeBenefitRight = document.querySelector("#homeBenefitRight");
+    const homeBenefitRightObserve = createIntersectionObserve(
+      homeBenefitRightObServerHandle,
+      homeBenefitRight
+    );
+
+    const homeFaqsTitle = document.querySelector("#homeFaqsTitle");
+    const homeFaqsTitleObserve = createIntersectionObserve(
+      homeFaqsTitleObserverHandle,
+      homeFaqsTitle
+    );
+
+    const homeFaqsContent = document.querySelector("#homeFaqsContent");
+    const homeFaqsContentObserve = createIntersectionObserve(
+      homeFaqsContentObserverHandle,
+      homeFaqsContent
+    );
+
     return () => {
       window.removeEventListener("scroll", animationHeader);
       window.removeEventListener("click", closeMenu);
+      homeCarouselTitleObserve.disconnect();
+      homeCarouselTextObserve.disconnect();
+      homeCarouselImageObserve.disconnect();
+      homeWhyTitleObserve.disconnect();
+      homeWhyParaObserve.disconnect();
+      homeWhySmallObserve.disconnect();
+      homeBenefitLeftObserve.disconnect();
+      homeBenefitRightObserve.disconnect();
+      homeFaqsTitleObserve.disconnect();
+      homeFaqsContentObserve.disconnect();
     };
   }, []);
 
-  const isLogin = useSelector((state) => state.loginReducer.isLogin);
+  const homeCarouselTitleObserverHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("backInUp") &&
+          element.classList.add("backInUp");
+    }
+  };
+  const homeCarouselTextObserverHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("fadeIn-long") &&
+          element.classList.add("fadeIn-long");
+    }
+  };
+  const homeWhyTitleObserverHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("wobble") &&
+          element.classList.add("wobble");
+    }
+  };
+  const homeWhyParaObServerHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("fadeInBottomToTop-long") &&
+          element.classList.add("fadeInBottomToTop-long");
+    }
+  };
+  const homeBenefitLeftObServerHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("backInLeft") &&
+          element.classList.add("backInLeft");
+    }
+  };
+  const homeBenefitRightObServerHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("backInRight") &&
+          element.classList.add("backInRight");
+    }
+  };
+  const homeFaqsTitleObserverHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("fadeInDownBig") &&
+          element.classList.add("fadeInDownBig");
+    }
+  };
+  const homeFaqsContentObserverHandle = function (entries) {
+    for (const entry of entries) {
+      const element = entry.target;
+      if (!entry.isIntersecting) return;
+      else
+        !element.classList.contains("fadeInUpBig") &&
+          element.classList.add("fadeInUpBig");
+    }
+  };
   const redirectToLogin = function (e) {
     e.preventDefault();
     history.push(url.login);
@@ -161,8 +306,8 @@ function Home() {
                 FAQ
               </div>
             </li>
-            <li>
-              {!isLogin ? (
+            {!isLogin && (
+              <li>
                 <div className="home__header__login-container  fadeIn">
                   <button
                     onClick={redirectToLogin}
@@ -171,12 +316,9 @@ function Home() {
                     Login
                   </button>
                 </div>
-              ) : (
-                <></>
-              )}
-            </li>
+              </li>
+            )}
           </ul>
-
           <div
             onClick={headerBarButtonClickHandle}
             className="home__header__bar"
@@ -191,10 +333,10 @@ function Home() {
         <div className="container">
           <div className="home__carousel__content">
             <div className="home__carousel__left">
-              <h1 className="home__carousel__title">
+              <h1 id="homeCarouselTitle" className="home__carousel__title">
                 Cryptocurrency Wallet - Buy/Sell Bitcoin, Ethereum and Altcoins
               </h1>
-              <p className="home__carousel__text">
+              <p id="homeCarouselText" className="home__carousel__text">
                 Serepay is a multi-industry eco-system that helps to deepen the
                 application of cryptocurrencies to each business and as an
                 alternative to traditional exchanges.
@@ -210,7 +352,7 @@ function Home() {
                 <></>
               )}
             </div>
-            <div className="home__carousel__right">
+            <div id="homeCarouselImage" className="home__carousel__right">
               <img
                 src={process.env.PUBLIC_URL + "/img/hinhhometobe.png"}
                 alt="carousel"
@@ -239,13 +381,13 @@ function Home() {
           <div className="home__why__video-overlay"></div>
         </div>
         <div className="home__why__content">
-          <h3>Why to choose Serepay?</h3>
-          <p>
+          <h3 id="homeWhyTitle">Why to choose Serepay?</h3>
+          <p id="homeWhyPara">
             Serepay is a pioneer multifunctional wallet in the field of
             Blockchain and digital asset storage!
           </p>
-          <small>
-            Users can send, receive, and exchange their electronic money
+          <small id="homeWhySmall">
+            Users can send, receive, and exchange their cryptocurrency
             conveniently and easily. Serepay meets all the needs of the
             community of token users as well as other cryptocurrencies.
           </small>
@@ -255,7 +397,7 @@ function Home() {
         <div className="container">
           <div className="home__benefit__background"></div>
           <div className="home__benefit__wrap-content">
-            <div className="home__benefit__left">
+            <div id="homeBenefitLeft" className="home__benefit__left">
               <div className="home__benefit__left-column-left">
                 <div className="home__benefit__card">
                   <img
@@ -326,7 +468,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="home__benefit__right">
+            <div id="homeBenefitRight" className="home__benefit__right">
               <div className="home__benefit__content">
                 <h3>Benefits of Using Our Solution</h3>
                 <p>
@@ -349,9 +491,11 @@ function Home() {
       <div id="home__faqs" className="home__faqs">
         <div className="container">
           <div className="home__faqs-content">
-            <span>FAQS</span>
-            <h3>Frequently Asked questions</h3>
-            <div className="home__faqs-tabs">
+            <div id="homeFaqsTitle" className="home__faqs-content-title">
+              <span>FAQS</span>
+              <h3>Frequently Asked questions</h3>
+            </div>
+            <div id="homeFaqsContent" className="home__faqs-tabs">
               <ul className="home__faqs-list-tab">
                 <li className="active" data-name={1} onClick={tabOnClickHandle}>
                   GENERAL
@@ -367,39 +511,6 @@ function Home() {
                 </li>
               </ul>
               <div className="home__faqs-tab-content --d-none" data-name={1}>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
-                  </div>
-                </div>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
-                  </div>
-                </div>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
-                  </div>
-                </div>
                 <div className="home__faqs-card">
                   <div className="home__faqs-card-header">What is Serepay?</div>
                   <div className="home__faqs-card-content">
@@ -455,39 +566,6 @@ function Home() {
                     Litecoin transactions.
                   </div>
                 </div>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
-                  </div>
-                </div>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
-                  </div>
-                </div>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
-                  </div>
-                </div>
               </div>
               <div className="home__faqs-tab-content" data-name={4}>
                 <div className="home__faqs-card">
@@ -514,17 +592,6 @@ function Home() {
                       Bitcoin’s average block time is about 10 minutes, while
                       Ethereum’s aims to be 12 seconds.
                     </p>
-                  </div>
-                </div>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
                   </div>
                 </div>
               </div>

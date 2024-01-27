@@ -229,7 +229,6 @@ function AdsHistory() {
       });
   };
   const loadData = function (page) {
-    console.log(page);
     const act = action.current;
     const pending = getElementById("pendingCheckbox")?.checked;
     if (pending === null || pending === undefined) return;

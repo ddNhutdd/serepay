@@ -157,25 +157,7 @@
                 text-align: center;
 
                 button {
-                    background: $new-primary-background-6;
-                    border-radius: 5px;
-                    padding: 10px;
-                    color: $white;
-                    width: 60%;
-                    border: none;
-                    outline: none;
-                    transition: background 0.3s ease;
                     width: 100%;
-
-                    &:hover {
-                        background: $new-primary-background-7;
-                        cursor: pointer;
-                    }
-
-                    &.disabled {
-                        background-color: $background-color-4;
-                        cursor: not-allowed;
-                    }
                 }
             }
         }
@@ -261,23 +243,8 @@
                 text-align: center;
 
                 button {
-                    background: $new-primary-background-6;
-                    border-radius: 5px;
-                    padding: 10px;
-                    color: $white;
                     width: 60%;
-                    border: none;
-                    outline: none;
-
-                    &:hover {
-                        background: $new-primary-background-7;
-                        cursor: pointer;
-                    }
-
-                    &.disabled {
-                        background-color: $background-color-4;
-                        cursor: not-allowed;
-                    }
+                    margin: auto;
                 }
             }
         }
@@ -329,7 +296,6 @@
 
             .loading {
                 padding: 30px;
-                background: $white;
                 box-shadow: 0 10px 28px $boxShadown-color-3;
                 border-radius: 20px;
                 display: flex;

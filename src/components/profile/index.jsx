@@ -744,6 +744,16 @@ function Profile() {
         })
         .catch((error) => {
           console.log(error);
+          const messError = error.response.data.message;
+          switch (messError) {
+            case "Incorrect code! ":
+              callToastError(t("incorrectCode"));
+              break;
+
+            default:
+              callToastError(t("error"));
+              break;
+          }
           setCallApiTurnONOff2faStatus(api_status.rejected);
         });
     } else {

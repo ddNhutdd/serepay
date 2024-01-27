@@ -21,7 +21,7 @@
     "vietnamse": "ベトナム語",
     "walletOverview": "ウォレットの概要",
     "withdraw": "引き出す",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20トークンを取引するのに十分なガス料金を確保するには、ウォレットに最小20TRXを保有する必要があります。",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "TRC20トークンを取引するのに十分なガス料金を確保するには、ウォレットに最小5USDTを保有する必要があります。",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "経費は固定されておらず、ブロックチェーンネットワークの状態によって変更される場合があります。",
     "settings": "設定",
     "application": "アプリケーション",
@@ -338,10 +338,11 @@
     "authenticationSuccess": "認証成功",
     "yourEmailHasBeenSuccessfullyVerifiedYouCanNowLogInToYourAccount": "あなたのメールは正常に確認されました。これでアカウントにログインできます。",
     "incorrectAccountOrPassword": "アカウントまたはパスワードが正しくありません",
-    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "We've sent you an email with a link to verify your account.",
-    "goToYourMailbox": "Go to your mailbox",
-    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "If you do not receive the email within a few minutes, please check your spam folder.",
-    "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
-    "haveYouVerifiedYourAccountYet": "Have you verified your account yet?",
-    "selectToken": "トークンを選択"
+    "weveSentYouAnEmailWithALinkToVerifyYourAccount": "アカウントを確認するためのリンクが含まれたメールをお送りしました。",
+    "goToYourMailbox": "メールボックスに移動",
+    "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "数分以内にメールが届かない場合は、スパムフォルダをご確認ください。",
+    "pleaseCheckYourEmailAndClickTheLinkToContinue": "メールを確認し、リンクをクリックして続行してください。",
+    "haveYouVerifiedYourAccountYet": "アカウントを確認しましたか？",
+    "selectToken": "トークンを選択",
+    "theMinimumQuantityIsTooLarge": "最小数量が大きすぎます"
 }

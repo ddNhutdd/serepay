@@ -13,7 +13,7 @@
     "vietnamse": "Vietnamse",
     "walletOverview": "Wallet Overview",
     "withdraw": "Withdraw",
-    "youMustKeepAMinimumOf20TRXInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "You must keep a minimum of 20 TRX in your wallet to secure enough gas fees for trading TRC20 tokens.",
+    "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens": "You must keep a minimum of 5 USDT in your wallet to secure enough gas fees for trading TRC20 tokens.",
     "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks": "The overhead fees are not fixed, subject to change depending on the state of the blockchain networks",
     "send": "Send",
     "message": "Message",
@@ -343,5 +343,6 @@
     "ifYouDoNotReceiveTheEmailWithinAFewMinutesPleaseCheckYourSpamFolder": "If you do not receive the email within a few minutes, please check your spam folder.",
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
     "haveYouVerifiedYourAccountYet": "Have you verified your account yet?",
-    "selectToken": "Select Token"
+    "selectToken": "Select Token",
+    "theMinimumQuantityIsTooLarge": "The minimum quantity is too large"
 }
