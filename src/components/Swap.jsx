@@ -6,9 +6,8 @@ import {
   formatStringNumberCultureUS,
   getLocalStorage,
   processString,
-  roundDecimalValues,
-  roundIntl,
   rountRange,
+  setLocalStorage,
 } from "src/util/common";
 import {
   api_status,
@@ -31,8 +30,7 @@ import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import socket from "src/util/socket";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import { Input, inputColor, inputType } from "./Common/Input";
-import { getCoin, getCoinAmount } from "src/redux/reducers/wallet2Slice";
+import { Input, inputType } from "./Common/Input";
 import { EmptyCustom } from "./Common/Empty";
 import { Button, buttonClassesType } from "./Common/Button";
 export default function Swap() {
@@ -42,9 +40,13 @@ export default function Swap() {
   const [isModalVisible2, setIsModalVisible2] = useState(false);
   const data = useSelector(getListCoinRealTime) ?? [];
   const data2 = useSelector(getListCoinRealTime) ?? [];
-  const [swapFromCoin, setSwapFromCoin] = useState(useSelector(getCoin));
-  const [swapToCoin, setSwapToCoin] = useState("USDT");
-  const amountCoin = useSelector(getCoinAmount);
+  const [swapFromCoin, setSwapFromCoin] = useState(
+    getLocalStorage(localStorageVariable.coinFromWalletList) || coinString.USDT
+  );
+  const [swapToCoin, setSwapToCoin] = useState(coinString.USDT);
+  const amountCoin = getLocalStorage(
+    localStorageVariable.amountFromWalletList || 0
+  );
   const userWallet = useSelector(getUserWallet);
   const [fromCoinValueString, setFromCoinValueString] = useState(
     amountCoin > 0 ? amountCoin.toString() : ""
@@ -70,9 +72,6 @@ export default function Swap() {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
-
-    const element = document.querySelector(".swap");
-    element.classList.add("fadeInBottomToTop");
 
     socket.once("listCoin", (resp) => {
       if (resp && resp.length > 0) allCoinPrice.current = resp;
@@ -368,7 +367,7 @@ export default function Swap() {
   };
 
   return (
-    <div className="swap">
+    <div className="swap fadeInBottomToTop">
       <div className="container">
         <div className="box">
           <h2 className="title">{t("swap")}</h2>
@@ -510,6 +509,10 @@ export default function Swap() {
                       setSwapFromCoin(item.name);
                       setIsModalVisible(false);
                       setSearchCoinName("");
+                      setLocalStorage(
+                        localStorageVariable.coinFromWalletList,
+                        item.name
+                      );
                     }}
                   >
                     <>

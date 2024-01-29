@@ -13,6 +13,8 @@ export const localStorageVariable = {
   coinFromP2pExchange: "amFP2PE",
   moneyFromP2pExchange: "amFP2PEM",
   coinNameFromP2pExchange: "cnfP2PE",
+  coinFromWalletList: "cnwl",
+  amountFromWalletList: "amcnwl",
 };
 
 export const deploy_domain = DOMAIN + "wallet-2";
@@ -43,6 +45,9 @@ export const url = {
   recovery_password: "/recovery-password",
   forgot_password: "/forget-password/:token",
   confirm_email: "/confirm-email",
+  transfer: "/transfer",
+  widthdraw: "/widthdraw",
+  deposite: "/deposite",
 };
 
 export const api_url = {

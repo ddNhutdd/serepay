@@ -7,7 +7,6 @@ import {
   removeLocalStorage,
 } from "../util/common";
 import {
-  currencyMapper,
   defaultCurrency,
   defaultLanguage,
   localStorageVariable,
@@ -185,6 +184,8 @@ export default function Header2({ history }) {
     removeLocalStorage(localStorageVariable.moneyFromP2pExchange);
     dispatch(currencySetCurrent(defaultCurrency));
     removeLocalStorage(localStorageVariable.coin);
+    removeLocalStorage(localStorageVariable.coinFromWalletList);
+    removeLocalStorage(localStorageVariable.amountFromWalletList);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess(tem, temTitle);

@@ -59,6 +59,9 @@ import ForgotPassword from "./components/forgotPassword";
 import Verify from "./components/verify";
 import ConfirmEmail from "./components/confirmEmail";
 import ConfigData from "./components/admin/configData";
+import Transfer from "./components/seresoWallet/transfer";
+import FormWithdraw from "./components/seresoWallet/walletWithdraw";
+import SerepayWalletDeposit from "./components/seresoWallet/walletDeposite";
 
 const config = {};
 export const math = create(all, config);
@@ -243,7 +246,10 @@ function App() {
             path={url.recovery_password}
             component={RecoveryPassword}
           />
+          <MainTemplate path={url.deposite} component={SerepayWalletDeposit} />
           <MainTemplate path={url.forgot_password} component={ForgotPassword} />
+          <MainTemplate path={url.transfer} component={Transfer} />
+          <MainTemplate path={url.widthdraw} component={FormWithdraw} />
           <MainTemplate path="/wallet" component={Wallet} />
           <MainTemplate path={url.confirm_email} component={ConfirmEmail} />
           <MainTemplate path={url.verify} component={Verify} />

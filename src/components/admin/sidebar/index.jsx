@@ -118,6 +118,8 @@ function Sidebar() {
     removeLocalStorage(localStorageVariable.adsItem);
     removeLocalStorage(localStorageVariable.coinNameFromP2pExchange);
     removeLocalStorage(localStorageVariable.createAds);
+    removeLocalStorage(localStorageVariable.coinFromWalletList);
+    removeLocalStorage(localStorageVariable.amountFromWalletList);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess("Logged out");
