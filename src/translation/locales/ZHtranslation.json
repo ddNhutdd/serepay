@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "请检查您的电子邮件并单击链接以继续。",
     "haveYouVerifiedYourAccountYet": "您已验证您的帐户了吗？",
     "selectToken": "选择代币",
-    "theMinimumQuantityIsTooLarge": "最小数量太大"
+    "theMinimumQuantityIsTooLarge": "最小数量太大",
+    "addressIsNotEmpty": "地址不为空"
 }

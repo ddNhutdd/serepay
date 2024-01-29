@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "בבקשה בדוק את תיקיית הדואר האלקטרוני שלך ולחץ על הקישור כדי להמשיך.",
     "haveYouVerifiedYourAccountYet": "האם אימתת את החשבון שלך כבר?",
     "selectToken": "בחר טוקן",
-    "theMinimumQuantityIsTooLarge": "הכמות המינימלית גדולה מדי"
+    "theMinimumQuantityIsTooLarge": "הכמות המינימלית גדולה מדי",
+    "addressIsNotEmpty": "הכתובת אינה ריקה"
 }

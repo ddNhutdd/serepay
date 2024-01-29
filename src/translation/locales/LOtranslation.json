@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "ກະລຸນາກວດໄປໃຊ້ອີເມວຂອງທ່ານແລະຄລິບບັນຊີເພື່ອສືມັນ.",
     "haveYouVerifiedYourAccountYet": "ທ່ານໄດ້ຢືນຢັນບັນຊີຂອງທ່ານແລະບໍ?",
     "selectToken": "ເລືອກ​ຕໍ່​ໂນັດ",
-    "theMinimumQuantityIsTooLarge": "ຈໍານວນສູງສຸດແມ່ນຂະຫນາດ"
+    "theMinimumQuantityIsTooLarge": "ຈໍານວນສູງສຸດແມ່ນຂະຫນາດ",
+    "addressIsNotEmpty": "ທີ່​ຢູ່​ບໍ່​ຫວ່າງ"
 }

@@ -170,10 +170,18 @@ function FormWithdraw() {
         })
         .catch((error) => {
           console.log(error);
-          const messageError = error?.response?.data?.message;
+          const messageError =
+            error?.response?.data?.errors[0] || error?.response?.data?.message;
+          console.log(messageError);
           switch (messageError) {
             case "Insufficient balance or incorrect withdrawal minimum amount.":
               callToastError(t("insufficientBalanceOrWithdrawalAmount"));
+              break;
+            case "to_address is not empty":
+              callToastError(t("addressIsNotEmpty"));
+              break;
+            case "Invalid quantity":
+              callToastError(t("invalidQuantity"));
               break;
             default:
               callToastError(t("anErrorHasOccurred"));

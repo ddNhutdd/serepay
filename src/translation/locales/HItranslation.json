@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "कृपया अपने ईमेल की जाँच करें और जारी रखने के लिए लिंक पर क्लिक करें।",
     "haveYouVerifiedYourAccountYet": "क्या आपने अपने खाते को सत्यापित किया है?",
     "selectToken": "टोकन चुनें",
-    "theMinimumQuantityIsTooLarge": "न्यूनतम मात्रा बहुत बड़ी है"
+    "theMinimumQuantityIsTooLarge": "न्यूनतम मात्रा बहुत बड़ी है",
+    "addressIsNotEmpty": "पता खाली नहीं है"
 }

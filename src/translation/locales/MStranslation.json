@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Sila periksa e-mel anda dan klik pautan untuk teruskan.",
     "haveYouVerifiedYourAccountYet": "Adakah anda telah mengesahkan akaun anda?",
     "selectToken": "Pilih Token",
-    "theMinimumQuantityIsTooLarge": "Kuantiti minimum terlalu besar"
+    "theMinimumQuantityIsTooLarge": "Kuantiti minimum terlalu besar",
+    "addressIsNotEmpty": "Alamat tidak kosong"
 }

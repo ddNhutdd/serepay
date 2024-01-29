@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "이메일을 확인하고 계속 진행하려면 링크를 클릭하세요.",
     "haveYouVerifiedYourAccountYet": "계정을 이미 확인했나요?",
     "selectToken": "토큰 선택",
-    "theMinimumQuantityIsTooLarge": "최소 수량이 너무 많습니다"
+    "theMinimumQuantityIsTooLarge": "최소 수량이 너무 많습니다",
+    "addressIsNotEmpty": "주소가 비어 있지 않습니다"
 }

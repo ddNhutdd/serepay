@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "メールを確認し、リンクをクリックして続行してください。",
     "haveYouVerifiedYourAccountYet": "アカウントを確認しましたか？",
     "selectToken": "トークンを選択",
-    "theMinimumQuantityIsTooLarge": "最小数量が大きすぎます"
+    "theMinimumQuantityIsTooLarge": "最小数量が大きすぎます",
+    "addressIsNotEmpty": "アドレスは空ではありません"
 }

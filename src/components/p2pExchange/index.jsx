@@ -157,6 +157,8 @@ const P2pExchange = memo(function () {
       item.classList.remove("active");
     }
     e.currentTarget.classList.add("active");
+    setAmountCoin(() => 0);
+    setAmountMoney(() => 0);
   };
   const filterByCoinClickHandle = function (e) {
     setFilter(filterType.coin);
@@ -165,6 +167,8 @@ const P2pExchange = memo(function () {
       item.classList.remove("active");
     }
     e.currentTarget.classList.add("active");
+    setAmountCoin(() => 0);
+    setAmountMoney(() => 0);
   };
   const renderClassInputFilterTitleCoin = function () {
     return filter === filterType.coin ? "" : "--d-none";

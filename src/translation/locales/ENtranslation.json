@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Please check your email and click the link to continue.",
     "haveYouVerifiedYourAccountYet": "Have you verified your account yet?",
     "selectToken": "Select Token",
-    "theMinimumQuantityIsTooLarge": "The minimum quantity is too large"
+    "theMinimumQuantityIsTooLarge": "The minimum quantity is too large",
+    "addressIsNotEmpty": "Address is not empty"
 }

@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "يرجى التحقق من بريدك الإلكتروني والنقر على الرابط للمتابعة.",
     "haveYouVerifiedYourAccountYet": "هل قمت بالتحقق من حسابك حتى الآن؟",
     "selectToken": "اختر الرمز",
-    "theMinimumQuantityIsTooLarge": "الحد الأدنى للكمية كبير جدًا"
+    "theMinimumQuantityIsTooLarge": "الحد الأدنى للكمية كبير جدًا",
+    "addressIsNotEmpty": "العنوان غير فارغ"
 }

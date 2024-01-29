@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Controleer je e-mail en klik op de link om door te gaan.",
     "haveYouVerifiedYourAccountYet": "Heb je je account al geverifieerd?",
     "selectToken": "Selecteer Token",
-    "theMinimumQuantityIsTooLarge": "De minimumhoeveelheid is te groot"
+    "theMinimumQuantityIsTooLarge": "De minimumhoeveelheid is te groot",
+    "addressIsNotEmpty": "Adres is niet leeg"
 }
