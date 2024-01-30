@@ -104,3 +104,8 @@ export const updateConfigAdmin = function (data) {
     return axiosService.post("/api/p2pBank/updateConfigAdmin", data);
   } catch (error) {}
 };
+export const historytransferAdmin = function (data) {
+  try {
+    return axiosService.post("/api/adminv2/historytransferAdmin", data);
+  } catch (error) {}
+};
