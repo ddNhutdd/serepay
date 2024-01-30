@@ -7,6 +7,20 @@
     .container {
         @include container;
 
+        .tranfer2Fa {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 28px $boxShadown-color-3;
+            border-radius: 20px;
+            padding: 30px;
+            background-color: $new-background-level-1;
+            margin-bottom: 30px;
+
+        }
+
         .transferContent {
             display: flex;
             align-items: flex-start;
@@ -188,6 +202,47 @@
                         display: flex;
                         flex-direction: column;
                         gap: 20px;
+
+                        .transfer__Wallet-item {
+                            box-shadow: 0 10px 20px 0 $boxShadown-color-4;
+                            border-radius: 5px;
+
+                            .transfer__Wallet-header {
+                                padding: 10px 10px 5px 10px;
+                                background-color: $neutral-2;
+                                width: 100%;
+                                border-top-left-radius: 5px;
+                                border-top-right-radius: 5px;
+                                color: $neutral-20;
+                                font-size: 15px;
+                                display: flex;
+                                align-items: center;
+                                gap: 5px;
+                            }
+
+                            .transfer__Wallet-body {
+                                padding: 5px 10px 10px 10px;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                                border-bottom-left-radius: 5px;
+                                border-bottom-right-radius: 5px;
+                                color: $new-text-color-white;
+                                background-color: $new-background-level-2;
+
+                                .transfer__Wallet-body-amount {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: flex-start;
+                                    gap: 5px;
+
+                                    img {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     .paging {

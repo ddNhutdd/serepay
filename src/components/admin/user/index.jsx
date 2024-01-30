@@ -194,7 +194,6 @@ const User = function () {
           resolve(true);
         })
         .catch((error) => {
-          console.log(error);
           callToastError(commontString.error);
           reject(false);
         });

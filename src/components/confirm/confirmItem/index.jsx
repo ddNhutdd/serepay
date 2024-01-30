@@ -141,7 +141,7 @@ function ConfirmItem(props) {
         })
         .catch((error) => {
           callApiStatus.current = api_status.rejected;
-          console.log(error);
+
           return resolve(false);
         });
     });
@@ -169,7 +169,6 @@ function ConfirmItem(props) {
           return resolve(true);
         })
         .catch((error) => {
-          console.log(error);
           return resolve(null);
         });
     });
@@ -204,7 +203,7 @@ function ConfirmItem(props) {
         })
         .catch((error) => {
           callApiStatus.current = api_status.rejected;
-          console.log(error);
+
           return resolve(false);
         });
     });
@@ -225,7 +224,7 @@ function ConfirmItem(props) {
         })
         .catch((error) => {
           callApiStatus.current = api_status.rejected;
-          console.log(error);
+
           return resolve(false);
         });
     });

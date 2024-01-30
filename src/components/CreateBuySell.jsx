@@ -236,7 +236,7 @@ export default function CreateBuy() {
         return resp.data.data.username;
       })
       .catch((error) => {
-        console.log(error);
+
         return null;
       });
   };
@@ -392,7 +392,7 @@ export default function CreateBuy() {
         })
         .catch((error) => {
           callApiStatus.current = api_status.rejected;
-          console.log(error);
+
           const mess = error?.response?.data?.message;
           switch (mess) {
             case "Insufficient balance":

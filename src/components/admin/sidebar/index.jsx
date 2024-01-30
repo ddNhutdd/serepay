@@ -65,6 +65,9 @@ function Sidebar() {
       case "config-data":
         addClassToElementById("config-data", "active");
         break;
+      case "transfer":
+        addClassToElementById("transfer", "active");
+        break;
       default:
         break;
     }
@@ -109,7 +112,13 @@ function Sidebar() {
     e.currentTarget.classList.add("active");
     history.push(url.admin_configData);
   };
+  const redirectTransfer = function (e) {
+    clearSelectedItem();
+    e.currentTarget.classList.add("active");
+    history.push(url.admin_transfer);
+  };
   const logout = () => {
+    dispatch({ type: "USER_ADMIN", payload: false });
     localStorage.removeItem(localStorageVariable.user);
     localStorage.removeItem(localStorageVariable.token);
     removeLocalStorage(localStorageVariable.currency);
@@ -120,6 +129,7 @@ function Sidebar() {
     removeLocalStorage(localStorageVariable.createAds);
     removeLocalStorage(localStorageVariable.coinFromWalletList);
     removeLocalStorage(localStorageVariable.amountFromWalletList);
+    removeLocalStorage(localStorageVariable.thisIsAdmin);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess("Logged out");
@@ -175,6 +185,12 @@ function Sidebar() {
             <i className="fa-solid fa-database"></i>
           </span>
           <span className="admin-sidebar__item">Config Data</span>
+        </li>
+        <li onClick={redirectTransfer} id="transfer">
+          <span className="admin-sidebar__icon">
+            <i className="fa-solid fa-arrow-right-arrow-left"></i>
+          </span>
+          <span className="admin-sidebar__item">Transfer</span>
         </li>
         <li
           className="--d-none"

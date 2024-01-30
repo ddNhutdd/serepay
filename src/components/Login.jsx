@@ -60,6 +60,9 @@ export default function Login({ history }) {
         userName: e,
         password: p,
       });
+      response?.data?.data?.id === 1
+        ? dispatch({ type: "USER_ADMIN", payload: true })
+        : dispatch({ type: "USER_ADMIN", payload: false });
       const profile = JSON.stringify(response.data.data);
       callToastSuccess(t("loggedInSuccessfully"));
       localStorage.setItem("token", response.data.data.token);
@@ -70,9 +73,7 @@ export default function Login({ history }) {
       // search previos page and redirect
       const previousPage = getLocalStorage(localStorageVariable.previousePage);
       socket.emit("join", response.data.data.id);
-      socket.on("ok", (res) => {
-        console.log(res, "ok");
-      });
+      socket.on("ok", (res) => {});
       history.push("wallet-2");
       if (previousPage) {
         history.replace(previousPage.pathname + previousPage.search);

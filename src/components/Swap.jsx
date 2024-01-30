@@ -197,7 +197,6 @@ export default function Swap() {
         setCallApiHistoryStatus(api_status.fulfilled);
       })
       .catch((error) => {
-        console.log(error);
         setCallApiHistoryStatus(api_status.rejected);
       });
   };

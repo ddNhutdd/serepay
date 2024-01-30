@@ -1,0 +1,39 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.swapAdmin {
+    color: $new-text-color-white;
+
+    .swapAdmin__header {
+        .swapAdmin__title {
+            @extend .titleContainerAdmin;
+
+            .widthdraw__filter {
+                .swapAdmin__list-coin {
+                    padding-left: 0;
+                    gap: 10px;
+                    flex-wrap: wrap;
+
+                    .swapAdmin__coin-item {
+                        width: fit-content;
+
+                        &.active {
+                            background-color: $new-primary-color-6;
+                            color: $new-text-color-white;
+                        }
+                    }
+                }
+
+                .swapAdmin__paging {
+                    padding-right: 0;
+                    text-align: right;
+
+                    @media screen and (max-width:768px) {
+                        text-align: left;
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}

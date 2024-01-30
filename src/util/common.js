@@ -3,9 +3,7 @@ import { availableLanguageCodeMapper } from "src/translation/i18n";
 export const setLocalStorage = (key, data) => {
   try {
     localStorage.setItem(key, JSON.stringify(data));
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 export const getLocalStorage = (key) => {
   try {
@@ -17,9 +15,7 @@ export const getLocalStorage = (key) => {
 export const removeLocalStorage = (key) => {
   try {
     localStorage.removeItem(key);
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };
 /**
  * Hàm nhận vào một chuỗi số với định dạng theo kiểu US (dấu chấm phân tách phần thập phân)

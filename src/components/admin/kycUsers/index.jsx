@@ -37,7 +37,6 @@ function KYC() {
       })
       .catch((error) => {
         setCallApiStatus(() => api_status.rejected);
-        console.log(error);
       });
   };
   const renderKYCTable = function () {
@@ -145,7 +144,6 @@ function KYC() {
         fetchKYCTable(listKycUserDataCurrentPage.current);
       })
       .catch((error) => {
-        console.log(error);
         const message = error?.response?.data?.message;
         switch (message) {
           case "The user is not in a waiting state":
@@ -172,7 +170,6 @@ function KYC() {
         fetchKYCTable(listKycUserDataCurrentPage.current);
       })
       .catch((error) => {
-        console.log(error);
         setCallApiStatus(() => api_status.rejected);
       });
   };

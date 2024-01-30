@@ -427,7 +427,6 @@ function Profile() {
       .catch((error) => {
         setCallApiKYCStatus(api_status.rejected);
         callToastError(t(commontString.error));
-        console.log(error);
       });
   };
   const kycControlHandleChange = function () {
@@ -473,7 +472,6 @@ function Profile() {
       })
       .catch((error) => {
         setCallApiLoadInfoUserStatus(api_status.rejected);
-        console.log(error);
       });
   };
   const renderUserProfileControl = function () {
@@ -714,7 +712,6 @@ function Profile() {
             addressCode: null,
             textCode: null,
           }));
-          console.log(error);
         });
     }
   };
@@ -743,7 +740,6 @@ function Profile() {
           setCallApiTurnONOff2faStatus(api_status.fulfilled);
         })
         .catch((error) => {
-          console.log(error);
           const messError = error.response.data.message;
           switch (messError) {
             case "Incorrect code! ":
@@ -766,7 +762,6 @@ function Profile() {
           setCallApiTurnONOff2faStatus(api_status.fulfilled);
         })
         .catch((error) => {
-          console.log(error);
           const message = error?.response?.data?.message;
           switch (message) {
             case "Incorrect code ! ":
@@ -954,7 +949,6 @@ function Profile() {
         setListPaymentTotalItems(resp.data.data.total);
       })
       .catch((error) => {
-        console.log(error);
         setCallApiPaymentStatus(api_status.rejected);
         setListPayment([]);
       });

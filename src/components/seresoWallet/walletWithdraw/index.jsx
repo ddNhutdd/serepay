@@ -35,6 +35,7 @@ function FormWithdraw() {
   const { t } = useTranslation();
   const userWallet = useSelector(getUserWallet);
   const coin = getLocalStorage(localStorageVariable.coinFromWalletList);
+  const isLogin = useSelector((root) => root.loginReducer.isLogin);
 
   const [, setCallApiHistoryStatus] = useState(api_status.pending);
   const [callApiSubmitStatus, setCallApiSubmitStatus] = useState(
@@ -53,6 +54,11 @@ function FormWithdraw() {
   const addressElement = useRef();
 
   useEffect(() => {
+    if (!isLogin) {
+      history.push(url.login);
+      return;
+    }
+
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
@@ -64,8 +70,6 @@ function FormWithdraw() {
 
     return () => {
       inputObserver.disconnect();
-      removeLocalStorage(localStorageVariable.amountFromWalletList);
-      removeLocalStorage(localStorageVariable.coinFromWalletList);
     };
   }, []);
 
@@ -110,10 +114,8 @@ function FormWithdraw() {
           fetchWithdrawHistory();
         })
         .catch((error) => {
-          console.log(error);
           const messageError =
             error?.response?.data?.errors[0] || error?.response?.data?.message;
-          console.log(messageError);
           switch (messageError) {
             case "Insufficient balance or incorrect withdrawal minimum amount.":
               callToastError(t("insufficientBalanceOrWithdrawalAmount"));
@@ -145,7 +147,6 @@ function FormWithdraw() {
         setCallApiHistoryStatus(api_status.fulfilled);
       })
       .catch((error) => {
-        console.log(error);
         setCallApiHistoryStatus(api_status.rejected);
       });
   };

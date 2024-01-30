@@ -199,7 +199,6 @@ const P2pExchange = memo(function () {
           searchResult.current = resp.data.data.array;
         })
         .catch((err) => {
-          console.log(err);
           searchResult.current = null;
           setCallApiSearchStatus(api_status.rejected);
         });
@@ -223,7 +222,6 @@ const P2pExchange = memo(function () {
           searchResult.current = resp.data.data.array;
         })
         .catch((err) => {
-          console.log(err);
           searchResult.current = null;
           setCallApiSearchStatus(api_status.rejected);
         });
@@ -338,7 +336,6 @@ const P2pExchange = memo(function () {
       amountMoneyFraction,
       math.multiply(rateFraction, newPriceFraction)
     );
-    console.log("1", math.number(amountMoneyFraction));
     return math.number(result);
   };
   const calcCoinToCurrency = function (

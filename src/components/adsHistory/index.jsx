@@ -99,7 +99,7 @@ function AdsHistory() {
         })
         .catch((error) => {
           setCallApiStatus(() => api_status.rejected);
-          console.log(error);
+
           resolve({});
         });
     });
@@ -121,7 +121,7 @@ function AdsHistory() {
         })
         .catch((error) => {
           setCallApiStatus(() => api_status.rejected);
-          console.log(error);
+
           return resolve({});
         });
     });
@@ -143,7 +143,7 @@ function AdsHistory() {
         })
         .catch((error) => {
           setCallApiStatus(() => api_status.rejected);
-          console.log(error);
+
           return resolve({});
         });
     });
@@ -162,7 +162,6 @@ function AdsHistory() {
           return resolve(resp.data.data);
         })
         .catch((error) => {
-          console.log(error);
           setCallApiStatus(() => api_status.rejected);
           return resolve({});
         });
@@ -225,7 +224,6 @@ function AdsHistory() {
       })
       .catch((error) => {
         setCallApiCancelStatus(api_status.rejected);
-        console.log(error);
       });
   };
   const loadData = function (page) {

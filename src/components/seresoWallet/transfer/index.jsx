@@ -2,37 +2,70 @@ import React, { useEffect, useState, useRef } from "react";
 import i18n from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
 import QRCode from "react-qr-code";
-import { api_status, coinString, localStorageVariable } from "src/constant";
+import {
+  api_status,
+  coinString,
+  deploy_domain,
+  image_domain,
+  localStorageVariable,
+  url,
+} from "src/constant";
 import { Input, inputType } from "src/components/Common/Input";
 import {
   formatNumber,
+  formatStringNumberCultureUS,
+  generateNewURL,
   getLocalStorage,
+  observeWidth,
+  parseURLParameters,
   removeLocalStorage,
+  setLocalStorage,
 } from "src/util/common";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { Pagination } from "antd";
+import { Pagination, Spin } from "antd";
 import css from "./transfer.module.scss";
 import WalletTop, { titleWalletTop } from "../WalletTop";
 import { getUserWallet } from "src/redux/constant/coin.constant";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { getProfile, transferToUsername } from "src/util/userCallApi";
+import { callToastError } from "src/function/toast/callToast";
+import { useHistory } from "react-router-dom";
+import { historytransfer as fetchHistorytransfer } from "src/util/userCallApi";
+import { EmptyCustom } from "src/components/Common/Empty";
 
 function Transfer() {
   const { t } = useTranslation();
-  const coin = getLocalStorage(localStorageVariable.coinFromWalletList);
   const userWallet = useSelector(getUserWallet);
+  const location = useLocation();
+  const listParams = location.search;
+  const history = useHistory();
+  const isLogin = useSelector((root) => root.loginReducer.isLogin);
 
   const [callApiSubmitStatus, setCallApiSubmitStatus] = useState(
-    api_status.fetching
+    api_status.pending
+  );
+  const [callApiHistoryStatus, setCallApiHistoryStatus] = useState(
+    api_status.pending
+  );
+  const [callApiProfileStatus, setCallApiProfileStatus] = useState(
+    api_status.pending
   );
 
-  const [historytransfer] = useState([]);
-  const [inputAmountCurrency, setInputAmountCurrency] = useState();
+  const [historyTransfer, setHistoryTransfer] = useState([]);
+  const [inputAmountCurrency, setInputAmountCurrency] = useState("");
   const [qrValue, setQrValue] = useState("");
-  const [inputAmoutTransferPadding, setInputAmoutTransferPadding] = useState();
+  const [inputAmoutTransferPadding, setInputAmoutTransferPadding] = useState(0);
   const [transferHistoryTotalItems, setTransferHistoryTotalItems] = useState(0);
+  const [typeKyc, setTypeKyc] = useState(0);
+  const [coin, setCoin] = useState(
+    getLocalStorage(localStorageVariable.coinFromWalletList)
+  );
 
   const userNameInputElement = useRef();
   const messageElement = useRef();
+  const transferHistoryCurrentPage = useRef(1);
+  const limit = useRef(10);
 
   const usernameInputChangeHandle = function (e) {
     const username = e.target.value;
@@ -59,22 +92,19 @@ function Transfer() {
     transferToUsername({
       symbol: coin,
       userName: userNameInputElement.current.value,
-      amount: inputAmountCurrency.toString().replace(",", ""),
+      amount: inputAmountCurrency.toString().replaceAll(",", ""),
       note: messageElement.current.value,
     })
       .then((resp) => {
         callToastSuccess(t("transferSuccessful"));
-        userNameInputElement.current.value = "";
-        setInputAmountCurrency("");
-        messageElement.current.value = "";
+        clearForm();
         transferHistoryCurrentPage.current = 1;
-        fetTransferHistory();
+        fetchTransferHistory();
         dispatch(userWalletFetchCount());
         setCallApiSubmitStatus(api_status.fulfilled);
       })
       .catch((error) => {
         const errorMessage = error?.response?.data?.message;
-        console.log(error?.response?.data, errorMessage);
         switch (errorMessage) {
           case "UserName is not exit":
             callToastError(t("userNameNotExists"));
@@ -96,6 +126,11 @@ function Transfer() {
         setCallApiSubmitStatus(api_url.rejected);
       });
   };
+  const clearForm = function () {
+    userNameInputElement.current.value = "";
+    setInputAmountCurrency("");
+    messageElement.current.value = "";
+  };
   const renderTransferHistory = function () {
     return (
       <>
@@ -103,7 +138,7 @@ function Transfer() {
           {t("transferHistory")} {coin}
         </div>
         <div className={`${css["transfer__Wallet-list"]} fadeInBottomToTop`}>
-          {historytransfer.map((item) => (
+          {historyTransfer.map((item) => (
             <div key={item.id} className={css["transfer__Wallet-item"]}>
               <div className={css["transfer__Wallet-header"]}>
                 <i className="fa-solid fa-calendar"></i>
@@ -142,15 +177,14 @@ function Transfer() {
       </>
     );
   };
-
   const transferHistoryPagingOnChangeHandle = function (page) {
     transferHistoryCurrentPage.current = page;
-    fetTransferHistory();
+    fetchTransferHistory();
   };
-  const fetTransferHistory = function () {
+  const fetchTransferHistory = function () {
     setCallApiHistoryStatus(api_status.fetching);
-    historytransferApi({
-      limit: "10",
+    fetchHistorytransfer({
+      limit: limit.current,
       page: transferHistoryCurrentPage.current,
       symbol: coin,
     })
@@ -160,7 +194,6 @@ function Transfer() {
         setCallApiHistoryStatus(api_status.fulfilled);
       })
       .catch((error) => {
-        console.log(error);
         setCallApiHistoryStatus(api_status.rejected);
       });
   };
@@ -191,10 +224,107 @@ function Transfer() {
   const getMaxAvailable = function () {
     return userWallet[coin.toLowerCase() + "_balance"];
   };
+  const renderClassComponentSpin = function () {
+    if (
+      !userWallet ||
+      userWallet.length <= 0 ||
+      callApiProfileStatus === api_status.fetching
+    )
+      return "";
+    return "--d-none";
+  };
+  const renderClassComponentContent = function () {
+    if (
+      !userWallet ||
+      userWallet.length <= 0 ||
+      callApiProfileStatus === api_status.fetching ||
+      typeKyc !== 1
+    )
+      return "--d-none";
+    return "";
+  };
+  const loadData = function () {
+    const {
+      username,
+      coin: coinParams,
+      amountCoin,
+      note,
+    } = parseURLParameters(listParams);
+    username && (userNameInputElement.current.value = username);
+    coinParams && setCoin(coinParams);
+    amountCoin &&
+      setInputAmountCurrency(formatNumber(amountCoin, i18n.language, 10));
+    note && (messageElement.current.value = note);
+
+    fetchApiGetProfile();
+  };
+  const renderClassHistorySpin = function () {
+    return callApiHistoryStatus === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassHistoryEmpty = function () {
+    return callApiHistoryStatus !== api_status.fetching &&
+      (!historyTransfer || historyTransfer.length <= 0)
+      ? ""
+      : "--d-none";
+  };
+  const fetchApiGetProfile = function () {
+    return new Promise((resolve, reject) => {
+      if (callApiProfileStatus === api_status.fetching) resolve(false);
+      setCallApiProfileStatus(() => api_status.fetching);
+      getProfile()
+        .then((resp) => {
+          const typeKyc = resp?.data?.data?.type_kyc;
+          setTypeKyc(() => typeKyc);
+          setCallApiProfileStatus(() => api_status.fulfilled);
+          resolve(true);
+        })
+        .catch((err) => {
+          reject(false);
+          callToastError("Không tìm thấy thông tin tài khoản");
+          setCallApiProfileStatus(() => api_status.rejected);
+          history.push(url.login);
+        });
+    });
+  };
+  const renderClassShowKycVertifing = function () {
+    if (callApiProfileStatus !== api_status.fetching && typeKyc === 2)
+      return "";
+    return "--d-none";
+  };
+  const renderClassShowKycNotYetVerify = function () {
+    if (
+      callApiProfileStatus !== api_status.fetching &&
+      typeKyc !== 1 &&
+      typeKyc !== 2
+    ) {
+      return "";
+    }
+    return "--d-none";
+  };
+  const redirectToProfile = function () {
+    history.push(url.login);
+    return;
+  };
 
   useEffect(() => {
+    Object.keys(listParams).length > 0 &&
+      !isLogin &&
+      setLocalStorage(localStorageVariable.previousePage, location);
+
+    if (!isLogin) {
+      history.push(url.login);
+      return;
+    }
+
+    fetchTransferHistory();
+
+    loadData();
+
+    const inputObserver = observeWidth(setInputAmoutTransferPadding);
+    inputObserver.observe(document.querySelector("#transferListTag"));
+
     return () => {
-      removeLocalStorage(localStorageVariable.coinFromWalletList);
+      inputObserver.disconnect();
     };
   }, []);
 
@@ -202,7 +332,26 @@ function Transfer() {
     <div className={css["transfer"]}>
       <div className={css["container"]}>
         <WalletTop title={titleWalletTop.transfer} />
-        <div className={css["transferContent"]}>
+        <div className={`spin-container ${renderClassComponentSpin()}`}>
+          <Spin />
+        </div>
+        <div
+          className={css["tranfer2Fa"] + ` ${renderClassShowKycNotYetVerify()}`}
+        >
+          Please update your identity information and turn on 2FA before being
+          able to transfer. Contact your support for help.
+          <Button onClick={redirectToProfile}>Chuyển tới trang profile</Button>
+        </div>
+        <div
+          className={css["tranfer2Fa"] + ` ${renderClassShowKycVertifing()}`}
+        >
+          Vui lòng chờ admin xác nhận kyc
+        </div>
+        <div
+          className={`${
+            css["transferContent"]
+          } ${renderClassComponentContent()}`}
+        >
           <div className={css["left"]}>
             <div className={css["header"]}>
               <span>{t("userName")}</span>
@@ -274,6 +423,12 @@ function Transfer() {
             </div>
             <div className={css["right"]}>
               {renderTransferHistory()}
+              <div className={`spin-container ${renderClassHistorySpin()}`}>
+                <Spin />
+              </div>
+              <div className={renderClassHistoryEmpty()}>
+                <EmptyCustom stringData={t("noData")} />
+              </div>
               <div className={css["paging"]}>
                 <Pagination
                   onChange={transferHistoryPagingOnChangeHandle}

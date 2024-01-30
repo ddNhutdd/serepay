@@ -137,7 +137,6 @@ function Ads() {
           resolve(data.array);
         })
         .catch((err) => {
-          console.log(err);
           setCallApiMainDataStatus(() => api_status.rejected);
           reject(false);
         });
@@ -199,7 +198,6 @@ function Ads() {
           setTotalItems(() => data.total);
         })
         .catch((error) => {
-          console.log(error);
           reject(false);
           setCallApiMainDataStatus(() => api_status.rejected);
         });
@@ -226,7 +224,6 @@ function Ads() {
           resolve(data.array);
         })
         .catch((err) => {
-          console.log(err);
           setCallApiMainDataStatus(() => api_status.rejected);
           reject(false);
         });
@@ -316,7 +313,6 @@ function Ads() {
           resolve(true);
         })
         .catch((error) => {
-          console.log(error);
           callToastError("Error");
           closeModalConfirm();
           setCallApiProcessStatus(() => api_status.rejected);
@@ -339,7 +335,6 @@ function Ads() {
           resolve(true);
         })
         .catch((error) => {
-          console.log(error);
           callToastError("Error");
           closeModalConfirm();
           setCallApiProcessStatus(() => api_status.rejected);

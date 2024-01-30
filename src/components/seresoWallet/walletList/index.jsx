@@ -71,14 +71,17 @@ function SerepayWalletList() {
     const usdFraction = math.fraction(usd);
     return math.number(math.multiply(rateFraction, usdFraction));
   };
-  const depositeClickHandle = function () {
+  const depositeClickHandle = function (coinname) {
+    setLocalStorage(localStorageVariable.coinFromWalletList, coinname);
     history.push(url.deposite);
   };
   const renderButton = function (name) {
-    return name === coinString.USDT ? (
-      <Button onClick={depositeClickHandle}>{t("deposit")}</Button>
-    ) : (
-      ""
+    return (
+      name === coinString.USDT && (
+        <Button onClick={depositeClickHandle.bind(null, name)}>
+          {t("deposit")}
+        </Button>
+      )
     );
   };
   const renderListCurrency = (listCurrencyData) => {

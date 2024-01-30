@@ -62,6 +62,8 @@ import ConfigData from "./components/admin/configData";
 import Transfer from "./components/seresoWallet/transfer";
 import FormWithdraw from "./components/seresoWallet/walletWithdraw";
 import SerepayWalletDeposit from "./components/seresoWallet/walletDeposite";
+import SwapAdmin from "./components/admin/swap";
+import TransferAdmin from "./components/admin/transferAdmin";
 
 const config = {};
 export const math = create(all, config);
@@ -97,7 +99,6 @@ function App() {
       })
       .catch((error) => {
         dispatch(currencySetExchangeFetchStatus(api_status.rejected));
-        console.log(error);
       });
   };
   const getUserWallet = function () {
@@ -125,7 +126,7 @@ function App() {
             dispatch(coinUserWallet(result));
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {});
     });
   };
   const getExchangeRateDisparityApi = function () {
@@ -139,7 +140,6 @@ function App() {
       })
       .catch((error) => {
         dispatch(setExchangeRateDisparityApiStatus(api_status.rejected));
-        console.log(error);
       });
   };
   const calTotalAssets = function (listCoinRealTime, userWallet) {
@@ -181,9 +181,7 @@ function App() {
     if (localStorage.getItem("user")) {
       const user = JSON.parse(localStorage.getItem("user"));
       socket.emit("join", user.id);
-      socket.on("ok", (res) => {
-        console.log(res, "joined");
-      });
+      socket.on("ok", (res) => {});
       if (user.expiresInRefreshToken < Date.now()) {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
@@ -264,6 +262,8 @@ function App() {
             path={url.admin_exchangeRateDisparity}
             component={ExchangeRateDisparity}
           />
+          <AdminTemplate path={url.admin_transfer} component={TransferAdmin} />
+          <AdminTemplate path={url.admin_swap} component={SwapAdmin} />
           <Route exact path="/" component={Home} />
         </Switch>
       </Config>

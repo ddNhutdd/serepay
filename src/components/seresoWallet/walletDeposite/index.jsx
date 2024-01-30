@@ -52,7 +52,7 @@ function SerepayWalletDeposit() {
         .catch((error) => {
           setAddress(() => error?.response?.data?.errors?.address);
           setCallApiCreateWalletStatus(() => api_status.rejected);
-          console.log(error);
+
           resolve(null);
         });
     });
@@ -78,7 +78,6 @@ function SerepayWalletDeposit() {
           resolve(resp.data.data.array);
         })
         .catch((error) => {
-          console.log(error);
           resolve(null);
         });
     });
@@ -96,7 +95,7 @@ function SerepayWalletDeposit() {
         renderHtml.push(
           <div key={item.id} className="wallet-deposite__history-item">
             <div className="wallet-deposite__history-time">
-              <i className="fa-solid fa-calendar"></i> ${item.created_at}
+              <i className="fa-solid fa-calendar"></i> {item.created_at}
             </div>
             <div className="wallet-deposite__history-content">
               <div className="wallet-deposite__history-name">
@@ -168,7 +167,7 @@ function SerepayWalletDeposit() {
   };
 
   const { t } = useTranslation();
-  const coinFromRedux = useSelector(coinString.USDT);
+  const isLogin = useSelector((root) => root.loginReducer.isLogin);
 
   const [callApiCreateWalletStatus, setCallApiCreateWalletStatus] = useState(
     api_status.pending
@@ -177,25 +176,29 @@ function SerepayWalletDeposit() {
   const [historyData, setHistoryData] = useState([]);
   const [address, setAddress] = useState("");
 
-  const selectedCoin = useRef("");
+  const selectedCoin = useRef(
+    getLocalStorage(localStorageVariable.coinFromWalletList) || coinString.USDT
+  );
   const historyPage = useRef(1);
   const codeElement = useRef();
   const callApiGetHistoryStatus = useRef(api_status.pending);
 
   useEffect(() => {
+    if (!isLogin) {
+      history.push(url.login);
+      return;
+    }
+
     document.addEventListener("click", closeAllDropdownMenu);
     fetchApiCreateWallet();
-    renderHistory(selectedCoin.current || coinFromRedux, historyPage.current);
+    renderHistory(selectedCoin.current, historyPage.current);
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
     let currentLanguage = i18n.language;
     i18n.on("languageChanged", (newLanguage) => {
       if (newLanguage !== currentLanguage) {
-        renderHistory(
-          selectedCoin.current || coinFromRedux,
-          historyPage.current
-        );
+        renderHistory(selectedCoin.current, historyPage.current);
         currentLanguage = newLanguage;
         return;
       }
@@ -221,11 +224,13 @@ function SerepayWalletDeposit() {
                     className="dropdown-content-selected"
                   >
                     <img
-                      src={`https://remitano.dk-tech.vn/images/${coinFromRedux}.png`}
+                      src={`https://remitano.dk-tech.vn/images/${selectedCoin.current}.png`}
                       alt="name"
                     />
                     <span className="content">
-                      <span className="main-content">{coinFromRedux}</span>
+                      <span className="main-content">
+                        {selectedCoin.current}
+                      </span>
                     </span>
                     <span></span>
                   </div>
@@ -324,7 +329,7 @@ function SerepayWalletDeposit() {
           </div>
           <div className="wallet-deposit-right">
             <h3 id="historyTitle">
-              {t("depositBtcHistory").replace("BTC", coinFromRedux)}
+              {t("depositBtcHistory").replace("BTC", selectedCoin.current)}
             </h3>
             <div
               id="historyContent"

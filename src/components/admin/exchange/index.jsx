@@ -126,7 +126,6 @@ function Exchange() {
           callToastSuccess(commontString.success);
         })
         .catch((error) => {
-          console.log(error);
           setCallApiStatus(() => api_status.rejected);
           callToastError(commontString.error);
           reject(false);
@@ -176,7 +175,6 @@ function Exchange() {
           resolve(true);
         })
         .catch((error) => {
-          console.log(error);
           setCallApiStatus(() => api_status.rejected);
           callToastError(commontString.error);
           reject(false);

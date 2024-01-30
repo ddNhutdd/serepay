@@ -24,7 +24,9 @@ import {
 import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 
 export default function Header2({ history }) {
-  const { isLogin, username } = useSelector((root) => root.loginReducer);
+  const { isLogin, username, isAdmin } = useSelector(
+    (root) => root.loginReducer
+  );
   const notifyRedux = useSelector(getNotify);
   const currencyFromRedux = useSelector(getCurrent);
   const [currentLanguage, setCurrentLanguage] = useState(
@@ -173,6 +175,7 @@ export default function Header2({ history }) {
   const logout = () => {
     const tem = t("logOut");
     const temTitle = t("success");
+    dispatch({ type: "USER_ADMIN", payload: false });
     removeLocalStorage(localStorageVariable.lng);
     localStorage.removeItem(localStorageVariable.user);
     localStorage.removeItem(localStorageVariable.token);
@@ -186,6 +189,7 @@ export default function Header2({ history }) {
     removeLocalStorage(localStorageVariable.coin);
     removeLocalStorage(localStorageVariable.coinFromWalletList);
     removeLocalStorage(localStorageVariable.amountFromWalletList);
+    removeLocalStorage(localStorageVariable.thisIsAdmin);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess(tem, temTitle);
@@ -230,6 +234,9 @@ export default function Header2({ history }) {
   const renderClassShowNotify = function () {
     return notifyRedux > 0 ? "" : "--d-none";
   };
+  const renderClassShowAdmin = function () {
+    return isAdmin ? "" : "--d-none";
+  };
 
   useEffect(() => {
     const language =
@@ -269,6 +276,13 @@ export default function Header2({ history }) {
             data-page={url.p2pTrading}
           >
             {t("p2pTrading")}
+          </div>
+          <div
+            onClick={redirectPageClickHandle}
+            className={`navlink ${renderClassShowAdmin()}`}
+            data-page={url.admin_user}
+          >
+            {t("admin")}
           </div>
         </div>
         <div onClick={barButtonClickHandle} className="bar-button">

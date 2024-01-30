@@ -137,7 +137,7 @@ function ExchangeRateDisparity() {
         .catch((error) => {
           closeButtonSubmitLoader();
           setCallApiStatus(() => api_status.rejected);
-          console.log(error);
+
           const mess = error?.response?.data?.message;
           switch (mess) {
             case "User does not have access":
