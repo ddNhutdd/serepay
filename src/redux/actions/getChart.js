@@ -14,8 +14,6 @@ export const getChart = (symbol) => {
         type: "GET_CHART",
         payload: response.data.data,
       });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };

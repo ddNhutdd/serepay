@@ -1,0 +1,257 @@
+@import "src/assets/scss/base/base.scss";
+
+.transfer {
+    padding-top: 140px;
+    color: $new-text-color-white;
+
+    .container {
+        @include container;
+
+        .tranfer2Fa {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 28px $boxShadown-color-3;
+            border-radius: 20px;
+            padding: 30px;
+            background-color: $new-background-level-1;
+            margin-bottom: 30px;
+
+        }
+
+        .transferContent {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 30px;
+
+            .left {
+                width: 450px;
+                padding: 15px;
+                background: $new-background-level-1;
+                box-shadow: 0 10px 28px $boxShadown-color-3;
+                border-radius: 20px;
+
+                @media screen and (max-width: 576px) {
+                    max-width: 450px;
+                    width: 100%;
+                }
+
+                @media screen and (min-width: 480px) {
+                    padding: 30px;
+                }
+
+                .header {
+                    margin-bottom: 30px;
+                    display: flex;
+
+                    span {
+                        margin-right: 30px;
+                        font-size: 20px;
+                        font-weight: 600;
+                        margin-bottom: 15px;
+                        color: $new-text-color-6;
+                        cursor: default;
+                    }
+                }
+
+                .wallet {
+                    .input {
+                        margin-bottom: 15px;
+                        position: relative;
+
+                        p {
+                            font-size: 16px;
+                            color: $new-text-color-white;
+                            margin-bottom: 15px;
+                        }
+
+                        .list-tag {
+                            position: absolute;
+                            display: flex;
+                            justify-content: flex-end;
+                            top: 41px;
+                            width: auto;
+                            right: -6px;
+                            gap: 5px;
+                            padding: 0 10px;
+                            align-items: center;
+                            height: 33px;
+
+                            span {
+                                color: $new-text-color-white;
+
+                                &:last-child {
+                                    &:hover {
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                        }
+
+                        textarea {
+                            height: 150px;
+                            width: 100%;
+                            color: #eaecef;
+                            font-size: 14px;
+                            background-color: #181a20;
+                            outline: none;
+                            border: 1px solid #797979;
+                            padding: 10px 16px;
+                            transition: border-color 0.3s ease;
+                            border-radius: 8px;
+                            line-height: 1;
+                            padding-bottom: 1px;
+
+                            &:hover {
+                                border: 1px solid #cb9950;
+                            }
+
+                            &:focus {
+                                border: 1px solid #cb9950;
+                            }
+                        }
+                    }
+
+                    .max-available {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 20px;
+                        word-break: break-word;
+                        color: $new-primary-background-6;
+
+                        span {
+                            &:first-child {
+                                font-size: 16px;
+                            }
+
+                            &:last-child {
+                                font-weight: 500;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+
+                    .button-submit-container {
+                        margin-top: 10px;
+                        text-align: center;
+
+                        button {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .formWithdraw__right-container {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                @media screen and (max-width: 480px) {
+                    width: 100%;
+                }
+
+                .formWithdraw__qr {
+                    padding: 30px;
+                    background-color: $new-background-level-1;
+                    color: $new-text-color-1;
+                    box-shadow: 0 10px 28px $boxShadown-color-3;
+                    border-radius: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .formWithdraw__qr__bg {
+                        padding: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: $neutral-20;
+                    }
+                }
+
+                .right {
+                    width: 450px;
+                    padding: 15px;
+                    background: $new-background-level-1;
+                    box-shadow: 0 10px 28px $boxShadown-color-3;
+                    border-radius: 20px;
+
+                    @media screen and (max-width: 576px) {
+                        max-width: 450px;
+                        width: 100%;
+                    }
+
+                    @media screen and (min-width: 480px) {
+                        padding: 30px;
+                    }
+
+                    .transfer__title {
+                        font-weight: bold;
+                        color: $new-primary-color-8;
+                        margin-bottom: 25px;
+                        font-size: 1.5em;
+                        text-transform: capitalize;
+                    }
+
+                    .transfer__Wallet-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+
+                        .transfer__Wallet-item {
+                            box-shadow: 0 10px 20px 0 $boxShadown-color-4;
+                            border-radius: 5px;
+
+                            .transfer__Wallet-header {
+                                padding: 10px 10px 5px 10px;
+                                background-color: $neutral-2;
+                                width: 100%;
+                                border-top-left-radius: 5px;
+                                border-top-right-radius: 5px;
+                                color: $neutral-20;
+                                font-size: 15px;
+                                display: flex;
+                                align-items: center;
+                                gap: 5px;
+                            }
+
+                            .transfer__Wallet-body {
+                                padding: 5px 10px 10px 10px;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                                border-bottom-left-radius: 5px;
+                                border-bottom-right-radius: 5px;
+                                color: $new-text-color-white;
+                                background-color: $new-background-level-2;
+
+                                .transfer__Wallet-body-amount {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: flex-start;
+                                    gap: 5px;
+
+                                    img {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .paging {
+                        margin-top: 20px;
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+    }
+}

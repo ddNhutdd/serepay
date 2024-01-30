@@ -6,16 +6,17 @@ export const localStorageVariable = {
   token: "token",
   user: "user",
   currency: "currency",
-  previousePage: null,
+  previousePage: "previousePage",
   coin: "coin",
   adsItem: "adsItem",
   createAds: "createAds",
   coinFromP2pExchange: "amFP2PE",
   moneyFromP2pExchange: "amFP2PEM",
   coinNameFromP2pExchange: "cnfP2PE",
+  coinFromWalletList: "cnwl",
+  amountFromWalletList: "amcnwl",
+  thisIsAdmin: "adta",
 };
-
-export const deploy_domain = DOMAIN + "wallet-2";
 
 export const url = {
   home: "/",
@@ -26,14 +27,9 @@ export const url = {
   verify: "/verify/:token",
   login: "/login",
   p2pTrading: "/p2p-trading",
-  admin_kyc: "/admin/kyc",
-  admin_exchangeRateDisparity: "/admin/exchange-rate-disparity",
   create_ads_sell: "/create-ads/sell",
   create_ads_buy: "/create-ads/buy",
   admin_ads: "/admin/ads",
-  admin_exchange: "/admin/exchange",
-  admin_widthdraw: "/admin/widthdraw",
-  admin_configData: "/admin/config-data",
   ads_history: "/ads-history",
   transaction_sell: "/transaction-sell",
   transaction_buy: "/transaction-buy",
@@ -43,7 +39,22 @@ export const url = {
   recovery_password: "/recovery-password",
   forgot_password: "/forget-password/:token",
   confirm_email: "/confirm-email",
+  transfer: "/transfer",
+  widthdraw: "/widthdraw",
+  deposite: "/deposite",
+
+  admin_swap: "/admin/swap",
+  admin_kyc: "/admin/kyc",
+  admin_exchange: "/admin/exchange",
+  admin_widthdraw: "/admin/widthdraw",
+  admin_configData: "/admin/config-data",
+  admin_exchangeRateDisparity: "/admin/exchange-rate-disparity",
+  admin_transfer: "/admin/transfer",
 };
+
+// export const deploy_domain = DOMAIN + "wallet-2";
+const currentDomain = window.location.href;
+export const deploy_domain = currentDomain;
 
 export const api_url = {
   login: "api/user/login",

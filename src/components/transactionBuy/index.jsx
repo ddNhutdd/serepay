@@ -165,7 +165,6 @@ function TransactionBuy() {
           return resolve(resp.data.data.array);
         })
         .catch((err) => {
-          console.log(err);
           setCallApiLoadTraderStatus(api_status.rejected);
           return resolve(false);
         });
@@ -274,7 +273,6 @@ function TransactionBuy() {
           return resolve(resp.data.data.array);
         })
         .catch((err) => {
-          console.log(err);
           setCallApiLoadPaymentStatus(() => api_status.rejected);
           return reject(false);
         });
@@ -541,7 +539,6 @@ function TransactionBuy() {
           resolve(true);
         })
         .catch((err) => {
-          console.log(err);
           const mess = err.response.data.message;
           switch (mess) {
             case "You cannot buy your own advertising":

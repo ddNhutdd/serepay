@@ -126,7 +126,7 @@ export default function P2PTrading2({ history }) {
         })
         .catch((error) => {
           callApiSellListStatus.current = api_status.rejected;
-          console.log(error);
+
           resolve({});
         });
     });
@@ -143,7 +143,7 @@ export default function P2PTrading2({ history }) {
         })
         .catch((error) => {
           callApiBuyListStatus.current = api_status.rejected;
-          console.log(error);
+
           resolve({});
         });
     });

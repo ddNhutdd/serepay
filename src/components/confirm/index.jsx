@@ -69,7 +69,6 @@ function Confirm() {
         .catch((error) => {
           callToastError(t("can'tFindUserInformation"));
           resolve(false);
-          console.log(error);
         });
     });
   };
@@ -80,7 +79,6 @@ function Confirm() {
       })
         .then((resp) => resolve(resp.data.data))
         .catch(() => {
-          console.log("error fetchApiGetFee");
           reject(false);
         });
     });
