@@ -1,18 +1,24 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import css from "./walletAdmin.module.scss";
 import { Pagination, Spin } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Input } from "src/components/Common/Input";
 import { Button } from "src/components/Common/Button";
 import { api_status } from "src/constant";
-import { getAllUser, getWalletToUserAdmin } from "src/util/adminCallApi";
+import {
+  getAllUser,
+  getWalletToUserAdmin,
+  updateAmountWalletToId,
+} from "src/util/adminCallApi";
 import socket from "src/util/socket";
 import {
   formatNumber,
   formatStringNumberCultureUS,
   rountRange,
 } from "src/util/common";
+import { commontString } from "src/constant/index.js";
 import { availableLanguage } from "src/translation/i18n";
+import { callToastSuccess } from "src/function/toast/callToast.js";
 
 function WalletAdmin() {
   const [fetchTableDataStatus, setFetchTableDataStatus] = useState(
@@ -21,8 +27,8 @@ function WalletAdmin() {
   const [fetchControlStatus, setFetchControlStatus] = useState(
     api_status.pending
   );
-  const [listButtonStatus, setListButtonStatus] = useState({});
 
+  const [, setRe_render] = useState(true); // avoid closure
   const [tableData, setTableData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(1);
@@ -30,6 +36,7 @@ function WalletAdmin() {
   const [selectedUserEmail, setSelectedUserEmail] = useState("");
   const [selectedUsername, setSelectedUsername] = useState("");
 
+  const listButtonStatus = useRef({});
   const limit = useRef(10);
   const userId = useRef(0);
 
@@ -94,7 +101,7 @@ function WalletAdmin() {
         statusButton[coin.name] = false;
       }
 
-      setListButtonStatus(() => statusButton);
+      listButtonStatus.current = statusButton;
     });
   };
   const renderClassShowSpinAction = function () {
@@ -170,9 +177,7 @@ function WalletAdmin() {
     ));
   };
   const renderLoadingButton = function (coinName) {
-    for (const [key, value] of Object.entries(listButtonStatus)) {
-      if (coinName === key) return value;
-    }
+    return listButtonStatus.current[coinName];
   };
   const inputOnchangeHandle = function (ev) {
     ev.stopPropagation();
@@ -196,12 +201,37 @@ function WalletAdmin() {
   const renderClassShowActionContent = function () {
     return fetchControlStatus !== api_status.fetching ? "" : "--d-none";
   };
-  const saveClickHandle = function (coinName) {
-    const newListStatusButton = { ...listButtonStatus };
-    newListStatusButton[coinName] = true;
-    setListButtonStatus(() => newListStatusButton);
+  const setButtonStatus = function (coinName, value) {
+    listButtonStatus.current[coinName] = value;
+    setRe_render((s) => !s);
   };
-  const fetchApiUpdateAmountWalletToId = async function (coinname) {};
+  const saveClickHandle = function (coinName) {
+    const amount = document
+      .getElementById(`input__${coinName}`)
+      .value.replaceAll(",", "");
+
+    fetchApiUpdateAmountWalletToId(coinName, amount);
+  };
+  const fetchApiUpdateAmountWalletToId = async function (coinname, amount) {
+    try {
+      setButtonStatus(coinname, true);
+      await updateAmountWalletToId({
+        userid: userId.current,
+        amount,
+        symbol: coinname,
+      });
+      setButtonStatus(coinname, false);
+      hideButton(coinname);
+      callToastSuccess(commontString.success);
+    } catch (error) {
+      setButtonStatus(coinname, false);
+    }
+  };
+  const hideButton = function (coinname) {
+    const ele = document.getElementById(`button__${coinname}`);
+    if (!ele) return;
+    !ele.classList.contains("--d-none") && ele.classList.add("--d-none");
+  };
 
   useEffect(() => {
     fetchApiLoadUser(1).catch((error) => {
@@ -209,9 +239,6 @@ function WalletAdmin() {
     });
     fetchApiGetListCoin();
   }, []);
-  useEffect(() => {
-    console.log(listButtonStatus);
-  }, [listButtonStatus]);
 
   return (
     <div className={css["walletAdmin"]}>

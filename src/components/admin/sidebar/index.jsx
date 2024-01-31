@@ -71,6 +71,9 @@ function Sidebar() {
       case "wallet":
         addClassToElementById("wallet", "active");
         break;
+      case "swap":
+        addClassToElementById("swap", "active");
+        break;
       default:
         break;
     }
@@ -124,6 +127,11 @@ function Sidebar() {
     clearSelectedItem();
     e.currentTarget.classList.add("active");
     history.push(url.admin_wallet);
+  };
+  const redirectSwap = function (e) {
+    clearSelectedItem();
+    e.currentTarget.classList.add("active");
+    history.push(url.admin_swap);
   };
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
@@ -206,6 +214,13 @@ function Sidebar() {
           </span>
           <span className="admin-sidebar__item">Wallet</span>
         </li>
+        <li onClick={redirectSwap} id="swap">
+          <span className="admin-sidebar__icon">
+            <i className="fa-solid fa-rotate"></i>
+          </span>
+          <span className="admin-sidebar__item">Swap</span>
+        </li>
+        {/* // */}
         <li
           className="--d-none"
           id="funding-item"

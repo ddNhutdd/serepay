@@ -92,8 +92,6 @@
 
         table {
             @include adminTable;
-            overflow: hidden;
-            overflow-x: auto;
 
             thead {
                 tr {
