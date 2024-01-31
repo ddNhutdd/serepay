@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "សូមពិនិត្យមើលអ៊ីមែលរបស់អ្នក ហើយចុចលើតំណរក្សដើម្បីបន្តរួចបន្ត។",
     "haveYouVerifiedYourAccountYet": "តើអ្នកបានធ្វើការបញ្ជាក់គណនីរបស់អ្នកទេ?",
     "selectToken": "ជ្រើសរើសតួឡើង",
-    "theMinimumQuantityIsTooLarge": "បរិមាណតូចបំផុតគឺធំពេក"
+    "theMinimumQuantityIsTooLarge": "បរិមាណតូចបំផុតគឺធំពេក",
+    "addressIsNotEmpty": "អាសយដ្ឋានមិនទទេ"
 }

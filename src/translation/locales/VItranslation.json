@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Vui lòng kiểm tra email của bạn và nhấp vào liên kết để tiếp tục.",
     "haveYouVerifiedYourAccountYet": "Bạn đã xác minh tài khoản của mình chưa?",
     "selectToken": "Chọn Token",
-    "theMinimumQuantityIsTooLarge": "Số lượng tối thiểu quá lớn"
+    "theMinimumQuantityIsTooLarge": "Số lượng tối thiểu quá lớn",
+    "addressIsNotEmpty": "Địa chỉ không được để trống"
 }

@@ -38,7 +38,6 @@ axiosService.interceptors.request.use(
     return config;
   },
   (errors) => {
-    console.log("axios services");
     return Promise.reject(errors);
   }
 );

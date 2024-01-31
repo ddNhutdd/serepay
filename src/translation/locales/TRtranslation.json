@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Lütfen e-postanızı kontrol edin ve devam etmek için bağlantıya tıklayın.",
     "haveYouVerifiedYourAccountYet": "Hesabınızı doğruladınız mı?",
     "selectToken": "Token Seç",
-    "theMinimumQuantityIsTooLarge": "Minimum miktar çok büyük"
+    "theMinimumQuantityIsTooLarge": "Minimum miktar çok büyük",
+    "addressIsNotEmpty": "Adres boş değil"
 }

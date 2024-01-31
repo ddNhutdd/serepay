@@ -32,9 +32,7 @@ export default function Wallet() {
     try {
       let response = await axiosService.post("api/crypto/getListCoinAll");
       setCoinList(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const createWallet = async (symbol) => {
     setLoading(true);
@@ -44,7 +42,6 @@ export default function Wallet() {
       });
       setWalletAddress(response.data.data?.address || "");
     } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -52,10 +49,9 @@ export default function Wallet() {
   const doWithdraw = async (data) => {
     try {
       let response = await axiosService.post("api/crypto/widthdraw", data);
-      console.log(response.data);
+
       callToastSuccess(t(commontString.success));
     } catch (error) {
-      console.log(error);
       callToastError(t(commontString.error));
     }
   };

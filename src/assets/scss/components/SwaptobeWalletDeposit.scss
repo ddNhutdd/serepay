@@ -1,284 +1,290 @@
 .wallet-deposit {
-    display: flex;
-    gap: 50px;
-    justify-content: center;
+    padding-top: 140px;
 
     @media screen and (max-width: 1199px) {
         flex-direction: column;
         align-items: center;
     }
 
-    @media screen and (max-width: 576px) {
-        margin-left: -15px;
-        margin-right: -15px;
-    }
+    .container {
+        @include container;
 
-    .wallet-deposit-left {
-        width: 450px;
-        padding: 15px;
-        background: $new-background-level-1;
-        box-shadow: 0 10px 28px $boxShadown-color-3;
-        border-radius: 20px;
-        color: $new-text-color-white;
-
-        @media screen and (max-width: 576px) {
-            max-width: 450px;
-            width: 100%;
-        }
-
-        @media screen and (min-width: 480px) {
-            padding: 30px;
-        }
-
-        ul {
-            list-style: none;
+        .wallet-deposit-content {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: center;
+            gap: 30px;
+            align-items: flex-start;
+            flex-wrap: wrap;
 
-            li {
-                display: flex;
-                gap: 20px;
+            .wallet-deposit-left {
+                width: 450px;
+                padding: 15px;
+                background: $new-background-level-1;
+                box-shadow: 0 10px 28px $boxShadown-color-3;
+                border-radius: 20px;
+                color: $new-text-color-white;
 
-                .number {
-                    width: 40px;
-                    height: 40px;
+                @media screen and (max-width: 576px) {
+                    max-width: 450px;
+                    width: 100%;
+                }
+
+                @media screen and (min-width: 480px) {
+                    padding: 30px;
+                }
+
+                ul {
+                    list-style: none;
                     display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    font-weight: 400;
-                    background-color: $new-primary-background-6;
-                    font-size: 20px;
-                    color: $new-text-color-white;
-                }
+                    flex-direction: column;
+                    gap: 15px;
 
-                .wallet-deposit-input {
-                    flex: 1;
-                    position: relative;
-
-                    p {
-                        margin-bottom: 10px;
-                    }
-
-                    .dropdown-content-selected {
-                        @include userDropdownSelected;
-                    }
-
-                    .dropdown-menu-container {
-                        @include userDropdownMenu;
-                        position: absolute;
-                        top: 65px;
-                        left: 0;
-
-                        .dropdown-item-network {
-                            padding: 5px 10px;
-                            transition: 0.2s;
-                            display: flex;
-                            gap: 5px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-                            color: $neutral-2;
-
-                            &:hover {
-                                background-color: $background-color-6;
-                                cursor: pointer;
-                            }
-
-                            .dropdown-item-network-left {
-                                display: flex;
-                                flex-direction: column;
-                                flex-wrap: 5px;
-                            }
-
-                            .dropdown-item-network-right {
-                                display: flex;
-                                flex-direction: column;
-                                flex-wrap: 5px;
-                                align-items: flex-end;
-                            }
-                        }
-                    }
-                }
-
-                .address {
-                    flex: 1;
-
-                    span {
-                        position: relative;
-
-                        span {
-                            margin-left: 5px;
-                            color: $text-color-5;
-                            font-size: 16px;
-                            position: absolute;
-                            top: -8px;
-                            right: -20px;
-                        }
-                    }
-
-                    .address-content {
-                        padding: 10px;
-                        background-color: $neutral-3;
+                    li {
                         display: flex;
-                        align-items: center;
-                        gap: 15px;
-                        border-radius: 5px;
-                        flex-wrap: wrap;
+                        gap: 20px;
 
-                        .address-content-qr {
-                            width: 75%;
-
-                            .address-content-qr-background {
-                                padding: 10px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                background-color: $neutral-20;
-                            }
-                        }
-
-                        .address-code-container {
+                        .number {
+                            width: 40px;
+                            height: 40px;
                             display: flex;
-                            gap: 10px;
                             align-items: center;
                             justify-content: center;
+                            border-radius: 50%;
+                            font-weight: 400;
+                            background-color: $new-primary-background-6;
+                            font-size: 20px;
+                            color: $new-text-color-white;
+                        }
 
-                            .address-code {
-                                width: 85%;
+                        .wallet-deposit-input {
+                            flex: 1;
+                            position: relative;
 
-                                .code {
-                                    padding: 10px;
-                                    background-color: $white;
-                                    border-radius: 3px;
-                                    word-break: break-all;
+                            p {
+                                margin-bottom: 10px;
+                            }
+
+                            .dropdown-content-selected {
+                                @include userDropdownSelected;
+                            }
+
+                            .dropdown-menu-container {
+                                @include userDropdownMenu;
+                                position: absolute;
+                                top: 65px;
+                                left: 0;
+
+                                .dropdown-item-network {
+                                    padding: 5px 10px;
+                                    transition: 0.2s;
+                                    display: flex;
+                                    gap: 5px;
                                     display: flex;
                                     align-items: center;
-                                    justify-content: center;
-                                    gap: 10px;
+                                    justify-content: space-between;
                                     color: $neutral-2;
+
+                                    &:hover {
+                                        background-color: $background-color-6;
+                                        cursor: pointer;
+                                    }
+
+                                    .dropdown-item-network-left {
+                                        display: flex;
+                                        flex-direction: column;
+                                        flex-wrap: 5px;
+                                    }
+
+                                    .dropdown-item-network-right {
+                                        display: flex;
+                                        flex-direction: column;
+                                        flex-wrap: 5px;
+                                        align-items: flex-end;
+                                    }
+                                }
+                            }
+                        }
+
+                        .address {
+                            flex: 1;
+
+                            span {
+                                position: relative;
+
+                                span {
+                                    margin-left: 5px;
+                                    color: $text-color-5;
+                                    font-size: 16px;
+                                    position: absolute;
+                                    top: -8px;
+                                    right: -20px;
                                 }
                             }
 
-                            .address-copy {
+                            .address-content {
                                 padding: 10px;
+                                background-color: $neutral-3;
                                 display: flex;
                                 align-items: center;
-                                justify-content: center;
-                                background-color: $background-color-6;
-                                border-radius: 3px;
-                                color: $black;
+                                gap: 15px;
+                                border-radius: 5px;
+                                flex-wrap: wrap;
 
-                                &:hover {
-                                    cursor: pointer;
+                                .address-content-qr {
+                                    width: 75%;
+
+                                    .address-content-qr-background {
+                                        padding: 10px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        background-color: $neutral-20;
+                                    }
+                                }
+
+                                .address-code-container {
+                                    display: flex;
+                                    gap: 10px;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    .address-code {
+                                        width: 85%;
+
+                                        .code {
+                                            padding: 10px;
+                                            background-color: $white;
+                                            border-radius: 3px;
+                                            word-break: break-all;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            gap: 10px;
+                                            color: $neutral-2;
+                                        }
+                                    }
+
+                                    .address-copy {
+                                        padding: 10px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        background-color: $background-color-6;
+                                        border-radius: 3px;
+                                        color: $black;
+
+                                        &:hover {
+                                            cursor: pointer;
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-    }
 
-    .wallet-deposit-right {
-        width: 450px;
-        padding: 15px;
-        background: $new-background-level-1;
-        box-shadow: 0 10px 28px $boxShadown-color-3;
-        border-radius: 20px;
-        color: $neutral-20;
+            .wallet-deposit-right {
+                width: 450px;
+                padding: 15px;
+                background: $new-background-level-1;
+                box-shadow: 0 10px 28px $boxShadown-color-3;
+                border-radius: 20px;
+                color: $neutral-20;
 
-        @media screen and (max-width: 576px) {
-            max-width: 450px;
-            width: 100%;
-        }
-
-        @media screen and (min-width: 480px) {
-            padding: 30px;
-        }
-
-        h3 {
-            font-size: 20px;
-            color: $neutral-20;
-        }
-
-        .wallet-deposit__history {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-
-            .wallet-deposite__history-item {
-                display: flex;
-                flex-wrap: wrap;
-                border-radius: 5px;
-                box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
-                align-items: center;
-
-                .wallet-deposite__history-time {
-                    padding: 10px 10px 5px 10px;
-                    background-color: $header2-background;
+                @media screen and (max-width: 576px) {
+                    max-width: 450px;
                     width: 100%;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
-                    color: $white;
-                    font-size: 15px;
                 }
 
-                .wallet-deposite__history-content {
+                @media screen and (min-width: 480px) {
+                    padding: 30px;
+                }
+
+                h3 {
+                    font-size: 20px;
+                    color: $neutral-20;
+                }
+
+                .wallet-deposit__history {
                     display: flex;
-                    flex-wrap: wrap;
-                    padding: 10px;
-                    background-color: $new-background-level-2;
-                    border-bottom-left-radius: 5px;
-                    border-bottom-right-radius: 5px;
+                    flex-direction: column;
+                    gap: 20px;
 
-                    .wallet-deposite__history-name {
-                        box-sizing: border-box;
-                        margin-right: 5px;
-                    }
-
-                    .wallet-deposite__history-amount {
-                        box-sizing: border-box;
-                        color: $green;
-                        font-weight: bold;
-
-                        img {
-                            width: 20px;
-                            height: 20px;
-                            object-fit: cover;
-                        }
-                    }
-
-                    .wallet-deposite__history-final {
-                        width: 100%;
+                    .wallet-deposite__history-item {
                         display: flex;
+                        flex-wrap: wrap;
+                        border-radius: 5px;
+                        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
                         align-items: center;
-                        justify-content: flex-start;
 
-                        span {
-                            display: block;
+                        .wallet-deposite__history-time {
+                            padding: 10px 10px 5px 10px;
+                            background-color: $header2-background;
+                            width: 100%;
+                            border-top-left-radius: 5px;
+                            border-top-right-radius: 5px;
+                            color: $white;
+                            font-size: 15px;
+                        }
 
-                            &:first-child {
+                        .wallet-deposite__history-content {
+                            display: flex;
+                            flex-wrap: wrap;
+                            padding: 10px;
+                            background-color: $new-background-level-2;
+                            border-bottom-left-radius: 5px;
+                            border-bottom-right-radius: 5px;
+
+                            .wallet-deposite__history-name {
+                                box-sizing: border-box;
                                 margin-right: 5px;
                             }
-                        }
 
-                        img {
-                            width: 20px;
-                            height: 20px;
-                            object-fit: cover;
-                            transform: translateY(-2px);
+                            .wallet-deposite__history-amount {
+                                box-sizing: border-box;
+                                color: $green;
+                                font-weight: bold;
+
+                                img {
+                                    width: 20px;
+                                    height: 20px;
+                                    object-fit: cover;
+                                }
+                            }
+
+                            .wallet-deposite__history-final {
+                                width: 100%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+
+                                span {
+                                    display: block;
+
+                                    &:first-child {
+                                        margin-right: 5px;
+                                    }
+                                }
+
+                                img {
+                                    width: 20px;
+                                    height: 20px;
+                                    object-fit: cover;
+                                    transform: translateY(-2px);
+                                }
+                            }
                         }
                     }
+                }
+
+                .wallet-deposite-paging {
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: flex-end;
                 }
             }
         }
 
-        .wallet-deposite-paging {
-            margin-top: 20px;
-            display: flex;
-            justify-content: flex-end;
-        }
     }
 }

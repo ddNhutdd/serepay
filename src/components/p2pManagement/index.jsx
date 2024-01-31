@@ -253,7 +253,7 @@ function P2pManagement() {
         })
         .catch((error) => {
           setCallApiLoadP2pStatus(api_status.rejected);
-          console.log(error);
+
           resolve(false);
         });
     });
@@ -379,7 +379,6 @@ function P2pManagement() {
           resolve(data);
         })
         .catch((error) => {
-          console.log(error);
           setCallApiLoadP2pStatus(api_status.rejected);
           resolve(false);
         });
@@ -404,7 +403,7 @@ function P2pManagement() {
         })
         .catch((error) => {
           setCallApiLoadP2pStatus(api_status.rejected);
-          console.log(error);
+
           resolve(false);
         });
     });
@@ -428,7 +427,6 @@ function P2pManagement() {
             resolve(data);
           })
           .catch((error) => {
-            console.log(error);
             setCallApiLoadP2pStatus(api_status.rejected);
             resolve(false);
           });
@@ -451,7 +449,6 @@ function P2pManagement() {
             resolve(data);
           })
           .catch((error) => {
-            console.log(error);
             setCallApiLoadP2pStatus(api_status.rejected);
             resolve(false);
           });

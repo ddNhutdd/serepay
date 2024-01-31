@@ -36,11 +36,9 @@ function ConfigData() {
             ["fetching"]: false,
           }));
           setMainData(() => result);
-          console.log(result);
           setLoadMainDataStatus(() => api_status.fulfilled);
         })
         .catch((error) => {
-          console.log(error);
           setLoadMainDataStatus(() => api_status.rejected);
         });
     });
@@ -127,9 +125,7 @@ function ConfigData() {
           row.dataset.note = note;
           hideRow(row);
         })
-        .catch((error) => {
-          console.log(error);
-        })
+        .catch((error) => {})
         .finally(() => {
           setFetchingMainData(name, false);
         });

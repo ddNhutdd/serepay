@@ -64,7 +64,6 @@ function Widthdraw() {
         })
         .catch((err) => {
           setCallApiLoadMainDataStatus(() => api_status.rejected);
-          console.log(err);
           setTotalItem(1);
           reject(false);
         })
@@ -201,7 +200,6 @@ function Widthdraw() {
           resolve(data.array);
         })
         .catch((err) => {
-          console.log(err);
           setCallApiLoadMainDataStatus(() => api_status.rejected);
           reject(() => false);
         });
@@ -228,7 +226,6 @@ function Widthdraw() {
           resolve(data.array);
         })
         .catch((error) => {
-          console.log(error);
           setCallApiLoadMainDataStatus(() => api_status.rejected);
           reject(false);
         });
@@ -291,7 +288,6 @@ function Widthdraw() {
           loadData(currentPage, selectedCoin);
         })
         .catch((error) => {
-          console.log(error);
           callToastError("Fail");
           setCallApiAcceptStatus(() => api_status.rejected);
           reject(false);
@@ -337,7 +333,7 @@ function Widthdraw() {
         })
         .catch((error) => {
           setCallApiRejectStatus(() => api_status.rejected);
-          console.log(error);
+
           callToastError("Fail");
           reject(false);
         });

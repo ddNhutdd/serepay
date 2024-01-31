@@ -342,5 +342,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "กรุณาตรวจสอบอีเมลของคุณและคลิกที่ลิงก์เพื่อดำเนินการต่อ",
     "haveYouVerifiedYourAccountYet": "คุณได้ยืนยันบัญชีของคุณแล้วหรือยัง?",
     "selectToken": "เลือกโทเค็น",
-    "theMinimumQuantityIsTooLarge": "ปริมาณขั้นต่ำมากเกินไป"
+    "theMinimumQuantityIsTooLarge": "ปริมาณขั้นต่ำมากเกินไป",
+    "addressIsNotEmpty": "ที่อยู่ไม่ว่างเปล่า"
 }

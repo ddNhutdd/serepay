@@ -344,5 +344,6 @@
     "pleaseCheckYourEmailAndClickTheLinkToContinue": "Пожалуйста, проверьте свой электронный адрес и нажмите на ссылку, чтобы продолжить.",
     "haveYouVerifiedYourAccountYet": "Вы уже подтвердили свою учетную запись?",
     "selectToken": "Выбрать токен",
-    "theMinimumQuantityIsTooLarge": "Минимальное количество слишком большое"
+    "theMinimumQuantityIsTooLarge": "Минимальное количество слишком большое",
+    "addressIsNotEmpty": "Адрес не пуст"
 }

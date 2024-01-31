@@ -344,5 +344,6 @@
     "": "Παρακαλούμε ελέγξτε το email σας και κάντε κλικ στον σύνδεσμο για να συνεχίσετε.",
     "haveYouVerifiedYourAccountYet": "Έχετε επιβεβαιώσει τον λογαριασμό σας ακόμη;",
     "selectToken": "Επιλέξτε Token",
-    "theMinimumQuantityIsTooLarge": "Η ελάχιστη ποσότητα είναι πολύ μεγάλη"
+    "theMinimumQuantityIsTooLarge": "Η ελάχιστη ποσότητα είναι πολύ μεγάλη",
+    "addressIsNotEmpty": "Η διεύθυνση δεν είναι άδεια"
 }

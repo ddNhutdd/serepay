@@ -55,7 +55,6 @@ function ChangePassword(props) {
           showSuccess(() => true);
         })
         .catch((error) => {
-          console.log(error);
           callToastError(commontString.error);
         })
         .finally(() => {

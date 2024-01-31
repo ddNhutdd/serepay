@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Pagination, Spin } from "antd";
-
 import { useTranslation } from "react-i18next";
 import QRCode from "react-qr-code";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   getClassListFromElementById,
   getElementById,
@@ -21,12 +20,8 @@ import {
 } from "src/constant";
 import { callToastSuccess } from "src/function/toast/callToast";
 import i18n from "src/translation/i18n";
-import {
-  actionContent,
-  getCoin,
-  setShow,
-} from "src/redux/reducers/wallet2Slice";
 import { EmptyCustom } from "src/components/Common/Empty";
+import WalletTop, { titleWalletTop } from "../WalletTop";
 
 function SerepayWalletDeposit() {
   const dropdownNetworkMenuClickHandle = function (e) {
@@ -57,7 +52,7 @@ function SerepayWalletDeposit() {
         .catch((error) => {
           setAddress(() => error?.response?.data?.errors?.address);
           setCallApiCreateWalletStatus(() => api_status.rejected);
-          console.log(error);
+
           resolve(null);
         });
     });
@@ -83,7 +78,6 @@ function SerepayWalletDeposit() {
           resolve(resp.data.data.array);
         })
         .catch((error) => {
-          console.log(error);
           resolve(null);
         });
     });
@@ -101,7 +95,7 @@ function SerepayWalletDeposit() {
         renderHtml.push(
           <div key={item.id} className="wallet-deposite__history-item">
             <div className="wallet-deposite__history-time">
-              <i className="fa-solid fa-calendar"></i> ${item.created_at}
+              <i className="fa-solid fa-calendar"></i> {item.created_at}
             </div>
             <div className="wallet-deposite__history-content">
               <div className="wallet-deposite__history-name">
@@ -172,177 +166,189 @@ function SerepayWalletDeposit() {
     return callApiCreateWalletStatus === api_status.fetching ? "--d-none" : "";
   };
 
-  const [address, setAddress] = useState("");
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const coinFromRedux = useSelector(getCoin);
+  const isLogin = useSelector((root) => root.loginReducer.isLogin);
+
   const [callApiCreateWalletStatus, setCallApiCreateWalletStatus] = useState(
     api_status.pending
   );
-  const [historyData, setHistoryData] = useState([]);
 
-  const selectedCoin = useRef("");
+  const [historyData, setHistoryData] = useState([]);
+  const [address, setAddress] = useState("");
+
+  const selectedCoin = useRef(
+    getLocalStorage(localStorageVariable.coinFromWalletList) || coinString.USDT
+  );
   const historyPage = useRef(1);
   const codeElement = useRef();
   const callApiGetHistoryStatus = useRef(api_status.pending);
 
   useEffect(() => {
+    if (!isLogin) {
+      history.push(url.login);
+      return;
+    }
+
     document.addEventListener("click", closeAllDropdownMenu);
     fetchApiCreateWallet();
-    renderHistory(selectedCoin.current || coinFromRedux, historyPage.current);
+    renderHistory(selectedCoin.current, historyPage.current);
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
     let currentLanguage = i18n.language;
     i18n.on("languageChanged", (newLanguage) => {
       if (newLanguage !== currentLanguage) {
-        renderHistory(
-          selectedCoin.current || coinFromRedux,
-          historyPage.current
-        );
+        renderHistory(selectedCoin.current, historyPage.current);
         currentLanguage = newLanguage;
         return;
       }
     });
     return () => {
       document.removeEventListener("click", closeAllDropdownMenu);
-      dispatch(setShow(actionContent.main));
     };
   }, []);
 
   return (
-    <div className="container">
-      <div className="wallet-deposit fadeInBottomToTop">
-        <div className="wallet-deposit-left">
-          <ul>
-            <li>
-              <span className="number">1</span>
-              <div id="" className="wallet-deposit-input">
-                <p>{t("select")} Coin</p>
-                <div
-                  id="dropdown-coin-selected"
-                  className="dropdown-content-selected"
-                >
-                  <img
-                    src={`https://remitano.dk-tech.vn/images/${coinFromRedux}.png`}
-                    alt="name"
-                  />
-                  <span className="content">
-                    <span className="main-content">{coinFromRedux}</span>
-                  </span>
-                  <span></span>
-                </div>
-                <div
-                  id="coin-dropdown-menu"
-                  className="dropdown-menu-container"
-                >
-                  <div className="dropdown-menu" id="coinDropdownList">
-                    {/* js render here */}
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <span className="number">2</span>
-              <div className="wallet-deposit-input">
-                <p>{t("select")} Network</p>
-                <div
-                  id="dropdown-network-selected"
-                  onClick={dropdownNetworkMenuClickHandle}
-                  className="dropdown-content-selected"
-                >
-                  <span className="content">
-                    <span className="main-content">BEP20</span>
-                  </span>
-                  <span>
-                    <i className="fa-solid fa-caret-down"></i>
-                  </span>
-                </div>
-                <div
-                  id="coin-dropdown-network"
-                  className="dropdown-menu --d-none"
-                >
-                  <div className="dropdown-item-network">
-                    <div className="dropdown-item-network-left">
-                      <span>key</span>
-                      <span>type</span>
-                    </div>
-                    <div className="dropdown-item-network-right">
-                      <span>≈10 mins</span>
-                      <span>23 Confirmation/s</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <span className="number">3</span>
-              <div className="address">
-                <span>
-                  {t("depositeAddress")}
-                  <span>
-                    <i className="fa-solid fa-pen-to-square"></i>
-                  </span>
-                </span>
-                <div className="address-content">
+    <div className="wallet-deposit fadeInBottomToTop">
+      <div className="container">
+        <WalletTop title={titleWalletTop.deposit} />
+        <div className="wallet-deposit-content">
+          <div className="wallet-deposit-left">
+            <ul>
+              <li>
+                <span className="number">1</span>
+                <div id="" className="wallet-deposit-input">
+                  <p>{t("select")} Coin</p>
                   <div
-                    className={`fadeInBottomToTop spin-container ${renderClassSpin()}`}
+                    id="dropdown-coin-selected"
+                    className="dropdown-content-selected"
                   >
-                    <Spin />
+                    <img
+                      src={`https://remitano.dk-tech.vn/images/${selectedCoin.current}.png`}
+                      alt="name"
+                    />
+                    <span className="content">
+                      <span className="main-content">
+                        {selectedCoin.current}
+                      </span>
+                    </span>
+                    <span></span>
                   </div>
                   <div
-                    className={`address-content-qr fadeInBottomToTop ${renderClassAddress()}`}
+                    id="coin-dropdown-menu"
+                    className="dropdown-menu-container"
                   >
-                    <div className="address-content-qr-background">
-                      <QRCode
-                        style={{
-                          height: "auto",
-                          maxWidth: "100%",
-                          width: "100%",
-                        }}
-                        value={address ?? ""}
-                      />
+                    <div className="dropdown-menu" id="coinDropdownList">
+                      {/* js render here */}
                     </div>
                   </div>
+                </div>
+              </li>
+              <li>
+                <span className="number">2</span>
+                <div className="wallet-deposit-input">
+                  <p>{t("select")} Network</p>
                   <div
-                    className={`address-code-container ${renderClassAddress()}`}
+                    id="dropdown-network-selected"
+                    onClick={dropdownNetworkMenuClickHandle}
+                    className="dropdown-content-selected"
                   >
-                    <div className="address-code fadeInBottomToTop">
-                      <div className="address-code-title">{t("address")}</div>
-                      <div ref={codeElement} className="code">
-                        {address}
-                      </div>
-                    </div>
-                    <span
-                      onClick={copyAddressClickHandle}
-                      className="address-copy fadeInBottomToTop"
-                    >
-                      <i className="fa-regular fa-copy"></i>
+                    <span className="content">
+                      <span className="main-content">BEP20</span>
+                    </span>
+                    <span>
+                      <i className="fa-solid fa-caret-down"></i>
                     </span>
                   </div>
+                  <div
+                    id="coin-dropdown-network"
+                    className="dropdown-menu --d-none"
+                  >
+                    <div className="dropdown-item-network">
+                      <div className="dropdown-item-network-left">
+                        <span>key</span>
+                        <span>type</span>
+                      </div>
+                      <div className="dropdown-item-network-right">
+                        <span>≈10 mins</span>
+                        <span>23 Confirmation/s</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div className="wallet-deposit-right">
-          <h3 id="historyTitle">
-            {t("depositBtcHistory").replace("BTC", coinFromRedux)}
-          </h3>
-          <div
-            id="historyContent"
-            className=" wallet-deposit__history fadeInBottomToTop"
-          >
-            {historyData}
+              </li>
+              <li>
+                <span className="number">3</span>
+                <div className="address">
+                  <span>
+                    {t("depositeAddress")}
+                    <span>
+                      <i className="fa-solid fa-pen-to-square"></i>
+                    </span>
+                  </span>
+                  <div className="address-content">
+                    <div
+                      className={`fadeInBottomToTop spin-container ${renderClassSpin()}`}
+                    >
+                      <Spin />
+                    </div>
+                    <div
+                      className={`address-content-qr fadeInBottomToTop ${renderClassAddress()}`}
+                    >
+                      <div className="address-content-qr-background">
+                        <QRCode
+                          style={{
+                            height: "auto",
+                            maxWidth: "100%",
+                            width: "100%",
+                          }}
+                          value={address ?? ""}
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className={`address-code-container ${renderClassAddress()}`}
+                    >
+                      <div className="address-code fadeInBottomToTop">
+                        <div className="address-code-title">{t("address")}</div>
+                        <div ref={codeElement} className="code">
+                          {address}
+                        </div>
+                      </div>
+                      <span
+                        onClick={copyAddressClickHandle}
+                        className="address-copy fadeInBottomToTop"
+                      >
+                        <i className="fa-regular fa-copy"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
-          <div id="historySpinner" className="spin-container fadeInBottomToTop">
-            <Spin />
-          </div>
-          <div id="historyEmpty" className="spin-container fadeInBottomToTop">
-            <EmptyCustom stringData={t("noData")} />
-          </div>
-          <div className="wallet-deposite-paging">
-            <Pagination defaultCurrent={1} total={10} />
+          <div className="wallet-deposit-right">
+            <h3 id="historyTitle">
+              {t("depositBtcHistory").replace("BTC", selectedCoin.current)}
+            </h3>
+            <div
+              id="historyContent"
+              className=" wallet-deposit__history fadeInBottomToTop"
+            >
+              {historyData}
+            </div>
+            <div
+              id="historySpinner"
+              className="spin-container fadeInBottomToTop"
+            >
+              <Spin />
+            </div>
+            <div id="historyEmpty" className="spin-container fadeInBottomToTop">
+              <EmptyCustom stringData={t("noData")} />
+            </div>
+            <div className="wallet-deposite-paging">
+              <Pagination defaultCurrent={1} total={10} />
+            </div>
           </div>
         </div>
       </div>

@@ -13,6 +13,13 @@ body {
 
 
 @import "./base/gridSerepay.scss";
+@import "./base/flex.scss";
+@import "./base/paddingSerepay.scss";
+@import "./base/marginSerepay.scss";
+@import "./base/textAlignSerepay.scss";
+@import "./base/display.scss";
+
+
 @import "./components/MainTemplate.scss";
 @import "./components/AdminWidthdraw.scss";
 @import "./components/Header1.scss";
@@ -28,8 +35,6 @@ body {
 @import "./components/Wallet.scss";
 @import "./components/Home.scss";
 @import "./components/SwaptobeWallet.scss";
-@import "./components/FormWithdraw.scss";
-@import "./components/SwaptobeWalletList.scss";
 @import "./components/SwaptobeWalletDeposit.scss";
 @import "./components/Profile.scss";
 @import "./components/AdminTemplate.scss";

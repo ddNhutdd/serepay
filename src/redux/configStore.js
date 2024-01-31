@@ -6,11 +6,9 @@ import { loginReducer } from "./reducers/loginReducer";
 import { resReducer } from "./reducers/resReducer";
 import { currencyReducer } from "./reducers/currencyReducer";
 import { listCoinRealTimeReducer } from "./reducers/listCoinRealTimeReducer";
-import wallet2Reducer from "./reducers/wallet2Slice";
 import exchangeRateDisparityReducer from "./reducers/exchangeRateDisparitySlice";
 import adsSliceReducer from "./reducers/adsSlice";
 import p2pTradingShowSlice from "./reducers/p2pTrading";
-import walletWithdrawSlice from "./reducers/walletWithdraw";
 import notifyP2pSlice from "./reducers/notifiyP2pSlice";
 
 const rootReducer = combineReducers({
@@ -20,11 +18,9 @@ const rootReducer = combineReducers({
   resReducer,
   currencyReducer,
   listCoinRealTimeReducer,
-  wallet2Reducer,
   exchangeRateDisparityReducer,
   adsSliceReducer,
   p2pTradingShowSlice,
-  walletWithdrawSlice,
   notifyP2pSlice,
 });
 

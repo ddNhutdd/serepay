@@ -78,7 +78,9 @@ function AdsHistoryRecord(props) {
           <tbody>
             <tr>
               <td>{t("amount")}:</td>
-              <td>{item.amount}</td>
+              <td>
+                {formatNumber(item.amount, i18n.language, rountRange(price))}
+              </td>
             </tr>
             <tr>
               <td>{t("amountMinimum")}:</td>
