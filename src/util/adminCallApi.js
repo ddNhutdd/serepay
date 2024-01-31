@@ -109,3 +109,13 @@ export const historytransferAdmin = function (data) {
     return axiosService.post("/api/adminv2/historytransferAdmin", data);
   } catch (error) {}
 };
+export const getWalletToUserAdmin = function (data) {
+  try {
+    return axiosService.post("/api/adminv2/getWalletToUserAdmin", data);
+  } catch (error) {}
+};
+export const updateAmountWalletToId = function (data) {
+  try {
+    return axiosService.post("/api/adminv2/updateAmountWalletToId", data);
+  } catch (error) {}
+};

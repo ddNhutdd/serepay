@@ -39,7 +39,7 @@ export const Button = ({
   style,
   children,
   name,
-  type = "primary",
+  type = buttonClassesType.primary,
   disabled,
   htmlSubmit = htmlType,
 }) => {

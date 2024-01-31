@@ -50,6 +50,7 @@ export const url = {
   admin_configData: "/admin/config-data",
   admin_exchangeRateDisparity: "/admin/exchange-rate-disparity",
   admin_transfer: "/admin/transfer",
+  admin_wallet: "/admin/wallet",
 };
 
 // export const deploy_domain = DOMAIN + "wallet-2";

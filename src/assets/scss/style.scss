@@ -13,6 +13,13 @@ body {
 
 
 @import "./base/gridSerepay.scss";
+@import "./base/flex.scss";
+@import "./base/paddingSerepay.scss";
+@import "./base/marginSerepay.scss";
+@import "./base/textAlignSerepay.scss";
+@import "./base/display.scss";
+
+
 @import "./components/MainTemplate.scss";
 @import "./components/AdminWidthdraw.scss";
 @import "./components/Header1.scss";

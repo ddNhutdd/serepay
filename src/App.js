@@ -64,6 +64,7 @@ import FormWithdraw from "./components/seresoWallet/walletWithdraw";
 import SerepayWalletDeposit from "./components/seresoWallet/walletDeposite";
 import SwapAdmin from "./components/admin/swap";
 import TransferAdmin from "./components/admin/transferAdmin";
+import WalletAdmin from "./components/admin/walletAdmin";
 
 const config = {};
 export const math = create(all, config);
@@ -187,7 +188,7 @@ function App() {
         localStorage.removeItem("user");
       }
     }
-    //
+
     socket.connect();
     socket.on("listCoin", (resp) => {
       dispatch(setListCoinRealtime(resp));
@@ -195,7 +196,7 @@ function App() {
       dispatch(setTotalAssetsRealTime(total));
       dispatch(setTotalAssetsBtcRealTime(calTotalAssetsBtc(total, resp)));
     });
-    //
+
     return () => {
       socket.disconnect();
     };
@@ -263,6 +264,7 @@ function App() {
             component={ExchangeRateDisparity}
           />
           <AdminTemplate path={url.admin_transfer} component={TransferAdmin} />
+          <AdminTemplate path={url.admin_wallet} component={WalletAdmin} />
           <AdminTemplate path={url.admin_swap} component={SwapAdmin} />
           <Route exact path="/" component={Home} />
         </Switch>

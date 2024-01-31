@@ -239,13 +239,13 @@ export const showElement = function (element) {
   element.classList.remove("--d-none");
 };
 //
-export function debounce(func, ms) {
+export const debounce = function (func, ms) {
   let timeout;
-  return function () {
+  return function (...args) {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, arguments), ms);
+    timeout = setTimeout(() => func.apply(this, args), ms);
   };
-}
+};
 //
 /**
  * The write function capitalizes the beginning of each word

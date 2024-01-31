@@ -68,6 +68,9 @@ function Sidebar() {
       case "transfer":
         addClassToElementById("transfer", "active");
         break;
+      case "wallet":
+        addClassToElementById("wallet", "active");
+        break;
       default:
         break;
     }
@@ -116,6 +119,11 @@ function Sidebar() {
     clearSelectedItem();
     e.currentTarget.classList.add("active");
     history.push(url.admin_transfer);
+  };
+  const redirectWallet = function (e) {
+    clearSelectedItem();
+    e.currentTarget.classList.add("active");
+    history.push(url.admin_wallet);
   };
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
@@ -191,6 +199,12 @@ function Sidebar() {
             <i className="fa-solid fa-arrow-right-arrow-left"></i>
           </span>
           <span className="admin-sidebar__item">Transfer</span>
+        </li>
+        <li onClick={redirectWallet} id="wallet">
+          <span className="admin-sidebar__icon">
+            <i className="fa-solid fa-wallet"></i>
+          </span>
+          <span className="admin-sidebar__item">Wallet</span>
         </li>
         <li
           className="--d-none"
