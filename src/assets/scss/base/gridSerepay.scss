@@ -57,14 +57,6 @@
     width: 100%;
 }
 
-$responsive: (
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1400px,
-);
-
 @each $breakpoint, $width in $responsive {
     @media only screen and (max-width: $width) {
         @for $i from 1 through 12 {
