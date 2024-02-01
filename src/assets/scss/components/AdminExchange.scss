@@ -2,10 +2,11 @@
     color: $white;
 
     .admin-exchange__header {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
 
         .admin-exchange__title {
             @extend .titleContainerAdmin;
+            margin-bottom: 15px;
         }
     }
 

@@ -1,7 +1,9 @@
 .admin-header {
-    height: 70px;
+    height: fit-content;
     padding-left: 30px;
     padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     align-items: center;
     width: 100%;
@@ -20,7 +22,7 @@
 
         i {
             color: $white;
-            font-size: 25px;
+            font-size: 35px;
             position: absolute;
             top: -3px;
             left: 0;
@@ -39,7 +41,7 @@
         margin-left: 40px;
 
         .admin-header__logo-img {
-            width: 50px;
+            width: 140px;
             object-fit: cover;
 
             display: block;

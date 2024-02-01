@@ -2,32 +2,40 @@
     text-align: right;
 }
 
-@media screen and (max-width: 576px) {
-    .ta-sm-r {
-        text-align: right;
+@each $breakpoint, $width in $responsive {
+    @media screen and (max-width: $width) {
+        .ta-#{$breakpoint}-r {
+            text-align: right;
+        }
     }
 }
 
-@media screen and (max-width: 768px) {
-    .ta-md-r {
-        text-align: right;
-    }
-}
+// @media screen and (max-width: 576px) {
+//     .ta-sm-r {
+//         text-align: right;
+//     }
+// }
 
-@media screen and (max-width: 992px) {
-    .ta-lg-r {
-        text-align: right;
-    }
-}
+// @media screen and (max-width: 768px) {
+//     .ta-md-r {
+//         text-align: right;
+//     }
+// }
 
-@media screen and (max-width: 1200px) {
-    .ta-xl-r {
-        text-align: right;
-    }
-}
+// @media screen and (max-width: 992px) {
+//     .ta-lg-r {
+//         text-align: right;
+//     }
+// }
 
-@media screen and (max-width: 1400px) {
-    .ta-xxl-r {
-        text-align: right;
-    }
-}
+// @media screen and (max-width: 1200px) {
+//     .ta-xl-r {
+//         text-align: right;
+//     }
+// }
+
+// @media screen and (max-width: 1400px) {
+//     .ta-xxl-r {
+//         text-align: right;
+//     }
+// }

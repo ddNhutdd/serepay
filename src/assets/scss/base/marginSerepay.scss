@@ -2,6 +2,14 @@
     margin: 0;
 }
 
+.m-1 {
+    margin: $space;
+}
+
+.mt-3 {
+    margin-top: $space * 3;
+}
+
 .mb-0 {
     margin-bottom: 0;
 }
@@ -10,72 +18,137 @@
     margin-left: auto;
 }
 
-@media screen and (max-width:576px) {
-    .m-sm-0 {
-        margin: 0;
-    }
 
-    .mb-sm-0 {
-        margin-bottom: 0;
-    }
+@each $breakpoint, $width in $responsive {
+    @media screen and (max-width: $width) {
+        .m-#{$breakpoint}-0 {
+            margin: 0;
+        }
 
-    .ml-sm-a {
-        margin-left: auto;
+        .m-#{$breakpoint}-1 {
+            margin: $space;
+        }
+
+        .mt-#{$breakpoint}-3 {
+            margin-top: $space * 3;
+        }
+
+        .mb-#{$breakpoint}-0 {
+            margin-bottom: 0;
+        }
+
+        .ml-#{$breakpoint}-a {
+            margin-left: auto;
+        }
     }
 }
 
-@media screen and (max-width:768px) {
-    .m-md-0 {
-        margin: 0;
-    }
+// @media screen and (max-width:576px) {
+//     .m-sm-0 {
+//         margin: 0;
+//     }
 
-    .mb-md-0 {
-        margin-bottom: 0;
-    }
+//     .m-sm-1 {
+//         margin: $space;
+//     }
 
-    .ml-md-a {
-        margin-left: auto;
-    }
-}
+//     .mt-sm-3 {
+//         margin-top: $space * 3;
+//     }
 
-@media screen and (max-width:992px) {
-    .m-lg-0 {
-        margin: 0;
-    }
+//     .mb-sm-0 {
+//         margin-bottom: 0;
+//     }
 
-    .mb-lg-0 {
-        margin-bottom: 0;
-    }
+//     .ml-sm-a {
+//         margin-left: auto;
+//     }
+// }
 
-    .ml-lg-a {
-        margin-left: auto;
-    }
-}
+// @media screen and (max-width:768px) {
+//     .m-md-0 {
+//         margin: 0;
+//     }
 
-@media screen and (max-width:1200px) {
-    .m-xl-0 {
-        margin: 0;
-    }
+//     .m-md-1 {
+//         margin: $space;
+//     }
 
-    .mb-xl-0 {
-        margin-bottom: 0;
-    }
+//     .mt-md-3 {
+//         margin-top: $space * 3;
+//     }
 
-    .ml-xl-a {
-        margin-left: auto;
-    }
-}
+//     .mb-md-0 {
+//         margin-bottom: 0;
+//     }
 
-@media screen and (max-width:1400px) {
-    .m-xxl-0 {
-        margin: 0;
-    }
+//     .ml-md-a {
+//         margin-left: auto;
+//     }
+// }
 
-    .mb-xxl-0 {
-        margin-bottom: 0;
-    }
+// @media screen and (max-width:992px) {
+//     .m-lg-0 {
+//         margin: 0;
+//     }
 
-    .ml-xxl-a {
-        margin-left: auto;
-    }
-}
+//     .m-lg-1 {
+//         margin: $space;
+//     }
+
+//     .mt-lg-3 {
+//         margin-top: $space * 3;
+//     }
+
+//     .mb-lg-0 {
+//         margin-bottom: 0;
+//     }
+
+//     .ml-lg-a {
+//         margin-left: auto;
+//     }
+// }
+
+// @media screen and (max-width:1200px) {
+//     .m-xl-0 {
+//         margin: 0;
+//     }
+
+//     .m-xl-1 {
+//         margin: $space;
+//     }
+
+//     .mt-xl-3 {
+//         margin-top: $space * 3;
+//     }
+
+//     .mb-xl-0 {
+//         margin-bottom: 0;
+//     }
+
+//     .ml-xl-a {
+//         margin-left: auto;
+//     }
+// }
+
+// @media screen and (max-width:1400px) {
+//     .m-xxl-0 {
+//         margin: 0;
+//     }
+
+//     .m-xl-1 {
+//         margin: $space;
+//     }
+
+//     .mt-xxl-3 {
+//         margin-top: $space * 3;
+//     }
+
+//     .mb-xxl-0 {
+//         margin-bottom: 0;
+//     }
+
+//     .ml-xxl-a {
+//         margin-left: auto;
+//     }
+// }

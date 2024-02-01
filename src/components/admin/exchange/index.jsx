@@ -200,7 +200,7 @@ function Exchange() {
     <div className="admin-exchange">
       <div className="admin-exchange__header">
         <div className="admin-exchange__title">Exchange</div>
-        <div>
+        <div className={`mt-3`}>
           <Button
             disabled={disableButtonWhenPending()}
             onClick={addExchangeClickHandle}

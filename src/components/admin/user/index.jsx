@@ -238,7 +238,7 @@ const User = function () {
   return (
     <div className="adminUser">
       <div className="row">
-        <div className="col-12 px-0 adminUser__tittle">User</div>
+        <div className="col-12 px-0 pt-0 adminUser__tittle">User</div>
         <div className="col-md-12 col-6 px-0">
           <Input
             onChange={searchChangeHandle}
