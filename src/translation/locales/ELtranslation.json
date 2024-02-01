@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Έχετε επιβεβαιώσει τον λογαριασμό σας ακόμη;",
     "selectToken": "Επιλέξτε Token",
     "theMinimumQuantityIsTooLarge": "Η ελάχιστη ποσότητα είναι πολύ μεγάλη",
-    "addressIsNotEmpty": "Η διεύθυνση δεν είναι άδεια"
+    "addressIsNotEmpty": "Η διεύθυνση δεν είναι άδεια",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Παρακαλώ ενημερώστε τα στοιχεία ταυτότητάς σας και ενεργοποιήστε το 2FA προτού μπορέσετε να κάνετε ανάληψη. Επικοινωνήστε με την υποστήριξή σας για βοήθεια.",
+    "noAccountInformationFound": "Δεν βρέθηκαν πληροφορίες λογαριασμού",
+    "admin": "Διαχειριστής",
+    "navigateToProfilePage": "Πλοηγηθείτε στη σελίδα προφίλ"
 }

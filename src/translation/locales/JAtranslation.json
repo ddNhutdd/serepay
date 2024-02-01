@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "アカウントを確認しましたか？",
     "selectToken": "トークンを選択",
     "theMinimumQuantityIsTooLarge": "最小数量が大きすぎます",
-    "addressIsNotEmpty": "アドレスは空ではありません"
+    "addressIsNotEmpty": "アドレスは空ではありません",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "引き出し可能になる前に、アイデンティティ情報を更新し、2FAをオンにしてください。サポートにお問い合わせいただければ、お手伝いさせていただきます。",
+    "noAccountInformationFound": "アカウント情報が見つかりません",
+    "admin": "管理者",
+    "navigateToProfilePage": "プロフィールページに移動"
 }

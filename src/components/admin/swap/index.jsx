@@ -36,6 +36,7 @@ export default function SwapAdmin() {
   const tabCLickHandle = function (fillter, ev) {
     ev.stopPropagation();
     setFilter(() => fillter);
+    fetchHistorySwapAdmin(1, seletedCoin, userName, fillter);
   };
   const pageChangeHandle = function (page) {
     fetchHistorySwapAdmin(page, seletedCoin, userName, filter);

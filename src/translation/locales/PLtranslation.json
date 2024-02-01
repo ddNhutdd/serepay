@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Czy zweryfikowałeś już swoje konto?",
     "selectToken": "Wybierz Token",
     "theMinimumQuantityIsTooLarge": "Minimalna ilość jest zbyt duża",
-    "addressIsNotEmpty": "Adres nie jest pusty"
+    "addressIsNotEmpty": "Adres nie jest pusty",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Proszę zaktualizować informacje tożsamościowe i włączyć 2FA przed możliwością wypłaty. Skontaktuj się ze wsparciem w razie potrzeby.",
+    "noAccountInformationFound": "Nie znaleziono informacji o koncie",
+    "admin": "Administrator",
+    "navigateToProfilePage": "Przejdź do strony profilu"
 }

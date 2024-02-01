@@ -11,19 +11,26 @@ import { zoomImage } from "src/util/common";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Button, buttonClassesType } from "src/components/Common/Button";
 import { TagCustom, TagType } from "src/components/Common/Tag";
+import { ModalConfirm } from "src/components/Common/ModalConfirm";
+import { Input } from "src/components/Common/Input";
 function KYC() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [listKycUserData, setListKycUserData] = useState();
   const [listKycUserDataTotalPage, setListKycUserDataTotalPage] = useState(1);
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const listKycUserDataCurrentPage = useRef(1);
+  const userSelectedId = useRef(1);
+  const messageReject = useRef(1);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   useEffect(() => {
-    //fetch kyc table
     fetchKYCTable(1);
-    // render kyc table
+
     renderKYCTable();
   }, []);
+  useEffect(() => {
+    console.log(showConfirmModal);
+  }, [showConfirmModal]);
 
   const fetchKYCTable = function (page) {
     if (callApiStatus === api_status.fetching) return;
@@ -129,8 +136,9 @@ function KYC() {
       });
       imageContainer.appendChild(imgElement);
     }
+    userSelectedId.current = id;
     buttonConfirm.onclick = acceptKyc.bind(null, id);
-    buttonReject.onclick = rejectKyc.bind(null, id);
+    buttonReject.onclick = openConfirmModal;
   };
   const acceptKyc = function (userid) {
     if (callApiStatus === api_status.fetching) return;
@@ -156,17 +164,19 @@ function KYC() {
         setCallApiStatus(() => api_status.rejected);
       });
   };
-  const rejectKyc = function (userid) {
+  const rejectKyc = function (userid, note) {
     if (callApiStatus === api_status.fetching) return;
     else setCallApiStatus(() => api_status.fetching);
     cancelUserKyc({
       userid: String(userid),
+      note,
     })
       .then((resp) => {
         setCallApiStatus(() => api_status.fulfilled);
         const message = resp.data.message;
         callToastSuccess(message);
         handleCancel();
+        closeModalConfirm();
         fetchKYCTable(listKycUserDataCurrentPage.current);
       })
       .catch((error) => {
@@ -176,6 +186,27 @@ function KYC() {
   const pagingChangeHandle = function (page) {
     fetchKYCTable(page);
     listKycUserDataCurrentPage.current = page;
+  };
+  const closeModalConfirm = function () {
+    setShowConfirmModal(false);
+  };
+  const openConfirmModal = function () {
+    setShowConfirmModal(true);
+  };
+  const renderContentConfirmModal = function () {
+    return (
+      <>
+        <h2 style={{ color: "white" }}>Are you sure you want to reject?</h2>
+        <p>Reason:</p>
+        <div>
+          <Input onChange={modalConfirmInputChangeHandle} />
+        </div>
+      </>
+    );
+  };
+  const modalConfirmInputChangeHandle = function (ev) {
+    const value = ev.target.value;
+    messageReject.current = value;
   };
 
   return (
@@ -312,6 +343,17 @@ function KYC() {
           </div>
         </div>
       </Modal>
+      <ModalConfirm
+        waiting={callApiStatus}
+        content={renderContentConfirmModal()}
+        isShowModal={showConfirmModal}
+        closeModalHandle={closeModalConfirm}
+        modalConfirmHandle={rejectKyc.bind(
+          null,
+          userSelectedId.current,
+          messageReject.current
+        )}
+      />
     </div>
   );
 }

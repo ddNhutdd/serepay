@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "هل قمت بالتحقق من حسابك حتى الآن؟",
     "selectToken": "اختر الرمز",
     "theMinimumQuantityIsTooLarge": "الحد الأدنى للكمية كبير جدًا",
-    "addressIsNotEmpty": "العنوان غير فارغ"
+    "addressIsNotEmpty": "العنوان غير فارغ",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "الرجاء تحديث معلومات هويتك وتفعيل التحقق الثنائي قبل أن تكون قادرًا على السحب. تواصل مع الدعم الفني للحصول على المساعدة.",
+    "noAccountInformationFound": "لم يتم العثور على معلومات الحساب",
+    "admin": "المسؤول",
+    "navigateToProfilePage": "انتقل إلى صفحة الملف الشخصي"
 }

@@ -296,6 +296,10 @@ export default function Swap() {
     const amount = userWallet[swapFromCoin.toLowerCase() + "_balance"] || "0";
     formatInputFromCoin(amount.toString());
   };
+  const clearControl = function () {
+    setFromCoinValueString("");
+    setToCoinValueString("");
+  };
   const modalConfirmOkClickHandle = function () {
     if (callApiSwapStatus === api_status.fetching) return;
     else setCallApiSwapStatus(api_status.fetching);
@@ -309,6 +313,7 @@ export default function Swap() {
         fetchCoinSwapHistory();
         dispatch(userWalletFetchCount());
         setCallApiSwapStatus(api_status.fulfilled);
+        clearControl();
       })
       .catch((error) => {
         const responseError = error?.response?.data?.message;

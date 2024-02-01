@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Have you verified your account yet?",
     "selectToken": "Select Token",
     "theMinimumQuantityIsTooLarge": "The minimum quantity is too large",
-    "addressIsNotEmpty": "Address is not empty"
+    "addressIsNotEmpty": "Address is not empty",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Please update your identity information and turn on 2FA before being able to withdraw. Contact your support for help.",
+    "noAccountInformationFound": "No account information found",
+    "admin": "Admin",
+    "navigateToProfilePage": "Navigate to profile page"
 }

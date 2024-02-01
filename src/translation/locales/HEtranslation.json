@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "האם אימתת את החשבון שלך כבר?",
     "selectToken": "בחר טוקן",
     "theMinimumQuantityIsTooLarge": "הכמות המינימלית גדולה מדי",
-    "addressIsNotEmpty": "הכתובת אינה ריקה"
+    "addressIsNotEmpty": "הכתובת אינה ריקה",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "אנא עדכן את מידע הזהות שלך והפעל את האימות הדו-שלב (2FA) לפני שתוכל למשוך כספים. פנה לתמיכה שלך לקבלת עזרה.",
+    "noAccountInformationFound": "לא נמצאו מידע על החשבון",
+    "admin": "מנהל",
+    "navigateToProfilePage": "נווט לדף הפרופיל"
 }

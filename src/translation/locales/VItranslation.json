@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Bạn đã xác minh tài khoản của mình chưa?",
     "selectToken": "Chọn Token",
     "theMinimumQuantityIsTooLarge": "Số lượng tối thiểu quá lớn",
-    "addressIsNotEmpty": "Địa chỉ không được để trống"
+    "addressIsNotEmpty": "Địa chỉ không được để trống",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Vui lòng cập nhật thông tin định danh của bạn và bật 2FA trước khi có thể rút tiền. Liên hệ với bộ phận hỗ trợ để được giúp đỡ.",
+    "noAccountInformationFound": "Không tìm thấy thông tin tài khoản",
+    "admin": "Quản trị viên",
+    "navigateToProfilePage": "Chuyển đến trang hồ sơ"
 }

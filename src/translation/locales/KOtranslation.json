@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "계정을 이미 확인했나요?",
     "selectToken": "토큰 선택",
     "theMinimumQuantityIsTooLarge": "최소 수량이 너무 많습니다",
-    "addressIsNotEmpty": "주소가 비어 있지 않습니다"
+    "addressIsNotEmpty": "주소가 비어 있지 않습니다",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "출금이 가능해지기 전에 신원 정보를 업데이트하고 2FA를 활성화하세요. 도움이 필요하면 지원팀에 문의하십시오.",
+    "noAccountInformationFound": "계정 정보를 찾을 수 없습니다",
+    "admin": "관리자",
+    "navigateToProfilePage": "프로필 페이지로 이동"
 }

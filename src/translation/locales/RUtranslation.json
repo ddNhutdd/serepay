@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Вы уже подтвердили свою учетную запись?",
     "selectToken": "Выбрать токен",
     "theMinimumQuantityIsTooLarge": "Минимальное количество слишком большое",
-    "addressIsNotEmpty": "Адрес не пуст"
+    "addressIsNotEmpty": "Адрес не пуст",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Пожалуйста, обновите информацию об идентификации и включите 2FA перед возможностью снятия средств. Обратитесь в службу поддержки для получения помощи.",
+    "noAccountInformationFound": "Информация о счете не найдена",
+    "admin": "Админ",
+    "navigateToProfilePage": "Перейти на страницу профиля"
 }

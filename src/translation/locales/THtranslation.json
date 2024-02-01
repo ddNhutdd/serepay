@@ -343,5 +343,9 @@
     "haveYouVerifiedYourAccountYet": "คุณได้ยืนยันบัญชีของคุณแล้วหรือยัง?",
     "selectToken": "เลือกโทเค็น",
     "theMinimumQuantityIsTooLarge": "ปริมาณขั้นต่ำมากเกินไป",
-    "addressIsNotEmpty": "ที่อยู่ไม่ว่างเปล่า"
+    "addressIsNotEmpty": "ที่อยู่ไม่ว่างเปล่า",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "กรุณาอัปเดตข้อมูลตัวตนและเปิดใช้งาน 2FA ก่อนที่จะถอนเงินได้ ติดต่อฝ่ายสนับสนุนของคุณสำหรับความช่วยเหลือ",
+    "noAccountInformationFound": "ไม่พบข้อมูลบัญชี",
+    "admin": "ผู้ดูแลระบบ",
+    "navigateToProfilePage": "นำทางไปยังหน้าโปรไฟล์"
 }

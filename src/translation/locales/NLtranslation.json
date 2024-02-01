@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Heb je je account al geverifieerd?",
     "selectToken": "Selecteer Token",
     "theMinimumQuantityIsTooLarge": "De minimumhoeveelheid is te groot",
-    "addressIsNotEmpty": "Adres is niet leeg"
+    "addressIsNotEmpty": "Adres is niet leeg",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Gelieve uw identiteitsinformatie bij te werken en 2FA in te schakelen voordat u kunt opnemen. Neem contact op met uw ondersteuning voor hulp.",
+    "noAccountInformationFound": "Geen accountinformatie gevonden",
+    "admin": "Beheerder",
+    "navigateToProfilePage": "Navigeer naar profielpagina"
 }

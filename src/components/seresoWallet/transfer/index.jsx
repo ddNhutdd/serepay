@@ -18,7 +18,6 @@ import {
   getLocalStorage,
   observeWidth,
   parseURLParameters,
-  removeLocalStorage,
   setLocalStorage,
 } from "src/util/common";
 import { Button, buttonClassesType } from "src/components/Common/Button";
@@ -26,16 +25,18 @@ import { Pagination, Spin } from "antd";
 import css from "./transfer.module.scss";
 import WalletTop, { titleWalletTop } from "../WalletTop";
 import { getUserWallet } from "src/redux/constant/coin.constant";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getProfile, transferToUsername } from "src/util/userCallApi";
-import { callToastError } from "src/function/toast/callToast";
+import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { useHistory } from "react-router-dom";
 import { historytransfer as fetchHistorytransfer } from "src/util/userCallApi";
 import { EmptyCustom } from "src/components/Common/Empty";
+import { userWalletFetchCount } from "src/redux/actions/coin.action";
 
 function Transfer() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const userWallet = useSelector(getUserWallet);
   const location = useLocation();
   const listParams = location.search;
@@ -57,7 +58,7 @@ function Transfer() {
   const [qrValue, setQrValue] = useState("");
   const [inputAmoutTransferPadding, setInputAmoutTransferPadding] = useState(0);
   const [transferHistoryTotalItems, setTransferHistoryTotalItems] = useState(0);
-  const [typeKyc, setTypeKyc] = useState(0);
+  const [type2Fa, setType2Fa] = useState(0);
   const [coin, setCoin] = useState(
     getLocalStorage(localStorageVariable.coinFromWalletList)
   );
@@ -123,7 +124,7 @@ function Transfer() {
             callToastError(t("anErrorHasOccurred"));
             break;
         }
-        setCallApiSubmitStatus(api_url.rejected);
+        setCallApiSubmitStatus(api_status.rejected);
       });
   };
   const clearForm = function () {
@@ -238,7 +239,7 @@ function Transfer() {
       !userWallet ||
       userWallet.length <= 0 ||
       callApiProfileStatus === api_status.fetching ||
-      typeKyc !== 1
+      type2Fa !== 1
     )
       return "--d-none";
     return "";
@@ -273,36 +274,27 @@ function Transfer() {
       setCallApiProfileStatus(() => api_status.fetching);
       getProfile()
         .then((resp) => {
-          const typeKyc = resp?.data?.data?.type_kyc;
-          setTypeKyc(() => typeKyc);
+          const type2Fa = resp?.data?.data?.enabled_twofa;
+          setType2Fa(() => type2Fa);
           setCallApiProfileStatus(() => api_status.fulfilled);
           resolve(true);
         })
         .catch((err) => {
           reject(false);
-          callToastError("Không tìm thấy thông tin tài khoản");
+          callToastError(t("noAccountInformationFound"));
           setCallApiProfileStatus(() => api_status.rejected);
           history.push(url.login);
         });
     });
   };
-  const renderClassShowKycVertifing = function () {
-    if (callApiProfileStatus !== api_status.fetching && typeKyc === 2)
-      return "";
-    return "--d-none";
-  };
   const renderClassShowKycNotYetVerify = function () {
-    if (
-      callApiProfileStatus !== api_status.fetching &&
-      typeKyc !== 1 &&
-      typeKyc !== 2
-    ) {
+    if (callApiProfileStatus !== api_status.fetching && type2Fa !== 1) {
       return "";
     }
     return "--d-none";
   };
   const redirectToProfile = function () {
-    history.push(url.login);
+    history.push(url.profile);
     return;
   };
 
@@ -314,6 +306,10 @@ function Transfer() {
     if (!isLogin) {
       history.push(url.login);
       return;
+    }
+
+    if (Object.keys(listParams).length > 0 && isLogin) {
+      setQrValue(window.location.href);
     }
 
     fetchTransferHistory();
@@ -338,14 +334,12 @@ function Transfer() {
         <div
           className={css["tranfer2Fa"] + ` ${renderClassShowKycNotYetVerify()}`}
         >
-          Please update your identity information and turn on 2FA before being
-          able to transfer. Contact your support for help.
-          <Button onClick={redirectToProfile}>Chuyển tới trang profile</Button>
-        </div>
-        <div
-          className={css["tranfer2Fa"] + ` ${renderClassShowKycVertifing()}`}
-        >
-          Vui lòng chờ admin xác nhận kyc
+          {t(
+            "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw"
+          )}
+          <Button onClick={redirectToProfile}>
+            {t("navigateToProfilePage")}
+          </Button>
         </div>
         <div
           className={`${

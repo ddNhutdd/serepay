@@ -53,8 +53,8 @@ export const url = {
   admin_wallet: "/admin/wallet",
 };
 
-// export const deploy_domain = DOMAIN + "wallet-2";
 const currentDomain = window.location.href;
+
 export const deploy_domain = currentDomain;
 
 export const api_url = {

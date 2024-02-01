@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "តើអ្នកបានធ្វើការបញ្ជាក់គណនីរបស់អ្នកទេ?",
     "selectToken": "ជ្រើសរើសតួឡើង",
     "theMinimumQuantityIsTooLarge": "បរិមាណតូចបំផុតគឺធំពេក",
-    "addressIsNotEmpty": "អាសយដ្ឋានមិនទទេ"
+    "addressIsNotEmpty": "អាសយដ្ឋានមិនទទេ",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "សូមធ្វើបច្ចុប្បន្នភាពពត៌មានអតិថិជនរបស់អ្នក និងបើកបរិស្ថានបញ្ចប់មុនពេលអ្នកអាចដកប្រាក់បាន។ ទាក់ទងទីគាំទ្ររបស់អ្នកសម្រាប់ជំនួយ។",
+    "noAccountInformationFound": "រកមិនឃើញពត៌មានគណនី",
+    "admin": "អភិបាល",
+    "navigateToProfilePage": "រឹតត្បិតទៅទំព័រទូរស័ព្ទ"
 }

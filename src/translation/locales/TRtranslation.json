@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Hesabınızı doğruladınız mı?",
     "selectToken": "Token Seç",
     "theMinimumQuantityIsTooLarge": "Minimum miktar çok büyük",
-    "addressIsNotEmpty": "Adres boş değil"
+    "addressIsNotEmpty": "Adres boş değil",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Çekilebilir olmadan önce lütfen kimlik bilgilerinizi güncelleyin ve 2FA'yı etkinleştirin. Yardım için destek birimine başvurun.",
+    "noAccountInformationFound": "Hesap bilgisi bulunamadı",
+    "admin": "Yönetici",
+    "navigateToProfilePage": "Profil sayfasına git"
 }

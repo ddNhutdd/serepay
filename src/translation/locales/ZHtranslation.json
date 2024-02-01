@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "您已验证您的帐户了吗？",
     "selectToken": "选择代币",
     "theMinimumQuantityIsTooLarge": "最小数量太大",
-    "addressIsNotEmpty": "地址不为空"
+    "addressIsNotEmpty": "地址不为空",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "请在能够提款之前更新您的身份信息并启用双因素认证 (2FA)。联系您的支持团队寻求帮助。",
+    "noAccountInformationFound": "未找到帐户信息",
+    "admin": "管理员",
+    "navigateToProfilePage": "导航至个人资料页面"
 }

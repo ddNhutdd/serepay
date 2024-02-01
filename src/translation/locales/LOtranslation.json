@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "ທ່ານໄດ້ຢືນຢັນບັນຊີຂອງທ່ານແລະບໍ?",
     "selectToken": "ເລືອກ​ຕໍ່​ໂນັດ",
     "theMinimumQuantityIsTooLarge": "ຈໍານວນສູງສຸດແມ່ນຂະຫນາດ",
-    "addressIsNotEmpty": "ທີ່​ຢູ່​ບໍ່​ຫວ່າງ"
+    "addressIsNotEmpty": "ທີ່​ຢູ່​ບໍ່​ຫວ່າງ",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "ກະລຸນາປັບປຸງຂໍ້ມູນທະນາຄານຂອງທ່ານແລະເປີດໃຊ້ 2FA ເພື່ອສາມາດຊື້ເງິນໄດ້. ຕິດຕໍ່ກັບຄູ່ຂ່າວຂ້າພະເຈົ້າເພື່ອຄລິກັບງ່າຍ.",
+    "noAccountInformationFound": "ບໍ່ພົບຂໍ້ມູນບັນຊີ",
+    "admin": "ຜູ້ບໍລິຫາ",
+    "navigateToProfilePage": "ໄປທຳອິດໜ້າບັນຊີ"
 }

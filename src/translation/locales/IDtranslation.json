@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "Apakah Anda sudah memverifikasi akun Anda?",
     "selectToken": "Pilih Token",
     "theMinimumQuantityIsTooLarge": "Jumlah minimum terlalu besar",
-    "addressIsNotEmpty": "Alamat tidak kosong"
+    "addressIsNotEmpty": "Alamat tidak kosong",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Harap perbarui informasi identitas Anda dan aktifkan 2FA sebelum dapat melakukan penarikan. Hubungi dukungan Anda untuk bantuan.",
+    "noAccountInformationFound": "Tidak ditemukan informasi akun",
+    "admin": "Admin",
+    "navigateToProfilePage": "Navigasi ke halaman profil"
 }

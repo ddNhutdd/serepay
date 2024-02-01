@@ -345,5 +345,9 @@
     "haveYouVerifiedYourAccountYet": "क्या आपने अपने खाते को सत्यापित किया है?",
     "selectToken": "टोकन चुनें",
     "theMinimumQuantityIsTooLarge": "न्यूनतम मात्रा बहुत बड़ी है",
-    "addressIsNotEmpty": "पता खाली नहीं है"
+    "addressIsNotEmpty": "पता खाली नहीं है",
+    "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "कृपया निकालने से पहले अपनी पहचान की जानकारी अपडेट करें और 2FA को चालू करें। सहायता के लिए अपने समर्थन से संपर्क करें।",
+    "noAccountInformationFound": "कोई खाता जानकारी नहीं मिली",
+    "admin": "व्यवस्थापक",
+    "navigateToProfilePage": "प्रोफ़ाइल पृष्ठ की ओर नेविगेट करें"
 }

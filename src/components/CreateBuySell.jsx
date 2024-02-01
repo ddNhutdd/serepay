@@ -236,7 +236,6 @@ export default function CreateBuy() {
         return resp.data.data.username;
       })
       .catch((error) => {
-
         return null;
       });
   };
