@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import css from "./walletAdmin.module.scss";
 import { Pagination, Spin } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
@@ -8,17 +8,22 @@ import { api_status } from "src/constant";
 import {
   getAllUser,
   getWalletToUserAdmin,
+  searchUserFromUserName,
   updateAmountWalletToId,
 } from "src/util/adminCallApi";
 import socket from "src/util/socket";
 import {
+  debounce,
   formatNumber,
   formatStringNumberCultureUS,
   rountRange,
 } from "src/util/common";
 import { commontString } from "src/constant/index.js";
 import { availableLanguage } from "src/translation/i18n";
-import { callToastSuccess } from "src/function/toast/callToast.js";
+import {
+  callToastError,
+  callToastSuccess,
+} from "src/function/toast/callToast.js";
 
 function WalletAdmin() {
   const [fetchTableDataStatus, setFetchTableDataStatus] = useState(
@@ -39,6 +44,7 @@ function WalletAdmin() {
   const listButtonStatus = useRef({});
   const limit = useRef(10);
   const userId = useRef(0);
+  const searchValue = useRef("");
 
   const fetchApiLoadUser = async function (page) {
     if (fetchTableDataStatus == api_status.fetching) return;
@@ -72,7 +78,7 @@ function WalletAdmin() {
     ));
   };
   const renderClassShowTableSpin = function () {
-    return fetchTableDataStatus === api_status.pending ? "" : "--d-none";
+    return fetchTableDataStatus === api_status.fetching ? "" : "--d-none";
   };
   const renderClassShowEmptyTable = function () {
     return fetchTableDataStatus !== api_status.pending &&
@@ -82,13 +88,14 @@ function WalletAdmin() {
   };
   const renderClassShowTableContent = function () {
     return fetchTableDataStatus !== api_status.pending &&
+      fetchTableDataStatus !== api_status.fetching &&
       tableData &&
       tableData.length > 0
       ? ""
       : "--d-none";
   };
   const tablePagingChangeHandle = function (page) {
-    fetchApiLoadUser(page);
+    loadTableData(page);
   };
   const fetchApiGetListCoin = function () {
     setFetchControlStatus(() => api_status.fetching);
@@ -111,8 +118,8 @@ function WalletAdmin() {
     ev.stopPropagation();
     if (fetchControlStatus === api_status.fetching) return;
     userId.current = id;
-    setSelectedUserEmail(() => username);
-    setSelectedUsername(() => email);
+    setSelectedUserEmail(() => email);
+    setSelectedUsername(() => username);
 
     fetchApiGetWalletToUserAdmin(id).catch((error) => {
       setFetchControlStatus(() => api_status.rejected);
@@ -159,11 +166,11 @@ function WalletAdmin() {
         </label>
         <div
           id={`inputContainer${item.name}`}
-          className="col-sm-12 col-10 pl-sm-0"
+          className="col-sm-12 col-9 pl-sm-0"
         >
           <Input id={`input__${item.name}`} onChange={inputOnchangeHandle} />
         </div>
-        <div className="col-sm-12 col-2 pl-0">
+        <div className="col-sm-12 col-3 pl-0">
           <Button
             loading={renderLoadingButton(item.name)}
             id={`button__${item.name}`}
@@ -224,6 +231,7 @@ function WalletAdmin() {
       hideButton(coinname);
       callToastSuccess(commontString.success);
     } catch (error) {
+      callToastError(commontString.error);
       setButtonStatus(coinname, false);
     }
   };
@@ -231,6 +239,40 @@ function WalletAdmin() {
     const ele = document.getElementById(`button__${coinname}`);
     if (!ele) return;
     !ele.classList.contains("--d-none") && ele.classList.add("--d-none");
+  };
+  const searchChangeHandle = function (ev) {
+    const value = ev.target.value;
+    searchValue.current = value;
+    fetchApiSearchUserFromUserNameDebouced(1, value);
+  };
+  const fetchApiSearchUserFromUserName = async function (page, userName) {
+    try {
+      if (fetchTableDataStatus === api_status.fetching) return;
+      setFetchTableDataStatus(() => api_status.fetching);
+      const resp = await searchUserFromUserName({
+        limit: limit.current,
+        page,
+        keywork: userName,
+      });
+      const { array, total } = resp.data.data;
+      setTableData(() => array);
+      setTotalItems(() => total);
+      setCurrentPage(() => page);
+      setFetchTableDataStatus(() => api_status.fulfilled);
+    } catch (error) {
+      setFetchTableDataStatus(() => api_status.rejected);
+    }
+  };
+  const fetchApiSearchUserFromUserNameDebouced = debounce(
+    fetchApiSearchUserFromUserName,
+    1000
+  );
+  const loadTableData = function (page) {
+    if (searchValue.current) {
+      fetchApiSearchUserFromUserName(page, searchValue.current);
+    } else {
+      fetchApiLoadUser(page);
+    }
   };
 
   useEffect(() => {
@@ -248,6 +290,12 @@ function WalletAdmin() {
       <div className={css["walletAdmin__content"]}>
         <div className="row">
           <div className="col-md-12 col-6 pl-0">
+            <div className={`col-12 p-0`}>
+              <Input
+                onChange={searchChangeHandle}
+                placeholder={`Search by username`}
+              />
+            </div>
             <div className={`col-12 px-0 ta-r ${css["walletAdmin__paging"]}`}>
               <Pagination
                 showSizeChanger={false}

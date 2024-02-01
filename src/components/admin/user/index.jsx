@@ -2,14 +2,17 @@ import { Pagination, Spin } from "antd";
 import React, { useState, useRef, useEffect } from "react";
 import { Button } from "src/components/Common/Button";
 import { EmptyCustom } from "src/components/Common/Empty";
+import { Input } from "src/components/Common/Input";
 import { api_status, commontString } from "src/constant";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import {
   activeuser,
   getAllUser,
+  searchUserFromUserName,
   turn2fa,
   typeAds,
 } from "src/util/adminCallApi";
+import { debounce } from "src/util/common";
 
 const User = function () {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,6 +21,7 @@ const User = function () {
   const [callApiMainDataStatus, setCallApiMainDataStatus] = useState(
     api_status.pending
   );
+  const searchValue = useRef("");
   const limit = useRef(10);
 
   useEffect(() => {
@@ -88,7 +92,7 @@ const User = function () {
         .then((resp) => {
           setCallApiMainDataStatus(() => api_status.fulfilled);
           callToastSuccess(commontString.success);
-          fetchApiGetListAllUser(currentPage);
+          loadData(currentPage);
           resolve(true);
         })
         .catch((error) => {
@@ -111,7 +115,14 @@ const User = function () {
     ));
   };
   const pageChangeHandle = function (page) {
-    fetchApiGetListAllUser(page);
+    loadData(page);
+  };
+  const loadData = function (page) {
+    if (searchValue.current) {
+      fetchApiSearchUser(page, searchValue.current);
+    } else {
+      fetchApiGetListAllUser(page);
+    }
   };
   const renderAction2FA = function (enabled_twofa, userid) {
     switch (enabled_twofa) {
@@ -153,7 +164,7 @@ const User = function () {
       })
         .then((resp) => {
           callToastSuccess(commontString.success);
-          fetchApiGetListAllUser(currentPage);
+          loadData(currentPage);
           resolve(true);
         })
         .catch((error) => {
@@ -190,7 +201,7 @@ const User = function () {
       })
         .then((resp) => {
           callToastSuccess(commontString.success);
-          fetchApiGetListAllUser(currentPage);
+          loadData(currentPage);
           resolve(true);
         })
         .catch((error) => {
@@ -199,17 +210,49 @@ const User = function () {
         });
     });
   };
+  const fetchApiSearchUser = async function (page = 1, username = "") {
+    try {
+      if (callApiMainDataStatus === api_status.fetching) return;
+      setCallApiMainDataStatus(() => api_status.fetching);
+      const resp = await searchUserFromUserName({
+        limit: limit.current,
+        page,
+        keywork: username,
+      });
+      const { array, total } = resp.data.data;
+      setCallApiMainDataStatus(() => api_status.fulfilled);
+      setMainData(() => array);
+      setTotalItem(() => total);
+      setCurrentPage(() => page);
+    } catch (error) {
+      setCallApiMainDataStatus(() => api_status.rejected);
+    }
+  };
+  const fetchApiSearchUserDebouced = debounce(fetchApiSearchUser, 1000);
+  const searchChangeHandle = function (ev) {
+    const value = ev.target.value;
+    searchValue.current = value;
+    fetchApiSearchUserDebouced(1, value);
+  };
 
   return (
     <div className="adminUser">
-      <div className="adminUser__tittle">User</div>
-      <div className="adminUser__paging">
-        <Pagination
-          current={currentPage}
-          onChange={pageChangeHandle}
-          total={totalItem}
-          showSizeChanger={false}
-        />
+      <div className="row">
+        <div className="col-12 px-0 adminUser__tittle">User</div>
+        <div className="col-md-12 col-6 px-0">
+          <Input
+            onChange={searchChangeHandle}
+            placeholder={`Search by username`}
+          />
+        </div>
+        <div className="col-md-12 col-6 adminUser__paging">
+          <Pagination
+            current={currentPage}
+            onChange={pageChangeHandle}
+            total={totalItem}
+            showSizeChanger={false}
+          />
+        </div>
       </div>
       <div className="adminUser__content">
         <table>

@@ -124,3 +124,8 @@ export const historySwapAdmin = function (data) {
     return axiosService.post("/api/swap/historySwapAdmin", data);
   } catch (error) {}
 };
+export const searchUserFromUserName = function (data) {
+  try {
+    return axiosService.post("/api/admin/sreachusertousername", data);
+  } catch (error) {}
+};

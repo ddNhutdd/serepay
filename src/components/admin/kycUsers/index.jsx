@@ -20,7 +20,7 @@ function KYC() {
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const listKycUserDataCurrentPage = useRef(1);
   const userSelectedId = useRef(1);
-  const messageReject = useRef(1);
+  const [messageReject, setMessageReject] = useState("");
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   useEffect(() => {
@@ -206,7 +206,10 @@ function KYC() {
   };
   const modalConfirmInputChangeHandle = function (ev) {
     const value = ev.target.value;
-    messageReject.current = value;
+    setMessageReject(() => value);
+  };
+  const isHiddenButtonOk = function () {
+    return messageReject ? false : true;
   };
 
   return (
@@ -351,8 +354,9 @@ function KYC() {
         modalConfirmHandle={rejectKyc.bind(
           null,
           userSelectedId.current,
-          messageReject.current
+          messageReject
         )}
+        isHiddenOkButton={isHiddenButtonOk()}
       />
     </div>
   );

@@ -214,7 +214,7 @@
 
         .modalConfirmCancel {
             @include adminButtonGhost;
-            padding: 8px 20px;
+            padding: 6px 16px;
             background-color: transparent;
             color: $new-primary-color-6;
             border-color: $new-primary-color-6;
@@ -237,6 +237,7 @@
 
         .modalConfirmOk {
             @include userMainButton;
+            padding: 6px 16px;
         }
     }
 }

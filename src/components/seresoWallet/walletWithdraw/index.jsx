@@ -127,7 +127,7 @@ function FormWithdraw() {
               callToastError(t("invalidQuantity"));
               break;
             default:
-              callToastError(t("anErrorHasOccurred"));
+              callToastError(t(messageError) || t("anErrorHasOccurred"));
               break;
           }
           setCallApiSubmitStatus(api_status.rejected);
@@ -219,7 +219,7 @@ function FormWithdraw() {
     fetchWithdrawHistory();
   };
   const getMaxAvailable = function () {
-    return userWallet["coin".toLowerCase() + "_balance"];
+    return userWallet[coin.toLowerCase() + "_balance"];
   };
   const maxButtonClickHandle = function () {
     let valueString = getMaxAvailable()?.toString();
@@ -231,8 +231,7 @@ function FormWithdraw() {
   const renderClassEmpty = function () {
     return callApiSubmitStatus !== api_status.pending &&
       callApiSubmitStatus !== api_status.fetching &&
-      withdrawHistory &&
-      withdrawHistory.length > 0
+      (!withdrawHistory || withdrawHistory.length <= 0)
       ? ""
       : "--d-none";
   };

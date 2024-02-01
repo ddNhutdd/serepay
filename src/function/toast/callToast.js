@@ -1,9 +1,6 @@
 import { toast } from "react-toastify";
 import css from "./callToast.module.scss";
-import { useEffect, useRef } from "react";
-import { getLocalStorage } from "src/util/common";
-import { defaultLanguage, localStorageVariable } from "src/constant";
-import i18n from "src/translation/i18n";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 const toastOption = {
   position: "top-right",
@@ -15,12 +12,12 @@ const toastOption = {
   progress: undefined,
   theme: "dark",
 };
-//
+
 export const callToastSuccess = (content, title = null) =>
   toast(<ToastSuccess content={content} title={title} />, toastOption);
 export const callToastError = (content) =>
   toast(<ToastError content={content} />, toastOption);
-//
+
 const ToastSuccess = function ({ content, title }) {
   const { t } = useTranslation();
   const tem = useRef(title || t("success"));
