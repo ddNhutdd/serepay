@@ -12,6 +12,7 @@
     align-items: center;
     gap: 15px;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    border-left: 3px solid $new-primary-color-6;
 
     @media screen and (min-width: 480px) {
         padding: 10px 15px;
@@ -22,6 +23,8 @@
     }
 
     &>div {
+        width: 33.3333%;
+
         @media screen and (max-width: 992px) {
             width: 100%;
         }
@@ -74,6 +77,8 @@
                     }
 
                     &.ads-history-action {
+
+
                         .spin-container {
                             height: 60px;
                         }

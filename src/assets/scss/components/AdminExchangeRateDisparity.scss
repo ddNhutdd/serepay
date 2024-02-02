@@ -23,25 +23,7 @@
         .admin-exchange-rate-disparity__control-input {
             display: flex;
             flex-direction: column;
-
-            input {
-                border: 1px solid #7575755d;
-                padding: 5px 10px;
-                outline: none;
-                background-color: transparent;
-                border-radius: 5px;
-
-                &.disabled {
-                    &:hover {
-                        cursor: not-allowed;
-                    }
-                }
-            }
-
-            small {
-                margin-top: 5px;
-                color: $red-1;
-            }
+            width: 150px;
         }
 
 

@@ -106,6 +106,7 @@ function Transfer() {
       })
       .catch((error) => {
         const errorMessage = error?.response?.data?.message;
+        console.log(errorMessage);
         switch (errorMessage) {
           case "UserName is not exit":
             callToastError(t("userNameNotExists"));
@@ -120,8 +121,11 @@ function Transfer() {
             errorMessage === "amount is not empty" &&
               callToastError(t("amountNotEmpty"));
             break;
+          case "Insufficient balance or incorrect withdrawal minimum amount.":
+            callToastError(t("insufficientBalanceOrWithdrawalAmount"));
+            break;
           default:
-            callToastError(t("anErrorHasOccurred"));
+            callToastError(errorMessage || t("anErrorHasOccurred"));
             break;
         }
         setCallApiSubmitStatus(api_status.rejected);

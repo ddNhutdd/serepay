@@ -28,7 +28,6 @@ function AdsHistoryRecord(props) {
     price,
     type = "",
     // for user
-    redirectConfirm = function () {},
     showModal = function () {},
     cancelAdsId = function () {},
     // for admin
@@ -134,7 +133,7 @@ function AdsHistoryRecord(props) {
               <td
                 className={`${
                   css["ads-history-action"]
-                } + ${" "} + ${renderActionByUser()}`}
+                } ${renderActionByUser()}`}
                 id={"adsHistoryAction" + item.id}
                 colSpan="2"
               >
@@ -157,10 +156,12 @@ function AdsHistoryRecord(props) {
               <td
                 className={`${
                   css["ads-history-action"]
-                } + ${" "} + ${renderActionByAdmin()}`}
+                }  ${renderActionByAdmin()}`}
                 colSpan="2"
               >
-                {renderStatus(item.type)}
+                <div className="d-flex alignItem-c justify-c">
+                  {renderStatus(item.type)}
+                </div>
               </td>
             </tr>
           </tbody>
@@ -170,15 +171,18 @@ function AdsHistoryRecord(props) {
         <table>
           <tbody>
             <tr className={renderClassButonLastCoin()}>
-              <td>
-                <Button onClick={rejectClickHandle.bind(null, item.id)}>
-                  Reject
-                </Button>
-              </td>
-              <td>
-                <Button onClick={acceptClickHandle.bind(null, item.id)}>
-                  Accept
-                </Button>
+              <td colSpan={2}>
+                <div className="d-flex alignItem-c justify-c">
+                  <Button
+                    className={`m-1`}
+                    onClick={rejectClickHandle.bind(null, item.id)}
+                  >
+                    Reject
+                  </Button>
+                  <Button onClick={acceptClickHandle.bind(null, item.id)}>
+                    Accept
+                  </Button>
+                </div>
               </td>
             </tr>
           </tbody>

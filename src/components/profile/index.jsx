@@ -120,14 +120,15 @@ function Profile() {
     switch (e.target.name) {
       case "frontIdentityCardFile":
         document.getElementById("frontIdentifyCardValueText").innerHTML =
-          file.name;
+          file?.name || t("noFileSelected");
         break;
       case "backOfIdentityCardFile":
         document.getElementById("backOfIdentityCardFileText").innerHTML =
-          file.name;
+          file?.name || t("noFileSelected");
         break;
       case "portraitFile":
-        document.getElementById("portraitFileText").innerHTML = file.name;
+        document.getElementById("portraitFileText").innerHTML =
+          file?.name || t("noFileSelected");
         break;
       default:
         break;

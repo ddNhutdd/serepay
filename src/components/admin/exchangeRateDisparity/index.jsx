@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Spin } from "antd";
 import {
   addClassToElementById,
+  formatStringNumberCultureUS,
   getClassListFromElementById,
   getElementById,
 } from "src/util/common";
@@ -11,17 +12,18 @@ import {
   fetchExchangeRateDisparity,
   getExchangeRateDisparity,
 } from "src/redux/reducers/exchangeRateDisparitySlice";
-import { api_status } from "src/constant";
+import { api_status, regularExpress } from "src/constant";
 import { updateExchangeRateDisparity } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Button } from "src/components/Common/Button";
+import { Input } from "src/components/Common/Input";
 function ExchangeRateDisparity() {
   const rateFromRedux = useSelector(getExchangeRateDisparity);
   const rateStatusFromRedux = useSelector(exchangeRateDisparityApiStatus);
   const controls = useRef({ newValueInput: "newValueInput" });
   const controlTourched = useRef({});
-  const controlErrors = useRef({});
+  const [controlErrors, setControlErrors] = useState({});
   const dispatch = useDispatch();
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
 
@@ -72,19 +74,28 @@ function ExchangeRateDisparity() {
       newValueInputElement &&
       controlTourched.current[controls.current.newValueInput]
     ) {
-      const checkNumber = /^\s*[+-]?(\d+|\d*\.\d+|\d+\.\d*)([Ee][+-]?\d+)?\s*$/;
+      const checkNumber = regularExpress.checkNumber;
       if (
-        !checkNumber.test(newValueInputElement.value) &&
+        !checkNumber.test(newValueInputElement.value.replaceAll(",", "")) &&
         newValueInputElement.value
       ) {
         valid &= false;
-        controlErrors.current[controls.current.newValueInput] =
-          "Format incorect";
+        setControlErrors((state) => ({
+          ...state,
+          [controls.current.newValueInput]: "Format incorect",
+        }));
       } else if (!newValueInputElement.value) {
         valid &= false;
-        controlErrors.current[controls.current.newValueInput] = "Require";
+        setControlErrors((state) => ({
+          ...state,
+          [controls.current.newValueInput]: "Require",
+        }));
       } else {
-        delete controlErrors.current[controls.current.newValueInput];
+        setControlErrors((state) => {
+          const newState = { ...state };
+          delete newState[controls.current.newValueInput];
+          return newState;
+        });
       }
     }
     return Object.keys(controlTourched.current).length <= 0 ? false : valid;
@@ -92,31 +103,28 @@ function ExchangeRateDisparity() {
   const newValueInputFocusHandle = function () {
     controlTourched.current[controls.current.newValueInput] = true;
     validate();
-    renderError();
   };
-  const newValueInputChangeHandle = function () {
+  const newValueInputChangeHandle = function (ev) {
+    const value = ev.target.value;
     validate();
-    renderError();
+    ev.target.value = formatInput(value);
   };
-  const renderError = function () {
-    if (
-      controlTourched.current[controls.current.newValueInput] &&
-      controlErrors.current[controls.current.newValueInput]
-    ) {
-      const inputValueErrorElement = getElementById("newInputValueError");
-      inputValueErrorElement.innerHTML =
-        controlErrors.current[controls.current.newValueInput];
-      inputValueErrorElement.classList.remove("--visible-hidden");
-    } else {
-      addClassToElementById("newInputValueError", "--visible-hidden");
+  const formatInput = function (inputValue) {
+    const inputValueWithoutComma = inputValue.replace(/,/g, "");
+    const regex = /^$|^[0-9]+(\.[0-9]*)?$/;
+    if (!regex.test(inputValueWithoutComma)) {
+      return inputValue.slice(0, -1);
     }
+    const inputValueFormated = formatStringNumberCultureUS(
+      inputValueWithoutComma
+    );
+    return inputValueFormated;
   };
   const submitHandle = function (event) {
     event.preventDefault();
     controlTourched.current[controls.current.newValueInput] = true;
     const valid = validate();
     if (!valid) {
-      renderError();
     } else {
       // call api
       if (callApiStatus === api_status.fetching) return;
@@ -125,7 +133,7 @@ function ExchangeRateDisparity() {
       if (!newValueElement) return;
       updateExchangeRateDisparity({
         name: "exchangeRate",
-        value: newValueElement.value,
+        value: newValueElement.value.replaceAll(",", ""),
       })
         .then((resp) => {
           setCallApiStatus(() => api_status.fulfilled);
@@ -164,16 +172,17 @@ function ExchangeRateDisparity() {
       <div id="content" className="admin-exchange-rate-disparity__content">
         <div className="admin-exchange-rate-disparity__control-input">
           <label htmlFor="">Current Value:</label>
-          <input id="rateInput" disabled type="text" className="disabled" />
+          <Input id="rateInput" disabled type="text" className="disabled" />
         </div>
         <form className="admin-exchange-rate-disparity__form">
           <div className="admin-exchange-rate-disparity__control-input">
             <label htmlFor="newValueInput">New Value:</label>
-            <input
+            <Input
               onFocus={newValueInputFocusHandle}
               onChange={newValueInputChangeHandle}
               id="newValueInput"
               type="text"
+              errorMes={controlErrors[controls.current.newValueInput]}
             />
             <small id="newInputValueError" className="--visible-hidden">
               error
