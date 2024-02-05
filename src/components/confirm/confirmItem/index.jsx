@@ -24,12 +24,14 @@ import {
 import {
   companyCancelP2pCommand,
   companyConfirmP2pCommand,
+  getQrBankPayment,
   userCancelP2pCommand,
   userConfirmP2pCommand,
 } from "src/util/userCallApi";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { math } from "src/App";
+import QRCode from "react-qr-code";
 
 function ConfirmItem(props) {
   const actionType = {
@@ -55,6 +57,8 @@ function ConfirmItem(props) {
   const [code, setCode] = useState();
   const [rate, setRate] = useState();
   const [userCurrentAction, setUserCurrentAction] = useState(); //The current user's action is different from the ad's side
+  const [qrcode, setQrcode] = useState("");
+
   const idCommand = useRef();
   const isMobileViewport = window.innerWidth < 600;
 
@@ -443,9 +447,18 @@ function ConfirmItem(props) {
       return "confirm--green";
     } else return "confirm--red";
   };
+  const testClickHandle = async function () {
+    try {
+      const response = await getQrBankPayment();
+      console.log(response);
+      setQrcode(response.data.qrCode);
+    } catch (error) {}
+  };
 
   return (
     <div className="confirm">
+      <button onClick={testClickHandle}>test</button>
+
       <div className="container">
         <table id="confirm__table">
           <thead>
@@ -495,6 +508,24 @@ function ConfirmItem(props) {
                     {t(
                       "youConfirmThatYouHaveMadeTheTransferPleaseWaitForUsToVerify"
                     )}
+                  </span>
+                </div>
+                <div className="d-flex alignItem-c justify-c">
+                  <span
+                    style={{
+                      padding: 5,
+                      maxWidth: "50%",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <QRCode
+                      style={{
+                        height: "auto",
+                        maxWidth: "100%",
+                        width: "100%",
+                      }}
+                      value={qrcode ?? ""}
+                    />
                   </span>
                 </div>
               </td>

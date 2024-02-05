@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spin, Pagination } from "antd";
-import { getBankListV2 } from "src/assets/resource/getBankListV2";
+import { useSelector } from "react-redux";
 import QRCode from "react-qr-code";
 import { useTranslation } from "react-i18next";
 import {
+  apiResponseErrorMessage,
   api_status,
   commontString,
   defaultLanguage,
@@ -24,15 +25,22 @@ import { useHistory } from "react-router-dom";
 import {
   addListBanking,
   generateOTPToken,
-  getListBanking,
   getProfile,
   turnOff2FA,
   turnOn2FA,
   uploadKyc,
+  getListBanking as getListBankUser,
 } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input } from "../Common/Input";
 import { EmptyCustom } from "../Common/Empty";
+import {
+  getBankState,
+  getListBank,
+  getStatus,
+} from "src/redux/reducers/bankSlice";
+import Dropdown from "../Common/dropdown/Dropdown";
+import { Button } from "../Common/Button";
 function Profile() {
   const kycControl = {
     fullName: "fullName",
@@ -59,7 +67,7 @@ function Profile() {
   const paymentTourched = useRef({});
   const [paymentError, setPaymentError] = useState({});
   const listPaymentPageSize = useRef(5);
-  const listBank = useRef(getBankListV2());
+  const { listBank, status: listBankStatus } = useSelector(getBankState);
 
   const { t } = useTranslation();
   const history = useHistory();
@@ -71,9 +79,8 @@ function Profile() {
   const [callApiTurnONOff2faStatus, setCallApiTurnONOff2faStatus] = useState(
     api_status.pending
   );
-  const [isShowBankDropdown, setIsShowBankDropdown] = useState(false);
   const [bankDropdownSelected, setBankDropdownSelected] = useState(
-    listBank.current.at(0)
+    listBank.at(0)
   );
   const [isEnabled_twofa, setIsEnabled_twofa] = useState(false); // 2fa status
   const [qrValue, setQrvalue] = useState({
@@ -82,7 +89,9 @@ function Profile() {
   });
   const [callApi2FAStatus, setCallApi2FAStatus] = useState(api_status.pending);
   const [showContent, setShowConTent] = useState(content.undefined);
-  const callApiBankingUserStatus = useRef(api_status.pending);
+  const [callApiBankingUserStatus, setCallApiBankingUserStatus] = useState(
+    api_status.pending
+  );
   const [listPayment, setListPayment] = useState([]);
   const [callApiPaymentStatus, setCallApiPaymentStatus] = useState(
     api_status.pending
@@ -100,20 +109,16 @@ function Profile() {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
-    // them animation cho component khi nó được load
-    const element = document.querySelector(".profile");
-    element.classList.add("fadeInBottomToTop");
+
     // load du lieu len cac control
     fetchUserProfile();
 
     fetchApiGetListBankingUser(1);
-
-    document.addEventListener("click", closeAllDropdown);
-
-    return () => {
-      document.removeEventListener("click", closeAllDropdown);
-    };
   }, []);
+  useEffect(() => {
+    if (listBankStatus === api_status.fulfilled)
+      setBankDropdownSelected(() => listBank.at(0));
+  }, [listBankStatus]);
 
   const handleFileChange = function (e) {
     const file = e.target.files[0];
@@ -832,33 +837,38 @@ function Profile() {
       return;
     }
     //
-    disablePaymentButton();
     const result = await fetApiUserAddBanking({
       numberBanking: getElementById("profile__payment-account-number").value,
-      nameBanking: bankDropdownSelected.name,
+      nameBanking: bankDropdownSelected.content,
       ownerBanking: getElementById("profile__payment-account-name").value,
     });
     if (result !== null) getElementById("profilePaymentForm").reset();
-    setBankDropdownSelected(listBank.current.at(0));
-    enablePaymentButton();
+    setBankDropdownSelected(listBank.at(0));
     // render list
     fetchApiGetListBankingUser(1);
   };
   const fetApiUserAddBanking = function (data) {
     return new Promise((resolve) => {
-      if (callApiBankingUserStatus.current === api_status.fetching) {
+      if (callApiBankingUserStatus === api_status.fetching) {
         return resolve(null);
       }
-      callApiBankingUserStatus.current = api_status.fetching;
+      setCallApiBankingUserStatus(api_status.fetching);
       addListBanking(data)
         .then((resp) => {
-          callApiBankingUserStatus.current = api_status.fulfilled;
+          setCallApiBankingUserStatus(api_status.fulfilled);
           callToastSuccess(t(commontString.success));
           return resolve(resp.data.data);
         })
         .catch((error) => {
-          callApiBankingUserStatus.current = api_status.rejected;
-          callToastError(t(commontString.error));
+          setCallApiBankingUserStatus(api_status.rejected);
+          const mess = error.response.data.message;
+          switch (mess) {
+            case apiResponseErrorMessage.bankExist:
+              callToastError("Bank account number already exists");
+              break;
+            default:
+              callToastError(mess || t(commontString.error));
+          }
           return resolve(null);
         });
     });
@@ -917,21 +927,7 @@ function Profile() {
   const paymentControlChangeHandle = function () {
     paymentValidate();
   };
-  /**
-   * disable button and show loader
-   */
-  const disablePaymentButton = function () {
-    addClassToElementById("paymentButtonSubmit", "disable");
-    const btn = getElementById("paymentButtonSubmit");
-    const loader = btn.querySelector(".loader");
-    showElement(loader);
-  };
-  const enablePaymentButton = function () {
-    getClassListFromElementById("paymentButtonSubmit").remove("disable");
-    const btn = getElementById("paymentButtonSubmit");
-    const loader = btn.querySelector(".loader");
-    hideElement(loader);
-  };
+
   /**
    * function fetch data for state listPayment
    */
@@ -940,11 +936,12 @@ function Profile() {
       return;
     }
     setCallApiPaymentStatus(api_status.fetching);
-    await getListBanking({
+    await getListBankUser({
       limit: listPaymentPageSize.current,
       page: page,
     })
       .then((resp) => {
+        console.log(resp);
         setCallApiPaymentStatus(api_status.fulfilled);
         setListPayment(resp.data.data.array);
         setListPaymentTotalItems(resp.data.data.total);
@@ -969,12 +966,14 @@ function Profile() {
       );
     } else {
       return listPayment.map((item) => {
-        const bankInfo = findBankInfo(item.name_banking);
+        const bankInfo = findLogoBank(item.name_banking);
         return (
           <div key={item.id} className="profile__payment-record">
             <div className="profile__payment-cell">
-              <img src={bankInfo?.logo || "www.abc.com"} alt={bankInfo?.code} />{" "}
-              {item.name_banking}
+              <span>
+                <img src={bankInfo || "www.abc.com"} alt={bankInfo?.code} />{" "}
+              </span>
+              <span>{item.name_banking}</span>
             </div>
             <div className="profile__payment-cell">{item.owner_banking}</div>
             <div className="profile__payment-cell">{item.number_banking}</div>
@@ -983,60 +982,20 @@ function Profile() {
       });
     }
   };
-  const findBankInfo = function (bankName) {
-    const result = listBank.current.find((item) => item.name === bankName);
+  const findLogoBank = function (bankName) {
+    const result = listBank.find((item) => item.content === bankName)?.image;
     return result;
   };
   const listPaymentPageChangeHandle = function (page) {
     setListPaymentCurrentPage(page);
     fetchApiGetListBankingUser(page);
   };
-  const bankDropdownClickHandle = function (e) {
-    e.stopPropagation();
-    setIsShowBankDropdown((state) => !state);
-  };
-  const renderMenuBankDropdown = function () {
-    if (!listBank.current) return;
-    return listBank.current.map(({ logo, name, code }) => (
-      <li
-        onClick={bankDropdownItemClickHandle.bind(null, logo, name, code)}
-        className="dropdown-item"
-        key={name}
-      >
-        <span>
-          <img src={logo} alt={name} />
-        </span>
-        <span className="dropdown-content">{`${name} (${code})`}</span>
-      </li>
-    ));
-  };
-  const bankDropdownItemClickHandle = function (logo, name, code) {
-    const ob = {
-      logo,
-      name,
-      code,
-    };
-    setBankDropdownSelected(ob);
-    setIsShowBankDropdown(() => false);
-  };
-  const renderSelectorBankDropdown = function () {
-    if (!bankDropdownSelected) return;
-    const { logo, name, code } = bankDropdownSelected;
-    return (
-      <>
-        <span>
-          <img src={logo} alt={name} />
-        </span>
-        <span>{`${name} (${code})`}</span>
-      </>
-    );
-  };
-  const closeAllDropdown = function () {
-    setIsShowBankDropdown(() => false);
+  const dropdownItemCLick = function (item, _) {
+    setBankDropdownSelected(item);
   };
 
   return (
-    <div className="profile">
+    <div className="profile fadeInBottomToTop">
       <div className="container">
         <div className="profile__info">
           <div className="profile__card-container box">
@@ -1091,26 +1050,11 @@ function Profile() {
                 <div className="profile__input">
                   <label>{t("bankName")}</label>
                   <div className="profile__dropdown">
-                    <div
-                      onClick={bankDropdownClickHandle}
-                      className={`profile__dropdown__selector ${
-                        isShowBankDropdown ? "active" : ""
-                      }`}
-                    >
-                      {renderSelectorBankDropdown()}
-                      <span>
-                        <i className="fa-solid fa-caret-down"></i>
-                      </span>
-                    </div>
-                    <div
-                      className={`profile__dropdown__menu-container ${
-                        isShowBankDropdown ? "show" : ""
-                      }`}
-                    >
-                      <ul className="dropdown-menu">
-                        {renderMenuBankDropdown()}
-                      </ul>
-                    </div>
+                    <Dropdown
+                      list={listBank}
+                      itemClickHandle={dropdownItemCLick}
+                      itemSelected={bankDropdownSelected}
+                    />
                   </div>
                 </div>
                 <div className="profile__input">
@@ -1144,14 +1088,14 @@ function Profile() {
                   />
                 </div>
                 <div className="profile__payment-action">
-                  <button
-                    id="paymentButtonSubmit"
+                  <Button
                     onClick={addBankingSubmitHandle}
                     className="profile__payment-button"
+                    loading={callApiBankingUserStatus === api_status.fetching}
                   >
                     <div className="loader --d-none"></div>
                     {t("addBanking")}
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>

@@ -54,7 +54,6 @@ export const url = {
 };
 
 const currentDomain = window.location.href;
-
 export const deploy_domain = currentDomain;
 
 export const api_url = {
@@ -113,4 +112,5 @@ export const apiResponseErrorMessage = {
   accountExist: "User does not exist !",
   emailExist: "Email already exists !",
   accountIncorrect: "Email or password is incorrect! ",
+  bankExist: "Bank account number already exists",
 };

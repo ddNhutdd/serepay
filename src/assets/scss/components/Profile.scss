@@ -174,9 +174,10 @@
                     }
 
                     .profile__payment-action {
+                        height: 35.56px;
+
                         .profile__payment-button {
-                            @include userMainButton;
-                            transform: translateY(30px);
+                            transform: translateY(33px);
 
                             @media screen and (max-width: 576px) {
                                 transform: none;
@@ -195,6 +196,7 @@
 
                 .profile__payment-record {
                     display: flex;
+                    gap: 10px;
 
                     @media screen and (max-width: 768px) {
                         flex-direction: column;
@@ -209,10 +211,14 @@
                     .profile__payment-cell {
                         width: 33.333333%;
                         padding: 5px 0;
+                        display: flex;
+                        gap: 5px;
+                        align-items: flex-start;
+                        justify-content: flex-start;
 
                         img {
-                            width: 20px;
-                            height: 20px;
+                            width: 100px;
+                            height: fit-content;
                             object-fit: cover;
                         }
                     }
@@ -251,6 +257,12 @@
 
             .profile__dropdown__selector {
                 @include userDropdownSelected;
+
+                img {
+                    width: 100px !important;
+                    height: 24px;
+                    object-fit: cover;
+                }
             }
 
             .profile__dropdown__menu-container {
@@ -259,6 +271,12 @@
                 top: 33px;
                 left: 0;
                 width: 100%;
+
+                img {
+                    width: 100px !important;
+                    height: 24px !important;
+                    object-fit: cover;
+                }
             }
         }
 

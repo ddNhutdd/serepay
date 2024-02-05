@@ -17,6 +17,7 @@ import Home from "./components/home/index.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getExchange as getExchangeApi,
+  getListBank,
   getListHistoryP2pPendding,
   getWalletApi,
 } from "./util/userCallApi";
@@ -65,6 +66,7 @@ import SerepayWalletDeposit from "./components/seresoWallet/walletDeposite";
 import SwapAdmin from "./components/admin/swap";
 import TransferAdmin from "./components/admin/transferAdmin";
 import WalletAdmin from "./components/admin/walletAdmin";
+import { setListBank, setStatus } from "./redux/reducers/bankSlice";
 
 const config = {};
 export const math = create(all, config);
@@ -177,6 +179,25 @@ function App() {
     )?.price;
     return roundDecimalValues(totalUsd / priceBtc, 100000000);
   };
+  const fetchListBank = async function () {
+    try {
+      dispatch(setStatus(api_status.fetching));
+      const listBank = (await getListBank())?.data;
+      dispatch(
+        setListBank(
+          listBank.map((item) => ({
+            image: item.logo,
+            content: `${item.name} (${item.code})`,
+            id: item.id,
+            bin: item.bin,
+          }))
+        )
+      );
+      dispatch(setStatus(api_status.fulfilled));
+    } catch (error) {
+      dispatch(setStatus(api_status.rejected));
+    }
+  };
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -196,6 +217,8 @@ function App() {
       dispatch(setTotalAssetsRealTime(total));
       dispatch(setTotalAssetsBtcRealTime(calTotalAssetsBtc(total, resp)));
     });
+
+    fetchListBank();
 
     return () => {
       socket.disconnect();

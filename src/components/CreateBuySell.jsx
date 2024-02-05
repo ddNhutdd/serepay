@@ -6,7 +6,6 @@ import { useLocation, useHistory } from "react-router-dom";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
-import { getBankListV2 } from "src/assets/resource/getBankListV2";
 import i18n from "src/translation/i18n";
 import {
   addClassToElementById,
@@ -23,7 +22,6 @@ import { companyAddAds, getProfile } from "src/util/userCallApi";
 import {
   actionTrading,
   api_status,
-  currencyMapper,
   defaultLanguage,
   localStorageVariable,
   regularExpress,
@@ -33,6 +31,7 @@ import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input, inputColor, inputType } from "./Common/Input";
 import { math } from "src/App";
+import { getBankState } from "src/redux/reducers/bankSlice";
 
 export default function CreateBuy() {
   const actionType = {
@@ -51,11 +50,13 @@ export default function CreateBuy() {
   const [marketSellPrice, setMarketSellPrice] = useState();
   const [isModalCoinVisible, setIsModalCoinVisible] = useState(false);
   const [isModalPreviewOpen, setIsModalPreviewOpen] = useState(false);
+  const [isShowBankDropdown, setIsShowBankDropdown] = useState(false);
   const listCoinRealTime = useSelector(getListCoinRealTime);
   const currentCurrency = useSelector(getCurrent);
+  const { listBank } = useSelector(getBankState);
   const exchange = useSelector(getExchange);
   const exchangeRateDisparity = useSelector(getExchangeRateDisparity);
-  const selectedBank = useRef("OCB");
+  const [selectedBank, setSelectedBank] = useState();
   const userName = useRef("");
   const controls = useRef({
     amount: "amount",
@@ -86,8 +87,6 @@ export default function CreateBuy() {
     });
 
     document.addEventListener("click", closeDropdownBank);
-    bankDropdownSelect(selectedBank.current);
-    renderBankDropdown();
 
     const callProfile = async function () {
       return await fetchUserNameProfile();
@@ -100,6 +99,14 @@ export default function CreateBuy() {
       document.removeEventListener("click", closeDropdownBank);
     };
   }, []);
+
+  useEffect(() => {
+    if (listBank && listBank.length > 0) {
+      setSelectedBank(listBank.at(0));
+      renderBankDropdownMenu();
+      console.log(listBank);
+    }
+  }, [listBank]);
 
   const showCoinModal = () => setIsModalCoinVisible(true);
   const modalCoinHandleOk = () => setIsModalCoinVisible(false);
@@ -188,47 +195,48 @@ export default function CreateBuy() {
   };
   const toggleDropdownBank = function (e) {
     e.stopPropagation();
-    getClassListFromElementById("dropdownBankMenu").toggle("show");
-    getClassListFromElementById("dropdownBankSelected").toggle("active");
+    // getClassListFromElementById("dropdownBankSelected").toggle("active");
+    setIsShowBankDropdown((s) => !s);
+  };
+  const renderBankSelector = function () {
+    if (!selectedBank) return;
+    const { logo, name, code } = selectedBank;
+    return (
+      <>
+        <span>
+          <img src={logo} alt={name} />
+        </span>
+        <span>{`${name} (${code})`}</span>
+        <span>
+          <i className="fa-solid fa-chevron-down"></i>
+        </span>
+      </>
+    );
+  };
+  const renderClassShowBankDropdown = function () {
+    return isShowBankDropdown ? "show" : "";
   };
   const closeDropdownBank = function () {
-    getClassListFromElementById("dropdownBankMenu").remove("show");
-    getClassListFromElementById("dropdownBankSelected").remove("active");
+    setIsShowBankDropdown(false);
   };
-  const renderBankDropdown = function () {
-    const containerElement =
-      getElementById("dropdownBankMenu").querySelector("ul");
-    containerElement.innerHTML = "";
-    for (const item of getBankListV2()) {
-      containerElement.innerHTML += `<li class="dropdown-item">
-      <span>
-        <img src=${item.logo} alt="${item.code}" />
-      </span>
-      <span class="dropdown-content">${" " + item.name} (${item.code})</span>
-    </li>`;
-    }
-    // add event
-    for (const item of containerElement.children) {
-      item.addEventListener("click", bankDropdownItemClickHandle);
-    }
+  const renderBankDropdownMenu = function () {
+    return listBank.map((item) => (
+      <li
+        key={item.id}
+        onClick={bankDropdownItemClickHandle.bind(null, item)}
+        className="dropdown-item"
+      >
+        <span>
+          <img src={item.logo} alt="${item.code}" />
+        </span>
+        <span className="dropdown-content">
+          ${" " + item.name} (${item.code})
+        </span>
+      </li>
+    ));
   };
-  const bankDropdownItemClickHandle = function (event) {
-    const element = event.currentTarget;
-    const name = element.querySelector(".dropdown-content").innerHTML;
-    const bankNameArr = name.split(" ");
-    const bankName = bankNameArr.slice(0, -1).join(" ");
-    bankDropdownSelect(bankName.trim());
-  };
-  const bankDropdownSelect = function (bankName) {
-    const item = getBankListV2().find((item) => item.name === bankName);
-    if (!item) return;
-    const selectedElement = getElementById("dropdownBankSelected");
-    const selectedElementImg = selectedElement.querySelector("img");
-    selectedElementImg.src = item.logo;
-    selectedElementImg.alt = item.name;
-    const selectedElementContent = getElementById("dropdownBankSelectedText");
-    selectedElementContent.innerHTML = item.name + ` (${item.code})`;
-    selectedBank.current = bankName;
+  const bankDropdownItemClickHandle = function (bankItem, ev) {
+    setSelectedBank(() => bankItem);
   };
   const fetchUserNameProfile = function () {
     return getProfile()
@@ -434,7 +442,7 @@ export default function CreateBuy() {
     sendData.symbol = currentCoin;
     sendData.side = action;
     if (action === actionType.sell) {
-      sendData.bankName = selectedBank.current;
+      sendData.bankName = selectedBank;
       sendData.ownerAccount = fullname;
       sendData.numberBank = accountNumber;
     }
@@ -564,26 +572,17 @@ export default function CreateBuy() {
               <div className="field">
                 <label>{t("bankName")}:</label>
                 <div
-                  id="dropdownBankSelected"
                   onClick={toggleDropdownBank}
-                  className="field__dropdown-selected"
+                  className={`field__dropdown-selected `}
                 >
-                  <span>
-                    <img
-                      src={process.env.PUBLIC_URL + "/img/iconen.png"}
-                      alt={"currentLanguage"}
-                    />
-                  </span>
-                  <span id="dropdownBankSelectedText">thien</span>
-                  <span>
-                    <i className="fa-solid fa-chevron-down"></i>
-                  </span>
-                </div>
-                <div
-                  id="dropdownBankMenu"
-                  className="field-dropdown-menu-container"
-                >
-                  <ul className="dropdown-menu"></ul>
+                  {renderBankSelector()}
+                  <div
+                    className={`field-dropdown-menu-container ${renderClassShowBankDropdown()}`}
+                  >
+                    <ul className="dropdown-menu">
+                      {renderBankDropdownMenu()}
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div className="field">

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   api_status,
+  currency,
   currencyMapper,
   defaultLanguage,
   localStorageVariable,
@@ -16,7 +17,6 @@ import {
   getListBanking,
   searchBuyQuick,
 } from "src/util/userCallApi";
-import { getCoin } from "src/redux/constant/coin.constant";
 import {
   formatCurrency,
   formatStringNumberCultureUS,
@@ -29,7 +29,10 @@ import {
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
-import i18n, { availableLanguageCodeMapper } from "src/translation/i18n";
+import i18n, {
+  availableLanguage,
+  availableLanguageCodeMapper,
+} from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
 import { math } from "src/App";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
@@ -300,7 +303,7 @@ function TransactionBuy() {
         return;
       });
   };
-  const loadInputCoin = function () {
+  const loadInputMoney = function () {
     let result;
     let amount = +getLocalStorage(localStorageVariable.moneyFromP2pExchange);
     if (!amount) {
@@ -314,10 +317,12 @@ function TransactionBuy() {
       );
       result = vnd;
     }
-    inputMoneyElement.current.value = new Intl.NumberFormat(
-      currencyMapper.USD,
-      roundIntl(3)
-    ).format(result);
+    inputMoneyElement.current.value = formatCurrency(
+      availableLanguage.en,
+      currency.vnd,
+      result,
+      false
+    );
   };
   const renderUserListBank = function () {
     if (!userListBank || userListBank.length <= 0) return;
@@ -485,9 +490,9 @@ function TransactionBuy() {
     const amountMoneyFraction = math.fraction(amountMoney);
 
     const result = math
-      .chain(rateCurrentToDollarFraction)
+      .chain(amountMoneyFraction)
+      .divide(rateCurrentToDollarFraction)
       .multiply(rateDollarToVndFraction)
-      .multiply(amountMoneyFraction)
       .done();
 
     return math.number(result);
@@ -695,7 +700,7 @@ function TransactionBuy() {
       selectedTrader &&
       !hasRunFlag.current
     ) {
-      loadInputCoin();
+      loadInputMoney();
       hasRunFlag.current = true;
       setShowComponentSpin(() => false);
     }

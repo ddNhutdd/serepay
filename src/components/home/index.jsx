@@ -92,18 +92,6 @@ function Home() {
       homeBenefitRight
     );
 
-    const homeFaqsTitle = document.querySelector("#homeFaqsTitle");
-    const homeFaqsTitleObserve = createIntersectionObserve(
-      homeFaqsTitleObserverHandle,
-      homeFaqsTitle
-    );
-
-    const homeFaqsContent = document.querySelector("#homeFaqsContent");
-    const homeFaqsContentObserve = createIntersectionObserve(
-      homeFaqsContentObserverHandle,
-      homeFaqsContent
-    );
-
     return () => {
       window.removeEventListener("scroll", animationHeader);
       window.removeEventListener("click", closeMenu);
@@ -115,8 +103,6 @@ function Home() {
       homeWhySmallObserve.disconnect();
       homeBenefitLeftObserve.disconnect();
       homeBenefitRightObserve.disconnect();
-      homeFaqsTitleObserve.disconnect();
-      homeFaqsContentObserve.disconnect();
     };
   }, []);
 
@@ -174,24 +160,6 @@ function Home() {
           element.classList.add("backInRight");
     }
   };
-  const homeFaqsTitleObserverHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("fadeInDownBig") &&
-          element.classList.add("fadeInDownBig");
-    }
-  };
-  const homeFaqsContentObserverHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("fadeInUpBig") &&
-          element.classList.add("fadeInUpBig");
-    }
-  };
   const redirectToLogin = function (e) {
     e.preventDefault();
     history.push(url.login);
@@ -199,35 +167,6 @@ function Home() {
   const redirectToPage = function (e) {
     const page = e.currentTarget.dataset.page;
     history.push(page);
-  };
-  const tabOnClickHandle = function (e) {
-    const order = e.target.dataset.name;
-    const tabs = document.querySelectorAll(
-      ".home__faqs  .home__faqs-list-tab li"
-    );
-    if (tabs) {
-      for (const item of tabs) {
-        if (item.dataset.name === order) {
-          item.classList.add("active");
-        } else if (item.dataset.name !== order) {
-          item.classList.remove("active");
-        }
-      }
-    }
-    const tabsContent = document.querySelectorAll(
-      ".home__faqs  .home__faqs-tab-content"
-    );
-    if (tabsContent) {
-      for (const item of tabsContent) {
-        if (item.dataset.name === order) {
-          item.classList.remove("--d-none");
-          item.classList.add("fadeIn");
-        } else if (item.dataset.name !== order) {
-          item.classList.remove("fadeIn");
-          item.classList.add("--d-none");
-        }
-      }
-    }
   };
   const headerBarButtonClickHandle = function (e) {
     if (e) e.stopPropagation();
@@ -296,14 +235,6 @@ function Home() {
                 onClick={scrollToContent.bind(null, "home__apps")}
               >
                 APP
-              </div>
-            </li>
-            <li>
-              <div
-                className="home__header__menu-item"
-                onClick={scrollToContent.bind(null, "home__faqs")}
-              >
-                FAQ
               </div>
             </li>
             {!isLogin && (
@@ -487,118 +418,6 @@ function Home() {
       </div>
       <div id="home__apps">
         <PhoneApps />
-      </div>
-      <div id="home__faqs" className="home__faqs">
-        <div className="container">
-          <div className="home__faqs-content">
-            <div id="homeFaqsTitle" className="home__faqs-content-title">
-              <span>FAQS</span>
-              <h3>Frequently Asked questions</h3>
-            </div>
-            <div id="homeFaqsContent" className="home__faqs-tabs">
-              <ul className="home__faqs-list-tab">
-                <li className="active" data-name={1} onClick={tabOnClickHandle}>
-                  GENERAL
-                </li>
-                <li data-name={2} onClick={tabOnClickHandle}>
-                  KYC & MINING
-                </li>
-                <li data-name={3} onClick={tabOnClickHandle}>
-                  BLOCKCHAIN
-                </li>
-                <li data-name={4} onClick={tabOnClickHandle}>
-                  OTHERS
-                </li>
-              </ul>
-              <div className="home__faqs-tab-content --d-none" data-name={1}>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">What is Serepay?</div>
-                  <div className="home__faqs-card-content">
-                    Serepay is a Decentralized Coin Wallet which combines P2P
-                    trading platform to help the startup community reach out to
-                    investors from the Serepay community in more than 40
-                    countries. The users community can both store coins and
-                    trade coins into fiat currency with the lowest fees. Serepay
-                    is one of 12 ecosystems of Tobe Chain.
-                  </div>
-                </div>
-              </div>
-              <div className="home__faqs-tab-content --d-none" data-name={2}>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">
-                    Is Serepay App available on Android and IOS?
-                  </div>
-                  <div className="home__faqs-card-content">
-                    1.Register with an Cryptocurrency Exchange. To participate
-                    in an ICO you need cryptocurrencies, usually Ether.... You
-                    can install Serepay application on both Appstore and Google
-                    Play. For Google Play store: You just need to input
-                    “Serepay” at search box and install. For Appstore store: You
-                    have to input “TestFlight” at search box and install. Then,
-                    open TestFlight and you will see Serepay application in
-                    there.
-                  </div>
-                </div>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">
-                    What documents do users need for KYC level 1 on Serepay?
-                  </div>
-                  <div className="home__faqs-card-content">
-                    In order to use Serepay app, users need to verify the
-                    account step 1 with personal information, pictures of
-                    government-issued ID card (2 sides), and a full face photo.
-                  </div>
-                </div>
-              </div>
-              <div className="home__faqs-tab-content --d-none" data-name={3}>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">
-                    What is a Blockchain Explorer?
-                  </div>
-                  <div className="home__faqs-card-content">
-                    A blockchain explorer is a web application for blockchains,
-                    that allows users to know details of activities happening on
-                    that particular blockchain, including the transaction
-                    status. Just like it is with internet explorers, it enables
-                    users to browse specific blockchains. This means that you
-                    can only use a bitcoin block explorer to browse bitcoin
-                    transactions. You cannot use it to browse Ethereum or
-                    Litecoin transactions.
-                  </div>
-                </div>
-              </div>
-              <div className="home__faqs-tab-content" data-name={4}>
-                <div className="home__faqs-card">
-                  <div className="home__faqs-card-header">
-                    What is Ethereum (ETH)?
-                  </div>
-                  <div className="home__faqs-card-content">
-                    <p>
-                      Ethereum is an open-source, public, blockchain-based
-                      distributed computing platform featuring smart contract
-                      (scripting) functionality (enables developers to build and
-                      deploy decentralized applications.) (…) It is listed under
-                      the code ETH and traded on cryptocurrency exchanges. It is
-                      also used to pay for transaction fees and computational
-                      services on the Ethereum network.” – Wikipedia
-                    </p>
-                    <p>
-                      What is the difference between ETH and BTC? On Remitano,
-                      both are crypto-currencies that can be traded at the same
-                      way. Thus there is no difference from that perspective. On
-                      a technical level, ETH and BTC have a few different
-                      points. Ethereum managed to fix disadvantages from Bitcoin
-                      such as high transaction fee and slow block confirmation.
-                      Bitcoin’s average block time is about 10 minutes, while
-                      Ethereum’s aims to be 12 seconds.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="home__faqs-background"></div>
-        </div>
       </div>
       <Footer />
     </div>

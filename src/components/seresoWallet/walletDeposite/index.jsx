@@ -280,12 +280,7 @@ function SerepayWalletDeposit() {
               <li>
                 <span className="number">3</span>
                 <div className="address">
-                  <span>
-                    {t("depositeAddress")}
-                    <span>
-                      <i className="fa-solid fa-pen-to-square"></i>
-                    </span>
-                  </span>
+                  <span>{t("depositQR")}</span>
                   <div className="address-content">
                     <div
                       className={`fadeInBottomToTop spin-container ${renderClassSpin()}`}
@@ -310,7 +305,9 @@ function SerepayWalletDeposit() {
                       className={`address-code-container ${renderClassAddress()}`}
                     >
                       <div className="address-code fadeInBottomToTop">
-                        <div className="address-code-title">{t("address")}</div>
+                        <div className="address-code-title">
+                          {t("eWalletAddress")}
+                        </div>
                         <div ref={codeElement} className="code">
                           {address}
                         </div>

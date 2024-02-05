@@ -1,4 +1,4 @@
-import { axiosService } from "./service";
+import { BANK_API_DOMAIN, axiosService } from "./service";
 export const createWalletApi = function (coinName) {
   try {
     return axiosService.post("/api/user/createWallet", {
@@ -215,5 +215,52 @@ export const forGetPassword = function (data) {
 export const verifyEmail = function (verifyToken) {
   try {
     return axiosService.get("/api/user/verifyEmail/" + verifyToken);
+  } catch (error) {}
+};
+//==========================================
+export const getQrBankPayment = async function () {
+  try {
+    const url = BANK_API_DOMAIN + "/generate";
+    const clientId = "1b57b8a1-5646-4a0b-8564-e5c28e29cd62";
+    const apiKey = "51f83735-3327-47cf-be94-91916df4da5b";
+
+    const requestData = {
+      accountNo: "113366668888",
+      accountName: "QUY VAC XIN PHONG CHONG COVID",
+      acqId: "970415",
+      addInfo: "Ung Ho Quy Vac Xin",
+      amount: "79000",
+      template: "compact",
+    };
+
+    const headers = new Headers({
+      "Content-Type": "application/json",
+      "x-client-id": clientId,
+      "x-api-key": apiKey,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(requestData),
+    };
+
+    const responseJson = await fetch(url, requestOptions);
+    return responseJson.json();
+  } catch (error) {}
+};
+
+export const getListBank = async function () {
+  try {
+    const url = BANK_API_DOMAIN + "/banks";
+    const headers = new Headers({
+      "Content-Type": "application/json",
+    });
+    const requestOptions = {
+      method: "GET",
+      headers: headers,
+    };
+    const responseJson = await fetch(url, requestOptions);
+    return responseJson.json();
   } catch (error) {}
 };

@@ -72,17 +72,6 @@
           height: 35.56px;
         }
 
-        .field__dropdown-selected {
-          @include userDropdownSelected;
-        }
-
-        .field-dropdown-menu-container {
-          @include userDropdownMenu;
-          position: absolute;
-          top: 64px;
-          left: 0;
-        }
-
         small {
           color: $red-1;
         }
