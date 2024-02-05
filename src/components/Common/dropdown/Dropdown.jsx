@@ -10,7 +10,7 @@ function Dropdown(props) {
     if (!itemSelected) return;
     return (
       <>
-        <div className={css["imageContainer"]}>
+        <div className={`${css["imageContainer"]} ${hidenElement()}`}>
           <img src={itemSelected.image} alt={itemSelected.content} />
         </div>
         <div className={css["contentContainer"]}>{itemSelected.content}</div>
@@ -20,16 +20,24 @@ function Dropdown(props) {
       </>
     );
   };
+  const hidenElement = function (image) {
+    return image ? "" : "--d-none";
+  };
 
   const renderMenu = function () {
     if (!list || list.length <= 0) return;
+
     return list.map((item) => (
       <div
         key={item.id}
         onClick={rowClickHandle.bind(null, item)}
         className={css["dropdownMenuItem"]}
       >
-        <div className={`${css["dropdownMenuItem__imageContainer"]}`}>
+        <div
+          className={`${css["dropdownMenuItem__imageContainer"]} ${hidenElement(
+            item.image
+          )}`}
+        >
           <img src={item.image} alt={item.content} />
         </div>
         <div className={`${css["dropdownMenuItem__content"]}`}>

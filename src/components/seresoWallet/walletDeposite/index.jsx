@@ -24,21 +24,6 @@ import { EmptyCustom } from "src/components/Common/Empty";
 import WalletTop, { titleWalletTop } from "../WalletTop";
 
 function SerepayWalletDeposit() {
-  const dropdownNetworkMenuClickHandle = function (e) {
-    e.stopPropagation();
-    dropdowNetWorkToggle();
-  };
-  const dropdowNetWorkToggle = function () {
-    getClassListFromElementById("coin-dropdown-network").toggle("show");
-    getClassListFromElementById("dropdown-network-selected").toggle("active");
-  };
-  const dropdownNetworkClose = function () {
-    getClassListFromElementById("coin-dropdown-network").remove("show");
-    getClassListFromElementById("dropdown-network-selected").remove("active");
-  };
-  const closeAllDropdownMenu = function () {
-    dropdownNetworkClose();
-  };
   const fetchApiCreateWallet = function () {
     return new Promise((resolve) => {
       if (callApiCreateWalletStatus === api_status.fetching) resolve(null);
@@ -189,7 +174,6 @@ function SerepayWalletDeposit() {
       return;
     }
 
-    document.addEventListener("click", closeAllDropdownMenu);
     fetchApiCreateWallet();
     renderHistory(selectedCoin.current, historyPage.current);
     const language =
@@ -203,9 +187,6 @@ function SerepayWalletDeposit() {
         return;
       }
     });
-    return () => {
-      document.removeEventListener("click", closeAllDropdownMenu);
-    };
   }, []);
 
   return (
@@ -217,30 +198,14 @@ function SerepayWalletDeposit() {
             <ul>
               <li>
                 <span className="number">1</span>
-                <div id="" className="wallet-deposit-input">
+                <div className="wallet-deposit-input">
                   <p>{t("select")} Coin</p>
-                  <div
-                    id="dropdown-coin-selected"
-                    className="dropdown-content-selected"
-                  >
+                  <div className="content-selected">
                     <img
                       src={`https://remitano.dk-tech.vn/images/${selectedCoin.current}.png`}
                       alt="name"
                     />
-                    <span className="content">
-                      <span className="main-content">
-                        {selectedCoin.current}
-                      </span>
-                    </span>
-                    <span></span>
-                  </div>
-                  <div
-                    id="coin-dropdown-menu"
-                    className="dropdown-menu-container"
-                  >
-                    <div className="dropdown-menu" id="coinDropdownList">
-                      {/* js render here */}
-                    </div>
+                    <span className="content">{selectedCoin.current}</span>
                   </div>
                 </div>
               </li>
@@ -248,32 +213,13 @@ function SerepayWalletDeposit() {
                 <span className="number">2</span>
                 <div className="wallet-deposit-input">
                   <p>{t("select")} Network</p>
-                  <div
-                    id="dropdown-network-selected"
-                    onClick={dropdownNetworkMenuClickHandle}
-                    className="dropdown-content-selected"
-                  >
+                  <div className="content-selected">
                     <span className="content">
                       <span className="main-content">BEP20</span>
                     </span>
-                    <span>
+                    <span className="main-content__down">
                       <i className="fa-solid fa-caret-down"></i>
                     </span>
-                  </div>
-                  <div
-                    id="coin-dropdown-network"
-                    className="dropdown-menu --d-none"
-                  >
-                    <div className="dropdown-item-network">
-                      <div className="dropdown-item-network-left">
-                        <span>key</span>
-                        <span>type</span>
-                      </div>
-                      <div className="dropdown-item-network-right">
-                        <span>≈10 mins</span>
-                        <span>23 Confirmation/s</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </li>

@@ -37,6 +37,7 @@ import { useTranslation } from "react-i18next";
 import { math } from "src/App";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { Button } from "../Common/Button";
+import Dropdown from "../Common/dropdown/Dropdown";
 
 function TransactionBuy() {
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
@@ -57,13 +58,10 @@ function TransactionBuy() {
   );
   const [callApiCreateP2p, setCallApiCreateP2p] = useState(api_status.pending);
 
-  const [selectedDropdownTrader, setSelectedDropdownTrader] = useState({
-    userName: t("random"),
-  }); // variable used to display on the interface, dropdown trader
-  const [selectedTrader, setSelectedTrader] = useState();
+  const [selectedTrader, setSelectedTrader] = useState(); //trader to process logic
+  const [dropdownTraderShow, setDropdownTraderShow] = useState(); // trader displays on the interface
   const [listTrader, setListTrader] = useState();
-  const [isShowDropdownTrader, setIsShowDropdownTrader] = useState(false);
-  const [isShowDropdownPayment, setIsShowDropdownPayment] = useState(false);
+
   const [userListBank, setUserListBank] = useState();
   const [selectedBank, setSelectedBank] = useState();
   const currencyRedux = useSelector(getCurrent);
@@ -81,8 +79,6 @@ function TransactionBuy() {
   const [eulaChecked, setEulaChecked] = useState(false);
   const touchedControl = useRef({});
   const [errorControl, setErrorControl] = useState({});
-  const hasRunFlag = useRef(false); // variable to identify a function that is run once
-  const isSelectedDropdownRandom = useRef(true); // for multilingual part
 
   const validate = function () {
     let valid = true;
@@ -147,12 +143,8 @@ function TransactionBuy() {
       return;
     }
   };
-  const renderTraderSpin = function () {
-    if (callApiLoadTraderStatus === api_status.fetching) return "";
-    else return "--d-none";
-  };
   const fetchApiTrader = function () {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       if (callApiLoadTraderStatus === api_status.fetching)
         return resolve(false);
       else setCallApiLoadTraderStatus(() => api_status.fetching);
@@ -163,67 +155,41 @@ function TransactionBuy() {
         amount,
       })
         .then((resp) => {
-          setCallApiLoadTraderStatus();
-          setListTrader(() => resp.data.data.array);
-          return resolve(resp.data.data.array);
+          setCallApiLoadTraderStatus(api_status.fulfilled);
+          const dataRes = resp.data.data.array;
+          for (const record of dataRes) {
+            record.content = record.userName;
+          }
+          const result = [{ id: -1, content: "Random" }, ...dataRes];
+          setListTrader(() => result);
+          return resolve(result);
         })
         .catch((err) => {
           setCallApiLoadTraderStatus(api_status.rejected);
-          return resolve(false);
+          return reject(false);
         });
     });
   };
-  const renderListTrader = function () {
-    if (!listTrader || listTrader.length <= 0) return;
-    const listResult = [];
-    listResult.push(
-      <span onClick={traderRandomSelect} key={-1} className="dropdown-item">
-        {t("random")}
-      </span>
-    );
-    return listResult.concat(
-      listTrader.map((item) => (
-        <span
-          key={item.id}
-          onClick={traderSelect.bind(null, item)}
-          className="dropdown-item"
-        >
-          {item.userName}
-        </span>
-      ))
-    );
-  };
   const traderSelect = function (item) {
-    setSelectedTrader(() => item);
-    setSelectedDropdownTrader(() => item);
-    isSelectedDropdownRandom.current = false;
+    if (item.id === -1) {
+      traderRandomSelect;
+      setDropdownTraderShow(item);
+      setSelectedTrader(traderRandomSelect);
+    } else {
+      setSelectedTrader(() => item);
+      setDropdownTraderShow(item);
+    }
+  };
+  const traderRandomSelect = function () {
+    return getRandomElementFromArray(listTrader.slice(1));
   };
   const renderClassAdsSpin = function () {
     return callApiLoadTraderStatus === api_status.fetching ? "" : "--d-none";
   };
-  const traderRandomSelect = function () {
-    setSelectedDropdownTrader(() => ({ userName: t("random") }));
-    setSelectedTrader(() => getRandomElementFromArray(listTrader));
-    isSelectedDropdownRandom.current = true;
-  };
-  const closeAllDrodown = function () {
-    setIsShowDropdownTrader(() => false);
-    setIsShowDropdownPayment(() => false);
-  };
-  const dropdownTraderToggle = function (e) {
-    e.stopPropagation();
-    const showFlag = isShowDropdownTrader;
-    closeAllDrodown();
-    setIsShowDropdownTrader(() => !showFlag);
-  };
   const dropdownPaymentToggle = function (e) {
     e.stopPropagation();
     const showFlag = isShowDropdownPayment;
-    closeAllDrodown();
     setIsShowDropdownPayment(() => !showFlag);
-  };
-  const renderClassTraderMenu = function () {
-    return isShowDropdownTrader ? "show" : "";
   };
   const renderAdsInfo = function () {
     if (!selectedTrader) return;
@@ -282,25 +248,19 @@ function TransactionBuy() {
     });
   };
   const firstLoad = function () {
-    fetchApiTrader().then((resp) => {
-      setSelectedDropdownTrader(() => ({ userName: t("random") }));
-      setSelectedTrader(() => getRandomElementFromArray(resp));
-    });
-    fetchApiGetListBank()
+    Promise.all([fetchApiTrader(), fetchApiGetListBank()])
       .then((resp) => {
-        if (resp) {
-          if (!resp || resp.length <= 0) {
-            callToastError(t("noBankFoundInAccount"));
-            history.push(url.profile);
-          }
-          setUserListBank(() => resp);
-          setSelectedBank(() => resp.at(0));
-        }
+        const resp1 = resp.at(1);
+        setUserListBank(() => resp1);
+        setSelectedBank(() => resp1.at(0));
       })
       .catch((err) => {
         callToastError(t("can'tFindUserInformation"));
         history.push(url.profile);
         return;
+      })
+      .finally(() => {
+        setShowComponentSpin(false);
       });
   };
   const loadInputMoney = function () {
@@ -338,9 +298,6 @@ function TransactionBuy() {
   };
   const bankClickHandle = function (item) {
     setSelectedBank(() => item);
-  };
-  const renderClassDropdownPaymentMenu = function () {
-    return isShowDropdownPayment ? "show" : "";
   };
   const renderClassPaymentSpin = function () {
     return callApiLoadPaymentStatus === api_status.fetching ? "" : "--d-none";
@@ -635,23 +592,14 @@ function TransactionBuy() {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
-    let currentLanguage = i18n.language;
-    i18n.on("languageChanged", (newLanguage) => {
-      if (newLanguage !== currentLanguage) {
-        isSelectedDropdownRandom.current &&
-          setSelectedDropdownTrader({ userName: t("random") });
-      }
-      currentLanguage = newLanguage;
-    });
+
     validationPageLoad();
     firstLoad();
-    document.addEventListener("click", closeAllDrodown);
 
     const inputObserver = observeWidth(setInputPadding);
     inputObserver.observe(document.querySelector(".transaction__action"));
 
     return () => {
-      document.removeEventListener("click", closeAllDrodown);
       inputObserver.disconnect();
     };
   }, []);
@@ -697,11 +645,9 @@ function TransactionBuy() {
       exchangeRedux &&
       exchangeRedux.length > 0 &&
       currencyRedux &&
-      selectedTrader &&
-      !hasRunFlag.current
+      selectedTrader
     ) {
       loadInputMoney();
-      hasRunFlag.current = true;
       setShowComponentSpin(() => false);
     }
   }, [
@@ -723,25 +669,11 @@ function TransactionBuy() {
         <div className="box transaction__box ">
           <div className="transaction__user-dropdown">
             <label>{t("trader")}:</label>
-            <div
-              onClick={dropdownTraderToggle}
-              className="transaction__user-selected"
-            >
-              <span>{selectedDropdownTrader.userName}</span>
-              <span>
-                <i className="fa-solid fa-caret-down"></i>
-              </span>
-            </div>
-            <div
-              className={`transaction__user-menu  ${renderClassTraderMenu()}`}
-            >
-              <div className={`dropdown-menu`}>
-                {renderListTrader()}
-                <div className={`spin-container ${renderTraderSpin()}`}>
-                  <Spin />
-                </div>
-              </div>
-            </div>
+            <Dropdown
+              list={listTrader}
+              itemClickHandle={traderSelect}
+              itemSelected={dropdownTraderShow}
+            />
           </div>
         </div>
         <div className="box transaction__box">
@@ -799,9 +731,7 @@ function TransactionBuy() {
                   <i className="fa-solid fa-caret-down"></i>
                 </span>
               </div>
-              <div
-                className={`transaction__payment-dropdown-menu-container ${renderClassDropdownPaymentMenu()}`}
-              >
+              <div className={`transaction__payment-dropdown-menu-container`}>
                 <div className="dropdown-menu">{renderUserListBank()}</div>
               </div>
             </div>

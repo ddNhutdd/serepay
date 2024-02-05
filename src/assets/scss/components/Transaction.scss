@@ -93,37 +93,6 @@
                     }
                 }
 
-                .transaction__dropdown {
-                    position: relative;
-
-                    @media screen and (max-width:576px) {
-                        grid-column: 1 / span 1;
-                    }
-
-                    .transaction__payment-dropdown {
-                        @include userDropdownSelected;
-
-                        .transaction__payment-dropdown-text {
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-
-                            @media screen and(max-width: 576px) {
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                            }
-                        }
-                    }
-
-                    .transaction__payment-dropdown-menu-container {
-                        @include userDropdownMenu;
-                        position: absolute;
-                        top: 57px;
-                        left: 0;
-                    }
-                }
-
                 #agreeCheckBox {
                     &:checked+label i {
                         display: block;
@@ -250,20 +219,7 @@
                 }
             }
 
-            .transaction__user-dropdown {
-                position: relative;
 
-                .transaction__user-selected {
-                    @include userDropdownSelected;
-                }
-
-                .transaction__user-menu {
-                    @include userDropdownMenu;
-                    position: absolute;
-                    top: 63px;
-                    left: 0;
-                }
-            }
         }
 
         .transaction__header {

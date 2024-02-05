@@ -1,7 +1,7 @@
 @import 'src/assets/scss/style.scss';
 
 .dropdown {
-    width: 600px;
+    width: 100%;
     transition: border-color 0.3s ease;
     border-radius: 8px;
     font-size: 15px;
@@ -48,6 +48,7 @@
         max-height: 0;
         transition: height .2s;
         z-index: -1;
+        width: 100%;
 
         &.show {
             max-height: 300px;
@@ -64,6 +65,7 @@
                 align-items: center;
                 justify-content: flex-start;
                 padding: 3px 5px;
+                min-height: 35.56px;
 
                 &:hover {
                     cursor: pointer;

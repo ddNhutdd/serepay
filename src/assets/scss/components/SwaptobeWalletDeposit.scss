@@ -64,45 +64,34 @@
                                 margin-bottom: 10px;
                             }
 
-                            .dropdown-content-selected {
-                                @include userDropdownSelected;
-                            }
+                            .content-selected {
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+                                gap: 5px;
+                                border-radius: 8px;
+                                padding: 5px 10px;
+                                border: 1px solid $background-color-7;
+                                background-color: $new-background-color-input-disabled;
+                                color: $new-text-color-white;
+                                transition: border-color .2s;
 
-                            .dropdown-menu-container {
-                                @include userDropdownMenu;
-                                position: absolute;
-                                top: 65px;
-                                left: 0;
+                                &:hover {
+                                    border-color: $new-primary-color-6;
+                                }
 
-                                .dropdown-item-network {
-                                    padding: 5px 10px;
-                                    transition: 0.2s;
-                                    display: flex;
-                                    gap: 5px;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: space-between;
-                                    color: $neutral-2;
+                                img {
+                                    width: 20px;
+                                    height: 20px;
+                                    object-fit: cover;
+                                }
 
-                                    &:hover {
-                                        background-color: $background-color-6;
-                                        cursor: pointer;
-                                    }
-
-                                    .dropdown-item-network-left {
-                                        display: flex;
-                                        flex-direction: column;
-                                        flex-wrap: 5px;
-                                    }
-
-                                    .dropdown-item-network-right {
-                                        display: flex;
-                                        flex-direction: column;
-                                        flex-wrap: 5px;
-                                        align-items: flex-end;
-                                    }
+                                .main-content__down {
+                                    margin-left: auto;
                                 }
                             }
+
+
                         }
 
                         .address {
