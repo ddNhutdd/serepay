@@ -470,7 +470,6 @@ function ConfirmItem(props) {
     } catch (error) {}
   };
   const findBankBin = function (bankName) {
-    console.log(bankName);
     return listBankRedux.find((item) => item.content === bankName)?.bin;
   };
   const renderClassShowSpinQR = function () {
