@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Please update your identity information and turn on 2FA before being able to withdraw. Contact your support for help.",
     "noAccountInformationFound": "No account information found",
     "admin": "Admin",
-    "navigateToProfilePage": "Navigate to profile page"
+    "navigateToProfilePage": "Navigate to profile page",
+    "depositQR": "Deposit QR",
+    "eWalletAddress": "E-wallet Address",
+    "bankAccountNumberAlreadyExists": "Bank account number already exists",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "The account name should be in plain Vietnamese, written in uppercase, with a minimum of 5 characters and a maximum of 50 characters. It must not contain any special characters"
 }

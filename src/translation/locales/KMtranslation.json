@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "សូមធ្វើបច្ចុប្បន្នភាពពត៌មានអតិថិជនរបស់អ្នក និងបើកបរិស្ថានបញ្ចប់មុនពេលអ្នកអាចដកប្រាក់បាន។ ទាក់ទងទីគាំទ្ររបស់អ្នកសម្រាប់ជំនួយ។",
     "noAccountInformationFound": "រកមិនឃើញពត៌មានគណនី",
     "admin": "អភិបាល",
-    "navigateToProfilePage": "រឹតត្បិតទៅទំព័រទូរស័ព្ទ"
+    "navigateToProfilePage": "រឹតត្បិតទៅទំព័រទូរស័ព្ទ",
+    "depositQR": "ប្រតិបត្តិការដាក់ប្រាក់ QR",
+    "eWalletAddress": "អាសយដ្ឋាន E-wallet",
+    "bankAccountNumberAlreadyExists": "លេខគណនីធនាគារមានរួចហើយ",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ឈ្មោះគណនីគឺត្រូវតែជាភាសាវៀតណាមិនមានសញ្ញាពីរផ្សេងទៀតជាឧទាហរណ៍ គឺត្រូវបានសរសេរដោយអក្សរធម្មតា ដោយមានតួអក្សរបញ្ឆោតយ៉ាងហោចហ្គោលលឿន ដែលតម្រូវឲ្យតែមានតួអក្សរចាប់ពី 5 តួអក្សរ និងមិនលើសពី 50 តួអក្សរ។ វាមិនត្រូវមានតួអក្សរពិសេសណាមួយ"
 }

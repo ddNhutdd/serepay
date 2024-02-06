@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Gelieve uw identiteitsinformatie bij te werken en 2FA in te schakelen voordat u kunt opnemen. Neem contact op met uw ondersteuning voor hulp.",
     "noAccountInformationFound": "Geen accountinformatie gevonden",
     "admin": "Beheerder",
-    "navigateToProfilePage": "Navigeer naar profielpagina"
+    "navigateToProfilePage": "Navigeer naar profielpagina",
+    "depositQR": "Stortings QR",
+    "eWalletAddress": "E-wallet Adres",
+    "bankAccountNumberAlreadyExists": "Bankrekeningnummer bestaat al",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "De accountnaam moet in eenvoudig Vietnamees zijn, geschreven in hoofdletters, met een minimum van 5 tekens en een maximum van 50 tekens. Het mag geen speciale tekens bevatten"
 }

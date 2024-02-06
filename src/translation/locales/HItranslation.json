@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "कृपया निकालने से पहले अपनी पहचान की जानकारी अपडेट करें और 2FA को चालू करें। सहायता के लिए अपने समर्थन से संपर्क करें।",
     "noAccountInformationFound": "कोई खाता जानकारी नहीं मिली",
     "admin": "व्यवस्थापक",
-    "navigateToProfilePage": "प्रोफ़ाइल पृष्ठ की ओर नेविगेट करें"
+    "navigateToProfilePage": "प्रोफ़ाइल पृष्ठ की ओर नेविगेट करें",
+    "depositQR": "जमा करें QR",
+    "eWalletAddress": "ई-वॉलेट पता",
+    "bankAccountNumberAlreadyExists": "बैंक खाता संख्या पहले से ही मौजूद है",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "खाता नाम सामान्य वियतनामी में होना चाहिए, उपरकेस में लिखा जाना चाहिए, कम से कम 5 अक्षरों और अधिकतम 50 अक्षरों के साथ। इसमें कोई विशेष वर्ण नहीं होना चाहिए"
 }

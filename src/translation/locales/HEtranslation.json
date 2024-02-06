@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "אנא עדכן את מידע הזהות שלך והפעל את האימות הדו-שלב (2FA) לפני שתוכל למשוך כספים. פנה לתמיכה שלך לקבלת עזרה.",
     "noAccountInformationFound": "לא נמצאו מידע על החשבון",
     "admin": "מנהל",
-    "navigateToProfilePage": "נווט לדף הפרופיל"
+    "navigateToProfilePage": "נווט לדף הפרופיל",
+    "depositQR": "הפקדת QR",
+    "eWalletAddress": "כתובת אימות אלקטרונית",
+    "bankAccountNumberAlreadyExists": "מספר החשבון הבנקאי כבר קיים",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "שם החשבון צריך להיות בווייטנאמית פשוטה, כתוב באותיות גדולות, בעלת לפחות 5 תווים ולכל היותר 50 תווים. לא יכול לכלול תווים מיוחדים"
 }

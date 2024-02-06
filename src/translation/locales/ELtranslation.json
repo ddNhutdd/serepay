@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Παρακαλώ ενημερώστε τα στοιχεία ταυτότητάς σας και ενεργοποιήστε το 2FA προτού μπορέσετε να κάνετε ανάληψη. Επικοινωνήστε με την υποστήριξή σας για βοήθεια.",
     "noAccountInformationFound": "Δεν βρέθηκαν πληροφορίες λογαριασμού",
     "admin": "Διαχειριστής",
-    "navigateToProfilePage": "Πλοηγηθείτε στη σελίδα προφίλ"
+    "navigateToProfilePage": "Πλοηγηθείτε στη σελίδα προφίλ",
+    "depositQR": "Κατάθεση QR",
+    "eWalletAddress": "Διεύθυνση ηλεκτρονικού πορτοφολιού",
+    "bankAccountNumberAlreadyExists": "Ο αριθμός τραπεζικού λογαριασμού υπάρχει ήδη",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Το όνομα του λογαριασμού πρέπει να είναι στα απλά Βιετναμέζικα, γραμμένο με κεφαλαία, με τουλάχιστον 5 χαρακτήρες και το πολύ 50 χαρακτήρες. Δεν πρέπει να περιέχει κανένα ειδικό χαρακτήρα"
 }

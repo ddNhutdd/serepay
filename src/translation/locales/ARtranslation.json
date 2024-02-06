@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "الرجاء تحديث معلومات هويتك وتفعيل التحقق الثنائي قبل أن تكون قادرًا على السحب. تواصل مع الدعم الفني للحصول على المساعدة.",
     "noAccountInformationFound": "لم يتم العثور على معلومات الحساب",
     "admin": "المسؤول",
-    "navigateToProfilePage": "انتقل إلى صفحة الملف الشخصي"
+    "navigateToProfilePage": "انتقل إلى صفحة الملف الشخصي",
+    "depositQR": "QR الإيداع",
+    "eWalletAddress": "عنوان المحفظة الإلكترونية",
+    "bankAccountNumberAlreadyExists": "رقم الحساب البنكي موجود بالفعل",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "يجب أن يكون اسم الحساب باللغة الفيتنامية البسيطة، مكتوبًا بأحرف كبيرة، ويحتوي على الأقل 5 أحرف ولا يزيد عن 50 حرفًا. يجب ألا يحتوي على أي أحرف خاصة"
 }

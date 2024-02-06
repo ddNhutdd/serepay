@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "출금이 가능해지기 전에 신원 정보를 업데이트하고 2FA를 활성화하세요. 도움이 필요하면 지원팀에 문의하십시오.",
     "noAccountInformationFound": "계정 정보를 찾을 수 없습니다",
     "admin": "관리자",
-    "navigateToProfilePage": "프로필 페이지로 이동"
+    "navigateToProfilePage": "프로필 페이지로 이동",
+    "depositQR": "입금 QR",
+    "eWalletAddress": "전자 지갑 주소",
+    "bankAccountNumberAlreadyExists": "은행 계좌 번호가 이미 존재합니다",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "계좌명은 평문 베트남어로 작성되어 대문자로 표시되어야 하며, 최소 5자 이상 최대 50자 이하여야 합니다. 특수 문자를 포함해서는 안 됩니다"
 }

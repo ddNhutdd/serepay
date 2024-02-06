@@ -91,7 +91,6 @@ export const roundDecimalValues = function (value, coinValue) {
   const roundedValue = +value.toFixed(decimalPlaces);
   return roundedValue;
 };
-//
 export const zoomImage = function (e) {
   const body = document.body;
   let angel = 0,
@@ -212,7 +211,6 @@ export const parseURLParameters = function (url) {
   });
   return result;
 };
-//
 export const getClassListFromElementById = function (id) {
   const element = document.getElementById(id);
   if (element) return element.classList;
@@ -238,7 +236,6 @@ export const showElement = function (element) {
   if (!element) return;
   element.classList.remove("--d-none");
 };
-//
 export const debounce = function (func, ms) {
   let timeout;
   return function (...args) {
@@ -246,7 +243,6 @@ export const debounce = function (func, ms) {
     timeout = setTimeout(() => func.apply(this, args), ms);
   };
 };
-//
 /**
  * The write function capitalizes the beginning of each word
  * @param {string} str
@@ -393,7 +389,6 @@ export const formatNumber = function (number, locale, digits) {
 export const findMin = function (...params) {
   return Math.min(...params);
 };
-
 export const observeWidth = function (setWidth) {
   return new ResizeObserver((entries) => {
     for (let entry of entries) {

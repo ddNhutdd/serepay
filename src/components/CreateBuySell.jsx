@@ -32,6 +32,7 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input, inputColor, inputType } from "./Common/Input";
 import { math } from "src/App";
 import { getBankState } from "src/redux/reducers/bankSlice";
+import Dropdown from "./Common/dropdown/Dropdown";
 
 export default function CreateBuy() {
   const actionType = {
@@ -50,7 +51,6 @@ export default function CreateBuy() {
   const [marketSellPrice, setMarketSellPrice] = useState();
   const [isModalCoinVisible, setIsModalCoinVisible] = useState(false);
   const [isModalPreviewOpen, setIsModalPreviewOpen] = useState(false);
-  const [isShowBankDropdown, setIsShowBankDropdown] = useState(false);
   const listCoinRealTime = useSelector(getListCoinRealTime);
   const currentCurrency = useSelector(getCurrent);
   const { listBank } = useSelector(getBankState);
@@ -86,25 +86,16 @@ export default function CreateBuy() {
       }
     });
 
-    document.addEventListener("click", closeDropdownBank);
-
     const callProfile = async function () {
       return await fetchUserNameProfile();
     };
     callProfile().then((resp) => {
       userName.current = resp;
     });
-
-    return () => {
-      document.removeEventListener("click", closeDropdownBank);
-    };
   }, []);
-
   useEffect(() => {
     if (listBank && listBank.length > 0) {
       setSelectedBank(listBank.at(0));
-      renderBankDropdownMenu();
-      console.log(listBank);
     }
   }, [listBank]);
 
@@ -192,51 +183,6 @@ export default function CreateBuy() {
       getElementById("amoutInput").value;
     getElementById("modalPreviewMinimumAmount").innerHTML =
       getElementById("minimumAmoutInput").value;
-  };
-  const toggleDropdownBank = function (e) {
-    e.stopPropagation();
-    // getClassListFromElementById("dropdownBankSelected").toggle("active");
-    setIsShowBankDropdown((s) => !s);
-  };
-  const renderBankSelector = function () {
-    if (!selectedBank) return;
-    const { logo, name, code } = selectedBank;
-    return (
-      <>
-        <span>
-          <img src={logo} alt={name} />
-        </span>
-        <span>{`${name} (${code})`}</span>
-        <span>
-          <i className="fa-solid fa-chevron-down"></i>
-        </span>
-      </>
-    );
-  };
-  const renderClassShowBankDropdown = function () {
-    return isShowBankDropdown ? "show" : "";
-  };
-  const closeDropdownBank = function () {
-    setIsShowBankDropdown(false);
-  };
-  const renderBankDropdownMenu = function () {
-    return listBank.map((item) => (
-      <li
-        key={item.id}
-        onClick={bankDropdownItemClickHandle.bind(null, item)}
-        className="dropdown-item"
-      >
-        <span>
-          <img src={item.logo} alt="${item.code}" />
-        </span>
-        <span className="dropdown-content">
-          ${" " + item.name} (${item.code})
-        </span>
-      </li>
-    ));
-  };
-  const bankDropdownItemClickHandle = function (bankItem, ev) {
-    setSelectedBank(() => bankItem);
   };
   const fetchUserNameProfile = function () {
     return getProfile()
@@ -327,13 +273,27 @@ export default function CreateBuy() {
     }
     if (action === actionType.sell) {
       if (controlsTourched.current[controls.current.fullname]) {
-        if (!fullnameElement.value) {
+        console.log(
+          regularExpress.accountExpress.test(fullnameElement.value),
+          fullnameElement.value
+        );
+        if (!regularExpress.accountExpress.test(fullnameElement.value)) {
+          valid &= false;
+          setControlsErrors((state) => ({
+            ...state,
+            [controls.current.fullname]:
+              "Tên tài khoản là tiếng Việt không dấu, viết hoa, tối thiểu 5 ký tự, tối đa 50 kí tự, không chứa các ký tự đặc biệt",
+          }));
+        } else if (!fullnameElement.value) {
           valid &= false;
           setControlsErrors((state) => ({
             ...state,
             [controls.current.fullname]: "require",
           }));
-        } else {
+        } else if (
+          fullnameElement.value &&
+          regularExpress.accountExpress.test(fullnameElement.value)
+        ) {
           delete controlsErrors.current;
           setControlsErrors((state) => {
             const newState = { ...state };
@@ -442,7 +402,7 @@ export default function CreateBuy() {
     sendData.symbol = currentCoin;
     sendData.side = action;
     if (action === actionType.sell) {
-      sendData.bankName = selectedBank;
+      sendData.bankName = selectedBank.content;
       sendData.ownerAccount = fullname;
       sendData.numberBank = accountNumber;
     }
@@ -480,6 +440,9 @@ export default function CreateBuy() {
       default:
         break;
     }
+  };
+  const dropdownChangeHandle = function (item) {
+    setSelectedBank(item);
   };
 
   return (
@@ -571,19 +534,12 @@ export default function CreateBuy() {
               <h2>{t("paymentDetails")}</h2>
               <div className="field">
                 <label>{t("bankName")}:</label>
-                <div
-                  onClick={toggleDropdownBank}
-                  className={`field__dropdown-selected `}
-                >
-                  {renderBankSelector()}
-                  <div
-                    className={`field-dropdown-menu-container ${renderClassShowBankDropdown()}`}
-                  >
-                    <ul className="dropdown-menu">
-                      {renderBankDropdownMenu()}
-                    </ul>
-                  </div>
-                </div>
+                <Dropdown
+                  id={`dropdownPayment`}
+                  list={listBank}
+                  itemSelected={selectedBank}
+                  itemClickHandle={dropdownChangeHandle}
+                />
               </div>
               <div className="field">
                 <label htmlFor="fullnameInput">{t("fullName")}:</label>

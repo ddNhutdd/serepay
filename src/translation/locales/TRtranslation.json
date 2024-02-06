@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Çekilebilir olmadan önce lütfen kimlik bilgilerinizi güncelleyin ve 2FA'yı etkinleştirin. Yardım için destek birimine başvurun.",
     "noAccountInformationFound": "Hesap bilgisi bulunamadı",
     "admin": "Yönetici",
-    "navigateToProfilePage": "Profil sayfasına git"
+    "navigateToProfilePage": "Profil sayfasına git",
+    "depositQR": "QR Yatır",
+    "eWalletAddress": "E-cüzdan Adresi",
+    "bankAccountNumberAlreadyExists": "Banka hesap numarası zaten mevcut",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Hesap adı sadece düz Vietnamca olmalı, büyük harflerle yazılmalı, en az 5 karakter ve en fazla 50 karakter içermelidir. Hiçbir özel karakter içermemelidir."
 }

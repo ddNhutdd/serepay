@@ -9,6 +9,7 @@ import {
   commontString,
   defaultLanguage,
   localStorageVariable,
+  regularExpress,
   url,
 } from "src/constant";
 import i18n from "src/translation/i18n";
@@ -900,7 +901,18 @@ function Profile() {
       }
     }
     if (paymentTourched.current[paymentControl.current.accountName]) {
-      if (!accountNameValue) {
+      console.log("1", regularExpress.accountExpress.test(accountNameValue));
+      if (!regularExpress.accountExpress.test(accountNameValue)) {
+        valid &= false;
+        setPaymentError((state) => {
+          const newState = {
+            ...state,
+            [paymentControl.current.accountName]:
+              "Tên tài khoản là tiếng Việt không dấu, viết hoa, tối thiểu 5 ký tự, tối đa 50 kí tự, không chứa các ký tự đặc biệt",
+          };
+          return newState;
+        });
+      } else if (!accountNameValue) {
         valid &= false;
         setPaymentError((state) => {
           const newState = {
@@ -909,7 +921,10 @@ function Profile() {
           };
           return newState;
         });
-      } else {
+      } else if (
+        accountNameValue &&
+        regularExpress.accountExpress.test(accountNameValue)
+      ) {
         setPaymentError((state) => {
           const newState = { ...state };
           delete newState[paymentControl.current.accountName];
@@ -927,7 +942,6 @@ function Profile() {
   const paymentControlChangeHandle = function () {
     paymentValidate();
   };
-
   /**
    * function fetch data for state listPayment
    */
@@ -941,7 +955,6 @@ function Profile() {
       page: page,
     })
       .then((resp) => {
-        console.log(resp);
         setCallApiPaymentStatus(api_status.fulfilled);
         setListPayment(resp.data.data.array);
         setListPaymentTotalItems(resp.data.data.total);
@@ -1051,6 +1064,7 @@ function Profile() {
                   <label>{t("bankName")}</label>
                   <div className="profile__dropdown">
                     <Dropdown
+                      id={`dropdownPayment`}
                       list={listBank}
                       itemClickHandle={dropdownItemCLick}
                       itemSelected={bankDropdownSelected}

@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import css from "./dropdown.module.scss";
 
 function Dropdown(props) {
-  const { list, itemClickHandle, itemSelected } = props;
+  const { list, itemClickHandle, itemSelected, id } = props;
 
   const [isOpenDropdown, setIsOpentDropdown] = useState(false);
+  const [dropdownSelectorHeight, setDropdownSelectorHeight] = useState(0);
 
   const renderSelector = function () {
     if (!itemSelected) return;
     return (
       <>
-        <div className={`${css["imageContainer"]} ${hidenElement()}`}>
+        <div
+          className={`${css["imageContainer"]} ${hidenElement(
+            itemSelected.image
+          )}`}
+        >
           <img src={itemSelected.image} alt={itemSelected.content} />
         </div>
         <div className={css["contentContainer"]}>{itemSelected.content}</div>
@@ -23,7 +28,6 @@ function Dropdown(props) {
   const hidenElement = function (image) {
     return image ? "" : "--d-none";
   };
-
   const renderMenu = function () {
     if (!list || list.length <= 0) return;
 
@@ -46,13 +50,11 @@ function Dropdown(props) {
       </div>
     ));
   };
-
   const rowClickHandle = function (itemDropdown, ev) {
     ev.stopPropagation();
     itemClickHandle(itemDropdown, ev.currentTarget);
     setIsOpentDropdown(false);
   };
-
   const renderClassShowMenu = function () {
     return isOpenDropdown ? css["show"] : "";
   };
@@ -60,24 +62,36 @@ function Dropdown(props) {
     ev.stopPropagation();
     setIsOpentDropdown((s) => !s);
   };
-
   const closeDropdown = function () {
     setIsOpentDropdown(false);
+  };
+  const observeHeightSelector = function () {
+    const setHeightSelector = function () {
+      let element = document.getElementById(id);
+      let height = element.offsetHeight;
+      setDropdownSelectorHeight(height);
+    };
+    let observer = new ResizeObserver(setHeightSelector);
+    observer.observe(document.getElementById(id));
+    return observer;
   };
 
   useEffect(() => {
     document.addEventListener("click", closeDropdown);
+    const observer = observeHeightSelector();
 
     return () => {
       document.removeEventListener("click", closeDropdown);
+      observer.disconnect();
     };
   }, []);
 
   return (
-    <div onClick={dropdownCLickHandle} className={css["dropdown"]}>
+    <div id={id} onClick={dropdownCLickHandle} className={css["dropdown"]}>
       {renderSelector()}
       <div
-        className={`${css["dropdownMenuContainer"]}  ${renderClassShowMenu()}`}
+        style={{ top: dropdownSelectorHeight }}
+        className={`${css["dropdownMenuContainer"]} ${renderClassShowMenu()}`}
       >
         <div className={css["dropdownMenu"]}>{renderMenu()} </div>
       </div>

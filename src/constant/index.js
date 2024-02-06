@@ -88,6 +88,8 @@ export const defaultCurrency = "USD";
 export const regularExpress = {
   checkNumber: /^[+-]?([0-9]*[.])?[0-9]*$/,
   strongCheckNumber: /^(?!$)\d+(\.\d+)?$/,
+  accountExpress:
+    /^[A-ZĂÂĐÊÔƠƯỨỪỮỬỰĨỈỴỸÀẢÃÁẠĂẰẦẴẤẶẢẨẬẶÈẺẼÉẸÊỀỂỄẾỆÌỈĨÍỊÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢÙỦŨÚỤƯỨỪỮỬỰỲỶỸÝỴ0-9 ]{5,50}$/,
 };
 
 export const actionTrading = {

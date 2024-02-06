@@ -38,6 +38,7 @@ import { math } from "src/App";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { Button } from "../Common/Button";
 import Dropdown from "../Common/dropdown/Dropdown";
+import { getListBank } from "src/redux/reducers/bankSlice";
 
 function TransactionBuy() {
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
@@ -50,6 +51,8 @@ function TransactionBuy() {
   const getExchangeRateDisparityFromRedux = useSelector(
     getExchangeRateDisparity
   );
+  const listBankRedux = useSelector(getListBank);
+
   const [callApiLoadTraderStatus, setCallApiLoadTraderStatus] = useState(
     api_status.pending
   );
@@ -60,8 +63,7 @@ function TransactionBuy() {
 
   const [selectedTrader, setSelectedTrader] = useState(); //trader to process logic
   const [dropdownTraderShow, setDropdownTraderShow] = useState(); // trader displays on the interface
-  const [listTrader, setListTrader] = useState();
-
+  const [listTrader, setListTrader] = useState([]);
   const [userListBank, setUserListBank] = useState();
   const [selectedBank, setSelectedBank] = useState();
   const currencyRedux = useSelector(getCurrent);
@@ -172,24 +174,18 @@ function TransactionBuy() {
   };
   const traderSelect = function (item) {
     if (item.id === -1) {
-      traderRandomSelect;
       setDropdownTraderShow(item);
-      setSelectedTrader(traderRandomSelect);
+      setSelectedTrader(traderRandomSelect(listTrader));
     } else {
       setSelectedTrader(() => item);
       setDropdownTraderShow(item);
     }
   };
-  const traderRandomSelect = function () {
+  const traderRandomSelect = function (listTrader) {
     return getRandomElementFromArray(listTrader.slice(1));
   };
   const renderClassAdsSpin = function () {
     return callApiLoadTraderStatus === api_status.fetching ? "" : "--d-none";
-  };
-  const dropdownPaymentToggle = function (e) {
-    e.stopPropagation();
-    const showFlag = isShowDropdownPayment;
-    setIsShowDropdownPayment(() => !showFlag);
   };
   const renderAdsInfo = function () {
     if (!selectedTrader) return;
@@ -228,6 +224,11 @@ function TransactionBuy() {
       </>
     );
   };
+  const findLogoBank = function (bankName) {
+    if (!listBankRedux || listBankRedux.length <= 0) return;
+    const finded = listBankRedux.find((item) => item.content === bankName);
+    return finded?.image;
+  };
   const fetchApiGetListBank = function () {
     return new Promise((resolve, reject) => {
       if (callApiLoadPaymentStatus === api_status.fetching)
@@ -239,7 +240,12 @@ function TransactionBuy() {
       })
         .then((resp) => {
           setCallApiLoadPaymentStatus(() => api_status.fulfilled);
-          return resolve(resp.data.data.array);
+          const respList = resp.data.data.array;
+          for (const record of respList) {
+            record.content = `${record.name_banking} (${record.owner_banking}) (${record.number_banking})`;
+            record.image = findLogoBank(record.name_banking);
+          }
+          return resolve(respList);
         })
         .catch((err) => {
           setCallApiLoadPaymentStatus(() => api_status.rejected);
@@ -250,6 +256,10 @@ function TransactionBuy() {
   const firstLoad = function () {
     Promise.all([fetchApiTrader(), fetchApiGetListBank()])
       .then((resp) => {
+        const resp0 = resp.at(0);
+        setSelectedTrader(traderRandomSelect(resp0));
+        setDropdownTraderShow(resp0.at(0));
+        //
         const resp1 = resp.at(1);
         setUserListBank(() => resp1);
         setSelectedBank(() => resp1.at(0));
@@ -284,24 +294,6 @@ function TransactionBuy() {
       false
     );
   };
-  const renderUserListBank = function () {
-    if (!userListBank || userListBank.length <= 0) return;
-    return userListBank.map((item) => (
-      <div
-        onClick={bankClickHandle.bind(null, item)}
-        key={item.id}
-        className="dropdown-item"
-      >
-        {`${item.name_banking} (${item.owner_banking}: ${item.number_banking})`}
-      </div>
-    ));
-  };
-  const bankClickHandle = function (item) {
-    setSelectedBank(() => item);
-  };
-  const renderClassPaymentSpin = function () {
-    return callApiLoadPaymentStatus === api_status.fetching ? "" : "--d-none";
-  };
   const renderClassPaymentDropdown = function () {
     if (
       callApiLoadPaymentStatus !== api_status.fetching &&
@@ -310,10 +302,6 @@ function TransactionBuy() {
     )
       return "";
     else return "--d-none";
-  };
-  const renderPaymentDropdownSelected = function () {
-    if (!selectedBank) return;
-    return `${selectedBank.name_banking} (${selectedBank.owner_banking}: ${selectedBank.number_banking})`;
   };
   const inputCoinFocusHandle = function () {
     touchedControl.current[control.current.amount] = true;
@@ -587,6 +575,9 @@ function TransactionBuy() {
 
     inputMoneyElement.current.value = resultString;
   };
+  const dropdownPaymentSelect = function (item) {
+    setSelectedBank(item);
+  };
 
   useEffect(() => {
     const language =
@@ -594,7 +585,6 @@ function TransactionBuy() {
     i18n.changeLanguage(language);
 
     validationPageLoad();
-    firstLoad();
 
     const inputObserver = observeWidth(setInputPadding);
     inputObserver.observe(document.querySelector(".transaction__action"));
@@ -657,6 +647,11 @@ function TransactionBuy() {
     currencyRedux,
     getExchangeRateDisparityFromRedux,
   ]);
+  useEffect(() => {
+    if (listBankRedux && listBankRedux.length > 0) {
+      firstLoad();
+    }
+  }, [listBankRedux]);
 
   return (
     <div className={`transaction`}>
@@ -670,6 +665,7 @@ function TransactionBuy() {
           <div className="transaction__user-dropdown">
             <label>{t("trader")}:</label>
             <Dropdown
+              id={`dropdownTrader`}
               list={listTrader}
               itemClickHandle={traderSelect}
               itemSelected={dropdownTraderShow}
@@ -720,23 +716,12 @@ function TransactionBuy() {
               className={`transaction__dropdown ${renderClassPaymentDropdown()}`}
             >
               <label htmlFor="amountInput">{t("chooseYourPayment")}:</label>
-              <div
-                onClick={dropdownPaymentToggle}
-                className="transaction__payment-dropdown"
-              >
-                <div className="transaction__payment-dropdown-text">
-                  {renderPaymentDropdownSelected()}
-                </div>
-                <span>
-                  <i className="fa-solid fa-caret-down"></i>
-                </span>
-              </div>
-              <div className={`transaction__payment-dropdown-menu-container`}>
-                <div className="dropdown-menu">{renderUserListBank()}</div>
-              </div>
-            </div>
-            <div className={`spin-container ${renderClassPaymentSpin()}`}>
-              <Spin />
+              <Dropdown
+                id={`dropdownPayment`}
+                list={userListBank}
+                itemClickHandle={dropdownPaymentSelect}
+                itemSelected={selectedBank}
+              />
             </div>
             <input
               checked={eulaChecked}

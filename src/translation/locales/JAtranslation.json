@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "引き出し可能になる前に、アイデンティティ情報を更新し、2FAをオンにしてください。サポートにお問い合わせいただければ、お手伝いさせていただきます。",
     "noAccountInformationFound": "アカウント情報が見つかりません",
     "admin": "管理者",
-    "navigateToProfilePage": "プロフィールページに移動"
+    "navigateToProfilePage": "プロフィールページに移動",
+    "depositQR": "デポジットQR",
+    "eWalletAddress": "Eウォレットアドレス",
+    "bankAccountNumberAlreadyExists": "銀行口座番号はすでに存在しています",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "アカウント名は、平易なベトナム語で書かれ、大文字で、少なくとも5文字、最大50文字である必要があります。特殊文字は含まれていてはいけません"
 }

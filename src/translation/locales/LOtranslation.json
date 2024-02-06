@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "ກະລຸນາປັບປຸງຂໍ້ມູນທະນາຄານຂອງທ່ານແລະເປີດໃຊ້ 2FA ເພື່ອສາມາດຊື້ເງິນໄດ້. ຕິດຕໍ່ກັບຄູ່ຂ່າວຂ້າພະເຈົ້າເພື່ອຄລິກັບງ່າຍ.",
     "noAccountInformationFound": "ບໍ່ພົບຂໍ້ມູນບັນຊີ",
     "admin": "ຜູ້ບໍລິຫາ",
-    "navigateToProfilePage": "ໄປທຳອິດໜ້າບັນຊີ"
+    "navigateToProfilePage": "ໄປທຳອິດໜ້າບັນຊີ",
+    "depositQR": "ມີຊັ້ນ QR",
+    "eWalletAddress": "ທີ່ຢູ່ E-wallet",
+    "bankAccountNumberAlreadyExists": "ເລກບັດປະຊາຊົນທີ່ເປັນບັນຊີທີ່ມີຢູ່ແລ້ວ",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ຊື່ບັນຊີຄວນເປັນພາສາຫວຽດ, ມັນຄຳສັ່ງເປັນຕົວອັກສອນເມື່ອບັນຊີມີສູງ 5 ຕົວອັກດ້ວຍສູງ 50 ຕົວອັກ. ມັນບໍ່ຄວນມີຕົວອັກສອນປອດໄພມີຄວນມີຕົວອັກສອນພຽງ"
 }

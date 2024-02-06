@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "请在能够提款之前更新您的身份信息并启用双因素认证 (2FA)。联系您的支持团队寻求帮助。",
     "noAccountInformationFound": "未找到帐户信息",
     "admin": "管理员",
-    "navigateToProfilePage": "导航至个人资料页面"
+    "navigateToProfilePage": "导航至个人资料页面",
+    "depositQR": "充值二维码",
+    "eWalletAddress": "电子钱包地址",
+    "bankAccountNumberAlreadyExists": "银行账号号码已存在",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "账户名称应为纯中文，大写，至少5个字符，最多50个字符。不得包含任何特殊字符。"
 }

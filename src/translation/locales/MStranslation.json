@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Sila kemaskini maklumat identiti anda dan aktifkan 2FA sebelum dapat melakukan pengeluaran. Hubungi sokongan anda untuk bantuan.",
     "noAccountInformationFound": "Tiada maklumat akaun ditemui",
     "admin": "Admin",
-    "navigateToProfilePage": "Navigasi ke halaman profil"
+    "navigateToProfilePage": "Navigasi ke halaman profil",
+    "depositQR": "Deposit QR",
+    "eWalletAddress": "Alamat E-wallet",
+    "bankAccountNumberAlreadyExists": "Nombor akaun bank sudah wujud",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Nama akaun hendaklah dalam bahasa Vietnam biasa, ditulis dalam huruf besar, dengan sekurang-kurangnya 5 aksara dan sekurang-kurangnya 50 aksara. Ia tidak boleh mengandungi sebarang aksara khas"
 }

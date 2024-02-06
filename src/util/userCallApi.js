@@ -218,18 +218,23 @@ export const verifyEmail = function (verifyToken) {
   } catch (error) {}
 };
 //==========================================
-export const getQrBankPayment = async function () {
+export const getQrBankPayment = async function (
+  accountNo,
+  accountName,
+  acqId,
+  amount
+) {
   try {
     const url = BANK_API_DOMAIN + "/generate";
     const clientId = "1b57b8a1-5646-4a0b-8564-e5c28e29cd62";
     const apiKey = "51f83735-3327-47cf-be94-91916df4da5b";
 
     const requestData = {
-      accountNo: "113366668888",
-      accountName: "QUY VAC XIN PHONG CHONG COVID",
-      acqId: "970415",
-      addInfo: "Ung Ho Quy Vac Xin",
-      amount: "79000",
+      accountNo,
+      accountName,
+      acqId,
+      addInfo: "Serepay QR",
+      amount: amount,
       template: "compact",
     };
 

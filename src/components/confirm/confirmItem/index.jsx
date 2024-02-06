@@ -32,21 +32,22 @@ import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { math } from "src/App";
 import QRCode from "react-qr-code";
+import { getListBank } from "src/redux/reducers/bankSlice";
 
 function ConfirmItem(props) {
+  const { index, content, profileId, render, fee } = props;
   const actionType = {
     buy: "buy",
     sell: "sell",
   };
+  const history = useHistory();
   const { t } = useTranslation();
   const exchange = useSelector(getExchange);
   const currentCurrency = useSelector(getCurrent);
-  const { index, content, profileId, render, fee } = props;
-  const deadLine = useRef(calculateTime(content.created_at, 15, 0));
+  const listBankRedux = useSelector(getListBank);
+
   const [counter, setCounter] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const history = useHistory();
-  const callApiStatus = useRef(api_status.pending);
   const [bankName, setbankName] = useState();
   const [ownerAccount, setOwnerAccount] = useState();
   const [numberBank, setNumberBank] = useState();
@@ -60,6 +61,8 @@ function ConfirmItem(props) {
   const [qrcode, setQrcode] = useState("");
 
   const idCommand = useRef();
+  const deadLine = useRef(calculateTime(content.created_at, 15, 0));
+  const callApiStatus = useRef(api_status.pending);
   const isMobileViewport = window.innerWidth < 600;
 
   useEffect(() => {
@@ -84,6 +87,11 @@ function ConfirmItem(props) {
       clearInterval(intervalId);
     };
   }, []);
+  useEffect(() => {
+    if (listBankRedux && listBankRedux.length > 0) {
+      fetchLoadQRPayment();
+    }
+  }, [listBankRedux]);
 
   const calcMoney = function (money) {
     if (!exchange || !currentCurrency || !money) return;
@@ -447,18 +455,25 @@ function ConfirmItem(props) {
       return "confirm--green";
     } else return "confirm--red";
   };
-  const testClickHandle = async function () {
+  const fetchLoadQRPayment = async function () {
     try {
-      const response = await getQrBankPayment();
-      console.log(response);
+      const response = await getQrBankPayment(
+        content.numberBank,
+        content.ownerAccount,
+        findBankBin(content.bankName),
+        content.pay
+      );
       setQrcode(response.data.qrCode);
     } catch (error) {}
+  };
+  const findBankBin = function (bankName) {
+    return listBankRedux.find(
+      (item) => `${item.name} (${item.code})` === bankName
+    )?.bin;
   };
 
   return (
     <div className="confirm">
-      <button onClick={testClickHandle}>test</button>
-
       <div className="container">
         <table id="confirm__table">
           <thead>

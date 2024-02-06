@@ -347,5 +347,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "กรุณาอัปเดตข้อมูลตัวตนและเปิดใช้งาน 2FA ก่อนที่จะถอนเงินได้ ติดต่อฝ่ายสนับสนุนของคุณสำหรับความช่วยเหลือ",
     "noAccountInformationFound": "ไม่พบข้อมูลบัญชี",
     "admin": "ผู้ดูแลระบบ",
-    "navigateToProfilePage": "นำทางไปยังหน้าโปรไฟล์"
+    "navigateToProfilePage": "นำทางไปยังหน้าโปรไฟล์",
+    "depositQR": "ฝาก QR",
+    "eWalletAddress": "ที่อยู่กระเป๋าเงินอิเล็กทรอนิกส์",
+    "bankAccountNumberAlreadyExists": "หมายเลขบัญชีธนาคารมีอยู่แล้ว",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ชื่อบัญชีต้องเป็นภาษาเวียดนามเท่านั้น เขียนด้วยอักษรตัวใหญ่ มีอย่างน้อย 5 ตัวอักษรและไม่เกิน 50 ตัวอักษร ห้ามใช้ตัวอักษรพิเศษใดๆ"
 }

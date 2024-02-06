@@ -189,6 +189,7 @@ function App() {
             image: item.logo,
             content: `${item.name} (${item.code})`,
             id: item.id,
+            code: item.code,
             bin: item.bin,
           }))
         )

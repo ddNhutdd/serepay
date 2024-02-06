@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Vui lòng cập nhật thông tin định danh của bạn và bật 2FA trước khi có thể rút tiền. Liên hệ với bộ phận hỗ trợ để được giúp đỡ.",
     "noAccountInformationFound": "Không tìm thấy thông tin tài khoản",
     "admin": "Quản trị viên",
-    "navigateToProfilePage": "Chuyển đến trang hồ sơ"
+    "navigateToProfilePage": "Chuyển đến trang hồ sơ",
+    "depositQR": "Nạp QR",
+    "eWalletAddress": "Địa chỉ ví điện tử",
+    "bankAccountNumberAlreadyExists": "Số tài khoản ngân hàng đã tồn tại",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf 5CharactersAndAMaximumOf50Characters": "Tên tài khoản phải là tiếng Việt thuần túy, viết hoa, có ít nhất 5 ký tự và tối đa 50 ký tự. Không được chứa bất kỳ ký tự đặc biệt nào."
 }

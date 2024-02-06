@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Пожалуйста, обновите информацию об идентификации и включите 2FA перед возможностью снятия средств. Обратитесь в службу поддержки для получения помощи.",
     "noAccountInformationFound": "Информация о счете не найдена",
     "admin": "Админ",
-    "navigateToProfilePage": "Перейти на страницу профиля"
+    "navigateToProfilePage": "Перейти на страницу профиля",
+    "depositQR": "Депозит QR",
+    "eWalletAddress": "Адрес электронного кошелька",
+    "bankAccountNumberAlreadyExists": "Номер банковского счета уже существует",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Имя аккаунта должно быть на простом вьетнамском языке, написано заглавными буквами, с минимум 5 символами и максимум 50 символами. Оно не должно содержать специальных символов"
 }

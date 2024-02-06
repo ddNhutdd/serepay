@@ -6,7 +6,7 @@ import {
   localStorageVariable,
   url,
 } from "src/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import {
   exchangeRateDisparity,
@@ -25,10 +25,11 @@ function Confirm() {
   const { id: idAds } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { t } = useTranslation();
+
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const [data, setData] = useState(null);
   const [render, setRender] = useState(1);
-  const { t } = useTranslation();
 
   useEffect(() => {
     loadData();
@@ -101,10 +102,9 @@ function Confirm() {
     Promise.all([promistFetchFee, promiseFetchInfo])
       .then((resp) => {
         const fee = resp.at(0).at(0);
+        //
         const info = resp?.at(1);
-
         if (!info) return;
-
         const result = info.map((item, index) => (
           <ConfirmItem
             key={index}
@@ -116,7 +116,6 @@ function Confirm() {
           />
         ));
         setData(() => result);
-
         setCallApiStatus(() => api_status.fulfilled);
       })
       .catch((err) => {

@@ -349,5 +349,9 @@
     "pleaseUpdateYourIdentityInformationAndTurnOn2FABeforeBeingAbleToWithdraw": "Por favor, actualiza tu información de identidad y activa la autenticación de dos factores (2FA) antes de poder realizar retiros. Contacta a tu soporte para obtener ayuda.",
     "noAccountInformationFound": "No se encontraron informaciones de cuenta",
     "admin": "Administrador",
-    "navigateToProfilePage": "Ir a la página de perfil"
+    "navigateToProfilePage": "Ir a la página de perfil",
+    "depositQR": "Depósito QR",
+    "eWalletAddress": "Dirección de monedero electrónico",
+    "bankAccountNumberAlreadyExists": "El número de cuenta bancaria ya existe",
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "El nombre de la cuenta debe estar en vietnamita simple, escrito en mayúsculas, con un mínimo de 5 caracteres y un máximo de 50 caracteres. No debe contener caracteres especiales"
 }
