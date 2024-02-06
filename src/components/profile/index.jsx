@@ -865,7 +865,7 @@ function Profile() {
           const mess = error.response.data.message;
           switch (mess) {
             case apiResponseErrorMessage.bankExist:
-              callToastError("Bank account number already exists");
+              callToastError(t("bankAccountNumberAlreadyExists"));
               break;
             default:
               callToastError(mess || t(commontString.error));
@@ -908,7 +908,7 @@ function Profile() {
           const newState = {
             ...state,
             [paymentControl.current.accountName]:
-              "Tên tài khoản là tiếng Việt không dấu, viết hoa, tối thiểu 5 ký tự, tối đa 50 kí tự, không chứa các ký tự đặc biệt",
+              "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters",
           };
           return newState;
         });

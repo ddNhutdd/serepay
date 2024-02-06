@@ -273,16 +273,12 @@ export default function CreateBuy() {
     }
     if (action === actionType.sell) {
       if (controlsTourched.current[controls.current.fullname]) {
-        console.log(
-          regularExpress.accountExpress.test(fullnameElement.value),
-          fullnameElement.value
-        );
         if (!regularExpress.accountExpress.test(fullnameElement.value)) {
           valid &= false;
           setControlsErrors((state) => ({
             ...state,
             [controls.current.fullname]:
-              "Tên tài khoản là tiếng Việt không dấu, viết hoa, tối thiểu 5 ký tự, tối đa 50 kí tự, không chứa các ký tự đặc biệt",
+              "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters",
           }));
         } else if (!fullnameElement.value) {
           valid &= false;
