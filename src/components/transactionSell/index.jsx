@@ -205,7 +205,7 @@ function TransactionSell() {
       .then((resp) => {
         const resp0 = resp.at(0);
         setSelectedDropdownTrader(resp0.at(0));
-        setSelectedTrader(() => getRandomElementFromArray(resp0));
+        setSelectedTrader(() => getRandomElementFromArray(resp0.slice(1)));
         //
         const resp1 = resp.at(1);
         if (!resp1 || resp1.length <= 0) {
@@ -226,12 +226,11 @@ function TransactionSell() {
       })
       .finally(() => {
         setShowComponentLoader(false);
+        payInputElement.current.value = new Intl.NumberFormat(
+          currencyMapper.USD,
+          roundIntl(10)
+        ).format(amount);
       });
-
-    payInputElement.current.value = new Intl.NumberFormat(
-      currencyMapper.USD,
-      roundIntl(10)
-    ).format(amount);
   };
   const setCoinOwned = function () {
     const amountCoin = userWalletRedux[selectedCoin.toLowerCase() + "_balance"];

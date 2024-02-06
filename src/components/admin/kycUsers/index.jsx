@@ -28,9 +28,6 @@ function KYC() {
 
     renderKYCTable();
   }, []);
-  useEffect(() => {
-    console.log(showConfirmModal);
-  }, [showConfirmModal]);
 
   const fetchKYCTable = function (page) {
     if (callApiStatus === api_status.fetching) return;

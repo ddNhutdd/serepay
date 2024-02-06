@@ -106,7 +106,6 @@ function Transfer() {
       })
       .catch((error) => {
         const errorMessage = error?.response?.data?.message;
-        console.log(errorMessage);
         switch (errorMessage) {
           case "UserName is not exit":
             callToastError(t("userNameNotExists"));

@@ -2,7 +2,7 @@ import { Descriptions, Modal, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
-import i18n from "src/translation/i18n";
+import i18n, { availableLanguage } from "src/translation/i18n";
 import { useHistory } from "react-router-dom";
 import {
   api_status,
@@ -59,6 +59,7 @@ function ConfirmItem(props) {
   const [rate, setRate] = useState();
   const [userCurrentAction, setUserCurrentAction] = useState(); //The current user's action is different from the ad's side
   const [qrcode, setQrcode] = useState("");
+  const [qrcodeSpin, setqrcodeSpin] = useState(api_status.pending);
 
   const idCommand = useRef();
   const deadLine = useRef(calculateTime(content.created_at, 15, 0));
@@ -457,19 +458,29 @@ function ConfirmItem(props) {
   };
   const fetchLoadQRPayment = async function () {
     try {
+      setqrcodeSpin(api_status.fetching);
       const response = await getQrBankPayment(
         content.numberBank,
         content.ownerAccount,
         findBankBin(content.bankName),
-        content.pay
+        content.pay.toFixed(0)
       );
       setQrcode(response.data.qrCode);
+      setqrcodeSpin(api_status.fulfilled);
     } catch (error) {}
   };
   const findBankBin = function (bankName) {
-    return listBankRedux.find(
-      (item) => `${item.name} (${item.code})` === bankName
-    )?.bin;
+    console.log(bankName);
+    return listBankRedux.find((item) => item.content === bankName)?.bin;
+  };
+  const renderClassShowSpinQR = function () {
+    return qrcodeSpin === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassShowQr = function () {
+    return qrcodeSpin !== api_status.pending &&
+      qrcodeSpin !== api_status.fetching
+      ? ""
+      : "--d-none";
   };
 
   return (
@@ -525,7 +536,9 @@ function ConfirmItem(props) {
                     )}
                   </span>
                 </div>
-                <div className="d-flex alignItem-c justify-c">
+                <div
+                  className={`d-flex alignItem-c justify-c ${renderClassShowQr()}`}
+                >
                   <span
                     style={{
                       padding: 5,
@@ -542,6 +555,11 @@ function ConfirmItem(props) {
                       value={qrcode ?? ""}
                     />
                   </span>
+                </div>
+                <div
+                  className={`d-flex alignItem-c justify-c ${renderClassShowSpinQR()}`}
+                >
+                  <Spin />
                 </div>
               </td>
             </tr>

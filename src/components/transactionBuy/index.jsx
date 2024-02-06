@@ -78,6 +78,8 @@ function TransactionBuy() {
   const control = useRef({
     amount: "amount",
   });
+  const hasRun = useRef(false);
+
   const [eulaChecked, setEulaChecked] = useState(false);
   const touchedControl = useRef({});
   const [errorControl, setErrorControl] = useState({});
@@ -635,10 +637,12 @@ function TransactionBuy() {
       exchangeRedux &&
       exchangeRedux.length > 0 &&
       currencyRedux &&
-      selectedTrader
+      selectedTrader &&
+      hasRun.current !== true
     ) {
       loadInputMoney();
       setShowComponentSpin(() => false);
+      hasRun.current = true;
     }
   }, [
     listCoinRealTime,

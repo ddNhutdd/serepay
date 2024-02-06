@@ -901,7 +901,6 @@ function Profile() {
       }
     }
     if (paymentTourched.current[paymentControl.current.accountName]) {
-      console.log("1", regularExpress.accountExpress.test(accountNameValue));
       if (!regularExpress.accountExpress.test(accountNameValue)) {
         valid &= false;
         setPaymentError((state) => {

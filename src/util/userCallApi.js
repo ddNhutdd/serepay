@@ -228,13 +228,13 @@ export const getQrBankPayment = async function (
     const url = BANK_API_DOMAIN + "/generate";
     const clientId = "1b57b8a1-5646-4a0b-8564-e5c28e29cd62";
     const apiKey = "51f83735-3327-47cf-be94-91916df4da5b";
-
+    console.log(accountNo, accountName, acqId, amount);
     const requestData = {
       accountNo,
       accountName,
       acqId,
       addInfo: "Serepay QR",
-      amount: amount,
+      amount,
       template: "compact",
     };
 
