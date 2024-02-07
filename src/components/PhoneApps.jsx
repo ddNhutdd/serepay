@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { defaultLanguage, localStorageVariable } from "src/constant";
 import {
+  addAnimation,
   createIntersectionObserve,
   getLocalStorage,
   zoomImage,
@@ -20,42 +21,15 @@ function PhoneApps() {
       i18n.changeLanguage(language);
     }
 
-    const leftElement = document.querySelector("#homeAppLeft");
-    const leftElementObserve = createIntersectionObserve(
-      leftElementObserveHandle,
-      leftElement
-    );
+    const listAnimation = ["slideInUp", "fadeInQuick"];
+    const listId = ["homeAppLeft", "homeAppImage"];
 
-    const homeAppImage = document.querySelector("#homeAppImage");
-    const homeAppImageObserve = createIntersectionObserve(
-      homeAppImageObserveHandle,
-      homeAppImage
-    );
+    const listObserve = addAnimation(listId, listAnimation);
 
     return () => {
-      leftElementObserve.disconnect();
-      homeAppImageObserve.disconnect();
+      listObserve.forEach((item) => item.disconnect());
     };
   }, []);
-
-  const leftElementObserveHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("slideInUp") &&
-          element.classList.add("slideInUp");
-    }
-  };
-  const homeAppImageObserveHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("fadeInQuick") &&
-          element.classList.add("fadeInQuick");
-    }
-  };
 
   return (
     <div className="phone__apps">

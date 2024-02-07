@@ -30,7 +30,7 @@ import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDispari
 import { getShow, setShow, showP2pType } from "src/redux/reducers/p2pTrading";
 import P2pExchange from "./p2pExchange";
 import "react-toastify/dist/ReactToastify.css";
-import { Button } from "./Common/Button";
+import { Button, buttonClassesType } from "./Common/Button";
 import { getProfile } from "src/util/userCallApi";
 import { math } from "src/App";
 
@@ -308,19 +308,19 @@ export default function P2PTrading({ history }) {
                     <span> {userSelectedCurrency}</span>
                   </div>
                   <div className="left3">
-                    <ButtonAntd
+                    <Button
                       onClick={buyNowClickHandle}
-                      className="buyNowBtn"
+                      type={buttonClassesType.success}
                     >
                       {t("buyNow")}
-                    </ButtonAntd>
+                    </Button>
 
-                    <button
+                    <Button
                       onClick={createAdsSell}
-                      className={`p2pTrading__createAds ${renderClassTypeAds()}`}
+                      className={` ${renderClassTypeAds()}`}
                     >
                       {t("creatingYourSellingAd")}
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <div className="right box">
@@ -338,12 +338,12 @@ export default function P2PTrading({ history }) {
                     <span> {userSelectedCurrency}</span>
                   </div>
                   <div className="right3">
-                    <ButtonAntd
+                    <Button
                       onClick={sellNowClickHandle}
-                      className="sellNowBtn"
+                      type={buttonClassesType.danger}
                     >
                       {t("sellNow")}
-                    </ButtonAntd>
+                    </Button>
                     <button
                       onClick={createAdsBuy}
                       className={`p2pTrading__createAds + ${renderClassTypeAds()}`}

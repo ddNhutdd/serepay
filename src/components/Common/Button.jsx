@@ -9,6 +9,9 @@ const getButtonClasses = (type) => {
     case buttonClassesType.success:
       return "buttonContainer--green";
 
+    case buttonClassesType.danger:
+      return "buttonContainer--red";
+
     default:
       return "buttonContainer--primary";
   }
@@ -19,6 +22,7 @@ export const buttonClassesType = {
   transparent: "transparent",
   primary: "primary",
   success: "success",
+  danger: "danger",
 };
 
 export const htmlType = {

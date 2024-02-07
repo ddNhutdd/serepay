@@ -100,21 +100,6 @@
           flex-wrap: wrap;
           gap: 10px;
           align-items: center;
-
-          .buyNowBtn {
-            background-color: $green;
-            color: white;
-            border: none;
-            font-size: 14px;
-
-            &:hover {
-              opacity: 0.8;
-            }
-          }
-
-          .p2pTrading__createAds {
-            @extend .buttonContainer--primary;
-          }
         }
       }
 
@@ -154,13 +139,6 @@
 
           .sellNowBtn {
             background-color: $red;
-            color: white;
-            border: none;
-            font-size: 14px;
-
-            &:hover {
-              opacity: 0.8;
-            }
           }
 
           .p2pTrading__createAds {
@@ -174,7 +152,6 @@
     .bottom {
       width: 100%;
       margin-top: 15px;
-      font-size: 14px;
 
       @media screen and (min-width: 480px) {
         margin-top: 30px;
@@ -243,7 +220,6 @@
                     background-color: $new-background-level-1;
                     color: #fff;
                     border: 0;
-                    font-size: 14px;
                   }
                 }
               }

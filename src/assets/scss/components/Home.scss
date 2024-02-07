@@ -202,6 +202,10 @@
             border-radius: 4px;
             outline: none;
             border: none;
+
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
 

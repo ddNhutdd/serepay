@@ -50,7 +50,7 @@ function RecoveryPassword() {
       email: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().required(t("require")).email(t("invalidEmail")),
+      email: Yup.string().required("require").email("invalidEmail"),
     }),
     validateOnChange: false,
     validateOnBlur: false,
@@ -78,7 +78,7 @@ function RecoveryPassword() {
                 name="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                errorMes={formik.errors.email}
+                errorMes={t(formik.errors.email)}
               />
             </div>
             <Button loading={loading} className="loginBtn" htmlType="submit">

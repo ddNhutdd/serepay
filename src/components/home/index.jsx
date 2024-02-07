@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import { url } from "src/constant";
 import { useSelector } from "react-redux";
 import PhoneApps from "../PhoneApps";
-import { createIntersectionObserve } from "src/util/common";
+import { addAnimation, createIntersectionObserve } from "src/util/common";
 function Home() {
   const history = useHistory();
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
@@ -44,122 +44,36 @@ function Home() {
     window.addEventListener("click", closeMenu);
     window.addEventListener("scroll", animationHeader);
 
-    const homeCarouselTitle = document.querySelector("#homeCarouselTitle");
-    const homeCarouselTitleObserve = createIntersectionObserve(
-      homeCarouselTitleObserverHandle,
-      homeCarouselTitle
-    );
+    const listAnimation = [
+      "backInUp",
+      "fadeIn-long",
+      "fadeIn-long",
+      "wobble",
+      "fadeInBottomToTop-long",
+      "fadeInBottomToTop-long",
+      "backInLeft",
+      "backInRight",
+    ];
+    const listId = [
+      "homeCarouselTitle",
+      "homeCarouselText",
+      "homeCarouselImage",
+      "homeWhyTitle",
+      "homeWhyPara",
+      "homeWhySmall",
+      "homeBenefitLeft",
+      "homeBenefitRight",
+    ];
 
-    const homeCarouselText = document.querySelector("#homeCarouselText");
-    const homeCarouselTextObserve = createIntersectionObserve(
-      homeCarouselTextObserverHandle,
-      homeCarouselText
-    );
-
-    const homeCarouselImage = document.querySelector("#homeCarouselImage");
-    const homeCarouselImageObserve = createIntersectionObserve(
-      homeCarouselTextObserverHandle,
-      homeCarouselImage
-    );
-
-    const homeWhyTitle = document.querySelector("#homeWhyTitle");
-    const homeWhyTitleObserve = createIntersectionObserve(
-      homeWhyTitleObserverHandle,
-      homeWhyTitle
-    );
-
-    const homeWhyPara = document.querySelector("#homeWhyPara");
-    const homeWhyParaObserve = createIntersectionObserve(
-      homeWhyParaObServerHandle,
-      homeWhyPara
-    );
-
-    const homeWhySmall = document.querySelector("#homeWhySmall");
-    const homeWhySmallObserve = createIntersectionObserve(
-      homeWhyParaObServerHandle,
-      homeWhySmall
-    );
-
-    const homeBenefitLeft = document.querySelector("#homeBenefitLeft");
-    const homeBenefitLeftObserve = createIntersectionObserve(
-      homeBenefitLeftObServerHandle,
-      homeBenefitLeft
-    );
-
-    const homeBenefitRight = document.querySelector("#homeBenefitRight");
-    const homeBenefitRightObserve = createIntersectionObserve(
-      homeBenefitRightObServerHandle,
-      homeBenefitRight
-    );
+    const listObserve = addAnimation(listId, listAnimation);
 
     return () => {
       window.removeEventListener("scroll", animationHeader);
       window.removeEventListener("click", closeMenu);
-      homeCarouselTitleObserve.disconnect();
-      homeCarouselTextObserve.disconnect();
-      homeCarouselImageObserve.disconnect();
-      homeWhyTitleObserve.disconnect();
-      homeWhyParaObserve.disconnect();
-      homeWhySmallObserve.disconnect();
-      homeBenefitLeftObserve.disconnect();
-      homeBenefitRightObserve.disconnect();
+      listObserve.forEach((item) => item.disconnect());
     };
   }, []);
 
-  const homeCarouselTitleObserverHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("backInUp") &&
-          element.classList.add("backInUp");
-    }
-  };
-  const homeCarouselTextObserverHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("fadeIn-long") &&
-          element.classList.add("fadeIn-long");
-    }
-  };
-  const homeWhyTitleObserverHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("wobble") &&
-          element.classList.add("wobble");
-    }
-  };
-  const homeWhyParaObServerHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("fadeInBottomToTop-long") &&
-          element.classList.add("fadeInBottomToTop-long");
-    }
-  };
-  const homeBenefitLeftObServerHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("backInLeft") &&
-          element.classList.add("backInLeft");
-    }
-  };
-  const homeBenefitRightObServerHandle = function (entries) {
-    for (const entry of entries) {
-      const element = entry.target;
-      if (!entry.isIntersecting) return;
-      else
-        !element.classList.contains("backInRight") &&
-          element.classList.add("backInRight");
-    }
-  };
   const redirectToLogin = function (e) {
     e.preventDefault();
     history.push(url.login);

@@ -33,6 +33,7 @@ import { Input, inputColor, inputType } from "./Common/Input";
 import { math } from "src/App";
 import { getBankState } from "src/redux/reducers/bankSlice";
 import Dropdown from "./Common/dropdown/Dropdown";
+import { Button, htmlType } from "./Common/Button";
 
 export default function CreateBuy() {
   const actionType = {
@@ -569,15 +570,14 @@ export default function CreateBuy() {
               </span>
             </div>
             <div className="button-area">
-              <button
+              <Button
                 id="buttonSubmit"
                 onClick={submitHandle}
-                type="submit"
-                className="button-area-primary"
+                htmlSubmit={htmlType.submit}
               >
                 <div id="buttonSubmitLoader" className="loader --d-none"></div>
                 {t("createNewAdvertisement")}
-              </button>
+              </Button>
             </div>
           </form>
         </div>

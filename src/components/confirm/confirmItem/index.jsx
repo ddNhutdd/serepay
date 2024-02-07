@@ -34,6 +34,7 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { math } from "src/App";
 import QRCode from "react-qr-code";
 import { getListBank } from "src/redux/reducers/bankSlice";
+import { Button, buttonClassesType } from "src/components/Common/Button";
 
 function ConfirmItem(props) {
   const { index, content, profileId, render, fee } = props;
@@ -315,43 +316,45 @@ function ConfirmItem(props) {
     ) {
       setUserCurrentAction(() => actionType.sell);
     }
-    //
-    const actionContainer = getElementById("actionConfirm" + index);
-    actionContainer.innerHTML = "";
+  };
+  const renderMainButton = function () {
+    const { typeUser, userid: userId } = content;
     if (typeUser === 2 && userId === profileId) {
-      // confirm button
-      const confirmButton = document.createElement("button");
-      confirmButton.innerHTML = t("receivedPaymentAndUnlocked");
-      confirmButton.className = "confirm__action-main";
-      confirmButton.addEventListener("click", userConfirmClickHandle);
-      actionContainer.appendChild(confirmButton);
-      // cancel button
-      const cancelButton = document.createElement("button");
-      cancelButton.innerHTML = t("cancelOrder");
-      cancelButton.className = "confirm__action-danger";
-      cancelButton.addEventListener("click", userCancelClickHandle);
-      actionContainer.appendChild(cancelButton);
+      return (
+        <>
+          <Button onClick={userConfirmClickHandle}>
+            {t("receivedPaymentAndUnlocked")}
+          </Button>
+          <Button
+            onClick={userCancelClickHandle}
+            type={buttonClassesType.danger}
+          >
+            {t("cancelOrder")}
+          </Button>
+        </>
+      );
     } else if (typeUser === 2 && userId !== profileId) {
-      actionContainer.innerHTML = `<button class='confirm__action-main disable'>${t(
-        "waitingTransfer"
-      )}</button>`;
+      return (
+        <>
+          <Button disabled>{t("waitingTransfer")}</Button>
+        </>
+      );
     } else if (typeUser === 1 && userId === profileId) {
-      actionContainer.innerHTML = `<button class='confirm__action-main disable'>${t(
-        "waitingConfirm"
-      )}</>`;
+      return <Button disabled>{t("waitingConfirm")}</Button>;
     } else if (typeUser === 1 && userId !== profileId) {
-      // receivedButton
-      const receivedButton = document.createElement("button");
-      receivedButton.innerHTML = t("receivedPayment");
-      receivedButton.className = `confirm__action-main`;
-      receivedButton.addEventListener("click", companyConfirmHandleClick);
-      actionContainer.appendChild(receivedButton);
-      //not recieved button
-      const notRecievedButton = document.createElement("button");
-      notRecievedButton.innerHTML = t("notReceivedPayment");
-      notRecievedButton.className = `confirm__action-danger`;
-      notRecievedButton.addEventListener("click", companyCancelClickHandle);
-      actionContainer.appendChild(notRecievedButton);
+      return (
+        <>
+          <Button onClick={companyConfirmHandleClick}>
+            {t("receivedPayment")}
+          </Button>
+          <Button
+            onClick={companyCancelClickHandle}
+            type={buttonClassesType.danger}
+          >
+            {t("notReceivedPayment")}
+          </Button>
+        </>
+      );
     }
   };
   const renderBankInfo = function () {
@@ -532,9 +535,9 @@ function ConfirmItem(props) {
               <td>{t("payment")}</td>
               <td>
                 <div className="confirm__payment">
-                  <button onClick={showModalPayment}>
+                  <Button onClick={showModalPayment}>
                     {t("openPaymentScreen")}
-                  </button>
+                  </Button>
                   <span className="confirm--green">
                     {t(
                       "youConfirmThatYouHaveMadeTheTransferPleaseWaitForUsToVerify"
@@ -624,10 +627,7 @@ function ConfirmItem(props) {
             </tr>
             <tr>
               <td colSpan={2}>
-                <div
-                  className="confirm__action"
-                  id={"actionConfirm" + index}
-                ></div>
+                <div className="confirm__action">{renderMainButton()}</div>
               </td>
             </tr>
           </tbody>

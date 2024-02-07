@@ -94,22 +94,9 @@
                     padding: 20px;
                 }
 
-                button {
-                    @include userMainButton;
-                    padding: 5px 10px;
-                }
-
                 .confirm__action {
                     display: flex;
                     gap: 10px;
-
-                    .confirm__action-danger {
-                        background-color: $red-1;
-
-                        &:hover {
-                            opacity: 0.7;
-                        }
-                    }
                 }
             }
         }

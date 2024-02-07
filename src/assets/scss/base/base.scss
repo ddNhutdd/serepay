@@ -124,6 +124,25 @@ $new-primary-background-6: $new-primary-color-8;
 $new-primary-background-7: $new-primary-color-6;
 $new-primary-background-8: $new-primary-color-4;
 
+
+
+///////////////
+/// //
+$green: #299d63;
+$green-dark: $neutral-4;
+$green-light: $neutral-4;
+$green-light-2: $neutral-4;
+$green-1: $neutral-4;
+$red: #e65656;
+$red-dark: #c33838;
+$red-light: #fc7f7f;
+$red-1: red;
+$orange: orange;
+$orange-1: #ffa71d;
+$yellow: #b9bc2f;
+$blue: blue;
+$blue-light: #ceceff;
+
 // REFACTOR  /////////////////////
 
 // font weight
@@ -180,7 +199,7 @@ $new-padding-button-sm: 6px 10px;
 $new-padding-button-md: 8px 12px;
 $new-padding-button-lg: 10px 16px;
 $new-border-radius-button-md: 6px;
-$new-font-size-button: 14px;
+$new-font-size-button: 15px;
 $new-font-weight-button: 500;
 $new-text-color-button-primary: #fff;
 $new-border-button-primary: none;
@@ -193,6 +212,8 @@ $new-text-color-button-outline: #cb9950;
 $new-transition-button: background-color 0.3s ease;
 $new-background-color-button-success: #299d63;
 $new-background-color-button-success-hover: #268354; // modal
+$new-background-color-button-danger: $red;
+$new-background-color-button-danger-hover: #A94444;
 $new-background-modal-antd: #1a1a1a;
 $new-background-header-modal-antd: #272727;
 
@@ -206,6 +227,7 @@ $primary-color-super-light: #f7e4ff;
 $header-background: $neutral-3;
 $header2-background: $neutral-2;
 $header2-background-light: $neutral-4;
+
 //
 $admin-background: #011022;
 $admin-background-light: #34404e;
@@ -262,21 +284,7 @@ $boxShadown-color-1: $neutral-4;
 $boxShadown-color-2: #0000004d;
 $boxShadown-color-3: #0000001f;
 $boxShadown-color-4: #0000001a;
-//
-$green: #299d63;
-$green-dark: $neutral-4;
-$green-light: $neutral-4;
-$green-light-2: $neutral-4;
-$green-1: $neutral-4;
-$red: #e65656;
-$red-dark: #c33838;
-$red-light: #fc7f7f;
-$red-1: red;
-$orange: orange;
-$orange-1: #ffa71d;
-$yellow: #b9bc2f;
-$blue: blue;
-$blue-light: #ceceff;
+
 
 @mixin container {
   width: 100%;
