@@ -27,20 +27,25 @@
             justify-content: center;
             gap: 30px;
 
+            @media screen and (max-width:768px) {
+                flex-direction: column;
+            }
+
             .left {
                 width: 450px;
-                padding: 15px;
                 background: $new-background-level-1;
                 box-shadow: 0 10px 28px $boxShadown-color-3;
                 border-radius: 20px;
+                padding: 30px;
+
+                @media screen and (max-width: 768px) {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
 
                 @media screen and (max-width: 576px) {
                     max-width: 450px;
                     width: 100%;
-                }
-
-                @media screen and (min-width: 480px) {
-                    padding: 30px;
                 }
 
                 .header {
@@ -150,8 +155,15 @@
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
+                width: 450px;
 
-                @media screen and (max-width: 480px) {
+                @media screen and (max-width: 768px) {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                @media screen and (max-width: 576px) {
+                    max-width: 450px;
                     width: 100%;
                 }
 
@@ -175,20 +187,11 @@
                 }
 
                 .right {
-                    width: 450px;
+                    padding: 30px;
                     padding: 15px;
                     background: $new-background-level-1;
                     box-shadow: 0 10px 28px $boxShadown-color-3;
                     border-radius: 20px;
-
-                    @media screen and (max-width: 576px) {
-                        max-width: 450px;
-                        width: 100%;
-                    }
-
-                    @media screen and (min-width: 480px) {
-                        padding: 30px;
-                    }
 
                     .transfer__title {
                         font-weight: bold;

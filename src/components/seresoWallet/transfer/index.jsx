@@ -408,14 +408,7 @@ function Transfer() {
           <div className={css["formWithdraw__right-container"]}>
             <div className={`${css["formWithdraw__qr"]}`}>
               <div className={css["formWithdraw__qr__bg"]}>
-                <QRCode
-                  style={{
-                    height: "auto",
-                    maxWidth: "200px",
-                    width: "200px",
-                  }}
-                  value={qrValue}
-                />
+                <QRCode style={{}} value={qrValue} />
               </div>
             </div>
             <div className={css["right"]}>

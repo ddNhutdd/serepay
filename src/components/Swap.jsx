@@ -18,7 +18,7 @@ import {
   localStorageVariable,
   url,
 } from "src/constant";
-import i18n from "src/translation/i18n";
+import i18n, { availableLanguage } from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { Pagination, Spin } from "antd";
@@ -138,7 +138,7 @@ export default function Swap() {
       const toPrice = data.filter((item) => item.name === swapToCoin)[0].price;
       const result = convertCacl(fromCoin, fromPrice, toPrice);
       setToCoinValueString(
-        formatStringNumberCultureUS(result.toString()) || ""
+        formatNumber(result, availableLanguage.en, rountRange(toPrice))
       );
     }
   };

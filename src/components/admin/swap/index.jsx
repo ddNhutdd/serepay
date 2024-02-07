@@ -226,7 +226,7 @@ export default function SwapAdmin() {
                 <Input
                   value={userName}
                   onChange={inputUserNameChangeHandle}
-                  placeholder={"userName"}
+                  placeholder={"UserName"}
                 />
               </div>
             </div>

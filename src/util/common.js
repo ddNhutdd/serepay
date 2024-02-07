@@ -1,3 +1,4 @@
+import ClipboardJS from "clipboard";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
 
 export const setLocalStorage = (key, data) => {
@@ -401,10 +402,27 @@ export const createIntersectionObserve = function (callback, htmlElement) {
   const options = {
     root: null,
     rootMargin: "0px",
-    threshold: 0.5,
+    threshold: 0.2,
   };
 
   const observer = new IntersectionObserver(callback, options);
   observer.observe(htmlElement);
   return observer;
+};
+export const copyToClipboard = function (
+  idElement,
+  onSuccess = () => {},
+  onError = () => {}
+) {
+  var clipboard = new ClipboardJS("#" + idElement);
+  clipboard.on("success", function (ev) {
+    onSuccess(ev);
+    ev.clearSelection();
+  });
+  clipboard.on("error", function (ev) {
+    callToastError(t(commontString.error));
+    onError(ev);
+  });
+
+  return clipboard;
 };

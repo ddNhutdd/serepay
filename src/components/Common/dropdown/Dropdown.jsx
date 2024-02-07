@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from "react";
 import css from "./dropdown.module.scss";
+import { getLocalStorage } from "src/util/common";
+import { defaultLanguage, localStorageVariable } from "src/constant";
+import { useTranslation } from "react-i18next";
+import i18n from "src/translation/i18n";
 
 function Dropdown(props) {
   const { list, itemClickHandle, itemSelected, id } = props;
+  const { t } = useTranslation();
 
   const [isOpenDropdown, setIsOpentDropdown] = useState(false);
   const [dropdownSelectorHeight, setDropdownSelectorHeight] = useState(0);
 
   const renderSelector = function () {
     if (!itemSelected) return;
+    const renderRandom = function () {
+      if (itemSelected.id === -1) {
+        return <div className={css["contentContainer"]}>{t("random")}</div>;
+      } else {
+        return (
+          <div className={css["contentContainer"]}>{itemSelected.content}</div>
+        );
+      }
+    };
     return (
       <>
         <div
@@ -18,7 +32,7 @@ function Dropdown(props) {
         >
           <img src={itemSelected.image} alt={itemSelected.content} />
         </div>
-        <div className={css["contentContainer"]}>{itemSelected.content}</div>
+        {renderRandom()}
         <div className={css["iconDownContainer"]}>
           <i className="fa-solid fa-caret-down"></i>
         </div>
@@ -30,6 +44,10 @@ function Dropdown(props) {
   };
   const renderMenu = function () {
     if (!list || list.length <= 0) return;
+
+    const renderRandomText = function (item) {
+      return item.id === -1 ? t("random") : item.content;
+    };
 
     return list.map((item) => (
       <div
@@ -45,7 +63,7 @@ function Dropdown(props) {
           <img src={item.image} alt={item.content} />
         </div>
         <div className={`${css["dropdownMenuItem__content"]}`}>
-          {item.content}
+          {renderRandomText(item)}
         </div>
       </div>
     ));
@@ -79,6 +97,10 @@ function Dropdown(props) {
   useEffect(() => {
     document.addEventListener("click", closeDropdown);
     const observer = observeHeightSelector();
+
+    const language =
+      getLocalStorage(localStorageVariable.lng) || defaultLanguage;
+    i18n.changeLanguage(language);
 
     return () => {
       document.removeEventListener("click", closeDropdown);

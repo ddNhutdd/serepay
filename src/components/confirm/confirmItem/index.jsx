@@ -14,6 +14,7 @@ import {
 import {
   calculateTime,
   calculateTimeDifference,
+  copyToClipboard,
   formatCurrency,
   getElementById,
   getLocalStorage,
@@ -84,8 +85,22 @@ function ConfirmItem(props) {
 
     const intervalId = timer();
     if (counter === `00 : 00`) clearInterval(intervalId);
+
+    const amountMoneyCopyCl = copyToClipboard("amountMoneyCopy", () => {
+      callToastSuccess(t("copySuccess"));
+    });
+    const codeCopyCl = copyToClipboard("codeCopy", () => {
+      callToastSuccess(t("copySuccess"));
+    });
+    const numberBankCopyCl = copyToClipboard("numberBankCopy", () => {
+      callToastSuccess(t("copySuccess"));
+    });
+
     return () => {
       clearInterval(intervalId);
+      amountMoneyCopyCl.destroy();
+      codeCopyCl.destroy();
+      numberBankCopyCl.destroy();
     };
   }, []);
   useEffect(() => {
@@ -338,15 +353,6 @@ function ConfirmItem(props) {
       notRecievedButton.addEventListener("click", companyCancelClickHandle);
       actionContainer.appendChild(notRecievedButton);
     }
-  };
-  const copyButtonClickHandle = async function (text) {
-    if (!navigator.clipboard) {
-      callToastError(t("noSupport"));
-      return;
-    }
-    navigator.clipboard
-      .writeText(text)
-      .then(() => callToastSuccess(t("success")));
   };
   const renderBankInfo = function () {
     const inputString = t("accountInfoVietcomBank");
@@ -661,22 +667,18 @@ function ConfirmItem(props) {
           >
             <Descriptions.Item label={t("amountOfMoney")}>
               <div className="green-text">
-                {new Intl.NumberFormat(i18n.language, {
-                  style: "currency",
-                  currency: "VND",
-                }).format(pay)}
+                {formatCurrency(i18n.language, "VND", pay, true)}
               </div>
               <div className="icon-copy">
                 <i
-                  onClick={copyButtonClickHandle.bind(
-                    null,
-                    new Intl.NumberFormat(currencyMapper.USD, {
-                      style: "currency",
-                      currency: "VND",
-                      maximumSignificantDigits: 3,
-                    }).format(pay)
-                  )}
+                  id="amountMoneyCopy"
                   className="fa-solid fa-copy"
+                  data-clipboard-text={formatCurrency(
+                    i18n.language,
+                    "VND",
+                    pay,
+                    false
+                  )}
                 ></i>
               </div>
             </Descriptions.Item>
@@ -684,7 +686,8 @@ function ConfirmItem(props) {
               <div className="green-text">{code}</div>
               <div className="icon-copy">
                 <i
-                  onClick={copyButtonClickHandle.bind(null, code)}
+                  id="codeCopy"
+                  data-clipboard-text={code}
                   className="fa-solid fa-copy"
                 ></i>
               </div>
@@ -695,7 +698,8 @@ function ConfirmItem(props) {
               </div>
               <div className="icon-copy">
                 <i
-                  onClick={copyButtonClickHandle.bind(null, numberBank)}
+                  id="numberBankCopy"
+                  data-clipboard-text={numberBank}
                   className="fa-solid fa-copy"
                 ></i>
               </div>

@@ -254,7 +254,7 @@ export default function TransferAdmin() {
                 <Input
                   value={userName}
                   onChange={inputUserNameChangeHandle}
-                  placeholder={"userName"}
+                  placeholder={"UserName"}
                 />
               </div>
             </div>

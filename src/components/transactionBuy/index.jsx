@@ -585,6 +585,12 @@ function TransactionBuy() {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
+    let currentLanguage = i18n.language;
+    i18n.on("languageChanged", (newLanguage) => {
+      if (newLanguage !== currentLanguage) {
+      }
+      currentLanguage = newLanguage;
+    });
 
     validationPageLoad();
 

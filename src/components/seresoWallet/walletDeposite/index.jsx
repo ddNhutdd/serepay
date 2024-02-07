@@ -9,11 +9,13 @@ import {
   addClassToElementById,
   getLocalStorage,
   formatNumber,
+  copyToClipboard,
 } from "src/util/common";
 import { createWalletBEP20, getDepositHistory } from "src/util/userCallApi";
 import {
   api_status,
   coinString,
+  commontString,
   defaultLanguage,
   image_domain,
   localStorageVariable,
@@ -22,6 +24,7 @@ import { callToastSuccess } from "src/function/toast/callToast";
 import i18n from "src/translation/i18n";
 import { EmptyCustom } from "src/components/Common/Empty";
 import WalletTop, { titleWalletTop } from "../WalletTop";
+import ClipboardJS from "clipboard";
 
 function SerepayWalletDeposit() {
   const fetchApiCreateWallet = function () {
@@ -40,13 +43,6 @@ function SerepayWalletDeposit() {
 
           resolve(null);
         });
-    });
-  };
-  const copyAddressClickHandle = function () {
-    const addressCode = codeElement.current.innerHTML;
-    const writeTexttoClipboard = navigator.clipboard.writeText(addressCode);
-    writeTexttoClipboard.then(() => {
-      callToastSuccess(t("copySuccess"));
     });
   };
   const fetchApiGetHistory = function (coinName, page) {
@@ -176,6 +172,7 @@ function SerepayWalletDeposit() {
 
     fetchApiCreateWallet();
     renderHistory(selectedCoin.current, historyPage.current);
+
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
@@ -187,6 +184,13 @@ function SerepayWalletDeposit() {
         return;
       }
     });
+
+    const addressCopy = copyToClipboard("copyAddressButton", () => {
+      callToastSuccess(t("copySuccess"));
+    });
+    return () => {
+      addressCopy.destroy();
+    };
   }, []);
 
   return (
@@ -259,8 +263,9 @@ function SerepayWalletDeposit() {
                         </div>
                       </div>
                       <span
-                        onClick={copyAddressClickHandle}
+                        id={`copyAddressButton`}
                         className="address-copy fadeInBottomToTop"
+                        data-clipboard-text={address}
                       >
                         <i className="fa-regular fa-copy"></i>
                       </span>

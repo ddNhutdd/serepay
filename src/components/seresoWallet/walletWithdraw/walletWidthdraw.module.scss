@@ -13,8 +13,12 @@
             justify-content: center;
             gap: 30px;
 
+            @media screen and (max-width:768px) {
+                flex-direction: column;
+            }
+
             .left {
-                width: 450px;
+                max-width: 450px;
                 padding: 15px;
                 background: $new-background-level-1;
                 box-shadow: 0 10px 28px $boxShadown-color-3;
@@ -148,7 +152,7 @@
             }
 
             .right {
-                width: 450px;
+                max-width: 450px;
                 padding: 15px;
                 background: $new-background-level-1;
                 box-shadow: 0 10px 28px $boxShadown-color-3;

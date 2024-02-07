@@ -1,5 +1,5 @@
 .admin-sidebar {
-    width: 300px;
+    max-width: 300px;
     border-right: 10px solid $admin-line-color-2;
     padding: 10px;
     height: 100%;
@@ -8,10 +8,6 @@
     top: 100px;
     left: -300px;
     transition: .6s;
-
-    @media screen and (max-width:768px) {
-        width: 66px;
-    }
 
     &.show {
         left: 0px;
@@ -43,14 +39,6 @@
 
             &.active {
                 background-color: $header2-background;
-            }
-
-            span {
-                &:nth-of-type(2) {
-                    @media screen and (max-width:768px) {
-                        display: none;
-                    }
-                }
             }
 
             .admin-sidebar__right-icon-down {

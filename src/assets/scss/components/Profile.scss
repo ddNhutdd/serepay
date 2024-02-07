@@ -188,28 +188,22 @@
             }
 
             .profile__payment-list {
-                @media screen and (max-width: 768px) {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 15px;
-                }
+                overflow-x: auto;
 
                 .profile__payment-record {
                     display: flex;
                     gap: 10px;
 
-                    @media screen and (max-width: 768px) {
-                        flex-direction: column;
-                    }
-
                     .profile__payment-header {
                         width: 33.333333%;
+                        min-width: 300px;
                         padding: 5px 0;
                         opacity: 0.5;
                     }
 
                     .profile__payment-cell {
                         width: 33.333333%;
+                        min-width: 300px;
                         padding: 5px 0;
                         display: flex;
                         gap: 5px;
@@ -218,7 +212,6 @@
 
                         img {
                             width: 100px;
-                            height: fit-content;
                             object-fit: cover;
                         }
                     }
