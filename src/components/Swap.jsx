@@ -138,7 +138,13 @@ export default function Swap() {
       const toPrice = data.filter((item) => item.name === swapToCoin)[0].price;
       const result = convertCacl(fromCoin, fromPrice, toPrice);
       setToCoinValueString(
-        formatNumber(result, availableLanguage.en, rountRange(toPrice))
+        formatNumber(
+          result,
+          availableLanguage.en,
+          rountRange(toPrice)
+        ).toString() === "NaN"
+          ? ""
+          : formatNumber(result, availableLanguage.en, rountRange(toPrice))
       );
     }
   };

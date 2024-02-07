@@ -263,6 +263,11 @@ function TransactionBuy() {
         setDropdownTraderShow(resp0.at(0));
         //
         const resp1 = resp.at(1);
+        if (!resp1 || resp1.length <= 0) {
+          callToastError(t("noBankFoundInAccount"));
+          history.push(url.profile);
+          return;
+        }
         setUserListBank(() => resp1);
         setSelectedBank(() => resp1.at(0));
       })

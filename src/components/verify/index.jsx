@@ -85,7 +85,7 @@ function Verify() {
     <div className="verify">
       <div className="container">
         <div className="box">
-          <div className={renderClassShowSpin()}>
+          <div className={`spin-container ${renderClassShowSpin()}`}>
             <Spin />
           </div>
           <div className={`errorContent ${renderClassShowError()}`}>
