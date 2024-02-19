@@ -133,10 +133,6 @@ export default function P2PTrading({ history }) {
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
 
-    const element = document.querySelector(".p2ptrading");
-    if (element) {
-      element.classList.add("fadeInBottomToTop");
-    }
     fetchApiGetProfile();
   }, []);
   useEffect(() => {
@@ -164,6 +160,7 @@ export default function P2PTrading({ history }) {
       !data ||
       data.length <= 0 ||
       !exChangeFromRedux ||
+      !exchangeRateSellDisparityFromRedux ||
       exChangeFromRedux.length <= 0
     )
       return;
@@ -195,6 +192,7 @@ export default function P2PTrading({ history }) {
       !data ||
       data.length <= 0 ||
       !exChangeFromRedux ||
+      !exchangeRateSellDisparityFromRedux ||
       exChangeFromRedux.length <= 0
     )
       return;
@@ -289,7 +287,7 @@ export default function P2PTrading({ history }) {
     switch (showContent) {
       case showP2pType.p2pTrading:
         return (
-          <div className="p2ptrading">
+          <div className="p2ptrading fadeInBottomToTop">
             <div className="container">
               <div className="top box">
                 <div>

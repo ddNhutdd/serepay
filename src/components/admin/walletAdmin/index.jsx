@@ -61,6 +61,9 @@ function WalletAdmin() {
   };
   const renderTable = function () {
     if (!tableData || tableData.length <= 0) return;
+    const setActive = function (email) {
+      return selectedUserEmail === email ? css["hightLight"] : "";
+    };
     return tableData.map((item) => (
       <tr
         onClick={rowTableClickHandle.bind(
@@ -71,6 +74,7 @@ function WalletAdmin() {
         )}
         key={item.id}
         data-id={item.id}
+        className={setActive(item.email)}
       >
         <td>{item.username}</td>
         <td>{item.email}</td>
@@ -206,7 +210,9 @@ function WalletAdmin() {
     return formatStringNumberCultureUS(inputValueWithoutComma);
   };
   const renderClassShowActionContent = function () {
-    return fetchControlStatus !== api_status.fetching ? "" : "--d-none";
+    return fetchControlStatus !== api_status.fetching && selectedUserEmail
+      ? ""
+      : "--d-none";
   };
   const setButtonStatus = function (coinName, value) {
     listButtonStatus.current[coinName] = value;

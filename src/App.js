@@ -195,10 +195,11 @@ function App() {
         setListBank(
           listBank.map((item) => ({
             image: item.logo,
-            content: `${item.name} (${item.code})`,
+            content: `${item.shortName} (${item.code})`,
             id: item.id,
             code: item.code,
             bin: item.bin,
+            shortName: item.shortName,
           }))
         )
       );

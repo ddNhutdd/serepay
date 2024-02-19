@@ -326,7 +326,7 @@ function P2pManagement() {
         <td>
           <div>
             <div>{item.symbol}</div>
-            <div>{formatNumber(item.amount, i18n.language, 8)}</div>
+            <div>{formatNumber(item.amount, i18n.language, 2)}</div>
             <div>{calcMoney(item.rate)}</div>
             <div>{t(item.side)}</div>
           </div>

@@ -488,8 +488,11 @@ function ConfirmItem(props) {
       setqrcodeSpin(api_status.fulfilled);
     } catch (error) {}
   };
-  const findBankBin = function (bankName) {
-    return listBankRedux.find((item) => item.content === bankName)?.bin;
+  const findBankBin = function (bankShortName) {
+    return listBankRedux.find((item) => {
+      const bankName = bankShortName.split(" (");
+      if (item.shortName === bankName.at(0)) return true;
+    })?.bin;
   };
   const renderClassShowSpinQR = function () {
     return qrcodeSpin === api_status.fetching ? "" : "--d-none";

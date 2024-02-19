@@ -17,6 +17,12 @@
 
             table {
                 @include adminTable;
+
+                tr {
+                    &.hightLight {
+                        background-color: $background-color-5;
+                    }
+                }
             }
         }
 
