@@ -34,6 +34,7 @@ import { math } from "src/App";
 import { getBankState } from "src/redux/reducers/bankSlice";
 import Dropdown from "./Common/dropdown/Dropdown";
 import { Button, htmlType } from "./Common/Button";
+import { getExchangeRateSell } from "src/redux/reducers/exchangeRateSellSlice";
 
 export default function CreateBuy() {
   const actionType = {
@@ -56,7 +57,8 @@ export default function CreateBuy() {
   const currentCurrency = useSelector(getCurrent);
   const { listBank } = useSelector(getBankState);
   const exchange = useSelector(getExchange);
-  const exchangeRateDisparity = useSelector(getExchangeRateDisparity);
+  const exchangeRateBuyDisparity = useSelector(getExchangeRateDisparity);
+  const exchangeRateSellDisparity = useSelector(getExchangeRateSell);
   const [selectedBank, setSelectedBank] = useState();
   const userName = useRef("");
   const controls = useRef({
@@ -125,7 +127,7 @@ export default function CreateBuy() {
     );
   };
   const calcBuyPrice = function () {
-    if (data.length <= 0 || exchange.length <= 0 || !exchangeRateDisparity)
+    if (data.length <= 0 || exchange.length <= 0 || !exchangeRateBuyDisparity)
       return;
     // find current price
     let ccCoin = data.current.filter((item) => item.name === currentCoin)[0]
@@ -137,7 +139,7 @@ export default function CreateBuy() {
     if (!exchangeRate) return;
     // process price
     const ccCoinFraction = math.fraction(ccCoin);
-    const rateDisparity = math.fraction(exchangeRateDisparity);
+    const rateDisparity = math.fraction(exchangeRateBuyDisparity);
     const priceBuy = math.add(
       ccCoinFraction,
       math.chain(ccCoinFraction).multiply(rateDisparity).divide(100).done()
@@ -153,7 +155,7 @@ export default function CreateBuy() {
     return action === actionType.buy ? "" : "--d-none";
   };
   const calcSellPrice = function () {
-    if (data.length <= 0 || exchange.length <= 0 || !exchangeRateDisparity)
+    if (data.length <= 0 || exchange.length <= 0 || !exchangeRateSellDisparity)
       return;
     const ccCoin = data.current.filter((item) => item.name === currentCoin)[0]
       ?.price;
@@ -164,7 +166,7 @@ export default function CreateBuy() {
     if (!exchangeRate) return;
 
     const ccCoinFraction = math.fraction(ccCoin);
-    const rateDisparity = math.fraction(exchangeRateDisparity);
+    const rateDisparity = math.fraction(exchangeRateSellDisparity);
     const priceSell = math.subtract(
       ccCoinFraction,
       math.chain(ccCoinFraction).multiply(rateDisparity).divide(100).done()

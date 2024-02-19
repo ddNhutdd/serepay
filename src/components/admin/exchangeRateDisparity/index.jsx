@@ -12,67 +12,69 @@ import {
   fetchExchangeRateDisparity,
   getExchangeRateDisparity,
 } from "src/redux/reducers/exchangeRateDisparitySlice";
-import { api_status, regularExpress } from "src/constant";
+import { api_status, commontString, regularExpress } from "src/constant";
 import { updateExchangeRateDisparity } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import { EmptyCustom } from "src/components/Common/Empty";
 import { Button } from "src/components/Common/Button";
 import { Input } from "src/components/Common/Input";
+import {
+  fetchExchangeRateSell,
+  getExchangeRateSell,
+  getExchangeRateSellApiStatus,
+} from "src/redux/reducers/exchangeRateSellSlice";
 function ExchangeRateDisparity() {
   const rateFromRedux = useSelector(getExchangeRateDisparity);
-  const rateStatusFromRedux = useSelector(exchangeRateDisparityApiStatus);
-  const controls = useRef({ newValueInput: "newValueInput" });
-  const controlTourched = useRef({});
-  const [controlErrors, setControlErrors] = useState({});
+  const rateBuyStatusFromRedux = useSelector(exchangeRateDisparityApiStatus);
+  const rateSellFromRedux = useSelector(getExchangeRateSell);
+  const rateSellStatusFromRedux = useSelector(getExchangeRateSellApiStatus);
   const dispatch = useDispatch();
-  const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
+
+  const [controlBuyErrors, setControlBuyErrors] = useState({});
+  const [controlSellErrors, setControlSellErrors] = useState({});
+  const [callApiSetBuyStatus, setCallApiSetBuyStatus] = useState(
+    api_status.pending
+  );
+  const [callApiSetSellStatus, setCallApiSetSellStatus] = useState(
+    api_status.pending
+  );
+
+  const controlsBuy = useRef({ newValueInput: "newValueInput" });
+  const controlsSell = useRef({ newValueInput: "newValueInput" });
+  const controlBuyTourched = useRef({});
+  const controlSellTourched = useRef({});
+  const inputBuyCurrent = useRef();
+  const inputBuyNew = useRef();
+  const inputSellCurrent = useRef();
+  const inputSellNew = useRef();
 
   useEffect(() => {
     return () => {
       dispatch(fetchExchangeRateDisparity());
+      dispatch(fetchExchangeRateSell());
     };
   }, []);
   useEffect(() => {
-    setRate();
-  }, [rateFromRedux, rateStatusFromRedux]);
+    setRateBuy();
+  }, [rateFromRedux, rateBuyStatusFromRedux]);
+  useEffect(() => {
+    setRateSell();
+  }, [rateSellFromRedux, rateSellStatusFromRedux]);
 
-  const showSpinner = function () {
-    getClassListFromElementById("spinner").remove("--d-none");
+  const renderClassShowSpinBuy = function () {
+    return rateBuyStatusFromRedux === api_status.fetching ? "" : "--d-none";
   };
-  const closeSpinner = function () {
-    addClassToElementById("spinner", "--d-none");
+  const renderClassShowContentLeft = function () {
+    return rateBuyStatusFromRedux === api_status.fetching ? "--d-none" : "";
   };
-  const showEmpty = function () {
-    getClassListFromElementById("empty").remove("--d-none");
+  const setRateBuy = function () {
+    inputBuyCurrent.current.value = rateFromRedux;
   };
-  const closeEmpty = function () {
-    addClassToElementById("empty", "--d-none");
-  };
-  const closeContent = function () {
-    addClassToElementById("content", "--d-none");
-  };
-  const showContent = function () {
-    getClassListFromElementById("content").remove("--d-none");
-  };
-  const setRate = async function () {
-    closeEmpty();
-    closeContent();
-    closeSpinner();
-    if (rateStatusFromRedux === api_status.fetching) {
-      showSpinner();
-    } else if (!rateFromRedux) {
-      showEmpty();
-    } else if (rateFromRedux) {
-      showContent();
-      getElementById("rateInput").value = rateFromRedux;
-    }
-  };
-  const validate = function () {
+  const validateBuy = function () {
     let valid = true;
-    const newValueInputElement = getElementById("newValueInput");
+    const newValueInputElement = inputBuyNew.current;
     if (
       newValueInputElement &&
-      controlTourched.current[controls.current.newValueInput]
+      controlBuyTourched.current[controlsBuy.current.newValueInput]
     ) {
       const checkNumber = regularExpress.checkNumber;
       if (
@@ -80,33 +82,75 @@ function ExchangeRateDisparity() {
         newValueInputElement.value
       ) {
         valid &= false;
-        setControlErrors((state) => ({
+        setControlBuyErrors((state) => ({
           ...state,
-          [controls.current.newValueInput]: "Format incorect",
+          [controlsBuy.current.newValueInput]: "Format incorect",
         }));
       } else if (!newValueInputElement.value) {
         valid &= false;
-        setControlErrors((state) => ({
+        setControlBuyErrors((state) => ({
           ...state,
-          [controls.current.newValueInput]: "Require",
+          [controlsBuy.current.newValueInput]: "Require",
         }));
       } else {
-        setControlErrors((state) => {
+        setControlBuyErrors((state) => {
           const newState = { ...state };
-          delete newState[controls.current.newValueInput];
+          delete newState[controlsBuy.current.newValueInput];
           return newState;
         });
       }
     }
-    return Object.keys(controlTourched.current).length <= 0 ? false : valid;
+    return Object.keys(controlBuyTourched.current).length <= 0 ? false : valid;
   };
-  const newValueInputFocusHandle = function () {
-    controlTourched.current[controls.current.newValueInput] = true;
-    validate();
+  const validateSell = function () {
+    let valid = true;
+    const newValueInputElement = inputSellNew.current;
+    if (
+      newValueInputElement &&
+      controlSellTourched.current[controlsSell.current.newValueInput]
+    ) {
+      const checkNumber = regularExpress.checkNumber;
+      if (
+        !checkNumber.test(newValueInputElement.value.replaceAll(",", "")) &&
+        newValueInputElement.value
+      ) {
+        valid &= false;
+        setControlSellErrors((state) => ({
+          ...state,
+          [controlsSell.current.newValueInput]: "Format incorect",
+        }));
+      } else if (!newValueInputElement.value) {
+        valid &= false;
+        setControlSellErrors((state) => ({
+          ...state,
+          [controlsSell.current.newValueInput]: "Require",
+        }));
+      } else {
+        setControlSellErrors((state) => {
+          const newState = { ...state };
+          delete newState[controlsBuy.current.newValueInput];
+          return newState;
+        });
+      }
+    }
+    return Object.keys(controlSellTourched.current).length <= 0 ? false : valid;
   };
-  const newValueInputChangeHandle = function (ev) {
+  const newValueInputBuyFocusHandle = function () {
+    controlBuyTourched.current[controlsBuy.current.newValueInput] = true;
+    validateBuy();
+  };
+  const newValueInputSellFocusHandle = function () {
+    controlSellTourched.current[controlsSell.current.newValueInput] = true;
+    validateSell();
+  };
+  const newValueInputBuyChangeHandle = function (ev) {
     const value = ev.target.value;
-    validate();
+    validateBuy();
+    ev.target.value = formatInput(value);
+  };
+  const newValueInputSellChangeHandle = function (ev) {
+    const value = ev.target.value;
+    validateSell();
     ev.target.value = formatInput(value);
   };
   const formatInput = function (inputValue) {
@@ -120,32 +164,28 @@ function ExchangeRateDisparity() {
     );
     return inputValueFormated;
   };
-  const submitHandle = function (event) {
+  const submitBuyHandle = function (event) {
     event.preventDefault();
-    controlTourched.current[controls.current.newValueInput] = true;
-    const valid = validate();
+    controlBuyTourched.current[controlsBuy.current.newValueInput] = true;
+    const valid = validateBuy();
     if (!valid) {
     } else {
       // call api
-      if (callApiStatus === api_status.fetching) return;
-      else setCallApiStatus(() => api_status.fetching);
-      const newValueElement = getElementById("newValueInput");
+      if (callApiSetBuyStatus === api_status.fetching) return;
+      setCallApiSetBuyStatus(api_status.fetching);
+      const newValueElement = inputBuyNew.current;
       if (!newValueElement) return;
       updateExchangeRateDisparity({
         name: "exchangeRate",
         value: newValueElement.value.replaceAll(",", ""),
       })
         .then((resp) => {
-          setCallApiStatus(() => api_status.fulfilled);
-          callToastSuccess("Thành Công");
-          const value = getElementById("newValueInput").value;
-          getElementById("rateInput").value = value;
-          closeButtonSubmitLoader();
+          callToastSuccess(commontString.success);
+          inputBuyCurrent.current.value = inputBuyNew.current.value;
+          inputBuyNew.current.value = "";
+          setCallApiSetBuyStatus(api_status.fulfilled);
         })
         .catch((error) => {
-          closeButtonSubmitLoader();
-          setCallApiStatus(() => api_status.rejected);
-
           const mess = error?.response?.data?.message;
           switch (mess) {
             case "User does not have access":
@@ -155,13 +195,40 @@ function ExchangeRateDisparity() {
               callToastError("Có lỗi trong quá trình xử lí");
               break;
           }
+          setCallApiSetBuyStatus(api_status.rejected);
         });
     }
   };
-  const closeButtonSubmitLoader = function () {
-    getClassListFromElementById("buttonSubmit").remove("disabled");
-    addClassToElementById("buttonSubmitLoader", "--d-none");
+  const setRateSell = function () {
+    inputSellCurrent.current.value = rateSellFromRedux;
   };
+  const renderClassShowSpinSell = function () {
+    return rateSellStatusFromRedux === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassShowContentRight = function () {
+    return rateSellStatusFromRedux !== api_status.fetching ? "" : "--d-none";
+  };
+  const submitSellHandle = async function (ev) {
+    try {
+      ev.preventDefault();
+      controlSellTourched.current[controlsSell.current.newValueInput] = true;
+      const valid = validateSell();
+      if (!valid) return;
+      if (callApiSetSellStatus === api_status.fetching) return;
+      setCallApiSetSellStatus(api_status.fetching);
+      await updateExchangeRateDisparity({
+        name: "exchangeRateSell",
+        value: inputSellNew.current.value.replaceAll(",", ""),
+      });
+      callToastSuccess(commontString.success);
+      inputSellCurrent.current.value = inputSellNew.current.value;
+      inputSellNew.current.value = "";
+      setCallApiSetSellStatus(api_status.fulfilled);
+    } catch (error) {
+      setCallApiSetSellStatus(api_status.rejected);
+    }
+  };
+
   return (
     <div className="admin-exchange-rate-disparity">
       <div className="admin-exchange-rate-disparity__header">
@@ -169,41 +236,79 @@ function ExchangeRateDisparity() {
           Exchange Rate Disparity
         </h3>
       </div>
-      <div id="content" className="admin-exchange-rate-disparity__content">
-        <div className="admin-exchange-rate-disparity__control-input">
-          <label htmlFor="">Current Value:</label>
-          <Input id="rateInput" disabled type="text" className="disabled" />
+      <div className="admin-exchange-rate-disparity__content">
+        <div className={`admin-exchange-rate-disparity__content-left`}>
+          <label className="formTitle">Exchange Buy</label>
+          <form
+            className={`admin-exchange-rate-disparity__form ${renderClassShowContentLeft()}`}
+          >
+            <div className="admin-exchange-rate-disparity__control-input">
+              <label>Current Value:</label>
+              <Input
+                ref={inputBuyCurrent}
+                disabled
+                type="text"
+                className="disabled"
+              />
+            </div>
+            <div className="admin-exchange-rate-disparity__control-input">
+              <label htmlFor="newValueInput">New Value:</label>
+              <Input
+                onFocus={newValueInputBuyFocusHandle}
+                onChange={newValueInputBuyChangeHandle}
+                ref={inputBuyNew}
+                errorMes={controlBuyErrors[controlsBuy.current.newValueInput]}
+              />
+            </div>
+            <div className="admin-exchange-rate-disparity__action">
+              <Button
+                loading={callApiSetBuyStatus === api_status.fetching}
+                onClick={submitBuyHandle}
+              >
+                Save
+              </Button>
+            </div>
+          </form>
+          <div className={`spin-container  ${renderClassShowSpinBuy()}`}>
+            <Spin />
+          </div>
         </div>
-        <form className="admin-exchange-rate-disparity__form">
-          <div className="admin-exchange-rate-disparity__control-input">
-            <label htmlFor="newValueInput">New Value:</label>
-            <Input
-              onFocus={newValueInputFocusHandle}
-              onChange={newValueInputChangeHandle}
-              id="newValueInput"
-              type="text"
-              errorMes={controlErrors[controls.current.newValueInput]}
-            />
-            <small id="newInputValueError" className="--visible-hidden">
-              error
-            </small>
+        <div className="admin-exchange-rate-disparity__content-right">
+          <label className="formTitle">Exchange Sell</label>
+          <form
+            className={`admin-exchange-rate-disparity__form ${renderClassShowContentRight()}`}
+          >
+            <div className="admin-exchange-rate-disparity__control-input">
+              <label>Current Value:</label>
+              <Input
+                ref={inputSellCurrent}
+                disabled
+                type="text"
+                className="disabled"
+              />
+            </div>
+            <div className="admin-exchange-rate-disparity__control-input">
+              <label>New Value:</label>
+              <Input
+                onFocus={newValueInputSellFocusHandle}
+                ref={inputSellNew}
+                onChange={newValueInputSellChangeHandle}
+                errorMes={controlSellErrors[controlsSell.current.newValueInput]}
+              />
+            </div>
+            <div className="admin-exchange-rate-disparity__action">
+              <Button
+                loading={callApiSetSellStatus === api_status.fetching}
+                onClick={submitSellHandle}
+              >
+                Save
+              </Button>
+            </div>
+          </form>
+          <div className={`spin-container  ${renderClassShowSpinSell()}`}>
+            <Spin />
           </div>
-          <div className="admin-exchange-rate-disparity__action">
-            <Button
-              disabled={callApiStatus === api_status.fetching ? true : false}
-              id="buttonSubmit"
-              onClick={submitHandle}
-            >
-              Save
-            </Button>
-          </div>
-        </form>
-      </div>
-      <div id="spinner" className="spin-container --d-none">
-        <Spin />
-      </div>
-      <div id="empty" className="spin-container --d-none">
-        <EmptyCustom />
+        </div>
       </div>
     </div>
   );

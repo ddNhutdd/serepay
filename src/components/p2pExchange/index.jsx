@@ -32,15 +32,18 @@ import { coinSetCoin } from "src/redux/actions/coin.action";
 import i18n from "src/translation/i18n";
 import { math } from "src/App";
 import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
+import { getExchangeRateSell } from "src/redux/reducers/exchangeRateSellSlice";
 
 const P2pExchange = memo(function () {
   const filterType = {
     coin: "coin",
     currency: "currency",
   };
-  const getExchangeRateDisparityFromRedux = useSelector(
+  const getExchangeRateBuyDisparityFromRedux = useSelector(
     getExchangeRateDisparity
   );
+  const getExchangeRateSellDisparityFromRedux =
+    useSelector(getExchangeRateSell);
   const history = useHistory();
   const apiParamLimit = useRef(1);
   const [filter, setFilter] = useState(filterType.coin); // indicates the user is filtering ads by currency or cryptocurrency
@@ -300,17 +303,21 @@ const P2pExchange = memo(function () {
     listExchange,
     listCoin
   ) {
-    if (!getExchangeRateDisparityFromRedux) return;
+    if (
+      !getExchangeRateBuyDisparityFromRedux ||
+      !getExchangeRateSellDisparityFromRedux
+    )
+      return;
     const rate = listExchange.find((item) => item.title === currency)?.rate;
     const price = listCoin.find((item) => item.name === coinName).price;
 
     const priceFraction = math.fraction(price);
 
-    const rateDisparityFraction = math.fraction(
-      getExchangeRateDisparityFromRedux
-    );
     let newPriceFraction = 0;
     if (currentAction === actionTrading.buy) {
+      const rateDisparityFraction = math.fraction(
+        getExchangeRateBuyDisparityFromRedux
+      );
       newPriceFraction = math.add(
         priceFraction,
         math
@@ -320,6 +327,9 @@ const P2pExchange = memo(function () {
           .done()
       );
     } else {
+      const rateDisparityFraction = math.fraction(
+        getExchangeRateSellDisparityFromRedux
+      );
       newPriceFraction = math.subtract(
         priceFraction,
         math
@@ -345,32 +355,40 @@ const P2pExchange = memo(function () {
     listExchange,
     listCoin
   ) {
-    if (!getExchangeRateDisparityFromRedux || !listCoin || listCoin.length <= 0)
+    if (
+      !getExchangeRateBuyDisparityFromRedux ||
+      !getExchangeRateSellDisparityFromRedux ||
+      !listCoin ||
+      listCoin.length <= 0
+    )
       return;
     const rate = listExchange.find((item) => item.title === currency)?.rate;
     const price = listCoin.find((item) => item.name === coinName)?.price;
 
     const priceFraction = math.fraction(price);
 
-    const rateDisparityFraction = math.fraction(
-      getExchangeRateDisparityFromRedux
-    );
     let newPriceFraction = 0;
     if (currentAction === actionTrading.buy) {
+      const rateDisparityBuyFraction = math.fraction(
+        getExchangeRateBuyDisparityFromRedux
+      );
       newPriceFraction = math.add(
         priceFraction,
         math
           .chain(priceFraction)
-          .multiply(rateDisparityFraction)
+          .multiply(rateDisparityBuyFraction)
           .divide(100)
           .done()
       );
     } else {
+      const rateDisparitySellFraction = math.fraction(
+        getExchangeRateBuyDisparityFromRedux
+      );
       newPriceFraction = math.subtract(
         priceFraction,
         math
           .chain(priceFraction)
-          .multiply(rateDisparityFraction)
+          .multiply(rateDisparitySellFraction)
           .divide(100)
           .done()
       );
@@ -450,7 +468,7 @@ const P2pExchange = memo(function () {
   }, []);
   useEffect(() => {
     searchWhenInputHasValue();
-  }, [currentAction, currencyFromRedux, getExchangeRateDisparityFromRedux]);
+  }, [currentAction, currencyFromRedux, getExchangeRateBuyDisparityFromRedux]);
   useEffect(() => {
     inputElement.current.value = "";
   }, [filter]);

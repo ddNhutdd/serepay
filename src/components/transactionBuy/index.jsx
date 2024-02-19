@@ -35,10 +35,10 @@ import i18n, {
 } from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
 import { math } from "src/App";
-import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { Button } from "../Common/Button";
 import Dropdown from "../Common/dropdown/Dropdown";
 import { getListBank } from "src/redux/reducers/bankSlice";
+import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 
 function TransactionBuy() {
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
@@ -48,7 +48,7 @@ function TransactionBuy() {
     localStorageVariable.coinNameFromP2pExchange
   );
   const { t } = useTranslation();
-  const getExchangeRateDisparityFromRedux = useSelector(
+  const exchangeRateBuyDisparityFromRedux = useSelector(
     getExchangeRateDisparity
   );
   const listBankRedux = useSelector(getListBank);
@@ -339,7 +339,7 @@ function TransactionBuy() {
       !exchange ||
       exchange.length <= 0 ||
       !currency ||
-      !getExchangeRateDisparityFromRedux
+      !exchangeRateBuyDisparityFromRedux
     )
       return;
     const price = listCoin.find((item) => item.name === coinName)?.price;
@@ -347,7 +347,7 @@ function TransactionBuy() {
 
     const priceFraction = math.fraction(price);
     const rateDisparityFraction = math.fraction(
-      getExchangeRateDisparityFromRedux
+      exchangeRateBuyDisparityFromRedux
     );
 
     const rateFraction = math.fraction(rate);
@@ -370,7 +370,7 @@ function TransactionBuy() {
       !exchange ||
       exchange.length <= 0 ||
       !vnd ||
-      !getExchangeRateDisparityFromRedux
+      !exchangeRateBuyDisparityFromRedux
     )
       return;
 
@@ -378,7 +378,7 @@ function TransactionBuy() {
     const exchangeVnd = exchange.find((item) => item.title === "VND")?.rate;
 
     const priceUsdFraction = math.fraction(priceUsd);
-    const rateDisparity = math.fraction(getExchangeRateDisparityFromRedux);
+    const rateDisparity = math.fraction(exchangeRateBuyDisparityFromRedux);
     const newPriceUsdFraction = math.add(
       priceUsdFraction,
       math.chain(priceUsdFraction).multiply(rateDisparity).divide(100).done()
@@ -401,14 +401,14 @@ function TransactionBuy() {
       !exchange ||
       exchange.length <= 0 ||
       !amountCoin ||
-      !getExchangeRateDisparityFromRedux
+      !exchangeRateBuyDisparityFromRedux
     )
       return 0;
     const priceUsd = listCoin.find((item) => item.name === coinName)?.price;
     const rate = exchange.find((item) => item.title === "VND")?.rate;
 
     const rateDisparityFraction = math.fraction(
-      getExchangeRateDisparityFromRedux
+      exchangeRateBuyDisparityFromRedux
     );
     const priceUsdFraction = math.fraction(priceUsd);
 
@@ -559,7 +559,7 @@ function TransactionBuy() {
     const priceFraction = math.fraction(price);
     const rateFraction = math.fraction(rate);
     const rateDisparityFraction = math.fraction(
-      getExchangeRateDisparityFromRedux
+      exchangeRateBuyDisparityFromRedux
     );
 
     const priceBuyFraction = math.add(
@@ -660,7 +660,7 @@ function TransactionBuy() {
     selectedCoin,
     exchangeRedux,
     currencyRedux,
-    getExchangeRateDisparityFromRedux,
+    exchangeRateBuyDisparityFromRedux,
   ]);
   useEffect(() => {
     if (listBankRedux && listBankRedux.length > 0) {

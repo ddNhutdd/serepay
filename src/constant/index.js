@@ -115,4 +115,5 @@ export const apiResponseErrorMessage = {
   emailExist: "Email already exists !",
   accountIncorrect: "Email or password is incorrect! ",
   bankExist: "Bank account number already exists",
+  insufficientBalance: "Insufficient balance",
 };

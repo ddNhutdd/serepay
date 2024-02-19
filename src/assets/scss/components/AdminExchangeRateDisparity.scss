@@ -15,10 +15,19 @@
     .admin-exchange-rate-disparity__content {
         display: flex;
         width: 100%;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: row;
+        gap: 150px;
+
+        @media screen and (max-width:576px) {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .formTitle {
+            font-weight: bold;
+        }
 
         .admin-exchange-rate-disparity__control-input {
             display: flex;

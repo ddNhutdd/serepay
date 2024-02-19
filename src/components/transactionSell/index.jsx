@@ -31,12 +31,12 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { useTranslation } from "react-i18next";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
-import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { math } from "src/App";
 import { getUserWallet } from "src/redux/constant/coin.constant";
 import { Button, htmlType } from "../Common/Button";
 import Dropdown from "../Common/dropdown/Dropdown";
 import { getListBank } from "src/redux/reducers/bankSlice";
+import { getExchangeRateSell } from "src/redux/reducers/exchangeRateSellSlice";
 
 function TransactionSell() {
   const amount = getLocalStorage(localStorageVariable.coinFromP2pExchange || 0);
@@ -49,9 +49,7 @@ function TransactionSell() {
   const userWalletRedux = useSelector(getUserWallet);
   const listCoinRealTime = useSelector(getListCoinRealTime);
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
-  const getExchangeRateDisparityFromRedux = useSelector(
-    getExchangeRateDisparity
-  );
+  const getExchangeRateDisparityFromRedux = useSelector(getExchangeRateSell);
   const { t } = useTranslation();
   const history = useHistory();
   const listBankRedux = useSelector(getListBank);
@@ -324,7 +322,7 @@ function TransactionSell() {
     const rateDisparityFranction = math.fraction(
       getExchangeRateDisparityFromRedux
     );
-    const newPriceFranction = math.add(
+    const newPriceFranction = math.subtract(
       priceFraction,
       math
         .chain(priceFraction)

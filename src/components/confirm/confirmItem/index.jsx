@@ -5,7 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import i18n, { availableLanguage } from "src/translation/i18n";
 import { useHistory } from "react-router-dom";
 import {
+  apiResponseErrorMessage,
   api_status,
+  commontString,
   currencyMapper,
   defaultLanguage,
   localStorageVariable,
@@ -253,7 +255,15 @@ function ConfirmItem(props) {
         })
         .catch((error) => {
           callApiStatus.current = api_status.rejected;
-
+          const mess = error?.response?.data?.message;
+          switch (mess) {
+            case apiResponseErrorMessage.insufficientBalance:
+              callToastError(t("insufficientBalance"));
+              break;
+            default:
+              callToastError(mess || commontString.error);
+              break;
+          }
           return resolve(false);
         });
     });

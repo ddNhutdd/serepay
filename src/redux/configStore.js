@@ -11,6 +11,7 @@ import adsSliceReducer from "./reducers/adsSlice";
 import p2pTradingShowSlice from "./reducers/p2pTrading";
 import notifyP2pSlice from "./reducers/notifiyP2pSlice";
 import bankSlice from "./reducers/bankSlice";
+import exchangeRateSellSlice from "./reducers/exchangeRateSellSlice";
 
 const rootReducer = combineReducers({
   coinReducer,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   p2pTradingShowSlice,
   notifyP2pSlice,
   bank: bankSlice,
+  exchangeRateSell: exchangeRateSellSlice,
 });
 
 const middleWare = applyMiddleware(reduxThunk);

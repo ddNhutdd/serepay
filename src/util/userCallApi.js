@@ -217,6 +217,14 @@ export const verifyEmail = function (verifyToken) {
     return axiosService.get("/api/user/verifyEmail/" + verifyToken);
   } catch (error) {}
 };
+export const exchangeRateSell = function () {
+  try {
+    return axiosService.post("api/p2pBank/getConfig", {
+      name: "exchangeRateSell",
+    });
+  } catch (error) {}
+};
+
 //==========================================
 export const getQrBankPayment = async function (
   accountNo,

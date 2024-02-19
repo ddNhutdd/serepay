@@ -16,6 +16,7 @@ import AdminTemplate from "./templates/AdminTemplate";
 import Home from "./components/home/index.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  exchangeRateSell,
   getExchange as getExchangeApi,
   getListBank,
   getListHistoryP2pPendding,
@@ -67,6 +68,11 @@ import SwapAdmin from "./components/admin/swap";
 import TransferAdmin from "./components/admin/transferAdmin";
 import WalletAdmin from "./components/admin/walletAdmin";
 import { setListBank, setStatus } from "./redux/reducers/bankSlice";
+import {
+  getExchangeRateSellFetchCount,
+  setExchangeRateSell,
+  setExchangeRateSellApiStatus,
+} from "./redux/reducers/exchangeRateSellSlice";
 
 const config = {};
 export const math = create(all, config);
@@ -91,6 +97,8 @@ function App() {
   const getExchangeRateDisparityFetch = useSelector(
     getExchangeRateDisparityFetchCount
   );
+  const getExchangeRateSellFetch = useSelector(getExchangeRateSellFetchCount);
+
   const userWallet = useRef([]);
 
   const getExchange = function () {
@@ -199,6 +207,15 @@ function App() {
       dispatch(setStatus(api_status.rejected));
     }
   };
+  const getExchangeRateSell = async function () {
+    try {
+      dispatch(setExchangeRateSellApiStatus(api_status.fetching));
+      const resp = await exchangeRateSell();
+      dispatch(setExchangeRateSell(resp?.data?.data.at(0)?.value));
+    } catch (error) {
+      dispatch(setExchangeRateSellApiStatus(api_status.rejected));
+    }
+  };
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -244,6 +261,9 @@ function App() {
   useEffect(() => {
     getExchangeRateDisparityApi();
   }, [getExchangeRateDisparityFetch]);
+  useEffect(() => {
+    getExchangeRateSell();
+  }, [getExchangeRateSellFetch]);
 
   return (
     <BrowserRouter>
