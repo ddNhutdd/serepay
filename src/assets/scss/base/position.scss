@@ -1,0 +1,11 @@
+.pos-r {
+    position: relative;
+}
+
+@each $breakpoint, $width in $responsive {
+    @media screen and (max-width: $width) {
+        .pos-#{$breakpoint}-r {
+            position: relative;
+        }
+    }
+}

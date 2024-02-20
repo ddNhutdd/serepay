@@ -6,7 +6,14 @@ import { useTranslation } from "react-i18next";
 import i18n from "src/translation/i18n";
 
 function Dropdown(props) {
-  const { list, itemClickHandle, itemSelected, id } = props;
+  const {
+    list,
+    dropdownCLickHandle = () => {},
+    itemClickHandle,
+    itemSelected,
+    id,
+    disabled,
+  } = props;
   const { t } = useTranslation();
 
   const [isOpenDropdown, setIsOpentDropdown] = useState(false);
@@ -76,8 +83,10 @@ function Dropdown(props) {
   const renderClassShowMenu = function () {
     return isOpenDropdown ? css["show"] : "";
   };
-  const dropdownCLickHandle = function (ev) {
+  const dropdownInnerCLickHandle = function (ev) {
     ev.stopPropagation();
+    dropdownCLickHandle(ev);
+    if (disabled) return;
     setIsOpentDropdown((s) => !s);
   };
   const closeDropdown = function () {
@@ -109,7 +118,7 @@ function Dropdown(props) {
   }, []);
 
   return (
-    <div id={id} onClick={dropdownCLickHandle} className={css["dropdown"]}>
+    <div id={id} onClick={dropdownInnerCLickHandle} className={css["dropdown"]}>
       {renderSelector()}
       <div
         style={{ top: dropdownSelectorHeight }}

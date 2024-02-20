@@ -2,7 +2,19 @@
     display: flex;
 }
 
+.f-c {
+    flex-direction: column;
+}
+
+.f-w {
+    flex-wrap: wrap;
+}
+
 .alignItem-c {
+    align-items: center;
+}
+
+.alignItem-start {
     align-items: center;
 }
 
@@ -10,8 +22,28 @@
     justify-content: center;
 }
 
+.justify-sb {
+    justify-content: space-between;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
 .order--1 {
     order: -1;
+}
+
+.gap-1 {
+    gap: $space * 1;
+}
+
+.gap-2 {
+    gap: $space * 2;
 }
 
 
@@ -21,16 +53,48 @@
             display: flex;
         }
 
+        .f-#{$breakpoint}-c {
+            flex-direction: column;
+        }
+
+        .f-#{$breakpoint}-w {
+            flex-wrap: wrap;
+        }
+
         .alignItem-#{$breakpoint}-c {
             align-items: center;
+        }
+
+        .alignItem-#{$breakpoint}-start {
+            align-items: flex-start;
         }
 
         .justify-#{$breakpoint}-c {
             justify-content: center;
         }
 
+        .justify-#{$breakpoint}-sb {
+            justify-content: space-between;
+        }
+
+        .justify-#{$breakpoint}-start {
+            justify-content: flex-start;
+        }
+
+        .justify-#{$breakpoint}-end {
+            justify-content: flex-end;
+        }
+
         .order-#{$breakpoint}--1 {
             order: -1;
+        }
+
+        .gap-#{$breakpoint}-1 {
+            gap: $space * 1;
+        }
+
+        .gap-#{$breakpoint}-2 {
+            gap: $space * 2;
         }
     }
 }

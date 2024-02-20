@@ -42,6 +42,7 @@ export const url = {
   transfer: "/transfer",
   widthdraw: "/widthdraw",
   deposite: "/deposite",
+  p2p: "/p2p",
 
   admin_swap: "/admin/swap",
   admin_kyc: "/admin/kyc",

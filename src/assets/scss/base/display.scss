@@ -2,10 +2,18 @@
     display: none;
 }
 
+.d-f {
+    display: flex;
+}
+
 @each $breakpoint, $width in $responsive {
     @media screen and (max-width: $width) {
         .d-#{$breakpoint}-0 {
             display: none;
+        }
+
+        .d-#{$breakpoint}-f {
+            display: flex;
         }
     }
 }

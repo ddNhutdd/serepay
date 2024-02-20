@@ -1,0 +1,33 @@
+.switchContainer {
+
+    background-color: #3f3f3f;
+    width: 45px;
+    height: 25px;
+    border-radius: 50px;
+    border: 1px solid #3f3f3f;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    transition: .4s;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: #cb9950;
+        border: 1px solid #cb9950;
+    }
+
+    .switchButton {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: white;
+        transition: .4s;
+
+        &.active {
+            transform: translate(18px, 0);
+        }
+    }
+}

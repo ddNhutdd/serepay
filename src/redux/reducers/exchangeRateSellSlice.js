@@ -16,7 +16,7 @@ const exchangeRateSellSlice = createSlice({
       state.exchangeRateSellApiStatus = action.payload;
     },
     fetchExchangeRateSell: (state) => {
-      state.exchangeRateDisparityFetchCount += 1;
+      state.exchangeRateSellFetchCount += 1;
     },
   },
 });

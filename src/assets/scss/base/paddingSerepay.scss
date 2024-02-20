@@ -2,6 +2,10 @@
     padding: 0;
 }
 
+.p-1 {
+    padding: $space * 1;
+}
+
 .pl-0 {
     padding-left: 0;
 }
@@ -19,8 +23,20 @@
     padding-top: 0;
 }
 
+.pt-1 {
+    padding-top: $space * 1;
+}
+
+.pr-2 {
+    padding-right: $space * 2;
+}
+
 .pb-0 {
     padding-bottom: 0;
+}
+
+.pb-1 {
+    padding-bottom: $space * 1;
 }
 
 
@@ -28,6 +44,10 @@
     @media screen and (max-width: $width) {
         .p-#{$breakpoint}-0 {
             padding: 0;
+        }
+
+        .p-#{$breakpoint}-1 {
+            padding: $space * 1;
         }
 
         .pl-#{$breakpoint}-0 {
@@ -47,8 +67,20 @@
             padding-top: 0;
         }
 
+        .pt-#{$breakpoint}-1 {
+            padding-top: $space * 1;
+        }
+
+        .pr-#{$breakpoint}-2 {
+            padding-right: $space * 2;
+        }
+
         .pb-#{$breakpoint}-0 {
             padding-bottom: 0;
+        }
+
+        .pb-#{$breakpoint}-1 {
+            padding-bottom: $space * 1;
         }
     }
 }

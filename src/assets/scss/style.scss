@@ -11,13 +11,17 @@ body {
   font-family: "Montserrat", "Roboto", "Open Sans", sans-serif !important;
 }
 
-@import "./base/spaceSerepay.scss";
+@import "./base/configCssSerepay.scss";
 @import "./base/gridSerepay.scss";
 @import "./base/flex.scss";
 @import "./base/paddingSerepay.scss";
 @import "./base/marginSerepay.scss";
 @import "./base/textAlignSerepay.scss";
 @import "./base/display.scss";
+@import "./base/hover.scss";
+@import "./base/position.scss";
+@import "./base/border.scss";
+@import "./base/width.scss";
 
 
 @import "./components/MainTemplate.scss";

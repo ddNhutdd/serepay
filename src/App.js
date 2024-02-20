@@ -73,6 +73,7 @@ import {
   setExchangeRateSell,
   setExchangeRateSellApiStatus,
 } from "./redux/reducers/exchangeRateSellSlice";
+import P2p from "./components/p2p";
 
 const config = {};
 export const math = create(all, config);
@@ -278,6 +279,7 @@ function App() {
             component={TransactionSell}
           />
           <MainTemplate path={url.profile} component={Profile} />
+          <MainTemplate path={url.p2p} component={P2p} />
           <MainTemplate path={url.wallet} component={SwaptobeWallet} />
           <MainTemplate path={url.p2p_management} component={P2pManagement} />
           <MainTemplate path="/p2p-trading" component={P2PTrading} />
