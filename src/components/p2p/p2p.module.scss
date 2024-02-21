@@ -44,6 +44,31 @@
             .p2p__filter {
                 padding-left: 30px;
                 padding-right: 30px;
+                background-color: $new-background-level-1;
+                transition: .4s;
+
+                &.sticky {
+                    width: 1170px;
+                    position: fixed;
+                    top: 0;
+                    padding-top: 10px;
+
+                    @media screen and (max-width: 1199px) {
+                        max-width: 930px;
+                    }
+
+                    @media screen and (max-width: 991px) {
+                        max-width: 690px;
+                    }
+
+                    @media screen and (max-width: 767px) {
+                        max-width: 510px;
+                    }
+
+                    @media screen and (max-width: 575px) {
+                        max-width: 100%;
+                    }
+                }
 
                 .p2p__filterAction {
                     padding: 5px;
@@ -53,7 +78,8 @@
                     justify-content: center;
                     background-color: $new-background-level-2;
                     border-radius: 3px;
-                    z-index: 9;
+                    z-index: 1;
+
 
                     .p2p__filterActionActive {
                         position: absolute;
@@ -102,6 +128,12 @@
                             color: $new-text-color-white;
                         }
                     }
+                }
+
+                .p2p__inputInfo {
+                    position: absolute;
+                    top: 6px;
+                    right: 7px;
                 }
             }
 

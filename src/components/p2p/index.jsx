@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import css from "./p2p.module.scss";
 import { Pagination, Spin } from "antd";
 import { Button, buttonClassesType } from "../Common/Button";
@@ -12,19 +12,43 @@ import {
   url,
 } from "src/constant";
 import socket from "src/util/socket";
-import { getListAdsBuy, getListAdsSell } from "src/util/userCallApi";
+import {
+  getListAdsBuy,
+  getListAdsSell,
+  searchBuyQuick,
+  searchSellQuick,
+} from "src/util/userCallApi";
 import { EmptyCustom } from "../Common/Empty";
 import {
+  debounce,
   formatNumber,
+  formatStringNumberCultureUS,
   getLocalStorage,
   setLocalStorage,
 } from "src/util/common";
 import i18n from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
+import { Input } from "../Common/Input";
+import { useSelector } from "react-redux";
+import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
+import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
+import { getExchangeRateSell } from "src/redux/reducers/exchangeRateSellSlice";
+import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
+import { math } from "src/App";
 
 function P2p() {
+  const searchType = {
+    coin: "coin",
+    money: "money",
+  };
   const history = useHistory();
   const { t } = useTranslation();
+
+  const currency = useSelector(getCurrent);
+  const exchange = useSelector(getExchange);
+  const listCoinRealTime = useSelector(getListCoinRealTime);
+  const exchangeSell = useSelector(getExchangeRateSell);
+  const exchangeBuy = useSelector(getExchangeRateDisparity);
 
   const [fetchListCoinStatus, setFetchListCoinStatus] = useState(
     api_status.pending
@@ -32,18 +56,24 @@ function P2p() {
   const [fetchMainDataStatus, setFetchMainDataStatus] = useState(
     api_status.pending
   );
+  const [showSearch, setShowSearch] = useState(false);
   const [listCoin, setListCoin] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState(coinString.USDT);
   const [filterAction, setFilterAction] = useState(actionTrading.buy);
+  const [searchAction, setSearchAction] = useState(searchType.coin);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(1);
   const [mainData, setMainData] = useState([]);
   const [marginActionFilter, setMarginActionFilter] = useState(0);
+  const [isSticky, setIsSticky] = useState(false);
+  const [inputSearchValue, setInputSearchValue] = useState("");
 
   const filterActionElement = useRef();
   const limit = useRef(10);
   const buyElement = useRef();
   const filterActionRef = useRef(actionTrading.buy);
+  const filterElement = useRef();
+  const amountCoinSearch = useRef(0);
 
   const filterSellClickHandle = function () {
     if (!filterActionElement?.current) return;
@@ -54,7 +84,7 @@ function P2p() {
     setMarginActionFilter(buyElement.current.clientWidth);
     filterActionRef.current = actionTrading.sell;
 
-    loadMainData(1, selectedCoin, actionTrading.sell);
+    loadMainData(1, selectedCoin, actionTrading.sell, inputSearchValue);
   };
   const filterBuyClickHandle = function () {
     if (!filterActionElement?.current) return;
@@ -66,7 +96,7 @@ function P2p() {
     setMarginActionFilter(0);
     filterActionRef.current = actionTrading.buy;
 
-    loadMainData(1, selectedCoin, actionTrading.buy);
+    loadMainData(1, selectedCoin, actionTrading.buy, inputSearchValue);
   };
   const redirectPage = function (page) {
     history.push(page);
@@ -97,7 +127,7 @@ function P2p() {
       if (fetchMainDataStatus === api_status.fetching) return;
       ev.stopPropagation();
       setSelectedCoin(name);
-      loadMainData(1, name, filterAction);
+      loadMainData(1, name, filterAction, inputSearchValue);
     };
     return listCoin.map((item) => (
       <span key={item.name}>
@@ -111,17 +141,68 @@ function P2p() {
       </span>
     ));
   };
-  const loadMainData = function (page, symbol, action) {
+  const loadMainData = function (page, symbol, action, search = "") {
     setMainData([]);
-    switch (action) {
-      case actionTrading.buy:
-        fetchListAdsSell(page, symbol);
-        break;
-      case actionTrading.sell:
-        fetchListAdsBuy(page, symbol);
-        break;
-      default:
-        break;
+    if (search) {
+      switch (action) {
+        case actionTrading.buy:
+          fetchSearchSellQuick(page, symbol, amountCoinSearch.current);
+          break;
+        case actionTrading.sell:
+          fetchSearchBuyQuick(page, symbol, amountCoinSearch.current);
+          break;
+        default:
+          break;
+      }
+    } else {
+      switch (action) {
+        case actionTrading.buy:
+          fetchListAdsSell(page, symbol);
+          break;
+        case actionTrading.sell:
+          fetchListAdsBuy(page, symbol);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+  const fetchSearchBuyQuick = async function (page, symbol, amount) {
+    if (fetchMainDataStatus === api_status.fetching) return;
+    try {
+      setFetchMainDataStatus(api_status.fetching);
+      const resp = await searchBuyQuick({
+        limit: limit.current,
+        page,
+        symbol,
+        amount,
+      });
+      const data = resp.data.data;
+      setMainData(data.array);
+      setCurrentPage(page);
+      setTotalItems(data.total);
+      setFetchMainDataStatus(api_status.fulfilled);
+    } catch (error) {
+      setFetchMainDataStatus(api_status.rejected);
+    }
+  };
+  const fetchSearchSellQuick = async function (page, symbol, amount) {
+    if (fetchMainDataStatus === api_status.fetching) return;
+    try {
+      setFetchMainDataStatus(api_status.fetching);
+      const resp = await searchSellQuick({
+        limit: limit.current,
+        page,
+        symbol,
+        amount,
+      });
+      const data = resp.data.data;
+      setMainData(data.array);
+      setCurrentPage(page);
+      setTotalItems(data.total);
+      setFetchMainDataStatus(api_status.fulfilled);
+    } catch (error) {
+      setFetchMainDataStatus(api_status.rejected);
     }
   };
   const fetchListAdsBuy = async function (page, symbol) {
@@ -262,7 +343,7 @@ function P2p() {
     ));
   };
   const pageOnChangeHandle = function (page) {
-    loadMainData(page, selectedCoin, filterAction);
+    loadMainData(page, selectedCoin, filterAction, inputSearchValue);
   };
   const showBuy = function () {
     return filterAction === actionTrading.buy ? "" : "--d-none";
@@ -270,6 +351,80 @@ function P2p() {
   const showSell = function () {
     return filterAction === actionTrading.sell ? "" : "--d-none";
   };
+  const setStickHandle = function () {
+    if (!filterElement?.current) return;
+    if (
+      window.scrollY >= 227 &&
+      window.innerWidth > 575 &&
+      isSticky === false
+    ) {
+      filterElement.current.classList.add(css["sticky"]);
+      setIsSticky(true);
+    } else {
+      filterElement?.current?.classList?.contains(css["sticky"]) &&
+        filterElement?.current?.classList?.remove(css["sticky"]);
+      setIsSticky(false);
+    }
+  };
+  const switchCoinClickHandle = function () {
+    setSearchAction(searchType.coin);
+    setInputSearchValue("");
+  };
+  const switchMoneyClickHandle = function () {
+    setSearchAction(searchType.money);
+    setInputSearchValue("");
+  };
+  const renderClassSearchCoin = function () {
+    return searchAction === searchType.coin ? "" : "--d-none";
+  };
+  const renderClassSearchMoney = function () {
+    return searchAction === searchType.money ? "" : "--d-none";
+  };
+  const inputSearchChangeHandle = function (ev) {
+    const str = ev.target.value;
+    const res = formatInputSearch(str);
+
+    if (searchAction === searchType.coin) {
+      amountCoinSearch.current = res.replaceAll(",", "");
+    } else {
+      amountCoinSearch.current = calcCoin(res);
+    }
+
+    loadMainDataDebounced(
+      currentPage,
+      selectedCoin,
+      filterAction,
+      amountCoinSearch.current
+    );
+  };
+  const calcCoin = function (money) {
+    if (!money) return;
+
+    const rate = exchange.find((item) => item.title === currency)?.rate;
+    const price = listCoinRealTime.find(item.name === selectedCoin)?.price;
+    const price1Coin = 0;
+  };
+  const formatInputSearch = function (inputValue) {
+    const inputValueWithoutComma = inputValue.replace(/,/g, "");
+    const regex = /^$|^[0-9]+(\.[0-9]*)?$/;
+    if (!regex.test(inputValueWithoutComma)) {
+      const res = inputValue.slice(0, -1);
+      setInputSearchValue(res);
+      return res;
+    }
+    const inputValueFormated = formatStringNumberCultureUS(
+      inputValueWithoutComma
+    );
+    setInputSearchValue(inputValueFormated);
+    return inputValueFormated;
+  };
+  const renderClassSpinSearch = function () {
+    return !showSearch ? "" : "--d-none";
+  };
+  const renderClassShowSearch = function () {
+    return showSearch ? "" : "--d-none";
+  };
+  const loadMainDataDebounced = useCallback(debounce(loadMainData, 1000), []);
 
   useEffect(() => {
     const language =
@@ -288,7 +443,25 @@ function P2p() {
 
     fetchListCoin();
     loadMainData(1, coinString.USDT, actionTrading.buy);
+
+    window.onscroll = function () {
+      setStickHandle();
+    };
   }, []);
+  useEffect(() => {
+    if (
+      currency &&
+      exchange &&
+      exchange.length > 0 &&
+      listCoinRealTime &&
+      listCoinRealTime.length > 0 &&
+      exchangeSell &&
+      exchangeBuy &&
+      showSearch === false
+    ) {
+      setShowSearch(true);
+    }
+  }, [currency, exchange, listCoinRealTime, exchangeSell, exchangeBuy]);
 
   return (
     <div className={css["p2p"]}>
@@ -343,7 +516,7 @@ function P2p() {
           </div>
         </div>
         <div className={`${css["p2p__mainContent"]} box pl-0 pr-0`}>
-          <div className={css["p2p__filter"]}>
+          <div ref={filterElement} className={`${css["p2p__filter"]}`}>
             <div className="d-f mb-4 f-lg-c alignItem-lg-start">
               <span className={`${css["p2p__filterAction"]} mb-lg-2`}>
                 <div
@@ -380,6 +553,50 @@ function P2p() {
                   <Spin />
                 </span>
               </span>
+            </div>
+            <div className={renderClassShowSearch()}>
+              <div className="row mb-2">
+                <div className="col-sm-12 col-md-8 col-6 p-0 pos-r mb-2">
+                  <Input
+                    style={{ paddingRight: "50px" }}
+                    value={inputSearchValue}
+                    onChange={inputSearchChangeHandle}
+                  />
+                  <span
+                    className={`${
+                      css["p2p__inputInfo"]
+                    } ${renderClassSearchMoney()}`}
+                  >
+                    {currency}
+                  </span>
+                  <span
+                    className={`${
+                      css["p2p__inputInfo"]
+                    } ${renderClassSearchCoin()}`}
+                  >
+                    {selectedCoin}
+                  </span>
+                </div>
+              </div>
+              <div className="row mb-2">
+                <div
+                  onClick={switchCoinClickHandle}
+                  className={`hover-p us-0 ${renderClassSearchMoney()}`}
+                >
+                  Switch to Coin
+                </div>
+                <div
+                  onClick={switchMoneyClickHandle}
+                  className={`hover-p us-0 ${renderClassSearchCoin()}`}
+                >
+                  Switch to Money
+                </div>
+              </div>
+            </div>
+            <div className={`row mb-2 ${renderClassSpinSearch()}`}>
+              <div className="col-sm-12 col-md-8 col-6 d-f alignItem-c justify-c p-0 ">
+                <Spin />
+              </div>
             </div>
           </div>
           <div className={css["p2p__list"]}>
