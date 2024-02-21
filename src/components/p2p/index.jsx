@@ -3,13 +3,28 @@ import css from "./p2p.module.scss";
 import { Pagination, Spin } from "antd";
 import { Button, buttonClassesType } from "../Common/Button";
 import { useHistory } from "react-router-dom";
-import { actionTrading, api_status, coinString, url } from "src/constant";
+import {
+  actionTrading,
+  api_status,
+  coinString,
+  defaultLanguage,
+  localStorageVariable,
+  url,
+} from "src/constant";
 import socket from "src/util/socket";
 import { getListAdsBuy, getListAdsSell } from "src/util/userCallApi";
 import { EmptyCustom } from "../Common/Empty";
+import {
+  formatNumber,
+  getLocalStorage,
+  setLocalStorage,
+} from "src/util/common";
+import i18n from "src/translation/i18n";
+import { useTranslation } from "react-i18next";
 
 function P2p() {
   const history = useHistory();
+  const { t } = useTranslation();
 
   const [fetchListCoinStatus, setFetchListCoinStatus] = useState(
     api_status.pending
@@ -23,20 +38,33 @@ function P2p() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(1);
   const [mainData, setMainData] = useState([]);
+  const [marginActionFilter, setMarginActionFilter] = useState(0);
 
   const filterActionElement = useRef();
   const limit = useRef(10);
+  const buyElement = useRef();
+  const filterActionRef = useRef(actionTrading.buy);
 
   const filterSellClickHandle = function () {
+    if (!filterActionElement?.current) return;
+    if (fetchMainDataStatus === api_status.fetching) return;
     filterActionElement.current.classList.add(css["move"]);
     setFilterAction(actionTrading.sell);
+
+    setMarginActionFilter(buyElement.current.clientWidth);
+    filterActionRef.current = actionTrading.sell;
 
     loadMainData(1, selectedCoin, actionTrading.sell);
   };
   const filterBuyClickHandle = function () {
+    if (!filterActionElement?.current) return;
+    if (fetchMainDataStatus === api_status.fetching) return;
     filterActionElement.current.classList.contains(css["move"]) &&
       filterActionElement.current.classList.remove(css["move"]);
     setFilterAction(actionTrading.buy);
+
+    setMarginActionFilter(0);
+    filterActionRef.current = actionTrading.buy;
 
     loadMainData(1, selectedCoin, actionTrading.buy);
   };
@@ -66,6 +94,7 @@ function P2p() {
       return coinName === selectedCoin ? css["active"] : "";
     };
     const buttonCLickHandle = function (name, ev) {
+      if (fetchMainDataStatus === api_status.fetching) return;
       ev.stopPropagation();
       setSelectedCoin(name);
       loadMainData(1, name, filterAction);
@@ -83,6 +112,7 @@ function P2p() {
     ));
   };
   const loadMainData = function (page, symbol, action) {
+    setMainData([]);
     switch (action) {
       case actionTrading.buy:
         fetchListAdsSell(page, symbol);
@@ -139,10 +169,34 @@ function P2p() {
   const renderMainData = function () {
     if (!mainData || mainData.length <= 0) return;
     const renderButtonBuy = function (adsType) {
-      return adsType === actionTrading.sell ? "" : "--d-none";
+      return adsType === actionTrading.sell && selectedCoin === coinString.USDT
+        ? ""
+        : "--d-none";
     };
     const renderButtonSell = function (adsType) {
-      return adsType === actionTrading.buy ? "" : "--d-none";
+      return adsType === actionTrading.buy && selectedCoin === coinString.USDT
+        ? ""
+        : "--d-none";
+    };
+    const buyCLickHandle = function (minimum) {
+      setLocalStorage(localStorageVariable.coinToTransaction, minimum);
+      setLocalStorage(localStorageVariable.moneyToTransaction, null);
+      setLocalStorage(
+        localStorageVariable.coinNameToTransaction,
+        coinString.USDT
+      );
+      history.push(url.transaction_buy);
+      return;
+    };
+    const sellCLickHandle = function (minimum) {
+      setLocalStorage(localStorageVariable.coinToTransaction, minimum);
+      setLocalStorage(localStorageVariable.moneyToTransaction, null);
+      setLocalStorage(
+        localStorageVariable.coinNameToTransaction,
+        coinString.USDT
+      );
+      history.push(url.transaction_sell);
+      return;
     };
     return mainData.map((item) => (
       <div
@@ -159,23 +213,30 @@ function P2p() {
               <i className="fa-solid fa-circle-check"></i>
             </span>
           </div>
-          <div>Good rating 98%</div>
-          <div>Completion time ~ 2m 23s</div>
+          <div>{t("goodRating")} 98%</div>
+          <div>{t("completionTime")} ~ 2m 23s</div>
         </div>
         <div className={`${css["p2p__listCol"]} w-lg-100`}>
           <div>
-            <span>Access Bank</span>
+            <span>{t("accessBank")}</span>
           </div>
         </div>
         <div className={`${css["p2p__listCol"]} w-lg-100`}>
           <div className="row">
-            <span className="col-4 p-0">Amount:</span>
+            <span className="col-4 p-0">{t("amount")}:</span>
             <span className="col-6 p-0">
-              {item.amount - item.amountSuccess} {item.symbol}
+              {formatNumber(
+                item.amount - item.amountSuccess,
+                i18n.language,
+                -1
+              )}{" "}
+              {item.symbol}
             </span>
-            <span className="col-4 p-0">Trade limit:</span>
+            <span className="col-4 p-0">{t("tradeLimit")}:</span>
             <span className="col-8 p-0">
-              {item.amountMinimum} {item.symbol} - {item.amount} {item.symbol}
+              {formatNumber(item.amountMinimum, i18n.language, -1)}{" "}
+              {item.symbol} - {formatNumber(item.amount, i18n.language, -1)}{" "}
+              {item.symbol}
             </span>
           </div>
         </div>
@@ -185,21 +246,46 @@ function P2p() {
           <Button
             className={renderButtonBuy(item.side)}
             type={buttonClassesType.success}
+            onClick={buyCLickHandle.bind(null, item.amountMinimum)}
           >
-            Buy
+            {t("buy")}
           </Button>
           <Button
             className={renderButtonSell(item.side)}
             type={buttonClassesType.danger}
+            onClick={sellCLickHandle.bind(null, item.amountMinimum)}
           >
-            Sell
+            {t("sell")}
           </Button>
         </div>
       </div>
     ));
   };
+  const pageOnChangeHandle = function (page) {
+    loadMainData(page, selectedCoin, filterAction);
+  };
+  const showBuy = function () {
+    return filterAction === actionTrading.buy ? "" : "--d-none";
+  };
+  const showSell = function () {
+    return filterAction === actionTrading.sell ? "" : "--d-none";
+  };
 
   useEffect(() => {
+    const language =
+      getLocalStorage(localStorageVariable.lng) || defaultLanguage;
+    i18n.changeLanguage(language);
+    let currentLanguage = i18n.language;
+    i18n.on("languageChanged", (newLanguage) => {
+      if (
+        newLanguage !== currentLanguage &&
+        filterActionRef.current === actionTrading.sell
+      ) {
+        filterBuyClickHandle();
+      }
+      currentLanguage = newLanguage;
+    });
+
     fetchListCoin();
     loadMainData(1, coinString.USDT, actionTrading.buy);
   }, []);
@@ -216,7 +302,7 @@ function P2p() {
               <span>
                 <i className="fa-solid fa-house"></i>
               </span>
-              <span className="d-md-0">Home P2P</span>
+              <span className="d-md-0">{t("homeP2p")}</span>
             </div>
             <div
               onClick={redirectPage.bind(null, url.p2pTrading)}
@@ -225,7 +311,7 @@ function P2p() {
               <span>
                 <i className="fa-solid fa-file-lines"></i>
               </span>
-              <span className="d-md-0">Order</span>
+              <span className="d-md-0">{t("order")}</span>
             </div>
             <div
               onClick={redirectPage.bind(null, url.create_ads_buy)}
@@ -234,7 +320,7 @@ function P2p() {
               <span>
                 <i className="fa-solid fa-plus"></i>
               </span>
-              <span className="d-md-0">New Ad</span>
+              <span className="d-md-0">{t("newAd")}</span>
             </div>
             <div
               onClick={redirectPage.bind(null, url.ads_history)}
@@ -243,7 +329,7 @@ function P2p() {
               <span>
                 <i className="fa-solid fa-arrow-trend-up"></i>
               </span>
-              <span className="d-md-0">Ads</span>
+              <span className="d-md-0">{t("ads")}</span>
             </div>
             <div
               onClick={redirectPage.bind(null, url.profile)}
@@ -252,7 +338,7 @@ function P2p() {
               <span>
                 <i className="fa-solid fa-user"></i>
               </span>
-              <span className="d-md-0">Profile</span>
+              <span className="d-md-0">{t("profile")}</span>
             </div>
           </div>
         </div>
@@ -263,18 +349,27 @@ function P2p() {
                 <div
                   ref={filterActionElement}
                   className={`${css["p2p__filterActionActive"]}`}
-                ></div>
+                  style={{ marginLeft: marginActionFilter }}
+                >
+                  <span className={`--visible-hidden ${showBuy()}`}>
+                    {t("buy")}
+                  </span>
+                  <span className={`--visible-hidden ${showSell()}`}>
+                    {t("sell")}
+                  </span>
+                </div>
                 <div
+                  ref={buyElement}
                   onClick={filterBuyClickHandle}
                   className={css["p2p__filterActionTitle"]}
                 >
-                  <span>Buy</span>
+                  <span>{t("buy")}</span>
                 </div>
                 <div
                   onClick={filterSellClickHandle}
                   className={css["p2p__filterActionTitle"]}
                 >
-                  <span>Sell</span>
+                  <span>{t("sell")}</span>
                 </div>
               </span>
               <span
@@ -289,23 +384,24 @@ function P2p() {
           </div>
           <div className={css["p2p__list"]}>
             <div className={`${css["p2p__listHeader"]} d-lg-0 d-flex`}>
-              <div className="w-25">Buy from</div>
-              <div className="w-25">Payment</div>
-              <div className="w-25">Price</div>
-              <div className="w-25 ta-r">Trade</div>
+              <div className="w-25">{t("buyFrom")}</div>
+              <div className="w-25">{t("payment")}</div>
+              <div className="w-25">{t("price")}</div>
+              <div className="w-25 ta-r">{t("trade")}</div>
             </div>
             <div className={css["p2p__listContent"]}>{renderMainData()}</div>
             <div className={`spin-container ${renderClassSpinMainData()}`}>
               <Spin />
             </div>
             <div className={renderClassEmptyMainData()}>
-              <EmptyCustom stringData={`khoong co data`}></EmptyCustom>
+              <EmptyCustom stringData={t("noData")}></EmptyCustom>
             </div>
             <div className="d-flex alignItem-c justify-c mt-2">
               <Pagination
                 current={currentPage}
                 total={totalItems}
                 showSizeChanger={false}
+                onChange={pageOnChangeHandle}
               />
             </div>
           </div>

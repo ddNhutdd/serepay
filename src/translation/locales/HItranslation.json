@@ -353,5 +353,14 @@
     "depositQR": "जमा करें QR",
     "eWalletAddress": "ई-वॉलेट पता",
     "bankAccountNumberAlreadyExists": "बैंक खाता संख्या पहले से ही मौजूद है",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "खाता नाम सामान्य वियतनामी में होना चाहिए, उपरकेस में लिखा जाना चाहिए, कम से कम 5 अक्षरों और अधिकतम 50 अक्षरों के साथ। इसमें कोई विशेष वर्ण नहीं होना चाहिए"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "खाता नाम सामान्य वियतनामी में होना चाहिए, उपरकेस में लिखा जाना चाहिए, कम से कम 5 अक्षरों और अधिकतम 50 अक्षरों के साथ। इसमें कोई विशेष वर्ण नहीं होना चाहिए",
+    "homeP2p": "होम P2P",
+    "order": "आदेश",
+    "newAd": "नया विज्ञापन",
+    "buyFrom": "से खरीदें",
+    "trade": "व्यापार",
+    "goodRating": "अच्छी रेटिंग",
+    "completionTime": "पूर्णता का समय",
+    "accessBank": "बैंक तक पहुँच",
+    "tradeLimit": "व्यापार सीमा"
 }

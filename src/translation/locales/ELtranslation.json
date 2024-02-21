@@ -353,5 +353,14 @@
     "depositQR": "Κατάθεση QR",
     "eWalletAddress": "Διεύθυνση ηλεκτρονικού πορτοφολιού",
     "bankAccountNumberAlreadyExists": "Ο αριθμός τραπεζικού λογαριασμού υπάρχει ήδη",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Το όνομα του λογαριασμού πρέπει να είναι στα απλά Βιετναμέζικα, γραμμένο με κεφαλαία, με τουλάχιστον 5 χαρακτήρες και το πολύ 50 χαρακτήρες. Δεν πρέπει να περιέχει κανένα ειδικό χαρακτήρα"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Το όνομα του λογαριασμού πρέπει να είναι στα απλά Βιετναμέζικα, γραμμένο με κεφαλαία, με τουλάχιστον 5 χαρακτήρες και το πολύ 50 χαρακτήρες. Δεν πρέπει να περιέχει κανένα ειδικό χαρακτήρα",
+    "homeP2p": "Αρχική P2P",
+    "order": "Παραγγελία",
+    "newAd": "Νέα διαφήμιση",
+    "buyFrom": "Αγορά από",
+    "trade": "Εμπόριο",
+    "goodRating": "Καλή αξιολόγηση",
+    "completionTime": "Χρόνος ολοκλήρωσης",
+    "accessBank": "Πρόσβαση στην τράπεζα",
+    "tradeLimit": "Όριο εμπορίου"
 }

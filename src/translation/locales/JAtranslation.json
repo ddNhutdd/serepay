@@ -353,5 +353,14 @@
     "depositQR": "デポジットQR",
     "eWalletAddress": "Eウォレットアドレス",
     "bankAccountNumberAlreadyExists": "銀行口座番号はすでに存在しています",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "アカウント名は、平易なベトナム語で書かれ、大文字で、少なくとも5文字、最大50文字である必要があります。特殊文字は含まれていてはいけません"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "アカウント名は、平易なベトナム語で書かれ、大文字で、少なくとも5文字、最大50文字である必要があります。特殊文字は含まれていてはいけません",
+    "homeP2p": "ホーム P2P",
+    "order": "注文",
+    "newAd": "新しい広告",
+    "buyFrom": "から購入",
+    "trade": "取引",
+    "goodRating": "良い評価",
+    "completionTime": "完了時間",
+    "accessBank": "銀行へのアクセス",
+    "tradeLimit": "取引制限"
 }

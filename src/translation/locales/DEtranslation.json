@@ -353,5 +353,14 @@
   "depositQR": "Einzahlungs-QR",
   "eWalletAddress": "E-Wallet-Adresse",
   "bankAccountNumberAlreadyExists": "Die Bankkontonummer existiert bereits",
-  "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Der Kontoname sollte in klarem Vietnamesisch sein, in Großbuchstaben geschrieben, mit mindestens 5 Zeichen und maximal 50 Zeichen. Er darf keine Sonderzeichen enthalten"
+  "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Der Kontoname sollte in klarem Vietnamesisch sein, in Großbuchstaben geschrieben, mit mindestens 5 Zeichen und maximal 50 Zeichen. Er darf keine Sonderzeichen enthalten",
+  "homeP2p": "Zuhause P2P",
+  "order": "Bestellung",
+  "newAd": "Neue Anzeige",
+  "buyFrom": "Kaufen von",
+  "trade": "Handel",
+  "goodRating": "Gute Bewertung",
+  "completionTime": "Fertigstellungszeit",
+  "accessBank": "Zugriff auf die Bank",
+  "tradeLimit": "Handelslimit"
 }

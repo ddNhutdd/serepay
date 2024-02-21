@@ -353,5 +353,14 @@
     "depositQR": "Depósito QR",
     "eWalletAddress": "Dirección de monedero electrónico",
     "bankAccountNumberAlreadyExists": "El número de cuenta bancaria ya existe",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "El nombre de la cuenta debe estar en vietnamita simple, escrito en mayúsculas, con un mínimo de 5 caracteres y un máximo de 50 caracteres. No debe contener caracteres especiales"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "El nombre de la cuenta debe estar en vietnamita simple, escrito en mayúsculas, con un mínimo de 5 caracteres y un máximo de 50 caracteres. No debe contener caracteres especiales",
+    "homeP2p": "Inicio P2P",
+    "order": "Orden",
+    "newAd": "Nuevo anuncio",
+    "buyFrom": "Comprar desde",
+    "trade": "Comercio",
+    "goodRating": "Buena calificación",
+    "completionTime": "Tiempo de finalización",
+    "accessBank": "Acceso al banco",
+    "tradeLimit": "Límite de comercio"
 }

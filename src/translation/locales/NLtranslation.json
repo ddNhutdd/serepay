@@ -353,5 +353,14 @@
     "depositQR": "Stortings QR",
     "eWalletAddress": "E-wallet Adres",
     "bankAccountNumberAlreadyExists": "Bankrekeningnummer bestaat al",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "De accountnaam moet in eenvoudig Vietnamees zijn, geschreven in hoofdletters, met een minimum van 5 tekens en een maximum van 50 tekens. Het mag geen speciale tekens bevatten"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "De accountnaam moet in eenvoudig Vietnamees zijn, geschreven in hoofdletters, met een minimum van 5 tekens en een maximum van 50 tekens. Het mag geen speciale tekens bevatten",
+    "homeP2p": "Thuis P2P",
+    "order": "Bestelling",
+    "newAd": "Nieuwe advertentie",
+    "buyFrom": "Kopen van",
+    "trade": "Handel",
+    "goodRating": "Goede beoordeling",
+    "completionTime": "Voltooiingstijd",
+    "accessBank": "Toegang tot bank",
+    "tradeLimit": "Handelslimiet"
 }

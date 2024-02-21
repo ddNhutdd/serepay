@@ -43,9 +43,9 @@ import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDispari
 function TransactionBuy() {
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
   const history = useHistory();
-  const amount = getLocalStorage(localStorageVariable.coinFromP2pExchange || 0); // Number of coins sent from p2pExchange
+  const amount = getLocalStorage(localStorageVariable.coinToTransaction || 0); // Number of coins sent from p2pExchange
   const selectedCoin = getLocalStorage(
-    localStorageVariable.coinNameFromP2pExchange
+    localStorageVariable.coinNameToTransaction
   );
   const { t } = useTranslation();
   const exchangeRateBuyDisparityFromRedux = useSelector(
@@ -282,9 +282,9 @@ function TransactionBuy() {
   };
   const loadInputMoney = function () {
     let result;
-    let amount = +getLocalStorage(localStorageVariable.moneyFromP2pExchange);
+    let amount = +getLocalStorage(localStorageVariable.moneyToTransaction);
     if (!amount) {
-      amount = +getLocalStorage(localStorageVariable.coinFromP2pExchange) || 0;
+      amount = +getLocalStorage(localStorageVariable.coinToTransaction) || 0;
       result = calcVnd(listCoinRealTime, selectedCoin, exchangeRedux, amount);
     } else {
       const vnd = calVNDFromOtherCurrencies(

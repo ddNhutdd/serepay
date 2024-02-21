@@ -353,5 +353,14 @@
     "depositQR": "Deposit QR",
     "eWalletAddress": "E-wallet Address",
     "bankAccountNumberAlreadyExists": "Bank account number already exists",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "The account name should be in plain Vietnamese, written in uppercase, with a minimum of 5 characters and a maximum of 50 characters. It must not contain any special characters"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "The account name should be in plain Vietnamese, written in uppercase, with a minimum of 5 characters and a maximum of 50 characters. It must not contain any special characters",
+    "homeP2p": "Home P2P",
+    "order": "Order",
+    "newAd": "New Ad",
+    "buyFrom": "Buy from",
+    "trade": "Trade",
+    "goodRating": "Good rating",
+    "completionTime": "Completion time",
+    "accessBank": "Access Bank",
+    "tradeLimit": "Trade limit"
 }

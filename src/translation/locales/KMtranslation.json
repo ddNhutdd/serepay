@@ -353,5 +353,14 @@
     "depositQR": "ប្រតិបត្តិការដាក់ប្រាក់ QR",
     "eWalletAddress": "អាសយដ្ឋាន E-wallet",
     "bankAccountNumberAlreadyExists": "លេខគណនីធនាគារមានរួចហើយ",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ឈ្មោះគណនីគឺត្រូវតែជាភាសាវៀតណាមិនមានសញ្ញាពីរផ្សេងទៀតជាឧទាហរណ៍ គឺត្រូវបានសរសេរដោយអក្សរធម្មតា ដោយមានតួអក្សរបញ្ឆោតយ៉ាងហោចហ្គោលលឿន ដែលតម្រូវឲ្យតែមានតួអក្សរចាប់ពី 5 តួអក្សរ និងមិនលើសពី 50 តួអក្សរ។ វាមិនត្រូវមានតួអក្សរពិសេសណាមួយ"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ឈ្មោះគណនីគឺត្រូវតែជាភាសាវៀតណាមិនមានសញ្ញាពីរផ្សេងទៀតជាឧទាហរណ៍ គឺត្រូវបានសរសេរដោយអក្សរធម្មតា ដោយមានតួអក្សរបញ្ឆោតយ៉ាងហោចហ្គោលលឿន ដែលតម្រូវឲ្យតែមានតួអក្សរចាប់ពី 5 តួអក្សរ និងមិនលើសពី 50 តួអក្សរ។ វាមិនត្រូវមានតួអក្សរពិសេសណាមួយ",
+    "homeP2p": "ទំព័រដើម P2P",
+    "order": "បញ្ជាទិញ",
+    "newAd": "ការប្រគល់បន្ថែម",
+    "buyFrom": "ទិញពី",
+    "trade": "ចូលរួមការហិរញ្ញវត្ថុ",
+    "goodRating": "ការវាយតម្លៃល្អ",
+    "completionTime": "ពេលបញ្ចប់",
+    "accessBank": "ចូលដំណើរការធនាគារ",
+    "tradeLimit": "ដែនកំណត់ការចូលរួមការហិរញ្ញវត្ថុ"
 }

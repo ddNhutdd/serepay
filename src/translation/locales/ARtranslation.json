@@ -353,5 +353,14 @@
     "depositQR": "QR الإيداع",
     "eWalletAddress": "عنوان المحفظة الإلكترونية",
     "bankAccountNumberAlreadyExists": "رقم الحساب البنكي موجود بالفعل",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "يجب أن يكون اسم الحساب باللغة الفيتنامية البسيطة، مكتوبًا بأحرف كبيرة، ويحتوي على الأقل 5 أحرف ولا يزيد عن 50 حرفًا. يجب ألا يحتوي على أي أحرف خاصة"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "يجب أن يكون اسم الحساب باللغة الفيتنامية البسيطة، مكتوبًا بأحرف كبيرة، ويحتوي على الأقل 5 أحرف ولا يزيد عن 50 حرفًا. يجب ألا يحتوي على أي أحرف خاصة",
+    "homeP2p": "الرئيسية P2P",
+    "order": "طلب",
+    "newAd": "إعلان جديد",
+    "buyFrom": "شراء من",
+    "trade": "تجارة",
+    "goodRating": "تقييم جيد",
+    "completionTime": "وقت الانتهاء",
+    "accessBank": "الوصول إلى البنك",
+    "tradeLimit": "حد التجارة"
 }

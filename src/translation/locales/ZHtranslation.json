@@ -353,5 +353,14 @@
     "depositQR": "充值二维码",
     "eWalletAddress": "电子钱包地址",
     "bankAccountNumberAlreadyExists": "银行账号号码已存在",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "账户名称应为纯中文，大写，至少5个字符，最多50个字符。不得包含任何特殊字符。"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "账户名称应为纯中文，大写，至少5个字符，最多50个字符。不得包含任何特殊字符。",
+    "homeP2p": "主页P2P",
+    "order": "订单",
+    "newAd": "新广告",
+    "buyFrom": "从以下购买",
+    "trade": "贸易",
+    "goodRating": "好评",
+    "completionTime": "完成时间",
+    "accessBank": "银行访问",
+    "tradeLimit": "贸易限额"
 }

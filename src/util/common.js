@@ -96,6 +96,10 @@ export const zoomImage = function (e) {
   const body = document.body;
   let angel = 0,
     size = 1.2;
+  let zoomValue = 0.2;
+  let rotateValue = 18;
+  let isDragging = false;
+  let initialX, initialY;
   //img
   var imgElement = document.createElement("img");
   imgElement.src = e.target.src;
@@ -111,23 +115,57 @@ export const zoomImage = function (e) {
   setTimeout(function () {
     imgElement.style.transform = `translate(-50%, -50%) scale(${size}) rotate(${angel}deg)`;
   }, 100);
+  imgElement.addEventListener("wheel", (ev) => {
+    ev.preventDefault();
+    wheelHandle(ev);
+  });
+  imgElement.addEventListener("mousedown", (event) => {
+    isDragging = true;
+    initialX = event.pageX - imgElement.offsetLeft;
+    initialY = event.pageY - imgElement.offsetTop;
+  });
+  document.addEventListener("mousemove", (event) => {
+    if (isDragging) {
+      event.preventDefault();
+      const x = event.pageX - initialX;
+      const y = event.pageY - initialY;
+      imgElement.style.left = x + "px";
+      imgElement.style.top = y + "px";
+    }
+  });
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+  imgElement.addEventListener("mouseover", function () {
+    this.style.cursor = "pointer";
+  });
+  imgElement.addEventListener("mouseout", function () {
+    this.style.cursor = "auto";
+  });
   // control
   const sizeUp = function () {
-    size += 0.1;
+    size += zoomValue;
     imgElement.style.transform = `translate(-50%, -50%) scale(${size}) rotate(${angel}deg)`;
   };
   const sizeDown = function () {
-    size -= 0.1;
+    size -= zoomValue;
     if (size <= 0) size = 0;
     imgElement.style.transform = `translate(-50%, -50%) scale(${size}) rotate(${angel}deg)`;
   };
   const rotateRight = function () {
-    angel += 18;
+    angel += rotateValue;
     imgElement.style.transform = `translate(-50%, -50%) scale(${size}) rotate(${angel}deg)`;
   };
   const rotateLeft = function () {
-    angel -= 18;
+    angel -= rotateValue;
     imgElement.style.transform = `translate(-50%, -50%) scale(${size}) rotate(${angel}deg)`;
+  };
+  const wheelHandle = function (ev) {
+    if (ev.deltaY < 0) {
+      sizeUp();
+    } else if (ev.deltaY > 0) {
+      sizeDown();
+    }
   };
   const gl_header = document.createElement("div");
   gl_header.style.position = "fixed";
@@ -139,13 +177,20 @@ export const zoomImage = function (e) {
   gl_header.style.display = "flex";
   gl_header.style.justifyContent = "flex-end";
   gl_header.style.alignContent = "center";
-  const icons = ["↶", "↷", "+", "-"];
+  const icons = [
+    "<i class='fa-solid fa-rotate-left'></i>",
+    "<i class='fa-solid fa-rotate-right'></i>",
+    "<i class='fa-solid fa-magnifying-glass-plus'></i>",
+    "<i class='fa-solid fa-magnifying-glass-minus'></i>",
+    "<i class='fa-solid fa-xmark'></i>",
+  ];
   for (let icon of icons) {
     const gl_span = document.createElement("div");
     gl_span.innerHTML = icon;
     gl_span.style.fontSize = "26px";
     gl_span.style.color = "#fff";
     gl_span.style.fontWeight = "bold";
+    gl_span.style.marginTop = "10px";
     gl_span.style.marginLeft = "10px";
     gl_span.style.marginRight = "10px";
     gl_span.style.cursor = "pointer";
@@ -158,6 +203,18 @@ export const zoomImage = function (e) {
       gl_span.addEventListener("click", rotateRight);
     } else if (icon === icons[0]) {
       gl_span.addEventListener("click", rotateLeft);
+    } else if (icon === icons[4]) {
+      gl_span.addEventListener("click", () => {
+        setTimeout(function () {
+          imgElement.style.transition = "transform 0.2s ease-in-out";
+          imgElement.style.transform = `translate(-50%, -50%) scale(0.1) rotate(${angel}deg)`;
+        }, 100);
+        setTimeout(function () {
+          gl_overlay.remove();
+          imgElement.remove();
+          gl_header.remove();
+        }, 301);
+      });
     }
     gl_header.appendChild(gl_span);
   }
@@ -171,6 +228,10 @@ export const zoomImage = function (e) {
   gl_overlay.style.right = 0;
   gl_overlay.style.zIndex = 9999;
   gl_overlay.style.backgroundColor = "#000000b3";
+  gl_overlay.addEventListener("wheel", (ev) => {
+    ev.preventDefault();
+    wheelHandle(ev);
+  });
   gl_overlay.addEventListener("click", (e) => {
     setTimeout(function () {
       imgElement.style.transition = "transform 0.2s ease-in-out";
@@ -382,10 +443,17 @@ export const formatCurrency = function (
   }
 };
 export const formatNumber = function (number, locale, digits) {
-  return new Intl.NumberFormat(
-    availableLanguageCodeMapper[locale],
-    roundIntl(digits)
-  ).format(number);
+  if (digits === -1) {
+    return new Intl.NumberFormat(
+      availableLanguageCodeMapper[locale],
+      roundIntl(8)
+    ).format(number);
+  } else {
+    return new Intl.NumberFormat(
+      availableLanguageCodeMapper[locale],
+      roundIntl(digits)
+    ).format(number);
+  }
 };
 export const findMin = function (...params) {
   return Math.min(...params);

@@ -353,5 +353,14 @@
     "depositQR": "입금 QR",
     "eWalletAddress": "전자 지갑 주소",
     "bankAccountNumberAlreadyExists": "은행 계좌 번호가 이미 존재합니다",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "계좌명은 평문 베트남어로 작성되어 대문자로 표시되어야 하며, 최소 5자 이상 최대 50자 이하여야 합니다. 특수 문자를 포함해서는 안 됩니다"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "계좌명은 평문 베트남어로 작성되어 대문자로 표시되어야 하며, 최소 5자 이상 최대 50자 이하여야 합니다. 특수 문자를 포함해서는 안 됩니다",
+    "homeP2p": "홈 P2P",
+    "order": "주문",
+    "newAd": "새 광고",
+    "buyFrom": "에서 구매",
+    "trade": "거래",
+    "goodRating": "좋은 평가",
+    "completionTime": "완료 시간",
+    "accessBank": "은행 접근",
+    "tradeLimit": "거래 한도"
 }

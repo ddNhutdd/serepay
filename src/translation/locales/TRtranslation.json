@@ -353,5 +353,14 @@
     "depositQR": "QR Yatır",
     "eWalletAddress": "E-cüzdan Adresi",
     "bankAccountNumberAlreadyExists": "Banka hesap numarası zaten mevcut",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Hesap adı sadece düz Vietnamca olmalı, büyük harflerle yazılmalı, en az 5 karakter ve en fazla 50 karakter içermelidir. Hiçbir özel karakter içermemelidir."
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Hesap adı sadece düz Vietnamca olmalı, büyük harflerle yazılmalı, en az 5 karakter ve en fazla 50 karakter içermelidir. Hiçbir özel karakter içermemelidir.",
+    "homeP2p": "Ana Sayfa P2P",
+    "order": "Sipariş",
+    "newAd": "Yeni İlan",
+    "buyFrom": "Şuradan Satın Al",
+    "trade": "Ticaret",
+    "goodRating": "İyi Derecelendirme",
+    "completionTime": "Tamamlama Zamanı",
+    "accessBank": "Banka Erişimi",
+    "tradeLimit": "Ticaret Limiti"
 }

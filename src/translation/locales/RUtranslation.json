@@ -353,5 +353,14 @@
     "depositQR": "Депозит QR",
     "eWalletAddress": "Адрес электронного кошелька",
     "bankAccountNumberAlreadyExists": "Номер банковского счета уже существует",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Имя аккаунта должно быть на простом вьетнамском языке, написано заглавными буквами, с минимум 5 символами и максимум 50 символами. Оно не должно содержать специальных символов"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Имя аккаунта должно быть на простом вьетнамском языке, написано заглавными буквами, с минимум 5 символами и максимум 50 символами. Оно не должно содержать специальных символов",
+    "homeP2p": "Домашний P2P",
+    "order": "Заказ",
+    "newAd": "Новое объявление",
+    "buyFrom": "Купить у",
+    "trade": "Торговля",
+    "goodRating": "Хороший рейтинг",
+    "completionTime": "Время завершения",
+    "accessBank": "Доступ к банку",
+    "tradeLimit": "Лимит торговли"
 }

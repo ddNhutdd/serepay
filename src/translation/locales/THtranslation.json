@@ -351,5 +351,14 @@
     "depositQR": "ฝาก QR",
     "eWalletAddress": "ที่อยู่กระเป๋าเงินอิเล็กทรอนิกส์",
     "bankAccountNumberAlreadyExists": "หมายเลขบัญชีธนาคารมีอยู่แล้ว",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ชื่อบัญชีต้องเป็นภาษาเวียดนามเท่านั้น เขียนด้วยอักษรตัวใหญ่ มีอย่างน้อย 5 ตัวอักษรและไม่เกิน 50 ตัวอักษร ห้ามใช้ตัวอักษรพิเศษใดๆ"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ชื่อบัญชีต้องเป็นภาษาเวียดนามเท่านั้น เขียนด้วยอักษรตัวใหญ่ มีอย่างน้อย 5 ตัวอักษรและไม่เกิน 50 ตัวอักษร ห้ามใช้ตัวอักษรพิเศษใดๆ",
+    "homeP2p": "บ้าน P2P",
+    "order": "คำสั่งซื้อ",
+    "newAd": "โฆษณาใหม่",
+    "buyFrom": "ซื้อจาก",
+    "trade": "การซื้อขาย",
+    "goodRating": "คะแนนที่ดี",
+    "completionTime": "เวลาที่สำเร็จ",
+    "accessBank": "เข้าถึงธนาคาร",
+    "tradeLimit": "ขีดจำกัดการซื้อขาย"
 }

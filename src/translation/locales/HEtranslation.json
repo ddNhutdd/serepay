@@ -353,5 +353,14 @@
     "depositQR": "הפקדת QR",
     "eWalletAddress": "כתובת אימות אלקטרונית",
     "bankAccountNumberAlreadyExists": "מספר החשבון הבנקאי כבר קיים",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "שם החשבון צריך להיות בווייטנאמית פשוטה, כתוב באותיות גדולות, בעלת לפחות 5 תווים ולכל היותר 50 תווים. לא יכול לכלול תווים מיוחדים"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "שם החשבון צריך להיות בווייטנאמית פשוטה, כתוב באותיות גדולות, בעלת לפחות 5 תווים ולכל היותר 50 תווים. לא יכול לכלול תווים מיוחדים",
+    "homeP2p": "בית P2P",
+    "order": "להזמין",
+    "newAd": "מודעה חדשה",
+    "buyFrom": "קנה מ",
+    "trade": "מסחר",
+    "goodRating": "דירוג טוב",
+    "completionTime": "זמן השלמה",
+    "accessBank": "גישה לבנק",
+    "tradeLimit": "מגבלת מסחר"
 }

@@ -353,5 +353,14 @@
     "depositQR": "Deposit QR",
     "eWalletAddress": "Alamat E-wallet",
     "bankAccountNumberAlreadyExists": "Nombor akaun bank sudah wujud",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Nama akaun hendaklah dalam bahasa Vietnam biasa, ditulis dalam huruf besar, dengan sekurang-kurangnya 5 aksara dan sekurang-kurangnya 50 aksara. Ia tidak boleh mengandungi sebarang aksara khas"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "Nama akaun hendaklah dalam bahasa Vietnam biasa, ditulis dalam huruf besar, dengan sekurang-kurangnya 5 aksara dan sekurang-kurangnya 50 aksara. Ia tidak boleh mengandungi sebarang aksara khas",
+    "homeP2p": "Rumah P2P",
+    "order": "Pesanan",
+    "newAd": "Iklan Baru",
+    "buyFrom": "Beli dari",
+    "trade": "Perdagangan",
+    "goodRating": "Penarafan Baik",
+    "completionTime": "Masa Penyelesaian",
+    "accessBank": "Akses Bank",
+    "tradeLimit": "Had Perdagangan"
 }

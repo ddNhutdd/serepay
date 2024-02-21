@@ -141,7 +141,7 @@ function Sidebar() {
     removeLocalStorage(localStorageVariable.lng);
     removeLocalStorage(localStorageVariable.coin);
     removeLocalStorage(localStorageVariable.adsItem);
-    removeLocalStorage(localStorageVariable.coinNameFromP2pExchange);
+    removeLocalStorage(localStorageVariable.coinNameToTransaction);
     removeLocalStorage(localStorageVariable.createAds);
     removeLocalStorage(localStorageVariable.coinFromWalletList);
     removeLocalStorage(localStorageVariable.amountFromWalletList);

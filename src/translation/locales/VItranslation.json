@@ -353,5 +353,14 @@
     "depositQR": "Nạp QR",
     "eWalletAddress": "Địa chỉ ví điện tử",
     "bankAccountNumberAlreadyExists": "Số tài khoản ngân hàng đã tồn tại",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf 5CharactersAndAMaximumOf50Characters": "Tên tài khoản phải là tiếng Việt thuần túy, viết hoa, có ít nhất 5 ký tự và tối đa 50 ký tự. Không được chứa bất kỳ ký tự đặc biệt nào."
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf 5CharactersAndAMaximumOf50Characters": "Tên tài khoản phải là tiếng Việt thuần túy, viết hoa, có ít nhất 5 ký tự và tối đa 50 ký tự. Không được chứa bất kỳ ký tự đặc biệt nào.",
+    "homeP2p": "Trang chủ P2P",
+    "order": "Đơn hàng",
+    "newAd": "Quảng cáo mới",
+    "buyFrom": "Mua từ",
+    "trade": "Giao dịch",
+    "goodRating": "Đánh giá tốt",
+    "completionTime": "Thời gian hoàn thành",
+    "accessBank": "Truy cập ngân hàng",
+    "tradeLimit": "Giới hạn giao dịch"
 }

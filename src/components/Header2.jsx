@@ -179,12 +179,12 @@ export default function Header2({ history }) {
     removeLocalStorage(localStorageVariable.lng);
     localStorage.removeItem(localStorageVariable.user);
     localStorage.removeItem(localStorageVariable.token);
-    removeLocalStorage(localStorageVariable.coinFromP2pExchange);
+    removeLocalStorage(localStorageVariable.coinToTransaction);
     removeLocalStorage(localStorageVariable.currency);
     removeLocalStorage(localStorageVariable.adsItem);
-    removeLocalStorage(localStorageVariable.coinNameFromP2pExchange);
+    removeLocalStorage(localStorageVariable.coinNameToTransaction);
     removeLocalStorage(localStorageVariable.createAds);
-    removeLocalStorage(localStorageVariable.moneyFromP2pExchange);
+    removeLocalStorage(localStorageVariable.moneyToTransaction);
     dispatch(currencySetCurrent(defaultCurrency));
     removeLocalStorage(localStorageVariable.coin);
     removeLocalStorage(localStorageVariable.coinFromWalletList);

@@ -353,5 +353,14 @@
     "depositQR": "ມີຊັ້ນ QR",
     "eWalletAddress": "ທີ່ຢູ່ E-wallet",
     "bankAccountNumberAlreadyExists": "ເລກບັດປະຊາຊົນທີ່ເປັນບັນຊີທີ່ມີຢູ່ແລ້ວ",
-    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ຊື່ບັນຊີຄວນເປັນພາສາຫວຽດ, ມັນຄຳສັ່ງເປັນຕົວອັກສອນເມື່ອບັນຊີມີສູງ 5 ຕົວອັກດ້ວຍສູງ 50 ຕົວອັກ. ມັນບໍ່ຄວນມີຕົວອັກສອນປອດໄພມີຄວນມີຕົວອັກສອນພຽງ"
+    "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters": "ຊື່ບັນຊີຄວນເປັນພາສາຫວຽດ, ມັນຄຳສັ່ງເປັນຕົວອັກສອນເມື່ອບັນຊີມີສູງ 5 ຕົວອັກດ້ວຍສູງ 50 ຕົວອັກ. ມັນບໍ່ຄວນມີຕົວອັກສອນປອດໄພມີຄວນມີຕົວອັກສອນພຽງ",
+    "homeP2p": "ຫນ້າຫລັກ P2P",
+    "order": "ສັ່ງ​ຊື້",
+    "newAd": "ສະ​ແດງ​ຂໍ້​ຄວາມ​ໃຫມ່",
+    "buyFrom": "ຊື້​ຈາກ",
+    "trade": "​ການ​ຄ​ິ​ບ",
+    "goodRating": "ການ​ຈັດ​ອັນ​ດັບ​ປະ​ສົບ​ປະ​ເພດ",
+    "completionTime": "ເວ​ລາ​ສົດ",
+    "accessBank": "​ການ​ເຂົ້າ​ໜ້າ​ທະ​ນາ​ທັງ​ຫມົດ",
+    "tradeLimit": "ຈໍ​ານວນ​ການ​ຄ​ິ​ບ"
 }

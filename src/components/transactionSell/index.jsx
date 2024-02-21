@@ -39,10 +39,10 @@ import { getListBank } from "src/redux/reducers/bankSlice";
 import { getExchangeRateSell } from "src/redux/reducers/exchangeRateSellSlice";
 
 function TransactionSell() {
-  const amount = getLocalStorage(localStorageVariable.coinFromP2pExchange || 0);
+  const amount = getLocalStorage(localStorageVariable.coinToTransaction || 0);
 
   const selectedCoin = getLocalStorage(
-    localStorageVariable.coinNameFromP2pExchange
+    localStorageVariable.coinNameToTransaction
   );
   const exchangeRedux = useSelector(getExchange);
   const currencyRedux = useSelector(getCurrent);

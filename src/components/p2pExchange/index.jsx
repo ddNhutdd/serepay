@@ -426,16 +426,16 @@ const P2pExchange = memo(function () {
     else return "--d-none";
   };
   const buyClickHandle = function () {
-    setLocalStorage(localStorageVariable.coinFromP2pExchange, amountCoin);
-    setLocalStorage(localStorageVariable.moneyFromP2pExchange, amountMoney);
-    setLocalStorage(localStorageVariable.coinNameFromP2pExchange, selectedCoin);
+    setLocalStorage(localStorageVariable.coinToTransaction, amountCoin);
+    setLocalStorage(localStorageVariable.moneyToTransaction, amountMoney);
+    setLocalStorage(localStorageVariable.coinNameToTransaction, selectedCoin);
     history.push(url.transaction_buy);
     return;
   };
   const sellClickHandle = function () {
-    setLocalStorage(localStorageVariable.coinFromP2pExchange, amountCoin);
-    setLocalStorage(localStorageVariable.moneyFromP2pExchange, amountMoney);
-    setLocalStorage(localStorageVariable.coinNameFromP2pExchange, selectedCoin);
+    setLocalStorage(localStorageVariable.coinToTransaction, amountCoin);
+    setLocalStorage(localStorageVariable.moneyToTransaction, amountMoney);
+    setLocalStorage(localStorageVariable.coinNameToTransaction, selectedCoin);
     history.push(url.transaction_sell);
     return;
   };

@@ -6,14 +6,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "src/translation/i18n";
 
 function Dropdown(props) {
-  const {
-    list,
-    dropdownCLickHandle = () => {},
-    itemClickHandle,
-    itemSelected,
-    id,
-    disabled,
-  } = props;
+  const { list, itemClickHandle, itemSelected, id } = props;
   const { t } = useTranslation();
 
   const [isOpenDropdown, setIsOpentDropdown] = useState(false);
@@ -85,8 +78,6 @@ function Dropdown(props) {
   };
   const dropdownInnerCLickHandle = function (ev) {
     ev.stopPropagation();
-    dropdownCLickHandle(ev);
-    if (disabled) return;
     setIsOpentDropdown((s) => !s);
   };
   const closeDropdown = function () {
