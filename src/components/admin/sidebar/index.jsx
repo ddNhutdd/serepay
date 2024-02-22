@@ -44,9 +44,6 @@ function Sidebar() {
   const selectItem = function (page) {
     clearSelectedItem();
     switch (page) {
-      case "kyc":
-        addClassToElementById("kyc", "active");
-        break;
       case "exchange-rate-disparity":
         addClassToElementById("exchangeRateDisparity", "active");
         break;
@@ -77,12 +74,6 @@ function Sidebar() {
       default:
         break;
     }
-  };
-  const redirectkyc = function (e) {
-    clearSelectedItem();
-    const element = e.target.closest("#kyc");
-    element.classList.add("active");
-    history.push(url.admin_kyc);
   };
   const redirectWidthdraw = function (e) {
     clearSelectedItem();
@@ -159,12 +150,6 @@ function Sidebar() {
             <i className="fa-solid fa-house"></i>
           </span>
           <span className="admin-sidebar__item">Dashboard</span>
-        </li>
-        <li onClick={redirectkyc} id="kyc">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-user-shield"></i>
-          </span>
-          <span className="admin-sidebar__item">KYC users</span>
         </li>
         <li onClick={redirectUser} id="user">
           <span className="admin-sidebar__icon">

@@ -36,7 +36,6 @@ import {
 import { userWalletFetchCount } from "./redux/constant/coin.constant";
 import { coinUserWallet } from "./redux/actions/coin.action";
 import { roundDecimalValues } from "./util/common";
-import KYC from "./components/admin/kycUsers";
 import {
   getExchangeRateDisparityFetchCount,
   setExchangeRateDisparity,
@@ -304,7 +303,6 @@ function App() {
           <AdminTemplate path={url.admin_configData} component={ConfigData} />
           <AdminTemplate path={url.admin_widthdraw} component={Widthdraw} />
           <AdminTemplate path={url.admin_exchange} component={Exchange} />
-          <AdminTemplate path="/admin/kyc" component={KYC} />
           <AdminTemplate path={url.admin_user} component={User} />
           <AdminTemplate
             path={url.admin_exchangeRateDisparity}

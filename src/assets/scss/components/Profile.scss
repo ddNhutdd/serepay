@@ -35,82 +35,6 @@
                 }
             }
 
-            .profile__account-content {
-                list-style: none;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-
-                li {
-                    display: flex;
-                    gap: 10px;
-                    align-items: flex-start;
-
-                    img {
-                        display: block;
-                        margin-top: 4px;
-                    }
-
-                    p {
-                        margin: 0;
-                    }
-                }
-            }
-
-            .profile__form {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-
-                @media screen and (max-width: 768px) {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-
-                @media screen and (max-width: 576px) {
-                    grid-template-columns: repeat(1, 1fr);
-                }
-            }
-
-            .profile__verified {
-                padding: 15px;
-                background-color: $new-background-level-2;
-                border-radius: 5px;
-                color: $green;
-                font-size: 20px;
-                display: flex;
-                gap: 10px;
-                align-items: center;
-            }
-
-            .profile__verifing {
-                padding: 15px;
-                background-color: $new-background-level-2;
-                border-radius: 5px;
-                color: $blue-1;
-                font-size: 20px;
-                display: flex;
-                gap: 10px;
-                align-items: center;
-            }
-
-            .profile__fileInput {
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                color: $new-text-color-white;
-
-                .profile__fileInput__error {
-                    font-weight: 600;
-                    color: $red-1;
-                }
-
-                button {
-                    @extend .buttonContainer--outline;
-                    margin-right: 10px;
-                }
-            }
-
             .profile__security-item {
                 display: flex;
 
@@ -155,12 +79,6 @@
                         margin-bottom: 0;
                     }
                 }
-            }
-
-            .profile__formSumit {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
             }
 
             .profile__payment-content {
@@ -232,25 +150,6 @@
         }
     }
 
-    // phần dùng chung
-    .profile__input {
-        width: 100%;
-
-        label {
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        input {
-            height: 35.56px;
-        }
-
-        .input__error {
-            color: $red-1;
-            height: 22px;
-        }
-    }
-
     .profile__button {
         @include userMainButton;
     }
@@ -318,20 +217,6 @@
 
         &.ghost {
             @include userSecondButton;
-        }
-    }
-
-    .profile__input {
-        width: 100%;
-
-        label {
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        input {
-            height: 35.56px;
-            text-align: center;
         }
     }
 }

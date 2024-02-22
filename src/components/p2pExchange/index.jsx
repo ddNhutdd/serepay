@@ -382,7 +382,7 @@ const P2pExchange = memo(function () {
       );
     } else {
       const rateDisparitySellFraction = math.fraction(
-        getExchangeRateBuyDisparityFromRedux
+        getExchangeRateSellDisparityFromRedux
       );
       newPriceFraction = math.subtract(
         priceFraction,
