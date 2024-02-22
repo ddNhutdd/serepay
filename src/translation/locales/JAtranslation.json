@@ -362,5 +362,7 @@
     "goodRating": "良い評価",
     "completionTime": "完了時間",
     "accessBank": "銀行へのアクセス",
-    "tradeLimit": "取引制限"
+    "tradeLimit": "取引制限",
+    "contact": "コンタクト",
+    "info": "情報"
 }

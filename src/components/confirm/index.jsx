@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import i18n from "src/translation/i18n";
 import {
+  actionTrading,
   api_status,
   defaultLanguage,
   localStorageVariable,
@@ -8,18 +9,16 @@ import {
 } from "src/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import {
-  exchangeRateDisparity,
-  getInfoP2p,
-  getProfile,
-} from "src/util/userCallApi";
+import { getInfoP2p, getProfile } from "src/util/userCallApi";
 import ConfirmItem from "./confirmItem";
 import { Spin } from "antd";
-import { getElementById, getLocalStorage, hideElement } from "src/util/common";
+import { getLocalStorage } from "src/util/common";
 import { callToastError } from "src/function/toast/callToast";
 import { useTranslation } from "react-i18next";
 import socket from "src/util/socket";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
+import { getExchange } from "src/redux/constant/currency.constant";
+import { math } from "src/App";
 
 function Confirm() {
   const { id: idAds } = useParams();
@@ -27,9 +26,13 @@ function Confirm() {
   const history = useHistory();
   const { t } = useTranslation();
 
+  const exchange = useSelector(getExchange);
+
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [render, setRender] = useState(1);
+
+  const userId = useRef();
 
   useEffect(() => {
     loadData();
@@ -47,6 +50,11 @@ function Confirm() {
       dispatch(userWalletFetchCount());
     };
   }, []);
+  useEffect(() => {
+    if (userId.current && data && data.length > 0 && exchange) {
+      setCallApiStatus(() => api_status.fulfilled);
+    }
+  }, [userId.current, data]);
 
   const fetchApiGetInfoP2p = function () {
     return new Promise((resolve, rejected) => {
@@ -73,60 +81,98 @@ function Confirm() {
         });
     });
   };
-  const fetchApiGetFee = function () {
-    return new Promise((resolve, reject) => {
-      exchangeRateDisparity({
-        name: "feeP2p",
-      })
-        .then((resp) => resolve(resp.data.data))
-        .catch(() => {
-          reject(false);
-        });
+  const calcFee = function (item) {
+    const { side, userId: uid, amount, rate, pay } = item;
+    const rateUSD_VND = exchange.find((ec) => ec.title === "VND")?.rate;
+
+    const rateUSD_VNDFraction = math.fraction(rateUSD_VND);
+    const amountFraction = math.fraction(amount);
+    const rateFraciton = math.fraction(rate);
+    const payFraction = math.fraction(pay);
+
+    const moneyEs = math
+      .chain(amountFraction)
+      .multiply(rateFraciton)
+      .multiply(rateUSD_VNDFraction)
+      .done();
+
+    let result;
+
+    if (
+      (side === actionTrading.buy && uid === userId.current) ||
+      (side === actionTrading.sell && uid !== userId.current)
+    ) {
+      // buy
+      result = math.subtract(payFraction, moneyEs);
+    } else if (
+      (side === actionTrading.buy && uid !== userId.current) ||
+      (side === actionTrading.sell && uid === userId.current)
+    ) {
+      // sell
+      result = math.subtract(moneyEs, payFraction);
+    }
+
+    return Math.abs(math.number(result));
+  };
+  const renderHtml = function () {
+    if (!data || data.lenght <= 0) return;
+    return data.map((item) => {
+      const fee = calcFee(item);
+      return (
+        <ConfirmItem
+          key={item.id}
+          index={item.id}
+          content={item}
+          profileId={userId.current}
+          render={setRender}
+          fee={fee}
+        />
+      );
     });
   };
-  /**
-   * fetch data and render html
-   */
   const loadData = async function () {
     if (callApiStatus === api_status.fetching) return;
     else setCallApiStatus(() => api_status.fetching);
-    const profile = await fetchApiGetProfile();
-    if (!profile) {
-      callToastError(t("can'tFindUserInformation"));
-      history.push(url.login);
-      return;
-    }
-    const { id: profileId } = profile;
+
     const promiseFetchInfo = fetchApiGetInfoP2p();
-    const promistFetchFee = fetchApiGetFee();
-    Promise.all([promistFetchFee, promiseFetchInfo])
+    const promiseFetchProfile = fetchApiGetProfile();
+
+    Promise.all([promiseFetchInfo, promiseFetchProfile])
       .then((resp) => {
-        const fee = resp.at(0).at(0);
         //
-        const info = resp?.at(1);
+        const info = resp?.at(0);
         if (!info) return;
-        const result = info.map((item, index) => (
-          <ConfirmItem
-            key={index}
-            index={index}
-            content={item}
-            profileId={profileId}
-            render={setRender}
-            fee={fee}
-          />
-        ));
-        setData(() => result);
-        setCallApiStatus(() => api_status.fulfilled);
+        //
+        const profile = resp?.at(1);
+        const { id } = profile;
+        userId.current = id;
+        if (!profile) {
+          callToastError(t("can'tFindUserInformation"));
+          history.push(url.login);
+          return;
+        }
+        //
+        setData(() => info);
       })
       .catch((err) => {
         setCallApiStatus(() => api_status.rejected);
         history.push(url.p2p_management);
         return;
-      })
-      .finally(() => {
-        hideElement(getElementById("confirm__spinner"));
       });
   };
+  const renderClassSpin = function () {
+    return callApiStatus === api_status.fetching ||
+      callApiStatus === api_status.pending
+      ? ""
+      : "--d-none";
+  };
+  const renderClassShowContent = function () {
+    return callApiStatus !== api_status.fetching ||
+      callApiStatus !== api_status.pending
+      ? ""
+      : "--d-none";
+  };
+
   const classStyle = {
     paddingTop: "120px",
     paddingBottom: "30px",
@@ -137,18 +183,11 @@ function Confirm() {
 
   return (
     <>
-      <div
-        id="confirm__spinner"
-        className={`spin-container `}
-        style={classStyle}
-      >
+      <div className={`spin-container ${renderClassSpin()}`} style={classStyle}>
         <Spin />
       </div>
-      <div
-        className={`${callApiStatus === api_status.fetching ? "--d-none" : ""}`}
-        style={classStyle}
-      >
-        {data}
+      <div className={`${renderClassShowContent()}`} style={classStyle}>
+        {renderHtml()}
       </div>
     </>
   );

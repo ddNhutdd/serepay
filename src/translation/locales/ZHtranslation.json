@@ -362,5 +362,7 @@
     "goodRating": "好评",
     "completionTime": "完成时间",
     "accessBank": "银行访问",
-    "tradeLimit": "贸易限额"
+    "tradeLimit": "贸易限额",
+    "contact": "联系方式",
+    "info": "信息"
 }

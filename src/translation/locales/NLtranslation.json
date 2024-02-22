@@ -362,5 +362,7 @@
     "goodRating": "Goede beoordeling",
     "completionTime": "Voltooiingstijd",
     "accessBank": "Toegang tot bank",
-    "tradeLimit": "Handelslimiet"
+    "tradeLimit": "Handelslimiet",
+    "contact": "Contact",
+    "info": "Info"
 }

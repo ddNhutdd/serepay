@@ -1,7 +1,7 @@
 import { Descriptions, Modal, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import i18n from "src/translation/i18n";
 import { useHistory } from "react-router-dom";
 import {
@@ -15,7 +15,6 @@ import {
 import {
   calculateTime,
   calculateTimeDifference,
-  copyToClipboard,
   formatCurrency,
   getElementById,
   getLocalStorage,
@@ -36,6 +35,7 @@ import { math } from "src/App";
 import QRCode from "react-qr-code";
 import { getListBank } from "src/redux/reducers/bankSlice";
 import { Button, buttonClassesType } from "src/components/Common/Button";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function ConfirmItem(props) {
   const { index, content, profileId, render, fee } = props;
@@ -58,6 +58,7 @@ function ConfirmItem(props) {
   const [amount, setAmount] = useState();
   const [header, setHeader] = useState();
   const [symbol, setSymbol] = useState();
+  const [contact, setContact] = useState();
   const [code, setCode] = useState();
   const [rate, setRate] = useState();
   const [userCurrentAction, setUserCurrentAction] = useState(); //The current user's action is different from the ad's side
@@ -88,21 +89,8 @@ function ConfirmItem(props) {
     const intervalId = timer();
     if (counter === `00 : 00`) clearInterval(intervalId);
 
-    const amountMoneyCopyCl = copyToClipboard("amountMoneyCopy", () => {
-      callToastSuccess(t("copySuccess"));
-    });
-    const codeCopyCl = copyToClipboard("codeCopy", () => {
-      callToastSuccess(t("copySuccess"));
-    });
-    const numberBankCopyCl = copyToClipboard("numberBankCopy", () => {
-      callToastSuccess(t("copySuccess"));
-    });
-
     return () => {
       clearInterval(intervalId);
-      amountMoneyCopyCl.destroy();
-      codeCopyCl.destroy();
-      numberBankCopyCl.destroy();
     };
   }, []);
   useEffect(() => {
@@ -298,6 +286,7 @@ function ConfirmItem(props) {
       typeUser,
       userid: userId,
       id: idC,
+      contact: contactC,
     } = content;
     idCommand.current = idC;
     setHeader(() => `${t("trading")} ${symbol}`);
@@ -314,6 +303,7 @@ function ConfirmItem(props) {
     setSymbol(symbol);
     setCode(code);
     setRate(rate);
+    setContact(contactC);
     if (
       (side === actionType.buy && userId === profileId) ||
       (side === actionType.sell && userId !== profileId)
@@ -503,6 +493,12 @@ function ConfirmItem(props) {
       ? ""
       : "--d-none";
   };
+  const renderShowQRByAction = function () {
+    return userCurrentAction === actionType.buy ? "" : "--d-none";
+  };
+  const onCopyHandle = function () {
+    callToastSuccess(t(commontString.success.toLowerCase()));
+  };
 
   return (
     <div className="confirm">
@@ -525,6 +521,10 @@ function ConfirmItem(props) {
                 <div>
                   {t("email")}:{" "}
                   <span className="confirm--green">{renderTraderEmail()}</span>
+                </div>
+                <div>
+                  {t("contact")}:{" "}
+                  <span className="confirm--green">{contact}</span>
                 </div>
               </td>
             </tr>
@@ -557,30 +557,32 @@ function ConfirmItem(props) {
                     )}
                   </span>
                 </div>
-                <div
-                  className={`d-flex alignItem-c justify-c ${renderClassShowQr()}`}
-                >
-                  <span
-                    style={{
-                      padding: 5,
-                      maxWidth: "50%",
-                      backgroundColor: "white",
-                    }}
+                <div className={`${renderShowQRByAction()}`}>
+                  <div
+                    className={`d-flex alignItem-c justify-c ${renderClassShowQr()}`}
                   >
-                    <QRCode
+                    <span
                       style={{
-                        height: "auto",
-                        maxWidth: "100%",
-                        width: "100%",
+                        padding: 5,
+                        maxWidth: "50%",
+                        backgroundColor: "white",
                       }}
-                      value={qrcode ?? ""}
-                    />
-                  </span>
-                </div>
-                <div
-                  className={`d-flex alignItem-c justify-c ${renderClassShowSpinQR()}`}
-                >
-                  <Spin />
+                    >
+                      <QRCode
+                        style={{
+                          height: "auto",
+                          maxWidth: "100%",
+                          width: "100%",
+                        }}
+                        value={qrcode ?? ""}
+                      />
+                    </span>
+                  </div>
+                  <div
+                    className={`d-flex alignItem-c justify-c ${renderClassShowSpinQR()}`}
+                  >
+                    <Spin />
+                  </div>
                 </div>
               </td>
             </tr>
@@ -614,7 +616,7 @@ function ConfirmItem(props) {
                   <span>
                     {t("transactionFee").replace(
                       "48,000",
-                      formatCurrency(i18n.language, "VND", fee.value, false)
+                      formatCurrency(i18n.language, "VND", fee, false)
                     )}
                   </span>
                 </div>
@@ -682,40 +684,32 @@ function ConfirmItem(props) {
               <div className="green-text">
                 {formatCurrency(i18n.language, "VND", pay, true)}
               </div>
-              <div className="icon-copy">
-                <i
-                  id="amountMoneyCopy"
-                  className="fa-solid fa-copy"
-                  data-clipboard-text={formatCurrency(
-                    i18n.language,
-                    "VND",
-                    pay,
-                    false
-                  )}
-                ></i>
-              </div>
+              <CopyToClipboard
+                text={formatCurrency(i18n.language, "VND", pay, false)}
+                onCopy={onCopyHandle}
+              >
+                <div className="icon-copy">
+                  <i className="fa-solid fa-copy"></i>
+                </div>
+              </CopyToClipboard>
             </Descriptions.Item>
             <Descriptions.Item label={t("content")}>
               <div className="green-text">{code}</div>
-              <div className="icon-copy">
-                <i
-                  id="codeCopy"
-                  data-clipboard-text={code}
-                  className="fa-solid fa-copy"
-                ></i>
-              </div>
+              <CopyToClipboard text={code} onCopy={onCopyHandle}>
+                <div className="icon-copy">
+                  <i className="fa-solid fa-copy"></i>
+                </div>
+              </CopyToClipboard>
             </Descriptions.Item>
             <Descriptions.Item label={t("accountNumber")}>
               <div>
                 <div>{renderBankInfo()}</div>
               </div>
-              <div className="icon-copy">
-                <i
-                  id="numberBankCopy"
-                  data-clipboard-text={numberBank}
-                  className="fa-solid fa-copy"
-                ></i>
-              </div>
+              <CopyToClipboard text={numberBank} onCopy={onCopyHandle}>
+                <div className="icon-copy">
+                  <i className="fa-solid fa-copy"></i>
+                </div>
+              </CopyToClipboard>
             </Descriptions.Item>
           </Descriptions>
         </div>

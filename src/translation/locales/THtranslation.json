@@ -360,5 +360,7 @@
     "goodRating": "คะแนนที่ดี",
     "completionTime": "เวลาที่สำเร็จ",
     "accessBank": "เข้าถึงธนาคาร",
-    "tradeLimit": "ขีดจำกัดการซื้อขาย"
+    "tradeLimit": "ขีดจำกัดการซื้อขาย",
+    "contact": "ติดต่อ",
+    "info": "ข้อมูล"
 }

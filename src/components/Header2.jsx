@@ -22,6 +22,7 @@ import {
   getTotalAssetsRealTime,
 } from "src/redux/constant/listCoinRealTime.constant";
 import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
+import { userWalletFetchCount } from "src/redux/actions/coin.action";
 
 export default function Header2({ history }) {
   const { isLogin, username, isAdmin } = useSelector(
@@ -76,6 +77,10 @@ export default function Header2({ history }) {
     e.currentTarget.classList.add("active");
     history.push(urlLocal);
     setIsShowMenu(() => false);
+
+    if (urlLocal === url.wallet) {
+      dispatch(userWalletFetchCount());
+    }
     return;
   };
   const languageItemClickHandle = function (e) {

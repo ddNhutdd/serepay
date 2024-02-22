@@ -362,5 +362,7 @@
     "goodRating": "Good rating",
     "completionTime": "Completion time",
     "accessBank": "Access Bank",
-    "tradeLimit": "Trade limit"
+    "tradeLimit": "Trade limit",
+    "contact": "Contact",
+    "info": "Info"
 }

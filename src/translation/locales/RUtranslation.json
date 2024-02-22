@@ -362,5 +362,7 @@
     "goodRating": "Хороший рейтинг",
     "completionTime": "Время завершения",
     "accessBank": "Доступ к банку",
-    "tradeLimit": "Лимит торговли"
+    "tradeLimit": "Лимит торговли",
+    "contact": "Контакт",
+    "info": "Информация"
 }

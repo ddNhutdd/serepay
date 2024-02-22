@@ -10,6 +10,7 @@ import {
   observeWidth,
   processString,
   roundIntl,
+  setLocalStorage,
 } from "src/util/common";
 import {
   api_status,
@@ -508,6 +509,8 @@ function TransactionSell() {
               callToastError(
                 t("youHaveATransactionOrderThatHasNotYetBeenProcessed")
               );
+              history.push(url.p2p_management);
+              setLocalStorage(localStorageVariable.p2pManagementPending, true);
               break;
             default:
               break;

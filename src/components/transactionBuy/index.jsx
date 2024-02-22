@@ -513,6 +513,8 @@ function TransactionBuy() {
               callToastError(
                 t("youHaveATransactionOrderThatHasNotYetBeenProcessed")
               );
+              history.push(url.p2p_management);
+              setLocalStorage(localStorageVariable.p2pManagementPending, true);
               break;
             default:
               break;

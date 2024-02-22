@@ -1,4 +1,3 @@
-import ClipboardJS from "clipboard";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
 
 export const setLocalStorage = (key, data) => {
@@ -497,21 +496,4 @@ export const addAnimation = function (listId, listAnimation) {
     listObserse.push(temp);
   }
   return listObserse;
-};
-export const copyToClipboard = function (
-  idElement,
-  onSuccess = () => {},
-  onError = () => {}
-) {
-  var clipboard = new ClipboardJS("#" + idElement);
-  clipboard.on("success", function (ev) {
-    onSuccess(ev);
-    ev.clearSelection();
-  });
-  clipboard.on("error", function (ev) {
-    callToastError(t(commontString.error));
-    onError(ev);
-  });
-
-  return clipboard;
 };

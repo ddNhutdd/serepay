@@ -362,5 +362,7 @@
     "goodRating": "Buena calificación",
     "completionTime": "Tiempo de finalización",
     "accessBank": "Acceso al banco",
-    "tradeLimit": "Límite de comercio"
+    "tradeLimit": "Límite de comercio",
+    "contact": "Contacto",
+    "info": "Información"
 }

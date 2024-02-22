@@ -66,11 +66,14 @@ export default function CreateBuy() {
     mini: "mini",
     fullname: "fullname",
     accountNumber: "accountNumber",
+    info: "info",
   });
   const controlsTourched = useRef({});
   const [controlsErrors, setControlsErrors] = useState({});
   const callApiStatus = useRef(api_status.pending);
   const isMobileViewport = window.innerWidth < 600;
+
+  const inputContactInfoElement = useRef();
 
   useEffect(() => {
     data.current = listCoinRealTime ?? [];
@@ -206,7 +209,8 @@ export default function CreateBuy() {
       !amountElement ||
       !miniElement ||
       !fullnameElement ||
-      !accountNumberElement
+      !accountNumberElement ||
+      !inputContactInfoElement
     )
       return false;
     if (controlsTourched.current[controls.current.amount]) {
@@ -270,6 +274,23 @@ export default function CreateBuy() {
         setControlsErrors((state) => {
           const newState = { ...state };
           delete newState[controls.current.mini];
+          return newState;
+        });
+      }
+    }
+    if (controlsTourched.current[controls.current.info]) {
+      if (!inputContactInfoElement.current.value) {
+        valid &= false;
+        setControlsErrors((state) => {
+          return {
+            ...state,
+            [controls.current.info]: "require",
+          };
+        });
+      } else {
+        setControlsErrors((state) => {
+          const newState = { ...state };
+          delete newState[controls.current.info];
           return newState;
         });
       }
@@ -400,6 +421,7 @@ export default function CreateBuy() {
     sendData.amountMinimum = Number(mini);
     sendData.symbol = currentCoin;
     sendData.side = action;
+    sendData.contact = inputContactInfoElement.current.value;
     if (action === actionType.sell) {
       sendData.bankName = selectedBank.content;
       sendData.ownerAccount = fullname;
@@ -522,6 +544,20 @@ export default function CreateBuy() {
                   key={"a2va"}
                   id="minimumAmoutInput"
                   errorMes={t(controlsErrors[controls.current.mini])}
+                />
+              </div>
+            </div>
+            <div className="amount-area">
+              <h2>{t("contact")}</h2>
+              <div className="field">
+                <label>{t("info")}:</label>
+                <Input
+                  onChange={controlOnChangeHandle.bind(null, false)}
+                  onFocus={controlOnfocusHandle}
+                  ref={inputContactInfoElement}
+                  type={inputType.text}
+                  name={controls.current.info}
+                  errorMes={t(controlsErrors[controls.current.info])}
                 />
               </div>
             </div>

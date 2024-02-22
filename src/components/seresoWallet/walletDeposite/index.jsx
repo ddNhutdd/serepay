@@ -9,7 +9,6 @@ import {
   addClassToElementById,
   getLocalStorage,
   formatNumber,
-  copyToClipboard,
 } from "src/util/common";
 import { createWalletBEP20, getDepositHistory } from "src/util/userCallApi";
 import {
@@ -24,7 +23,7 @@ import { callToastSuccess } from "src/function/toast/callToast";
 import i18n from "src/translation/i18n";
 import { EmptyCustom } from "src/components/Common/Empty";
 import WalletTop, { titleWalletTop } from "../WalletTop";
-import ClipboardJS from "clipboard";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function SerepayWalletDeposit() {
   const fetchApiCreateWallet = function () {
@@ -146,6 +145,9 @@ function SerepayWalletDeposit() {
   const renderClassAddress = function () {
     return callApiCreateWalletStatus === api_status.fetching ? "--d-none" : "";
   };
+  const onCopyHandle = function () {
+    callToastSuccess(t(commontString.success.toLowerCase()));
+  };
 
   const { t } = useTranslation();
   const isLogin = useSelector((root) => root.loginReducer.isLogin);
@@ -184,13 +186,6 @@ function SerepayWalletDeposit() {
         return;
       }
     });
-
-    const addressCopy = copyToClipboard("copyAddressButton", () => {
-      callToastSuccess(t("copySuccess"));
-    });
-    return () => {
-      addressCopy.destroy();
-    };
   }, []);
 
   return (
@@ -262,13 +257,11 @@ function SerepayWalletDeposit() {
                           {address}
                         </div>
                       </div>
-                      <span
-                        id={`copyAddressButton`}
-                        className="address-copy fadeInBottomToTop"
-                        data-clipboard-text={address}
-                      >
-                        <i className="fa-regular fa-copy"></i>
-                      </span>
+                      <CopyToClipboard text={address} onCopy={onCopyHandle}>
+                        <span className="address-copy fadeInBottomToTop">
+                          <i className="fa-regular fa-copy"></i>
+                        </span>
+                      </CopyToClipboard>
                     </div>
                   </div>
                 </div>

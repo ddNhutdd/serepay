@@ -362,5 +362,7 @@
     "goodRating": "좋은 평가",
     "completionTime": "완료 시간",
     "accessBank": "은행 접근",
-    "tradeLimit": "거래 한도"
+    "tradeLimit": "거래 한도",
+    "contact": "연락처",
+    "info": "정보"
 }

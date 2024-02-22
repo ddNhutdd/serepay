@@ -12,6 +12,7 @@ import {
   formatCurrency,
   formatNumber,
   getLocalStorage,
+  removeLocalStorage,
 } from "src/util/common";
 import i18n from "src/translation/i18n";
 import socket from "src/util/socket";
@@ -33,7 +34,6 @@ import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 
 function P2pManagement() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const advertisingStatusType = {
     all: "all",
     buy: "buy",
@@ -85,7 +85,13 @@ function P2pManagement() {
   }, []);
   useEffect(() => {
     if (exchangeFetchApiStatus === api_status.fulfilled) {
-      loadData(currentPage);
+      if (getLocalStorage(localStorageVariable.p2pManagementPending)) {
+        setAdvertisingStatus(advertisingStatusType.pending);
+        removeLocalStorage(localStorageVariable.p2pManagementPending);
+        loadData(currentPage, advertisingStatusType.pending);
+      } else {
+        loadData(currentPage, advertisingStatus);
+      }
     }
   }, [notifyRedux, exchangeFetchApiStatus, currency]);
   useEffect(() => {
@@ -234,7 +240,7 @@ function P2pManagement() {
   };
   const pagingChangeHandle = function (page) {
     if (callApiLoadP2pStatus === api_status.fetching) return;
-    loadData(page);
+    loadData(page, advertisingStatus);
   };
   const fetchApiGetAllP2p = function (page) {
     return new Promise((resolve) => {
@@ -343,7 +349,7 @@ function P2pManagement() {
       </tr>
     ));
   };
-  const loadData = function (page) {
+  const loadData = function (page, advertisingStatus) {
     switch (advertisingStatus) {
       case advertisingStatusType.all:
         fetchApiGetAllP2p(page);

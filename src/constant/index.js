@@ -16,6 +16,7 @@ export const localStorageVariable = {
   coinFromWalletList: "cnwl",
   amountFromWalletList: "amcnwl",
   thisIsAdmin: "adta",
+  p2pManagementPending: "p2pp",
 };
 
 export const url = {
