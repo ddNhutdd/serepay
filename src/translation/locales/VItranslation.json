@@ -243,7 +243,7 @@
     "notReceivedPayment": "Chưa nhận được tiền",
     "cancelOrder": "Huỷ lệnh",
     "waitingTransfer": "Đang chờ đối phương chuyển tiền",
-    "waitingConfirm": "Đang chờ đối phương xác nhận",
+    "waitingConfirm": "Đang chờ xác nhận",
     "cancelSuccess": "Success",
     "confirmSuccess": "Cancel Success",
     "youAreSellingBitcoinThroughSerepay": "Bạn đang bán 0.abc00012346787889456 BTC thông qua Serepay.",

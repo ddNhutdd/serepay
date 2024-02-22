@@ -146,10 +146,10 @@ function P2p() {
     if (search) {
       switch (action) {
         case actionTrading.buy:
-          fetchSearchSellQuick(page, symbol, amountCoinSearch.current);
+          fetchSearchBuyQuick(page, symbol, amountCoinSearch.current);
           break;
         case actionTrading.sell:
-          fetchSearchBuyQuick(page, symbol, amountCoinSearch.current);
+          fetchSearchSellQuick(page, symbol, amountCoinSearch.current);
           break;
         default:
           break;
@@ -260,7 +260,10 @@ function P2p() {
         : "--d-none";
     };
     const buyCLickHandle = function (minimum) {
-      setLocalStorage(localStorageVariable.coinToTransaction, minimum);
+      setLocalStorage(
+        localStorageVariable.coinToTransaction,
+        amountCoinSearch.current || minimum
+      );
       setLocalStorage(localStorageVariable.moneyToTransaction, null);
       setLocalStorage(
         localStorageVariable.coinNameToTransaction,
@@ -270,7 +273,10 @@ function P2p() {
       return;
     };
     const sellCLickHandle = function (minimum) {
-      setLocalStorage(localStorageVariable.coinToTransaction, minimum);
+      setLocalStorage(
+        localStorageVariable.coinToTransaction,
+        amountCoinSearch.current || minimum
+      );
       setLocalStorage(localStorageVariable.moneyToTransaction, null);
       setLocalStorage(
         localStorageVariable.coinNameToTransaction,
@@ -387,7 +393,7 @@ function P2p() {
     if (searchAction === searchType.coin) {
       amountCoinSearch.current = res.replaceAll(",", "");
     } else {
-      amountCoinSearch.current = calcCoin(res);
+      amountCoinSearch.current = calcCoin(res.replaceAll(",", ""));
     }
 
     loadMainDataDebounced(
@@ -401,8 +407,42 @@ function P2p() {
     if (!money) return;
 
     const rate = exchange.find((item) => item.title === currency)?.rate;
-    const price = listCoinRealTime.find(item.name === selectedCoin)?.price;
-    const price1Coin = 0;
+    const price = listCoinRealTime.find(
+      (item) => item.name === selectedCoin
+    )?.price;
+    let price1Coin = 0;
+
+    const exchangeBuyFraction = math.fraction(exchangeBuy);
+    const exchangeSellFraction = math.fraction(exchangeSell);
+    const priceFraction = math.fraction(price);
+    if (filterAction === actionTrading.buy) {
+      price1Coin = math.sum(
+        priceFraction,
+        math
+          .chain(priceFraction)
+          .multiply(exchangeBuyFraction)
+          .divide(100)
+          .done()
+      );
+    } else {
+      price1Coin = math.subtract(
+        priceFraction,
+        math
+          .chain(priceFraction)
+          .multiply(exchangeSellFraction)
+          .divide(100)
+          .done()
+      );
+    }
+
+    const moneyFraction = math.fraction(money);
+    const rateFraction = math.fraction(rate);
+    const result = math
+      .chain(moneyFraction)
+      .divide(rateFraction)
+      .divide(price1Coin)
+      .done();
+    return math.number(result);
   };
   const formatInputSearch = function (inputValue) {
     const inputValueWithoutComma = inputValue.replace(/,/g, "");

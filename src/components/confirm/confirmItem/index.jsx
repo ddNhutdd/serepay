@@ -2,13 +2,12 @@ import { Descriptions, Modal, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import React, { useEffect, useRef, useState } from "react";
-import i18n, { availableLanguage } from "src/translation/i18n";
+import i18n from "src/translation/i18n";
 import { useHistory } from "react-router-dom";
 import {
   apiResponseErrorMessage,
   api_status,
   commontString,
-  currencyMapper,
   defaultLanguage,
   localStorageVariable,
   url,
@@ -482,6 +481,7 @@ function ConfirmItem(props) {
         content.numberBank,
         content.ownerAccount,
         findBankBin(content.bankName),
+        code,
         content.pay.toFixed(0)
       );
       setQrcode(response.data.qrCode);

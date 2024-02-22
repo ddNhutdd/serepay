@@ -230,6 +230,7 @@ export const getQrBankPayment = async function (
   accountNo,
   accountName,
   acqId,
+  addInfo,
   amount
 ) {
   try {
@@ -240,7 +241,7 @@ export const getQrBankPayment = async function (
       accountNo,
       accountName,
       acqId,
-      addInfo: "Serepay QR",
+      addInfo,
       amount,
       template: "compact",
     };
