@@ -25,6 +25,7 @@ import {
   observeWidth,
   processString,
   roundIntl,
+  setLocalStorage,
 } from "src/util/common";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";

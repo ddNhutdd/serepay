@@ -78,6 +78,7 @@ function P2pManagement() {
     });
 
     document.addEventListener("click", closeDropdown);
+    fetchApiGetListAllCoin();
 
     return () => {
       document.removeEventListener("click", closeDropdown);

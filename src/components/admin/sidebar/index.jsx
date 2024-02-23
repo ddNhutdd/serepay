@@ -143,7 +143,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="admin-sidebar">
+    <div className="admin-sidebar show">
       <ul id="listItem">
         <li className="--d-none active">
           <span className="admin-sidebar__icon">

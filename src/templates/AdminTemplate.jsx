@@ -13,7 +13,7 @@ export default function AdminTemplate(props) {
             <Header {...propsRoute} />
             <div className="adminTemplate__content">
               <Sidebar />
-              <div className="adminTemplate__content-main">
+              <div className="adminTemplate__content-main small">
                 <props.component {...propsRoute} />
               </div>
             </div>

@@ -78,8 +78,8 @@ const P2pExchange = memo(function () {
     return new Promise((resolve) => {
       socket.once("listCoin", (resp) => {
         setListCoin(resp);
-        setCallApiFetchListCoinStatus(() => api_status.fulfilled);
         resolve(true);
+        setCallApiFetchListCoinStatus(api_status.fulfilled);
       });
     });
   };
@@ -308,6 +308,7 @@ const P2pExchange = memo(function () {
       !getExchangeRateSellDisparityFromRedux
     )
       return;
+
     const rate = listExchange.find((item) => item.title === currency)?.rate;
     const price = listCoin.find((item) => item.name === coinName).price;
 
@@ -355,6 +356,8 @@ const P2pExchange = memo(function () {
     listExchange,
     listCoin
   ) {
+    console.log(amountCoin, currency, coinName, listExchange, listCoin);
+
     if (
       !getExchangeRateBuyDisparityFromRedux ||
       !getExchangeRateSellDisparityFromRedux ||
@@ -455,6 +458,18 @@ const P2pExchange = memo(function () {
         break;
     }
   };
+  const renderClassShowSearchSpin = function () {
+    return callApiFetchListCoinStatus === api_status.fetching ||
+      callApiFetchListCoinStatus === api_status.pending
+      ? ""
+      : "--d-none";
+  };
+  const renderClassShowSearch = function () {
+    return callApiFetchListCoinStatus !== api_status.fetching &&
+      callApiFetchListCoinStatus !== api_status.pending
+      ? ""
+      : "--d-none";
+  };
 
   useEffect(() => {
     const language =
@@ -490,7 +505,9 @@ const P2pExchange = memo(function () {
             <i className="fa-solid fa-caret-down"></i>
           </button>
         </div>
-        <div className="p2pExchange__search-container">
+        <div
+          className={`p2pExchange__search-container ${renderClassShowSearch()}`}
+        >
           <div className="p2pExchange__search-title">
             <span className={renderClassInputFilterTitleCoin()}>
               {t("amount")}:
@@ -582,6 +599,11 @@ const P2pExchange = memo(function () {
               </div>
             </div>
           </div>
+        </div>
+        <div
+          className={`d-f alignItem-c justify-c ${renderClassShowSearchSpin()}`}
+        >
+          <Spin />
         </div>
         <div className="p2pExchange__footer">
           {renderFooterQuestion()}
