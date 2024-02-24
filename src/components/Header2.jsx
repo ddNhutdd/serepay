@@ -23,6 +23,7 @@ import {
 } from "src/redux/constant/listCoinRealTime.constant";
 import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
+import { Button, Modal } from "antd";
 
 export default function Header2({ history }) {
   const { isLogin, username, isAdmin } = useSelector(
@@ -30,6 +31,7 @@ export default function Header2({ history }) {
   );
   const notifyRedux = useSelector(getNotify);
   const currencyFromRedux = useSelector(getCurrent);
+
   const [currentLanguage, setCurrentLanguage] = useState(
     getLocalStorage(localStorageVariable.lng) || defaultLanguage
   );
@@ -46,6 +48,9 @@ export default function Header2({ history }) {
   const [isShowMenuWallet, setIsShowMenuWallet] = useState(false);
   const [isShowMenuUser, setIsShowMenuUser] = useState(false);
   const [totalMoney, setTotalMoney] = useState(0); // it is the string it displays on the web
+  const [isModalLanguageOpen, setIsModalLanguageOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -242,6 +247,93 @@ export default function Header2({ history }) {
   const renderClassShowAdmin = function () {
     return isAdmin ? "" : "--d-none";
   };
+  const showModalLanguage = () => {
+    setIsModalLanguageOpen(true);
+  };
+  const closeModalLanguage = () => {
+    setIsModalLanguageOpen(false);
+  };
+  const renderListLanguageModal = function () {
+    const countryArray = Object.entries(availableLanguageMapper).map(
+      ([key, value]) => {
+        return { key, value };
+      }
+    );
+    const sortedLanguages = countryArray.sort((a, b) => {
+      const valueA = a.value.toLowerCase();
+      const valueB = b.value.toLowerCase();
+      return valueA.localeCompare(valueB);
+    });
+
+    const setActive = function (itemLanguage) {
+      return currentLanguage === itemLanguage ? "" : "--visible-hidden";
+    };
+    const itemClickHandle = function (language) {
+      setIsShowMenu(() => false);
+      closeModalLanguage();
+      setCurrentLanguage(language);
+      setLocalStorage(localStorageVariable.lng, language);
+      i18n.changeLanguage(language);
+    };
+
+    return sortedLanguages.map(({ key, value }) => {
+      return (
+        <li
+          key={key}
+          onClick={itemClickHandle.bind(null, key)}
+          className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
+        >
+          <div className="d-flex alignItem-c justify-start gap-2">
+            <span>
+              <img
+                alt={value}
+                src={process.env.PUBLIC_URL + `/img/icon${key}.png`}
+              />
+            </span>
+            <span>{value}</span>
+          </div>
+          <div className={`header2__LanguageModal__stick ${setActive(key)}`}>
+            <i className="fa-solid fa-check"></i>
+          </div>
+        </li>
+      );
+    });
+  };
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const renderListCurrencyModal = function () {
+    const exchangeArray = listExChange.map((item) => item.title).sort();
+
+    const setActive = function (itemCurrency) {
+      return currentCurrency === itemCurrency ? "" : "--visible-hidden";
+    };
+    const itemClickHandle = function (key) {
+      setLocalStorage(localStorageVariable.currency, key);
+      setCurrentCurrency(() => key);
+      handleCancel();
+      dispatch(currencySetCurrent(key));
+      setIsShowMenu(false);
+    };
+
+    return exchangeArray.map((item) => (
+      <li
+        key={item}
+        onClick={itemClickHandle.bind(null, item)}
+        className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
+      >
+        <div className="d-flex alignItem-c justify-start gap-2">
+          <span>{item}</span>
+        </div>
+        <div className={`header2__LanguageModal__stick ${setActive(item)}`}>
+          <i className="fa-solid fa-check"></i>
+        </div>
+      </li>
+    ));
+  };
 
   useEffect(() => {
     const language =
@@ -262,141 +354,239 @@ export default function Header2({ history }) {
   }, [location]);
 
   return (
-    <header className="header2 fadeInTopToBottom">
-      <div className="container">
-        <div className="logo" onClick={() => history.push("/")}>
-          <img src="/img/logowhite.png" alt="Remitano Logo" />
-        </div>
-        <div className={`menu ${renderClassShowMenu()}`}>
-          <div
-            data-page={url.swap}
-            className="navlink"
-            onClick={redirectPageClickHandle}
-          >
-            {t("swap")}
+    <>
+      <header className="header2 fadeInTopToBottom">
+        <div className="container">
+          <div className="logo" onClick={() => history.push("/")}>
+            <img src="/img/logowhite.png" alt="Remitano Logo" />
           </div>
-          <div
-            onClick={redirectPageClickHandle}
-            className="navlink"
-            data-page={url.p2pTrading}
-          >
-            {t("p2pTrading")}
-          </div>
-          <div
-            onClick={redirectPageClickHandle}
-            className={`navlink ${renderClassShowAdmin()}`}
-            data-page={url.admin_user}
-          >
-            {t("admin")}
-          </div>
-        </div>
-        <div onClick={barButtonClickHandle} className="bar-button">
-          <i className="fa-solid fa-bars-staggered"></i>
-        </div>
-        <div className={`header2__right ${renderClassShowMenu()}`}>
-          <div className="header2__language">
-            <div onClick={languageToggle} className="header2__language-seletor">
-              <img
-                src={process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`}
-                alt="language"
-              />
+          <div className={`menu ${renderClassShowMenu()}`}>
+            <div
+              data-page={url.swap}
+              className="navlink"
+              onClick={redirectPageClickHandle}
+            >
+              {t("swap")}
             </div>
             <div
-              className={`header2__language-menu ${renderClassShowMenuLanguage()}`}
+              onClick={redirectPageClickHandle}
+              className="navlink"
+              data-page={url.p2pTrading}
             >
-              {renderMenuLanguage()}
+              {t("p2pTrading")}
+            </div>
+            <div
+              onClick={redirectPageClickHandle}
+              className={`navlink ${renderClassShowAdmin()}`}
+              data-page={url.admin_user}
+            >
+              {t("admin")}
             </div>
           </div>
-          <div className={`header2__currency`}>
-            <div
-              onClick={currencyToggle}
-              className="header2__currency-selector"
-            >
-              {currentCurrency}
-            </div>
-            <div
-              className={`header2__currrency-menu ${renderClassShowMenuCurrency()}`}
-            >
-              {renderListCurrency()}
-            </div>
+          <div onClick={barButtonClickHandle} className="bar-button">
+            <i className="fa-solid fa-bars-staggered"></i>
           </div>
-          <div
-            className={`header2__wallet ${renderClassWithLogin(
-              "",
-              "--d-none"
-            )}`}
-          >
-            <span className={`${renderClassShowNotify()} header2__wallet__bag`}>
-              <i className="fa-regular fa-clock"></i>
-            </span>
-            <div onClick={walletToggle} className="header2__wallet-title">
-              {t("wallet")}
-            </div>
-            <div
-              className={`header2__wallet-menu ${renderClassShowMenuWallet()}`}
-            >
+          <div className={`header2__right ${renderClassShowMenu()}`}>
+            <div className="header2__language">
               <div
-                onClick={redirectPageClickHandle}
-                data-page={url.wallet}
-                className="header2__wallet-item"
+                onClick={languageToggle}
+                className="header2__language-seletor"
               >
-                <i className="fa-solid fa-wallet"></i>
-                <span>{t("wallet")}</span>
+                <img
+                  src={
+                    process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`
+                  }
+                  alt="language"
+                />
               </div>
               <div
-                onClick={redirectPageClickHandle}
-                data-page={url.ads_history}
-                className="header2__wallet-item"
+                className={`header2__language-menu ${renderClassShowMenuLanguage()}`}
               >
-                <i className="fa-solid fa-rectangle-ad"></i>
-                <span>{t("advertisingHistory")}</span>
+                {renderMenuLanguage()}
               </div>
-              <div
-                onClick={redirectPageClickHandle}
-                data-page={url.p2p_management}
-                className="header2__wallet-item"
-              >
-                <span
-                  className={`${renderClassShowNotify()} header2__wallet-item-bag`}
-                >
-                  {notifyRedux}
+            </div>
+            <div
+              onClick={showModalLanguage}
+              className="header2__languageModalButton alignItem-c justify-sb py-2"
+            >
+              <div className="d-f gap-2 alignItem-c justify-start">
+                <span>
+                  <i className="fa-solid fa-globe"></i>
                 </span>
-                <i className="fa-solid fa-comments-dollar"></i>
-                <span>{t("p2PHistory")}</span>
+                <span>{t("language")}</span>
+              </div>
+              <div className="d-flex gap-2">
+                <span>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`
+                    }
+                  />
+                </span>
+                <span>{availableLanguageMapper[currentLanguage]}</span>
+                <span>
+                  <i className="fa-solid fa-chevron-right"></i>
+                </span>
               </div>
             </div>
-          </div>
-          <div
-            className={`header2__user ${renderClassWithLogin("", "--d-none")}`}
-          >
-            <div onClick={userToggle} className="header2__username">
-              {username}
-            </div>
-            <div className={`header2__user-info ${renderClassShowMenuUser()}`}>
+            <div className={`header2__currency`}>
               <div
-                onClick={redirectPageClickHandle}
-                data-page={url.profile}
-                className="header2__user-info-item"
+                onClick={currencyToggle}
+                className="header2__currency-selector"
               >
-                <i className="fa-regular fa-user"></i>
-                <span>{t("profile")}</span>
+                {currentCurrency}
               </div>
-              <div onClick={logout} className="header2__user-info-item">
-                <i className="fa-solid fa-arrow-right-from-bracket"></i>
-                <span>{t("logOut")}</span>
+              <div
+                className={`header2__currrency-menu ${renderClassShowMenuCurrency()}`}
+              >
+                {renderListCurrency()}
               </div>
             </div>
-          </div>
-          <div
-            onClick={redirectLogin}
-            className={`header2__login ${renderClassWithLogin("--d-none", "")}`}
-          >
-            {t("login")}
-            {" / "}
-            {t("register")}
+            <div
+              onClick={showModal}
+              className="header2__languageModalButton alignItem-c justify-sb py-2"
+            >
+              <div className="d-flex alignItem-c justify-c gap-2">
+                <span>
+                  <i className="fa-solid fa-money-bill-wheat"></i>
+                </span>
+                <span>{t("currency")}</span>
+              </div>
+              <div className="d-flex alignItem-c justify-c gap-2">
+                <span>{currentCurrency}</span>
+                <span>
+                  <i className="fa-solid fa-chevron-right"></i>
+                </span>
+              </div>
+            </div>
+            <div
+              className={`header2__wallet ${renderClassWithLogin(
+                "",
+                "--d-none"
+              )}`}
+            >
+              <span
+                className={`${renderClassShowNotify()} header2__wallet__bag`}
+              >
+                <i className="fa-regular fa-clock"></i>
+              </span>
+              <div onClick={walletToggle} className="header2__wallet-title">
+                {t("wallet")}
+              </div>
+              <div
+                className={`header2__wallet-menu ${renderClassShowMenuWallet()}`}
+              >
+                <div
+                  onClick={redirectPageClickHandle}
+                  data-page={url.wallet}
+                  className="header2__wallet-item"
+                >
+                  <i className="fa-solid fa-wallet"></i>
+                  <span>{t("wallet")}</span>
+                </div>
+                <div
+                  onClick={redirectPageClickHandle}
+                  data-page={url.ads_history}
+                  className="header2__wallet-item"
+                >
+                  <i className="fa-solid fa-rectangle-ad"></i>
+                  <span>{t("advertisingHistory")}</span>
+                </div>
+                <div
+                  onClick={redirectPageClickHandle}
+                  data-page={url.p2p_management}
+                  className="header2__wallet-item"
+                >
+                  <span
+                    className={`${renderClassShowNotify()} header2__wallet-item-bag`}
+                  >
+                    {notifyRedux}
+                  </span>
+                  <i className="fa-solid fa-comments-dollar"></i>
+                  <span>{t("p2PHistory")}</span>
+                </div>
+              </div>
+            </div>
+            <div
+              className={`header2__user ${renderClassWithLogin(
+                "",
+                "--d-none"
+              )}`}
+            >
+              <div onClick={userToggle} className="header2__username">
+                {username}
+              </div>
+              <div
+                className={`header2__user-info ${renderClassShowMenuUser()}`}
+              >
+                <div
+                  onClick={redirectPageClickHandle}
+                  data-page={url.profile}
+                  className="header2__user-info-item"
+                >
+                  <i className="fa-regular fa-user"></i>
+                  <span>{t("profile")}</span>
+                </div>
+                <div onClick={logout} className="header2__user-info-item">
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                  <span>{t("logOut")}</span>
+                </div>
+              </div>
+            </div>
+            <div
+              onClick={redirectLogin}
+              className={`header2__login ${renderClassWithLogin(
+                "--d-none",
+                ""
+              )}`}
+            >
+              {t("login")}
+              {" / "}
+              {t("register")}
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <Modal
+        open={isModalLanguageOpen}
+        onCancel={closeModalLanguage}
+        header={null}
+        footer={null}
+        wrapClassName="header2__LanguageModal"
+      >
+        <ul className="header2__LanguageModal__content">
+          <li
+            key={-1}
+            className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+          >
+            <span>{t("language")}</span>
+            <span className="hover-p">
+              <i className="fa-solid fa-xmark"></i>
+            </span>
+          </li>
+          {renderListLanguageModal()}
+        </ul>
+      </Modal>
+      <Modal
+        header={null}
+        footer={null}
+        wrapClassName="header2__LanguageModal"
+        open={isModalOpen}
+        onCancel={handleCancel}
+      >
+        <ul className="header2__LanguageModal__content">
+          <li
+            key={-1}
+            className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+          >
+            <span>{t("currency")}</span>
+            <span className="hover-p">
+              <i className="fa-solid fa-xmark"></i>
+            </span>
+          </li>
+          {renderListCurrencyModal()}
+        </ul>
+      </Modal>
+    </>
   );
 }

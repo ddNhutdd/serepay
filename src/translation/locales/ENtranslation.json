@@ -364,5 +364,7 @@
     "accessBank": "Access Bank",
     "tradeLimit": "Trade limit",
     "contact": "Contact",
-    "info": "Info"
+    "info": "Info",
+    "purchasedFromKCCCZZX": "Purchased from KCCCZZX",
+    "soldToKCCCZZX": "Sold to KCCCZZX"
 }

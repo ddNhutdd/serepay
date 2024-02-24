@@ -47,7 +47,6 @@
       display: flex;
       flex-wrap: wrap;
       padding: 0;
-      margin-bottom: 10px;
       flex-direction: row;
       position: static;
       background-color: transparent;
@@ -128,7 +127,6 @@
         width: 100%;
         flex-direction: column;
         display: none;
-        margin-bottom: 10px;
 
         &.show {
           display: flex;
@@ -225,12 +223,7 @@
             @include menu-item;
 
             @media screen and (max-width:992px) {
-              padding-left: 10px;
-
-              &:hover {
-                background-color: $neutral-5;
-                color: $new-text-color-white;
-              }
+              display: none;
             }
 
             img {
@@ -240,6 +233,19 @@
               object-fit: cover;
             }
           }
+        }
+      }
+
+      .header2__languageModalButton {
+        display: none;
+
+        @media screen and (max-width:992px) {
+          display: flex;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
         }
       }
 
@@ -258,12 +264,7 @@
             justify-content: center;
 
             @media screen and (max-width:992px) {
-              padding-left: 10px;
-
-              &:hover {
-                background-color: $neutral-5;
-                color: $new-text-color-white;
-              }
+              display: none;
             }
 
             text-align: center;
@@ -397,6 +398,30 @@
       i {
         font-size: 20px;
       }
+    }
+  }
+}
+
+.header2__LanguageModal {
+
+  .header2__LanguageModal__content {
+    color: white;
+
+    .header2__LanguageModal__header {
+      background-color: #353535;
+      font-size: 18px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+    }
+
+    .header2__LanguageModal__stick {
+      color: $green-14
     }
   }
 }

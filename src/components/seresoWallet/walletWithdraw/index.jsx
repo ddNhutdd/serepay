@@ -23,7 +23,6 @@ import {
 } from "src/constant";
 import { getHistoryWidthdraw, transferToAddress } from "src/util/userCallApi";
 import { getUserWallet } from "src/redux/constant/coin.constant";
-import { historytransfer as historytransferApi } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input, inputType } from "src/components/Common/Input";
 import { EmptyCustom } from "src/components/Common/Empty";
@@ -32,6 +31,10 @@ import WalletTop, { titleWalletTop } from "../WalletTop";
 import css from "./walletWidthdraw.module.scss";
 
 function FormWithdraw() {
+  const withdrawType = {
+    bep20: "bep20",
+    amc20: "amc20",
+  };
   const { t } = useTranslation();
   const userWallet = useSelector(getUserWallet);
   const coin = getLocalStorage(localStorageVariable.coinFromWalletList);
@@ -47,6 +50,9 @@ function FormWithdraw() {
   const [withdrawHistoryTotalItems, setWithdrawHistoryTotalItems] = useState(1);
   const [qrValue, setQrValue] = useState(deploy_domain);
   const [inputPadding, setInputPadding] = useState(0);
+  const [withdrawTypeSelected, setWithdrawTypeSelected] = useState(
+    withdrawType.bep20
+  );
 
   const inputNoteValue = useRef();
   const formWallet = useRef();
@@ -235,6 +241,12 @@ function FormWithdraw() {
       ? ""
       : "--d-none";
   };
+  const renderClassActiveWithdrawType = function (value) {
+    return value === withdrawTypeSelected ? css["active"] : "";
+  };
+  const widthdrawTypeClickHandle = function (type) {
+    setWithdrawTypeSelected(type);
+  };
 
   return (
     <div className={`fadeInBottomToTop ` + css["formWithdraw"]}>
@@ -250,9 +262,26 @@ function FormWithdraw() {
             <form className={css["wallet"]} ref={formWallet}>
               <div className={css["withdraw-type"]}>
                 <span
-                  className={`${css["withdraw-type-items"]}  ${css["active"]}`}
+                  onClick={widthdrawTypeClickHandle.bind(
+                    null,
+                    withdrawType.bep20
+                  )}
+                  className={`${
+                    css["withdraw-type-items"]
+                  }  ${renderClassActiveWithdrawType(withdrawType.bep20)}`}
                 >
                   BEP20
+                </span>
+                <span
+                  onClick={widthdrawTypeClickHandle.bind(
+                    null,
+                    withdrawType.amc20
+                  )}
+                  className={`${
+                    css["withdraw-type-items"]
+                  } ${renderClassActiveWithdrawType(withdrawType.amc20)}`}
+                >
+                  AMC20
                 </span>
               </div>
               <div className={css["input"]}>

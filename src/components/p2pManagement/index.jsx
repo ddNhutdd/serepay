@@ -2,6 +2,7 @@ import { Spin, Pagination } from "antd";
 import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  actionTrading,
   api_status,
   defaultLanguage,
   localStorageVariable,
@@ -335,7 +336,7 @@ function P2pManagement() {
             <div>{item.symbol}</div>
             <div>{formatNumber(item.amount, i18n.language, 2)}</div>
             <div>{calcMoney(item.rate)}</div>
-            <div>{t(item.side)}</div>
+            <div>{item.side}</div>
           </div>
         </td>
         <td>

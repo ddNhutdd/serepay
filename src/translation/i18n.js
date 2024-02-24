@@ -78,29 +78,29 @@ export const availableLanguageCodeMapper = {
   hi: "hi-IN", // Hindi, India
 };
 export const availableLanguageMapper = {
-  vi: "Vietnam", // Vietnamese
-  en: "United States", // English
-  ko: "South Korea", // Korean
-  ja: "Japan", // Japanese
-  zh: "China", // Chinese
-  th: "Thailand", // Thai
-  km: "Cambodia", // Cambodian
-  lo: "Laos", // Lao
-  id: "Indonesia", // Indonesian
-  fr: "France", // French
-  es: "Spain", // Spanish
-  it: "Italy", // Italian
-  de: "Germany", // German
-  pt: "Portugal", // Portuguese
-  tr: "Turkey", // Turkish
-  ru: "Russia", // Russian
-  nl: "Netherlands", // Dutch
-  ms: "Malaysia", // Malay
-  ar: "Saudi Arabia", // Arabic
-  he: "Israel", // Hebrew
-  el: "Greece", // Greek
-  pl: "Poland", // Polish
-  hi: "India", // Hindi
+  vi: "Vietnamese", // Vietnamese
+  en: "English", // English
+  ko: "Korean", // Korean
+  ja: "Japanese", // Japanese
+  zh: "Chinese", // Chinese
+  th: "Thai", // Thai
+  km: "Cambodian", // Cambodian
+  lo: "Lao", // Lao
+  id: "Indonesian", // Indonesian
+  fr: "French", // French
+  es: "Spanish", // Spanish
+  it: "Italian", // Italian
+  de: "German", // German
+  pt: "Portuguese", // Portuguese
+  tr: "Turkish", // Turkish
+  ru: "Russian", // Russian
+  nl: "Dutch", // Dutch
+  ms: "Malaysian", // Malay
+  ar: "Arabic", // Arabic
+  he: "Hebrew", // Hebrew
+  el: "Greek", // Greek
+  pl: "Polish", // Polish
+  hi: "Hindi",
 };
 // the translations
 const resources = {

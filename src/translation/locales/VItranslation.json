@@ -364,5 +364,7 @@
     "accessBank": "Truy cập ngân hàng",
     "tradeLimit": "Giới hạn giao dịch",
     "contact": "Liên hệ",
-    "info": "Thông tin"
+    "info": "Thông tin",
+    "purchasedFromKCCCZZX": "Mua từ KCCCZZX",
+    "soldToKCCCZZX": "Bán cho KCCCZZX"
 }
