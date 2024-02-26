@@ -49,7 +49,7 @@ export default function Header2({ history }) {
   const [isShowMenuUser, setIsShowMenuUser] = useState(false);
   const [totalMoney, setTotalMoney] = useState(0); // it is the string it displays on the web
   const [isModalLanguageOpen, setIsModalLanguageOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalCurrencyOpen, setIsModalCurrencyOpen] = useState(false);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -299,11 +299,11 @@ export default function Header2({ history }) {
       );
     });
   };
-  const showModal = () => {
-    setIsModalOpen(true);
+  const showModalCurrency = () => {
+    setIsModalCurrencyOpen(true);
   };
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const closeModalCurrency = () => {
+    setIsModalCurrencyOpen(false);
   };
   const renderListCurrencyModal = function () {
     const exchangeArray = listExChange.map((item) => item.title).sort();
@@ -314,7 +314,7 @@ export default function Header2({ history }) {
     const itemClickHandle = function (key) {
       setLocalStorage(localStorageVariable.currency, key);
       setCurrentCurrency(() => key);
-      handleCancel();
+      closeModalCurrency();
       dispatch(currencySetCurrent(key));
       setIsShowMenu(false);
     };
@@ -443,7 +443,7 @@ export default function Header2({ history }) {
               </div>
             </div>
             <div
-              onClick={showModal}
+              onClick={showModalCurrency}
               className="header2__languageModalButton alignItem-c justify-sb py-2"
             >
               <div className="d-flex alignItem-c justify-c gap-2">
@@ -556,6 +556,7 @@ export default function Header2({ history }) {
       >
         <ul className="header2__LanguageModal__content">
           <li
+            onClick={closeModalLanguage}
             key={-1}
             className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
           >
@@ -571,11 +572,12 @@ export default function Header2({ history }) {
         header={null}
         footer={null}
         wrapClassName="header2__LanguageModal"
-        open={isModalOpen}
-        onCancel={handleCancel}
+        open={isModalCurrencyOpen}
+        onCancel={closeModalCurrency}
       >
         <ul className="header2__LanguageModal__content">
           <li
+            onClick={closeModalCurrency}
             key={-1}
             className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
           >

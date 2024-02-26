@@ -1,11 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spin } from "antd";
-import {
-  addClassToElementById,
-  formatStringNumberCultureUS,
-  getClassListFromElementById,
-  getElementById,
-} from "src/util/common";
 import { useSelector, useDispatch } from "react-redux";
 import {
   exchangeRateDisparityApiStatus,
@@ -145,23 +139,32 @@ function ExchangeRateDisparity() {
   };
   const newValueInputBuyChangeHandle = function (ev) {
     const value = ev.target.value;
-    validateBuy();
     ev.target.value = formatInput(value);
+    validateBuy();
   };
   const newValueInputSellChangeHandle = function (ev) {
     const value = ev.target.value;
-    validateSell();
     ev.target.value = formatInput(value);
+    validateSell();
   };
   const formatInput = function (inputValue) {
-    const inputValueWithoutComma = inputValue.replace(/,/g, "");
-    const regex = /^$|^[0-9]+(\.[0-9]*)?$/;
+    const inputValueWithoutComma = inputValue.replaceAll(/,/g, "");
+    if (inputValueWithoutComma === "-") return "-";
+
+    const format = function (numberString) {
+      if (numberString === "-") return "-";
+      const regex = /^(-?[0-9]+(\.[0-9]*)?)?$/;
+      if (!regex.test(numberString)) return;
+      const parts = numberString.split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parts.join(".");
+    };
+
+    const regex = /^(-?[0-9]+(\.[0-9]*)?)?$/;
     if (!regex.test(inputValueWithoutComma)) {
-      return inputValue.slice(0, -1);
+      return format(inputValueWithoutComma.slice(0, -1));
     }
-    const inputValueFormated = formatStringNumberCultureUS(
-      inputValueWithoutComma
-    );
+    const inputValueFormated = format(inputValueWithoutComma);
     return inputValueFormated;
   };
   const submitBuyHandle = function (event) {

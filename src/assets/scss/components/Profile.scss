@@ -173,6 +173,7 @@
         font-weight: 500;
         font-size: 17px;
         padding: 15px;
+        border-radius: 5px 5px 0 0;
 
         .profile__2faModel__close {
             cursor: pointer;
@@ -219,4 +220,48 @@
             @include userSecondButton;
         }
     }
+}
+
+.profile__changePassModal {
+    border-radius: 5px !important;
+    display: flex;
+    flex-direction: column;
+
+    .profile__changePassModal__header {
+        background: $new-background-header-modal-antd;
+        border-bottom: 1px solid;
+        border-color: #797979;
+        color: #fff;
+        padding-bottom: 15px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        font-weight: 500;
+        font-size: 17px;
+        padding: 15px;
+        border-radius: 5px 5px 0 0;
+
+        .profile__changePassModal__close {
+            cursor: pointer;
+        }
+    }
+
+    .profile__changePassModal__body {
+        color: $new-text-color-white;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .profile__changePassModal__footer {
+            padding-top: 15px;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    }
+
+
 }

@@ -12,13 +12,16 @@ import {
   turn2fa,
   typeAds,
 } from "src/util/adminCallApi";
-import { debounce } from "src/util/common";
+import { debounce, exportExcel } from "src/util/common";
 
 const User = function () {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItem, setTotalItem] = useState(1);
   const [mainData, setMainData] = useState([]);
   const [callApiMainDataStatus, setCallApiMainDataStatus] = useState(
+    api_status.pending
+  );
+  const [callApiExportExcelStatus, setCallApiExportExcelStatus] = useState(
     api_status.pending
   );
   const searchValue = useRef("");
@@ -42,6 +45,7 @@ const User = function () {
           setCurrentPage(() => page);
           setCallApiMainDataStatus(() => api_status.fulfilled);
           setTotalItem(() => data.total);
+          resolve(data.array);
         })
         .catch((err) => {
           setCallApiMainDataStatus(() => api_status.rejected);
@@ -175,7 +179,7 @@ const User = function () {
   };
   const renderActiveSection = function (status, id) {
     switch (status) {
-      case 0:
+      case 0 || null:
         return (
           <Button onClick={activeUserClickHandle.bind(null, id)}>Active</Button>
         );
@@ -234,6 +238,32 @@ const User = function () {
     searchValue.current = value;
     fetchApiSearchUserDebouced(1, value);
   };
+  const exportExcellHandle = async function () {
+    try {
+      if (callApiExportExcelStatus === api_status.fetching) return;
+      setCallApiExportExcelStatus(api_status.fetching);
+      const listUser = await fetchApiGetListAllUserForExcel();
+      exportExcel(listUser, "ListUser", "ListUser");
+      setCallApiExportExcelStatus(api_status.fulfilled);
+    } catch (error) {
+      setCallApiExportExcelStatus(api_status.rejected);
+    }
+  };
+  const fetchApiGetListAllUserForExcel = function () {
+    return new Promise((resolve, reject) => {
+      getAllUser({
+        limit: 999999,
+        page: 1,
+      })
+        .then((resp) => {
+          const data = resp.data.data;
+          resolve(data.array);
+        })
+        .catch((err) => {
+          reject(false);
+        });
+    });
+  };
 
   return (
     <div className="adminUser">
@@ -252,6 +282,14 @@ const User = function () {
             total={totalItem}
             showSizeChanger={false}
           />
+        </div>
+        <div className="col-12 p-0 mb-3">
+          <Button
+            loading={callApiExportExcelStatus === api_status.fetching}
+            onClick={exportExcellHandle}
+          >
+            Export Excell All Users
+          </Button>
         </div>
       </div>
       <div className="adminUser__content">

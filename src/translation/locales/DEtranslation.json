@@ -364,5 +364,6 @@
   "accessBank": "Zugriff auf die Bank",
   "tradeLimit": "Handelslimit",
   "contact": "Kontakt",
-  "info": "Info"
+  "info": "Info",
+  "currency": "Währung"
 }

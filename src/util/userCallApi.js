@@ -224,6 +224,11 @@ export const exchangeRateSell = function () {
     });
   } catch (error) {}
 };
+export const changePasswords = function (data) {
+  try {
+    return axiosService.post("/api/user/updatepassword", data);
+  } catch (error) {}
+};
 
 //==========================================
 export const getQrBankPayment = async function (

@@ -358,7 +358,7 @@ export default function CreateBuy() {
     const inputValueWithoutComma = inputValue.replace(/,/g, "");
     const regex = /^$|^[0-9]+(\.[0-9]*)?$/;
     if (!regex.test(inputValueWithoutComma)) {
-      input.value = inputValue.slice(0, -1);
+      input.value = formatStringNumberCultureUS(inputValue.slice(0, -1));
       return;
     }
     const inputValueFormated = formatStringNumberCultureUS(

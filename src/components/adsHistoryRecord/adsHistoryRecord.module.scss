@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
     border-left: 3px solid $new-primary-color-6;
 
@@ -22,8 +22,20 @@
         flex-direction: column;
     }
 
-    &>div {
-        width: 33.3333%;
+    .width-record-25 {
+        width: 25%;
+
+        @media screen and (max-width: 992px) {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 576px) {
+            width: 100%;
+        }
+    }
+
+    .width-record-33 {
+        width: 33.333333%;
 
         @media screen and (max-width: 992px) {
             width: 100%;

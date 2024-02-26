@@ -24,14 +24,29 @@ import {
   turnOn2FA,
   uploadKyc,
   getListBanking as getListBankUser,
+  changePasswords,
 } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import { Input } from "../Common/Input";
+import { Input, inputType } from "../Common/Input";
 import { EmptyCustom } from "../Common/Empty";
 import { getBankState } from "src/redux/reducers/bankSlice";
 import Dropdown from "../Common/dropdown/Dropdown";
-import { Button } from "../Common/Button";
+import { Button, buttonClassesType, htmlType } from "../Common/Button";
+
 function Profile() {
+  const controlsChangePass = useRef({
+    oldPassword: "oldPassword",
+    newPassword: "newPassword",
+    confirmPassword: "confirmPassword",
+  });
+  const tourchedChangePass = useRef({});
+  const [changePassError, setChangePassError] = useState({});
+  const [callApiChangePassStatus, setCallApiChangePassStatus] = useState(
+    api_status.pending
+  );
+  const oldPassElement = useRef();
+  const newPassElement = useRef();
+  const confirmPassElement = useRef();
   const paymentControl = useRef({
     accountName: "accountName",
     accountNumber: "accountNumber",
@@ -68,6 +83,7 @@ function Profile() {
   );
   const [listPaymentTotalItems, setListPaymentTotalItems] = useState(1);
   const [, setListPaymentCurrentPage] = useState(1);
+  const [isModalChangePassOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const dataUser = getLocalStorage(localStorageVariable.user);
@@ -483,6 +499,120 @@ function Profile() {
   const dropdownItemCLick = function (item, _) {
     setBankDropdownSelected(item);
   };
+  const showModalChangePass = () => {
+    setIsModalOpen(true);
+  };
+  const closeChangePassModal = () => {
+    setIsModalOpen(false);
+    resetChangePassForm();
+  };
+  const changePassValid = function () {
+    let isValid = true;
+    if (tourchedChangePass.current[controlsChangePass.current.oldPassword]) {
+      if (oldPassElement.current.value.length < 6) {
+        isValid &= false;
+        setChangePassError({
+          ...changePassError,
+          [controlsChangePass.current.oldPassword]:
+            "passwordMustBeGreaterThanOrEqualTo6Characters",
+        });
+      } else {
+        const newError = { ...changePassError };
+        delete newError[controlsChangePass.current.oldPassword];
+        setChangePassError(newError);
+      }
+    }
+
+    if (tourchedChangePass.current[controlsChangePass.current.newPassword]) {
+      if (newPassElement.current.value.length < 6) {
+        isValid &= false;
+        setChangePassError({
+          ...changePassError,
+          [controlsChangePass.current.newPassword]:
+            "passwordMustBeGreaterThanOrEqualTo6Characters",
+        });
+      } else {
+        const newError = { ...changePassError };
+        delete newError[controlsChangePass.current.newPassword];
+        setChangePassError(newError);
+      }
+    }
+
+    if (
+      tourchedChangePass.current[controlsChangePass.current.confirmPassword]
+    ) {
+      if (confirmPassElement.current.value.length < 6) {
+        isValid &= false;
+        setChangePassError({
+          ...changePassError,
+          [controlsChangePass.current.confirmPassword]:
+            "passwordMustBeGreaterThanOrEqualTo6Characters",
+        });
+      } else if (
+        confirmPassElement.current.value !== newPassElement.current.value
+      ) {
+        isValid &= false;
+        setChangePassError({
+          ...changePassError,
+          [controlsChangePass.current.confirmPassword]: "passwordNotMatch",
+        });
+      } else {
+        const newError = { ...changePassError };
+        delete newError[controlsChangePass.current.confirmPassword];
+        setChangePassError(newError);
+      }
+    }
+
+    return Object.keys(tourchedChangePass.current).length <= 0
+      ? false
+      : Boolean(isValid);
+  };
+  const controlChangePassFocusHandle = function (value) {
+    tourchedChangePass.current[value] = true;
+    changePassValid();
+  };
+  const controlChangePassChangeHandle = function () {
+    changePassValid();
+  };
+  const resetChangePassForm = function () {
+    tourchedChangePass.current = {};
+    setChangePassError({});
+    oldPassElement.current.value = "";
+    newPassElement.current.value = "";
+    confirmPassElement.current.value = "";
+  };
+  const changePassSubmit = function (ev) {
+    ev.preventDefault();
+    Object.keys(controlsChangePass.current).forEach((item) => {
+      tourchedChangePass.current[item] = true;
+    });
+    if (!changePassValid()) return;
+    callApiChangePass();
+  };
+  const callApiChangePass = async function () {
+    try {
+      if (callApiChangePassStatus === api_status.fetching) return;
+      setCallApiChangePassStatus(api_status.fetching);
+      await changePasswords({
+        password: oldPassElement.current.value,
+        passwordNew: newPassElement.current.value,
+      });
+      setCallApiChangePassStatus(api_status.fulfilled);
+      callToastSuccess(t("passwordChangedSuccessfully"));
+      closeChangePassModal();
+    } catch (error) {
+      const er = error?.response?.data?.message;
+      switch (er) {
+        case "Wrong password!":
+          callToastError(t("wrongPassword"));
+          break;
+        default:
+          callToastError(er || t(commontString.error.toLowerCase()));
+          break;
+      }
+      setCallApiChangePassStatus(api_status.rejected);
+    }
+  };
 
   return (
     <div className="profile fadeInBottomToTop">
@@ -602,10 +732,12 @@ function Profile() {
                 <p>{t("doYouWantToChangeYourPasswordClickHereToChange")}</p>
               </div>
               <div className="profile__right">
-                <button className="profile__button">
+                <button
+                  onClick={showModalChangePass}
+                  className="profile__button"
+                >
                   {t("changePassword")}
                 </button>
-                <p>{t("youMustTurnOn2FAToChangePassword")}</p>
               </div>
             </div>
             <div className="profile__security-item">
@@ -693,6 +825,95 @@ function Profile() {
               </button>
             </div>
           </div>
+        </div>
+      </Modal>
+      <Modal
+        header={false}
+        footer={false}
+        open={isModalChangePassOpen}
+        onCancel={closeChangePassModal}
+      >
+        <div className="profile__changePassModal">
+          <div className="profile__changePassModal__header">
+            <div className="profile__changePassModal__title">
+              {t("changePassword")}
+            </div>
+            <div
+              className="profile__changePassModal__close"
+              onClick={closeChangePassModal}
+            >
+              <i className="fa-solid fa-xmark"></i>
+            </div>
+          </div>
+          <form className="profile__changePassModal__body">
+            <div>
+              <label htmlFor="oldPass">{t("oldPassword")}</label>
+              <Input
+                onChange={controlChangePassChangeHandle}
+                onFocus={controlChangePassFocusHandle.bind(
+                  null,
+                  controlsChangePass.current.oldPassword
+                )}
+                ref={oldPassElement}
+                type={inputType.password}
+                id="oldPass"
+                placeholder={t("oldPassword")}
+                errorMes={t(
+                  changePassError[controlsChangePass.current.oldPassword]
+                )}
+              />
+            </div>
+            <div>
+              <label htmlFor="newPass">{t("newPassword")}</label>
+              <Input
+                onChange={controlChangePassChangeHandle}
+                onFocus={controlChangePassFocusHandle.bind(
+                  null,
+                  controlsChangePass.current.newPassword
+                )}
+                ref={newPassElement}
+                type={inputType.password}
+                id="newPass"
+                placeholder={t("newPassword")}
+                errorMes={t(
+                  changePassError[controlsChangePass.current.newPassword]
+                )}
+              />
+            </div>
+            <div>
+              <label htmlFor="confirmPass">{t("confirmPassword")}</label>
+              <Input
+                onChange={controlChangePassChangeHandle}
+                onFocus={controlChangePassFocusHandle.bind(
+                  null,
+                  controlsChangePass.current.confirmPassword
+                )}
+                ref={confirmPassElement}
+                type={inputType.password}
+                id="confirmPass"
+                placeholder={t("confirmPassword")}
+                errorMes={t(
+                  changePassError[controlsChangePass.current.confirmPassword]
+                )}
+              />
+            </div>
+            <div className="profile__changePassModal__footer">
+              <Button
+                htmlSubmit={htmlType.button}
+                type={buttonClassesType.outline}
+                onClick={closeChangePassModal}
+              >
+                {t("cancel")}
+              </Button>
+              <Button
+                loading={callApiChangePassStatus === api_status.fetching}
+                onClick={changePassSubmit}
+                htmlSubmit={htmlType.submit}
+              >
+                {t("ok")}
+              </Button>
+            </div>
+          </form>
         </div>
       </Modal>
     </div>

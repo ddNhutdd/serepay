@@ -60,6 +60,11 @@ function AdsHistoryRecord(props) {
   const renderClassButonLastCoin = function () {
     return item.type === 2 ? "" : "--visible-hidden";
   };
+  const renderStyle = function () {
+    return type === AdsHistoryRecordType.admin
+      ? css["width-record-25"]
+      : css["width-record-33"];
+  };
 
   useEffect(() => {
     const language =
@@ -72,7 +77,7 @@ function AdsHistoryRecord(props) {
       key={item.id}
       className={`box fadeInBottomToTop ${css["ads-history__record"]}`}
     >
-      <div>
+      <div className={renderStyle()}>
         <table>
           <tbody>
             <tr>
@@ -91,12 +96,6 @@ function AdsHistoryRecord(props) {
                 )}
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <table>
-          <tbody>
             <tr>
               <td>{t("quantityRemaining")}:</td>
               <td>
@@ -107,6 +106,12 @@ function AdsHistoryRecord(props) {
                 )}
               </td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className={renderStyle()}>
+        <table>
+          <tbody>
             <tr>
               <td className={css["logo-coin"]}>
                 <img
@@ -119,10 +124,22 @@ function AdsHistoryRecord(props) {
                 <span>{item.symbol}</span>
               </td>
             </tr>
+            <tr>
+              <td>{t("userName")}:</td>
+              <td>
+                <span>{item.userName}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>{t("email")}:</td>
+              <td>
+                <span>{item.email}</span>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <div>
+      <div className={renderStyle()}>
         <table>
           <tbody>
             <tr>
@@ -167,12 +184,12 @@ function AdsHistoryRecord(props) {
           </tbody>
         </table>
       </div>
-      <div className={renderClassLastCol()}>
+      <div className={renderClassLastCol() + " " + renderStyle()}>
         <table>
           <tbody>
             <tr className={renderClassButonLastCoin()}>
               <td colSpan={2}>
-                <div className="d-flex alignItem-c justify-c">
+                <div className="d-flex alignItem-c justify-c f-w">
                   <Button
                     className={`m-1`}
                     onClick={rejectClickHandle.bind(null, item.id)}

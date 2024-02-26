@@ -21,6 +21,9 @@ export default function TransferAdmin() {
     api_status.pending
   );
   const [callApiListCoin, setCallApiListCoin] = useState(api_status.pending);
+  const [callApiExportExcelStatus, setCallApiExportExcelStatus] = useState(
+    api_status.pending
+  );
 
   const [listCoin, setListCoin] = useState();
   const [listTransfer, setListTransfer] = useState([]);
@@ -201,6 +204,10 @@ export default function TransferAdmin() {
   const renderClassShowTabContentUsername = function () {
     return filter === filterType.username ? "" : "--d-none";
   };
+  const exportExcelHandle = async function () {
+    try {
+    } catch (error) {}
+  };
 
   useEffect(() => {
     getListCoin();
@@ -266,6 +273,11 @@ export default function TransferAdmin() {
               onChange={pageChangeHandle}
               total={totalItem}
             />
+          </div>
+          <div className={`row p-0 mb-3`}>
+            <Button onClick={exportExcelHandle}>
+              Export Excel All Transfer
+            </Button>
           </div>
         </div>
       </div>

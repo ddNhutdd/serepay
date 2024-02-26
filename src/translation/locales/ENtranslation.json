@@ -366,5 +366,6 @@
     "contact": "Contact",
     "info": "Info",
     "purchasedFromKCCCZZX": "Purchased from KCCCZZX",
-    "soldToKCCCZZX": "Sold to KCCCZZX"
+    "soldToKCCCZZX": "Sold to KCCCZZX",
+    "currency": "Currency"
 }
