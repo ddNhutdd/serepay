@@ -367,5 +367,11 @@
     "info": "Info",
     "purchasedFromKCCCZZX": "Purchased from KCCCZZX",
     "soldToKCCCZZX": "Sold to KCCCZZX",
-    "currency": "Currency"
+    "currency": "Currency",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "You must keep a minimum 0.02 BNB  in your wallet to secure enough gas fees for trading BEP20 tokens.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Transaction fees or gas fees are not fixed, subject to changes depending on peak time and off peak of the blockchain networks",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Estimated completion time: 2 minutes. if you did not recieved your withdraw in 15 minutes, please contact our support team at support@serepay.net",
+    "pleaseLogInAgain": "Please log in again!",
+    "loginExpired": "Login expired",
+    "pleaseLogInAgainToContinueYourSession": "Please log in again to continue your session"
 }

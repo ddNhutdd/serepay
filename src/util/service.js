@@ -1,4 +1,7 @@
 import axios from "axios";
+import { getLocalStorage, setLocalStorage } from "./common";
+import { localStorageVariable } from "src/constant";
+
 // export const DOMAIN = "https://remitano.dk-tech.vn/";
 export const DOMAIN = "https://serepay.net/";
 export const BANK_API_DOMAIN = "https://api.vietqr.io/v2";
@@ -6,6 +9,7 @@ export const axiosService = axios.create({
   baseURL: DOMAIN,
   timeout: 180000,
 });
+
 const refreshToken = async () => {
   const refreshToken = JSON.parse(localStorage.getItem("user")).refreshToken;
   let response = await axios.post(DOMAIN + "api/user/refreshToken", {
@@ -20,6 +24,7 @@ const refreshToken = async () => {
   localStorage.setItem("user", JSON.stringify(user));
   return newToken;
 };
+
 axiosService.interceptors.request.use(
   async (config) => {
     if (localStorage.getItem("user")) {
@@ -40,5 +45,18 @@ axiosService.interceptors.request.use(
   },
   (errors) => {
     return Promise.reject(errors);
+  }
+);
+
+axiosService.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      const username = getLocalStorage(localStorageVariable.user)?.username;
+      setLocalStorage(localStorageVariable.expireToken, username);
+    }
+    return Promise.reject(error);
   }
 );

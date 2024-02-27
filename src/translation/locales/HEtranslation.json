@@ -365,5 +365,11 @@
     "tradeLimit": "מגבלת מסחר",
     "contact": "צור קשר",
     "info": "מידע",
-    "currency": "מטבע"
+    "currency": "מטבע",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "עליך לשמור על מינימום של 0.02 BNB בארנק שלך כדי להבטיח מספיק עמלות גז עבור מסחר באסימוני BEP20.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "עמלות עסקה או עמלות גז אינן קבועות, עשויות להשתנות בהתאם לשעות השיא ולשעות השפל של רשתות הבלוקצ'יין.",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "זמן השלמת משוער: 2 דקות. אם לא קיבלת את המשיכה שלך בתוך 15 דקות, אנא צור קשר עם צוות התמיכה שלנו בכתובת support@serepay.net",
+    "pleaseLogInAgain": "אנא התחבר שוב!",
+    "loginExpired": "ההתחברות פגה",
+    "pleaseLogInAgainToContinueYourSession": "אנא התחבר שוב כדי להמשיך את המפגש שלך"
 }

@@ -365,5 +365,11 @@
     "tradeLimit": "Лимит торговли",
     "contact": "Контакт",
     "info": "Информация",
-    "currency": "Валюта"
+    "currency": "Валюта",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Для обеспечения достаточной комиссии газа для торговли токенами BEP20, необходимо держать на вашем кошельке минимальный остаток 0,02 BNB.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Комиссии за транзакции или комиссии за газ не являются фиксированными и могут меняться в зависимости от пикового и непикового времени работы сетей блокчейн.",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Предполагаемое время завершения: 2 минуты. Если вы не получили свой вывод средств в течение 15 минут, пожалуйста, обратитесь в нашу службу поддержки по адресу support@serepay.net",
+    "pleaseLogInAgain": "Пожалуйста, авторизуйтесь снова!",
+    "loginExpired": "Срок действия сеанса истек",
+    "pleaseLogInAgainToContinueYourSession": "Пожалуйста, авторизуйтесь снова, чтобы продолжить сеанс."
 }

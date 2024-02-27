@@ -129,3 +129,23 @@ export const searchUserFromUserName = function (data) {
     return axiosService.post("/api/admin/sreachusertousername", data);
   } catch (error) {}
 };
+export const getUserAllExcel = function () {
+  try {
+    return axiosService.post("/api/adminv2/getUserAll");
+  } catch (error) {}
+};
+export const historytransferAdminAll = function () {
+  try {
+    return axiosService.post("/api/adminv2/historytransferAdminAll");
+  } catch (error) {}
+};
+export const getHistoryDepositAdmin = function (data) {
+  try {
+    return axiosService.post("/api/adminv2/getHistoryDepositAdmin", data);
+  } catch (error) {}
+};
+export const getHistoryDepositAdminAllExcel = function () {
+  try {
+    return axiosService.post("/api/adminv2/getHistoryDepositAdminAll");
+  } catch (error) {}
+};

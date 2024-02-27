@@ -26,7 +26,6 @@ import { coinSetCoin } from "src/redux/actions/coin.action";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import PhoneApps from "./PhoneApps";
-import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { getShow, setShow, showP2pType } from "src/redux/reducers/p2pTrading";
 import P2pExchange from "./p2pExchange";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,9 +46,7 @@ export default function P2PTrading({ history }) {
   const coin = coinString.USDT;
   const userSelectedCurrency = useSelector(getCurrent);
   const exChangeFromRedux = useSelector(getExchange);
-  const exchangeRateBuyDisparityFromRedux = useSelector(
-    getExchangeRateDisparity
-  );
+
   const exchangeRateSellDisparityFromRedux = useSelector(getExchangeRateSell);
   const exchange = useRef();
   const [coinFullName, setCoinFullName] = useState();
@@ -172,17 +169,8 @@ export default function P2PTrading({ history }) {
     )?.rate;
 
     const priceFraction = math.fraction(price);
-    const rateDisparityFraction = math.fraction(
-      exchangeRateBuyDisparityFromRedux
-    );
-    const newPriceFraction = math.add(
-      priceFraction,
-      math
-        .chain(priceFraction)
-        .multiply(rateDisparityFraction)
-        .divide(100)
-        .done()
-    );
+
+    const newPriceFraction = math.add(priceFraction, 0);
     const rateFraction = math.fraction(rate);
     const result = math.multiply(newPriceFraction, rateFraction);
     return result;

@@ -33,7 +33,6 @@ import { useSelector } from "react-redux";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
 import { getExchangeRateSell } from "src/redux/reducers/exchangeRateSellSlice";
-import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import { math } from "src/App";
 
 function P2p() {
@@ -48,7 +47,6 @@ function P2p() {
   const exchange = useSelector(getExchange);
   const listCoinRealTime = useSelector(getListCoinRealTime);
   const exchangeSell = useSelector(getExchangeRateSell);
-  const exchangeBuy = useSelector(getExchangeRateDisparity);
 
   const [fetchListCoinStatus, setFetchListCoinStatus] = useState(
     api_status.pending
@@ -412,18 +410,10 @@ function P2p() {
     )?.price;
     let price1Coin = 0;
 
-    const exchangeBuyFraction = math.fraction(exchangeBuy);
     const exchangeSellFraction = math.fraction(exchangeSell);
     const priceFraction = math.fraction(price);
     if (filterAction === actionTrading.buy) {
-      price1Coin = math.sum(
-        priceFraction,
-        math
-          .chain(priceFraction)
-          .multiply(exchangeBuyFraction)
-          .divide(100)
-          .done()
-      );
+      price1Coin = math.sum(priceFraction, 0);
     } else {
       price1Coin = math.subtract(
         priceFraction,
@@ -496,12 +486,11 @@ function P2p() {
       listCoinRealTime &&
       listCoinRealTime.length > 0 &&
       exchangeSell &&
-      exchangeBuy &&
       showSearch === false
     ) {
       setShowSearch(true);
     }
-  }, [currency, exchange, listCoinRealTime, exchangeSell, exchangeBuy]);
+  }, [currency, exchange, listCoinRealTime, exchangeSell]);
 
   return (
     <div className={css["p2p"]}>
@@ -596,7 +585,7 @@ function P2p() {
             </div>
             <div className={renderClassShowSearch()}>
               <div className="row mb-2">
-                <div className="col-sm-12 col-md-8 col-6 p-0 pos-r mb-2">
+                <div className="col-sm-12 col-md-8 p-0  col-6 pos-r mb-2">
                   <Input
                     style={{ paddingRight: "50px" }}
                     value={inputSearchValue}

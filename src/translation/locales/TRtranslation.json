@@ -365,5 +365,11 @@
     "tradeLimit": "Ticaret Limiti",
     "contact": "İletişim",
     "info": "Bilgi",
-    "currency": "Para birimi"
+    "currency": "Para birimi",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "BEP20 token ticareti için yeterli gas ücretini güvence altına almak için cüzdanınızda minimum 0,02 BNB tutmalısınız.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "İşlem ücretleri veya gas ücretleri sabit değildir, blok zincir ağlarının yoğun ve yoğun olmayan saatlerine bağlı olarak değişebilir.",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tahmini tamamlanma süresi: 2 dakika. 15 dakika içinde çekiminizi almadıysanız, lütfen support@serepay.net adresindeki destek ekibimizle iletişime geçin.",
+    "pleaseLogInAgain": "Lütfen tekrar giriş yapın!",
+    "loginExpired": "Oturum süresi doldu",
+    "pleaseLogInAgainToContinueYourSession": "Oturumunuza devam etmek için lütfen tekrar giriş yapın."
 }

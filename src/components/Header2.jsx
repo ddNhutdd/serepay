@@ -200,6 +200,7 @@ export default function Header2({ history }) {
     removeLocalStorage(localStorageVariable.coinFromWalletList);
     removeLocalStorage(localStorageVariable.amountFromWalletList);
     removeLocalStorage(localStorageVariable.thisIsAdmin);
+    removeLocalStorage(localStorageVariable.expireToken);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess(tem, temTitle);

@@ -29,12 +29,6 @@ function Sidebar() {
     rightIconHistory.current.classList.remove("up");
     submenuHistory.current.classList.remove("show");
   };
-  const historyItemClickHandle = function () {
-    rightIconHistory.current.classList.toggle("up");
-    submenuHistory.current.classList.toggle("show");
-    rightIconFunding.current.classList.remove("up");
-    submenuFunding.current.classList.remove("show");
-  };
   const clearSelectedItem = function () {
     const element = getElementById("listItem");
     for (const item of element.children) {
@@ -70,6 +64,9 @@ function Sidebar() {
         break;
       case "swap":
         addClassToElementById("swap", "active");
+        break;
+      case "deposit":
+        addClassToElementById("deposit", "active");
         break;
       default:
         break;
@@ -123,6 +120,11 @@ function Sidebar() {
     clearSelectedItem();
     e.currentTarget.classList.add("active");
     history.push(url.admin_swap);
+  };
+  const redirectDeposite = function (e) {
+    clearSelectedItem();
+    e.currentTarget.classList.add("active");
+    history.push(url.admin_deposite);
   };
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
@@ -205,61 +207,11 @@ function Sidebar() {
           </span>
           <span className="admin-sidebar__item">Swap</span>
         </li>
-        {/* // */}
-        <li
-          className="--d-none"
-          id="funding-item"
-          onClick={fundingItemClickHandle}
-        >
+        <li onClick={redirectDeposite} id="deposite">
           <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-coins"></i>
+            <i className="fa-solid fa-file-invoice"></i>
           </span>
-          <span className="admin-sidebar__item">Funding</span>
-          <span
-            ref={rightIconFunding}
-            className="admin-sidebar__right-icon-down"
-          >
-            <i className="fa-solid fa-caret-down"></i>
-          </span>
-        </li>
-        <ul ref={submenuFunding} className="admin-sidebar__sub-menu">
-          <li>Deposit</li>
-          <li>Deposit USD</li>
-          <li>Withdraw</li>
-          <li>Transfer</li>
-        </ul>
-        <li
-          className="--d-none"
-          id="history-item"
-          onClick={historyItemClickHandle}
-        >
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-clock-rotate-left"></i>
-          </span>
-          <span className="admin-sidebar__item">History</span>
-          <span
-            ref={rightIconHistory}
-            className="admin-sidebar__right-icon-down"
-          >
-            <i className="fa-solid fa-caret-down"></i>
-          </span>
-        </li>
-        <ul ref={submenuHistory} className="admin-sidebar__sub-menu">
-          <li>History Order</li>
-          <li>History Profit</li>
-          <li>History Set Result</li>
-        </ul>
-        <li className="--d-none">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-circle-notch"></i>
-          </span>
-          <span className="admin-sidebar__item">Lucky Spin</span>
-        </li>
-        <li className="--d-none">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-newspaper"></i>
-          </span>
-          <span className="admin-sidebar__item">Update homepage</span>
+          <span className="admin-sidebar__item">Deposite</span>
         </li>
         <li onClick={logout}>
           <span className="admin-sidebar__icon">
@@ -267,6 +219,13 @@ function Sidebar() {
           </span>
           <span className="admin-sidebar__item">Log out</span>
         </li>
+        {/* // */}
+        <ul ref={submenuFunding} className="admin-sidebar__sub-menu">
+          <li>Deposit</li>
+          <li>Deposit USD</li>
+          <li>Withdraw</li>
+          <li>Transfer</li>
+        </ul>
       </ul>
     </div>
   );

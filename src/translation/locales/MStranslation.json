@@ -365,5 +365,11 @@
     "tradeLimit": "Had Perdagangan",
     "contact": "Hubungi",
     "info": "Maklumat",
-    "currency": "Mata wang"
+    "currency": "Mata wang",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Anda perlu menyimpan minimum 0.02 BNB dalam dompet anda untuk mendapatkan gas fee yang mencukupi untuk perdagangan token BEP20.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Bayaran transaksi atau bayaran gas tidak tetap, tertakluk kepada perubahan bergantung pada waktu puncak dan bukan waktu puncak rangkaian blockchain.",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Anggaran masa siap: 2 minit. Jika anda tidak menerima pengeluaran anda dalam masa 15 minit, sila hubungi pasukan sokongan kami di support@serepay.net",
+    "pleaseLogInAgain": "Sila log masuk semula!",
+    "loginExpired": "Sesi tamat tempoh",
+    "pleaseLogInAgainToContinueYourSession": "Sila log masuk semula untuk meneruskan sesi anda"
 }

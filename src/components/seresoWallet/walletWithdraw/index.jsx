@@ -10,7 +10,6 @@ import {
   getLocalStorage,
   observeWidth,
   parseURLParameters,
-  removeLocalStorage,
 } from "src/util/common";
 import i18n from "src/translation/i18n";
 import {
@@ -20,6 +19,7 @@ import {
   deploy_domain,
   image_domain,
   localStorageVariable,
+  url,
 } from "src/constant";
 import { getHistoryWidthdraw, transferToAddress } from "src/util/userCallApi";
 import { getUserWallet } from "src/redux/constant/coin.constant";
@@ -29,6 +29,7 @@ import { EmptyCustom } from "src/components/Common/Empty";
 import { Button, buttonClassesType } from "src/components/Common/Button";
 import WalletTop, { titleWalletTop } from "../WalletTop";
 import css from "./walletWidthdraw.module.scss";
+import { useHistory } from "react-router-dom";
 
 function FormWithdraw() {
   const withdrawType = {
@@ -39,6 +40,7 @@ function FormWithdraw() {
   const userWallet = useSelector(getUserWallet);
   const coin = getLocalStorage(localStorageVariable.coinFromWalletList);
   const isLogin = useSelector((root) => root.loginReducer.isLogin);
+  const history = useHistory();
 
   const [, setCallApiHistoryStatus] = useState(api_status.pending);
   const [callApiSubmitStatus, setCallApiSubmitStatus] = useState(
@@ -324,7 +326,7 @@ function FormWithdraw() {
                   </span>
                   <p>
                     {t(
-                      "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens"
+                      "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens"
                     )}
                   </p>
                 </li>
@@ -334,7 +336,7 @@ function FormWithdraw() {
                   </span>
                   <p>
                     {t(
-                      "youMustKeepAMinimumOf5USDTInYourWalletToSecureEnoughGasFeesForTradingTRC20Tokens"
+                      "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks"
                     )}
                   </p>
                 </li>
@@ -344,15 +346,9 @@ function FormWithdraw() {
                   </span>
                   <p>
                     {t(
-                      "theOverheadFeesAreNotFixedSubjectToChangeDependingOnTheStateOfTheBlockchainNetworks"
+                      "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet"
                     )}
                   </p>
-                </li>
-                <li className={css["notify-item"]}>
-                  <span>
-                    <img src="./img/!.png" alt="" />
-                  </span>
-                  <p>{t("estimatedCompletionTime2Minutes")}</p>
                 </li>
               </ul>
               <div className={css["button-submit-container"]}>

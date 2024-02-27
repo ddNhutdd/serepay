@@ -363,5 +363,11 @@
     "tradeLimit": "ขีดจำกัดการซื้อขาย",
     "contact": "ติดต่อ",
     "info": "ข้อมูล",
-    "currency": "สกุลเงิน"
+    "currency": "สกุลเงิน",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "คุณต้องเก็บ BNB อย่างน้อย 0.02 ไว้ในกระเป๋าเงินของคุณเพื่อสำรองค่าธรรมเนียมแก๊สที่เพียงพอสำหรับการเทรดโทเค็น BEP20",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "ค่าธรรมเนียมธุรกรรมหรือค่าธรรมเนียมแก๊สไม่คงที่ ขึ้นอยู่กับช่วงเวลาที่เครือข่ายบล็อกเชนมีการใช้งานหนาแน่นหรือเบาบาง",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "ระยะเวลาโดยประมาณ: 2 นาที. กรุณาติดต่อทีมสนับสนุนของเราที่ support@serepay.net หากคุณไม่ได้รับเงินที่ถอนออกภายใน 15 นาที",
+    "pleaseLogInAgain": "กรุณาล็อกอินอีกครั้ง!",
+    "loginExpired": "การเข้าสู่ระบบหมดอายุ",
+    "pleaseLogInAgainToContinueYourSession": "กรุณาล็อกอินอีกครั้งเพื่อดำเนินการต่อเซสชันของคุณ"
 }

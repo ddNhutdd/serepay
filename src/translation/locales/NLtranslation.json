@@ -365,5 +365,11 @@
     "tradeLimit": "Handelslimiet",
     "contact": "Contact",
     "info": "Info",
-    "currency": "Valuta"
+    "currency": "Valuta",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "U moet minimaal 0,02 BNB in uw wallet bewaren om voldoende gas-kosten te beveiligen voor het verhandelen van BEP20-tokens.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Transactiekosten of gas-kosten zijn niet vastgesteld, kunnen wijzigen afhankelijk van de piek- en daluren van de blockchain-netwerken.",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Geschatte voltooiingstijd: 2 minuten. Als u uw opname binnen 15 minuten niet hebt ontvangen, neem dan contact op met ons supportteam via support@serepay.net",
+    "pleaseLogInAgain": "Log alstublieft opnieuw in!",
+    "loginExpired": "Sessie verlopen",
+    "pleaseLogInAgainToContinueYourSession": "Log alstublieft opnieuw in om uw sessie voort te zetten"
 }

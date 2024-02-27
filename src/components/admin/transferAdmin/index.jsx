@@ -5,8 +5,16 @@ import css from "./transferAdmin.module.scss";
 import { Button, buttonClassesType } from "src/components/Common/Button";
 import { api_status } from "src/constant";
 import socket from "src/util/socket.js";
-import { historytransferAdmin } from "src/util/adminCallApi.js";
-import { debounce, formatNumber, rountRange } from "src/util/common.js";
+import {
+  historytransferAdmin,
+  historytransferAdminAll,
+} from "src/util/adminCallApi.js";
+import {
+  debounce,
+  exportExcel,
+  formatNumber,
+  rountRange,
+} from "src/util/common.js";
 import { availableLanguage } from "src/translation/i18n.js";
 import { Input } from "src/components/Common/Input";
 
@@ -206,7 +214,16 @@ export default function TransferAdmin() {
   };
   const exportExcelHandle = async function () {
     try {
-    } catch (error) {}
+      if (callApiExportExcelStatus === api_status.fetching) {
+        return;
+      }
+      setCallApiExportExcelStatus(api_status.fetching);
+      const resp = await historytransferAdminAll();
+      exportExcel(resp.data.data, "Transfer", "Transfer");
+      setCallApiExportExcelStatus(api_status.fulfilled);
+    } catch (error) {
+      setCallApiExportExcelStatus(api_status.reject);
+    }
   };
 
   useEffect(() => {
@@ -275,7 +292,10 @@ export default function TransferAdmin() {
             />
           </div>
           <div className={`row p-0 mb-3`}>
-            <Button onClick={exportExcelHandle}>
+            <Button
+              loading={callApiExportExcelStatus === api_status.fetching}
+              onClick={exportExcelHandle}
+            >
               Export Excel All Transfer
             </Button>
           </div>

@@ -17,6 +17,8 @@ export const localStorageVariable = {
   amountFromWalletList: "amcnwl",
   thisIsAdmin: "adta",
   p2pManagementPending: "p2pp",
+  expireToken: "lex",
+  reLoginR: "reLoginR",
 };
 
 export const url = {
@@ -53,6 +55,7 @@ export const url = {
   admin_exchangeRateDisparity: "/admin/exchange-rate-disparity",
   admin_transfer: "/admin/transfer",
   admin_wallet: "/admin/wallet",
+  admin_deposite: "/admin/deposite",
 };
 
 const currentDomain = window.location.href;

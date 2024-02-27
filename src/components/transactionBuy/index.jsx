@@ -39,7 +39,6 @@ import { math } from "src/App";
 import { Button } from "../Common/Button";
 import Dropdown from "../Common/dropdown/Dropdown";
 import { getListBank } from "src/redux/reducers/bankSlice";
-import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 
 function TransactionBuy() {
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
@@ -49,9 +48,6 @@ function TransactionBuy() {
     localStorageVariable.coinNameToTransaction
   );
   const { t } = useTranslation();
-  const exchangeRateBuyDisparityFromRedux = useSelector(
-    getExchangeRateDisparity
-  );
   const listBankRedux = useSelector(getListBank);
 
   const [callApiLoadTraderStatus, setCallApiLoadTraderStatus] = useState(
@@ -339,27 +335,16 @@ function TransactionBuy() {
       !coinName ||
       !exchange ||
       exchange.length <= 0 ||
-      !currency ||
-      !exchangeRateBuyDisparityFromRedux
+      !currency
     )
       return;
     const price = listCoin.find((item) => item.name === coinName)?.price;
     const rate = exchange.find((item) => item.title === currency)?.rate;
 
     const priceFraction = math.fraction(price);
-    const rateDisparityFraction = math.fraction(
-      exchangeRateBuyDisparityFromRedux
-    );
 
     const rateFraction = math.fraction(rate);
-    const newPriceFraction = math.add(
-      priceFraction,
-      math
-        .chain(priceFraction)
-        .multiply(rateDisparityFraction)
-        .divide(100)
-        .done()
-    );
+    const newPriceFraction = math.add(priceFraction, 0);
     const result = math.multiply(rateFraction, newPriceFraction);
     return math.number(result);
   };
@@ -370,8 +355,7 @@ function TransactionBuy() {
       !coinName ||
       !exchange ||
       exchange.length <= 0 ||
-      !vnd ||
-      !exchangeRateBuyDisparityFromRedux
+      !vnd
     )
       return;
 
@@ -379,11 +363,7 @@ function TransactionBuy() {
     const exchangeVnd = exchange.find((item) => item.title === "VND")?.rate;
 
     const priceUsdFraction = math.fraction(priceUsd);
-    const rateDisparity = math.fraction(exchangeRateBuyDisparityFromRedux);
-    const newPriceUsdFraction = math.add(
-      priceUsdFraction,
-      math.chain(priceUsdFraction).multiply(rateDisparity).divide(100).done()
-    );
+    const newPriceUsdFraction = math.add(priceUsdFraction, 0);
     const vndFraction = math.fraction(vnd);
     const exchangeVndFraction = math.fraction(exchangeVnd);
 
@@ -401,26 +381,15 @@ function TransactionBuy() {
       !coinName ||
       !exchange ||
       exchange.length <= 0 ||
-      !amountCoin ||
-      !exchangeRateBuyDisparityFromRedux
+      !amountCoin
     )
       return 0;
     const priceUsd = listCoin.find((item) => item.name === coinName)?.price;
     const rate = exchange.find((item) => item.title === "VND")?.rate;
 
-    const rateDisparityFraction = math.fraction(
-      exchangeRateBuyDisparityFromRedux
-    );
     const priceUsdFraction = math.fraction(priceUsd);
 
-    const newPriceUsdFraction = math.add(
-      priceUsdFraction,
-      math
-        .chain(priceUsdFraction)
-        .multiply(rateDisparityFraction)
-        .divide(100)
-        .done()
-    );
+    const newPriceUsdFraction = math.add(priceUsdFraction, 0);
     const rateFraction = math.fraction(rate);
     const amountCoinFraction = math.fraction(amountCoin);
 
@@ -561,18 +530,8 @@ function TransactionBuy() {
     const coinAvailableFraction = math.fraction(coinAvailable);
     const priceFraction = math.fraction(price);
     const rateFraction = math.fraction(rate);
-    const rateDisparityFraction = math.fraction(
-      exchangeRateBuyDisparityFromRedux
-    );
 
-    const priceBuyFraction = math.add(
-      priceFraction,
-      math
-        .chain(priceFraction)
-        .multiply(rateDisparityFraction)
-        .divide(100)
-        .done()
-    );
+    const priceBuyFraction = math.add(priceFraction, 0);
 
     const resultFraction = math
       .chain(coinAvailableFraction)
@@ -658,13 +617,7 @@ function TransactionBuy() {
       setShowComponentSpin(() => false);
       hasRun.current = true;
     }
-  }, [
-    listCoinRealTime,
-    selectedCoin,
-    exchangeRedux,
-    currencyRedux,
-    exchangeRateBuyDisparityFromRedux,
-  ]);
+  }, [listCoinRealTime, selectedCoin, exchangeRedux, currencyRedux]);
   useEffect(() => {
     if (listBankRedux && listBankRedux.length > 0) {
       firstLoad();

@@ -45,6 +45,11 @@
     padding-right: 0;
 }
 
+.px-3 {
+    padding-left: $space * 3;
+    padding-right: $space * 3;
+}
+
 .py-0 {
     padding-top: 0;
     padding-bottom: 0;
@@ -101,6 +106,11 @@
         .px-#{$breakpoint}-0 {
             padding-left: 0;
             padding-right: 0;
+        }
+
+        .px-#{$breakpoint}-3 {
+            padding-left: $space * 3;
+            padding-right: $space * 3;
         }
 
         .py-#{$breakpoint}-0 {

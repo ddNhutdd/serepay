@@ -8,6 +8,7 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import {
   activeuser,
   getAllUser,
+  getUserAllExcel,
   searchUserFromUserName,
   turn2fa,
   typeAds,
@@ -249,20 +250,12 @@ const User = function () {
       setCallApiExportExcelStatus(api_status.rejected);
     }
   };
-  const fetchApiGetListAllUserForExcel = function () {
-    return new Promise((resolve, reject) => {
-      getAllUser({
-        limit: 999999,
-        page: 1,
-      })
-        .then((resp) => {
-          const data = resp.data.data;
-          resolve(data.array);
-        })
-        .catch((err) => {
-          reject(false);
-        });
-    });
+  const fetchApiGetListAllUserForExcel = async function () {
+    try {
+      const resp = await getUserAllExcel();
+      const array = resp.data.data;
+      return array;
+    } catch (error) {}
   };
 
   return (

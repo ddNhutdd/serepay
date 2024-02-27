@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spin, Pagination } from "antd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import QRCode from "react-qr-code";
 import { useTranslation } from "react-i18next";
 import {
   apiResponseErrorMessage,
   api_status,
   commontString,
+  defaultCurrency,
   defaultLanguage,
   localStorageVariable,
   regularExpress,
@@ -14,7 +15,11 @@ import {
 } from "src/constant";
 import i18n from "src/translation/i18n";
 import { Modal } from "antd";
-import { getElementById, getLocalStorage } from "src/util/common";
+import {
+  getElementById,
+  getLocalStorage,
+  removeLocalStorage,
+} from "src/util/common";
 import { useHistory } from "react-router-dom";
 import {
   addListBanking,
@@ -32,8 +37,11 @@ import { EmptyCustom } from "../Common/Empty";
 import { getBankState } from "src/redux/reducers/bankSlice";
 import Dropdown from "../Common/dropdown/Dropdown";
 import { Button, buttonClassesType, htmlType } from "../Common/Button";
+import { currencySetCurrent } from "src/redux/actions/currency.action";
 
 function Profile() {
+  const dispatch = useDispatch();
+
   const controlsChangePass = useRef({
     oldPassword: "oldPassword",
     newPassword: "newPassword",
@@ -599,8 +607,10 @@ function Profile() {
       });
       setCallApiChangePassStatus(api_status.fulfilled);
       callToastSuccess(t("passwordChangedSuccessfully"));
+      logout();
       closeChangePassModal();
     } catch (error) {
+      console.log(error);
       const er = error?.response?.data?.message;
       switch (er) {
         case "Wrong password!":
@@ -612,6 +622,27 @@ function Profile() {
       }
       setCallApiChangePassStatus(api_status.rejected);
     }
+  };
+
+  const logout = () => {
+    dispatch({ type: "USER_ADMIN", payload: false });
+    removeLocalStorage(localStorageVariable.lng);
+    localStorage.removeItem(localStorageVariable.user);
+    localStorage.removeItem(localStorageVariable.token);
+    removeLocalStorage(localStorageVariable.coinToTransaction);
+    removeLocalStorage(localStorageVariable.currency);
+    removeLocalStorage(localStorageVariable.adsItem);
+    removeLocalStorage(localStorageVariable.coinNameToTransaction);
+    removeLocalStorage(localStorageVariable.createAds);
+    removeLocalStorage(localStorageVariable.moneyToTransaction);
+    dispatch(currencySetCurrent(defaultCurrency));
+    removeLocalStorage(localStorageVariable.coin);
+    removeLocalStorage(localStorageVariable.coinFromWalletList);
+    removeLocalStorage(localStorageVariable.amountFromWalletList);
+    removeLocalStorage(localStorageVariable.thisIsAdmin);
+    removeLocalStorage(localStorageVariable.expireToken);
+    history.push(url.login);
+    dispatch({ type: "USER_LOGOUT" });
   };
 
   return (

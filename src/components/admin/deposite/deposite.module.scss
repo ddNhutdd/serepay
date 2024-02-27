@@ -1,0 +1,39 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.deposite {
+    color: $new-text-color-white;
+
+    .deposite__header {
+        .deposite__title {
+            @extend .titleContainerAdmin;
+        }
+
+        .deposite__paging {
+            padding-right: 0;
+            text-align: right;
+
+            @media screen and (max-width:768px) {
+                text-align: left;
+                padding-left: 0;
+            }
+        }
+    }
+
+    .deposite__content {
+        overflow: hidden;
+        overflow-x: auto;
+
+        table {
+            @include adminTable;
+
+            thead {
+                tr {
+                    th {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

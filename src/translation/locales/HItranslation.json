@@ -365,5 +365,11 @@
     "tradeLimit": "व्यापार सीमा",
     "contact": "संपर्क",
     "info": "जानकारी",
-    "currency": "मुद्रा"
+    "currency": "मुद्रा",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "ट्रेडिंग BEP20 टोकन के लिए पर्याप्त गैस शुल्क सुरक्षित करने के लिए आपको अपने वॉलेट में न्यूनतम 0.02 BNB रखना होगा।",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": " लेनदेन शुल्क या गैस शुल्क निश्चित नहीं हैं, ब्लॉकचेन नेटवर्क के व्यस्त और गैर-व्यस्त समय के आधार पर परिवर्तन के अधीन हैं।",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "अनुमानित समापन समय: 2 मिनट। यदि आपको 15 मिनट के भीतर अपनी निकासी नहीं मिली, तो कृपया support@serepay.net पर हमारी सहायता टीम से संपर्क करें",
+    "pleaseLogInAgain": "कृपया पुनः लॉग इन करें!",
+    "loginExpired": "लॉगिन समाप्त हो गया",
+    "pleaseLogInAgainToContinueYourSession": "अपने सत्र को जारी रखने के लिए कृपया पुनः लॉग इन करें"
 }

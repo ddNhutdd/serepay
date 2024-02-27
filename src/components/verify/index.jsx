@@ -11,7 +11,7 @@ import {
   url,
 } from "src/constant";
 import { verifyEmail } from "src/util/userCallApi";
-import { getLocalStorage, processString } from "src/util/common";
+import { getLocalStorage } from "src/util/common";
 
 function Verify() {
   const token = useParams().token;

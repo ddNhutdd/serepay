@@ -365,5 +365,11 @@
     "tradeLimit": "حد التجارة",
     "contact": "اتصل",
     "info": "معلومات",
-    "currency": "العملة"
+    "currency": "العملة",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "يجب أن تحتفظ بـ 0.02 BNB على الأقل في محفظتك لتأمين رسوم غاز كافية لتداول رموز BEP20.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "رسوم المعاملات أو رسوم الغاز ليست ثابتة، وتخضع للتغييرات اعتمادًا على وقت الذروة وخارج الذروة لشبكات blockchain",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "الوقت المتوقع للإكمال: دقيقتان. إذا لم تتلق سحبك خلال 15 دقيقة، يرجى الاتصال بفريق الدعم الفني على support@serepay.net",
+    "pleaseLogInAgain": "يرجى تسجيل الدخول مرة أخرى!",
+    "loginExpired": "انتهت صلاحية تسجيل الدخول",
+    "pleaseLogInAgainToContinueYourSession": "يرجى تسجيل الدخول مرة أخرى لمواصلة جلستك"
 }

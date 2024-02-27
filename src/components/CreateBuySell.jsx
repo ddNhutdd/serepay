@@ -5,17 +5,14 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useHistory } from "react-router-dom";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constant";
-import { getExchangeRateDisparity } from "src/redux/reducers/exchangeRateDisparitySlice";
 import i18n from "src/translation/i18n";
 import {
   addClassToElementById,
   formatCurrency,
-  formatNumber,
   formatStringNumberCultureUS,
   getClassListFromElementById,
   getElementById,
   getLocalStorage,
-  roundIntl,
 } from "src/util/common";
 import { DOMAIN } from "src/util/service";
 import { companyAddAds, getProfile } from "src/util/userCallApi";
@@ -57,7 +54,6 @@ export default function CreateBuy() {
   const currentCurrency = useSelector(getCurrent);
   const { listBank } = useSelector(getBankState);
   const exchange = useSelector(getExchange);
-  const exchangeRateBuyDisparity = useSelector(getExchangeRateDisparity);
   const exchangeRateSellDisparity = useSelector(getExchangeRateSell);
   const [selectedBank, setSelectedBank] = useState();
   const userName = useRef("");
@@ -130,8 +126,7 @@ export default function CreateBuy() {
     );
   };
   const calcBuyPrice = function () {
-    if (data.length <= 0 || exchange.length <= 0 || !exchangeRateBuyDisparity)
-      return;
+    if (data.length <= 0 || exchange.length <= 0) return;
     // find current price
     let ccCoin = data.current.filter((item) => item.name === currentCoin)[0]
       ?.price;
@@ -141,14 +136,9 @@ export default function CreateBuy() {
     )?.rate;
     if (!exchangeRate) return;
     // process price
-    const ccCoinFraction = math.fraction(ccCoin);
-    const rateDisparity = math.fraction(exchangeRateBuyDisparity);
-    const priceBuy = math.add(
-      ccCoinFraction,
-      math.chain(ccCoinFraction).multiply(rateDisparity).divide(100).done()
-    );
+    const rateDisparity = math.fraction(ccCoin);
     const exchangeRateFraction = math.fraction(exchangeRate);
-    const result = math.multiply(priceBuy, exchangeRateFraction);
+    const result = math.multiply(rateDisparity, exchangeRateFraction);
     return math.number(result);
   };
   const renderClassMarketSellPrice = function () {

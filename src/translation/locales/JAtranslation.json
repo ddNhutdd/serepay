@@ -365,5 +365,11 @@
     "tradeLimit": "取引制限",
     "contact": "コンタクト",
     "info": "情報",
-    "currency": "通貨"
+    "currency": "通貨",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "BEP20トークンの取引に十分なガス料金を確保するために、ウォレットに最低0.02 BNBを保持する必要があります。",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "トランザクション手数料またはガス手数料は固定ではなく、ブロックチェーンネットワークのピークタイムとオフピークタイムに応じて変動します。",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "推定完了時間：2分。 15分以内に引き出しが完了しなかった場合は、support@serepay.netまでサポートチームにご連絡ください。",
+    "pleaseLogInAgain": "再度ログインしてください！",
+    "loginExpired": "ログインが期限切れになりました",
+    "pleaseLogInAgainToContinueYourSession": "セッションを継続するには、再度ログインしてください。"
 }

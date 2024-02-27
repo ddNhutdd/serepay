@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 import { fetchNotify } from "./App";
-import socket from "./util/socket";
 
 const Config = (props) => {
   const location = useLocation();

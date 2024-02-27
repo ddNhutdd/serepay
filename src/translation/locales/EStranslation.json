@@ -365,5 +365,11 @@
     "tradeLimit": "Límite de comercio",
     "contact": "Contacto",
     "info": "Información",
-    "currency": "Moneda"
+    "currency": "Moneda",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Debe mantener un mínimo de 0.02 BNB en su billetera para garantizar suficientes tarifas de gas para el comercio de tokens BEP20.",
+    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Las tarifas de transacción o tarifas de gas no son fijas, están sujetas a cambios dependiendo de las horas pico y fuera de pico de las redes blockchain.",
+    "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tiempo estimado de finalización: 2 minutos. Si no ha recibido su retiro en 15 minutos, comuníquese con nuestro equipo de soporte en support@serepay.net",
+    "pleaseLogInAgain": "¡Inicie sesión nuevamente!",
+    "loginExpired": "Sesión expirada",
+    "pleaseLogInAgainToContinueYourSession": "¡Inicie sesión nuevamente para continuar su sesión!"
 }

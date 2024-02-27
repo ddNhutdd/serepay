@@ -86,6 +86,7 @@ function Dropdown(props) {
   const observeHeightSelector = function () {
     const setHeightSelector = function () {
       let element = document.getElementById(id);
+      if (!element) return;
       let height = element.offsetHeight;
       setDropdownSelectorHeight(height);
     };

@@ -51,7 +51,15 @@ export default function Login({ history }) {
     //
     const element = document.querySelector(".login-register");
     if (element) element.classList.add("fadeInBottomToTop");
+    //
+    reLoginRedirect();
   }, []);
+  const reLoginRedirect = function () {
+    const url = getLocalStorage(localStorageVariable.reLoginR);
+    if (!url) return;
+    removeLocalStorage(localStorageVariable.reLoginR);
+    history.push(url);
+  };
 
   const login = async (e, p) => {
     setIsLoading(true);
@@ -60,6 +68,7 @@ export default function Login({ history }) {
         userName: e,
         password: p,
       });
+      removeLocalStorage(localStorageVariable.expireToken);
       response?.data?.data?.id === 1
         ? dispatch({ type: "USER_ADMIN", payload: true })
         : dispatch({ type: "USER_ADMIN", payload: false });
