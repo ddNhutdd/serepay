@@ -374,5 +374,8 @@
     "pleaseLogInAgain": "Vui lòng đăng nhập lại!",
     "loginExpired": "Phiên đăng nhập đã hết hạn",
     "pleaseLogInAgainToContinueYourSession": "Vui lòng đăng nhập lại để tiếp tục phiên của bạn",
-    "clickHereToContinueYouAgreeToSerepays": "Nhấn vào đây để tiếp tục, Bạn đồng ý với Serepay's"
+    "clickHereToContinueYouAgreeToSerepays": "Nhấn vào đây để tiếp tục, Bạn đồng ý với Serepay's",
+    "acceptedPaid": "Đã Chấp nhận & Đã Thanh toán",
+    "waitingForBuyerToConfirm": "Đang chờ người mua xác nhận",
+    "pleaseContactBuyerForAssistance": "Vui lòng liên hệ với người mua để được trợ giúp"
 }

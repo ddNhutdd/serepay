@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "ກະລຸນາເຂົ້າລະບົບຄືນ!",
     "loginExpired": "ເຂົ້າລະບົບໄດ້ໝົດອາຍຸ",
     "pleaseLogInAgainToContinueYourSession": "ກະລຸນາເຂົ້າລະບົບຄືນເພື່ອດຳເນີນການຂອງທ່ານ",
-    "clickHereToContinueYouAgreeToSerepays": "ចុចត្រង់នេះដើម្បីបន្ត, អ្នកយល់ព្រមនឹងលក្ខខណ្ឌរបស់ Serepay"
+    "clickHereToContinueYouAgreeToSerepays": "ចុចត្រង់នេះដើម្បីបន្ត, អ្នកយល់ព្រមនឹងលក្ខខណ្ឌរបស់ Serepay",
+    "acceptedPaid": "ໄດ້ຮັບແລະຈ່າຍເງິນ",
+    "waitingForBuyerToConfirm": "ລໍຖ້າການຢືນຢັນຈາກຜູ້ຊື້",
+    "pleaseContactBuyerForAssistance": "ກະລຸນາຕິດຕໍ່ຜູ້ຊື້ເພື່ອຮັບຊ່ວຍເຫຼືອ"
 }

@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "Συνδεθείτε ξανά!",
     "loginExpired": "Η σύνδεση έληξε",
     "pleaseLogInAgainToContinueYourSession": "Συνδεθείτε ξανά για να συνεχίσετε τη συνεδρία σας",
-    "clickHereToContinueYouAgreeToSerepays": "Κάντε κλικ εδώ για να συνεχίσετε, Συμφωνείτε με τους όρους της Serepay"
+    "clickHereToContinueYouAgreeToSerepays": "Κάντε κλικ εδώ για να συνεχίσετε, Συμφωνείτε με τους όρους της Serepay",
+    "acceptedPaid": "Αποδεκτό & Πληρωμένο",
+    "waitingForBuyerToConfirm": "Αναμονή επιβεβαίωσης αγοραστή",
+    "pleaseContactBuyerForAssistance": "Παρακαλώ επικοινωνήστε με τον αγοραστή για βοήθεια"
 }

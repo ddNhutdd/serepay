@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "يرجى تسجيل الدخول مرة أخرى!",
     "loginExpired": "انتهت صلاحية تسجيل الدخول",
     "pleaseLogInAgainToContinueYourSession": "يرجى تسجيل الدخول مرة أخرى لمواصلة جلستك",
-    "clickHereToContinueYouAgreeToSerepays": "انقر هنا للمتابعة، أنت توافق على شروط Serepay"
+    "clickHereToContinueYouAgreeToSerepays": "انقر هنا للمتابعة، أنت توافق على شروط Serepay",
+    "acceptedPaid": "مقبول ومُدفع",
+    "waitingForBuyerToConfirm": "بانتظار تأكيد المشتري",
+    "pleaseContactBuyerForAssistance": "يرجى الاتصال بالمشتري للمساعدة"
 }

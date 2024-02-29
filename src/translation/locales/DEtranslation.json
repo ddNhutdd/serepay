@@ -372,5 +372,8 @@
   "pleaseLogInAgain": "Bitte melden Sie sich erneut an!",
   "loginExpired": "Anmeldung abgelaufen",
   "pleaseLogInAgainToContinueYourSession": "Bitte melden Sie sich erneut an, um Ihre Sitzung fortzusetzen.",
-  "clickHereToContinueYouAgreeToSerepays": "Hier klicken, um fortzufahren. Sie stimmen den Serepay-Bedingungen zu."
+  "clickHereToContinueYouAgreeToSerepays": "Hier klicken, um fortzufahren. Sie stimmen den Serepay-Bedingungen zu.",
+  "acceptedPaid": "Akzeptiert & Bezahlt",
+  "waitingForBuyerToConfirm": "Warten auf Käuferbestätigung",
+  "pleaseContactBuyerForAssistance": "Bitte kontaktieren Sie den Käufer für Unterstützung"
 }

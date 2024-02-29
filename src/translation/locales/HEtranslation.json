@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "אנא התחבר שוב!",
     "loginExpired": "ההתחברות פגה",
     "pleaseLogInAgainToContinueYourSession": "אנא התחבר שוב כדי להמשיך את המפגש שלך",
-    "clickHereToContinueYouAgreeToSerepays": "לחץ כאן להמשך, אתה מסכים לתנאים של Serepay"
+    "clickHereToContinueYouAgreeToSerepays": "לחץ כאן להמשך, אתה מסכים לתנאים של Serepay",
+    "acceptedPaid": "אושר ושולם",
+    "waitingForBuyerToConfirm": "ממתין לאישור קונה",
+    "pleaseContactBuyerForAssistance": "אנא פנה לקונה לקבלת סיוע"
 }

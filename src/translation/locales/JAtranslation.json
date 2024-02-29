@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "再度ログインしてください！",
     "loginExpired": "ログインが期限切れになりました",
     "pleaseLogInAgainToContinueYourSession": "セッションを継続するには、再度ログインしてください。",
-    "clickHereToContinueYouAgreeToSerepays": "こちらをクリックして続行します。Serepayの利用規約に同意します。"
+    "clickHereToContinueYouAgreeToSerepays": "こちらをクリックして続行します。Serepayの利用規約に同意します。",
+    "acceptedPaid": "承認済み & 支払い済み",
+    "waitingForBuyerToConfirm": "バイヤーの確認待ち",
+    "pleaseContactBuyerForAssistance": "支援が必要な場合はバイヤーにお問い合わせください"
 }

@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "Lütfen tekrar giriş yapın!",
     "loginExpired": "Oturum süresi doldu",
     "pleaseLogInAgainToContinueYourSession": "Oturumunuza devam etmek için lütfen tekrar giriş yapın.",
-    "clickHereToContinueYouAgreeToSerepays": "Devam etmek için buraya tıklayın, Serepay's'a katılıyorsunuz"
+    "clickHereToContinueYouAgreeToSerepays": "Devam etmek için buraya tıklayın, Serepay's'a katılıyorsunuz",
+    "acceptedPaid": "Kabul Edildi ve Ödendi",
+    "waitingForBuyerToConfirm": "Alıcının onaylamasını bekliyor",
+    "pleaseContactBuyerForAssistance": "Yardım için lütfen alıcıyla iletişime geçin"
 }

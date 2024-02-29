@@ -12,15 +12,16 @@ import { useParams, useHistory } from "react-router-dom";
 import { getInfoP2p, getProfile } from "src/util/userCallApi";
 import ConfirmItem from "./confirmItem";
 import { Spin } from "antd";
-import { getLocalStorage } from "src/util/common";
+import { formatCurrency, getLocalStorage } from "src/util/common";
 import { callToastError } from "src/function/toast/callToast";
 import { useTranslation } from "react-i18next";
 import socket from "src/util/socket";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
-import { getExchange } from "src/redux/constant/currency.constant";
+import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { math } from "src/App";
 
 function Confirm() {
+  const currentCurrency = useSelector(getCurrent);
   const { id: idAds } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -90,10 +91,21 @@ function Confirm() {
     const rateFraciton = math.fraction(rate);
     const payFraction = math.fraction(pay);
 
+    // hai dòng này để nó có thể hiển thị đồng bộ với rate của confirm, nếu để chính xác thì sẽ bị lệch
+    const rateRount = math.multiply(rateFraciton, rateUSD_VNDFraction);
+    const rateRountFormat = formatCurrency(
+      "en-US",
+      currentCurrency,
+      math.number(rateRount),
+      false
+    );
+    const rateRountFormatFraction = math.fraction(
+      rateRountFormat.replaceAll(",", "")
+    );
+
     const moneyEs = math
       .chain(amountFraction)
-      .multiply(rateFraciton)
-      .multiply(rateUSD_VNDFraction)
+      .multiply(rateRountFormatFraction)
       .done();
 
     let result;

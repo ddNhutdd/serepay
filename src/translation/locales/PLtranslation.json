@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "Proszę ponownie się zalogować!",
     "loginExpired": "Sesja wygasła",
     "pleaseLogInAgainToContinueYourSession": "Proszę ponownie się zalogować, aby kontynuować sesję.",
-    "clickHereToContinueYouAgreeToSerepays": "Kliknij tutaj, aby kontynuować, zgadzasz się na Serepay's"
+    "clickHereToContinueYouAgreeToSerepays": "Kliknij tutaj, aby kontynuować, zgadzasz się na Serepay's",
+    "acceptedPaid": "Zaakceptowane i opłacone",
+    "waitingForBuyerToConfirm": "Oczekiwanie na potwierdzenie kupującego",
+    "pleaseContactBuyerForAssistance": "Skontaktuj się z kupującym, aby uzyskać pomoc"
 }

@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "다시 로그인하십시오!",
     "loginExpired": "로그인이 만료되었습니다.",
     "pleaseLogInAgainToContinueYourSession": "세션을 계속하려면 다시 로그인하십시오.",
-    "clickHereToContinueYouAgreeToSerepays": "계속하려면 여기를 클릭하십시오. Serepay의 약관에 동의합니다."
+    "clickHereToContinueYouAgreeToSerepays": "계속하려면 여기를 클릭하십시오. Serepay의 약관에 동의합니다.",
+    "acceptedPaid": "승인됨 & 결제됨",
+    "waitingForBuyerToConfirm": "구매자 확인待ち",
+    "pleaseContactBuyerForAssistance": "도움이 필요하면 구매자에게 문의하십시오"
 }

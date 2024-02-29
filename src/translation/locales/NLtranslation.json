@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "Log alstublieft opnieuw in!",
     "loginExpired": "Sessie verlopen",
     "pleaseLogInAgainToContinueYourSession": "Log alstublieft opnieuw in om uw sessie voort te zetten",
-    "clickHereToContinueYouAgreeToSerepays": "Klik hier om door te gaan, u gaat akkoord met Serepay's"
+    "clickHereToContinueYouAgreeToSerepays": "Klik hier om door te gaan, u gaat akkoord met Serepay's",
+    "acceptedPaid": "Geaccepteerd en betaald",
+    "waitingForBuyerToConfirm": "Wachten op bevestiging van de koper",
+    "pleaseContactBuyerForAssistance": "Neem contact op met de koper voor hulp"
 }

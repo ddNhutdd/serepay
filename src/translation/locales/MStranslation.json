@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "Sila log masuk semula!",
     "loginExpired": "Sesi tamat tempoh",
     "pleaseLogInAgainToContinueYourSession": "Sila log masuk semula untuk meneruskan sesi anda",
-    "clickHereToContinueYouAgreeToSerepays": "Klik di sini untuk teruskan, Anda bersetuju dengan Serepay's"
+    "clickHereToContinueYouAgreeToSerepays": "Klik di sini untuk teruskan, Anda bersetuju dengan Serepay's",
+    "acceptedPaid": "Diterima & Dibayar",
+    "waitingForBuyerToConfirm": "Menunggu pengesahan pembeli",
+    "pleaseContactBuyerForAssistance": "Sila hubungi pembeli untuk bantuan"
 }

@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "សូមចូលព្រមទាំងម្ដងទៀត!",
     "loginExpired": "ការចូលរបស់អ្នកផុតកំណត់",
     "pleaseLogInAgainToContinueYourSession": "សូមចូលព្រមទាំងម្ដងទៀតដើម្បីបន្តបន្ទាប់នៃសម័យរបស់អ្នក",
-    "clickHereToContinueYouAgreeToSerepays": "ចុចត្រង់នេះដើម្បីបន្ត, អ្នកយល់ព្រមនឹងលក្ខខណ្ឌរបស់ Serepay"
+    "clickHereToContinueYouAgreeToSerepays": "ចុចត្រង់នេះដើម្បីបន្ត, អ្នកយល់ព្រមនឹងលក្ខខណ្ឌរបស់ Serepay",
+    "acceptedPaid": "ទទួលចិត្ត និង បង់ប្រាក់",
+    "waitingForBuyerToConfirm": "រង់ចាំការបញ្ជាក់ពីអ្នកទិញ",
+    "pleaseContactBuyerForAssistance": "សូមទាក់ទងអ្នកទិញសម្រាប់ជំនួយ"
 }

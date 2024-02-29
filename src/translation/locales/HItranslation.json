@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "कृपया पुनः लॉग इन करें!",
     "loginExpired": "लॉगिन समाप्त हो गया",
     "pleaseLogInAgainToContinueYourSession": "अपने सत्र को जारी रखने के लिए कृपया पुनः लॉग इन करें",
-    "clickHereToContinueYouAgreeToSerepays": "यहां क्लिक करके आगे बढ़ें, आप Serepay की शर्तों से सहमत हैं"
+    "clickHereToContinueYouAgreeToSerepays": "यहां क्लिक करके आगे बढ़ें, आप Serepay की शर्तों से सहमत हैं",
+    "acceptedPaid": "स्वीकृत और भुगतान किया गया (Swीkrut aur bhugतान kiya gaya)",
+    "waitingForBuyerToConfirm": "खरीदार की पुष्टि का इंतज़ार कर रहे हैं (Khareedar ki pushti ka intezaar kar rahe hain)",
+    "pleaseContactBuyerForAssistance": "कृपया सहायता के लिए खरीदार से संपर्क करें (Kripya sahayata ke liye khareedar se sampark karen)"
 }

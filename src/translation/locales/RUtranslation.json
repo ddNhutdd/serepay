@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "Пожалуйста, авторизуйтесь снова!",
     "loginExpired": "Срок действия сеанса истек",
     "pleaseLogInAgainToContinueYourSession": "Пожалуйста, авторизуйтесь снова, чтобы продолжить сеанс.",
-    "clickHereToContinueYouAgreeToSerepays": "Нажмите здесь, чтобы продолжить, Вы соглашаетесь с Serepay's"
+    "clickHereToContinueYouAgreeToSerepays": "Нажмите здесь, чтобы продолжить, Вы соглашаетесь с Serepay's",
+    "acceptedPaid": "Принято и оплачено",
+    "waitingForBuyerToConfirm": "Ожидание подтверждения от покупателя",
+    "pleaseContactBuyerForAssistance": "Пожалуйста, свяжитесь с покупателем для получения помощи"
 }

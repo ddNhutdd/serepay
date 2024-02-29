@@ -372,5 +372,8 @@
     "pleaseLogInAgain": "Veuillez vous reconnecter !",
     "loginExpired": "Connexion expirée",
     "pleaseLogInAgainToContinueYourSession": "Veuillez vous reconnecter pour continuer votre session.",
-    "clickHereToContinueYouAgreeToSerepays": "Cliquez ici pour continuer, Vous acceptez les conditions de Serepay"
+    "clickHereToContinueYouAgreeToSerepays": "Cliquez ici pour continuer, Vous acceptez les conditions de Serepay",
+    "acceptedPaid": "Accepté et Payé",
+    "waitingForBuyerToConfirm": "En attente de confirmation de l'acheteur",
+    "pleaseContactBuyerForAssistance": "Veuillez contacter l'acheteur pour obtenir de l'aide"
 }
