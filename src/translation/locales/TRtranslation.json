@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tahmini tamamlanma süresi: 2 dakika. 15 dakika içinde çekiminizi almadıysanız, lütfen support@serepay.net adresindeki destek ekibimizle iletişime geçin.",
     "pleaseLogInAgain": "Lütfen tekrar giriş yapın!",
     "loginExpired": "Oturum süresi doldu",
-    "pleaseLogInAgainToContinueYourSession": "Oturumunuza devam etmek için lütfen tekrar giriş yapın."
+    "pleaseLogInAgainToContinueYourSession": "Oturumunuza devam etmek için lütfen tekrar giriş yapın.",
+    "clickHereToContinueYouAgreeToSerepays": "Devam etmek için buraya tıklayın, Serepay's'a katılıyorsunuz"
 }

@@ -371,5 +371,6 @@
   "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tempo di completamento stimato: 2 minuti. Se non hai ricevuto il tuo prelievo entro 15 minuti, contatta il nostro team di supporto a support@serepay.net",
   "pleaseLogInAgain": "Effettua nuovamente l'accesso!",
   "loginExpired": "Sessione scaduta",
-  "pleaseLogInAgainToContinueYourSession": "Effettua nuovamente l'accesso per continuare la sessione."
+  "pleaseLogInAgainToContinueYourSession": "Effettua nuovamente l'accesso per continuare la sessione.",
+  "clickHereToContinueYouAgreeToSerepays": "Clicca qui per continuare, Accetti i termini di Serepay"
 }

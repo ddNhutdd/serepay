@@ -369,5 +369,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "ระยะเวลาโดยประมาณ: 2 นาที. กรุณาติดต่อทีมสนับสนุนของเราที่ support@serepay.net หากคุณไม่ได้รับเงินที่ถอนออกภายใน 15 นาที",
     "pleaseLogInAgain": "กรุณาล็อกอินอีกครั้ง!",
     "loginExpired": "การเข้าสู่ระบบหมดอายุ",
-    "pleaseLogInAgainToContinueYourSession": "กรุณาล็อกอินอีกครั้งเพื่อดำเนินการต่อเซสชันของคุณ"
+    "pleaseLogInAgainToContinueYourSession": "กรุณาล็อกอินอีกครั้งเพื่อดำเนินการต่อเซสชันของคุณ",
+    "clickHereToContinueYouAgreeToSerepays": "คลิกที่นี่เพื่อดำเนินการต่อ คุณยินยอมกับ Serepay's"
 }

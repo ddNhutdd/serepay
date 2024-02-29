@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Предполагаемое время завершения: 2 минуты. Если вы не получили свой вывод средств в течение 15 минут, пожалуйста, обратитесь в нашу службу поддержки по адресу support@serepay.net",
     "pleaseLogInAgain": "Пожалуйста, авторизуйтесь снова!",
     "loginExpired": "Срок действия сеанса истек",
-    "pleaseLogInAgainToContinueYourSession": "Пожалуйста, авторизуйтесь снова, чтобы продолжить сеанс."
+    "pleaseLogInAgainToContinueYourSession": "Пожалуйста, авторизуйтесь снова, чтобы продолжить сеанс.",
+    "clickHereToContinueYouAgreeToSerepays": "Нажмите здесь, чтобы продолжить, Вы соглашаетесь с Serepay's"
 }

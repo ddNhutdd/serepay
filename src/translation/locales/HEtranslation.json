@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "זמן השלמת משוער: 2 דקות. אם לא קיבלת את המשיכה שלך בתוך 15 דקות, אנא צור קשר עם צוות התמיכה שלנו בכתובת support@serepay.net",
     "pleaseLogInAgain": "אנא התחבר שוב!",
     "loginExpired": "ההתחברות פגה",
-    "pleaseLogInAgainToContinueYourSession": "אנא התחבר שוב כדי להמשיך את המפגש שלך"
+    "pleaseLogInAgainToContinueYourSession": "אנא התחבר שוב כדי להמשיך את המפגש שלך",
+    "clickHereToContinueYouAgreeToSerepays": "לחץ כאן להמשך, אתה מסכים לתנאים של Serepay"
 }

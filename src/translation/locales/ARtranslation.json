@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "الوقت المتوقع للإكمال: دقيقتان. إذا لم تتلق سحبك خلال 15 دقيقة، يرجى الاتصال بفريق الدعم الفني على support@serepay.net",
     "pleaseLogInAgain": "يرجى تسجيل الدخول مرة أخرى!",
     "loginExpired": "انتهت صلاحية تسجيل الدخول",
-    "pleaseLogInAgainToContinueYourSession": "يرجى تسجيل الدخول مرة أخرى لمواصلة جلستك"
+    "pleaseLogInAgainToContinueYourSession": "يرجى تسجيل الدخول مرة أخرى لمواصلة جلستك",
+    "clickHereToContinueYouAgreeToSerepays": "انقر هنا للمتابعة، أنت توافق على شروط Serepay"
 }

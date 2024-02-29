@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tiempo estimado de finalización: 2 minutos. Si no ha recibido su retiro en 15 minutos, comuníquese con nuestro equipo de soporte en support@serepay.net",
     "pleaseLogInAgain": "¡Inicie sesión nuevamente!",
     "loginExpired": "Sesión expirada",
-    "pleaseLogInAgainToContinueYourSession": "¡Inicie sesión nuevamente para continuar su sesión!"
+    "pleaseLogInAgainToContinueYourSession": "¡Inicie sesión nuevamente para continuar su sesión!",
+    "clickHereToContinueYouAgreeToSerepays": "Haga clic aquí para continuar, Acepta los términos de Serepay"
 }

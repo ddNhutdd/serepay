@@ -706,7 +706,7 @@ function TransactionBuy() {
                 <i className="fa-solid fa-check"></i>
               </div>
               <div className="transaction__checkbox-text">
-                {t("byClickingContinueYouAgreeToSerepays")}{" "}
+                {t("clickHereToContinueYouAgreeToSerepays")}{" "}
                 <span className="transaction--green-header">
                   {t("p2PTermsOfService")}
                 </span>

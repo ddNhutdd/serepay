@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "推定完了時間：2分。 15分以内に引き出しが完了しなかった場合は、support@serepay.netまでサポートチームにご連絡ください。",
     "pleaseLogInAgain": "再度ログインしてください！",
     "loginExpired": "ログインが期限切れになりました",
-    "pleaseLogInAgainToContinueYourSession": "セッションを継続するには、再度ログインしてください。"
+    "pleaseLogInAgainToContinueYourSession": "セッションを継続するには、再度ログインしてください。",
+    "clickHereToContinueYouAgreeToSerepays": "こちらをクリックして続行します。Serepayの利用規約に同意します。"
 }

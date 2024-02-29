@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "估计完成时间：2 分钟。如果您在 15 分钟内未收到您的提款，请通过 support@serepay.net 联系我们的支持团队。",
     "pleaseLogInAgain": "请重新登录！",
     "loginExpired": "登录已过期",
-    "pleaseLogInAgainToContinueYourSession": "请重新登录以继续您的会话"
+    "pleaseLogInAgainToContinueYourSession": "请重新登录以继续您的会话",
+    "clickHereToContinueYouAgreeToSerepays": "点击此处继续，您同意 Serepay's"
 }

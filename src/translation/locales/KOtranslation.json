@@ -371,5 +371,6 @@
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "예상 완료 시간: 2분. 15분 이내에 출금되지 않은 경우 support@serepay.net의 지원 팀에 문의하십시오.",
     "pleaseLogInAgain": "다시 로그인하십시오!",
     "loginExpired": "로그인이 만료되었습니다.",
-    "pleaseLogInAgainToContinueYourSession": "세션을 계속하려면 다시 로그인하십시오."
+    "pleaseLogInAgainToContinueYourSession": "세션을 계속하려면 다시 로그인하십시오.",
+    "clickHereToContinueYouAgreeToSerepays": "계속하려면 여기를 클릭하십시오. Serepay의 약관에 동의합니다."
 }
