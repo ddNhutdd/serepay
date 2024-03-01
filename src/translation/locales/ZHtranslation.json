@@ -237,7 +237,6 @@
     "makePayment": "请在规定的时间内使用正确的信息进行支付。如果您已经付款，可以立即向卖方发送消息以进行验证。",
     "cryptoOnly": "我们只处理加密货币，与任何项目无关。",
     "websiteTransaction": "客户请注意，交易仅在网站上进行。我们对网站之外的交易不负责任。",
-    "paymentDelayOrError": "如果客户的付款延迟，存在银行错误... 请联系卖方寻求帮助。",
     "receivedPayment": "已收到付款",
     "confirmedTransfer": "确认已转账",
     "notReceivedPayment": "尚未收到付款",
@@ -372,5 +371,7 @@
     "pleaseLogInAgain": "请重新登录！",
     "loginExpired": "登录已过期",
     "pleaseLogInAgainToContinueYourSession": "请重新登录以继续您的会话",
-    "clickHereToContinueYouAgreeToSerepays": "点击此处继续，您同意 Serepay's"
+    "clickHereToContinueYouAgreeToSerepays": "点击此处继续，您同意 Serepay's",
+    "paymentDelayOrError": "如果客户付款延迟，则银行出现错误...",
+    "pleaseContactSellerForAssistance": "请联系卖家以获得帮助"
 }

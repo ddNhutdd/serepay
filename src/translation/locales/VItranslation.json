@@ -237,7 +237,6 @@
     "makePayment": "Vui lòng thanh toán đúng thông tin tại màn hình thanh toán trong thời gian quy định. Nếu bạn đã thanh toán có thể nhắn tin cho người bán ngay để họ kiểm tra.",
     "cryptoOnly": "Chúng tôi chỉ mua bán tiền điện tử, không liên quan đến bất kì dự án nào.",
     "websiteTransaction": "Khách hàng lưu ý chỉ giao dịch trên web. Các giao dịch bên ngoài website chúng tôi không chịu trách nhiệm.",
-    "paymentDelayOrError": "Nếu khách hàng thanh toán bị chậm, lỗi ngân hàng ... vui lòng liên hệ người bán để được hỗ trợ",
     "receivedPayment": "Đã nhận được tiền",
     "confirmedTransfer": "Xác nhận đã chuyển tiền",
     "notReceivedPayment": "Chưa nhận được tiền",
@@ -377,5 +376,7 @@
     "clickHereToContinueYouAgreeToSerepays": "Nhấn vào đây để tiếp tục, Bạn đồng ý với Serepay's",
     "acceptedPaid": "Đã Chấp nhận & Đã Thanh toán",
     "waitingForBuyerToConfirm": "Đang chờ người mua xác nhận",
-    "pleaseContactBuyerForAssistance": "Vui lòng liên hệ với người mua để được trợ giúp"
+    "pleaseContactBuyerForAssistance": "Vui lòng liên hệ với người mua để được trợ giúp",
+    "paymentDelayOrError": "Nếu thanh toán của khách hàng bị trễ, có lỗi ngân hàng...",
+    "pleaseContactSellerForAssistance": "Vui lòng liên hệ với người bán để được hỗ trợ"
 }

@@ -237,7 +237,6 @@
     "makePayment": "Sila buat pembayaran dengan maklumat yang betul pada skrin pembayaran dalam masa yang ditentukan. Jika anda telah membuat pembayaran, anda boleh menghantar mesej kepada penjual dengan segera untuk mengesahkannya.",
     "cryptoOnly": "Kami hanya berurusan dengan cryptocurrency, tidak berkaitan dengan mana -mana projek.",
     "websiteTransaction": "Pelanggan perlu ambil perhatian bahawa urus niaga hanya dijalankan di Laman Web. Kami tidak bertanggungjawab untuk transaksi di luar laman web kami.",
-    "paymentDelayOrError": "Jika pembayaran pelanggan ditangguhkan, terdapat ralat bank ... Sila hubungi penjual untuk mendapatkan bantuan.",
     "receivedPayment": "Diterima pembayaran",
     "confirmedTransfer": "Mengesahkan pemindahan",
     "notReceivedPayment": "Belum menerima pembayaran",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "Klik di sini untuk teruskan, Anda bersetuju dengan Serepay's",
     "acceptedPaid": "Diterima & Dibayar",
     "waitingForBuyerToConfirm": "Menunggu pengesahan pembeli",
-    "pleaseContactBuyerForAssistance": "Sila hubungi pembeli untuk bantuan"
+    "pleaseContactBuyerForAssistance": "Sila hubungi pembeli untuk bantuan",
+    "paymentDelayOrError": "Jika pembayaran pelanggan tertunda, ada ralat bank...",
+    "pleaseContactSellerForAssistance": "Sila hubungi penjual untuk mendapatkan bantuan"
 }

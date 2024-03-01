@@ -321,9 +321,7 @@ function ConfirmItem(props) {
     if (typeUser === 2 && userId === profileId) {
       return (
         <>
-          <Button onClick={userConfirmClickHandle}>
-            {t("receivedPaymentAndUnlocked")}
-          </Button>
+          <Button onClick={userConfirmClickHandle}>{t("acceptedPaid")}</Button>
           <Button
             onClick={userCancelClickHandle}
             type={buttonClassesType.danger}
@@ -339,7 +337,7 @@ function ConfirmItem(props) {
         </>
       );
     } else if (typeUser === 1 && userId === profileId) {
-      return <Button disabled>{t("waitingConfirm")}</Button>;
+      return <Button disabled>{t("waitingForBuyerToConfirm")}</Button>;
     } else if (typeUser === 1 && userId !== profileId) {
       return (
         <>
@@ -637,7 +635,12 @@ function ConfirmItem(props) {
                 <li>{t("makePayment")}</li>
                 <li>{t("cryptoOnly")}</li>
                 <li>{t("websiteTransaction")}</li>
-                <li>{t("paymentDelayOrError")}</li>
+                <li>
+                  {t("paymentDelayOrError")}{" "}
+                  {userCurrentAction === actionType.buy
+                    ? t("pleaseContactSellerForAssistance")
+                    : t("pleaseContactBuyerForAssistance")}
+                </li>
               </td>
             </tr>
             <tr>

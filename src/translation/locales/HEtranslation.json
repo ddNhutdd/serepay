@@ -237,7 +237,6 @@
     "makePayment": "אנא בצע את התשלום עם המידע הנכון על מסך התשלום בזמן שצוין. אם ביצעת את התשלום, תוכל לשלוח הודעה מיידית למוכר כדי לוודא.",
     "cryptoOnly": "אנו מתמודדים רק עם cryptocurrency, לא קשורים לפרויקטים כלשהם.",
     "websiteTransaction": "על הלקוחות לציין כי עסקאות מתבצעות רק באתר. איננו אחראים לעסקאות מחוץ לאתר שלנו.",
-    "paymentDelayOrError": "אם התשלום של הלקוח מתעכב, יש שגיאה בבנק ... אנא צור קשר עם המוכר לקבלת סיוע.",
     "receivedPayment": "לקבל תשלום",
     "confirmedTransfer": "אישר את ההעברה",
     "notReceivedPayment": "טרם קיבל תשלום",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "לחץ כאן להמשך, אתה מסכים לתנאים של Serepay",
     "acceptedPaid": "אושר ושולם",
     "waitingForBuyerToConfirm": "ממתין לאישור קונה",
-    "pleaseContactBuyerForAssistance": "אנא פנה לקונה לקבלת סיוע"
+    "pleaseContactBuyerForAssistance": "אנא פנה לקונה לקבלת סיוע",
+    "paymentDelayOrError": "במקרה של עיכוב בתשלום הלקוח, ישנה שגיאת בנק...",
+    "pleaseContactSellerForAssistance": "אנא פנה למוכר לקבלת עזרה"
 }

@@ -237,7 +237,6 @@
     "makePayment": "Lütfen ödeme ekranında belirtilen süre içinde doğru bilgilerle ödeme yapın. Ödemeyi yaptıysanız, doğrulamaları için hemen satıcıya mesaj gönderebilirsiniz.",
     "cryptoOnly": "Sadece kripto para birimi ile ilgileniyoruz, herhangi bir projeyle ilgili değil.",
     "websiteTransaction": "Müşteriler, işlemlerin yalnızca web sitesinde gerçekleştirildiğini belirtmelidir. Web sitemizin dışındaki işlemlerden sorumlu değiliz.",
-    "paymentDelayOrError": "Müşterinin ödemesi ertelenirse, bir banka hatası var ... yardım için lütfen satıcıyla iletişime geçin.",
     "receivedPayment": "Alınan ödeme",
     "confirmedTransfer": "Transferi doğruladı",
     "notReceivedPayment": "Henüz ödeme alınmadı",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "Devam etmek için buraya tıklayın, Serepay's'a katılıyorsunuz",
     "acceptedPaid": "Kabul Edildi ve Ödendi",
     "waitingForBuyerToConfirm": "Alıcının onaylamasını bekliyor",
-    "pleaseContactBuyerForAssistance": "Yardım için lütfen alıcıyla iletişime geçin"
+    "pleaseContactBuyerForAssistance": "Yardım için lütfen alıcıyla iletişime geçin",
+    "paymentDelayOrError": "Müşterinin ödemesi gecikirse, bir banka hatası var...",
+    "pleaseContactSellerForAssistance": "Yardım için lütfen satıcıyla iletişime geçin"
 }

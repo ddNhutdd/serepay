@@ -2,8 +2,8 @@ import axios from "axios";
 import { getLocalStorage, setLocalStorage } from "./common";
 import { localStorageVariable } from "src/constant";
 
-// export const DOMAIN = "https://remitano.dk-tech.vn/";
-export const DOMAIN = "https://serepay.net/";
+export const DOMAIN = "https://remitano.dk-tech.vn/";
+// export const DOMAIN = "https://serepay.net/";
 export const BANK_API_DOMAIN = "https://api.vietqr.io/v2";
 export const axiosService = axios.create({
   baseURL: DOMAIN,

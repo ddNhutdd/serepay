@@ -157,7 +157,6 @@ export default function P2PTrading({ history }) {
       !data ||
       data.length <= 0 ||
       !exChangeFromRedux ||
-      !exchangeRateSellDisparityFromRedux ||
       exChangeFromRedux.length <= 0
     )
       return;

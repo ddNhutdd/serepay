@@ -237,7 +237,6 @@
     "makePayment": "Veuillez effectuer le paiement avec les informations correctes sur l'écran de paiement dans le délai spécifié. Si vous avez effectué le paiement, vous pouvez immédiatement envoyer un message au vendeur pour qu'ils puissent le vérifier.",
     "cryptoOnly": "Nous ne traitons que la crypto-monnaie, et non liés aux projets.",
     "websiteTransaction": "Les clients doivent noter que les transactions ne sont effectuées que sur le site Web. Nous ne sommes pas responsables des transactions en dehors de notre site Web.",
-    "paymentDelayOrError": "Si le paiement du client est retardé, il y a une erreur bancaire ... veuillez contacter le vendeur pour obtenir de l'aide.",
     "receivedPayment": "Paiement reçu",
     "confirmedTransfer": "A confirmé le transfert",
     "notReceivedPayment": "Pas encore reçu de paiement",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "Cliquez ici pour continuer, Vous acceptez les conditions de Serepay",
     "acceptedPaid": "Accepté et Payé",
     "waitingForBuyerToConfirm": "En attente de confirmation de l'acheteur",
-    "pleaseContactBuyerForAssistance": "Veuillez contacter l'acheteur pour obtenir de l'aide"
+    "pleaseContactBuyerForAssistance": "Veuillez contacter l'acheteur pour obtenir de l'aide",
+    "paymentDelayOrError": "En cas de retard de paiement du client, une erreur bancaire est survenue...",
+    "pleaseContactSellerForAssistance": "Veuillez contacter le vendeur pour obtenir de l'aide."
 }

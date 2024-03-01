@@ -237,7 +237,6 @@
     "makePayment": "指定された時間内に正確な情報で支払いを行ってください。支払いが完了した場合は、すぐに売り手にメッセージを送信して確認してもらえます。",
     "cryptoOnly": "私たちは暗号通貨の取引のみを行っており、いかなるプロジェクトにも関連していません。",
     "websiteTransaction": "お客様はトランザクションはウェブサイト上でのみ実施されることに注意してください。私たちはウェブサイト外のトランザクションには責任を負いません。",
-    "paymentDelayOrError": "お客様の支払いが遅れている場合、または銀行のエラーが発生した場合は、売り手に連絡してサポートを受けてください。",
     "receivedPayment": "支払いを受け取りました",
     "confirmedTransfer": "送金が確認されました",
     "notReceivedPayment": "まだ支払いを受け取っていません",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "こちらをクリックして続行します。Serepayの利用規約に同意します。",
     "acceptedPaid": "承認済み & 支払い済み",
     "waitingForBuyerToConfirm": "バイヤーの確認待ち",
-    "pleaseContactBuyerForAssistance": "支援が必要な場合はバイヤーにお問い合わせください"
+    "pleaseContactBuyerForAssistance": "支援が必要な場合はバイヤーにお問い合わせください",
+    "paymentDelayOrError": "お客様の支払いが遅れた場合、銀行エラーが発生しています...",
+    "pleaseContactSellerForAssistance": "販売者に連絡して支援を求めてください"
 }

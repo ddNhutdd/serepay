@@ -237,7 +237,6 @@
     "makePayment": "Doe de betaling binnen de opgegeven tijdstip met de juiste informatie op het betalingsscherm. Als u de betaling hebt gedaan, kunt u de verkoper onmiddellijk sturen om te verifiëren.",
     "cryptoOnly": "We hebben alleen te maken met cryptocurrency, niet gerelateerd aan projecten.",
     "websiteTransaction": "Klanten moeten er rekening mee houden dat transacties alleen op de website worden uitgevoerd. We zijn niet verantwoordelijk voor transacties buiten onze website.",
-    "paymentDelayOrError": "Als de betaling van de klant wordt uitgesteld, is er een bankfout ... Neem contact op met de verkoper voor hulp.",
     "receivedPayment": "Ontvangen betaling",
     "confirmedTransfer": "Bevestigde de overdracht",
     "notReceivedPayment": "Nog geen betaling ontvangen",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "Klik hier om door te gaan, u gaat akkoord met Serepay's",
     "acceptedPaid": "Geaccepteerd en betaald",
     "waitingForBuyerToConfirm": "Wachten op bevestiging van de koper",
-    "pleaseContactBuyerForAssistance": "Neem contact op met de koper voor hulp"
+    "pleaseContactBuyerForAssistance": "Neem contact op met de koper voor hulp",
+    "paymentDelayOrError": "Als de betaling van de klant vertraagd is, is er een bankfout...",
+    "pleaseContactSellerForAssistance": "Neem contact op met de verkoper voor assistentie"
 }

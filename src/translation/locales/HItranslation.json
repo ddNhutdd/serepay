@@ -237,7 +237,6 @@
     "makePayment": "कृपया निर्दिष्ट समय के भीतर भुगतान स्क्रीन पर सही जानकारी के साथ भुगतान करें। यदि आपने भुगतान किया है, तो आप विक्रेता को उन्हें सत्यापित करने के लिए तुरंत संदेश दे सकते हैं।",
     "cryptoOnly": "हम केवल क्रिप्टोक्यूरेंसी से निपटते हैं, किसी भी परियोजना से संबंधित नहीं।",
     "websiteTransaction": "ग्राहकों को ध्यान देना चाहिए कि लेनदेन केवल वेबसाइट पर आयोजित किए जाते हैं। हम अपनी वेबसाइट के बाहर लेनदेन के लिए जिम्मेदार नहीं हैं।",
-    "paymentDelayOrError": "यदि ग्राहक के भुगतान में देरी हो रही है, तो एक बैंक त्रुटि है ... कृपया सहायता के लिए विक्रेता से संपर्क करें।",
     "receivedPayment": "प्राप्त भुगतान",
     "confirmedTransfer": "हस्तांतरण की पुष्टि की",
     "notReceivedPayment": "अभी तक भुगतान नहीं मिला",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "यहां क्लिक करके आगे बढ़ें, आप Serepay की शर्तों से सहमत हैं",
     "acceptedPaid": "स्वीकृत और भुगतान किया गया (Swीkrut aur bhugतान kiya gaya)",
     "waitingForBuyerToConfirm": "खरीदार की पुष्टि का इंतज़ार कर रहे हैं (Khareedar ki pushti ka intezaar kar rahe hain)",
-    "pleaseContactBuyerForAssistance": "कृपया सहायता के लिए खरीदार से संपर्क करें (Kripya sahayata ke liye khareedar se sampark karen)"
+    "pleaseContactBuyerForAssistance": "कृपया सहायता के लिए खरीदार से संपर्क करें (Kripya sahayata ke liye khareedar se sampark karen)",
+    "paymentDelayOrError": "ग्राहक के भुगतान में देरी होने पर, बैंक में त्रुटि है...",
+    "pleaseContactSellerForAssistance": "कृपया सहायता के लिए विक्रेता से संपर्क करें"
 }

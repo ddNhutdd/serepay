@@ -237,7 +237,6 @@
     "makePayment": "يرجى إجراء الدفع بالمعلومات الصحيحة على شاشة الدفع خلال الوقت المحدد. إذا قمت بالدفع ، فيمكنك إرسال رسالة إلى البائع على الفور حتى يتحقق.",
     "cryptoOnly": "نحن نتعامل فقط مع العملة المشفرة ، لا تتعلق بأي مشاريع.",
     "websiteTransaction": "يجب أن يلاحظ العملاء أن المعاملات يتم إجراؤها فقط على الموقع الإلكتروني. نحن لسنا مسؤولين عن المعاملات خارج موقعنا.",
-    "paymentDelayOrError": "إذا تأخرت دفع العميل ، فهناك خطأ في البنك ... يرجى الاتصال بالبائع للحصول على المساعدة.",
     "receivedPayment": "تم استلام المبلغ",
     "confirmedTransfer": "أكد النقل",
     "notReceivedPayment": "لم يتلقوا الدفع بعد",
@@ -375,5 +374,7 @@
     "clickHereToContinueYouAgreeToSerepays": "انقر هنا للمتابعة، أنت توافق على شروط Serepay",
     "acceptedPaid": "مقبول ومُدفع",
     "waitingForBuyerToConfirm": "بانتظار تأكيد المشتري",
-    "pleaseContactBuyerForAssistance": "يرجى الاتصال بالمشتري للمساعدة"
+    "pleaseContactBuyerForAssistance": "يرجى الاتصال بالمشتري للمساعدة",
+    "paymentDelayOrError": "في حالة تأخر دفع العميل ، يوجد خطأ في البنك...",
+    "pleaseContactSellerForAssistance": "يرجى الاتصال بالبائع للحصول على المساعدة"
 }
