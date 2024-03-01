@@ -374,5 +374,6 @@
     "waitingForBuyerToConfirm": "รอการยืนยันจากผู้ซื้อ",
     "pleaseContactBuyerForAssistance": "กรุณาติดต่อผู้ซื้อเพื่อขอความช่วยเหลือ",
     "paymentDelayOrError": "หากการชำระเงินของลูกค้าล่าช้า มีข้อผิดพลาดของธนาคาร...",
-    "pleaseContactSellerForAssistance": "กรุณาติดต่อผู้ขายเพื่อขอความช่วยเหลือ"
+    "pleaseContactSellerForAssistance": "กรุณาติดต่อผู้ขายเพื่อขอความช่วยเหลือ",
+    "paymentConfirmed": "การชำระเงินได้รับการยืนยัน"
 }

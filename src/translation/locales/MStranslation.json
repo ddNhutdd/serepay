@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "Menunggu pengesahan pembeli",
     "pleaseContactBuyerForAssistance": "Sila hubungi pembeli untuk bantuan",
     "paymentDelayOrError": "Jika pembayaran pelanggan tertunda, ada ralat bank...",
-    "pleaseContactSellerForAssistance": "Sila hubungi penjual untuk mendapatkan bantuan"
+    "pleaseContactSellerForAssistance": "Sila hubungi penjual untuk mendapatkan bantuan",
+    "paymentConfirmed": "Pembayaran Telah Disahkan"
 }

@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "بانتظار تأكيد المشتري",
     "pleaseContactBuyerForAssistance": "يرجى الاتصال بالمشتري للمساعدة",
     "paymentDelayOrError": "في حالة تأخر دفع العميل ، يوجد خطأ في البنك...",
-    "pleaseContactSellerForAssistance": "يرجى الاتصال بالبائع للحصول على المساعدة"
+    "pleaseContactSellerForAssistance": "يرجى الاتصال بالبائع للحصول على المساعدة",
+    "paymentConfirmed": "تم تأكيد الدفع"
 }

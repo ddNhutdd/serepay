@@ -376,5 +376,6 @@
   "waitingForBuyerToConfirm": "Warten auf Käuferbestätigung",
   "pleaseContactBuyerForAssistance": "Bitte kontaktieren Sie den Käufer für Unterstützung",
   "paymentDelayOrError": "Wenn sich die Zahlung des Kunden verzögert, liegt ein Bankfehler vor...",
-  "pleaseContactSellerForAssistance": "Bitte wenden Sie sich an den Verkäufer, um Hilfe zu erhalten."
+  "pleaseContactSellerForAssistance": "Bitte wenden Sie sich an den Verkäufer, um Hilfe zu erhalten.",
+  "paymentConfirmed": "Zahlung bestätigt"
 }

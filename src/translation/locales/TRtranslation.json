@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "Alıcının onaylamasını bekliyor",
     "pleaseContactBuyerForAssistance": "Yardım için lütfen alıcıyla iletişime geçin",
     "paymentDelayOrError": "Müşterinin ödemesi gecikirse, bir banka hatası var...",
-    "pleaseContactSellerForAssistance": "Yardım için lütfen satıcıyla iletişime geçin"
+    "pleaseContactSellerForAssistance": "Yardım için lütfen satıcıyla iletişime geçin",
+    "paymentConfirmed": "Ödeme Onaylandı"
 }

@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "Ожидание подтверждения от покупателя",
     "pleaseContactBuyerForAssistance": "Пожалуйста, свяжитесь с покупателем для получения помощи",
     "paymentDelayOrError": "Если платеж клиента задерживается, произошла ошибка банка...",
-    "pleaseContactSellerForAssistance": "Пожалуйста, свяжитесь с продавцом для получения помощи"
+    "pleaseContactSellerForAssistance": "Пожалуйста, свяжитесь с продавцом для получения помощи",
+    "paymentConfirmed": "Платеж подтвержден"
 }

@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "រង់ចាំការបញ្ជាក់ពីអ្នកទិញ",
     "pleaseContactBuyerForAssistance": "សូមទាក់ទងអ្នកទិញសម្រាប់ជំនួយ",
     "paymentDelayOrError": "ប្រសិនបើការទូទាត់របស់អតិថិជនដាក់ពាក្យសម្ងាត់ឬមានកំហុសព្រោះធនាគារ...",
-    "pleaseContactSellerForAssistance": "សូមទាក់ទងអ្នកលក់សម្រាប់ជំនួស"
+    "pleaseContactSellerForAssistance": "សូមទាក់ទងអ្នកលក់សម្រាប់ជំនួស",
+    "paymentConfirmed": "ការបង់ប្រាក់ត្រូវបានបញ្ជាក់"
 }

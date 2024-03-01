@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "Αναμονή επιβεβαίωσης αγοραστή",
     "pleaseContactBuyerForAssistance": "Παρακαλώ επικοινωνήστε με τον αγοραστή για βοήθεια",
     "paymentDelayOrError": "Εάν η πληρωμή του πελάτη καθυστερήσει, υπάρχει τραπεζικό σφάλμα...",
-    "pleaseContactSellerForAssistance": "Παρακαλώ επικοινωνήστε με τον πωλητή για βοήθεια"
+    "pleaseContactSellerForAssistance": "Παρακαλώ επικοινωνήστε με τον πωλητή για βοήθεια",
+    "paymentConfirmed": "Πληρωμή Επιβεβαιωμένη"
 }

@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "Menunggu konfirmasi pembeli",
     "pleaseContactBuyerForAssistance": "Silahkan hubungi pembeli untuk bantuan",
     "paymentDelayOrError": "Jika pembayaran pelanggan tertunda, ada kesalahan bank...",
-    "pleaseContactSellerForAssistance": "Silakan hubungi penjual untuk bantuan"
+    "pleaseContactSellerForAssistance": "Silakan hubungi penjual untuk bantuan",
+    "paymentConfirmed": "Pembayaran Dikonfirmasi"
 }

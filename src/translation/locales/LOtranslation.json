@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "ລໍຖ້າການຢືນຢັນຈາກຜູ້ຊື້",
     "pleaseContactBuyerForAssistance": "ກະລຸນາຕິດຕໍ່ຜູ້ຊື້ເພື່ອຮັບຊ່ວຍເຫຼືອ",
     "paymentDelayOrError": "ຖ້າການຊຳລະຂອງລູກຄ້າຊັກຊ້າ ມີບັນຫາກ່ຽວກັບທະນາຄານ...",
-    "pleaseContactSellerForAssistance": "ກະລຸນາຕິດຕໍ່ຜູ້ຂາຍເພື່ອຮັບຊ່ວຍເຫຼືອ"
+    "pleaseContactSellerForAssistance": "ກະລຸນາຕິດຕໍ່ຜູ້ຂາຍເພື່ອຮັບຊ່ວຍເຫຼືອ",
+    "paymentConfirmed": "ການຈ່າຍເງິນໄດ້ຮັບການຢືນຢັນ"
 }

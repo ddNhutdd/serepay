@@ -321,7 +321,9 @@ function ConfirmItem(props) {
     if (typeUser === 2 && userId === profileId) {
       return (
         <>
-          <Button onClick={userConfirmClickHandle}>{t("acceptedPaid")}</Button>
+          <Button onClick={userConfirmClickHandle}>
+            {t("paymentConfirmed")}
+          </Button>
           <Button
             onClick={userCancelClickHandle}
             type={buttonClassesType.danger}
@@ -547,7 +549,7 @@ function ConfirmItem(props) {
               <td>
                 <div className="confirm__payment">
                   <Button onClick={showModalPayment}>
-                    {t("openPaymentScreen")}
+                    {t("paymentDetails")}
                   </Button>
                   <span className="confirm--green">
                     {t(

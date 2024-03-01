@@ -378,5 +378,6 @@
     "waitingForBuyerToConfirm": "Đang chờ người mua xác nhận",
     "pleaseContactBuyerForAssistance": "Vui lòng liên hệ với người mua để được trợ giúp",
     "paymentDelayOrError": "Nếu thanh toán của khách hàng bị trễ, có lỗi ngân hàng...",
-    "pleaseContactSellerForAssistance": "Vui lòng liên hệ với người bán để được hỗ trợ"
+    "pleaseContactSellerForAssistance": "Vui lòng liên hệ với người bán để được hỗ trợ",
+    "paymentConfirmed": "Xác nhận thanh toán"
 }

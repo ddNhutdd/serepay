@@ -376,5 +376,6 @@
     "waitingForBuyerToConfirm": "ממתין לאישור קונה",
     "pleaseContactBuyerForAssistance": "אנא פנה לקונה לקבלת סיוע",
     "paymentDelayOrError": "במקרה של עיכוב בתשלום הלקוח, ישנה שגיאת בנק...",
-    "pleaseContactSellerForAssistance": "אנא פנה למוכר לקבלת עזרה"
+    "pleaseContactSellerForAssistance": "אנא פנה למוכר לקבלת עזרה",
+    "paymentConfirmed": "תשלום אושר"
 }
