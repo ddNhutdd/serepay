@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "אנא פנה לקונה לקבלת סיוע",
     "paymentDelayOrError": "במקרה של עיכוב בתשלום הלקוח, ישנה שגיאת בנק...",
     "pleaseContactSellerForAssistance": "אנא פנה למוכר לקבלת עזרה",
-    "paymentConfirmed": "תשלום אושר"
+    "paymentConfirmed": "תשלום אושר",
+    "waitingForSellerToConfirm": "מחכה לאישור מהמוכר",
+    "buyFromDDDSSSSGH": "קנייה מ- DDDSSSSGH",
+    "soldToDDDSSSSGH": "נמכר ל- DDDSSSSGH"
 }

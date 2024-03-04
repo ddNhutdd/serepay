@@ -377,5 +377,8 @@
   "pleaseContactBuyerForAssistance": "Bitte kontaktieren Sie den Käufer für Unterstützung",
   "paymentDelayOrError": "Wenn sich die Zahlung des Kunden verzögert, liegt ein Bankfehler vor...",
   "pleaseContactSellerForAssistance": "Bitte wenden Sie sich an den Verkäufer, um Hilfe zu erhalten.",
-  "paymentConfirmed": "Zahlung bestätigt"
+  "paymentConfirmed": "Zahlung bestätigt",
+  "waitingForSellerToConfirm": "Warten auf Verkäuferbestätigung",
+  "buyFromDDDSSSSGH": "Kaufen von DDDSSSSGH",
+  "soldToDDDSSSSGH": "Verkauft an DDDSSSSGH"
 }

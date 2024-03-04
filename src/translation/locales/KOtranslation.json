@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "도움이 필요하면 구매자에게 문의하십시오",
     "paymentDelayOrError": "고객의 결제가 지연되면 은행 오류가 발생합니다...",
     "pleaseContactSellerForAssistance": "판매자에게 연락하여 도움을 요청하십시오",
-    "paymentConfirmed": "결제가 확인되었습니다"
+    "paymentConfirmed": "결제가 확인되었습니다",
+    "waitingForSellerToConfirm": "판매자 확인 대기 중",
+    "buyFromDDDSSSSGH": "DDDSSSSGH에서 구입",
+    "soldToDDDSSSSGH": "DDDSSSSGH에 판매됨"
 }

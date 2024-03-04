@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "Neem contact op met de koper voor hulp",
     "paymentDelayOrError": "Als de betaling van de klant vertraagd is, is er een bankfout...",
     "pleaseContactSellerForAssistance": "Neem contact op met de verkoper voor assistentie",
-    "paymentConfirmed": "Betaling Bevestigd"
+    "paymentConfirmed": "Betaling Bevestigd",
+    "waitingForSellerToConfirm": "Wachten op bevestiging van verkoper",
+    "buyFromDDDSSSSGH": "Kopen van DDDSSSSGH",
+    "soldToDDDSSSSGH": "Verkocht aan DDDSSSSGH"
 }

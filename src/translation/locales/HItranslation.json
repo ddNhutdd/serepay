@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "कृपया सहायता के लिए खरीदार से संपर्क करें (Kripya sahayata ke liye khareedar se sampark karen)",
     "paymentDelayOrError": "ग्राहक के भुगतान में देरी होने पर, बैंक में त्रुटि है...",
     "pleaseContactSellerForAssistance": "कृपया सहायता के लिए विक्रेता से संपर्क करें",
-    "paymentConfirmed": "भुगतान की पुष्टि हुई"
+    "paymentConfirmed": "भुगतान की पुष्टि हुई",
+    "waitingForSellerToConfirm": "विक्रेता से पुष्टि की प्रतीक्षा कर रहा है",
+    "buyFromDDDSSSSGH": "DDDSSSSGH से खरीदें",
+    "soldToDDDSSSSGH": "DDDSSSSGH को बेचा गया"
 }

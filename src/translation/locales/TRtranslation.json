@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "Yardım için lütfen alıcıyla iletişime geçin",
     "paymentDelayOrError": "Müşterinin ödemesi gecikirse, bir banka hatası var...",
     "pleaseContactSellerForAssistance": "Yardım için lütfen satıcıyla iletişime geçin",
-    "paymentConfirmed": "Ödeme Onaylandı"
+    "paymentConfirmed": "Ödeme Onaylandı",
+    "waitingForSellerToConfirm": "Satıcı onayını bekliyor",
+    "buyFromDDDSSSSGH": "DDDSSSSGH'ten satın al",
+    "soldToDDDSSSSGH": "DDDSSSSGH'ye satıldı"
 }

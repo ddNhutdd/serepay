@@ -379,5 +379,8 @@
     "pleaseContactBuyerForAssistance": "Vui lòng liên hệ với người mua để được trợ giúp",
     "paymentDelayOrError": "Nếu thanh toán của khách hàng bị trễ, có lỗi ngân hàng...",
     "pleaseContactSellerForAssistance": "Vui lòng liên hệ với người bán để được hỗ trợ",
-    "paymentConfirmed": "Xác nhận thanh toán"
+    "paymentConfirmed": "Xác nhận thanh toán",
+    "waitingForSellerToConfirm": "Đang chờ người bán xác nhận",
+    "buyFromDDDSSSSGH": "Mua từ DDDSSSSGH",
+    "soldToDDDSSSSGH": "Đã bán cho DDDSSSSGH"
 }

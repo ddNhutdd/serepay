@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "Silahkan hubungi pembeli untuk bantuan",
     "paymentDelayOrError": "Jika pembayaran pelanggan tertunda, ada kesalahan bank...",
     "pleaseContactSellerForAssistance": "Silakan hubungi penjual untuk bantuan",
-    "paymentConfirmed": "Pembayaran Dikonfirmasi"
+    "paymentConfirmed": "Pembayaran Dikonfirmasi",
+    "waitingForSellerToConfirm": "Menunggu konfirmasi penjual",
+    "buyFromDDDSSSSGH": "Beli dari DDDSSSSGH",
+    "soldToDDDSSSSGH": "Dijual ke DDDSSSSGH"
 }

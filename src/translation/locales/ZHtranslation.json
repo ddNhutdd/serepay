@@ -374,5 +374,8 @@
     "clickHereToContinueYouAgreeToSerepays": "点击此处继续，您同意 Serepay's",
     "paymentDelayOrError": "如果客户付款延迟，则银行出现错误...",
     "pleaseContactSellerForAssistance": "请联系卖家以获得帮助",
-    "paymentConfirmed": "付款已确认"
+    "paymentConfirmed": "付款已确认",
+    "waitingForSellerToConfirm": "等待卖家确认",
+    "buyFromDDDSSSSGH": "从DDDSSSSGH购买",
+    "soldToDDDSSSSGH": "已售给DDDSSSSGH"
 }

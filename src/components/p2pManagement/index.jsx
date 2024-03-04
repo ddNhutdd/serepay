@@ -32,6 +32,7 @@ import {
 import { EmptyCustom } from "../Common/Empty";
 import { math } from "src/App";
 import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
+import { callToastError } from "src/function/toast/callToast";
 
 function P2pManagement() {
   const { t } = useTranslation();
@@ -317,12 +318,52 @@ function P2pManagement() {
         );
       }
     };
+    const renderActionAds = function (item) {
+      const { id: idCurrentUser } = getLocalStorage(localStorageVariable.user);
+      if (!idCurrentUser) {
+        callToastError(t("can'tFindUserInformation"));
+        history.push(url.login);
+        return;
+      }
+      if (!item) return;
+      const { side: typeAds, useridAds, userNameAds, userName } = item;
+      if (typeAds === actionTrading.sell) {
+        if (idCurrentUser === useridAds) {
+          return (
+            <span className="p2pManagement--red">
+              {t("soldToDDDSSSSGH").replace("DDDSSSSGH", userName)}
+            </span>
+          );
+        } else {
+          return (
+            <span className="p2pManagement--green">
+              {t("buyFromDDDSSSSGH").replace("DDDSSSSGH", userNameAds)}
+            </span>
+          );
+        }
+      } else {
+        if (idCurrentUser === useridAds) {
+          return (
+            <span className="p2pManagement--green">
+              {t("buyFromDDDSSSSGH").replace("DDDSSSSGH", userName)}
+            </span>
+          );
+        } else {
+          return (
+            <span className="p2pManagement--red">
+              {t("soldToDDDSSSSGH").replace("DDDSSSSGH", userNameAds)}
+            </span>
+          );
+        }
+      }
+    };
     return dataTable.map((item) => (
       <tr key={item.id}>
         <td>
           <div>
             <div>{item.userName}</div>
             <div>{item.email}</div>
+            <div>{item.code}</div>
           </div>
         </td>
         <td>
@@ -336,7 +377,7 @@ function P2pManagement() {
             <div>{item.symbol}</div>
             <div>{formatNumber(item.amount, i18n.language, 2)}</div>
             <div>{calcMoney(item.rate)}</div>
-            <div>{item.side}</div>
+            <div>{renderActionAds(item)}</div>
           </div>
         </td>
         <td>

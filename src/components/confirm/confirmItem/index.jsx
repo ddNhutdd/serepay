@@ -3,8 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import i18n from "src/translation/i18n";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import {
+  actionTrading,
   apiResponseErrorMessage,
   api_status,
   commontString,
@@ -339,7 +340,11 @@ function ConfirmItem(props) {
         </>
       );
     } else if (typeUser === 1 && userId === profileId) {
-      return <Button disabled>{t("waitingForBuyerToConfirm")}</Button>;
+      if (actionType === actionTrading.buy) {
+        <Button disabled>{t("waitingForSellerToConfirm")}</Button>;
+      } else {
+        return <Button disabled>{t("waitingForBuyerToConfirm")}</Button>;
+      }
     } else if (typeUser === 1 && userId !== profileId) {
       return (
         <>
@@ -524,7 +529,9 @@ function ConfirmItem(props) {
                 </div>
                 <div>
                   {t("contact")}:{" "}
-                  <span className="confirm--green">{contact}</span>
+                  <NavLink to={"#"}>
+                    <span className="confirm--green">{contact}</span>
+                  </NavLink>
                 </div>
               </td>
             </tr>

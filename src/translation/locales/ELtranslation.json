@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "Παρακαλώ επικοινωνήστε με τον αγοραστή για βοήθεια",
     "paymentDelayOrError": "Εάν η πληρωμή του πελάτη καθυστερήσει, υπάρχει τραπεζικό σφάλμα...",
     "pleaseContactSellerForAssistance": "Παρακαλώ επικοινωνήστε με τον πωλητή για βοήθεια",
-    "paymentConfirmed": "Πληρωμή Επιβεβαιωμένη"
+    "paymentConfirmed": "Πληρωμή Επιβεβαιωμένη",
+    "waitingForSellerToConfirm": "Σε αναμονή επιβεβαίωσης από τον πωλητή",
+    "buyFromDDDSSSSGH": "Αγορά από DDDSSSSGH",
+    "soldToDDDSSSSGH": "Πωλήθηκε στον DDDSSSSGH"
 }

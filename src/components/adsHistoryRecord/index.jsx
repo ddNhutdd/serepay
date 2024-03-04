@@ -35,6 +35,7 @@ function AdsHistoryRecord(props) {
     acceptClickHandle = function () {},
   } = props;
   const { t } = useTranslation();
+  console.log(item);
 
   const renderActionByUser = function () {
     return type === AdsHistoryRecordType.user ? "" : "--d-none";
@@ -64,6 +65,17 @@ function AdsHistoryRecord(props) {
     return type === AdsHistoryRecordType.admin
       ? css["width-record-25"]
       : css["width-record-33"];
+  };
+  const renderAction = function () {
+    if (type === AdsHistoryRecordType.admin) {
+      return (
+        <tr>
+          <td>{t("type")}:</td>
+          <td>{t(item.side)}</td>
+        </tr>
+      );
+    } else {
+    }
   };
 
   useEffect(() => {
@@ -106,6 +118,7 @@ function AdsHistoryRecord(props) {
                 )}
               </td>
             </tr>
+            {renderAction()}
           </tbody>
         </table>
       </div>

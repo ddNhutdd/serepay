@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import i18n from "src/translation/i18n";
+import i18n, {
+  availableLanguage,
+  availableLanguageCodeMapper,
+} from "src/translation/i18n";
 import {
   actionTrading,
   api_status,
@@ -36,8 +39,8 @@ function Confirm() {
   const userId = useRef();
 
   useEffect(() => {
-    loadData();
-  }, [render]);
+    if (exchange && exchange.length > 0) loadData();
+  }, [render, exchange]);
   useEffect(() => {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
@@ -94,20 +97,19 @@ function Confirm() {
     // hai dòng này để nó có thể hiển thị đồng bộ với rate của confirm, nếu để chính xác thì sẽ bị lệch
     const rateRount = math.multiply(rateFraciton, rateUSD_VNDFraction);
     const rateRountFormat = formatCurrency(
-      "en-US",
+      availableLanguage.en,
       currentCurrency,
       math.number(rateRount),
       false
     );
+
     const rateRountFormatFraction = math.fraction(
       rateRountFormat.replaceAll(",", "")
     );
-
     const moneyEs = math
       .chain(amountFraction)
       .multiply(rateRountFormatFraction)
       .done();
-
     let result;
 
     if (

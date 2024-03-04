@@ -379,5 +379,8 @@
     "pleaseContactBuyerForAssistance": "Please contact buyer for assistance",
     "paymentDelayOrError": "If the customer's payment is delayed, there is a bank error...",
     "pleaseContactSellerForAssistance": "Please contact seller for assistance",
-    "paymentConfirmed": "Payment Confirmed"
+    "paymentConfirmed": "Payment Confirmed",
+    "waitingForSellerToConfirm": "Waiting for seller to confirm",
+    "buyFromDDDSSSSGH": "Buy from DDDSSSSGH",
+    "soldToDDDSSSSGH": "Sold to DDDSSSSGH"
 }

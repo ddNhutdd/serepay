@@ -377,5 +377,8 @@
     "pleaseContactBuyerForAssistance": "支援が必要な場合はバイヤーにお問い合わせください",
     "paymentDelayOrError": "お客様の支払いが遅れた場合、銀行エラーが発生しています...",
     "pleaseContactSellerForAssistance": "販売者に連絡して支援を求めてください",
-    "paymentConfirmed": "支払いが確認されました"
+    "paymentConfirmed": "支払いが確認されました",
+    "waitingForSellerToConfirm": "売り手からの確認待ちです (uri teno kara no kakunin machi desu)",
+    "buyFromDDDSSSSGH": "DDDSSSSGH から購入 (DDDSSSSGH kara kōnyū)",
+    "soldToDDDSSSSGH": "DDDSSSSGH に販売済み (DDDSSSSGH ni hanbai済み)"
 }
