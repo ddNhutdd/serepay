@@ -330,20 +330,6 @@ function P2pManagement() {
       if (typeAds === actionTrading.sell) {
         if (idCurrentUser === useridAds) {
           return (
-            <span className="p2pManagement--red">
-              {t("soldToDDDSSSSGH").replace("DDDSSSSGH", userName)}
-            </span>
-          );
-        } else {
-          return (
-            <span className="p2pManagement--green">
-              {t("buyFromDDDSSSSGH").replace("DDDSSSSGH", userNameAds)}
-            </span>
-          );
-        }
-      } else {
-        if (idCurrentUser === useridAds) {
-          return (
             <span className="p2pManagement--green">
               {t("buyFromDDDSSSSGH").replace("DDDSSSSGH", userName)}
             </span>
@@ -352,6 +338,20 @@ function P2pManagement() {
           return (
             <span className="p2pManagement--red">
               {t("soldToDDDSSSSGH").replace("DDDSSSSGH", userNameAds)}
+            </span>
+          );
+        }
+      } else {
+        if (idCurrentUser === useridAds) {
+          return (
+            <span className="p2pManagement--red">
+              {t("soldToDDDSSSSGH").replace("DDDSSSSGH", userName)}
+            </span>
+          );
+        } else {
+          return (
+            <span className="p2pManagement--green">
+              {t("buyFromDDDSSSSGH").replace("DDDSSSSGH", userNameAds)}
             </span>
           );
         }

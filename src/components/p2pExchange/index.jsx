@@ -339,8 +339,6 @@ const P2pExchange = memo(function () {
     listExchange,
     listCoin
   ) {
-    console.log(amountCoin, currency, coinName, listExchange, listCoin);
-
     if (
       !getExchangeRateSellDisparityFromRedux ||
       !listCoin ||

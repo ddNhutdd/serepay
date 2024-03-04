@@ -377,5 +377,6 @@
     "paymentConfirmed": "付款已确认",
     "waitingForSellerToConfirm": "等待卖家确认",
     "buyFromDDDSSSSGH": "从DDDSSSSGH购买",
-    "soldToDDDSSSSGH": "已售给DDDSSSSGH"
+    "soldToDDDSSSSGH": "已售给DDDSSSSGH",
+    "receivedToken": "接收到令牌"
 }

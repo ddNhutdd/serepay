@@ -35,7 +35,6 @@ function AdsHistoryRecord(props) {
     acceptClickHandle = function () {},
   } = props;
   const { t } = useTranslation();
-  console.log(item);
 
   const renderActionByUser = function () {
     return type === AdsHistoryRecordType.user ? "" : "--d-none";

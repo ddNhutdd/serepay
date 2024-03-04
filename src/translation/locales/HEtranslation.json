@@ -380,5 +380,6 @@
     "paymentConfirmed": "תשלום אושר",
     "waitingForSellerToConfirm": "מחכה לאישור מהמוכר",
     "buyFromDDDSSSSGH": "קנייה מ- DDDSSSSGH",
-    "soldToDDDSSSSGH": "נמכר ל- DDDSSSSGH"
+    "soldToDDDSSSSGH": "נמכר ל- DDDSSSSGH",
+    "receivedToken": "קיבל טוקן"
 }

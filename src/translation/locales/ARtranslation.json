@@ -380,5 +380,6 @@
     "paymentConfirmed": "تم تأكيد الدفع",
     "waitingForSellerToConfirm": "في انتظار تأكيد البائع",
     "buyFromDDDSSSSGH": "اشتري من DDDSSSSGH",
-    "soldToDDDSSSSGH": "مباع لـ DDDSSSSGH"
+    "soldToDDDSSSSGH": "مباع لـ DDDSSSSGH",
+    "receivedToken": "تلقى الرمز"
 }

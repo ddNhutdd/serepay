@@ -87,7 +87,6 @@ function ReLogin() {
       socket.on("ok", (res) => {});
       handleReload();
     } catch (error) {
-      console.log(error);
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
       switch (mess) {

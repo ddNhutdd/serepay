@@ -38,6 +38,7 @@ import { getBankState } from "src/redux/reducers/bankSlice";
 import Dropdown from "../Common/dropdown/Dropdown";
 import { Button, buttonClassesType, htmlType } from "../Common/Button";
 import { currencySetCurrent } from "src/redux/actions/currency.action";
+import Kyc from "./kyc";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -610,7 +611,6 @@ function Profile() {
       logout();
       closeChangePassModal();
     } catch (error) {
-      console.log(error);
       const er = error?.response?.data?.message;
       switch (er) {
         case "Wrong password!":
@@ -623,7 +623,6 @@ function Profile() {
       setCallApiChangePassStatus(api_status.rejected);
     }
   };
-
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
     removeLocalStorage(localStorageVariable.lng);
@@ -670,6 +669,14 @@ function Profile() {
                   type="text"
                 />
               </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="profile__card-container box">
+            <div className="profile__title">KYC</div>
+            <div>
+              <Kyc />
             </div>
           </div>
         </div>

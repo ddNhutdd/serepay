@@ -380,5 +380,6 @@
     "paymentConfirmed": "भुगतान की पुष्टि हुई",
     "waitingForSellerToConfirm": "विक्रेता से पुष्टि की प्रतीक्षा कर रहा है",
     "buyFromDDDSSSSGH": "DDDSSSSGH से खरीदें",
-    "soldToDDDSSSSGH": "DDDSSSSGH को बेचा गया"
+    "soldToDDDSSSSGH": "DDDSSSSGH को बेचा गया",
+    "receivedToken": "टोकन प्राप्त हुआ"
 }

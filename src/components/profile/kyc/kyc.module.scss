@@ -1,0 +1,25 @@
+.kyc {
+
+    .kyc__form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .kyc__infoContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .kyc__fileContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .kyc__action {
+            display: flex;
+            align-items: flex-end;
+        }
+    }
+}

@@ -380,5 +380,6 @@
     "paymentConfirmed": "결제가 확인되었습니다",
     "waitingForSellerToConfirm": "판매자 확인 대기 중",
     "buyFromDDDSSSSGH": "DDDSSSSGH에서 구입",
-    "soldToDDDSSSSGH": "DDDSSSSGH에 판매됨"
+    "soldToDDDSSSSGH": "DDDSSSSGH에 판매됨",
+    "receivedToken": "토큰을 받았습니다"
 }

@@ -340,8 +340,8 @@ function ConfirmItem(props) {
         </>
       );
     } else if (typeUser === 1 && userId === profileId) {
-      if (actionType === actionTrading.buy) {
-        <Button disabled>{t("waitingForSellerToConfirm")}</Button>;
+      if (userCurrentAction === actionTrading.buy) {
+        return <Button disabled>{t("waitingForSellerToConfirm")}</Button>;
       } else {
         return <Button disabled>{t("waitingForBuyerToConfirm")}</Button>;
       }
@@ -349,7 +349,9 @@ function ConfirmItem(props) {
       return (
         <>
           <Button onClick={companyConfirmHandleClick}>
-            {t("receivedPayment")}
+            {userCurrentAction === actionTrading.buy
+              ? t("receivedToken")
+              : t("receivedPayment")}
           </Button>
           <Button
             onClick={companyCancelClickHandle}

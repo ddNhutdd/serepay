@@ -380,5 +380,6 @@
     "paymentConfirmed": "Pago confirmado",
     "waitingForSellerToConfirm": "Esperando confirmación del vendedor",
     "buyFromDDDSSSSGH": "Comprar de DDDSSSSGH",
-    "soldToDDDSSSSGH": "Vendido a DDDSSSSGH"
+    "soldToDDDSSSSGH": "Vendido a DDDSSSSGH",
+    "receivedToken": "Token recibido"
 }

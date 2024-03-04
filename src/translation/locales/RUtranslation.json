@@ -380,5 +380,6 @@
     "paymentConfirmed": "Платеж подтвержден",
     "waitingForSellerToConfirm": "Ожидание подтверждения продавца",
     "buyFromDDDSSSSGH": "Купить у DDDSSSSGH",
-    "soldToDDDSSSSGH": "Продано DDDSSSSGH"
+    "soldToDDDSSSSGH": "Продано DDDSSSSGH",
+    "receivedToken": "Получен токен"
 }

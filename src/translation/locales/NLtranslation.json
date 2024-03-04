@@ -380,5 +380,6 @@
     "paymentConfirmed": "Betaling Bevestigd",
     "waitingForSellerToConfirm": "Wachten op bevestiging van verkoper",
     "buyFromDDDSSSSGH": "Kopen van DDDSSSSGH",
-    "soldToDDDSSSSGH": "Verkocht aan DDDSSSSGH"
+    "soldToDDDSSSSGH": "Verkocht aan DDDSSSSGH",
+    "receivedToken": "Token ontvangen"
 }

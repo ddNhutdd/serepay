@@ -380,5 +380,6 @@
     "paymentConfirmed": "Πληρωμή Επιβεβαιωμένη",
     "waitingForSellerToConfirm": "Σε αναμονή επιβεβαίωσης από τον πωλητή",
     "buyFromDDDSSSSGH": "Αγορά από DDDSSSSGH",
-    "soldToDDDSSSSGH": "Πωλήθηκε στον DDDSSSSGH"
+    "soldToDDDSSSSGH": "Πωλήθηκε στον DDDSSSSGH",
+    "receivedToken": "Λήφθηκε το token"
 }

@@ -380,5 +380,6 @@
     "paymentConfirmed": "ການຈ່າຍເງິນໄດ້ຮັບການຢືນຢັນ",
     "waitingForSellerToConfirm": "ການຖ້າການຢືນຢັນຈາກຜູ້ຂາຍ",
     "buyFromDDDSSSSGH": "ຊື້ຈາກ DDDSSSSGH",
-    "soldToDDDSSSSGH": "ຂາຍຈາກ DDDSSSSGH"
+    "soldToDDDSSSSGH": "ຂາຍຈາກ DDDSSSSGH",
+    "receivedToken": "ຮັບລາຍຊື້"
 }

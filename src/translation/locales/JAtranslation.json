@@ -380,5 +380,6 @@
     "paymentConfirmed": "支払いが確認されました",
     "waitingForSellerToConfirm": "売り手からの確認待ちです (uri teno kara no kakunin machi desu)",
     "buyFromDDDSSSSGH": "DDDSSSSGH から購入 (DDDSSSSGH kara kōnyū)",
-    "soldToDDDSSSSGH": "DDDSSSSGH に販売済み (DDDSSSSGH ni hanbai済み)"
+    "soldToDDDSSSSGH": "DDDSSSSGH に販売済み (DDDSSSSGH ni hanbai済み)",
+    "receivedToken": "トークンを受け取りました"
 }

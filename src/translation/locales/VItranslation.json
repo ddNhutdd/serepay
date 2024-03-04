@@ -243,8 +243,8 @@
     "cancelOrder": "Huỷ lệnh",
     "waitingTransfer": "Đang chờ đối phương chuyển tiền",
     "waitingConfirm": "Đang chờ xác nhận",
-    "cancelSuccess": "Success",
-    "confirmSuccess": "Cancel Success",
+    "cancelSuccess": "Hủy thành công",
+    "confirmSuccess": "Xác nhận thành công",
     "youAreSellingBitcoinThroughSerepay": "Bạn đang bán 0.abc00012346787889456 BTC thông qua Serepay.",
     "youAreBuyingBitcoinThroughSerepay": "Bạn đang mua 0.abc00012346787889456 BTC thông qua Serepay.",
     "pleaseMakeThePaymentForTheCorrectAmountContentAndAccountNumberBelow": "Vui lòng thanh toán đúng số tiền, nội dung và số tài khoản bên dưới.",
@@ -382,5 +382,6 @@
     "paymentConfirmed": "Xác nhận thanh toán",
     "waitingForSellerToConfirm": "Đang chờ người bán xác nhận",
     "buyFromDDDSSSSGH": "Mua từ DDDSSSSGH",
-    "soldToDDDSSSSGH": "Đã bán cho DDDSSSSGH"
+    "soldToDDDSSSSGH": "Bán cho DDDSSSSGH",
+    "receivedToken": "Đã nhận Token"
 }

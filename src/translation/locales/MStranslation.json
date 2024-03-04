@@ -380,5 +380,6 @@
     "paymentConfirmed": "Pembayaran Telah Disahkan",
     "waitingForSellerToConfirm": "Menunggu penjual mengesahkan",
     "buyFromDDDSSSSGH": "Beli dari DDDSSSSGH",
-    "soldToDDDSSSSGH": "Terjual kepada DDDSSSSGH"
+    "soldToDDDSSSSGH": "Terjual kepada DDDSSSSGH",
+    "receivedToken": "Token diterima"
 }
