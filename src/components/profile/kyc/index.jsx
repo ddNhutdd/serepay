@@ -57,17 +57,16 @@ function Kyc(props) {
       setCallApiStatus(api_status.fulfilled);
       setVerify(2);
     } catch (error) {
-      console.log(error);
+      setCallApiStatus(api_status.rejected);
+      const message = error?.response?.data?.message;
       switch (message) {
         case apiResponseErrorMessage.imagesCannotBeLeftBlank:
-          callToastError();
-          break;
+          callToastError(t("imagesCannotBeLeftBlank"));
+          return;
         default:
-          callToastError(commontString.error);
-          break;
+          callToastError(t(commontString.error));
+          return;
       }
-      setCallApiStatus(api_status.rejected);
-      callToastError(t(commontString.error));
     }
   };
   const renderShowVerifying = () => {
