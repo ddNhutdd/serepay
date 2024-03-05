@@ -95,6 +95,7 @@ export const regularExpress = {
   strongCheckNumber: /^(?!$)\d+(\.\d+)?$/,
   accountExpress:
     /^[A-ZĂÂĐÊÔƠƯỨỪỮỬỰĨỈỴỸÀẢÃÁẠĂẰẦẴẤẶẢẨẬẶÈẺẼÉẸÊỀỂỄẾỆÌỈĨÍỊÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢÙỦŨÚỤƯỨỪỮỬỰỲỶỸÝỴ0-9 ]{5,50}$/,
+  phone: /(84|0[3|5|7|8|9])+([0-9]{8})\b/,
 };
 
 export const actionTrading = {
@@ -106,6 +107,7 @@ export const commontString = {
   noData: "No Data",
   error: "Error",
   success: "Success",
+  pleaseEnterReason: "Please enter reason",
 };
 
 export const coinString = {
@@ -121,4 +123,5 @@ export const apiResponseErrorMessage = {
   accountIncorrect: "Email or password is incorrect! ",
   bankExist: "Bank account number already exists",
   insufficientBalance: "Insufficient balance",
+  imagesCannotBeLeftBlank: "Images cannot be left blank",
 };

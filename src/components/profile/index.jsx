@@ -93,6 +93,7 @@ function Profile() {
   const [listPaymentTotalItems, setListPaymentTotalItems] = useState(1);
   const [, setListPaymentCurrentPage] = useState(1);
   const [isModalChangePassOpen, setIsModalOpen] = useState(false);
+  const [verifyKycStatus, setVerifyKycStatus] = useState(3);
 
   useEffect(() => {
     const dataUser = getLocalStorage(localStorageVariable.user);
@@ -180,10 +181,11 @@ function Profile() {
       .then((resp) => {
         const userInfo = resp?.data?.data;
         if (userInfo) {
-          const { username, email, enabled_twofa } = userInfo;
+          const { username, email, enabled_twofa, verified } = userInfo;
           document.getElementById("profile__info-email").value = email;
           document.getElementById("profile__info-username").value = username;
           setIsEnabled_twofa(Boolean(enabled_twofa));
+          setVerifyKycStatus(verified);
         }
         setCallApiLoadInfoUserStatus(api_status.fulfilled);
       })
@@ -676,7 +678,7 @@ function Profile() {
           <div className="profile__card-container box">
             <div className="profile__title">KYC</div>
             <div>
-              <Kyc />
+              <Kyc verify={verifyKycStatus} />
             </div>
           </div>
         </div>

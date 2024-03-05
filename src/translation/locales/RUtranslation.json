@@ -138,7 +138,7 @@
     "turnOff2FA": "Выключите 2FA",
     "incorrectCode": "Неверный код !",
     "ok": "Хорошо",
-    "pleaseWaitForAdminConfirmation.": "Пожалуйста, дождитесь подтверждения администратора.",
+    "pleaseWaitForAdminConfirmation": "Пожалуйста, дождитесь подтверждения администратора.",
     "fullName": "Полное имя",
     "address": "Адрес",
     "passport": "Заграничный пасспорт",

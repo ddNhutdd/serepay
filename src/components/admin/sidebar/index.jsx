@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { localStorageVariable, url } from "src/constant";
@@ -9,10 +9,6 @@ import {
   removeLocalStorage,
 } from "src/util/common";
 function Sidebar() {
-  const rightIconFunding = useRef();
-  const submenuFunding = useRef();
-  const rightIconHistory = useRef();
-  const submenuHistory = useRef();
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -23,12 +19,6 @@ function Sidebar() {
     selectItem(page);
   }, []);
 
-  const fundingItemClickHandle = function () {
-    rightIconFunding.current.classList.toggle("up");
-    submenuFunding.current.classList.toggle("show");
-    rightIconHistory.current.classList.remove("up");
-    submenuHistory.current.classList.remove("show");
-  };
   const clearSelectedItem = function () {
     const element = getElementById("listItem");
     for (const item of element.children) {
@@ -61,6 +51,9 @@ function Sidebar() {
         break;
       case "wallet":
         addClassToElementById("wallet", "active");
+        break;
+      case "kyc":
+        addClassToElementById("kyc", "active");
         break;
       case "swap":
         addClassToElementById("swap", "active");
@@ -121,6 +114,11 @@ function Sidebar() {
     e.currentTarget.classList.add("active");
     history.push(url.admin_swap);
   };
+  const redirectKyc = function (e) {
+    clearSelectedItem();
+    e.currentTarget.classList.add("active");
+    history.push(url.admin_kyc);
+  };
   const redirectDeposite = function (e) {
     clearSelectedItem();
     e.currentTarget.classList.add("active");
@@ -147,17 +145,17 @@ function Sidebar() {
   return (
     <div className="admin-sidebar show">
       <ul id="listItem">
-        <li className="--d-none active">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-house"></i>
-          </span>
-          <span className="admin-sidebar__item">Dashboard</span>
-        </li>
         <li onClick={redirectUser} id="user">
           <span className="admin-sidebar__icon">
             <i className="fa-solid fa-user"></i>
           </span>
           <span className="admin-sidebar__item">Users</span>
+        </li>
+        <li onClick={redirectKyc} id="kyc">
+          <span className="admin-sidebar__icon">
+            <i className="fa-solid fa-user-shield"></i>
+          </span>
+          <span className="admin-sidebar__item">KYC</span>
         </li>
         <li onClick={redirectExchangeRateDisparity} id="exchangeRateDisparity">
           <span className="admin-sidebar__icon">
@@ -219,13 +217,6 @@ function Sidebar() {
           </span>
           <span className="admin-sidebar__item">Log out</span>
         </li>
-        {/* // */}
-        <ul ref={submenuFunding} className="admin-sidebar__sub-menu">
-          <li>Deposit</li>
-          <li>Deposit USD</li>
-          <li>Withdraw</li>
-          <li>Transfer</li>
-        </ul>
       </ul>
     </div>
   );

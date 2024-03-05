@@ -138,7 +138,7 @@
     "turnOff2FA": "2FA'yı kapat",
     "incorrectCode": "Yanlış kod !",
     "ok": "Tamam",
-    "pleaseWaitForAdminConfirmation.": "Lütfen yönetici onayını bekleyin.",
+    "pleaseWaitForAdminConfirmation": "Lütfen yönetici onayını bekleyin.",
     "fullName": "Ad Soyad",
     "address": "Adres",
     "passport": "Pasaport",

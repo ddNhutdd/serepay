@@ -138,7 +138,7 @@
   "turnOff2FA": "Spegni 2FA",
   "incorrectCode": "Codice non corretto !",
   "ok": "OK",
-  "pleaseWaitForAdminConfirmation.": "Si prega di attendere la conferma di amministratore.",
+  "pleaseWaitForAdminConfirmation": "Si prega di attendere la conferma di amministratore.",
   "fullName": "Nome e cognome",
   "address": "Indirizzo",
   "passport": "Passaporto",

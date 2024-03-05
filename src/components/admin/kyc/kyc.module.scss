@@ -1,0 +1,104 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.kycAdmin {
+    color: $new-text-color-white;
+
+    .kycAdmin__header {
+        margin-bottom: 15px;
+
+        .kycAdmin__title {
+            @extend .titleContainerAdmin;
+        }
+
+        .kycAdmin__paging {
+            padding-right: 0;
+            text-align: right;
+
+            @media screen and (max-width:768px) {
+                text-align: left;
+                padding-left: 0;
+            }
+        }
+    }
+
+    .kycAdmin__content {
+        overflow: hidden;
+        overflow-x: auto;
+
+        table {
+            @include adminTable;
+
+            thead {
+                tr {
+                    th {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modalCheck {
+    color: $new-text-color-white;
+
+    .modalCheck__Header {
+        padding: 15px;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .modalCheck__Header__close {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+
+
+    .modalCheck__Content {
+        padding: 15px;
+
+        .modalCheck__Content__info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 15px;
+
+            .modalCheck__Content__info__item {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 15px;
+
+                div {
+                    &:first-child() {
+                        width: 90px;
+                    }
+                }
+            }
+        }
+
+        .modalCheck__Content__image {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+
+            img {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .modalCheck__Footer {
+        padding: 15px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}

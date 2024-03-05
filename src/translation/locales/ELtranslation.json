@@ -138,7 +138,7 @@
     "turnOff2FA": "Απενεργοποιήστε το 2FA",
     "incorrectCode": "Λάθος κωδικός !",
     "ok": "Εντάξει",
-    "pleaseWaitForAdminConfirmation.": "Περιμένετε για επιβεβαίωση διαχειριστή.",
+    "pleaseWaitForAdminConfirmation": "Περιμένετε για επιβεβαίωση διαχειριστή.",
     "fullName": "Πλήρες όνομα",
     "address": "Διεύθυνση",
     "passport": "Διαβατήριο",

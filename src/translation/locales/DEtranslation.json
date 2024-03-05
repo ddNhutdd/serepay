@@ -138,7 +138,7 @@
   "turnOff2FA": "2FA ausschalten",
   "incorrectCode": "Falscher Code !",
   "ok": "OK",
-  "pleaseWaitForAdminConfirmation.": "Bitte warten Sie auf Admin -Bestätigung.",
+  "pleaseWaitForAdminConfirmation": "Bitte warten Sie auf Admin -Bestätigung.",
   "fullName": "Vollständiger Name",
   "address": "Adresse",
   "passport": "Reisepass",

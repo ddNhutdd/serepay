@@ -138,7 +138,7 @@
     "turnOff2FA": "Schakel 2FA uit",
     "incorrectCode": "Foute code !",
     "ok": "OK",
-    "pleaseWaitForAdminConfirmation.": "Wacht alstublieft op de bevestiging van de admin.",
+    "pleaseWaitForAdminConfirmation": "Wacht alstublieft op de bevestiging van de admin.",
     "fullName": "Voor-en achternaam",
     "address": "Adres",
     "passport": "Paspoort",

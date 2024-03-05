@@ -138,7 +138,7 @@
     "turnOff2FA": "إيقاف 2FA",
     "incorrectCode": "شفرة خاطئة !",
     "ok": "نعم",
-    "pleaseWaitForAdminConfirmation.": "يرجى انتظار تأكيد المسؤول.",
+    "pleaseWaitForAdminConfirmation": "يرجى انتظار تأكيد المسؤول.",
     "fullName": "الاسم الكامل",
     "address": "عنوان",
     "passport": "جواز سفر",

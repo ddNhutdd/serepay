@@ -1,4 +1,18 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
 .kyc {
+    .kyc__verifying {
+        font-size: 20px;
+        color: $blue-1;
+        font-weight: 500;
+    }
+
+    .kyc__verified {
+        font-size: 20px;
+        color: green;
+        font-weight: 500;
+    }
 
     .kyc__form {
         display: flex;
@@ -9,12 +23,34 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
+
+            @media screen and (max-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media screen and (max-width: 576px) {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
 
         .kyc__fileContainer {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
+
+            @media screen and (max-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media screen and (max-width: 576px) {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .kyc__fileInput {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
         }
 
         .kyc__action {

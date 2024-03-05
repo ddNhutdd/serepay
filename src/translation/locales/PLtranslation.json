@@ -138,7 +138,7 @@
     "turnOff2FA": "Wyłącz 2FA",
     "incorrectCode": "Błędny kod !",
     "ok": "OK",
-    "pleaseWaitForAdminConfirmation.": "Poczekaj na potwierdzenie administracyjne.",
+    "pleaseWaitForAdminConfirmation": "Poczekaj na potwierdzenie administracyjne.",
     "fullName": "Pełne imię i nazwisko",
     "address": "Adres",
     "passport": "Paszport",

@@ -74,6 +74,7 @@ import {
 } from "./redux/reducers/exchangeRateSellSlice";
 import P2p from "./components/p2p";
 import Deposite from "./components/admin/deposite";
+import KycAdmin from "./components/admin/kyc";
 
 const config = {};
 export const math = create(all, config);
@@ -312,6 +313,7 @@ function App() {
           <AdminTemplate path={url.admin_transfer} component={TransferAdmin} />
           <AdminTemplate path={url.admin_wallet} component={WalletAdmin} />
           <AdminTemplate path={url.admin_swap} component={SwapAdmin} />
+          <AdminTemplate path={url.admin_kyc} component={KycAdmin} />
           <AdminTemplate path={url.admin_deposite} component={Deposite} />
           <Route exact path="/" component={Home} />
         </Switch>

@@ -138,7 +138,7 @@
     "turnOff2FA": "2FA बंद करें",
     "incorrectCode": "गलत कोड़ !",
     "ok": "ठीक है",
-    "pleaseWaitForAdminConfirmation.": "कृपया व्यवस्थापक पुष्टि की प्रतीक्षा करें।",
+    "pleaseWaitForAdminConfirmation": "कृपया व्यवस्थापक पुष्टि की प्रतीक्षा करें।",
     "fullName": "पूरा नाम",
     "address": "पता",
     "passport": "पासपोर्ट",

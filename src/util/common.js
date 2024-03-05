@@ -507,3 +507,14 @@ export const exportExcel = function (data, nameSheet, nameFile) {
     resolve(true);
   });
 };
+export const convertJsonStringToArray = (jsonString) => {
+  try {
+    const jsonData = JSON.parse(jsonString);
+    if (!Array.isArray(jsonData)) {
+      throw new Error("Dữ liệu JSON không phải là mảng");
+    }
+    return jsonData;
+  } catch (error) {
+    return [];
+  }
+};
