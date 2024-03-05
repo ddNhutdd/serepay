@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "في انتظار تأكيد البائع",
     "buyFromDDDSSSSGH": "اشتري من DDDSSSSGH",
     "soldToDDDSSSSGH": "مباع لـ DDDSSSSGH",
-    "receivedToken": "تلقى الرمز"
+    "receivedToken": "تلقى الرمز",
+    "imagesCannotBeLeftBlank": "لا يمكن ترك الصور فارغة"
 }

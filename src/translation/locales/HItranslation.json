@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "विक्रेता से पुष्टि की प्रतीक्षा कर रहा है",
     "buyFromDDDSSSSGH": "DDDSSSSGH से खरीदें",
     "soldToDDDSSSSGH": "DDDSSSSGH को बेचा गया",
-    "receivedToken": "टोकन प्राप्त हुआ"
+    "receivedToken": "टोकन प्राप्त हुआ",
+    "imagesCannotBeLeftBlank": "छवियां खाली नहीं छोड़ी जा सकतीं"
 }

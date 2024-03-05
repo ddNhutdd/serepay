@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "Satıcı onayını bekliyor",
     "buyFromDDDSSSSGH": "DDDSSSSGH'ten satın al",
     "soldToDDDSSSSGH": "DDDSSSSGH'ye satıldı",
-    "receivedToken": "Alınan Jeton"
+    "receivedToken": "Alınan Jeton",
+    "imagesCannotBeLeftBlank": "Görüntüler boş bırakılamaz"
 }

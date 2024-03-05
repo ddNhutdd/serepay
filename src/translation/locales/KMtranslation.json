@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "រង់ចាំការបញ្ជាទុកពីអ្នកលក់",
     "buyFromDDDSSSSGH": "ទិញពី DDDSSSSGH",
     "soldToDDDSSSSGH": "បានលក់ទៅកាន់ DDDSSSSGH",
-    "receivedToken": "បានទទួលរង្វាន់"
+    "receivedToken": "បានទទួលរង្វាន់",
+    "imagesCannotBeLeftBlank": "រូបភាពមិនអាចទុកជាស្នាក់"
 }

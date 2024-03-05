@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "Σε αναμονή επιβεβαίωσης από τον πωλητή",
     "buyFromDDDSSSSGH": "Αγορά από DDDSSSSGH",
     "soldToDDDSSSSGH": "Πωλήθηκε στον DDDSSSSGH",
-    "receivedToken": "Λήφθηκε το token"
+    "receivedToken": "Λήφθηκε το token",
+    "imagesCannotBeLeftBlank": "Οι εικόνες δεν μπορούν να μείνουν κενές"
 }

@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "Wachten op bevestiging van verkoper",
     "buyFromDDDSSSSGH": "Kopen van DDDSSSSGH",
     "soldToDDDSSSSGH": "Verkocht aan DDDSSSSGH",
-    "receivedToken": "Token ontvangen"
+    "receivedToken": "Token ontvangen",
+    "imagesCannotBeLeftBlank": "Afbeeldingen mogen niet leeg blijven"
 }

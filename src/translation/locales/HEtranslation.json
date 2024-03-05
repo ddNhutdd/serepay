@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "מחכה לאישור מהמוכר",
     "buyFromDDDSSSSGH": "קנייה מ- DDDSSSSGH",
     "soldToDDDSSSSGH": "נמכר ל- DDDSSSSGH",
-    "receivedToken": "קיבל טוקן"
+    "receivedToken": "קיבל טוקן",
+    "imagesCannotBeLeftBlank": "לא ניתן להשאיר תמונות ריקות"
 }

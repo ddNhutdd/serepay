@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "Menunggu penjual mengesahkan",
     "buyFromDDDSSSSGH": "Beli dari DDDSSSSGH",
     "soldToDDDSSSSGH": "Terjual kepada DDDSSSSGH",
-    "receivedToken": "Token diterima"
+    "receivedToken": "Token diterima",
+    "imagesCannotBeLeftBlank": "Imej tidak boleh dibiarkan kosong"
 }

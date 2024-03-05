@@ -378,5 +378,6 @@
     "waitingForSellerToConfirm": "等待卖家确认",
     "buyFromDDDSSSSGH": "从DDDSSSSGH购买",
     "soldToDDDSSSSGH": "已售给DDDSSSSGH",
-    "receivedToken": "接收到令牌"
+    "receivedToken": "接收到令牌",
+    "imagesCannotBeLeftBlank": "图片不能为空"
 }

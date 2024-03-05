@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "ການຖ້າການຢືນຢັນຈາກຜູ້ຂາຍ",
     "buyFromDDDSSSSGH": "ຊື້ຈາກ DDDSSSSGH",
     "soldToDDDSSSSGH": "ຂາຍຈາກ DDDSSSSGH",
-    "receivedToken": "ຮັບລາຍຊື້"
+    "receivedToken": "ຮັບລາຍຊື້",
+    "imagesCannotBeLeftBlank": "ຮູບພາບບໍ່ສາມາດເປົ່າໄວ້ໄດ້"
 }

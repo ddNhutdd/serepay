@@ -381,5 +381,6 @@
     "waitingForSellerToConfirm": "Ожидание подтверждения продавца",
     "buyFromDDDSSSSGH": "Купить у DDDSSSSGH",
     "soldToDDDSSSSGH": "Продано DDDSSSSGH",
-    "receivedToken": "Получен токен"
+    "receivedToken": "Получен токен",
+    "imagesCannotBeLeftBlank": "Изображения не могут быть пустыми"
 }

@@ -379,5 +379,6 @@
     "waitingForSellerToConfirm": "รอผู้ขายยืนยัน",
     "buyFromDDDSSSSGH": "ซื้อจาก DDDSSSSGH",
     "soldToDDDSSSSGH": "ขายแก่ DDDSSSSGH",
-    "receivedToken": "ได้รับโทเค็น"
+    "receivedToken": "ได้รับโทเค็น",
+    "imagesCannotBeLeftBlank": "ไม่สามารถปล่อยให้รูปภาพว่างเปล่าได้"
 }

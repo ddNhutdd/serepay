@@ -381,5 +381,6 @@
   "waitingForSellerToConfirm": "In attesa di conferma del venditore",
   "buyFromDDDSSSSGH": "Acquista da DDDSSSSGH",
   "soldToDDDSSSSGH": "Venduto a DDDSSSSGH",
-  "receivedToken": "Token ricevuto"
+  "receivedToken": "Token ricevuto",
+  "imagesCannotBeLeftBlank": "Le immagini non possono essere lasciate vuote"
 }
