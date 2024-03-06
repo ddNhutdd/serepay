@@ -7,7 +7,6 @@ import {
   commontString,
   defaultLanguage,
   localStorageVariable,
-  regularExpress,
 } from "src/constant";
 import i18n from "src/translation/i18n";
 import { useTranslation } from "react-i18next";
@@ -16,10 +15,16 @@ import { Button, htmlType } from "src/components/Common/Button";
 import InputFile from "src/components/Common/inputFile";
 import { uploadKyc } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
+import { useForm } from "react-hook-form";
 
 function Kyc(props) {
   const { verify: verifyProp } = props;
   const { t } = useTranslation();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   const [frontIdImage, setFrontIdImage] = useState();
   const [backIdImage, setBackIdImage] = useState();
@@ -27,22 +32,28 @@ function Kyc(props) {
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const [verify, setVerify] = useState();
 
-  const fullNameElement = useRef();
-  const phoneElement = useRef();
-  const addressElement = useRef();
-  const companyElement = useRef();
-  const passportElement = useRef();
+  // const fullNameElement = useRef();
+  // const phoneElement = useRef();
+  // const addressElement = useRef();
+  // const companyElement = useRef();
+  // const passportElement = useRef();
 
-  const kycSubmitHandle = async (ev) => {
-    ev.preventDefault();
+  const kycSubmitHandle = async (data) => {
+    // ev.preventDefault();
 
     // prepare data
     const formData = new FormData();
-    formData.append("fullname", fullNameElement.current.value);
-    formData.append("address", addressElement.current.value);
-    formData.append("phone", phoneElement.current.value);
-    formData.append("company", companyElement.current.value);
-    formData.append("passport", passportElement.current.value);
+    // formData.append("fullname", data.name);
+    // formData.append("address", addressElement.current.value);
+    // formData.append("phone", phoneElement.current.value);
+    // formData.append("company", companyElement.current.value);
+    // formData.append("passport", passportElement.current.value);
+    formData.append("fullname", data.Fullname);
+    formData.append("address", data.Address);
+    formData.append("phone", data.value);
+    formData.append("company", data.value);
+    formData.append("passport", data.value);
+
     formData.append("photo", frontIdImage);
     formData.append("photo", backIdImage);
     formData.append("photo", portraitImage);
@@ -97,29 +108,68 @@ function Kyc(props) {
         <div>{t("verified")}</div>
       </div>
       <form
-        onSubmit={kycSubmitHandle}
+        onSubmit={handleSubmit(kycSubmitHandle)}
         className={`${css["kyc__form"]} ${renderShowForm()}`}
       >
         <div className={css["kyc__infoContainer"]}>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycFullname">{t("fullName")}</label>
-            <Input id={"kycFullname"} ref={fullNameElement} />
+            <Input
+              // id={"kycFullname"}
+              {...register("Fullname", { required: true })}
+              // ref={fullNameElement}
+            />
+            <error>
+              {errors.Fullname?.type === "required" && "Fullname is required"}
+            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycPhone">{t("phone")}</label>
-            <Input id={"kycPhone"} ref={phoneElement} />
+            <Input
+              // id={"kycPhone"}
+              // ref={phoneElement}
+              {...register("Phone", {
+                required: true,
+                pattern: /(84|0[3|5|7|8|9])+([0-9]{8})\b/,
+              })}
+            />
+            <error>
+              {errors.Phone?.type === "required" && "Phone is required"}
+              {errors.Phone?.type === "pattern" && "Phone is in wrong format"}
+            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycAddress">{t("address")}</label>
-            <Input id={"kycAddress"} ref={addressElement} />
+            <Input
+              // id={"kycAddress"}
+              // ref={addressElement}
+              {...register("Address", { required: true })}
+            />
+            <error>
+              {errors.Address?.type === "required" && "Address is required"}
+            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycCompany">{t("company")}</label>
-            <Input id={"kycCompany"} ref={companyElement} />
+            <Input
+              // id={"kycCompany"}
+              // ref={companyElement}
+              {...register("Company", { required: true })}
+            />
+            <error>
+              {errors.Company?.type === "required" && "Company is required"}
+            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycPassport">{t("passport")}</label>
-            <Input id={"kycPassport"} ref={passportElement} />
+            <Input
+              // id={"kycPassport"}
+              // ref={passportElement}
+              {...register("Passport", { required: true })}
+            />
+            <error>
+              {errors.Passport?.type === "required" && "Passport is required"}
+            </error>
           </div>
         </div>
         <div className={css["kyc__fileContainer"]}>
