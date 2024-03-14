@@ -7,6 +7,7 @@ import {
   removeLocalStorage,
 } from "../util/common";
 import {
+  api_status,
   defaultCurrency,
   defaultLanguage,
   localStorageVariable,
@@ -23,12 +24,15 @@ import {
 } from "src/redux/constant/listCoinRealTime.constant";
 import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
-import { Button, Modal } from "antd";
+import { Modal, Spin } from "antd";
+import { getAccountName } from "src/redux/reducers/accountSlice";
+import { loginWallet } from "src/util/userCallApi";
 
 export default function Header2({ history }) {
   const { isLogin, username, isAdmin } = useSelector(
     (root) => root.loginReducer
   );
+  const accountName = useSelector(getAccountName);
   const notifyRedux = useSelector(getNotify);
   const currencyFromRedux = useSelector(getCurrent);
 
@@ -50,6 +54,10 @@ export default function Header2({ history }) {
   const [totalMoney, setTotalMoney] = useState(0); // it is the string it displays on the web
   const [isModalLanguageOpen, setIsModalLanguageOpen] = useState(false);
   const [isModalCurrencyOpen, setIsModalCurrencyOpen] = useState(false);
+  const [isModalAccInfoOpent, setIsModalAccInfoOpent] = useState(false);
+  const [listWallet, setListWallet] = useState();
+  const [callApiLoginWalletStatus, setCallApiLoginWalletStatus] = useState(api_status.pending);
+  const [currentWalletUsdtBalance, setCurrentWalletUsdtBalance] = useState(0);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -115,9 +123,8 @@ export default function Header2({ history }) {
         <div
           onClick={languageItemClickHandle.bind(codeContry)}
           key={codeContry}
-          className={`header2__language-item ${
-            codeContry === currentLanguage ? "active" : ""
-          }`}
+          className={`header2__language-item ${codeContry === currentLanguage ? "active" : ""
+            }`}
         >
           <span>
             <img
@@ -137,9 +144,8 @@ export default function Header2({ history }) {
       <div
         key={index}
         onClick={currencyItemClickHandle.bind(item)}
-        className={`header2__currrency-item ${
-          item === currentCurrency ? "active" : ""
-        } `}
+        className={`header2__currrency-item ${item === currentCurrency ? "active" : ""
+          } `}
       >
         {item}
       </div>
@@ -201,6 +207,8 @@ export default function Header2({ history }) {
     removeLocalStorage(localStorageVariable.amountFromWalletList);
     removeLocalStorage(localStorageVariable.thisIsAdmin);
     removeLocalStorage(localStorageVariable.expireToken);
+    removeLocalStorage(localStorageVariable.accountName);
+    removeLocalStorage(localStorageVariable.accountUsdt);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess(tem, temTitle);
@@ -229,7 +237,7 @@ export default function Header2({ history }) {
     const result = calcMoney(totalAssetsRealTime, exchange.rate);
     setTotalMoney(() => result);
   };
-  const calcMoney = function (usd, exchange) {};
+  const calcMoney = function (usd, exchange) { };
   const setActiveCurrentPage = function () {
     const pathname = location.pathname;
     const container = document.querySelector(".header2");
@@ -335,6 +343,31 @@ export default function Header2({ history }) {
       </li>
     ));
   };
+  const showModalAccountInfo = () => {
+    setIsModalAccInfoOpent(true);
+
+    // call api login wallet
+    callApiLoginWallet()
+  }
+  const closeModalAccountInfo = () => {
+    setIsModalAccInfoOpent(false);
+  }
+  const callApiLoginWallet = async () => {
+    try {
+      if (callApiLoginWalletStatus === api_status.fetching) return;
+      setCallApiLoginWalletStatus(api_status.fetching);
+      const userId = getLocalStorage(localStorageVariable.user)?.id;
+      const resp = await loginWallet({ idUser: userId });
+      console.log(resp.data.data);
+      const allWallet = [resp.data.data.infoUserLogin, ...resp.data.data.wallet];
+      const currentUsdtBalance = allWallet.filter(item => item === userId)?.USDT_balance;
+      setCurrentWalletUsdtBalance(currentUsdtBalance)
+      setCallApiLoginWalletStatus(api_status.fulfilled);
+    } catch (error) {
+      console.log(error);
+      setCallApiLoginWalletStatus(api_status.rejected);
+    }
+  }
 
   useEffect(() => {
     const language =
@@ -528,6 +561,13 @@ export default function Header2({ history }) {
                   <i className="fa-regular fa-user"></i>
                   <span>{t("profile")}</span>
                 </div>
+                <div
+                  onClick={showModalAccountInfo}
+                  className="header2__user-info-item"
+                >
+                  <i className="fa-solid fa-id-badge"></i>
+                  <span>{accountName}</span>
+                </div>
                 <div onClick={logout} className="header2__user-info-item">
                   <i className="fa-solid fa-arrow-right-from-bracket"></i>
                   <span>{t("logOut")}</span>
@@ -588,6 +628,37 @@ export default function Header2({ history }) {
             </span>
           </li>
           {renderListCurrencyModal()}
+        </ul>
+      </Modal>
+      <Modal
+        header={null}
+        footer={null}
+        wrapClassName="header2__LanguageModal"
+        open={isModalAccInfoOpent}
+        onCancel={closeModalAccountInfo}
+      >
+        <ul className="header2__LanguageModal__content">
+          <li
+            onClick={closeModalAccountInfo}
+            key={-1}
+            className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+          >
+            <span>{t("account")}</span>
+            <span className="hover-p">
+              <i className="fa-solid fa-xmark"></i>
+            </span>
+          </li>
+          <div className="header2__accountInfo">
+            <div>
+              {accountName}
+              <i className="fa-solid fa-angle-down"></i>
+            </div>
+            <div>account</div>
+            <div>{currentWalletUsdtBalance} USDT</div>
+            <div>
+              <Spin />
+            </div>
+          </div>
         </ul>
       </Modal>
     </>

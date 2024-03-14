@@ -423,5 +423,30 @@
     .header2__LanguageModal__stick {
       color: $green-14
     }
+
+    .header2__accountInfo {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      div {
+        text-align: center;
+
+        &:first-child {
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          cursor: pointer;
+        }
+
+        &:last-child {
+          padding-top: 10px
+        }
+      }
+    }
   }
 }

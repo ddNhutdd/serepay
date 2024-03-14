@@ -19,6 +19,8 @@ export const localStorageVariable = {
   p2pManagementPending: "p2pp",
   expireToken: "lex",
   reLoginR: "reLoginR",
+  accountName:'accN',
+  accountUsdt: 'accC'
 };
 
 export const url = {

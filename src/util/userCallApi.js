@@ -229,6 +229,11 @@ export const changePasswords = function (data) {
     return axiosService.post("/api/user/updatepassword", data);
   } catch (error) {}
 };
+export const loginWallet = function (data) {
+  try {
+    return axiosService.post("/api/user/loginWallet", data);
+  } catch (error) {}
+}
 
 //==========================================
 export const getQrBankPayment = async function (

@@ -137,6 +137,8 @@ function Sidebar() {
     removeLocalStorage(localStorageVariable.coinFromWalletList);
     removeLocalStorage(localStorageVariable.amountFromWalletList);
     removeLocalStorage(localStorageVariable.thisIsAdmin);
+    removeLocalStorage(localStorageVariable.accountName);
+    removeLocalStorage(localStorageVariable.accountUsdt);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess("Logged out");

@@ -39,6 +39,7 @@ import Dropdown from "../Common/dropdown/Dropdown";
 import { Button, buttonClassesType, htmlType } from "../Common/Button";
 import { currencySetCurrent } from "src/redux/actions/currency.action";
 import Kyc from "./kyc";
+import Account from "./account";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -649,6 +650,12 @@ function Profile() {
   return (
     <div className="profile fadeInBottomToTop">
       <div className="container">
+        <div className="profile__account">
+          <div className="profile__card-container box">
+            <div className="profile__title">{t("account")}</div>
+            <div><Account /></div>
+          </div>
+        </div>
         <div className="profile__info">
           <div className="profile__card-container box">
             <div className="profile__title">{t("profile")}</div>
@@ -852,14 +859,12 @@ function Profile() {
               <button
                 onClick={turnOnOff2faClickHandle}
                 id="profile__modalButton_turnOn2Fa"
-                className={`profile__button ${
-                  callApi2FAStatus === api_status.fetching ? "disabled" : ""
-                } `}
+                className={`profile__button ${callApi2FAStatus === api_status.fetching ? "disabled" : ""
+                  } `}
               >
                 <div
-                  className={`loader ${
-                    callApi2FAStatus === api_status.fetching ? "" : "--d-none"
-                  }`}
+                  className={`loader ${callApi2FAStatus === api_status.fetching ? "" : "--d-none"
+                    }`}
                 ></div>
                 {isEnabled_twofa ? t("turnOff2FA") : t("turnOn2FA")}
               </button>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./kyc.module.scss";
 import { getLocalStorage } from "src/util/common";
 import {
@@ -32,22 +32,9 @@ function Kyc(props) {
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const [verify, setVerify] = useState();
 
-  // const fullNameElement = useRef();
-  // const phoneElement = useRef();
-  // const addressElement = useRef();
-  // const companyElement = useRef();
-  // const passportElement = useRef();
-
   const kycSubmitHandle = async (data) => {
-    // ev.preventDefault();
-
     // prepare data
     const formData = new FormData();
-    // formData.append("fullname", data.name);
-    // formData.append("address", addressElement.current.value);
-    // formData.append("phone", phoneElement.current.value);
-    // formData.append("company", companyElement.current.value);
-    // formData.append("passport", passportElement.current.value);
     formData.append("fullname", data.Fullname);
     formData.append("address", data.Address);
     formData.append("phone", data.value);
@@ -89,6 +76,14 @@ function Kyc(props) {
   const renderShowForm = () => {
     return verify !== 1 && verify !== 2 ? "" : "--d-none";
   };
+  const renderError = (controlName) => {
+    if (errors[controlName]?.type === 'required') {
+      return 'require'
+    }
+    if (errors[controlName]?.type === 'pattern') {
+      return 'formatIncorrect'
+    }
+  }
 
   useEffect(() => {
     const language =
@@ -115,61 +110,40 @@ function Kyc(props) {
           <div className={css["kyc__input"]}>
             <label htmlFor="kycFullname">{t("fullName")}</label>
             <Input
-              // id={"kycFullname"}
               {...register("Fullname", { required: true })}
-              // ref={fullNameElement}
+              errorMes={t(renderError('Fullname'))}
             />
-            <error>
-              {errors.Fullname?.type === "required" && "Fullname is required"}
-            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycPhone">{t("phone")}</label>
             <Input
-              // id={"kycPhone"}
-              // ref={phoneElement}
               {...register("Phone", {
                 required: true,
                 pattern: /(84|0[3|5|7|8|9])+([0-9]{8})\b/,
               })}
+              errorMes={t(renderError('Phone'))}
             />
-            <error>
-              {errors.Phone?.type === "required" && "Phone is required"}
-              {errors.Phone?.type === "pattern" && "Phone is in wrong format"}
-            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycAddress">{t("address")}</label>
             <Input
-              // id={"kycAddress"}
-              // ref={addressElement}
               {...register("Address", { required: true })}
+              errorMes={t(renderError('Address'))}
             />
-            <error>
-              {errors.Address?.type === "required" && "Address is required"}
-            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycCompany">{t("company")}</label>
             <Input
-              // id={"kycCompany"}
-              // ref={companyElement}
               {...register("Company", { required: true })}
+              errorMes={t(renderError('Company'))}
             />
-            <error>
-              {errors.Company?.type === "required" && "Company is required"}
-            </error>
           </div>
           <div className={css["kyc__input"]}>
             <label htmlFor="kycPassport">{t("passport")}</label>
             <Input
-              // id={"kycPassport"}
-              // ref={passportElement}
               {...register("Passport", { required: true })}
+              errorMes={t(renderError('Passport'))}
             />
-            <error>
-              {errors.Passport?.type === "required" && "Passport is required"}
-            </error>
           </div>
         </div>
         <div className={css["kyc__fileContainer"]}>

@@ -12,13 +12,14 @@ import {
   url,
 } from "src/constant";
 import { useEffect } from "react";
-import { getLocalStorage, removeLocalStorage } from "src/util/common";
+import { getLocalStorage, removeLocalStorage, setLocalStorage } from "src/util/common";
 import i18n from "src/translation/i18n";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import socket from "src/util/socket";
 import { Input, inputType } from "./Common/Input";
 import { Button } from "./Common/Button";
+import { setAccountName, setUsdtBalance } from "src/redux/reducers/accountSlice";
 export default function Login({ history }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -82,7 +83,7 @@ export default function Login({ history }) {
       // search previos page and redirect
       const previousPage = getLocalStorage(localStorageVariable.previousePage);
       socket.emit("join", response.data.data.id);
-      socket.on("ok", (res) => {});
+      socket.on("ok", (res) => { });
       history.push("wallet-2");
       if (previousPage) {
         history.replace(previousPage.pathname + previousPage.search);
@@ -90,6 +91,9 @@ export default function Login({ history }) {
       } else {
         history.push(url.p2pTrading);
       }
+      //
+      dispatch(setAccountName(response.data.data?.username));
+      setLocalStorage(localStorageVariable.accountName, response.data.data?.username);
       //redirect to admin
       redirecToAdmin(response.data.data);
       //
