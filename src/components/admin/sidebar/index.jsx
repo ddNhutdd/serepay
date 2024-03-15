@@ -126,8 +126,8 @@ function Sidebar() {
   };
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
-    localStorage.removeItem(localStorageVariable.user);
-    localStorage.removeItem(localStorageVariable.token);
+    removeLocalStorage(localStorageVariable.user);
+    removeLocalStorage(localStorageVariable.token);
     removeLocalStorage(localStorageVariable.currency);
     removeLocalStorage(localStorageVariable.lng);
     removeLocalStorage(localStorageVariable.coin);

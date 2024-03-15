@@ -72,10 +72,9 @@ export default function Login({ history }) {
       response?.data?.data?.id === 1
         ? dispatch({ type: "USER_ADMIN", payload: true })
         : dispatch({ type: "USER_ADMIN", payload: false });
-      const profile = JSON.stringify(response.data.data);
       callToastSuccess(t("loggedInSuccessfully"));
-      localStorage.setItem("token", response.data.data.token);
-      localStorage.setItem("user", profile);
+      setLocalStorage(localStorageVariable.token, response.data.data.token);
+      setLocalStorage(localStorageVariable.user, response.data.data);
       dispatch({ type: "USER_LOGIN" });
       // menu load list mycoin
       dispatch(userWalletFetchCount());
@@ -90,15 +89,13 @@ export default function Login({ history }) {
       } else {
         history.push(url.p2pTrading);
       }
-      //
-      dispatch(setAccountName(response.data.data?.username));
-      setLocalStorage(localStorageVariable.accountName, response.data.data?.username);
       //redirect to admin
       redirecToAdmin(response.data.data);
       //
       const verify = response?.data?.data?.verified;
       if (verify !== 1 && verify !== 2) history.push(url.profile);
     } catch (error) {
+      console.log(error);
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
       switch (mess) {

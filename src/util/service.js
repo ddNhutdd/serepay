@@ -11,24 +11,24 @@ export const axiosService = axios.create({
 });
 
 const refreshToken = async () => {
-  const refreshToken = JSON.parse(localStorage.getItem("user")).refreshToken;
+  const refreshToken = getLocalStorage(localStorageVariable.user).refreshToken;
   let response = await axios.post(DOMAIN + "api/user/refreshToken", {
     refreshToken,
   });
   const newToken = response.data.data.token;
   const newExpiresIn = response.data.data.expiresIn;
-  localStorage.setItem("token", newToken);
-  const user = JSON.parse(localStorage.getItem("user"));
+  setLocalStorage(localStorageVariable.token, newToken);
+  const user = getLocalStorage(localStorageVariable.user);
   user.token = newToken;
   user.expiresIn = newExpiresIn;
-  localStorage.setItem("user", JSON.stringify(user));
+  setLocalStorage(localStorageVariable.user, user)
   return newToken;
 };
 
 axiosService.interceptors.request.use(
   async (config) => {
-    if (localStorage.getItem("user")) {
-      if (Date.now() > JSON.parse(localStorage.getItem("user")).expiresIn) {
+    if (getLocalStorage(localStorageVariable.user)) {
+      if (Date.now() > getLocalStorage(localStorageVariable.user).expiresIn) {
         const newToken = await refreshToken();
         config.headers = {
           ...config.headers,
@@ -39,7 +39,7 @@ axiosService.interceptors.request.use(
     }
     config.headers = {
       ...config.headers,
-      Authorization: "Bearer " + localStorage.getItem("token"),
+      Authorization: "Bearer " + getLocalStorage(localStorageVariable.token),
     };
     return config;
   },

@@ -12,7 +12,7 @@ import {
   localStorageVariable,
   url,
 } from "src/constant";
-import { getLocalStorage, removeLocalStorage } from "src/util/common";
+import { getLocalStorage, removeLocalStorage, setLocalStorage } from "src/util/common";
 import { Input, inputType } from "src/components/Common/Input";
 import { Button } from "src/components/Common/Button";
 
@@ -68,7 +68,7 @@ function ChangePassword(props) {
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
     i18n.changeLanguage(language);
 
-    localStorage.setItem(localStorageVariable.token, token);
+    setLocalStorage(localStorageVariable.token, token)
     return () => {
       removeLocalStorage(localStorageVariable.token);
     };

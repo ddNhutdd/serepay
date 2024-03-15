@@ -35,7 +35,7 @@ import {
 } from "./redux/actions/listCoinRealTime.action";
 import { userWalletFetchCount } from "./redux/constant/coin.constant";
 import { coinUserWallet } from "./redux/actions/coin.action";
-import { roundDecimalValues } from "./util/common";
+import { getLocalStorage, removeLocalStorage, roundDecimalValues } from "./util/common";
 import {
   getExchangeRateDisparityFetchCount,
   setExchangeRateDisparity,
@@ -43,7 +43,7 @@ import {
 } from "./redux/reducers/exchangeRateDisparitySlice";
 import { exchangeRateDisparity as exchangeRateDisparityCallApi } from "src/util/userCallApi";
 import ExchangeRateDisparity from "./components/admin/exchangeRateDisparity";
-import { api_status, url } from "./constant";
+import { api_status, localStorageVariable, url } from "./constant";
 import Ads from "./components/admin/ads";
 import TransactionSell from "./components/transactionSell";
 import Confirm from "./components/confirm";
@@ -221,13 +221,13 @@ function App() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-      const user = JSON.parse(localStorage.getItem("user"));
+    if (getLocalStorage(localStorageVariable.user)) {
+      const user = getLocalStorage(localStorageVariable.user);
       socket.emit("join", user.id);
       socket.on("ok", (res) => {});
       if (user.expiresInRefreshToken < Date.now()) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        removeLocalStorage(localStorageVariable.token)
+        removeLocalStorage(localStorageVariable.user)
       }
     }
 

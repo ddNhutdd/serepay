@@ -628,8 +628,8 @@ function Profile() {
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
     removeLocalStorage(localStorageVariable.lng);
-    localStorage.removeItem(localStorageVariable.user);
-    localStorage.removeItem(localStorageVariable.token);
+    removeLocalStorage(localStorageVariable.user);
+    removeLocalStorage(localStorageVariable.token);
     removeLocalStorage(localStorageVariable.coinToTransaction);
     removeLocalStorage(localStorageVariable.currency);
     removeLocalStorage(localStorageVariable.adsItem);

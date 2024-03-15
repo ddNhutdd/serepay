@@ -196,8 +196,8 @@ export default function Header2({ history }) {
     const temTitle = t("success");
     dispatch({ type: "USER_ADMIN", payload: false });
     removeLocalStorage(localStorageVariable.lng);
-    localStorage.removeItem(localStorageVariable.user);
-    localStorage.removeItem(localStorageVariable.token);
+    removeLocalStorage(localStorageVariable.user);
+    removeLocalStorage(localStorageVariable.token);
     removeLocalStorage(localStorageVariable.coinToTransaction);
     removeLocalStorage(localStorageVariable.currency);
     removeLocalStorage(localStorageVariable.adsItem);
@@ -365,7 +365,6 @@ export default function Header2({ history }) {
       setCurrentWalletUsdtBalance(currentUsdtBalance)
       setCallApiLoginWalletStatus(api_status.fulfilled);
     } catch (error) {
-      console.log(error);
       setCallApiLoginWalletStatus(api_status.rejected);
     }
   }
@@ -379,6 +378,9 @@ export default function Header2({ history }) {
     setIsShowModalAccountList(true);
   }
   const closeModalAccountList = () => {
+    if (callApiAddWalletStatus === api_status.fetching) {
+      return;
+    }
     setIsShowModalAccountList(false);
   }
   const renderAccountList = () => {
@@ -402,7 +404,6 @@ export default function Header2({ history }) {
         });
         const user = resp.data.data.infoUserLogin;
         const token = user.token;
-        console.log(user, token);
         setLocalStorage(localStorageVariable.user, user);
         setLocalStorage(localStorageVariable.token, token);
         dispatch({ type: "USER_LOGIN" });
@@ -410,7 +411,6 @@ export default function Header2({ history }) {
         setCallApiLoginWalletStatus(api_status.fulfilled);
         closeModalAccountList()
       } catch (error) {
-        console.log(error);
         setCallApiLoginWalletStatus(api_status.rejected);
       }
     }
@@ -450,6 +450,8 @@ export default function Header2({ history }) {
   }, [totalAssetsRealTime, listExChange, currencyFromRedux]);
   useEffect(() => {
     setActiveCurrentPage();
+    closeModalAccountList();
+    closeModalAccountInfo();
   }, [location]);
 
   return (
@@ -751,7 +753,7 @@ export default function Header2({ history }) {
             {renderAccountList()}
           </div>
           <div className="header2__accountList__action">
-            <Button onClick={addMoreAccountCLickHandle}>Add more account</Button>
+            <Button loading={callApiAddWalletStatus === api_status.fetching} onClick={addMoreAccountCLickHandle}>Add more account</Button>
           </div>
         </ul>
       </Modal>

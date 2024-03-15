@@ -53,7 +53,7 @@ function ReLogin() {
 
   const checkLocalStorage = function () {
     const showModal = getLocalStorage(localStorageVariable.expireToken);
-    const token = localStorage.getItem(localStorageVariable.token);
+    const token = getLocalStorage(localStorageVariable.token);
     if (showModal && token) {
       setIsModalOpen(true);
       setUsernameValue(showModal);
@@ -75,8 +75,8 @@ function ReLogin() {
       const profile = JSON.stringify(response.data.data);
       callToastSuccess(t("loggedInSuccessfully"));
       setIsModalOpen(false);
-      localStorage.setItem("token", response.data.data.token);
-      localStorage.setItem("user", profile);
+      setLocalStorage(localStorageVariable.token, response.data.data.token);
+      setLocalStorage(localStorageVariable.user, profile);
       setLocalStorage(localStorageVariable.expireToken, false);
       dispatch({ type: "USER_LOGIN" });
       // menu load list mycoin
@@ -111,8 +111,8 @@ function ReLogin() {
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
     removeLocalStorage(localStorageVariable.lng);
-    localStorage.removeItem(localStorageVariable.user);
-    localStorage.removeItem(localStorageVariable.token);
+    removeLocalStorage(localStorageVariable.user);
+    removeLocalStorage(localStorageVariable.token);
     removeLocalStorage(localStorageVariable.coinToTransaction);
     removeLocalStorage(localStorageVariable.currency);
     removeLocalStorage(localStorageVariable.adsItem);
@@ -181,6 +181,7 @@ function ReLogin() {
     const valid = validate(usernameValue, passwordElement.current.value);
     if (!valid) return;
     await login(usernameValue, passwordElement.current.value);
+    passwordElement.current.value = '';
   };
   const handleReload = () => {
     setLocalStorage(localStorageVariable.reLoginR, location.pathname);

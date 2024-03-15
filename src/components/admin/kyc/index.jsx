@@ -74,7 +74,6 @@ function KycAdmin() {
     try {
       const resp = await getKycUserPendding({ limit: limit.current, page });
       const { array, total } = resp.data.data;
-      console.log(resp);
       setMainData(array);
       setTotalItem(total);
       setPage(page);
@@ -122,7 +121,6 @@ function KycAdmin() {
       setCallApiApproveStatus(api_status.fulfilled);
       closeAllModal();
     } catch (error) {
-      console.log(error);
       callToastError(commontString.error);
       setCallApiApproveStatus(api_status.rejected);
     }
@@ -148,7 +146,6 @@ function KycAdmin() {
       setCallApiRejectStatus(api_status.fulfilled);
       closeAllModal();
     } catch (error) {
-      console.log(error);
       callToastError(commontString.error);
       setCallApiRejectStatus(api_status.rejected);
     }
