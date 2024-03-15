@@ -425,28 +425,94 @@
     }
 
     .header2__accountInfo {
+      .header2__accountInfoContent {
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        div {
+          text-align: center;
+
+          &:first-child {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            border: 1px solid $border-color-1;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+          }
+
+          &:last-child {
+            padding-top: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: $green-16;
+          }
+        }
+      }
+
+    }
+
+    .header2__accountList {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      max-height: 450px;
+      overflow-y: auto;
+
+      .header2__accountItem {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        transition: .2s;
+        padding: 10px;
+        border-radius: 5px;
+        gap: 10px;
+        cursor: pointer;
+        position: relative;
+
+        &:hover {
+          background-color: $background-color-4;
+        }
+
+        span {
+          &:last-child {
+            color: $green-16;
+            font-weight: bold;
+          }
+        }
+
+        &.active {
+          &::before {
+            content: "";
+            height: 90%;
+            width: 3px;
+            display: block;
+            background-color: $new-primary-background-6;
+            border-radius: 3px;
+            position: absolute;
+            top: 50%;
+            left: 0px;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+
+    .header2__accountList__action {
       padding: 15px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-direction: column;
-
-      div {
-        text-align: center;
-
-        &:first-child {
-          padding: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          cursor: pointer;
-        }
-
-        &:last-child {
-          padding-top: 10px
-        }
-      }
+      justify-content: flex-end;
+      gap: 10px;
     }
   }
 }

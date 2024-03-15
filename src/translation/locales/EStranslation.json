@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "Comprar de DDDSSSSGH",
     "soldToDDDSSSSGH": "Vendido a DDDSSSSGH",
     "receivedToken": "Token recibido",
-    "imagesCannotBeLeftBlank": "Las imágenes no pueden dejarse en blanco"
+    "imagesCannotBeLeftBlank": "Las imágenes no pueden dejarse en blanco",
+    "addMoreAccount": "Agregar más cuenta"
 }

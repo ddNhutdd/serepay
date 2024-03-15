@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "Beli dari DDDSSSSGH",
     "soldToDDDSSSSGH": "Dijual ke DDDSSSSGH",
     "receivedToken": "Token diterima",
-    "imagesCannotBeLeftBlank": "Gambar tidak boleh dikosongkan"
+    "imagesCannotBeLeftBlank": "Gambar tidak boleh dikosongkan",
+    "addMoreAccount": "Tambahkan lebih banyak akun"
 }

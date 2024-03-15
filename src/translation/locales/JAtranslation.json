@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "DDDSSSSGH から購入 (DDDSSSSGH kara kōnyū)",
     "soldToDDDSSSSGH": "DDDSSSSGH に販売済み (DDDSSSSGH ni hanbai済み)",
     "receivedToken": "トークンを受け取りました",
-    "imagesCannotBeLeftBlank": "画像は空白のままにすることはできません"
+    "imagesCannotBeLeftBlank": "画像は空白のままにすることはできません",
+    "addMoreAccount": "アカウントを追加"
 }

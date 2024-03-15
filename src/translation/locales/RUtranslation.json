@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "Купить у DDDSSSSGH",
     "soldToDDDSSSSGH": "Продано DDDSSSSGH",
     "receivedToken": "Получен токен",
-    "imagesCannotBeLeftBlank": "Изображения не могут быть пустыми"
+    "imagesCannotBeLeftBlank": "Изображения не могут быть пустыми",
+    "addMoreAccount": "Добавить еще один аккаунт"
 }

@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "DDDSSSSGH'ten satın al",
     "soldToDDDSSSSGH": "DDDSSSSGH'ye satıldı",
     "receivedToken": "Alınan Jeton",
-    "imagesCannotBeLeftBlank": "Görüntüler boş bırakılamaz"
+    "imagesCannotBeLeftBlank": "Görüntüler boş bırakılamaz",
+    "addMoreAccount": "Daha fazla hesap ekle"
 }

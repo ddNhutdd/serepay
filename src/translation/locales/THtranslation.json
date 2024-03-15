@@ -380,5 +380,6 @@
     "buyFromDDDSSSSGH": "ซื้อจาก DDDSSSSGH",
     "soldToDDDSSSSGH": "ขายแก่ DDDSSSSGH",
     "receivedToken": "ได้รับโทเค็น",
-    "imagesCannotBeLeftBlank": "ไม่สามารถปล่อยให้รูปภาพว่างเปล่าได้"
+    "imagesCannotBeLeftBlank": "ไม่สามารถปล่อยให้รูปภาพว่างเปล่าได้",
+    "addMoreAccount": "เพิ่มบัญชีเพิ่มเติม"
 }

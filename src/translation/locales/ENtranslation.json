@@ -384,5 +384,6 @@
     "buyFromDDDSSSSGH": "Buy from DDDSSSSGH",
     "soldToDDDSSSSGH": "Sold to DDDSSSSGH",
     "receivedToken": "Received Token",
-    "imagesCannotBeLeftBlank": "Images cannot be left blank"
+    "imagesCannotBeLeftBlank": "Images cannot be left blank",
+    "addMoreAccount": "Add more account"
 }

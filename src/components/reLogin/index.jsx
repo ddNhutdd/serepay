@@ -60,7 +60,7 @@ function ReLogin() {
       logout();
     }
   };
-  const handleCancel = () => {};
+  const handleCancel = () => { };
   const login = async (e, p) => {
     setIsLoading(true);
     try {
@@ -84,7 +84,7 @@ function ReLogin() {
       // search previos page and redirect
       const previousPage = getLocalStorage(localStorageVariable.previousePage);
       socket.emit("join", response.data.data.id);
-      socket.on("ok", (res) => {});
+      socket.on("ok", (res) => { });
       handleReload();
     } catch (error) {
       const mess =

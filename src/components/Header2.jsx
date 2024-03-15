@@ -8,6 +8,7 @@ import {
 } from "../util/common";
 import {
   api_status,
+  commontString,
   defaultCurrency,
   defaultLanguage,
   localStorageVariable,
@@ -17,7 +18,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { currencySetCurrent } from "src/redux/actions/currency.action";
-import { callToastSuccess } from "src/function/toast/callToast";
+import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import {
   getTotalAssetsBtcRealTime,
   getTotalAssetsRealTime,
@@ -25,14 +26,14 @@ import {
 import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { Modal, Spin } from "antd";
-import { getAccountName } from "src/redux/reducers/accountSlice";
-import { loginWallet } from "src/util/userCallApi";
+import { addWallet, loginWallet } from "src/util/userCallApi";
+import { Button, buttonClassesType } from "./Common/Button";
+import { Input } from "./Common/Input";
 
 export default function Header2({ history }) {
   const { isLogin, username, isAdmin } = useSelector(
     (root) => root.loginReducer
   );
-  const accountName = useSelector(getAccountName);
   const notifyRedux = useSelector(getNotify);
   const currencyFromRedux = useSelector(getCurrent);
 
@@ -58,6 +59,8 @@ export default function Header2({ history }) {
   const [listWallet, setListWallet] = useState();
   const [callApiLoginWalletStatus, setCallApiLoginWalletStatus] = useState(api_status.pending);
   const [currentWalletUsdtBalance, setCurrentWalletUsdtBalance] = useState(0);
+  const [isShowModalAccountList, setIsShowModalAccountList] = useState(false);
+  const [callApiAddWalletStatus, setCallApiAddWalletStatus] = useState(api_status.pending);
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -207,8 +210,6 @@ export default function Header2({ history }) {
     removeLocalStorage(localStorageVariable.amountFromWalletList);
     removeLocalStorage(localStorageVariable.thisIsAdmin);
     removeLocalStorage(localStorageVariable.expireToken);
-    removeLocalStorage(localStorageVariable.accountName);
-    removeLocalStorage(localStorageVariable.accountUsdt);
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess(tem, temTitle);
@@ -347,7 +348,7 @@ export default function Header2({ history }) {
     setIsModalAccInfoOpent(true);
 
     // call api login wallet
-    callApiLoginWallet()
+    callApiLoginWallet();
   }
   const closeModalAccountInfo = () => {
     setIsModalAccInfoOpent(false);
@@ -358,14 +359,78 @@ export default function Header2({ history }) {
       setCallApiLoginWalletStatus(api_status.fetching);
       const userId = getLocalStorage(localStorageVariable.user)?.id;
       const resp = await loginWallet({ idUser: userId });
-      console.log(resp.data.data);
       const allWallet = [resp.data.data.infoUserLogin, ...resp.data.data.wallet];
-      const currentUsdtBalance = allWallet.filter(item => item === userId)?.USDT_balance;
+      const currentUsdtBalance = allWallet.find(item => item.id === +userId)?.USDT_balance;
+      setListWallet(allWallet);
       setCurrentWalletUsdtBalance(currentUsdtBalance)
       setCallApiLoginWalletStatus(api_status.fulfilled);
     } catch (error) {
       console.log(error);
       setCallApiLoginWalletStatus(api_status.rejected);
+    }
+  }
+  const renderAccountInfoSpin = () => {
+    return callApiLoginWalletStatus === api_status.fetching ? '' : '--d-none';
+  }
+  const renderAccountInfoContent = () => {
+    return callApiLoginWalletStatus !== api_status.fetching ? '' : '--d-none';
+  }
+  const showModalAccountList = () => {
+    setIsShowModalAccountList(true);
+  }
+  const closeModalAccountList = () => {
+    setIsShowModalAccountList(false);
+  }
+  const renderAccountList = () => {
+    if (!listWallet || listWallet.length <= 0) {
+      return;
+    }
+
+    const setActive = (item) => {
+      return username === item.username ? 'active' : ''
+    }
+    const accountItemCLickHandle = async (item) => {
+      if (callApiLoginWalletStatus === api_status.fetching) {
+        return;
+      }
+      setCallApiLoginWalletStatus(api_status.fetching);
+
+      try {
+        const idUser = item.id;
+        const resp = await loginWallet({
+          idUser
+        });
+        const user = resp.data.data.infoUserLogin;
+        const token = user.token;
+        console.log(user, token);
+        setLocalStorage(localStorageVariable.user, user);
+        setLocalStorage(localStorageVariable.token, token);
+        dispatch({ type: "USER_LOGIN" });
+        setCurrentWalletUsdtBalance(user.USDT_balance);
+        setCallApiLoginWalletStatus(api_status.fulfilled);
+        closeModalAccountList()
+      } catch (error) {
+        console.log(error);
+        setCallApiLoginWalletStatus(api_status.rejected);
+      }
+    }
+
+    return listWallet.map((item, index) => (
+      <div onClick={accountItemCLickHandle.bind(null, item)} key={index} className={`header2__accountItem ${setActive(item)}`}>
+        <span>{item.username}</span>
+        <span>{item.USDT_balance} USDT</span>
+      </div>))
+  }
+  const addMoreAccountCLickHandle = async () => {
+    if (callApiAddWalletStatus === api_status.fetching) return;
+    setCallApiAddWalletStatus(api_status.fetching);
+    try {
+      const resp = await addWallet();
+      setCallApiAddWalletStatus(api_status.fulfilled);
+      callToastSuccess(t(commontString.success.toLocaleLowerCase()));
+      callApiLoginWallet();
+    } catch (error) {
+      setCallApiAddWalletStatus(api_status.rejected);
     }
   }
 
@@ -566,7 +631,7 @@ export default function Header2({ history }) {
                   className="header2__user-info-item"
                 >
                   <i className="fa-solid fa-id-badge"></i>
-                  <span>{accountName}</span>
+                  <span>{username}</span>
                 </div>
                 <div onClick={logout} className="header2__user-info-item">
                   <i className="fa-solid fa-arrow-right-from-bracket"></i>
@@ -643,21 +708,50 @@ export default function Header2({ history }) {
             key={-1}
             className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
           >
-            <span>{t("account")}</span>
+            <span>{username}</span>
             <span className="hover-p">
               <i className="fa-solid fa-xmark"></i>
             </span>
           </li>
           <div className="header2__accountInfo">
-            <div>
-              {accountName}
-              <i className="fa-solid fa-angle-down"></i>
+            <div className={`header2__accountInfoContent ${renderAccountInfoContent()}`}>
+              <div onClick={showModalAccountList}>
+                <i className="fa-solid fa-user"></i>
+                {username}
+                <i className="fa-solid fa-angle-down"></i>
+              </div>
+              <div>{username}</div>
+              <div>{currentWalletUsdtBalance} USDT</div>
             </div>
-            <div>account</div>
-            <div>{currentWalletUsdtBalance} USDT</div>
-            <div>
+            <div className={`spin-container ${renderAccountInfoSpin()}`}>
               <Spin />
             </div>
+          </div>
+        </ul>
+      </Modal>
+      <Modal
+        header={null}
+        footer={null}
+        wrapClassName="header2__LanguageModal"
+        open={isShowModalAccountList}
+        onCancel={closeModalAccountList}
+      >
+        <ul className="header2__LanguageModal__content">
+          <li
+            onClick={closeModalAccountList}
+            key={-1}
+            className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+          >
+            <span>{username}</span>
+            <span className="hover-p">
+              <i className="fa-solid fa-xmark"></i>
+            </span>
+          </li>
+          <div className="header2__accountList">
+            {renderAccountList()}
+          </div>
+          <div className="header2__accountList__action">
+            <Button onClick={addMoreAccountCLickHandle}>Add more account</Button>
           </div>
         </ul>
       </Modal>

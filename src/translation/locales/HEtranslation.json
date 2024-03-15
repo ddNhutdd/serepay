@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "קנייה מ- DDDSSSSGH",
     "soldToDDDSSSSGH": "נמכר ל- DDDSSSSGH",
     "receivedToken": "קיבל טוקן",
-    "imagesCannotBeLeftBlank": "לא ניתן להשאיר תמונות ריקות"
+    "imagesCannotBeLeftBlank": "לא ניתן להשאיר תמונות ריקות",
+    "addMoreAccount": "הוסף עוד חשבון"
 }

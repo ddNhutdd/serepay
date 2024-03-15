@@ -234,6 +234,13 @@ export const loginWallet = function (data) {
     return axiosService.post("/api/user/loginWallet", data);
   } catch (error) {}
 }
+export const addWallet = () => {
+  try {
+    return axiosService.post("/api/user/addWallet")
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 //==========================================
 export const getQrBankPayment = async function (

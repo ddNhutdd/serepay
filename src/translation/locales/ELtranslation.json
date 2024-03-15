@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "Αγορά από DDDSSSSGH",
     "soldToDDDSSSSGH": "Πωλήθηκε στον DDDSSSSGH",
     "receivedToken": "Λήφθηκε το token",
-    "imagesCannotBeLeftBlank": "Οι εικόνες δεν μπορούν να μείνουν κενές"
+    "imagesCannotBeLeftBlank": "Οι εικόνες δεν μπορούν να μείνουν κενές",
+    "addMoreAccount": "Προσθέστε περισσότερους λογαριασμούς"
 }

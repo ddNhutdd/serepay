@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "اشتري من DDDSSSSGH",
     "soldToDDDSSSSGH": "مباع لـ DDDSSSSGH",
     "receivedToken": "تلقى الرمز",
-    "imagesCannotBeLeftBlank": "لا يمكن ترك الصور فارغة"
+    "imagesCannotBeLeftBlank": "لا يمكن ترك الصور فارغة",
+    "addMoreAccount": "إضافة حساب آخر"
 }

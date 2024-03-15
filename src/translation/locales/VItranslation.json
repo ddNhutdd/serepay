@@ -384,5 +384,6 @@
     "buyFromDDDSSSSGH": "Mua từ DDDSSSSGH",
     "soldToDDDSSSSGH": "Bán cho DDDSSSSGH",
     "receivedToken": "Đã nhận Token",
-    "imagesCannotBeLeftBlank": "Hình ảnh không được để trống"
+    "imagesCannotBeLeftBlank": "Hình ảnh không được để trống",
+    "addMoreAccount": "Thêm tài khoản"
 }

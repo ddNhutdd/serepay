@@ -382,5 +382,6 @@
     "buyFromDDDSSSSGH": "DDDSSSSGH에서 구입",
     "soldToDDDSSSSGH": "DDDSSSSGH에 판매됨",
     "receivedToken": "토큰을 받았습니다",
-    "imagesCannotBeLeftBlank": "이미지는 비워둘 수 없습니다"
+    "imagesCannotBeLeftBlank": "이미지는 비워둘 수 없습니다",
+    "addMoreAccount": "더 많은 계정 추가"
 }

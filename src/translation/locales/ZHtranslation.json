@@ -379,5 +379,6 @@
     "buyFromDDDSSSSGH": "从DDDSSSSGH购买",
     "soldToDDDSSSSGH": "已售给DDDSSSSGH",
     "receivedToken": "接收到令牌",
-    "imagesCannotBeLeftBlank": "图片不能为空"
+    "imagesCannotBeLeftBlank": "图片不能为空",
+    "addMoreAccount": "添加更多账户"
 }

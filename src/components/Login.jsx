@@ -19,7 +19,6 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import socket from "src/util/socket";
 import { Input, inputType } from "./Common/Input";
 import { Button } from "./Common/Button";
-import { setAccountName, setUsdtBalance } from "src/redux/reducers/accountSlice";
 export default function Login({ history }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
