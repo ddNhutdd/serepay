@@ -47,22 +47,26 @@ function WalletAdmin() {
   const searchValue = useRef("");
 
   const fetchApiLoadUser = async function (page) {
-    if (fetchTableDataStatus == api_status.fetching) return;
-    setFetchTableDataStatus(() => api_status.fetching);
-    const allUser = await getAllUser({
-      limit: limit.current,
-      page,
-    });
-    setFetchTableDataStatus(() => api_status.fulfilled);
-    const { array, total } = allUser.data.data;
-    setCurrentPage(() => page);
-    setTableData(() => array);
-    setTotalItems(() => total);
+    try {
+      if (fetchTableDataStatus == api_status.fetching) return;
+      setFetchTableDataStatus(() => api_status.fetching);
+      const allUser = await getAllUser({
+        limit: limit.current,
+        page,
+      });
+      setFetchTableDataStatus(() => api_status.fulfilled);
+      const { array, total } = allUser.data.data;
+      setCurrentPage(() => page);
+      setTableData(() => array);
+      setTotalItems(() => total);
+    } catch (error) {
+      setFetchTableDataStatus(() => api_status.rejected);
+    }
   };
   const renderTable = function () {
     if (!tableData || tableData.length <= 0) return;
-    const setActive = function (email) {
-      return selectedUserEmail === email ? css["hightLight"] : "";
+    const setActive = function (id) {
+      return userId.current === id ? css["hightLight"] : "";
     };
     return tableData.map((item) => (
       <tr
@@ -74,7 +78,7 @@ function WalletAdmin() {
         )}
         key={item.id}
         data-id={item.id}
-        className={setActive(item.email)}
+        className={setActive(item.id)}
       >
         <td>{item.username}</td>
         <td>{item.email}</td>
@@ -125,19 +129,21 @@ function WalletAdmin() {
     setSelectedUserEmail(() => email);
     setSelectedUsername(() => username);
 
-    fetchApiGetWalletToUserAdmin(id).catch((error) => {
-      setFetchControlStatus(() => api_status.rejected);
-    });
+    fetchApiGetWalletToUserAdmin(id);
   };
   const fetchApiGetWalletToUserAdmin = async function (userid) {
-    if (fetchControlStatus === api_status.fetching) return;
-    setFetchControlStatus(() => api_status.fetching);
-    const userWallet = await getWalletToUserAdmin({
-      userid,
-    });
-    setFetchControlStatus(() => api_status.fulfilled);
-    const dataWallet = userWallet?.data?.data;
-    bindDataToControl(dataWallet);
+    try {
+      if (fetchControlStatus === api_status.fetching) return;
+      setFetchControlStatus(() => api_status.fetching);
+      const userWallet = await getWalletToUserAdmin({
+        userid,
+      });
+      setFetchControlStatus(() => api_status.fulfilled);
+      const dataWallet = userWallet?.data?.data;
+      bindDataToControl(dataWallet);
+    } catch (error) {
+      setFetchControlStatus(() => api_status.rejected);
+    }
   };
   const bindDataToControl = function (dataWallet) {
     if (!dataWallet || dataWallet.length <= 0) return;
@@ -210,7 +216,7 @@ function WalletAdmin() {
     return formatStringNumberCultureUS(inputValueWithoutComma);
   };
   const renderClassShowActionContent = function () {
-    return fetchControlStatus !== api_status.fetching && selectedUserEmail
+    return fetchControlStatus !== api_status.fetching && selectedUsername
       ? ""
       : "--d-none";
   };
@@ -282,9 +288,7 @@ function WalletAdmin() {
   };
 
   useEffect(() => {
-    fetchApiLoadUser(1).catch((error) => {
-      setFetchTableDataStatus(() => api_status.rejected);
-    });
+    fetchApiLoadUser(1);
     fetchApiGetListCoin();
   }, []);
 
@@ -355,9 +359,8 @@ function WalletAdmin() {
               </label>
             </div>
             <div
-              className={`${
-                css["walletAdmin__control"]
-              } ${renderClassShowActionContent()}`}
+              className={`${css["walletAdmin__control"]
+                } ${renderClassShowActionContent()}`}
             >
               {renderControl()}
             </div>

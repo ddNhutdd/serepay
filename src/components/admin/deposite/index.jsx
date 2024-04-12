@@ -74,8 +74,7 @@ function Deposite() {
     }
   };
   const pageChangeHandle = function (page) {
-    setPage(page);
-    getHistoryDepositAdmin(page);
+    fetApiGetHistoryDepositAdmin(page);
   };
   const exportExcelClickHandle = async function () {
     try {

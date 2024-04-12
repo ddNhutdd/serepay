@@ -409,6 +409,7 @@ export default function Header2({ history }) {
         dispatch({ type: "USER_LOGIN" });
         setCurrentWalletUsdtBalance(user.USDT_balance);
         setCallApiLoginWalletStatus(api_status.fulfilled);
+        dispatch(userWalletFetchCount());
         closeModalAccountList()
       } catch (error) {
         setCallApiLoginWalletStatus(api_status.rejected);

@@ -24,12 +24,10 @@ import { getListCoinRealTime } from "src/redux/constant/listCoinRealTime.constan
 import { Button, buttonClassesType } from "src/components/Common/Button";
 import { math } from "src/App";
 import css from "./walletList.module.scss";
-import { userWalletFetchCount } from "src/redux/actions/coin.action";
 
 function SerepayWalletList() {
   const history = useHistory();
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const allCoin = useSelector(getListCoinRealTime);
   const myListCoin = useSelector(getUserWallet);
   const userSelectedCurrency = useSelector(getCurrent);

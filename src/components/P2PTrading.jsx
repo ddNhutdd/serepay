@@ -91,7 +91,7 @@ export default function P2PTrading({ history }) {
       key: "24hChange",
       dataIndex: "percent",
       render: (_, { percent }) => {
-        let color = "black";
+        let color = "white";
         if (percent > 0) {
           color = "#9ADE7B";
         } else if (percent < 0) {
@@ -397,7 +397,7 @@ export default function P2PTrading({ history }) {
       .then((resp) => {
         setTypeAds(() => resp.data.data.type_ads);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   };
 
   return (

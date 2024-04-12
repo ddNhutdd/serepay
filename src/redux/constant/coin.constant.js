@@ -1,5 +1,3 @@
-import { coinString, localStorageVariable } from "src/constant";
-import { getLocalStorage } from "src/util/common";
 
 export const coin = {
   userWalletFetchCount: "coin/userWalletFetchCount",

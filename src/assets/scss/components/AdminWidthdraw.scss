@@ -1,3 +1,13 @@
+@mixin tabActive {
+    border-bottom: none;
+    border-top: 1px solid $background-color-4;
+    border-left: 1px solid $background-color-4;
+    border-right: 1px solid $background-color-4;
+    color: $new-primary-color-6;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
 .widthdraw {
     color: $new-text-color-white;
 
@@ -7,6 +17,41 @@
         }
 
         .widthdraw__filter {
+
+            .widthdraw__tabs {
+                display: flex;
+                margin-bottom: 15px;
+
+                .widthdraw__tabs__item {
+                    padding: 15px;
+                    font-weight: bold;
+                    transition: color .2s;
+                    border-bottom: 1px solid $background-color-4;
+                    user-select: none;
+
+                    cursor: pointer;
+
+                    &:hover {
+                        @include tabActive;
+                    }
+
+                    &.active {
+                        @include tabActive;
+                    }
+
+                    &:last-child {
+                        flex: 1;
+
+                        &:hover {
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                            border-bottom: 1px solid $background-color-4;
+                        }
+                    }
+                }
+            }
+
             .widthdraw__list-coin {
                 padding-left: 0;
                 gap: 10px;
@@ -84,11 +129,11 @@
         tbody {
             tr {
                 td {
-                    &:nth-of-type(5) {
+                    &:nth-of-type(6) {
                         min-width: 300px;
                     }
 
-                    &:nth-of-type(9) {
+                    &:nth-of-type(10) {
                         white-space: nowrap;
                     }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Pagination, Spin } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Button, buttonClassesType } from "src/components/Common/Button";
@@ -9,12 +9,19 @@ import {
   getListWidthdrawCoin,
   getListWidthdrawCoinAll,
   getListWidthdrawCoinPendding,
+  searchWalletToWithdraw,
 } from "src/util/adminCallApi";
 import socket from "src/util/socket";
 import { ModalConfirm } from "src/components/Common/ModalConfirm";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input } from "src/components/Common/Input";
 import { TagCustom, TagType } from "src/components/Common/Tag";
+import { debounce } from "src/util/common";
+
+const tabList = {
+  coin: 'coin',
+  address: 'address'
+}
 
 function Widthdraw() {
   const [callApiLoadMainDataStatus, setCallApiLoadMainDataStatus] = useState(
@@ -29,12 +36,14 @@ function Widthdraw() {
   );
   const [listCoin, setListCoin] = useState([]);
   const [selectedCoin, setSelectedCoin] = useState("ALL");
-  const [totalItem, setTotalItem] = useState(1);
+  const [totalItems, setTotalItems] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [mainData, setMainData] = useState([]);
   const [isShowPending, setIsShowPending] = useState(false);
   const [isShowModalConfirm, setIsShowModalConfirm] = useState(false);
   const [isShowModalReject, setIsShowModalReject] = useState(false);
+  const [tabActive, setTabActive] = useState(tabList.coin);
+  const [inputSearchValue, setInputSearchValue] = useState('');
 
   const limit = useRef(10);
   const isChecked = useRef(false);
@@ -46,6 +55,53 @@ function Widthdraw() {
     fetchAllCoin();
   }, []);
 
+  const fetchSearchTransferByAddress = async (limit, page, keyword) => {
+    try {
+      if (callApiLoadMainDataStatus === api_status.fetching) return;
+      setCallApiLoadMainDataStatus(api_status.fetching);
+      clearMainData();
+      const resp = await searchWalletToWithdraw(
+        {
+          limit,
+          page,
+          keyWork: keyword
+        }
+      )
+      const data = resp?.data?.data;
+      setMainData(data?.array);
+      setCurrentPage(page);
+      setTotalItems(data.total);
+      
+      setCallApiLoadMainDataStatus(api_status.fulfilled);
+    } catch (error) {
+      setCallApiLoadMainDataStatus(api_status.rejected);
+      console.log(error);
+    }
+  }
+  const fetchSearchTransferByAddressDebouced = useCallback(debounce(fetchSearchTransferByAddress, 1000), []);
+  const inputSearchChangeHandle = (ev) => {
+    setInputSearchValue(ev.target.value);
+    fetchSearchTransferByAddressDebouced(limit.current, 1, ev.target.value);
+  }
+  const tabClickHandle = (tab) => {
+    setTabActive(tab);
+    switch (tab) {
+      case tabList.coin:
+        loadData(currentPage, selectedCoin);
+        break;
+      case tabList.address:
+        setInputSearchValue('');
+        fetchSearchTransferByAddress(limit.current, 1, '');
+      default:
+        break;
+    }
+  }
+  const renderClassActiveTab = (currentTab) => {
+    return tabActive === currentTab ? 'active' : '';
+  }
+  const renderClassShowContentTab = (currentTab) => {
+    return tabActive === currentTab ? '' : '--d-none';
+  }
   const fetchApiLoadDataAll = function (page) {
     return new Promise((resolve, reject) => {
       if (callApiLoadMainDataStatus === api_status.fetching) resolve([]);
@@ -59,12 +115,12 @@ function Widthdraw() {
           setCallApiLoadMainDataStatus(() => api_status.fulfilled);
           const data = resp.data.data;
           setMainData(() => data.array);
-          setTotalItem(() => data.total);
+          setTotalItems(() => data.total);
           resolve(data.array);
         })
         .catch((err) => {
           setCallApiLoadMainDataStatus(() => api_status.rejected);
-          setTotalItem(1);
+          setTotalItems(1);
           reject(false);
         })
         .finally(() => {
@@ -112,6 +168,7 @@ function Widthdraw() {
         <td>{record.amount}</td>
         <td>{record.to_address}</td>
         <td>{record.form_address}</td>
+        <td>{record.created_at}</td>
         <td>{record.note}</td>
         <td>{record.username}</td>
         <td>{record.email}</td>
@@ -139,9 +196,8 @@ function Widthdraw() {
         <Button
           onClick={coinClickHandle.bind(null, coin.name)}
           type={buttonClassesType.outline}
-          className={`widthdraw__coin-item ${
-            coin.name === selectedCoin ? "active" : ""
-          }`}
+          className={`widthdraw__coin-item ${coin.name === selectedCoin ? "active" : ""
+            }`}
         >
           {coin.name}
         </Button>
@@ -177,7 +233,7 @@ function Widthdraw() {
   const clearMainData = function () {
     setMainData(() => []);
     setCurrentPage(() => 1);
-    setTotalItem(() => 1);
+    setTotalItems(() => 1);
   };
   const fetchApiLoadDataByCoin = function (page, symbol) {
     return new Promise((resolve, reject) => {
@@ -195,7 +251,7 @@ function Widthdraw() {
           const data = resp.data.data;
           setMainData(() => data.array);
           setCallApiLoadMainDataStatus(() => api_status.fulfilled);
-          setTotalItem(() => data.total);
+          setTotalItems(() => data.total);
           setCurrentPage(() => page);
           resolve(data.array);
         })
@@ -219,7 +275,7 @@ function Widthdraw() {
       })
         .then((resp) => {
           const data = resp.data.data;
-          setTotalItem(() => data.total);
+          setTotalItems(() => data.total);
           setCallApiLoadMainDataStatus(() => api_status.fulfilled);
           setCurrentPage(() => page);
           setMainData(() => data.array);
@@ -248,7 +304,16 @@ function Widthdraw() {
     }
   };
   const pageChangeHandle = function (page) {
-    loadData(page, selectedCoin); // fetch data will reset the page, if fetch data fails the page is 1
+    switch (tabActive) {
+      case tabList.coin:
+        loadData(page, selectedCoin); // fetch data will reset the page, if fetch data fails the page is 1
+        break;
+      case tabList.address:
+        fetchSearchTransferByAddress(limit.current, page, inputSearchValue);
+        break;
+      default:
+        break;
+    }
   };
   const renderAction = function (id, status) {
     if (status === 2) {
@@ -349,27 +414,47 @@ function Widthdraw() {
       <div className="widthdraw__header">
         <div className="widthdraw__title">Widthdraw</div>
         <div className="row widthdraw__filter">
-          <div className="col-md-12 col-7 row widthdraw__list-coin">
-            {renderListCoin()}
-            <div className={renderClassCoinSpin()}>
-              <Spin />
+          <div className="col-md-12 col-7 pl-0">
+            <div className="widthdraw__tabs">
+              <div onClick={tabClickHandle.bind(null, tabList.coin)} className={`widthdraw__tabs__item ${renderClassActiveTab(tabList.coin)}`}>
+                Coin
+              </div>
+              <div onClick={tabClickHandle.bind(null, tabList.address)} className={`widthdraw__tabs__item ${renderClassActiveTab(tabList.address)}`}>
+                Address
+              </div>
+              <div className="widthdraw__tabs__item">
+
+              </div>
             </div>
-            <div className={`widthdraw__pending ` + renderClassPending()}>
-              <input
-                onChange={pendingChangeHandle}
-                className="--d-none"
-                type="checkbox"
-                id="widthdrawPending"
+            <div className={`row widthdraw__list-coin ${renderClassShowContentTab(tabList.coin)}`}>
+              {renderListCoin()}
+              <div className={renderClassCoinSpin()}>
+                <Spin />
+              </div>
+              <div className={`widthdraw__pending ` + renderClassPending()}>
+                <input
+                  onChange={pendingChangeHandle}
+                  className="--d-none"
+                  type="checkbox"
+                  id="widthdrawPending"
+                />
+                <label
+                  className="row widthdraw__pending-content"
+                  htmlFor="widthdrawPending"
+                >
+                  <div className="widthdraw__pending-square">
+                    <i className="fa-solid fa-check"></i>
+                  </div>
+                  <div>Pending</div>
+                </label>
+              </div>
+            </div>
+            <div className={renderClassShowContentTab(tabList.address)}>
+              <Input
+                value={inputSearchValue}
+                onChange={inputSearchChangeHandle}
+                placeholder={`Input a Address`}
               />
-              <label
-                className="row widthdraw__pending-content"
-                htmlFor="widthdrawPending"
-              >
-                <div className="widthdraw__pending-square">
-                  <i className="fa-solid fa-check"></i>
-                </div>
-                <div>Pending</div>
-              </label>
             </div>
           </div>
           <div className="col-md-12 col-5 widthdraw__paging">
@@ -377,7 +462,7 @@ function Widthdraw() {
               showSizeChanger={false}
               current={currentPage}
               onChange={pageChangeHandle}
-              total={totalItem}
+              total={totalItems}
             />
           </div>
         </div>
@@ -390,6 +475,7 @@ function Widthdraw() {
               <th>Amount</th>
               <th>To Address</th>
               <th>From Address</th>
+              <th>Time</th>
               <th>Note</th>
               <th>UserName</th>
               <th>Email</th>

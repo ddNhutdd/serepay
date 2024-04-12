@@ -54,9 +54,15 @@ function ReLogin() {
   const checkLocalStorage = function () {
     const showModal = getLocalStorage(localStorageVariable.expireToken);
     const token = getLocalStorage(localStorageVariable.token);
+    const userInfo = getLocalStorage(localStorageVariable.user);
     if (showModal && token) {
+      const { idWallet, username, userNameParent } = userInfo;
+      if (idWallet > 1) {
+        setUsernameValue(userNameParent);
+      } else {
+        setUsernameValue(username)
+      }
       setIsModalOpen(true);
-      setUsernameValue(showModal);
       logout();
     }
   };
@@ -72,7 +78,7 @@ function ReLogin() {
       response?.data?.data?.id === 1
         ? dispatch({ type: "USER_ADMIN", payload: true })
         : dispatch({ type: "USER_ADMIN", payload: false });
-      const profile = JSON.stringify(response.data.data);
+      const profile = response.data.data;
       callToastSuccess(t("loggedInSuccessfully"));
       setIsModalOpen(false);
       setLocalStorage(localStorageVariable.token, response.data.data.token);
