@@ -25,7 +25,6 @@ const defaultState = {
 export const loginReducer = (state = defaultState, action) => {
   switch (action.type) {
     case "USER_LOGIN": {
-      console.log('1', typeof getLocalStorage(localStorageVariable.user));
       return {
         ...state,
         isLogin: true,

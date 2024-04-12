@@ -153,6 +153,5 @@ export const searchWalletToWithdraw = (data) => {
   try {
     return axiosService.post("/api/adminv2/sreachWalletToWithdraw", data);
   } catch (error) {
-    console.log(error);
   }
 }

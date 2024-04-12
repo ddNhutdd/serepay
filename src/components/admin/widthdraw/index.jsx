@@ -75,7 +75,6 @@ function Widthdraw() {
       setCallApiLoadMainDataStatus(api_status.fulfilled);
     } catch (error) {
       setCallApiLoadMainDataStatus(api_status.rejected);
-      console.log(error);
     }
   }
   const fetchSearchTransferByAddressDebouced = useCallback(debounce(fetchSearchTransferByAddress, 1000), []);
