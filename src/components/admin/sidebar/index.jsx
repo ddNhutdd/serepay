@@ -117,11 +117,11 @@ function Sidebar() {
     e.currentTarget.classList.add("active");
     history.push(url.admin_swap);
   };
-  const redirectKyc = function (e) {
-    clearSelectedItem();
-    e.currentTarget.classList.add("active");
-    history.push(url.admin_kyc);
-  };
+  // const redirectKyc = function (e) {
+  //   clearSelectedItem();
+  //   e.currentTarget.classList.add("active");
+  //   history.push(url.admin_kyc);
+  // };
   const redirectDeposite = function (e) {
     clearSelectedItem();
     e.currentTarget.classList.add("active");
@@ -161,12 +161,12 @@ function Sidebar() {
           </span>
           <span className="admin-sidebar__item">Users</span>
         </li>
-        <li onClick={redirectKyc} id="kyc">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-user-shield"></i>
-          </span>
-          <span className="admin-sidebar__item">KYC</span>
-        </li>
+        {/*<li onClick={redirectKyc} id="kyc">*/}
+        {/*  <span className="admin-sidebar__icon">*/}
+        {/*    <i className="fa-solid fa-user-shield"></i>*/}
+        {/*  </span>*/}
+        {/*  <span className="admin-sidebar__item">KYC</span>*/}
+        {/*</li>*/}
         <li onClick={redirectExchangeRateDisparity} id="exchangeRateDisparity">
           <span className="admin-sidebar__icon">
             <i className="fa-solid fa-percent"></i>

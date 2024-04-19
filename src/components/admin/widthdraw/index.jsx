@@ -91,6 +91,7 @@ function Widthdraw() {
       case tabList.address:
         setInputSearchValue('');
         fetchSearchTransferByAddress(limit.current, 1, '');
+        break;
       default:
         break;
     }
@@ -117,7 +118,7 @@ function Widthdraw() {
           setTotalItems(() => data.total);
           resolve(data.array);
         })
-        .catch((err) => {
+        .catch(() => {
           setCallApiLoadMainDataStatus(() => api_status.rejected);
           setTotalItems(1);
           reject(false);
@@ -128,7 +129,7 @@ function Widthdraw() {
     });
   };
   const fetchAllCoin = function () {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve,) => {
       if (callApiLoadCoin === api_status.fetching) resolve(false);
       else setCallApiLoadCoin(() => api_status.fetching);
       socket.once("listCoin", (resp) => {
@@ -254,7 +255,7 @@ function Widthdraw() {
           setCurrentPage(() => page);
           resolve(data.array);
         })
-        .catch((err) => {
+        .catch(() => {
           setCallApiLoadMainDataStatus(() => api_status.rejected);
           reject(() => false);
         });
@@ -280,7 +281,7 @@ function Widthdraw() {
           setMainData(() => data.array);
           resolve(data.array);
         })
-        .catch((error) => {
+        .catch(() => {
           setCallApiLoadMainDataStatus(() => api_status.rejected);
           reject(false);
         });
@@ -345,13 +346,13 @@ function Widthdraw() {
       activeWidthdraw({
         id,
       })
-        .then((resp) => {
+        .then(() => {
           callToastSuccess("Success");
           setCallApiAcceptStatus(() => api_status.fulfilled);
           closeModalConfirm();
           loadData(currentPage, selectedCoin);
         })
-        .catch((error) => {
+        .catch(() => {
           callToastError("Fail");
           setCallApiAcceptStatus(() => api_status.rejected);
           reject(false);
@@ -387,7 +388,7 @@ function Widthdraw() {
         id,
         note,
       })
-        .then((resp) => {
+        .then(() => {
           callToastSuccess("Success");
           setCallApiRejectStatus(() => api_status.fulfilled);
           closeModalReject();
@@ -395,7 +396,7 @@ function Widthdraw() {
           inputReasonElement.current.value = "";
           resolve(true);
         })
-        .catch((error) => {
+        .catch(() => {
           setCallApiRejectStatus(() => api_status.rejected);
 
           callToastError("Fail");

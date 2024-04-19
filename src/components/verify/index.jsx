@@ -33,20 +33,18 @@ function Verify() {
   };
   const redirectLogin = function () {
     history.push(url.login);
-    return;
   };
   const fetchApiVerify = function () {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       if (callApiStatus === api_status.fetching) resolve(true);
       setCallApiStatus(() => api_status.fetching);
       verifyEmail(token)
-        .then((resp) => {
+        .then(() => {
           setCallApiStatus(() => api_status.fulfilled);
           resolve(true);
         })
         .catch((error) => {
-          const errorMess = error?.response?.data?.message;
-          errorMessageNotShow.current = errorMess;
+          errorMessageNotShow.current = error?.response?.data?.message;
           showError();
           setCallApiStatus(() => api_status.rejected);
           resolve(false);
@@ -62,7 +60,7 @@ function Verify() {
         setErrorMessage(() => t("accountHasBeenConfirmedEmailBeforehand"));
         break;
       default:
-        showMess = errorMessageNotShow.current || t("error");
+        setErrorMessage(errorMessageNotShow.current || t("error"));
         break;
     }
   };
@@ -92,7 +90,7 @@ function Verify() {
             <div className="verify__title">{t("authenticationFail")}</div>
             {errorMessage}
           </div>
-          <div className={`sucesssContent ${renderClassShowSuccessContent()}`}>
+          <div className={`successContent ${renderClassShowSuccessContent()}`}>
             <div className="verify__title">{t("authenticationSuccess")}</div>
             <p>
               {t(

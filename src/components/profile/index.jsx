@@ -674,14 +674,14 @@ function Profile() {
             </div>
           </div>
         </div>
-        <div>
-          <div className="profile__card-container box">
-            <div className="profile__title">KYC</div>
-            <div>
-              <Kyc verify={verifyKycStatus} />
-            </div>
-          </div>
-        </div>
+        {/*<div>*/}
+        {/*  <div className="profile__card-container box">*/}
+        {/*    <div className="profile__title">KYC</div>*/}
+        {/*    <div>*/}
+        {/*      <Kyc verify={verifyKycStatus} />*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
         <div className="profile__payment">
           <div className="profile__card-container box">
             <div className="profile__title">{t("payment")}</div>
