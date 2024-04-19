@@ -61,6 +61,9 @@ function Sidebar() {
       case "deposit":
         addClassToElementById("deposit", "active");
         break;
+      case "p2p":
+        addClassToElementById("p2p", "active");
+        break;
       default:
         break;
     }
@@ -123,6 +126,11 @@ function Sidebar() {
     clearSelectedItem();
     e.currentTarget.classList.add("active");
     history.push(url.admin_deposite);
+  };
+  const redirectP2p = function (e) {
+    clearSelectedItem();
+    e.currentTarget.classList.add("active");
+    history.push(url.admin_p2p);
   };
   const logout = () => {
     dispatch({ type: "USER_ADMIN", payload: false });
@@ -212,6 +220,12 @@ function Sidebar() {
             <i className="fa-solid fa-file-invoice"></i>
           </span>
           <span className="admin-sidebar__item">Deposite</span>
+        </li>
+        <li onClick={redirectP2p} id="p2p">
+          <span className="admin-sidebar__icon">
+            <i className="fa-solid fa-file-lines"></i>
+          </span>
+          <span className="admin-sidebar__item">P2P</span>
         </li>
         <li onClick={logout}>
           <span className="admin-sidebar__icon">

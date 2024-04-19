@@ -142,7 +142,7 @@ export const historytransferAdminAll = function () {
 export const getHistoryDepositAdmin = function (data) {
   try {
     return axiosService.post("/api/adminv2/getHistoryDepositAdmin", data);
-  } catch (error) {}
+  } catch (error) { }
 };
 export const getHistoryDepositAdminAllExcel = function () {
   try {
@@ -152,6 +152,19 @@ export const getHistoryDepositAdminAllExcel = function () {
 export const searchWalletToWithdraw = (data) => {
   try {
     return axiosService.post("/api/adminv2/sreachWalletToWithdraw", data);
+  } catch (error) {
+  }
+}
+export const getHistoryToWhereAdmin = (data) => {
+  try {
+    return axiosService.post("/api/p2pBank/getHistoryToWhereAdmin", data);
+  } catch (error) {
+
+  }
+}
+export const AdminConfirmP2pCommand = (data) => {
+  try {
+    return axiosService.post("/api/p2pBank/AdminConfirmP2pCommand", data);
   } catch (error) {
   }
 }

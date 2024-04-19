@@ -33,6 +33,7 @@ export const url = {
   create_ads_sell: "/create-ads/sell",
   create_ads_buy: "/create-ads/buy",
   admin_ads: "/admin/ads",
+  admin_p2p: '/admin/p2p',
   ads_history: "/ads-history",
   transaction_sell: "/transaction-sell",
   transaction_buy: "/transaction-buy",
@@ -55,7 +56,7 @@ export const url = {
   admin_exchangeRateDisparity: "/admin/exchange-rate-disparity",
   admin_transfer: "/admin/transfer",
   admin_wallet: "/admin/wallet",
-  admin_deposite: "/admin/deposite",
+  admin_deposite: "/admin/deposite"
 };
 
 const currentDomain = window.location.href;

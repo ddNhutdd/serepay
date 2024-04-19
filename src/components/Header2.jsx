@@ -28,7 +28,6 @@ import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { Modal, Spin } from "antd";
 import { addWallet, loginWallet } from "src/util/userCallApi";
 import { Button, buttonClassesType } from "./Common/Button";
-import { Input } from "./Common/Input";
 
 export default function Header2({ history }) {
   const { isLogin, username, isAdmin } = useSelector(

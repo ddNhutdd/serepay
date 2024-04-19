@@ -75,6 +75,7 @@ import {
 import P2p from "./components/p2p";
 import Deposite from "./components/admin/deposite";
 import KycAdmin from "./components/admin/kyc";
+import P2pAdmin from "./components/admin/p2p";
 
 const config = {};
 export const math = create(all, config);
@@ -87,7 +88,7 @@ export const fetchNotify = function (dispatchHook) {
         dispatchHook(setNotify(data));
         resolve(true);
       })
-      .catch((error) => {});
+      .catch((error) => { });
   });
 };
 
@@ -139,7 +140,7 @@ function App() {
             dispatch(coinUserWallet(result));
           }
         })
-        .catch((error) => {});
+        .catch((error) => { });
     });
   };
   const getExchangeRateDisparityApi = function () {
@@ -224,7 +225,7 @@ function App() {
     if (getLocalStorage(localStorageVariable.user)) {
       const user = getLocalStorage(localStorageVariable.user);
       socket.emit("join", user.id);
-      socket.on("ok", (res) => {});
+      socket.on("ok", (res) => { });
       if (user.expiresInRefreshToken < Date.now()) {
         removeLocalStorage(localStorageVariable.token)
         removeLocalStorage(localStorageVariable.user)
@@ -315,6 +316,7 @@ function App() {
           <AdminTemplate path={url.admin_swap} component={SwapAdmin} />
           <AdminTemplate path={url.admin_kyc} component={KycAdmin} />
           <AdminTemplate path={url.admin_deposite} component={Deposite} />
+          <AdminTemplate path={url.admin_p2p} component={P2pAdmin} />
           <Route exact path="/" component={Home} />
         </Switch>
       </Config>

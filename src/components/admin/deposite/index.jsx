@@ -9,7 +9,8 @@ import {
   getHistoryDepositAdmin,
   getHistoryDepositAdminAllExcel,
 } from "src/util/adminCallApi";
-import { exportExcel } from "src/util/common";
+import { exportExcel, formatNumber } from "src/util/common";
+import { availableLanguageCodeMapper } from "src/translation/i18n";
 
 function Deposite() {
   const [mainData, setMainData] = useState();
@@ -42,14 +43,14 @@ function Deposite() {
   };
   const renderTable = function () {
     if (!mainData || mainData.length <= 0) return;
-    return mainData.map((item) => (
-      <tr key={item}>
+    return mainData.map((item, index) => (
+      <tr key={index}>
         <td>{item.coin_key}</td>
         <td>{item.created_at}</td>
         <td>{item.message}</td>
-        <td>{item.before_amount}</td>
-        <td>{item.amount}</td>
-        <td>{item.after_amount}</td>
+        <td>{formatNumber(item.before_amount, availableLanguageCodeMapper.en, -1)}</td>
+        <td>{formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}</td>
+        <td>{formatNumber(item.after_amount, availableLanguageCodeMapper.en, -1)}</td>
         <td>{item.userName}</td>
         <td>{item.email}</td>
       </tr>
@@ -106,7 +107,7 @@ function Deposite() {
       <div className={css["deposite__header"]}>
         <div className={css["deposite__title"]}>Deposite</div>
         <div className={`row ${css["deposite__filter"]}`}>
-          <div className={`col-md-12 col-5 pl-0`}>
+          <div className={`col-md-12 col-6 pl-0`}>
             <Button
               loading={callApiExcelStatus === api_status.fetching}
               onClick={exportExcelClickHandle}
@@ -114,7 +115,7 @@ function Deposite() {
               Export Excel All Transfer
             </Button>
           </div>
-          <div className={`col-md-12 col-5 ${css["deposite__paging"]}`}>
+          <div className={`col-md-12 col-6 ${css["deposite__paging"]}`}>
             <Pagination
               current={page}
               onChange={pageChangeHandle}

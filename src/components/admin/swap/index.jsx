@@ -7,7 +7,8 @@ import socket from "src/util/socket";
 import { Button, buttonClassesType } from "src/components/Common/Button";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { historySwapAdmin } from "src/util/adminCallApi";
-import { debounce } from "src/util/common";
+import { debounce, formatNumber } from "src/util/common";
+import { availableLanguageCodeMapper } from "src/translation/i18n";
 
 export default function SwapAdmin() {
   const all = "ALL";
@@ -143,11 +144,11 @@ export default function SwapAdmin() {
       <tr key={item.id}>
         <td>{item.wallet}</td>
         <td>{item.coin_key}</td>
-        <td>{item.amount}</td>
+        <td>{formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}</td>
         <td>{item.created_at}</td>
         <td>{item.userName}</td>
         <td>{item.email}</td>
-        <td>{item.wallet_amount}</td>
+        <td>{formatNumber(item.wallet_amount, availableLanguageCodeMapper.en, -1)}</td>
       </tr>
     ));
   };
@@ -187,18 +188,16 @@ export default function SwapAdmin() {
               <div
                 data-tab={filterType.coin}
                 onClick={tabCLickHandle.bind(null, filterType.coin)}
-                className={`col-sm-6 col-lg-5 col-3 ${renderClassActiveTabCoin()} ${
-                  css["swapAdmin__tabItem"]
-                }`}
+                className={`col-sm-6 col-lg-5 col-3 ${renderClassActiveTabCoin()} ${css["swapAdmin__tabItem"]
+                  }`}
               >
                 Coin
               </div>
               <div
                 data-tab={filterType.username}
                 onClick={tabCLickHandle.bind(null, filterType.username)}
-                className={`col-sm-6 col-lg-5 col-3 ${renderClassActiveTabUserName()} ${
-                  css["swapAdmin__tabItem"]
-                }`}
+                className={`col-sm-6 col-lg-5 col-3 ${renderClassActiveTabUserName()} ${css["swapAdmin__tabItem"]
+                  }`}
               >
                 UserName
               </div>
@@ -208,9 +207,8 @@ export default function SwapAdmin() {
               ></div>
             </div>
             <div
-              className={`row ${
-                css["swapAdmin__list-coin"]
-              } ${renderClassShowTabContentCoin()}`}
+              className={`row ${css["swapAdmin__list-coin"]
+                } ${renderClassShowTabContentCoin()}`}
             >
               {renderListCoin(listCoin)}
               <span
