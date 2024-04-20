@@ -1,8 +1,6 @@
-import { useFormik } from "formik";
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import * as Yup from "yup";
 import { axiosService } from "../util/service";
 import {
   errorMessage,
@@ -19,48 +17,19 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import socket from "src/util/socket";
 import { Input, inputType } from "./Common/Input";
 import { Button } from "./Common/Button";
+import useForm from "src/hooks/use-form";
 export default function Login({ history }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-    validationSchema: Yup.object({
-      username: Yup.string()
-        .required("require")
-        .min(3, "usernameMustBeGreaterThanOrEqualTo3Characters"),
-      password: Yup.string()
-        .required("require")
-        .min(6, "passwordMustBeGreaterThanOrEqualTo6Characters"),
-    }),
-    validateOnChange: false,
-    validateOnBlur: false,
-    onSubmit: (values) => {
-      login(values.username, values.password);
-    },
-  });
 
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const language =
-      getLocalStorage(localStorageVariable.lng) || defaultLanguage;
-    i18n.changeLanguage(language);
-    //
-    const element = document.querySelector(".login-register");
-    if (element) element.classList.add("fadeInBottomToTop");
-    //
-    reLoginRedirect();
-  }, []);
   const reLoginRedirect = function () {
     const url = getLocalStorage(localStorageVariable.reLoginR);
     if (!url) return;
     removeLocalStorage(localStorageVariable.reLoginR);
     history.push(url);
   };
-
   const login = async (e, p) => {
     setIsLoading(true);
     try {
@@ -95,6 +64,7 @@ export default function Login({ history }) {
       const verify = response?.data?.data?.verified;
       if (verify !== 1 && verify !== 2) history.push(url.profile);
     } catch (error) {
+      console.log(error)
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
       switch (mess) {
@@ -121,38 +91,51 @@ export default function Login({ history }) {
     return;
   };
 
+  const loginControl = {
+    username: 'username',
+    password: 'password'
+  }
+  const [register, onSubmit, errors] = useForm(login);
+
+  useEffect(() => {
+    const language =
+      getLocalStorage(localStorageVariable.lng) || defaultLanguage;
+    i18n.changeLanguage(language);
+    //
+    const element = document.querySelector(".login-register");
+    if (element) element.classList.add("fadeInBottomToTop");
+    //
+    reLoginRedirect();
+  }, []);
+
   return (
     <div className="login-register">
       <div className="container">
         <div className="box">
           <h2 className="title">{t("login")}</h2>
-          <form>
+          <form onSubmit={onSubmit}>
             <div className="field">
               <label htmlFor="email">{t("userName")}</label>
               <Input
-                id="username"
-                name="username"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                errorMes={t(formik.errors.username)}
+                {...register(loginControl.username)}
+                require={[true, 'require']}
+                min={[3, 'usernameMustBeGreaterThanOrEqualTo3Characters']}
+                errorMes={t(errors[loginControl.username])}
               />
             </div>
             <div className="field">
               <label htmlFor="password">{t("password")}</label>
               <Input
-                size="large"
-                id="password"
-                name="password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
+                {...register(loginControl.password)}
+                require={[true, 'require']}
+                min={[6, 'passwordMustBeGreaterThanOrEqualTo6Characters']}
                 type={inputType.password}
-                errorMes={t(formik.errors.password)}
+                errorMes={t(errors[loginControl.password])}
               />
             </div>
             <Button
               className="loginBtn"
               loading={isLoading}
-              onClick={formik.handleSubmit}
               htmlType="submit"
             >
               {t("logIn")}
