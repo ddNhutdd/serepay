@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import css from "./kyc.module.scss";
 import { getLocalStorage } from "src/util/common";
 import {
-  apiResponseErrorMessage,
+  errorMessage,
   api_status,
   commontString,
   defaultLanguage,
@@ -58,7 +58,7 @@ function Kyc(props) {
       setCallApiStatus(api_status.rejected);
       const message = error?.response?.data?.message;
       switch (message) {
-        case apiResponseErrorMessage.imagesCannotBeLeftBlank:
+        case errorMessage.imagesCannotBeLeftBlank:
           callToastError(t("imagesCannotBeLeftBlank"));
           return;
         default:

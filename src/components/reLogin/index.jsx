@@ -1,7 +1,7 @@
 import { Modal } from "antd";
 import React, { useEffect, useState, useRef } from "react";
 import {
-  apiResponseErrorMessage,
+  errorMessage,
   defaultCurrency,
   defaultLanguage,
   localStorageVariable,
@@ -96,13 +96,13 @@ function ReLogin() {
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
       switch (mess) {
-        case apiResponseErrorMessage.usernameMini:
+        case errorMessage.usernameMini:
           callToastError(t("usernameMustBeGreaterThanOrEqualTo3Characters"));
           break;
-        case apiResponseErrorMessage.password_1:
+        case errorMessage.password_1:
           callToastError(t("passwordMustBeGreaterThanOrEqualTo6Characters"));
           break;
-        case apiResponseErrorMessage.accountIncorrect:
+        case errorMessage.accountIncorrect:
           callToastError(t("incorrectAccountOrPassword"));
           break;
         default:

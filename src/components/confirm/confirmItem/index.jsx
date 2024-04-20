@@ -6,7 +6,7 @@ import i18n from "src/translation/i18n";
 import { useHistory, NavLink } from "react-router-dom";
 import {
   actionTrading,
-  apiResponseErrorMessage,
+  errorMessage,
   api_status,
   commontString,
   defaultLanguage,
@@ -245,7 +245,7 @@ function ConfirmItem(props) {
           callApiStatus.current = api_status.rejected;
           const mess = error?.response?.data?.message;
           switch (mess) {
-            case apiResponseErrorMessage.insufficientBalance:
+            case errorMessage.insufficientBalance:
               callToastError(t("insufficientBalance"));
               break;
             default:
@@ -483,7 +483,7 @@ function ConfirmItem(props) {
       );
       setQrcode(response.data.qrCode);
       setqrcodeSpin(api_status.fulfilled);
-    } catch (error) {}
+    } catch (error) { }
   };
   const findBankBin = function (bankShortName) {
     return listBankRedux.find((item) => {

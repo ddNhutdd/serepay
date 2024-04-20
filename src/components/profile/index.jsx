@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import QRCode from "react-qr-code";
 import { useTranslation } from "react-i18next";
 import {
-  apiResponseErrorMessage,
+  errorMessage,
   api_status,
   commontString,
   defaultCurrency,
@@ -39,43 +39,21 @@ import Dropdown from "../Common/dropdown/Dropdown";
 import { Button, buttonClassesType, htmlType } from "../Common/Button";
 import { currencySetCurrent } from "src/redux/actions/currency.action";
 import Kyc from "./kyc";
+import useForm from "src/hooks/use-form";
 
 function Profile() {
   const dispatch = useDispatch();
-
-  const controlsChangePass = useRef({
-    oldPassword: "oldPassword",
-    newPassword: "newPassword",
-    confirmPassword: "confirmPassword",
-  });
-  const tourchedChangePass = useRef({});
-  const [changePassError, setChangePassError] = useState({});
-  const [callApiChangePassStatus, setCallApiChangePassStatus] = useState(
-    api_status.pending
-  );
-  const oldPassElement = useRef();
-  const newPassElement = useRef();
-  const confirmPassElement = useRef();
-  const paymentControl = useRef({
-    accountName: "accountName",
-    accountNumber: "accountNumber",
-  });
-  const paymentTourched = useRef({});
-  const [paymentError, setPaymentError] = useState({});
-  const listPaymentPageSize = useRef(5);
-  const { listBank, status: listBankStatus } = useSelector(getBankState);
   const { t } = useTranslation();
   const history = useHistory();
-  const [is2FAModalOpen, setIs2FAModalOpen] = useState(false);
+  const { listBank, status: listBankStatus } = useSelector(getBankState);
+  console.log(listBank);
 
+  const [is2FAModalOpen, setIs2FAModalOpen] = useState(false);
   const [callApiLoadInfoUserStatus, setCallApiLoadInfoUserStatus] = useState(
     api_status.pending
   );
   const [callApiTurnONOff2faStatus, setCallApiTurnONOff2faStatus] = useState(
     api_status.pending
-  );
-  const [bankDropdownSelected, setBankDropdownSelected] = useState(
-    listBank.at(0)
   );
   const [isEnabled_twofa, setIsEnabled_twofa] = useState(false); // 2fa status
   const [qrValue, setQrvalue] = useState({
@@ -83,18 +61,9 @@ function Profile() {
     textCode: null,
   });
   const [callApi2FAStatus, setCallApi2FAStatus] = useState(api_status.pending);
-  const [callApiBankingUserStatus, setCallApiBankingUserStatus] = useState(
-    api_status.pending
-  );
-  const [listPayment, setListPayment] = useState([]);
-  const [callApiPaymentStatus, setCallApiPaymentStatus] = useState(
-    api_status.pending
-  );
-  const [listPaymentTotalItems, setListPaymentTotalItems] = useState(1);
-  const [, setListPaymentCurrentPage] = useState(1);
-  const [isModalChangePassOpen, setIsModalOpen] = useState(false);
   const [verifyKycStatus, setVerifyKycStatus] = useState(3);
 
+  // useEffect
   useEffect(() => {
     const dataUser = getLocalStorage(localStorageVariable.user);
     if (!dataUser) {
@@ -332,123 +301,51 @@ function Profile() {
       );
     }
   };
-  const addBankingSubmitHandle = async function (e) {
-    e.preventDefault();
-    // validate
-    for (const item of Object.keys(paymentControl.current)) {
-      paymentTourched.current[item] = true;
-    }
-    const valid = paymentValidate();
-    if (!valid) {
-      return;
-    }
-    //
-    const result = await fetApiUserAddBanking({
-      numberBanking: getElementById("profile__payment-account-number").value,
-      nameBanking: bankDropdownSelected.content,
-      ownerBanking: getElementById("profile__payment-account-name").value,
-    });
-    if (result !== null) getElementById("profilePaymentForm").reset();
-    setBankDropdownSelected(listBank.at(0));
-    // render list
-    fetchApiGetListBankingUser(1);
+
+  const logout = () => {
+    dispatch({ type: "USER_ADMIN", payload: false });
+    removeLocalStorage(localStorageVariable.lng);
+    removeLocalStorage(localStorageVariable.user);
+    removeLocalStorage(localStorageVariable.token);
+    removeLocalStorage(localStorageVariable.coinToTransaction);
+    removeLocalStorage(localStorageVariable.currency);
+    removeLocalStorage(localStorageVariable.adsItem);
+    removeLocalStorage(localStorageVariable.coinNameToTransaction);
+    removeLocalStorage(localStorageVariable.createAds);
+    removeLocalStorage(localStorageVariable.moneyToTransaction);
+    dispatch(currencySetCurrent(defaultCurrency));
+    removeLocalStorage(localStorageVariable.coin);
+    removeLocalStorage(localStorageVariable.coinFromWalletList);
+    removeLocalStorage(localStorageVariable.amountFromWalletList);
+    removeLocalStorage(localStorageVariable.thisIsAdmin);
+    removeLocalStorage(localStorageVariable.expireToken);
+    history.push(url.login);
+    dispatch({ type: "USER_LOGOUT" });
   };
-  const fetApiUserAddBanking = function (data) {
-    return new Promise((resolve) => {
-      if (callApiBankingUserStatus === api_status.fetching) {
-        return resolve(null);
-      }
-      setCallApiBankingUserStatus(api_status.fetching);
-      addListBanking(data)
-        .then((resp) => {
-          setCallApiBankingUserStatus(api_status.fulfilled);
-          callToastSuccess(t(commontString.success));
-          return resolve(resp.data.data);
-        })
-        .catch((error) => {
-          setCallApiBankingUserStatus(api_status.rejected);
-          const mess = error.response.data.message;
-          switch (mess) {
-            case apiResponseErrorMessage.bankExist:
-              callToastError(t("bankAccountNumberAlreadyExists"));
-              break;
-            default:
-              callToastError(mess || t(commontString.error));
-          }
-          return resolve(null);
-        });
-    });
-  };
-  const paymentValidate = function () {
-    let valid = true;
-    const accountNumberValue = getElementById(
-      "profile__payment-account-number"
-    ).value;
-    const accountNameValue = getElementById(
-      "profile__payment-account-name"
-    ).value;
-    if (paymentTourched.current[paymentControl.current.accountNumber]) {
-      if (!accountNumberValue) {
-        valid &= false;
-        setPaymentError((state) => {
-          const newState = {
-            ...state,
-            [paymentControl.current.accountNumber]: "require",
-          };
-          return newState;
-        });
-      } else {
-        setPaymentError((state) => {
-          const newState = { ...state };
-          delete newState[paymentControl.current.accountNumber];
-          return newState;
-        });
-      }
-    }
-    if (paymentTourched.current[paymentControl.current.accountName]) {
-      if (!regularExpress.accountExpress.test(accountNameValue)) {
-        valid &= false;
-        setPaymentError((state) => {
-          const newState = {
-            ...state,
-            [paymentControl.current.accountName]:
-              "theAccountNameShouldBeInPlainVietnameseWrittenInUppercaseWithAMinimumOf5CharactersAndAMaximumOf50Characters",
-          };
-          return newState;
-        });
-      } else if (!accountNameValue) {
-        valid &= false;
-        setPaymentError((state) => {
-          const newState = {
-            ...state,
-            [paymentControl.current.accountName]: "require",
-          };
-          return newState;
-        });
-      } else if (
-        accountNameValue &&
-        regularExpress.accountExpress.test(accountNameValue)
-      ) {
-        setPaymentError((state) => {
-          const newState = { ...state };
-          delete newState[paymentControl.current.accountName];
-          return newState;
-        });
-      }
-    }
-    return Object.keys(paymentTourched).length <= 0 || Boolean(valid);
-  };
-  const paymentControlFocusHandle = function (e) {
-    const name = e.target.name;
-    paymentTourched.current[name] = true;
-    paymentValidate();
-  };
-  const paymentControlChangeHandle = function () {
-    paymentValidate();
-  };
+
+  // payment
+
+  const paymentControl = {
+    bank: 'pm_bank',
+    accountName: 'pm_accountName',
+    accountNumber: 'pm_accountNumber'
+  }
+  const listPaymentPageSize = useRef(5);
+  const [bankDropdownSelected, setBankDropdownSelected] = useState(
+    listBank.at(0)
+  );
+  const [callApiBankingUserStatus, setCallApiBankingUserStatus] = useState(
+    api_status.pending
+  );
+  const [listPayment, setListPayment] = useState([]);
+  const [callApiPaymentStatus, setCallApiPaymentStatus] = useState(
+    api_status.pending
+  );
+  const [listPaymentTotalItems, setListPaymentTotalItems] = useState(1);
+  const [, setListPaymentCurrentPage] = useState(1);
   /**
-   * function fetch data for state listPayment
-   */
+ * function fetch data for state listPayment
+ */
   const fetchApiGetListBankingUser = async function (page) {
     if (callApiPaymentStatus === api_status.fetching) {
       return;
@@ -510,6 +407,71 @@ function Profile() {
   const dropdownItemCLick = function (item, _) {
     setBankDropdownSelected(item);
   };
+  const addBankingSubmitHandle = async function (values) {
+    const result = await fetApiUserAddBanking({
+      numberBanking: values[paymentControl.accountNumber],
+      nameBanking: bankDropdownSelected.content,
+      ownerBanking: values[paymentControl.accountName]?.toUpperCase(),
+    });
+    if (result !== null) paymentReset;
+    setBankDropdownSelected(listBank.at(0));
+    // render list
+    fetchApiGetListBankingUser(1);
+  };
+  const fetApiUserAddBanking = function (data) {
+    return new Promise((resolve) => {
+      if (callApiBankingUserStatus === api_status.fetching) {
+        return resolve(null);
+      }
+      setCallApiBankingUserStatus(api_status.fetching);
+      addListBanking(data)
+        .then((resp) => {
+          setCallApiBankingUserStatus(api_status.fulfilled);
+          callToastSuccess(t(commontString.success));
+          return resolve(resp.data.data);
+        })
+        .catch((error) => {
+          setCallApiBankingUserStatus(api_status.rejected);
+          const mess = error.response.data.message;
+          switch (mess) {
+            case errorMessage.bankExist:
+              callToastError(t("bankAccountNumberAlreadyExists"));
+              break;
+            default:
+              callToastError(mess || t(commontString.error));
+          }
+          return resolve(null);
+        });
+    });
+  };
+  const [paymentRegister, paymentSubmitHandle, paymentError, paymentReset] = useForm(addBankingSubmitHandle, {
+    [paymentControl.bank]: bankDropdownSelected?.content,
+    [paymentControl.accountName]: '',
+    [paymentControl.accountNumber]: ''
+  });
+
+  // change password
+  const changePasswordControl = {
+    oldPass: 'oldPass',
+    newPass: 'newPass',
+    confirmPass: 'confirmPass'
+  }
+  const changePassSubmit = async function (ev) {
+    await callApiChangePass();
+    changePassReset();
+  };
+  const [isModalChangePassOpen, setIsModalOpen] = useState(false);
+  const [callApiChangePassStatus, setCallApiChangePassStatus] = useState(
+    api_status.pending
+  );
+  const [changePassRegister, changePassSubmitHandle, changePassError, changePassReset] = useForm(changePassSubmit, {
+    [changePasswordControl.oldPass]: '',
+    [changePasswordControl.newPass]: '',
+    [changePasswordControl.confirmPass]: ''
+  });
+  const oldPassElement = useRef();
+  const newPassElement = useRef();
+  const confirmPassElement = useRef();
   const showModalChangePass = () => {
     setIsModalOpen(true);
   };
@@ -517,88 +479,10 @@ function Profile() {
     setIsModalOpen(false);
     resetChangePassForm();
   };
-  const changePassValid = function () {
-    let isValid = true;
-    if (tourchedChangePass.current[controlsChangePass.current.oldPassword]) {
-      if (oldPassElement.current.value.length < 6) {
-        isValid &= false;
-        setChangePassError({
-          ...changePassError,
-          [controlsChangePass.current.oldPassword]:
-            "passwordMustBeGreaterThanOrEqualTo6Characters",
-        });
-      } else {
-        const newError = { ...changePassError };
-        delete newError[controlsChangePass.current.oldPassword];
-        setChangePassError(newError);
-      }
-    }
-
-    if (tourchedChangePass.current[controlsChangePass.current.newPassword]) {
-      if (newPassElement.current.value.length < 6) {
-        isValid &= false;
-        setChangePassError({
-          ...changePassError,
-          [controlsChangePass.current.newPassword]:
-            "passwordMustBeGreaterThanOrEqualTo6Characters",
-        });
-      } else {
-        const newError = { ...changePassError };
-        delete newError[controlsChangePass.current.newPassword];
-        setChangePassError(newError);
-      }
-    }
-
-    if (
-      tourchedChangePass.current[controlsChangePass.current.confirmPassword]
-    ) {
-      if (confirmPassElement.current.value.length < 6) {
-        isValid &= false;
-        setChangePassError({
-          ...changePassError,
-          [controlsChangePass.current.confirmPassword]:
-            "passwordMustBeGreaterThanOrEqualTo6Characters",
-        });
-      } else if (
-        confirmPassElement.current.value !== newPassElement.current.value
-      ) {
-        isValid &= false;
-        setChangePassError({
-          ...changePassError,
-          [controlsChangePass.current.confirmPassword]: "passwordNotMatch",
-        });
-      } else {
-        const newError = { ...changePassError };
-        delete newError[controlsChangePass.current.confirmPassword];
-        setChangePassError(newError);
-      }
-    }
-
-    return Object.keys(tourchedChangePass.current).length <= 0
-      ? false
-      : Boolean(isValid);
-  };
-  const controlChangePassFocusHandle = function (value) {
-    tourchedChangePass.current[value] = true;
-    changePassValid();
-  };
-  const controlChangePassChangeHandle = function () {
-    changePassValid();
-  };
   const resetChangePassForm = function () {
-    tourchedChangePass.current = {};
-    setChangePassError({});
     oldPassElement.current.value = "";
     newPassElement.current.value = "";
     confirmPassElement.current.value = "";
-  };
-  const changePassSubmit = function (ev) {
-    ev.preventDefault();
-    Object.keys(controlsChangePass.current).forEach((item) => {
-      tourchedChangePass.current[item] = true;
-    });
-    if (!changePassValid()) return;
-    callApiChangePass();
   };
   const callApiChangePass = async function () {
     try {
@@ -624,26 +508,6 @@ function Profile() {
       }
       setCallApiChangePassStatus(api_status.rejected);
     }
-  };
-  const logout = () => {
-    dispatch({ type: "USER_ADMIN", payload: false });
-    removeLocalStorage(localStorageVariable.lng);
-    removeLocalStorage(localStorageVariable.user);
-    removeLocalStorage(localStorageVariable.token);
-    removeLocalStorage(localStorageVariable.coinToTransaction);
-    removeLocalStorage(localStorageVariable.currency);
-    removeLocalStorage(localStorageVariable.adsItem);
-    removeLocalStorage(localStorageVariable.coinNameToTransaction);
-    removeLocalStorage(localStorageVariable.createAds);
-    removeLocalStorage(localStorageVariable.moneyToTransaction);
-    dispatch(currencySetCurrent(defaultCurrency));
-    removeLocalStorage(localStorageVariable.coin);
-    removeLocalStorage(localStorageVariable.coinFromWalletList);
-    removeLocalStorage(localStorageVariable.amountFromWalletList);
-    removeLocalStorage(localStorageVariable.thisIsAdmin);
-    removeLocalStorage(localStorageVariable.expireToken);
-    history.push(url.login);
-    dispatch({ type: "USER_LOGOUT" });
   };
 
   return (
@@ -686,7 +550,7 @@ function Profile() {
           <div className="profile__card-container box">
             <div className="profile__title">{t("payment")}</div>
             <div className="profile__payment-content">
-              <form id="profilePaymentForm">
+              <form onSubmit={paymentSubmitHandle} >
                 <div className="profile__input">
                   <label>{t("bankName")}</label>
                   <div className="profile__dropdown">
@@ -699,42 +563,35 @@ function Profile() {
                   </div>
                 </div>
                 <div className="profile__input">
-                  <label htmlFor="profile__payment-account-number">
+                  <label htmlFor={paymentControl.accountNumber}>
                     {t("accountNumber")}
                   </label>
                   <Input
-                    onChange={paymentControlChangeHandle}
-                    onFocus={paymentControlFocusHandle}
-                    name="accountNumber"
-                    id="profile__payment-account-number"
+                    {...paymentRegister(paymentControl.accountNumber)}
+                    require={[true, 'require']}
                     type="text"
-                    errorMes={t(
-                      paymentError[paymentControl.current.accountNumber]
-                    )}
+                    errorMes={t(paymentError[paymentControl.accountNumber])}
                   />
                 </div>
                 <div className="profile__input">
-                  <label htmlFor="profile__payment-account-name">
+                  <label htmlFor={paymentControl.accountName}>
                     {t("accountName")}
                   </label>
                   <Input
-                    onChange={paymentControlChangeHandle}
-                    onFocus={paymentControlFocusHandle}
-                    name="accountName"
-                    id="profile__payment-account-name"
+                    {...paymentRegister(paymentControl.accountName)}
+                    require={[true, 'require']}
+                    min={[5, 'accountNameMustBeAtLeast6Characters']}
+                    max={[50, 'accountNameMaximum50Characters']}
                     type="text"
-                    errorMes={t(
-                      paymentError[paymentControl.current.accountName]
-                    )}
+                    errorMes={t(paymentError[paymentControl.accountName])}
                   />
                 </div>
                 <div className="profile__payment-action">
                   <Button
-                    onClick={addBankingSubmitHandle}
+                    htmlSubmit={htmlType.submit}
                     className="profile__payment-button"
                     loading={callApiBankingUserStatus === api_status.fetching}
                   >
-                    <div className="loader --d-none"></div>
                     {t("addBanking")}
                   </Button>
                 </div>
@@ -883,56 +740,42 @@ function Profile() {
               <i className="fa-solid fa-xmark"></i>
             </div>
           </div>
-          <form className="profile__changePassModal__body">
+          <form onSubmit={changePassSubmitHandle} className="profile__changePassModal__body">
             <div>
               <label htmlFor="oldPass">{t("oldPassword")}</label>
               <Input
-                onChange={controlChangePassChangeHandle}
-                onFocus={controlChangePassFocusHandle.bind(
-                  null,
-                  controlsChangePass.current.oldPassword
-                )}
+                {...changePassRegister(changePasswordControl.oldPass)}
+                require={[true, 'require']}
+                min={[6, errorMessage.password_1]}
+                errorMes={t(changePassError[changePasswordControl.oldPass])}
                 ref={oldPassElement}
                 type={inputType.password}
-                id="oldPass"
                 placeholder={t("oldPassword")}
-                errorMes={t(
-                  changePassError[controlsChangePass.current.oldPassword]
-                )}
               />
             </div>
             <div>
               <label htmlFor="newPass">{t("newPassword")}</label>
               <Input
-                onChange={controlChangePassChangeHandle}
-                onFocus={controlChangePassFocusHandle.bind(
-                  null,
-                  controlsChangePass.current.newPassword
-                )}
+                {...changePassRegister(changePasswordControl.newPass)}
+                require={[true, 'require']}
+                min={[6, 'passwordMustBeGreaterThanOrEqualTo6Characters']}
+                errorMes={t(changePassError[changePasswordControl.newPass])}
                 ref={newPassElement}
                 type={inputType.password}
-                id="newPass"
                 placeholder={t("newPassword")}
-                errorMes={t(
-                  changePassError[controlsChangePass.current.newPassword]
-                )}
               />
             </div>
             <div>
               <label htmlFor="confirmPass">{t("confirmPassword")}</label>
               <Input
-                onChange={controlChangePassChangeHandle}
-                onFocus={controlChangePassFocusHandle.bind(
-                  null,
-                  controlsChangePass.current.confirmPassword
-                )}
+                {...changePassRegister(changePasswordControl.confirmPass)}
+                require={[true, 'require']}
+                min={[6, 'passwordMustBeGreaterThanOrEqualTo6Characters']}
+                asame={[changePasswordControl.newPass, 'passwordNotMatch']}
+                errorMes={t(changePassError[changePasswordControl.confirmPass])}
                 ref={confirmPassElement}
                 type={inputType.password}
-                id="confirmPass"
                 placeholder={t("confirmPassword")}
-                errorMes={t(
-                  changePassError[controlsChangePass.current.confirmPassword]
-                )}
               />
             </div>
             <div className="profile__changePassModal__footer">
@@ -945,7 +788,6 @@ function Profile() {
               </Button>
               <Button
                 loading={callApiChangePassStatus === api_status.fetching}
-                onClick={changePassSubmit}
                 htmlSubmit={htmlType.submit}
               >
                 {t("ok")}

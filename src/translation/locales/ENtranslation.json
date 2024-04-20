@@ -59,8 +59,8 @@
     "24hVolume": "24h Volume",
     "email": "Email",
     "password": "Password",
-    "confirmPassword": "Confirm password",
-    "referralCode": "Referral code",
+    "confirmPassword": "Confirm Password",
+    "referralCode": "Referral Code",
     "createAccount": "Create account",
     "logIn": "Log in",
     "alreadyHadAnAccount": "Already had an account",
@@ -385,5 +385,9 @@
     "soldToDDDSSSSGH": "Sold to DDDSSSSGH",
     "receivedToken": "Received Token",
     "imagesCannotBeLeftBlank": "Images cannot be left blank",
-    "addMoreAccount": "Add more account"
+    "addMoreAccount": "Add more account",
+    "oldPassword": "Old Password",
+	"wrongPassword": "Wrong Password",
+	"accountNameMustBeAtLeast6Characters": "Account Name must be at least 6 characters",
+	"accountNameMaximum50Characters": "Account Name maximum 50 characters"
 }

@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "Dijual ke DDDSSSSGH",
     "receivedToken": "Token diterima",
     "imagesCannotBeLeftBlank": "Gambar tidak boleh dikosongkan",
-    "addMoreAccount": "Tambahkan lebih banyak akun"
+    "addMoreAccount": "Tambahkan lebih banyak akun",
+    "oldPassword": "Kata Sandi Lama",
+    "wrongPassword": "Kata Sandi Salah",
+    "accountNameMustBeAtLeast6Characters": "Nama Akun harus setidaknya 6 karakter",
+    "accountNameMaximum50Characters": "Nama Akun maksimal 50 karakter"
 }

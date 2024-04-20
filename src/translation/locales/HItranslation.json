@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "DDDSSSSGH को बेचा गया",
     "receivedToken": "टोकन प्राप्त हुआ",
     "imagesCannotBeLeftBlank": "छवियां खाली नहीं छोड़ी जा सकतीं",
-    "addMoreAccount": "अधिक खाता जोड़ें"
+    "addMoreAccount": "अधिक खाता जोड़ें",
+    "oldPassword": "पुराना पासवर्ड (puraana paasword)",
+    "wrongPassword": "गलत पासवर्ड (galat paasword)",
+    "accountNameMustBeAtLeast6Characters": "खाता का नाम कम से कम 6 अक्षर होना चाहिए (khaata ka naam kam se kam 6 akshar hona chahiye)",
+    "accountNameMaximum50Characters": "खाता का नाम अधिकतम 50 अक्षर (khaata ka naam adhiktam 50 akshar)"
 }

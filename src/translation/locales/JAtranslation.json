@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "DDDSSSSGH に販売済み (DDDSSSSGH ni hanbai済み)",
     "receivedToken": "トークンを受け取りました",
     "imagesCannotBeLeftBlank": "画像は空白のままにすることはできません",
-    "addMoreAccount": "アカウントを追加"
+    "addMoreAccount": "アカウントを追加",
+    "oldPassword": "古いパスワード",
+    "wrongPassword": "間違ったパスワード",
+    "accountNameMustBeAtLeast6Characters": "アカウント名は少なくとも6文字である必要があります",
+    "accountNameMaximum50Characters": "アカウント名は最大50文字である必要があります"
 }

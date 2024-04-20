@@ -383,5 +383,9 @@
   "soldToDDDSSSSGH": "Verkauft an DDDSSSSGH",
   "receivedToken": "Token erhalten",
   "imagesCannotBeLeftBlank": "Bilder können nicht leer gelassen werden",
-  "addMoreAccount": "Weitere Konten hinzufügen"
+  "addMoreAccount": "Weitere Konten hinzufügen",
+  "oldPassword": "Altes Passwort",
+  "wrongPassword": "Falsches Passwort",
+  "accountNameMustBeAtLeast6Characters": "Der Kontoname muss mindestens 6 Zeichen lang sein",
+  "accountNameMaximum50Characters": "Der Kontoname darf maximal 50 Zeichen lang sein"
 }

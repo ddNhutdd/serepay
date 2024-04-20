@@ -8,7 +8,7 @@ import { useState } from "react";
 import i18n from "src/translation/i18n";
 import { getLocalStorage } from "src/util/common";
 import {
-  apiResponseErrorMessage,
+  errorMessage,
   commontString,
   defaultLanguage,
   localStorageVariable,
@@ -76,16 +76,16 @@ export default function Signup({ history }) {
         error?.response?.data?.message || error?.response?.data?.errors[0]?.msg;
       let showError = "";
       switch (errorMes) {
-        case apiResponseErrorMessage.accountExist:
+        case errorMessage.accountExist:
           showError = t("theAccountNameAlreadyExistsInTheSystem");
           break;
-        case apiResponseErrorMessage.emailExist:
+        case errorMessage.emailExist:
           showError = t("emailAlreadyExistsInTheSystem");
           break;
-        case apiResponseErrorMessage.password_2:
+        case errorMessage.password_2:
           showError = t("passwordMustBeGreaterThanOrEqualTo6Characters");
           break;
-        case apiResponseErrorMessage.usernameMini:
+        case errorMessage.usernameMini:
           showError = t("usernameMustBeGreaterThanOrEqualTo3Characters");
           break;
         default:

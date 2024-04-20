@@ -26,6 +26,10 @@ export const Input = React.forwardRef(
       disabled,
       errorMes,
       className,
+      require,
+      min,
+      max,
+      asame
     },
     ref
   ) => {
@@ -93,6 +97,10 @@ export const Input = React.forwardRef(
           ref={ref}
           name={name}
           disabled={disabled}
+          data-require={JSON.stringify(require)}
+          data-min={JSON.stringify(min)}
+          data-max={JSON.stringify(max)}
+          data-asame={JSON.stringify(asame)}
         />
         {typeof errorMes === "string" && (
           <span className="errorMessage--default">{errorMes}</span>

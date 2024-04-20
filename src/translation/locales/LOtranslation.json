@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "ຂາຍຈາກ DDDSSSSGH",
     "receivedToken": "ຮັບລາຍຊື້",
     "imagesCannotBeLeftBlank": "ຮູບພາບບໍ່ສາມາດເປົ່າໄວ້ໄດ້",
-    "addMoreAccount": "ເພີ່ມບັນຊີເພີ່ມເຕີມ"
+    "addMoreAccount": "ເພີ່ມບັນຊີເພີ່ມເຕີມ",
+    "oldPassword": "ລະຫັດຜ່ານເກົ່າ",
+    "wrongPassword": "ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ",
+    "accountNameMustBeAtLeast6Characters": "ຊື່ບັນຊີຈະມີຢ່າງເພື່ອບໍ່ຕ້ອງເກີນ 6 ຕົວອັກສອນ",
+    "accountNameMaximum50Characters": "ຊື່ບັນຊີສາມາດໃຫຍ່ກວ່າ 50 ຕົວອັກສອນ"
 }

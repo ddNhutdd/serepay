@@ -361,8 +361,9 @@ export default function Header2({ history }) {
       const allWallet = [resp.data.data.infoUserLogin, ...resp.data.data.wallet];
       const currentUsdtBalance = allWallet.find(item => item.id === +userId)?.USDT_balance;
       setListWallet(allWallet);
-      setCurrentWalletUsdtBalance(currentUsdtBalance)
+      setCurrentWalletUsdtBalance(currentUsdtBalance);
       setCallApiLoginWalletStatus(api_status.fulfilled);
+
     } catch (error) {
       setCallApiLoginWalletStatus(api_status.rejected);
     }
@@ -409,7 +410,10 @@ export default function Header2({ history }) {
         setCurrentWalletUsdtBalance(user.USDT_balance);
         setCallApiLoginWalletStatus(api_status.fulfilled);
         dispatch(userWalletFetchCount());
-        closeModalAccountList()
+        closeModalAccountList();
+
+        //đăng nhập ví thành công thì reload lại page
+        window.location.reload();
       } catch (error) {
         setCallApiLoginWalletStatus(api_status.rejected);
       }
@@ -426,9 +430,10 @@ export default function Header2({ history }) {
     setCallApiAddWalletStatus(api_status.fetching);
     try {
       const resp = await addWallet();
-      setCallApiAddWalletStatus(api_status.fulfilled);
+
       callToastSuccess(t(commontString.success.toLocaleLowerCase()));
-      callApiLoginWallet();
+      await callApiLoginWallet();
+      setCallApiAddWalletStatus(api_status.fulfilled);
     } catch (error) {
       setCallApiAddWalletStatus(api_status.rejected);
     }
@@ -458,7 +463,7 @@ export default function Header2({ history }) {
     <>
       <header className="header2 fadeInTopToBottom">
         <div className="container">
-          <div className="logo" onClick={() => history.push("/")}>
+          <div className="logo" onClick={() => history.push(url.home)}>
             <img src="/img/logowhite.png" alt="Remitano Logo" />
           </div>
           <div className={`menu ${renderClassShowMenu()}`}>

@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "Vendido a DDDSSSSGH",
     "receivedToken": "Token recibido",
     "imagesCannotBeLeftBlank": "Las imágenes no pueden dejarse en blanco",
-    "addMoreAccount": "Agregar más cuenta"
+    "addMoreAccount": "Agregar más cuenta",
+    "oldPassword": "Contraseña Antigua",
+    "wrongPassword": "Contraseña Incorrecta",
+    "accountNameMustBeAtLeast6Characters": "El nombre de la cuenta debe tener al menos 6 caracteres",
+    "accountNameMaximum50Characters": "El nombre de la cuenta debe tener como máximo 50 caracteres"
 }

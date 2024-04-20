@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "Terjual kepada DDDSSSSGH",
     "receivedToken": "Token diterima",
     "imagesCannotBeLeftBlank": "Imej tidak boleh dibiarkan kosong",
-    "addMoreAccount": "Tambah lebih banyak akaun"
+    "addMoreAccount": "Tambah lebih banyak akaun",
+    "oldPassword": "Kata Laluan Lama",
+    "wrongPassword": "Kata Laluan Salah",
+    "accountNameMustBeAtLeast6Characters": "Nama Akaun mesti sekurang-kurangnya 6 aksara",
+    "accountNameMaximum50Characters": "Nama Akaun mesti maksimum 50 aksara"
 }

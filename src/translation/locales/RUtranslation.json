@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "Продано DDDSSSSGH",
     "receivedToken": "Получен токен",
     "imagesCannotBeLeftBlank": "Изображения не могут быть пустыми",
-    "addMoreAccount": "Добавить еще один аккаунт"
+    "addMoreAccount": "Добавить еще один аккаунт",
+    "oldPassword": "Старый пароль",
+    "wrongPassword": "Неверный пароль",
+    "accountNameMustBeAtLeast6Characters": "Имя учетной записи должно содержать не менее 6 символов",
+    "accountNameMaximum50Characters": "Имя учетной записи не может превышать 50 символов"
 }

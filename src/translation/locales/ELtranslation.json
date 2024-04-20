@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "Πωλήθηκε στον DDDSSSSGH",
     "receivedToken": "Λήφθηκε το token",
     "imagesCannotBeLeftBlank": "Οι εικόνες δεν μπορούν να μείνουν κενές",
-    "addMoreAccount": "Προσθέστε περισσότερους λογαριασμούς"
+    "addMoreAccount": "Προσθέστε περισσότερους λογαριασμούς",
+    "oldPassword": "Παλιός κωδικός",
+    "wrongPassword": "Λάθος κωδικός",
+    "accountNameMustBeAtLeast6Characters": "Το όνομα χρήστη πρέπει να είναι τουλάχιστον 6 χαρακτήρες",
+    "accountNameMaximum50Characters": "Το όνομα χρήστη έως 50 χαρακτήρες"
 }

@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "បានលក់ទៅកាន់ DDDSSSSGH",
     "receivedToken": "បានទទួលរង្វាន់",
     "imagesCannotBeLeftBlank": "រូបភាពមិនអាចទុកជាស្នាក់",
-    "addMoreAccount": "បន្ថែមគណនីទៀត"
+    "addMoreAccount": "បន្ថែមគណនីទៀត",
+    "oldPassword": "ពាក្យសម្ងាត់ចាស់",
+    "wrongPassword": "ពាក្យសម្ងាត់មិនត្រឹមត្រូវ",
+    "accountNameMustBeAtLeast6Characters": "ឈ្មោះគណនីត្រូវតែមានយ៉ាងហោចណាស់ ៦ តួអក្សរ",
+    "accountNameMaximum50Characters": "ឈ្មោះគណនីមានប្រយោជន៍លើសប្រវត្តិនៃ ៥០ តួអក្សរ"
 }

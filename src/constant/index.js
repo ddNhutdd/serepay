@@ -115,7 +115,8 @@ export const coinString = {
   USDT: "USDT",
 };
 
-export const apiResponseErrorMessage = {
+export const errorMessage = {
+  require: 'require',
   usernameMini: "UserName more than 3 degits",
   password_1: "password more than 5 degits",
   password_2: "password more than 6 degits",

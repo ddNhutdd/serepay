@@ -380,5 +380,9 @@
     "soldToDDDSSSSGH": "已售给DDDSSSSGH",
     "receivedToken": "接收到令牌",
     "imagesCannotBeLeftBlank": "图片不能为空",
-    "addMoreAccount": "添加更多账户"
+    "addMoreAccount": "添加更多账户",
+    "oldPassword": "旧密码",
+    "wrongPassword": "密码错误",
+    "accountNameMustBeAtLeast6Characters": "帐户名必须至少为6个字符",
+    "accountNameMaximum50Characters": "帐户名最多50个字符"
 }

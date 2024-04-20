@@ -383,5 +383,9 @@
     "soldToDDDSSSSGH": "مباع لـ DDDSSSSGH",
     "receivedToken": "تلقى الرمز",
     "imagesCannotBeLeftBlank": "لا يمكن ترك الصور فارغة",
-    "addMoreAccount": "إضافة حساب آخر"
+    "addMoreAccount": "إضافة حساب آخر",
+    "oldPassword": "كلمة المرور القديمة",
+    "wrongPassword": "كلمة مرور خاطئة",
+    "accountNameMustBeAtLeast6Characters": "يجب أن يتكون اسم الحساب من 6 أحرف على الأقل",
+    "accountNameMaximum50Characters": "يجب ألا يتجاوز اسم الحساب 50 حرفًا"
 }
