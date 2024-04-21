@@ -1,10 +1,12 @@
-import { useRef, useState } from "react";
+import {useRef, useState} from "react";
 
 function useForm(submitHandle, initialValues) {
 	const inputType = {
 		text: 'text',
 		number: 'number',
 		password: 'password',
+		radio: 'radio',
+		checkbox: 'checkbox',
 	}
 	const [values, setValues] = useState(initialValues || {});
 	const allowValidate = useRef(false);
@@ -52,7 +54,7 @@ function useForm(submitHandle, initialValues) {
 
 	//#region dùng cho error
 	const clearError = (inputElement) => {
-		const newErrors = { ...errorsRuntime.current };
+		const newErrors = {...errorsRuntime.current};
 		delete newErrors[inputElement.id];
 		setErrors(newErrors);
 		errorsRuntime.current = newErrors;
@@ -69,8 +71,8 @@ function useForm(submitHandle, initialValues) {
 	//#region dùng cho validate
 	/**
 	 * dataset.require
-	 * @param {*} inputElement 
-	 * @returns 
+	 * @param {*} inputElement
+	 * @returns
 	 */
 	const requireValidation = (inputElement) => {
 		if (!inputElement?.dataset?.require) return;
@@ -86,8 +88,8 @@ function useForm(submitHandle, initialValues) {
 	}
 	/**
 	 * dataset.min
-	 * @param {*} inputElement 
-	 * @returns 
+	 * @param {*} inputElement
+	 * @returns
 	 */
 	const minValidation = (inputElement) => {
 		const minArray = JSON.parse(inputElement?.dataset.min || '[]');
@@ -103,8 +105,8 @@ function useForm(submitHandle, initialValues) {
 	}
 	/**
 	 * dataset.max
-	 * @param {*} inputElement 
-	 * @returns 
+	 * @param {*} inputElement
+	 * @returns
 	 */
 	const maxValidation = (inputElement) => {
 		const maxArray = JSON.parse(inputElement?.dataset.max || '[]');
@@ -120,8 +122,8 @@ function useForm(submitHandle, initialValues) {
 	}
 	/**
 	 * dataset.email
-	 * @param {*} inputElement 
-	 * @returns 
+	 * @param {*} inputElement
+	 * @returns
 	 */
 	const emailValidation = (inputElement) => {
 		const maxArray = JSON.parse(inputElement?.dataset.email || '[]');
@@ -141,8 +143,8 @@ function useForm(submitHandle, initialValues) {
 	}
 	/**
 	 * dataset.asame
-	 * @param {*} inputElement 
-	 * @returns 
+	 * @param {*} inputElement
+	 * @returns
 	 */
 	const asameValidation = (inputElement) => {
 		const asameArray = JSON.parse(inputElement?.dataset.asame || '[]');
@@ -165,10 +167,11 @@ function useForm(submitHandle, initialValues) {
 		allowValidate.current && (valid = validationAll());
 		valid && submitHandle(values, ev);
 	}
-	const register = (name) => {
+	const register = (name, value = '') => {
 		if (!Object.keys(values).find((item) => item === name)) {
 			setValues((state) => ({
-				...state, [name]: '',
+				...state,
+				[name]: value
 			}));
 		}
 		return {
@@ -182,7 +185,7 @@ function useForm(submitHandle, initialValues) {
 		setValues(reInitialValue || initialValues || {})
 	}
 
-	return [register, onSubmit, errors, reset];
+	return [register, onSubmit, errors, reset, values];
 }
 
 export default useForm;

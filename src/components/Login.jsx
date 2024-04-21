@@ -91,11 +91,14 @@ export default function Login({ history }) {
     return;
   };
 
+  const formSumbitHandle = (values) => {
+    login(values[loginControl.username], values[loginControl.password])
+  }
   const loginControl = {
     username: 'username',
     password: 'password'
   }
-  const [register, onSubmit, errors] = useForm(login);
+  const [register, onSubmit, errors] = useForm(formSumbitHandle);
 
   useEffect(() => {
     const language =
