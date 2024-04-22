@@ -388,5 +388,6 @@
     "wrongPassword": "كلمة مرور خاطئة",
     "accountNameMustBeAtLeast6Characters": "يجب أن يتكون اسم الحساب من 6 أحرف على الأقل",
     "accountNameMaximum50Characters": "يجب ألا يتجاوز اسم الحساب 50 حرفًا",
-    "youCannotTransferMoneyToYourWalletAddress": "لا يمكنك تحويل الأموال إلى عنوان محفظتك"
+    "youCannotTransferMoneyToYourWalletAddress": "لا يمكنك تحويل الأموال إلى عنوان محفظتك",
+    "theSameCoinCannotBeConverted": "لا يمكن تحويل نفس العملة"
 }

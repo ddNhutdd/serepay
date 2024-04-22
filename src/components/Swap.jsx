@@ -33,6 +33,7 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input, inputType } from "./Common/Input";
 import { EmptyCustom } from "./Common/Empty";
 import { Button, buttonClassesType } from "./Common/Button";
+
 export default function Swap() {
   const { isLogin } = useSelector((root) => root.loginReducer);
   const history = useHistory();
@@ -77,7 +78,7 @@ export default function Swap() {
       if (resp && resp.length > 0) allCoinPrice.current = resp;
     });
   }, []);
-  useEffect(() => {}, [userWallet]);
+  useEffect(() => { }, [userWallet]);
   useEffect(() => {
     if (data.length > 0) {
       setToCoinValueCalc();
@@ -167,23 +168,30 @@ export default function Swap() {
   const searchCoinOnChange = function (e) {
     setSearchCoinName(e.target.value);
   };
+  const validateBeforeConfirm = () => {
+    const swapValue = convertStringToNumber(fromCoinValueString);
+    if (!userWallet[swapFromCoin.toLowerCase() + "_balance"]) {
+      callToastError(t("theAmountOfCryptocurrencyIsInsufficient"));
+      return false;
+    }
+    const maxAvailable = convertStringToNumber(
+      userWallet[swapFromCoin.toLowerCase() + "_balance"].toString()
+    );
+    if (swapFromCoin === swapToCoin) {
+      callToastError(t("theSameCoinCannotBeConverted"))
+      return false;
+    } else if (!swapValue || swapValue <= 0) {
+      callToastError(t("invalidValue"));
+      return false;
+    } else if (swapValue > maxAvailable) {
+      callToastError(t("theAmountOfCryptocurrencyIsInsufficient"));
+      return false;
+    }
+    return true;
+  }
   const mainButtonOnClickHandle = function () {
     if (isLogin && callApiSwapStatus !== api_status.fetching) {
-      const swapValue = convertStringToNumber(fromCoinValueString);
-      if (!userWallet[swapFromCoin.toLowerCase() + "_balance"]) {
-        callToastError(t("theAmountOfCryptocurrencyIsInsufficient"));
-        return;
-      }
-      const maxAvailable = convertStringToNumber(
-        userWallet[swapFromCoin.toLowerCase() + "_balance"].toString()
-      );
-      if (!swapValue || swapValue <= 0) {
-        callToastError(t("invalidValue"));
-        return;
-      } else if (swapValue > maxAvailable) {
-        callToastError(t("theAmountOfCryptocurrencyIsInsufficient"));
-        return;
-      }
+      if (!validateBeforeConfirm()) return;
       showModalConfirm();
     } else if (!isLogin) {
       history.push(url.login);
@@ -416,10 +424,10 @@ export default function Swap() {
               <span className="hightLightNumber">
                 {isLogin
                   ? formatNumber(
-                      userWallet[swapFromCoin.toLowerCase() + "_balance"] ?? 0,
-                      i18n.language,
-                      8
-                    )
+                    userWallet[swapFromCoin.toLowerCase() + "_balance"] ?? 0,
+                    i18n.language,
+                    8
+                  )
                   : ""}
               </span>
             </div>
@@ -511,9 +519,8 @@ export default function Swap() {
               .map((item, i) => {
                 return (
                   <button
-                    className={`swap__modal-item ${
-                      item.name === swapFromCoin ? "active" : ""
-                    }`}
+                    className={`swap__modal-item ${item.name === swapFromCoin ? "active" : ""
+                      }`}
                     key={i}
                     onClick={() => {
                       setSwapFromCoin(item.name);
@@ -559,9 +566,8 @@ export default function Swap() {
               .map((item, i) => {
                 return (
                   <button
-                    className={`swap__modal-item ${
-                      item.name === swapToCoin ? "active" : ""
-                    }`}
+                    className={`swap__modal-item ${item.name === swapToCoin ? "active" : ""
+                      }`}
                     key={i}
                     onClick={() => {
                       setSwapToCoin(item.name);
@@ -593,22 +599,19 @@ export default function Swap() {
           <div className="swap__modal-confirm-footer">
             <button
               onClick={closeModalConfirm}
-              className={`swap__modal-confirm-cancel ${
-                callApiSwapStatus === api_status.fetching ? "disabled" : ""
-              }`}
+              className={`swap__modal-confirm-cancel ${callApiSwapStatus === api_status.fetching ? "disabled" : ""
+                }`}
             >
               {t("cancel")}
             </button>
             <button
               onClick={modalConfirmOkClickHandle}
-              className={`swap__modal-confirm-ok ${
-                callApiSwapStatus === api_status.fetching ? "disable" : ""
-              }`}
+              className={`swap__modal-confirm-ok ${callApiSwapStatus === api_status.fetching ? "disable" : ""
+                }`}
             >
               <div
-                className={`loader ${
-                  callApiSwapStatus === api_status.fetching ? "" : "--d-none"
-                }`}
+                className={`loader ${callApiSwapStatus === api_status.fetching ? "" : "--d-none"
+                  }`}
               ></div>
               {t("swap")}
             </button>

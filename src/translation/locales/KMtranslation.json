@@ -388,5 +388,6 @@
     "wrongPassword": "ពាក្យសម្ងាត់មិនត្រឹមត្រូវ",
     "accountNameMustBeAtLeast6Characters": "ឈ្មោះគណនីត្រូវតែមានយ៉ាងហោចណាស់ ៦ តួអក្សរ",
     "accountNameMaximum50Characters": "ឈ្មោះគណនីមានប្រយោជន៍លើសប្រវត្តិនៃ ៥០ តួអក្សរ",
-    "youCannotTransferMoneyToYourWalletAddress": "អ្នក​មិន​អាច​ផ្ទេរ​លើ​លេខ​សម្ងាត់​អ៊ី​មែល​របស់​អ្នក​បាន​ទេ"
+    "youCannotTransferMoneyToYourWalletAddress": "អ្នក​មិន​អាច​ផ្ទេរ​លើ​លេខ​សម្ងាត់​អ៊ី​មែល​របស់​អ្នក​បាន​ទេ",
+    "theSameCoinCannotBeConverted": "មិនអាចបង្វិលយករបស់ច្បាស់បាន"
 }

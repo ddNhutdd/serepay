@@ -388,5 +388,6 @@
   "wrongPassword": "Password Errata",
   "accountNameMustBeAtLeast6Characters": "Il nome dell'account deve essere lungo almeno 6 caratteri",
   "accountNameMaximum50Characters": "Il nome dell'account può contenere al massimo 50 caratteri",
-  "youCannotTransferMoneyToYourWalletAddress": "Non puoi trasferire denaro al tuo indirizzo del portafoglio"
+  "youCannotTransferMoneyToYourWalletAddress": "Non puoi trasferire denaro al tuo indirizzo del portafoglio",
+  "theSameCoinCannotBeConverted": "La stessa moneta non può essere convertita"
 }

@@ -388,5 +388,6 @@
     "wrongPassword": "Verkeerd Wachtwoord",
     "accountNameMustBeAtLeast6Characters": "Accountnaam moet minstens 6 tekens lang zijn",
     "accountNameMaximum50Characters": "Accountnaam mag maximaal 50 tekens lang zijn",
-    "youCannotTransferMoneyToYourWalletAddress": "Je kunt geen geld overmaken naar je portefeuilleadres"
+    "youCannotTransferMoneyToYourWalletAddress": "Je kunt geen geld overmaken naar je portefeuilleadres",
+    "theSameCoinCannotBeConverted": "Dezelfde munt kan niet worden geconverteerd"
 }

@@ -388,5 +388,6 @@
     "wrongPassword": "Неверный пароль",
     "accountNameMustBeAtLeast6Characters": "Имя учетной записи должно содержать не менее 6 символов",
     "accountNameMaximum50Characters": "Имя учетной записи не может превышать 50 символов",
-    "youCannotTransferMoneyToYourWalletAddress": "Вы не можете перевести деньги на свой адрес кошелька"
+    "youCannotTransferMoneyToYourWalletAddress": "Вы не можете перевести деньги на свой адрес кошелька",
+    "theSameCoinCannotBeConverted": "Ту же монету нельзя конвертировать"
 }

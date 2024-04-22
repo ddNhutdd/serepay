@@ -388,5 +388,6 @@
     "wrongPassword": "गलत पासवर्ड (galat paasword)",
     "accountNameMustBeAtLeast6Characters": "खाता का नाम कम से कम 6 अक्षर होना चाहिए (khaata ka naam kam se kam 6 akshar hona chahiye)",
     "accountNameMaximum50Characters": "खाता का नाम अधिकतम 50 अक्षर (khaata ka naam adhiktam 50 akshar)",
-    "youCannotTransferMoneyToYourWalletAddress": "आप अपने वॉलेट पते पर पैसा स्थानांतरित नहीं कर सकते"
+    "youCannotTransferMoneyToYourWalletAddress": "आप अपने वॉलेट पते पर पैसा स्थानांतरित नहीं कर सकते",
+    "theSameCoinCannotBeConverted": "एक ही सिक्का को रूपांतरित नहीं किया जा सकता"
 }
