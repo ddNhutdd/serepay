@@ -387,5 +387,6 @@
     "oldPassword": "Ancien Mot de passe",
     "wrongPassword": "Mot de passe incorrect",
     "accountNameMustBeAtLeast6Characters": "Le nom du compte doit contenir au moins 6 caractères",
-    "accountNameMaximum50Characters": "Le nom du compte ne doit pas dépasser 50 caractères"
+    "accountNameMaximum50Characters": "Le nom du compte ne doit pas dépasser 50 caractères",
+    "youCannotTransferMoneyToYourWalletAddress": "Vous ne pouvez pas transférer d'argent vers votre adresse de portefeuille"
 }

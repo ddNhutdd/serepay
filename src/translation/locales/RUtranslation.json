@@ -387,5 +387,6 @@
     "oldPassword": "Старый пароль",
     "wrongPassword": "Неверный пароль",
     "accountNameMustBeAtLeast6Characters": "Имя учетной записи должно содержать не менее 6 символов",
-    "accountNameMaximum50Characters": "Имя учетной записи не может превышать 50 символов"
+    "accountNameMaximum50Characters": "Имя учетной записи не может превышать 50 символов",
+    "youCannotTransferMoneyToYourWalletAddress": "Вы не можете перевести деньги на свой адрес кошелька"
 }

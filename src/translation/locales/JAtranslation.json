@@ -387,5 +387,6 @@
     "oldPassword": "古いパスワード",
     "wrongPassword": "間違ったパスワード",
     "accountNameMustBeAtLeast6Characters": "アカウント名は少なくとも6文字である必要があります",
-    "accountNameMaximum50Characters": "アカウント名は最大50文字である必要があります"
+    "accountNameMaximum50Characters": "アカウント名は最大50文字である必要があります",
+    "youCannotTransferMoneyToYourWalletAddress": "あなたはウォレットアドレスにお金を送金することはできません。"
 }

@@ -387,5 +387,6 @@
     "oldPassword": "Stare hasło",
     "wrongPassword": "Błędne hasło",
     "accountNameMustBeAtLeast6Characters": "Nazwa konta musi mieć co najmniej 6 znaków",
-    "accountNameMaximum50Characters": "Nazwa konta maks. 50 znaków"
+    "accountNameMaximum50Characters": "Nazwa konta maks. 50 znaków",
+    "youCannotTransferMoneyToYourWalletAddress": "Você não pode transferir dinheiro para o endereço da sua carteira"
 }

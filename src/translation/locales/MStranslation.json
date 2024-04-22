@@ -387,5 +387,6 @@
     "oldPassword": "Kata Laluan Lama",
     "wrongPassword": "Kata Laluan Salah",
     "accountNameMustBeAtLeast6Characters": "Nama Akaun mesti sekurang-kurangnya 6 aksara",
-    "accountNameMaximum50Characters": "Nama Akaun mesti maksimum 50 aksara"
+    "accountNameMaximum50Characters": "Nama Akaun mesti maksimum 50 aksara",
+    "youCannotTransferMoneyToYourWalletAddress": "Anda tidak boleh memindahkan wang ke alamat dompet anda"
 }

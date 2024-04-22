@@ -387,5 +387,6 @@
     "oldPassword": "Kata Sandi Lama",
     "wrongPassword": "Kata Sandi Salah",
     "accountNameMustBeAtLeast6Characters": "Nama Akun harus setidaknya 6 karakter",
-    "accountNameMaximum50Characters": "Nama Akun maksimal 50 karakter"
+    "accountNameMaximum50Characters": "Nama Akun maksimal 50 karakter",
+    "youCannotTransferMoneyToYourWalletAddress": "Anda tidak dapat mentransfer uang ke alamat dompet Anda"
 }

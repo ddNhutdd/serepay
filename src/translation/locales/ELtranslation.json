@@ -387,5 +387,6 @@
     "oldPassword": "Παλιός κωδικός",
     "wrongPassword": "Λάθος κωδικός",
     "accountNameMustBeAtLeast6Characters": "Το όνομα χρήστη πρέπει να είναι τουλάχιστον 6 χαρακτήρες",
-    "accountNameMaximum50Characters": "Το όνομα χρήστη έως 50 χαρακτήρες"
+    "accountNameMaximum50Characters": "Το όνομα χρήστη έως 50 χαρακτήρες",
+    "youCannotTransferMoneyToYourWalletAddress": "Δεν μπορείτε να μεταφέρετε χρήματα στη διεύθυνση του πορτοφολιού σας"
 }

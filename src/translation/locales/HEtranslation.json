@@ -387,5 +387,6 @@
     "oldPassword": "סיסמה ישנה",
     "wrongPassword": "סיסמה שגויה",
     "accountNameMustBeAtLeast6Characters": "שם חשבון חייב להיות לפחות 6 תווים",
-    "accountNameMaximum50Characters": "שם חשבון מקסימום 50 תווים"
+    "accountNameMaximum50Characters": "שם חשבון מקסימום 50 תווים",
+    "youCannotTransferMoneyToYourWalletAddress": "אתה לא יכול להעביר כסף לכתובת הארנק שלך"
 }

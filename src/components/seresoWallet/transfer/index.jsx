@@ -105,8 +105,8 @@ function Transfer() {
         setCallApiSubmitStatus(api_status.fulfilled);
       })
       .catch((error) => {
-        const errorMessage = error?.response?.data?.message;
-        switch (errorMessage) {
+        const errorMessageRes = error?.response?.data?.message;
+        switch (errorMessageRes) {
           case "UserName is not exit":
             callToastError(t("userNameNotExists"));
             break;
@@ -123,8 +123,11 @@ function Transfer() {
           case "Insufficient balance or incorrect withdrawal minimum amount.":
             callToastError(t("insufficientBalanceOrWithdrawalAmount"));
             break;
+          case 'You cannot withdraw money to your wallet address':
+            callToastError(t("youCannotTransferMoneyToYourWalletAddress"))
+            break;
           default:
-            callToastError(errorMessage || t("anErrorHasOccurred"));
+            callToastError(errorMessageRes || t("anErrorHasOccurred"));
             break;
         }
         setCallApiSubmitStatus(api_status.rejected);
@@ -345,9 +348,8 @@ function Transfer() {
           </Button>
         </div>
         <div
-          className={`${
-            css["transferContent"]
-          } ${renderClassComponentContent()}`}
+          className={`${css["transferContent"]
+            } ${renderClassComponentContent()}`}
         >
           <div className={css["left"]}>
             <div className={css["header"]}>

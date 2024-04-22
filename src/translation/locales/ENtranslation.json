@@ -387,7 +387,8 @@
     "imagesCannotBeLeftBlank": "Images cannot be left blank",
     "addMoreAccount": "Add more account",
     "oldPassword": "Old Password",
-	"wrongPassword": "Wrong Password",
-	"accountNameMustBeAtLeast6Characters": "Account Name must be at least 6 characters",
-	"accountNameMaximum50Characters": "Account Name maximum 50 characters"
+    "wrongPassword": "Wrong Password",
+    "accountNameMustBeAtLeast6Characters": "Account Name must be at least 6 characters",
+    "accountNameMaximum50Characters": "Account Name maximum 50 characters",
+    "youCannotTransferMoneyToYourWalletAddress": "You cannot transfer money to your wallet address"
 }
