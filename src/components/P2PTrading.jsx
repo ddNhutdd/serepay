@@ -33,10 +33,12 @@ import { Button, buttonClassesType } from "./Common/Button";
 import { getProfile } from "src/util/userCallApi";
 import { math } from "src/App";
 import { getExchangeRateSell } from "src/redux/reducers/exchangeRateSellSlice";
+import {useMainAccount} from "../context/main-account";
 
 export default function P2PTrading({ history }) {
   const showContent = useSelector(getShow);
   const redirectPage = useHistory();
+  const {isMainAccount} = useMainAccount();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
   const data = useSelector(getListCoinRealTime);
@@ -300,21 +302,23 @@ export default function P2PTrading({ history }) {
                     )}
                     <span> {userSelectedCurrency}</span>
                   </div>
-                  <div className="left3">
-                    <Button
-                      onClick={buyNowClickHandle}
-                      type={buttonClassesType.success}
-                    >
-                      {t("buyNow")}
-                    </Button>
+                  {
+                      isMainAccount && <div className="left3">
+                        <Button
+                            onClick={buyNowClickHandle}
+                            type={buttonClassesType.success}
+                        >
+                          {t("buyNow")}
+                        </Button>
 
-                    <Button
-                      onClick={createAdsSell}
-                      className={` ${renderClassTypeAds()}`}
-                    >
-                      {t("creatingYourSellingAd")}
-                    </Button>
-                  </div>
+                        <Button
+                            onClick={createAdsSell}
+                            className={` ${renderClassTypeAds()}`}
+                        >
+                          {t("creatingYourSellingAd")}
+                        </Button>
+                      </div>
+                  }
                 </div>
                 <div className="right box">
                   <div className="right1">
@@ -323,27 +327,29 @@ export default function P2PTrading({ history }) {
                   </div>
                   <div className="right2">
                     {formatCurrency(
-                      i18n.language,
-                      userSelectedCurrency,
-                      sellPrice,
-                      false
+                        i18n.language,
+                        userSelectedCurrency,
+                        sellPrice,
+                        false
                     )}
                     <span> {userSelectedCurrency}</span>
                   </div>
-                  <div className="right3">
-                    <Button
-                      onClick={sellNowClickHandle}
-                      type={buttonClassesType.danger}
-                    >
-                      {t("sellNow")}
-                    </Button>
-                    <button
-                      onClick={createAdsBuy}
-                      className={`p2pTrading__createAds + ${renderClassTypeAds()}`}
-                    >
-                      {t("creatingYourBuyingAd")}
-                    </button>
-                  </div>
+                  {
+                      isMainAccount && <div className="right3">
+                        <Button
+                            onClick={sellNowClickHandle}
+                            type={buttonClassesType.danger}
+                        >
+                          {t("sellNow")}
+                        </Button>
+                        <button
+                            onClick={createAdsBuy}
+                            className={`p2pTrading__createAds + ${renderClassTypeAds()}`}
+                        >
+                          {t("creatingYourBuyingAd")}
+                        </button>
+                      </div>
+                  }
                 </div>
               </div>
               <div className="bottom box">
@@ -352,13 +358,13 @@ export default function P2PTrading({ history }) {
               </div>
             </div>
             <Modal
-              open={isModalVisible}
-              onOk={handleOk}
-              onCancel={handleCancel}
-              footer={null}
-              width={700}
+                open={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                footer={null}
+                width={700}
             >
-              <Card className="cardChooseCoin" bodyStyle={{ padding: "0" }}>
+              <Card className="cardChooseCoin" bodyStyle={{padding: "0"}}>
                 {data && data.length ? (
                   <Table
                     scroll={{ x: 700 }}

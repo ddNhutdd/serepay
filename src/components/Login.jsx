@@ -60,7 +60,7 @@ export default function Login({ history }) {
       }
       //lắng nghe các thông báo về chuyền tiền 
       socket.on("messageTransfer", (res) => {
-        messageTransferHandle(res);
+        messageTransferHandle(res, t);
       })
       //redirect to admin
       redirecToAdmin(response.data.data);

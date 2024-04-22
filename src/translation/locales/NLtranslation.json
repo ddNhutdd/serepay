@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "Accountnaam moet minstens 6 tekens lang zijn",
     "accountNameMaximum50Characters": "Accountnaam mag maximaal 50 tekens lang zijn",
     "youCannotTransferMoneyToYourWalletAddress": "Je kunt geen geld overmaken naar je portefeuilleadres",
-    "theSameCoinCannotBeConverted": "Dezelfde munt kan niet worden geconverteerd"
+    "theSameCoinCannotBeConverted": "Dezelfde munt kan niet worden geconverteerd",
+    "ouGet1UsdtTFromUserNamePercy": "Je ontvangt ##1## @U#S#DT## van Gebruikersnaam $#$#na$#ne"
 }

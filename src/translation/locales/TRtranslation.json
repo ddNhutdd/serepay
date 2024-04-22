@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "Hesap Adı en az 6 karakter olmalıdır",
     "accountNameMaximum50Characters": "Hesap Adı en fazla 50 karakter olmalıdır",
     "youCannotTransferMoneyToYourWalletAddress": "Cüzdan adresinize para transfer edemezsiniz",
-    "theSameCoinCannotBeConverted": "Aynı coin dönüştürülemez"
+    "theSameCoinCannotBeConverted": "Aynı coin dönüştürülemez",
+    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT##'den Kullanıcı Adı $#$#na$#ne tarafından alıyorsunuz"
 }

@@ -95,7 +95,7 @@ function ReLogin() {
       handleReload();
       // lắng nghe thông báo về chuyển tiền
       socket?.on("messageTransfer", (res) => {
-        messageTransferHandle(res);
+        messageTransferHandle(res, t);
       })
     } catch (error) {
       const mess =

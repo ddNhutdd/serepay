@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "שם חשבון חייב להיות לפחות 6 תווים",
     "accountNameMaximum50Characters": "שם חשבון מקסימום 50 תווים",
     "youCannotTransferMoneyToYourWalletAddress": "אתה לא יכול להעביר כסף לכתובת הארנק שלך",
-    "theSameCoinCannotBeConverted": "אין אפשרות להמיר את אותה המטבע"
+    "theSameCoinCannotBeConverted": "אין אפשרות להמיר את אותה המטבע",
+    "ouGet1UsdtTFromUserNamePercy": "אתה מקבל ##1## @U#S#DT## משם משתמש $#$#na$#ne"
 }

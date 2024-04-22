@@ -35,7 +35,13 @@ import {
 } from "./redux/actions/listCoinRealTime.action";
 import { userWalletFetchCount } from "./redux/constant/coin.constant";
 import { coinUserWallet } from "./redux/actions/coin.action";
-import { getLocalStorage, removeLocalStorage, roundDecimalValues, setIsMainAccount } from "./util/common";
+import {
+  getLocalStorage,
+  messageTransferHandle,
+  removeLocalStorage,
+  roundDecimalValues,
+  setIsMainAccount
+} from "./util/common";
 import {
   getExchangeRateDisparityFetchCount,
   setExchangeRateDisparity,
@@ -76,6 +82,7 @@ import P2p from "./components/p2p";
 import Deposite from "./components/admin/deposite";
 import KycAdmin from "./components/admin/kyc";
 import P2pAdmin from "./components/admin/p2p";
+import {useTranslation} from "react-i18next";
 
 const config = {};
 export const math = create(all, config);
@@ -101,6 +108,7 @@ function App() {
     getExchangeRateDisparityFetchCount
   );
   const getExchangeRateSellFetch = useSelector(getExchangeRateSellFetchCount);
+  const { t } = useTranslation();
 
   const userWallet = useRef([]);
 
@@ -231,7 +239,6 @@ function App() {
         removeLocalStorage(localStorageVariable.user)
       }
     }
-
     socket.connect();
     socket.on("listCoin", (resp) => {
       dispatch(setListCoinRealtime(resp));
@@ -239,6 +246,13 @@ function App() {
       dispatch(setTotalAssetsRealTime(total));
       dispatch(setTotalAssetsBtcRealTime(calTotalAssetsBtc(total, resp)));
     });
+
+    // kiểm tra xem có đang
+    if (isLogin) {
+      socket.on("messageTransfer", (res) => {
+        messageTransferHandle(res, t)
+      })
+    }
 
     fetchListBank();
 

@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "アカウント名は少なくとも6文字である必要があります",
     "accountNameMaximum50Characters": "アカウント名は最大50文字である必要があります",
     "youCannotTransferMoneyToYourWalletAddress": "あなたはウォレットアドレスにお金を送金することはできません。",
-    "theSameCoinCannotBeConverted": "同じコインは変換できません。"
+    "theSameCoinCannotBeConverted": "同じコインは変換できません。",
+    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT## を$#$#na$#neさんから受け取りました。"
 }

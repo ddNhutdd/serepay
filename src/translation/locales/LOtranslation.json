@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "ຊື່ບັນຊີຈະມີຢ່າງເພື່ອບໍ່ຕ້ອງເກີນ 6 ຕົວອັກສອນ",
     "accountNameMaximum50Characters": "ຊື່ບັນຊີສາມາດໃຫຍ່ກວ່າ 50 ຕົວອັກສອນ",
     "youCannotTransferMoneyToYourWalletAddress": "ທ່ານ​ບໍ່​ສາ​ມາດ​ໂອນ​ເງິນ​ໄປ​ກັບ​ທີ່​ຢູ່​ເງິນ​ຂອງ​ທ່ານ​ໄດ້",
-    "theSameCoinCannotBeConverted": "ບໍ່ສາມາດປ່ຽນເງິນດຽວແດ່"
+    "theSameCoinCannotBeConverted": "ບໍ່ສາມາດປ່ຽນເງິນດຽວແດ່",
+    "ouGet1UsdtTFromUserNamePercy": "ທ່ານ​ໄດ້​ຮັບ ##1## @U#S#DT## ຈາກ​ຊື່​ຜູ້​ໃຊ້ $#$#na$#ne"
 }

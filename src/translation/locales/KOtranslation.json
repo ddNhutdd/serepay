@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "계정 이름은 최소 6자 이상이어야 합니다",
     "accountNameMaximum50Characters": "계정 이름은 최대 50자여야 합니다",
     "youCannotTransferMoneyToYourWalletAddress": "당신은 지갑 주소로 돈을 이체할 수 없습니다.",
-    "theSameCoinCannotBeConverted": "동일한 코인은 변환할 수 없습니다."
+    "theSameCoinCannotBeConverted": "동일한 코인은 변환할 수 없습니다.",
+    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT##을(를) $#$#na$#ne님으로부터 받았습니다."
 }

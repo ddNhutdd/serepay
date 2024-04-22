@@ -391,5 +391,6 @@
     "accountNameMustBeAtLeast6Characters": "Tên tài khoản phải có ít nhất 6 ký tự",
     "accountNameMaximum50Characters": "Tên tài khoản không được quá 50 ký tự",
     "youCannotTransferMoneyToYourWalletAddress": "Bạn không thể chuyển tiền vào địa chỉ ví của bạn",
-    "theSameCoinCannotBeConverted": "Không thể chuyển đổi cùng loại coin"
+    "theSameCoinCannotBeConverted": "Không thể chuyển đổi cùng loại coin",
+    "ouGet1UsdtTFromUserNamePercy": "Bạn nhận được ##1## @U#S#DT## từ Người Dùng $#$#na$#ne"
 }

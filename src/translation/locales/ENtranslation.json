@@ -391,5 +391,6 @@
     "accountNameMustBeAtLeast6Characters": "Account Name must be at least 6 characters",
     "accountNameMaximum50Characters": "Account Name maximum 50 characters",
     "youCannotTransferMoneyToYourWalletAddress": "You cannot transfer money to your wallet address",
-    "theSameCoinCannotBeConverted": "The same coin cannot be converted"
+    "theSameCoinCannotBeConverted": "The same coin cannot be converted",
+    "ouGet1UsdtTFromUserNamePercy": "You get ##1## @U#S#DT## from User Name $#$#na$#ne"
 }

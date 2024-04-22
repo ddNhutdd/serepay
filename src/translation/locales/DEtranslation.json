@@ -389,5 +389,6 @@
   "accountNameMustBeAtLeast6Characters": "Der Kontoname muss mindestens 6 Zeichen lang sein",
   "accountNameMaximum50Characters": "Der Kontoname darf maximal 50 Zeichen lang sein",
   "youCannotTransferMoneyToYourWalletAddress": "Du kannst kein Geld an deine Wallet-Adresse überweisen",
-  "theSameCoinCannotBeConverted": "Die gleiche Münze kann nicht umgewandelt werden"
+  "theSameCoinCannotBeConverted": "Die gleiche Münze kann nicht umgewandelt werden",
+  "ouGet1UsdtTFromUserNamePercy": "Du erhältst ##1## @U#S#DT## von Benutzername $#$#na$#ne"
 }

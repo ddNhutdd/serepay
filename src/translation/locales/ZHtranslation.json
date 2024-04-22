@@ -386,5 +386,6 @@
     "accountNameMustBeAtLeast6Characters": "帐户名必须至少为6个字符",
     "accountNameMaximum50Characters": "帐户名最多50个字符",
     "youCannotTransferMoneyToYourWalletAddress": "您不能将钱转账到您的钱包地址。",
-    "theSameCoinCannotBeConverted": "同一硬币无法转换"
+    "theSameCoinCannotBeConverted": "同一硬币无法转换",
+    "ouGet1UsdtTFromUserNamePercy": "您收到 ##1## @U#S#DT##，来自用户名 $#$#na$#ne"
 }

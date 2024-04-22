@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "Το όνομα χρήστη πρέπει να είναι τουλάχιστον 6 χαρακτήρες",
     "accountNameMaximum50Characters": "Το όνομα χρήστη έως 50 χαρακτήρες",
     "youCannotTransferMoneyToYourWalletAddress": "Δεν μπορείτε να μεταφέρετε χρήματα στη διεύθυνση του πορτοφολιού σας",
-    "theSameCoinCannotBeConverted": "Δεν μπορεί να μετατραπεί η ίδια νόμισμα"
+    "theSameCoinCannotBeConverted": "Δεν μπορεί να μετατραπεί η ίδια νόμισμα",
+    "ouGet1UsdtTFromUserNamePercy": "Λαμβάνετε ##1## @U#S#DT## από το όνομα χρήστη $#$#na$#ne"
 }

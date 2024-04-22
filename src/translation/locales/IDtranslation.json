@@ -389,5 +389,6 @@
     "accountNameMustBeAtLeast6Characters": "Nama Akun harus setidaknya 6 karakter",
     "accountNameMaximum50Characters": "Nama Akun maksimal 50 karakter",
     "youCannotTransferMoneyToYourWalletAddress": "Anda tidak dapat mentransfer uang ke alamat dompet Anda",
-    "theSameCoinCannotBeConverted": "Koin yang sama tidak dapat dikonversi"
+    "theSameCoinCannotBeConverted": "Koin yang sama tidak dapat dikonversi",
+    "ouGet1UsdtTFromUserNamePercy": "Anda menerima ##1## @U#S#DT## dari Nama Pengguna $#$#na$#ne"
 }
