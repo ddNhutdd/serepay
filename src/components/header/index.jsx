@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n, { availableLanguageCodeMapper, availableLanguageMapper } from "../../translation/i18n";
+import i18n, { availableLanguageMapper } from "../../translation/i18n";
 import {
   getLocalStorage,
   setLocalStorage,
@@ -19,7 +19,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
 import { currencySetCurrent } from "src/redux/actions/currency.action";
-import { callToastError, callToastSuccess } from "src/function/toast/callToast";
+import { callToastSuccess } from "src/function/toast/callToast";
 import {
   getTotalAssetsBtcRealTime,
   getTotalAssetsRealTime,
@@ -29,6 +29,7 @@ import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { Modal, Spin } from "antd";
 import { addWallet, loginWallet } from "src/util/userCallApi";
 import { Button } from "../Common/Button";
+import socket from "src/util/socket";
 
 export default function Header2({ history }) {
   const { isLogin, username, isAdmin } = useSelector(
@@ -36,7 +37,6 @@ export default function Header2({ history }) {
   );
   const notifyRedux = useSelector(getNotify);
   const currencyFromRedux = useSelector(getCurrent);
-
   const [currentLanguage, setCurrentLanguage] = useState(
     getLocalStorage(localStorageVariable.lng) || defaultLanguage
   );
@@ -58,7 +58,6 @@ export default function Header2({ history }) {
 
   const [listWallet, setListWallet] = useState();
   const [callApiLoginWalletStatus, setCallApiLoginWalletStatus] = useState(api_status.pending);
-
 
   const [callApiAddWalletStatus, setCallApiAddWalletStatus] = useState(api_status.pending);
 
@@ -242,6 +241,7 @@ export default function Header2({ history }) {
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess(tem, temTitle);
+    socket.off("messageTransfer")
   };
   const redirectLogin = function () {
     history.push(url.login);

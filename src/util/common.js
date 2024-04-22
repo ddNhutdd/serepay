@@ -1,10 +1,11 @@
+import { callToastSuccess } from "src/function/toast/callToast";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
 import * as XLSX from "xlsx/xlsx.mjs";
 
 export const setLocalStorage = (key, data) => {
   try {
     localStorage.setItem(key, JSON.stringify(data));
-  } catch (e) {}
+  } catch (e) { }
 };
 export const getLocalStorage = (key) => {
   try {
@@ -16,7 +17,7 @@ export const getLocalStorage = (key) => {
 export const removeLocalStorage = (key) => {
   try {
     localStorage.removeItem(key);
-  } catch (e) {}
+  } catch (e) { }
 };
 /**
  * Hàm nhận vào một chuỗi số với định dạng theo kiểu US (dấu chấm phân tách phần thập phân)
@@ -517,4 +518,12 @@ export const convertJsonStringToArray = (jsonString) => {
   } catch (error) {
     return [];
   }
+};
+export const messageTransferHandle = (res) => {
+  const subStringList = [res.symbol, res.amount, res.username];
+  const process = (matched, index) => {
+    return <span key={index} style={{fontWeight: 600, color: 'green'}}>{matched}</span>
+  }
+  const mess = processString(res.message,subStringList,process)
+  callToastSuccess(mess);
 };

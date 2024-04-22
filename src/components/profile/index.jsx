@@ -40,6 +40,7 @@ import { Button, buttonClassesType, htmlType } from "../Common/Button";
 import { currencySetCurrent } from "src/redux/actions/currency.action";
 import Kyc from "./kyc";
 import useForm from "src/hooks/use-form";
+import socket from "src/util/socket";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ function Profile() {
   });
   const [callApi2FAStatus, setCallApi2FAStatus] = useState(api_status.pending);
   const [verifyKycStatus, setVerifyKycStatus] = useState(3);
+  // 
 
   // useEffect
   useEffect(() => {
@@ -320,10 +322,10 @@ function Profile() {
     removeLocalStorage(localStorageVariable.expireToken);
     history.push(url.login);
     dispatch({ type: "USER_LOGOUT" });
+    socket.off('messageTransfer');
   };
 
   // payment
-
   const paymentControl = {
     bank: 'pm_bank',
     accountName: 'pm_accountName',

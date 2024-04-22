@@ -8,6 +8,7 @@ import {
   getElementById,
   removeLocalStorage,
 } from "src/util/common";
+import socket from "src/util/socket";
 function Sidebar() {
   const history = useHistory();
   const location = useLocation();
@@ -150,6 +151,7 @@ function Sidebar() {
     history.push(url.home);
     dispatch({ type: "USER_LOGOUT" });
     callToastSuccess("Logged out");
+    socket.off('messageTransfer');
   };
 
   return (

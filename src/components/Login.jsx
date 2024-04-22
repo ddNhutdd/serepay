@@ -10,7 +10,7 @@ import {
   url,
 } from "src/constant";
 import { useEffect } from "react";
-import { getLocalStorage, removeLocalStorage, setLocalStorage } from "src/util/common";
+import { getLocalStorage, messageTransferHandle, removeLocalStorage, setLocalStorage } from "src/util/common";
 import i18n from "src/translation/i18n";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
@@ -58,11 +58,16 @@ export default function Login({ history }) {
       } else {
         history.push(url.p2pTrading);
       }
+      //lắng nghe các thông báo về chuyền tiền 
+      socket.on("messageTransfer", (res) => {
+        messageTransferHandle(res);
+      })
       //redirect to admin
       redirecToAdmin(response.data.data);
-      //
-      const verify = response?.data?.data?.verified;
-      if (verify !== 1 && verify !== 2) history.push(url.profile);
+      // chưa xác thực kyc thì chuyển trang profile
+      //const verify = response?.data?.data?.verified;
+      //if (verify !== 1 && verify !== 2) history.push(url.profile);
+
     } catch (error) {
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;

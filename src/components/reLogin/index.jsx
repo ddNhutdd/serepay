@@ -9,6 +9,7 @@ import {
 } from "src/constant";
 import {
   getLocalStorage,
+  messageTransferHandle,
   removeLocalStorage,
   setLocalStorage,
 } from "src/util/common";
@@ -92,6 +93,10 @@ function ReLogin() {
       socket.emit("join", response.data.data.id);
       socket.on("ok", (res) => { });
       handleReload();
+      // lắng nghe thông báo về chuyển tiền
+      socket?.on("messageTransfer", (res) => {
+        messageTransferHandle(res);
+      })
     } catch (error) {
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
@@ -131,6 +136,7 @@ function ReLogin() {
     removeLocalStorage(localStorageVariable.amountFromWalletList);
     removeLocalStorage(localStorageVariable.thisIsAdmin);
     dispatch({ type: "USER_LOGOUT" });
+    socket.off('messageTransfer');
   };
   const usernameChangeHandle = function (ev) {
     const value = ev.target.value;

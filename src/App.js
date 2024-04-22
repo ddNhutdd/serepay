@@ -35,7 +35,7 @@ import {
 } from "./redux/actions/listCoinRealTime.action";
 import { userWalletFetchCount } from "./redux/constant/coin.constant";
 import { coinUserWallet } from "./redux/actions/coin.action";
-import { getLocalStorage, removeLocalStorage, roundDecimalValues } from "./util/common";
+import { getLocalStorage, removeLocalStorage, roundDecimalValues, setIsMainAccount } from "./util/common";
 import {
   getExchangeRateDisparityFetchCount,
   setExchangeRateDisparity,

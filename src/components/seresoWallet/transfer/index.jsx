@@ -424,6 +424,7 @@ function Transfer() {
               <div className={css["paging"]}>
                 <Pagination
                   onChange={transferHistoryPagingOnChangeHandle}
+                  current={transferHistoryCurrentPage.current}
                   total={transferHistoryTotalItems}
                 />
               </div>
