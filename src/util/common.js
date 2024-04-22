@@ -519,11 +519,11 @@ export const convertJsonStringToArray = (jsonString) => {
     return [];
   }
 };
-export const messageTransferHandle = (res) => {
+export const messageTransferHandle = (res, t) => {
   const subStringList = [res.symbol, res.amount, res.username];
   const process = (matched, index) => {
-    return <span key={index} style={{fontWeight: 600, color: 'green'}}>{matched}</span>
+    return <span key={index} style={{ fontWeight: 600, color: 'green' }}>{matched}</span>
   }
-  const mess = processString(res.message,subStringList,process)
+  const mess = processString(t(res.message), subStringList, process)
   callToastSuccess(mess);
 };
