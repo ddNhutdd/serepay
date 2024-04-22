@@ -46,7 +46,6 @@ function Profile() {
   const { t } = useTranslation();
   const history = useHistory();
   const { listBank, status: listBankStatus } = useSelector(getBankState);
-  console.log(listBank);
 
   const [is2FAModalOpen, setIs2FAModalOpen] = useState(false);
   const [callApiLoadInfoUserStatus, setCallApiLoadInfoUserStatus] = useState(

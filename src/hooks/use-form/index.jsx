@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
 
 function useForm(submitHandle, initialValues) {
 	const inputType = {
@@ -14,13 +14,18 @@ function useForm(submitHandle, initialValues) {
 	const [errors, setErrors] = useState({});
 	const errorsRuntime = useRef({});
 
-	const handleChange = (ev) => {
+	const handleChange = (moreAction, ev) => {
 		ev.persist();
 		setValues(state => ({
 			...state, [ev.target.id]: ev.target.value
 		}))
-		if (!allowValidate.current) return;
-		validation(ev?.target);
+
+		if (!allowValidate.current) {
+			moreAction();
+		} else {
+			moreAction();
+			validation(ev?.target);
+		}
 	}
 
 	const validationAll = () => {
@@ -54,7 +59,7 @@ function useForm(submitHandle, initialValues) {
 
 	//#region dùng cho error
 	const clearError = (inputElement) => {
-		const newErrors = {...errorsRuntime.current};
+		const newErrors = { ...errorsRuntime.current };
 		delete newErrors[inputElement.id];
 		setErrors(newErrors);
 		errorsRuntime.current = newErrors;
@@ -167,15 +172,23 @@ function useForm(submitHandle, initialValues) {
 		allowValidate.current && (valid = validationAll());
 		valid && submitHandle(values, ev);
 	}
-	const register = (name, value = '') => {
+	const register = (name, value = '', moreAction) => {
 		if (!Object.keys(values).find((item) => item === name)) {
 			setValues((state) => ({
 				...state,
 				[name]: value
 			}));
 		}
+		let actionFunction;
+		if (typeof moreAction === 'function') {
+			actionFunction = moreAction
+		} else if (typeof moreAction !== 'function') {
+			actionFunction = () => { };
+		}
+
 		return {
-			onChange: handleChange, id: name
+			onChange: handleChange.bind(null, actionFunction),
+			id: name
 		}
 	}
 	const reset = (reInitialValue) => {

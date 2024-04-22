@@ -64,7 +64,6 @@ export default function Login({ history }) {
       const verify = response?.data?.data?.verified;
       if (verify !== 1 && verify !== 2) history.push(url.profile);
     } catch (error) {
-      console.log(error)
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
       switch (mess) {

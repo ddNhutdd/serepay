@@ -240,6 +240,13 @@ export const addWallet = () => {
   } catch (error) {
   }
 }
+export const editUserNameWallet = () => {
+  try {
+    return axiosService.post("/api/user/editUserNameWallet")
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 //==========================================
 export const getQrBankPayment = async function (
