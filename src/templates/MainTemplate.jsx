@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Footer from "src/components/Footer";
-import Header2 from "src/components/Header2";
+import Header2 from "src/components/header";
 import ReLogin from "src/components/reLogin";
 export default function MainTemplate(props) {
   return (

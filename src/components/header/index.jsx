@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n, { availableLanguageMapper } from "../translation/i18n";
+import i18n, { availableLanguageCodeMapper, availableLanguageMapper } from "../../translation/i18n";
 import {
   getLocalStorage,
   setLocalStorage,
   removeLocalStorage,
-} from "../util/common";
+  formatNumber,
+} from "../../util/common";
 import {
   api_status,
   commontString,
@@ -13,7 +14,7 @@ import {
   defaultLanguage,
   localStorageVariable,
   url,
-} from "../constant";
+} from "../../constant";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
@@ -27,7 +28,7 @@ import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { Modal, Spin } from "antd";
 import { addWallet, loginWallet } from "src/util/userCallApi";
-import { Button, buttonClassesType } from "./Common/Button";
+import { Button } from "../Common/Button";
 
 export default function Header2({ history }) {
   const { isLogin, username, isAdmin } = useSelector(
@@ -54,11 +55,11 @@ export default function Header2({ history }) {
   const [totalMoney, setTotalMoney] = useState(0); // it is the string it displays on the web
   const [isModalLanguageOpen, setIsModalLanguageOpen] = useState(false);
   const [isModalCurrencyOpen, setIsModalCurrencyOpen] = useState(false);
-  const [isModalAccInfoOpent, setIsModalAccInfoOpent] = useState(false);
+
   const [listWallet, setListWallet] = useState();
   const [callApiLoginWalletStatus, setCallApiLoginWalletStatus] = useState(api_status.pending);
-  const [currentWalletUsdtBalance, setCurrentWalletUsdtBalance] = useState(0);
-  const [isShowModalAccountList, setIsShowModalAccountList] = useState(false);
+
+
   const [callApiAddWalletStatus, setCallApiAddWalletStatus] = useState(api_status.pending);
 
   const dispatch = useDispatch();
@@ -190,6 +191,35 @@ export default function Header2({ history }) {
     closeMenu();
     setIsShowMenuUser(() => !temFlag);
   };
+  const renderListCurrencyModal = function () {
+    const exchangeArray = listExChange.map((item) => item.title).sort();
+
+    const setActive = function (itemCurrency) {
+      return currentCurrency === itemCurrency ? "" : "--visible-hidden";
+    };
+    const itemClickHandle = function (key) {
+      setLocalStorage(localStorageVariable.currency, key);
+      setCurrentCurrency(() => key);
+      closeModalCurrency();
+      dispatch(currencySetCurrent(key));
+      setIsShowMenu(false);
+    };
+
+    return exchangeArray.map((item) => (
+      <li
+        key={item}
+        onClick={itemClickHandle.bind(null, item)}
+        className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
+      >
+        <div className="d-flex alignItem-c justify-start gap-2">
+          <span>{item}</span>
+        </div>
+        <div className={`header2__LanguageModal__stick ${setActive(item)}`}>
+          <i className="fa-solid fa-check"></i>
+        </div>
+      </li>
+    ));
+  };
   const logout = () => {
     const tem = t("logOut");
     const temTitle = t("success");
@@ -314,43 +344,55 @@ export default function Header2({ history }) {
   const closeModalCurrency = () => {
     setIsModalCurrencyOpen(false);
   };
-  const renderListCurrencyModal = function () {
-    const exchangeArray = listExChange.map((item) => item.title).sort();
-
-    const setActive = function (itemCurrency) {
-      return currentCurrency === itemCurrency ? "" : "--visible-hidden";
-    };
-    const itemClickHandle = function (key) {
-      setLocalStorage(localStorageVariable.currency, key);
-      setCurrentCurrency(() => key);
-      closeModalCurrency();
-      dispatch(currencySetCurrent(key));
-      setIsShowMenu(false);
-    };
-
-    return exchangeArray.map((item) => (
-      <li
-        key={item}
-        onClick={itemClickHandle.bind(null, item)}
-        className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
-      >
-        <div className="d-flex alignItem-c justify-start gap-2">
-          <span>{item}</span>
-        </div>
-        <div className={`header2__LanguageModal__stick ${setActive(item)}`}>
-          <i className="fa-solid fa-check"></i>
-        </div>
-      </li>
-    ));
-  };
   const showModalAccountInfo = () => {
     setIsModalAccInfoOpent(true);
 
     // call api login wallet
     callApiLoginWallet();
   }
-  const closeModalAccountInfo = () => {
-    setIsModalAccInfoOpent(false);
+
+  // tài khoản phụ
+  // cho phần thông tin tài khoản
+  const [isModalAccInfoOpent, setIsModalAccInfoOpent] = useState(false);
+  const closeModalAccountInfo = () => setIsModalAccInfoOpent(false);
+  const renderAccountInfoContent = () => callApiLoginWalletStatus !== api_status.fetching ? '' : '--d-none';
+  const showModalAccountList = () => setIsShowModalAccountList(true);
+  const [currentWalletUsdtBalance, setCurrentWalletUsdtBalance] = useState(0);
+  const renderAccountInfoSpin = () => callApiLoginWalletStatus === api_status.fetching ? '' : '--d-none';
+  // cho phần list tài khoản phụ
+  const [isShowModalAccountList, setIsShowModalAccountList] = useState(false);
+  const closeModalAccountList = () => {
+    if (callApiAddWalletStatus === api_status.fetching) {
+      return;
+    }
+    setIsShowModalAccountList(false);
+  }
+  const accountItemCLickHandle = async (item) => {
+    if (callApiLoginWalletStatus === api_status.fetching) {
+      return;
+    }
+    setCallApiLoginWalletStatus(api_status.fetching);
+
+    try {
+      const idUser = item.id;
+      const resp = await loginWallet({
+        idUser
+      });
+      const user = resp.data.data.infoUserLogin;
+      const token = user.token;
+      setLocalStorage(localStorageVariable.user, user);
+      setLocalStorage(localStorageVariable.token, token);
+      dispatch({ type: "USER_LOGIN" });
+      setCurrentWalletUsdtBalance(user.USDT_balance);
+      setCallApiLoginWalletStatus(api_status.fulfilled);
+      dispatch(userWalletFetchCount());
+      closeModalAccountList();
+
+      //đăng nhập ví thành công thì reload lại page
+      window.location.reload();
+    } catch (error) {
+      setCallApiLoginWalletStatus(api_status.rejected);
+    }
   }
   const callApiLoginWallet = async () => {
     try {
@@ -368,69 +410,11 @@ export default function Header2({ history }) {
       setCallApiLoginWalletStatus(api_status.rejected);
     }
   }
-  const renderAccountInfoSpin = () => {
-    return callApiLoginWalletStatus === api_status.fetching ? '' : '--d-none';
-  }
-  const renderAccountInfoContent = () => {
-    return callApiLoginWalletStatus !== api_status.fetching ? '' : '--d-none';
-  }
-  const showModalAccountList = () => {
-    setIsShowModalAccountList(true);
-  }
-  const closeModalAccountList = () => {
-    if (callApiAddWalletStatus === api_status.fetching) {
-      return;
-    }
-    setIsShowModalAccountList(false);
-  }
-  const renderAccountList = () => {
-    if (!listWallet || listWallet.length <= 0) {
-      return;
-    }
-
-    const setActive = (item) => {
-      return username === item.username ? 'active' : ''
-    }
-    const accountItemCLickHandle = async (item) => {
-      if (callApiLoginWalletStatus === api_status.fetching) {
-        return;
-      }
-      setCallApiLoginWalletStatus(api_status.fetching);
-
-      try {
-        const idUser = item.id;
-        const resp = await loginWallet({
-          idUser
-        });
-        const user = resp.data.data.infoUserLogin;
-        const token = user.token;
-        setLocalStorage(localStorageVariable.user, user);
-        setLocalStorage(localStorageVariable.token, token);
-        dispatch({ type: "USER_LOGIN" });
-        setCurrentWalletUsdtBalance(user.USDT_balance);
-        setCallApiLoginWalletStatus(api_status.fulfilled);
-        dispatch(userWalletFetchCount());
-        closeModalAccountList();
-
-        //đăng nhập ví thành công thì reload lại page
-        window.location.reload();
-      } catch (error) {
-        setCallApiLoginWalletStatus(api_status.rejected);
-      }
-    }
-
-    return listWallet.map((item, index) => (
-      <div onClick={accountItemCLickHandle.bind(null, item)} key={index} className={`header2__accountItem ${setActive(item)}`}>
-        <span>{item.username}</span>
-        <span>{item.USDT_balance} USDT</span>
-      </div>))
-  }
   const addMoreAccountCLickHandle = async () => {
     if (callApiAddWalletStatus === api_status.fetching) return;
     setCallApiAddWalletStatus(api_status.fetching);
     try {
       const resp = await addWallet();
-
       callToastSuccess(t(commontString.success.toLocaleLowerCase()));
       await callApiLoginWallet();
       setCallApiAddWalletStatus(api_status.fulfilled);
@@ -438,7 +422,28 @@ export default function Header2({ history }) {
       setCallApiAddWalletStatus(api_status.rejected);
     }
   }
+  const renderAccountList = () => {
+    if (!listWallet || listWallet.length <= 0) {
+      return;
+    }
+    const setActive = (item) => {
+      return username === item.username ? 'active' : ''
+    }
+    return listWallet.map((item, index) => (
+      <div onClick={accountItemCLickHandle.bind(null, item)} key={index} className={`header2__accountItem ${setActive(item)}`}>
+        <span>
+          {item.username}
+        </span>
+        <span>
+          {formatNumber(item.USDT_balance, i18n.language, 8)} USDT
+        </span>
+        {/*<Button style={{width: '32px', height:"32px"}} className="ml-a">
+          <i className="fa-solid fa-pen"></i>
+        </Button>*/}
+      </div>))
+  }
 
+  // useEffect
   useEffect(() => {
     const language =
       getLocalStorage(localStorageVariable.lng) || defaultLanguage;
@@ -728,7 +733,8 @@ export default function Header2({ history }) {
                 <i className="fa-solid fa-angle-down"></i>
               </div>
               <div>{username}</div>
-              <div>{currentWalletUsdtBalance} USDT</div>
+
+              <div>{formatNumber(currentWalletUsdtBalance, i18n.language, 8)} USDT</div>
             </div>
             <div className={`spin-container ${renderAccountInfoSpin()}`}>
               <Spin />
