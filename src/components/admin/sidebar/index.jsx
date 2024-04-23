@@ -8,11 +8,12 @@ import {
   getElementById,
   removeLocalStorage,
 } from "src/util/common";
-import socket from "src/util/socket";
+import useLogout from "src/hooks/logout";
+
 function Sidebar() {
   const history = useHistory();
   const location = useLocation();
-  const dispatch = useDispatch();
+  const logoutAction = useLogout();
 
   useEffect(() => {
     const urlList = location.pathname.split("/");
@@ -134,24 +135,9 @@ function Sidebar() {
     history.push(url.admin_p2p);
   };
   const logout = () => {
-    dispatch({ type: "USER_ADMIN", payload: false });
-    removeLocalStorage(localStorageVariable.user);
-    removeLocalStorage(localStorageVariable.token);
-    removeLocalStorage(localStorageVariable.currency);
-    removeLocalStorage(localStorageVariable.lng);
-    removeLocalStorage(localStorageVariable.coin);
-    removeLocalStorage(localStorageVariable.adsItem);
-    removeLocalStorage(localStorageVariable.coinNameToTransaction);
-    removeLocalStorage(localStorageVariable.createAds);
-    removeLocalStorage(localStorageVariable.coinFromWalletList);
-    removeLocalStorage(localStorageVariable.amountFromWalletList);
-    removeLocalStorage(localStorageVariable.thisIsAdmin);
-    removeLocalStorage(localStorageVariable.accountName);
-    removeLocalStorage(localStorageVariable.accountUsdt);
+    logoutAction();
     history.push(url.home);
-    dispatch({ type: "USER_LOGOUT" });
     callToastSuccess("Logged out");
-    socket.off('messageTransfer');
   };
 
   return (

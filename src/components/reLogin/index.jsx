@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import {
   errorMessage,
   defaultCurrency,
-  defaultLanguage,
   localStorageVariable,
   url,
 } from "src/constant";
@@ -17,7 +16,6 @@ import { Input, inputType } from "../Common/Input";
 import css from "./reLogin.module.scss";
 import { Button } from "../Common/Button";
 import { useTranslation } from "react-i18next";
-import i18n from "src/translation/i18n";
 import { useDispatch } from "react-redux";
 import { currencySetCurrent } from "src/redux/actions/currency.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
@@ -25,12 +23,14 @@ import { axiosService } from "src/util/service";
 import { useLocation, useHistory } from "react-router-dom";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import socket from "src/util/socket";
+import useLogout from "src/hooks/logout";
 
 function ReLogin() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
+  const logout = useLogout();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -88,11 +88,9 @@ function ReLogin() {
       dispatch({ type: "USER_LOGIN" });
       // menu load list mycoin
       dispatch(userWalletFetchCount());
-      // search previos page and redirect
-      const previousPage = getLocalStorage(localStorageVariable.previousePage);
       socket.emit("join", response.data.data.id);
       socket.on("ok", (res) => { });
-      handleReload();
+
       // lắng nghe thông báo về chuyển tiền
       socket?.on("messageTransfer", (res) => {
         messageTransferHandle(res, t);
@@ -118,25 +116,6 @@ function ReLogin() {
       setIsLoading(false);
       removeLocalStorage(localStorageVariable.expireToken);
     }
-  };
-  const logout = () => {
-    dispatch({ type: "USER_ADMIN", payload: false });
-    removeLocalStorage(localStorageVariable.lng);
-    removeLocalStorage(localStorageVariable.user);
-    removeLocalStorage(localStorageVariable.token);
-    removeLocalStorage(localStorageVariable.coinToTransaction);
-    removeLocalStorage(localStorageVariable.currency);
-    removeLocalStorage(localStorageVariable.adsItem);
-    removeLocalStorage(localStorageVariable.coinNameToTransaction);
-    removeLocalStorage(localStorageVariable.createAds);
-    removeLocalStorage(localStorageVariable.moneyToTransaction);
-    dispatch(currencySetCurrent(defaultCurrency));
-    removeLocalStorage(localStorageVariable.coin);
-    removeLocalStorage(localStorageVariable.coinFromWalletList);
-    removeLocalStorage(localStorageVariable.amountFromWalletList);
-    removeLocalStorage(localStorageVariable.thisIsAdmin);
-    dispatch({ type: "USER_LOGOUT" });
-    socket.off('messageTransfer');
   };
   const usernameChangeHandle = function (ev) {
     const value = ev.target.value;
@@ -194,11 +173,6 @@ function ReLogin() {
     if (!valid) return;
     await login(usernameValue, passwordElement.current.value);
     passwordElement.current.value = '';
-  };
-  const handleReload = () => {
-    setLocalStorage(localStorageVariable.reLoginR, location.pathname);
-    history.push(url.login);
-    return;
   };
 
   return (

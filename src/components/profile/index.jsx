@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Spin, Pagination } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import QRCode from "react-qr-code";
 import { useTranslation } from "react-i18next";
 import {
@@ -37,13 +37,12 @@ import { EmptyCustom } from "../Common/Empty";
 import { getBankState } from "src/redux/reducers/bankSlice";
 import Dropdown from "../Common/dropdown/Dropdown";
 import { Button, buttonClassesType, htmlType } from "../Common/Button";
-import { currencySetCurrent } from "src/redux/actions/currency.action";
 import Kyc from "./kyc";
 import useForm from "src/hooks/use-form";
-import socket from "src/util/socket";
+import useLogout from "src/hooks/logout";
 
 function Profile() {
-  const dispatch = useDispatch();
+  const logout = useLogout();
   const { t } = useTranslation();
   const history = useHistory();
   const { listBank, status: listBankStatus } = useSelector(getBankState);
@@ -303,28 +302,6 @@ function Profile() {
     }
   };
 
-  const logout = () => {
-    dispatch({ type: "USER_ADMIN", payload: false });
-    removeLocalStorage(localStorageVariable.lng);
-    removeLocalStorage(localStorageVariable.user);
-    removeLocalStorage(localStorageVariable.token);
-    removeLocalStorage(localStorageVariable.coinToTransaction);
-    removeLocalStorage(localStorageVariable.currency);
-    removeLocalStorage(localStorageVariable.adsItem);
-    removeLocalStorage(localStorageVariable.coinNameToTransaction);
-    removeLocalStorage(localStorageVariable.createAds);
-    removeLocalStorage(localStorageVariable.moneyToTransaction);
-    dispatch(currencySetCurrent(defaultCurrency));
-    removeLocalStorage(localStorageVariable.coin);
-    removeLocalStorage(localStorageVariable.coinFromWalletList);
-    removeLocalStorage(localStorageVariable.amountFromWalletList);
-    removeLocalStorage(localStorageVariable.thisIsAdmin);
-    removeLocalStorage(localStorageVariable.expireToken);
-    history.push(url.login);
-    dispatch({ type: "USER_LOGOUT" });
-    socket.off('messageTransfer');
-  };
-
   // payment
   const paymentControl = {
     bank: 'pm_bank',
@@ -495,8 +472,9 @@ function Profile() {
       });
       setCallApiChangePassStatus(api_status.fulfilled);
       callToastSuccess(t("passwordChangedSuccessfully"));
-      logout();
       closeChangePassModal();
+      logout();
+      history.push(url.home);
     } catch (error) {
       const er = error?.response?.data?.message;
       switch (er) {

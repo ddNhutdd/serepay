@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {useTranslation} from "react-i18next";
-import i18n, {availableLanguageMapper} from "../../translation/i18n";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import i18n, { availableLanguageMapper } from "../../translation/i18n";
 import {
 	getLocalStorage,
 	setLocalStorage,
@@ -15,29 +15,29 @@ import {
 	localStorageVariable,
 	url,
 } from "../../constant";
-import {useLocation} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
-import {getCurrent, getExchange} from "src/redux/constant/currency.constant";
-import {currencySetCurrent} from "src/redux/actions/currency.action";
-import {callToastSuccess} from "src/function/toast/callToast";
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
+import { currencySetCurrent } from "src/redux/actions/currency.action";
+import { callToastSuccess } from "src/function/toast/callToast";
 import {
 	getTotalAssetsBtcRealTime,
 	getTotalAssetsRealTime,
 } from "src/redux/constant/listCoinRealTime.constant";
-import {getNotify} from "src/redux/reducers/notifiyP2pSlice";
-import {userWalletFetchCount} from "src/redux/actions/coin.action";
-import {Modal, Spin} from "antd";
-import {addWallet, loginWallet} from "src/util/userCallApi";
-import {Button} from "../Common/Button";
-import socket from "src/util/socket";
-import {useMainAccount} from "../../context/main-account";
+import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
+import { userWalletFetchCount } from "src/redux/actions/coin.action";
+import { Modal, Spin } from "antd";
+import { addWallet, loginWallet } from "src/util/userCallApi";
+import { Button } from "../Common/Button";
+import { useMainAccount } from "../../context/main-account";
+import useLogout from "src/hooks/logout";
 
-export default function Header2({history}) {
-	const {isLogin, username, isAdmin} = useSelector(
+export default function Header2({ history }) {
+	const { isLogin, username, isAdmin } = useSelector(
 		(root) => root.loginReducer
 	);
 	const notifyRedux = useSelector(getNotify);
-	const {isMainAccount} = useMainAccount();
+	const { isMainAccount } = useMainAccount();
 	const currencyFromRedux = useSelector(getCurrent);
 	const [currentLanguage, setCurrentLanguage] = useState(
 		getLocalStorage(localStorageVariable.lng) || defaultLanguage
@@ -45,7 +45,7 @@ export default function Header2({history}) {
 	const [currentCurrency, setCurrentCurrency] = useState(
 		currencyFromRedux || defaultCurrency
 	);
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const totalAssetsRealTime = useSelector(getTotalAssetsRealTime);
 	const totalAssetsBtcRealTime = useSelector(getTotalAssetsBtcRealTime);
 	const listExChange = useSelector(getExchange);
@@ -65,6 +65,7 @@ export default function Header2({history}) {
 
 	const dispatch = useDispatch();
 	const location = useLocation();
+	const logoutAction = useLogout();
 
 	const barButtonClickHandle = function () {
 		setIsShowMenu((s) => !s);
@@ -128,14 +129,14 @@ export default function Header2({history}) {
 					onClick={languageItemClickHandle.bind(codeContry)}
 					key={codeContry}
 					className={`header2__language-item ${codeContry === currentLanguage ? "active" : ""
-					}`}
+						}`}
 				>
-          <span>
-            <img
-				src={process.env.PUBLIC_URL + `/img/icon${codeContry}.png`}
-				alt={codeContry}
-			/>
-          </span>
+					<span>
+						<img
+							src={process.env.PUBLIC_URL + `/img/icon${codeContry}.png`}
+							alt={codeContry}
+						/>
+					</span>
 					<span>{item}</span>
 				</div>
 			);
@@ -149,7 +150,7 @@ export default function Header2({history}) {
 				key={index}
 				onClick={currencyItemClickHandle.bind(item)}
 				className={`header2__currrency-item ${item === currentCurrency ? "active" : ""
-				} `}
+					} `}
 			>
 				{item}
 			</div>
@@ -222,28 +223,11 @@ export default function Header2({history}) {
 		));
 	};
 	const logout = () => {
+		logoutAction();
 		const tem = t("logOut");
 		const temTitle = t("success");
-		dispatch({type: "USER_ADMIN", payload: false});
-		removeLocalStorage(localStorageVariable.lng);
-		removeLocalStorage(localStorageVariable.user);
-		removeLocalStorage(localStorageVariable.token);
-		removeLocalStorage(localStorageVariable.coinToTransaction);
-		removeLocalStorage(localStorageVariable.currency);
-		removeLocalStorage(localStorageVariable.adsItem);
-		removeLocalStorage(localStorageVariable.coinNameToTransaction);
-		removeLocalStorage(localStorageVariable.createAds);
-		removeLocalStorage(localStorageVariable.moneyToTransaction);
-		dispatch(currencySetCurrent(defaultCurrency));
-		removeLocalStorage(localStorageVariable.coin);
-		removeLocalStorage(localStorageVariable.coinFromWalletList);
-		removeLocalStorage(localStorageVariable.amountFromWalletList);
-		removeLocalStorage(localStorageVariable.thisIsAdmin);
-		removeLocalStorage(localStorageVariable.expireToken);
 		history.push(url.home);
-		dispatch({type: "USER_LOGOUT"});
 		callToastSuccess(tem, temTitle);
-		socket.off("messageTransfer")
 	};
 	const redirectLogin = function () {
 		history.push(url.login);
@@ -298,7 +282,7 @@ export default function Header2({history}) {
 	const renderListLanguageModal = function () {
 		const countryArray = Object.entries(availableLanguageMapper).map(
 			([key, value]) => {
-				return {key, value};
+				return { key, value };
 			}
 		);
 		const sortedLanguages = countryArray.sort((a, b) => {
@@ -318,7 +302,7 @@ export default function Header2({history}) {
 			i18n.changeLanguage(language);
 		};
 
-		return sortedLanguages.map(({key, value}) => {
+		return sortedLanguages.map(({ key, value }) => {
 			return (
 				<li
 					key={key}
@@ -326,12 +310,12 @@ export default function Header2({history}) {
 					className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
 				>
 					<div className="d-flex alignItem-c justify-start gap-2">
-            <span>
-              <img
-				  alt={value}
-				  src={process.env.PUBLIC_URL + `/img/icon${key}.png`}
-			  />
-            </span>
+						<span>
+							<img
+								alt={value}
+								src={process.env.PUBLIC_URL + `/img/icon${key}.png`}
+							/>
+						</span>
 						<span>{value}</span>
 					</div>
 					<div className={`header2__LanguageModal__stick ${setActive(key)}`}>
@@ -385,7 +369,7 @@ export default function Header2({history}) {
 			const token = user.token;
 			setLocalStorage(localStorageVariable.user, user);
 			setLocalStorage(localStorageVariable.token, token);
-			dispatch({type: "USER_LOGIN"});
+			dispatch({ type: "USER_LOGIN" });
 			setCurrentWalletUsdtBalance(user.USDT_balance);
 			setCallApiLoginWalletStatus(api_status.fulfilled);
 			dispatch(userWalletFetchCount());
@@ -402,7 +386,7 @@ export default function Header2({history}) {
 			if (callApiLoginWalletStatus === api_status.fetching) return;
 			setCallApiLoginWalletStatus(api_status.fetching);
 			const userId = getLocalStorage(localStorageVariable.user)?.id;
-			const resp = await loginWallet({idUser: userId});
+			const resp = await loginWallet({ idUser: userId });
 			const allWallet = [resp.data.data.infoUserLogin, ...resp.data.data.wallet];
 			const currentUsdtBalance = allWallet.find(item => item.id === +userId)?.USDT_balance;
 			setListWallet(allWallet);
@@ -434,13 +418,13 @@ export default function Header2({history}) {
 		}
 		return listWallet.map((item, index) => (
 			<div onClick={accountItemCLickHandle.bind(null, item)} key={index}
-				 className={`header2__accountItem ${setActive(item)}`}>
-        <span>
-          {item.username}
-        </span>
+				className={`header2__accountItem ${setActive(item)}`}>
 				<span>
-          {formatNumber(item.USDT_balance, i18n.language, 8)} USDT
-        </span>
+					{item.username}
+				</span>
+				<span>
+					{formatNumber(item.USDT_balance, i18n.language, 8)} USDT
+				</span>
 				{/*<Button style={{width: '32px', height:"32px"}} className="ml-a">
           <i className="fa-solid fa-pen"></i>
         </Button>*/}
@@ -473,7 +457,7 @@ export default function Header2({history}) {
 			<header className="header2 fadeInTopToBottom">
 				<div className="container">
 					<div className="logo" onClick={() => history.push(url.home)}>
-						<img src="/img/logowhite.png" alt="Remitano Logo"/>
+						<img src="/img/logowhite.png" alt="Remitano Logo" />
 					</div>
 					<div className={`menu ${renderClassShowMenu()}`}>
 						{
@@ -527,23 +511,23 @@ export default function Header2({history}) {
 							className="header2__languageModalButton alignItem-c justify-sb py-2"
 						>
 							<div className="d-f gap-2 alignItem-c justify-start">
-                <span>
-                  <i className="fa-solid fa-globe"></i>
-                </span>
+								<span>
+									<i className="fa-solid fa-globe"></i>
+								</span>
 								<span>{t("language")}</span>
 							</div>
 							<div className="d-flex gap-2">
-                <span>
-                  <img
-					  src={
-						  process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`
-					  }
-				  />
-                </span>
+								<span>
+									<img
+										src={
+											process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`
+										}
+									/>
+								</span>
 								<span>{availableLanguageMapper[currentLanguage]}</span>
 								<span>
-                  <i className="fa-solid fa-chevron-right"></i>
-                </span>
+									<i className="fa-solid fa-chevron-right"></i>
+								</span>
 							</div>
 						</div>
 						<div className={`header2__currency`}>
@@ -564,16 +548,16 @@ export default function Header2({history}) {
 							className="header2__languageModalButton alignItem-c justify-sb py-2"
 						>
 							<div className="d-flex alignItem-c justify-c gap-2">
-                <span>
-                  <i className="fa-solid fa-money-bill-wheat"></i>
-                </span>
+								<span>
+									<i className="fa-solid fa-money-bill-wheat"></i>
+								</span>
 								<span>{t("currency")}</span>
 							</div>
 							<div className="d-flex alignItem-c justify-c gap-2">
 								<span>{currentCurrency}</span>
 								<span>
-                  <i className="fa-solid fa-chevron-right"></i>
-                </span>
+									<i className="fa-solid fa-chevron-right"></i>
+								</span>
 							</div>
 						</div>
 						<div
@@ -582,11 +566,11 @@ export default function Header2({history}) {
 								"--d-none"
 							)}`}
 						>
-              <span
-				  className={`${renderClassShowNotify()} header2__wallet__bag`}
-			  >
-                <i className="fa-regular fa-clock"></i>
-              </span>
+							<span
+								className={`${renderClassShowNotify()} header2__wallet__bag`}
+							>
+								<i className="fa-regular fa-clock"></i>
+							</span>
 							<div onClick={walletToggle} className="header2__wallet-title">
 								{t("wallet")}
 							</div>
@@ -614,11 +598,11 @@ export default function Header2({history}) {
 									data-page={url.p2p_management}
 									className="header2__wallet-item"
 								>
-                  <span
-					  className={`${renderClassShowNotify()} header2__wallet-item-bag`}
-				  >
-                    {notifyRedux}
-                  </span>
+									<span
+										className={`${renderClassShowNotify()} header2__wallet-item-bag`}
+									>
+										{notifyRedux}
+									</span>
 									<i className="fa-solid fa-comments-dollar"></i>
 									<span>{t("p2PHistory")}</span>
 								</div>
@@ -686,8 +670,8 @@ export default function Header2({history}) {
 					>
 						<span>{t("language")}</span>
 						<span className="hover-p">
-              <i className="fa-solid fa-xmark"></i>
-            </span>
+							<i className="fa-solid fa-xmark"></i>
+						</span>
 					</li>
 					{renderListLanguageModal()}
 				</ul>
@@ -707,8 +691,8 @@ export default function Header2({history}) {
 					>
 						<span>{t("currency")}</span>
 						<span className="hover-p">
-              <i className="fa-solid fa-xmark"></i>
-            </span>
+							<i className="fa-solid fa-xmark"></i>
+						</span>
 					</li>
 					{renderListCurrencyModal()}
 				</ul>
@@ -728,8 +712,8 @@ export default function Header2({history}) {
 					>
 						<span>{username}</span>
 						<span className="hover-p">
-              <i className="fa-solid fa-xmark"></i>
-            </span>
+							<i className="fa-solid fa-xmark"></i>
+						</span>
 					</li>
 					<div className="header2__accountInfo">
 						<div className={`header2__accountInfoContent ${renderAccountInfoContent()}`}>
@@ -743,7 +727,7 @@ export default function Header2({history}) {
 							<div>{formatNumber(currentWalletUsdtBalance, i18n.language, 8)} USDT</div>
 						</div>
 						<div className={`spin-container ${renderAccountInfoSpin()}`}>
-							<Spin/>
+							<Spin />
 						</div>
 					</div>
 				</ul>
@@ -763,15 +747,15 @@ export default function Header2({history}) {
 					>
 						<span>{username}</span>
 						<span className="hover-p">
-              <i className="fa-solid fa-xmark"></i>
-            </span>
+							<i className="fa-solid fa-xmark"></i>
+						</span>
 					</li>
 					<div className="header2__accountList">
 						{renderAccountList()}
 					</div>
 					<div className="header2__accountList__action">
 						<Button loading={callApiAddWalletStatus === api_status.fetching}
-								onClick={addMoreAccountCLickHandle}>Add more account</Button>
+							onClick={addMoreAccountCLickHandle}>Add more account</Button>
 					</div>
 				</ul>
 			</Modal>

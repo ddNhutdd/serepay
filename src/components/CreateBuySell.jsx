@@ -42,6 +42,7 @@ export default function CreateBuy() {
   const dispatch = useDispatch();
   const location = useLocation();
   const { t } = useTranslation();
+  const isLogin = useSelector((root) => root.loginReducer.isLogin);
   const action = location.pathname.split("/").at(-1);
   const data = useRef([]);
   const [currentCoin, setCurrentCoin] = useState(
@@ -56,7 +57,6 @@ export default function CreateBuy() {
   const exchange = useSelector(getExchange);
   const exchangeRateSellDisparity = useSelector(getExchangeRateSell);
   const [selectedBank, setSelectedBank] = useState();
-  const userName = useRef("");
   const controls = useRef({
     amount: "amount",
     mini: "mini",
@@ -88,12 +88,11 @@ export default function CreateBuy() {
       }
     });
 
-    const callProfile = async function () {
-      return await fetchUserNameProfile();
-    };
-    callProfile().then((resp) => {
-      userName.current = resp;
-    });
+    //nếu chưa đăng nhập thì chuyển về trang login
+    if (!isLogin) {
+      history.push(url.login);
+      return;
+    }
   }, []);
   useEffect(() => {
     if (listBank && listBank.length > 0) {
@@ -179,15 +178,6 @@ export default function CreateBuy() {
       getElementById("amoutInput").value;
     getElementById("modalPreviewMinimumAmount").innerHTML =
       getElementById("minimumAmoutInput").value;
-  };
-  const fetchUserNameProfile = function () {
-    return getProfile()
-      .then((resp) => {
-        return resp.data.data.username;
-      })
-      .catch((error) => {
-        return null;
-      });
   };
   const validate = function () {
     let valid = true;
@@ -552,9 +542,8 @@ export default function CreateBuy() {
               </div>
             </div>
             <div
-              className={`payment-area ${
-                action === actionType.buy ? "--d-none" : ""
-              }`}
+              className={`payment-area ${action === actionType.buy ? "--d-none" : ""
+                }`}
             >
               <h2>{t("paymentDetails")}</h2>
               <div className="field">
@@ -622,9 +611,8 @@ export default function CreateBuy() {
           {data.current.map((item, i) => {
             return (
               <button
-                className={`btn-choice-coin ${
-                  currentCoin === item.name ? "active" : ""
-                }`}
+                className={`btn-choice-coin ${currentCoin === item.name ? "active" : ""
+                  }`}
                 key={i}
                 onClick={() => {
                   setCurrentCoin(item.name);
