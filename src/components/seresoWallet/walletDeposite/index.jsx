@@ -272,11 +272,11 @@ function SerepayWalletDeposit() {
                   <ul className="wallet-deposit-causion">
                     <li>
                       <img src={process.env.PUBLIC_URL + "/img/!.png"} alt="info" />
-                      You have to deposit at least 5 USDT to be credited. Any deposit that is less than 5 USDT will not be refunded.
+                      {t('youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded')}
                     </li>
                     <li>
                       <img src={process.env.PUBLIC_URL + "/img/!.png"} alt="info" />
-                      This deposit address only accepts USDT. Do not send other coins to it.
+                      {t('thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt')}
                     </li>
                   </ul>
                 </div>
