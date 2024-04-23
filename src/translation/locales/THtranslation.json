@@ -388,5 +388,7 @@
     "accountNameMaximum50Characters": "ชื่อบัญชีสูงสุด 50 ตัวอักษร",
     "youCannotTransferMoneyToYourWalletAddress": "คุณไม่สามารถโอนเงินไปยังที่อยู่ของกระเป๋าเงินของคุณได้",
     "theSameCoinCannotBeConverted": "ไม่สามารถแปลงเหรียญเดียวกันได้",
-    "ouGet1UsdtTFromUserNamePercy": "คุณได้รับ ##1## @U#S#DT## จากชื่อผู้ใช้ $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "คุณได้รับ ##1## @U#S#DT## จากชื่อผู้ใช้ $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "คุณต้องฝากอย่างน้อย 5 USDT เพื่อให้ได้รับเครดิต การฝากเงินใด ๆ ที่น้อยกว่า 5 USDT จะไม่ได้รับการคืนเงิน",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "ที่อยู่ฝากเงินนี้เฉพาะการยอมรับ USDT เท่านั้น โปรดอย่าส่งเหรียญอื่น ๆ ไปที่นั้น"
 }

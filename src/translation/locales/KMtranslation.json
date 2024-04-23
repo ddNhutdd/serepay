@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "ឈ្មោះគណនីមានប្រយោជន៍លើសប្រវត្តិនៃ ៥០ តួអក្សរ",
     "youCannotTransferMoneyToYourWalletAddress": "អ្នក​មិន​អាច​ផ្ទេរ​លើ​លេខ​សម្ងាត់​អ៊ី​មែល​របស់​អ្នក​បាន​ទេ",
     "theSameCoinCannotBeConverted": "មិនអាចបង្វិលយករបស់ច្បាស់បាន",
-    "ouGet1UsdtTFromUserNamePercy": "អ្នកទទួល ##1## @U#S#DT## ពីឈ្មោះអ្នកប្រើ $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "អ្នកទទួល ##1## @U#S#DT## ពីឈ្មោះអ្នកប្រើ $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "អ្នកត្រូវតែដាក់ប្រាក់យ៉ាងហោចណាស់ 5 USDT ដើម្បីទទួលបានក្រុមហ៊ុនឥណទាន។ ការដាក់ប្រាក់ណាមួយដែលតិចជាង 5 USDT នឹងមិនបានបង្វិលប្រាក់ឡើយ។",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "អាសយដ្ឋានដាក់ប្រាក់នេះតែតម្រូវមិនទេចោល USDT ប៉ុន្តែមិនផ្ញើលុយទុកផ្សេងទៀតទេ។"
 }

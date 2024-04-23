@@ -392,5 +392,7 @@
     "accountNameMaximum50Characters": "Account Name maximum 50 characters",
     "youCannotTransferMoneyToYourWalletAddress": "You cannot transfer money to your wallet address",
     "theSameCoinCannotBeConverted": "The same coin cannot be converted",
-    "ouGet1UsdtTFromUserNamePercy": "You get ##1## @U#S#DT## from User Name $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "You get ##1## @U#S#DT## from User Name $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "You have to deposit at least 5 USDT to ve credited. Any deposit that is less than 5 USDT will not be refunded.",
+	"thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "This deposit address only accepts USDT. Do not send other coins to it."
 }

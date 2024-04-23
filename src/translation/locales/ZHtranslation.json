@@ -387,5 +387,7 @@
     "accountNameMaximum50Characters": "帐户名最多50个字符",
     "youCannotTransferMoneyToYourWalletAddress": "您不能将钱转账到您的钱包地址。",
     "theSameCoinCannotBeConverted": "同一硬币无法转换",
-    "ouGet1UsdtTFromUserNamePercy": "您收到 ##1## @U#S#DT##，来自用户名 $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "您收到 ##1## @U#S#DT##，来自用户名 $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "您必须至少存入 5 USDT 才能获得信用。少于 5 USDT 的任何存款都不会退款。",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "此存款地址只接受 USDT。请勿将其他币种发送至此地址。"
 }

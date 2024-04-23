@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "Hesap Adı en fazla 50 karakter olmalıdır",
     "youCannotTransferMoneyToYourWalletAddress": "Cüzdan adresinize para transfer edemezsiniz",
     "theSameCoinCannotBeConverted": "Aynı coin dönüştürülemez",
-    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT##'den Kullanıcı Adı $#$#na$#ne tarafından alıyorsunuz"
+    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT##'den Kullanıcı Adı $#$#na$#ne tarafından alıyorsunuz",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Kredilendirilmek için en az 5 USDT yatırmanız gerekmektedir. 5 USDT'den az olan herhangi bir yatırım iadesi yapılmayacaktır.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Bu yatırım adresi yalnızca USDT'yi kabul eder. Diğer paraları buraya göndermeyin."
 }

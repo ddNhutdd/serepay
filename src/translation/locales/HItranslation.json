@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "खाता का नाम अधिकतम 50 अक्षर (khaata ka naam adhiktam 50 akshar)",
     "youCannotTransferMoneyToYourWalletAddress": "आप अपने वॉलेट पते पर पैसा स्थानांतरित नहीं कर सकते",
     "theSameCoinCannotBeConverted": "एक ही सिक्का को रूपांतरित नहीं किया जा सकता",
-    "ouGet1UsdtTFromUserNamePercy": "आप ##1## @U#S#DT## प्राप्त करते हैं उपयोगकर्ता नाम $#$#na$#ne से"
+    "ouGet1UsdtTFromUserNamePercy": "आप ##1## @U#S#DT## प्राप्त करते हैं उपयोगकर्ता नाम $#$#na$#ne से",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "क्रेडिट के लिए कम से कम 5 USDT जमा करना होगा। 5 USDT से कम कोई भी जमा वापस नहीं किया जाएगा।",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "यह जमा पता केवल USDT को स्वीकार करता है। इसे अन्य सिक्कों को न भेजें।"
 }

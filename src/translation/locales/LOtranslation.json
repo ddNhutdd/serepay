@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "ຊື່ບັນຊີສາມາດໃຫຍ່ກວ່າ 50 ຕົວອັກສອນ",
     "youCannotTransferMoneyToYourWalletAddress": "ທ່ານ​ບໍ່​ສາ​ມາດ​ໂອນ​ເງິນ​ໄປ​ກັບ​ທີ່​ຢູ່​ເງິນ​ຂອງ​ທ່ານ​ໄດ້",
     "theSameCoinCannotBeConverted": "ບໍ່ສາມາດປ່ຽນເງິນດຽວແດ່",
-    "ouGet1UsdtTFromUserNamePercy": "ທ່ານ​ໄດ້​ຮັບ ##1## @U#S#DT## ຈາກ​ຊື່​ຜູ້​ໃຊ້ $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "ທ່ານ​ໄດ້​ຮັບ ##1## @U#S#DT## ຈາກ​ຊື່​ຜູ້​ໃຊ້ $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "ທ່ານຈ່າຍໄດ້ຢ່າງເລີຍຕົວຈິງ 5 USDT ເພື່ອເຂົ້າໃຊ້ໄດ້ ການຈ່າຍໂດຍເຄື່ອງກ່ຽວ 5 USDT ໂດຍບໍ່ຈ່າຍກັບຄ່າໄດ້",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "ທີ່ຢູ່ໃນການເຕັມຊັບນີ້ຈ່າຍຕົວຈິງ USDT ພົບແລ້ວ ກະລຸນາບໍ່ສົ່ງເງິນໄດ້"
 }

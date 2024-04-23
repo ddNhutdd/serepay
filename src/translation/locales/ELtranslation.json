@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "Το όνομα χρήστη έως 50 χαρακτήρες",
     "youCannotTransferMoneyToYourWalletAddress": "Δεν μπορείτε να μεταφέρετε χρήματα στη διεύθυνση του πορτοφολιού σας",
     "theSameCoinCannotBeConverted": "Δεν μπορεί να μετατραπεί η ίδια νόμισμα",
-    "ouGet1UsdtTFromUserNamePercy": "Λαμβάνετε ##1## @U#S#DT## από το όνομα χρήστη $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "Λαμβάνετε ##1## @U#S#DT## από το όνομα χρήστη $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Πρέπει να καταθέσετε τουλάχιστον 5 USDT για να είστε επιλέξιμος για πίστωση. Οποιαδήποτε κατάθεση που είναι μικρότερη από 5 USDT δεν θα επιστραφεί.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Αυτή η διεύθυνση κατάθεσης δέχεται μόνο USDT. Μην στέλνετε άλλα νομίσματα σε αυτήν."
 }

@@ -392,5 +392,7 @@
     "accountNameMaximum50Characters": "Tên tài khoản không được quá 50 ký tự",
     "youCannotTransferMoneyToYourWalletAddress": "Bạn không thể chuyển tiền vào địa chỉ ví của bạn",
     "theSameCoinCannotBeConverted": "Không thể chuyển đổi cùng loại coin",
-    "ouGet1UsdtTFromUserNamePercy": "Bạn nhận được ##1## @U#S#DT## từ Người Dùng $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "Bạn nhận được ##1## @U#S#DT## từ Người Dùng $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Bạn cần gửi ít nhất 5 USDT để được cộng. Bất kỳ khoản gửi nào ít hơn 5 USDT sẽ không được hoàn lại.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Địa chỉ gửi tiền này chỉ chấp nhận USDT. Đừng gửi các loại tiền khác đến."
 }

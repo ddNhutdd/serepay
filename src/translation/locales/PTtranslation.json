@@ -390,5 +390,7 @@
   "accountNameMaximum50Characters": "O nome da conta deve ter no máximo 50 caracteres",
   "youCannotTransferMoneyToYourWalletAddress": "Nie możesz przelać pieniędzy na swój adres portfela",
   "theSameCoinCannotBeConverted": "A mesma moeda não pode ser convertida",
-  "ouGet1UsdtTFromUserNamePercy": "Você recebe ##1## @U#S#DT## de Nome do Usuário $#$#na$#ne"
+  "ouGet1UsdtTFromUserNamePercy": "Você recebe ##1## @U#S#DT## de Nome do Usuário $#$#na$#ne",
+  "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Você precisa depositar pelo menos 5 USDT para ser creditado. Qualquer depósito menor que 5 USDT não será reembolsado.",
+  "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Este endereço de depósito só aceita USDT. Não envie outras moedas para ele."
 }

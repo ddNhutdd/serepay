@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "يجب ألا يتجاوز اسم الحساب 50 حرفًا",
     "youCannotTransferMoneyToYourWalletAddress": "لا يمكنك تحويل الأموال إلى عنوان محفظتك",
     "theSameCoinCannotBeConverted": "لا يمكن تحويل نفس العملة",
-    "ouGet1UsdtTFromUserNamePercy": "تحصل على ##1## @U#S#DT## من اسم المستخدم $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "تحصل على ##1## @U#S#DT## من اسم المستخدم $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "يجب إيداع ما لا يقل عن 5 USDT للحصول على الرصيد. لن يتم استرداد أي إيداع أقل من 5 USDT.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "يقبل عنوان الإيداع هذا USDT فقط. لا ترسل عملات معدنية أخرى إليه."
 }

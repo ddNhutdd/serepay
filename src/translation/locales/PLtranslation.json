@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "Nazwa konta maks. 50 znaków",
     "youCannotTransferMoneyToYourWalletAddress": "Você não pode transferir dinheiro para o endereço da sua carteira",
     "theSameCoinCannotBeConverted": "Ta sama moneta nie może być przekonwertowana",
-    "ouGet1UsdtTFromUserNamePercy": "Otrzymujesz ##1## @U#S#DT## od użytkownika $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "Otrzymujesz ##1## @U#S#DT## od użytkownika $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Aby uzyskać kredyt, musisz wpłacić co najmniej 5 USDT. Wszystkie wpłaty poniżej 5 USDT nie zostaną zwrócone.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Ten adres depozytu akceptuje tylko USDT. Nie wysyłaj innych monet na ten adres."
 }

@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "Имя учетной записи не может превышать 50 символов",
     "youCannotTransferMoneyToYourWalletAddress": "Вы не можете перевести деньги на свой адрес кошелька",
     "theSameCoinCannotBeConverted": "Ту же монету нельзя конвертировать",
-    "ouGet1UsdtTFromUserNamePercy": "Вы получаете ##1## @U#S#DT## от пользователя $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "Вы получаете ##1## @U#S#DT## от пользователя $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Чтобы быть зачисленным, вы должны внести как минимум 5 USDT. Любой депозит, меньший чем 5 USDT, не будет возвращен.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Этот адрес депозита принимает только USDT. Не отправляйте другие монеты на него."
 }

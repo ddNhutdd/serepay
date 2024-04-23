@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "Accountnaam mag maximaal 50 tekens lang zijn",
     "youCannotTransferMoneyToYourWalletAddress": "Je kunt geen geld overmaken naar je portefeuilleadres",
     "theSameCoinCannotBeConverted": "Dezelfde munt kan niet worden geconverteerd",
-    "ouGet1UsdtTFromUserNamePercy": "Je ontvangt ##1## @U#S#DT## van Gebruikersnaam $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "Je ontvangt ##1## @U#S#DT## van Gebruikersnaam $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Je moet minstens 5 USDT storten om gecrediteerd te worden. Elke storting die minder is dan 5 USDT zal niet worden terugbetaald.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Dit stortingsadres accepteert alleen USDT. Stuur geen andere munten ernaar toe."
 }

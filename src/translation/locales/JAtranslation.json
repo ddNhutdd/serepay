@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "アカウント名は最大50文字である必要があります",
     "youCannotTransferMoneyToYourWalletAddress": "あなたはウォレットアドレスにお金を送金することはできません。",
     "theSameCoinCannotBeConverted": "同じコインは変換できません。",
-    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT## を$#$#na$#neさんから受け取りました。"
+    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT## を$#$#na$#neさんから受け取りました。",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "クレジットされるには少なくとも5 USDTを入金する必要があります。5 USDT未満の入金は返金されません。",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "この入金アドレスはUSDTのみを受け付けます。他のコインを送信しないでください。"
 }

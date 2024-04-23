@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "Nama Akaun mesti maksimum 50 aksara",
     "youCannotTransferMoneyToYourWalletAddress": "Anda tidak boleh memindahkan wang ke alamat dompet anda",
     "theSameCoinCannotBeConverted": "Mata wang yang sama tidak boleh ditukarkan",
-    "ouGet1UsdtTFromUserNamePercy": "Anda menerima ##1## @U#S#DT## dari Nama Pengguna $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "Anda menerima ##1## @U#S#DT## dari Nama Pengguna $#$#na$#ne",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "Anda perlu mendepositkan sekurang-kurangnya 5 USDT untuk diberi kredit. Sebarang deposit yang kurang daripada 5 USDT tidak akan dikembalikan.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "Alamat deposit ini hanya menerima USDT. Jangan hantar duit syiling lain kepadanya."
 }

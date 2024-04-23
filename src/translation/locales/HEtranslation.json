@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "שם חשבון מקסימום 50 תווים",
     "youCannotTransferMoneyToYourWalletAddress": "אתה לא יכול להעביר כסף לכתובת הארנק שלך",
     "theSameCoinCannotBeConverted": "אין אפשרות להמיר את אותה המטבע",
-    "ouGet1UsdtTFromUserNamePercy": "אתה מקבל ##1## @U#S#DT## משם משתמש $#$#na$#ne"
+    "ouGet1UsdtTFromUserNamePercy": "אתה מקבל ##1## @U#S#DT## משם משתמש $#$#na$#ne",
+    "youHaveToDepositAt least5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "יש להפקיד לפחות 5 USDT כדי לקבל זיכוי. כל פיקדון שפחות מ-5 USDT לא יוחזר.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "כתובת ההפקדה הזו מקבלת רק USDT. אל תשלחו אליה מטבעות אחרים."
 }

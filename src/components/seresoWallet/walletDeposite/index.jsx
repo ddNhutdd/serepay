@@ -266,6 +266,21 @@ function SerepayWalletDeposit() {
                   </div>
                 </div>
               </li>
+              <li>
+                <span style={{ visibility: 'hidden' }} className="number">1</span>
+                <div className="wallet-deposit-input">
+                  <ul className="wallet-deposit-causion">
+                    <li>
+                      <img src={process.env.PUBLIC_URL + "/img/!.png"} alt="info" />
+                      You have to deposit at least 5 USDT to be credited. Any deposit that is less than 5 USDT will not be refunded.
+                    </li>
+                    <li>
+                      <img src={process.env.PUBLIC_URL + "/img/!.png"} alt="info" />
+                      This deposit address only accepts USDT. Do not send other coins to it.
+                    </li>
+                  </ul>
+                </div>
+              </li>
             </ul>
           </div>
           <div className="wallet-deposit-right">

@@ -390,5 +390,7 @@
     "accountNameMaximum50Characters": "계정 이름은 최대 50자여야 합니다",
     "youCannotTransferMoneyToYourWalletAddress": "당신은 지갑 주소로 돈을 이체할 수 없습니다.",
     "theSameCoinCannotBeConverted": "동일한 코인은 변환할 수 없습니다.",
-    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT##을(를) $#$#na$#ne님으로부터 받았습니다."
+    "ouGet1UsdtTFromUserNamePercy": "##1## @U#S#DT##을(를) $#$#na$#ne님으로부터 받았습니다.",
+    "youHaveToDepositAtLeast5UsdtToBeCreditedAnyDepositThatIsLessThan5UsdtWillNotBeRefunded": "최소 5 USDT를 입금해야 합니다. 5 USDT 미만의 입금은 환불되지 않습니다.",
+    "thisDepositAddressOnlyAcceptsUSDTDoNotSendOtherCoinsToIt": "이 입금 주소는 USDT만을 허용합니다. 다른 코인을 보내지 마십시오."
 }
