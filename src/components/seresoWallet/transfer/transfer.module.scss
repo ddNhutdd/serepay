@@ -87,11 +87,23 @@
 
                             span {
                                 color: $new-text-color-white;
+                                position: relative;
+                                top: 1px;
 
                                 &:last-child {
+                                    margin-left: 3px;
+                                    margin-right: -4px;
+                                    border-top-right-radius: 8px;
+                                    border-bottom-right-radius: 8px;
+                                    background-color: $neutral-10;
+                                    height: 36px;
+                                    padding: 6px;
+                                    font-weight: 600;
+                                    user-select: none;
+
                                     &.active {
                                         font-weight: 600;
-                                        color: $new-primary-color-6;
+                                        background-color: $new-primary-color-6;
                                     }
 
                                     &:hover {
