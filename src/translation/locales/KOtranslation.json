@@ -365,7 +365,7 @@
     "contact": "연락처",
     "info": "정보",
     "currency": "화폐",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "BEP20 토큰 거래를 위해 충분한 가스 비용을 확보하기 위해 지갑에 최소 0.02 BNB를 보관해야 합니다.",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "BEP20 토큰 거래를 위한 충분한 가스 수수료를 확보하기 위해 지갑에 최소 0.02 BNB를 유지해야합니다. 또한, 지갑 생태계 내 자금 이체와 같은 다른 거래에는 0.1%의 수수료가 있으며, 지갑 생태계 외부로 자금을 이체하는 경우에는 0.2%의 수수료가 발생합니다. 시스템에서의 인출 수수료는 1 USDT입니다.",
     "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "거래 수수료 또는 가스 비용은 고정되어 있지 않으며 블록체인 네트워크의 최대 사용 시간 및 사용 시간 외 시간에 따라 변경될 수 있습니다.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "예상 완료 시간: 2분. 15분 이내에 출금되지 않은 경우 support@serepay.net의 지원 팀에 문의하십시오.",
     "pleaseLogInAgain": "다시 로그인하십시오!",

@@ -38,6 +38,7 @@ function FormWithdraw() {
   };
   const { t } = useTranslation();
   const userWallet = useSelector(getUserWallet);
+  console.log('user wallet ', userWallet);
   const coin = getLocalStorage(localStorageVariable.coinFromWalletList);
   const isLogin = useSelector((root) => root.loginReducer.isLogin);
   const history = useHistory();
@@ -55,6 +56,7 @@ function FormWithdraw() {
   const [withdrawTypeSelected, setWithdrawTypeSelected] = useState(
     withdrawType.bep20
   );
+  const [isMax, setIsMax] = useState(false);
 
   const inputNoteValue = useRef();
   const formWallet = useRef();
@@ -103,13 +105,21 @@ function FormWithdraw() {
     e.preventDefault();
     if (callApiSubmitStatus !== api_status.fetching) {
       setCallApiSubmitStatus(api_status.fetching);
-      transferToAddress({
-        to_address: addressElement.current.value,
+
+      const postObj = {
+        to_address: +addressElement.current.value,
         symbol: coin,
         amount: convertStringToNumber(inputAmountCurrency).toString(),
         note: inputNoteValue.current.value,
         type: "1",
-      })
+        max: 'false'
+      }
+
+      if (isMax) {
+        postObj.max = true;
+      }
+
+      transferToAddress(postObj)
         .then(() => {
           callToastSuccess(
             t("createASuccessfulMoneyTransferOrderWaitingForAdminApproval")
@@ -122,6 +132,7 @@ function FormWithdraw() {
           fetchWithdrawHistory();
         })
         .catch((error) => {
+          console.log(error);
           const messageError =
             error?.response?.data?.errors[0] || error?.response?.data?.message;
           switch (messageError) {
@@ -232,7 +243,11 @@ function FormWithdraw() {
   const maxButtonClickHandle = function () {
     let valueString = getMaxAvailable()?.toString();
     setInputAmountCurrency(formatStringNumberCultureUS(valueString || ""));
+    setIsMax(s => !s);
   };
+  const renderClassMaxActive = () => {
+    return isMax ? css.active : ''
+  }
   const renderClassSpin = function () {
     return callApiSubmitStatus === api_status.fetching ? "" : "--d-none";
   };
@@ -268,9 +283,8 @@ function FormWithdraw() {
                     null,
                     withdrawType.bep20
                   )}
-                  className={`${
-                    css["withdraw-type-items"]
-                  }  ${renderClassActiveWithdrawType(withdrawType.bep20)}`}
+                  className={`${css["withdraw-type-items"]
+                    }  ${renderClassActiveWithdrawType(withdrawType.bep20)}`}
                 >
                   BEP20
                 </span>
@@ -279,9 +293,8 @@ function FormWithdraw() {
                     null,
                     withdrawType.amc20
                   )}
-                  className={`${
-                    css["withdraw-type-items"]
-                  } ${renderClassActiveWithdrawType(withdrawType.amc20)}`}
+                  className={`${css["withdraw-type-items"]
+                    } ${renderClassActiveWithdrawType(withdrawType.amc20)}`}
                 >
                   AMC20
                 </span>
@@ -301,12 +314,13 @@ function FormWithdraw() {
                   value={inputAmountCurrency}
                   onChange={inputAmountCurrencyOnChangeHandles}
                   style={{ paddingRight: inputPadding + 5 }}
+                  disabled={isMax}
                 />
                 <div id="widthDrawListTag" className={css["list-tag"]}>
                   <span>{coin}</span>
                   <span
                     onClick={maxButtonClickHandle}
-                    className={css["active"]}
+                    className={renderClassMaxActive()}
                   >
                     MAX
                   </span>

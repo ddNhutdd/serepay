@@ -365,7 +365,7 @@
     "contact": "צור קשר",
     "info": "מידע",
     "currency": "מטבע",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "עליך לשמור על מינימום של 0.02 BNB בארנק שלך כדי להבטיח מספיק עמלות גז עבור מסחר באסימוני BEP20.",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "עליך לשמור על מאזן מינימלי של 0.02 BNB בארנק שלך כדי לכסות את דמי הגז הנדרשים למסחר באזהרות BEP20. בנוסף, עבור עסקאות אחרות, כמו העברת כספים בתוך אקוסיסטמה של ארנק, יש עמלה של 0.1%, בעוד העברת כספים מחוץ לאקוסיסטמה עושה עמלה של 0.2%. עמלת המשיכה מהמערכת היא 1 USDT.",
     "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "עמלות עסקה או עמלות גז אינן קבועות, עשויות להשתנות בהתאם לשעות השיא ולשעות השפל של רשתות הבלוקצ'יין.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "זמן השלמת משוער: 2 דקות. אם לא קיבלת את המשיכה שלך בתוך 15 דקות, אנא צור קשר עם צוות התמיכה שלנו בכתובת support@serepay.net",
     "pleaseLogInAgain": "אנא התחבר שוב!",

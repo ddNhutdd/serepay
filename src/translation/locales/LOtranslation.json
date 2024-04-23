@@ -365,7 +365,7 @@
     "contact": "ទំនាក់ទំនង",
     "info": "ព័ត៌មាន",
     "currency": "ເງິນຕາ",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "ທ່ານຈໍາເປັນຕ້ອງເກີນມາບໍ່ມີຍອດຄ່າຕ່ຳ 0.02 BNB ຢູ່ໃນບັນຊີຂອງທ່ານເພື່ອຄວາມປອດໄພຈໍານວນສະຫຼັບສະຫຼີບສຳລັບການຄ້າການ BEP20",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "ທ່ານຕ້ອງມີຍອດຕົວຕໍ່ຂອງ 0.02 BNB ໃນກອງຂອງທ່ານເພື່ອມີຄ່າຄາຕໍ່ໄປສະຫງວນທີ່ຈະບໍ່ອະນຸຍັດສໍາລັບຄ່າຄາຕໍ່ຂອງການຊື້ຂາຍຕໍ່ກັບຕົ້ນເງິນ BEP20. ເປັນການມີເຄື່ອງມື້ຂອງການຊື້ຂາຍອື່ນໆ ສະແດງວິທີຂາຍຂາຍກ່ອນເພື່ອຕົວຢ່າງນີ້ມີຄ່າຄາຕໍ່ 0.1%, ກ່ອນທ່ານກຳລັງຍ້ອນເງິນກັບຄ່າຄາຕໍ່ຂອງຕົນເວັບ, ມີຄ່າຄາຕໍ່ 0.2%. ຄ່າຄາຕໍ່ຈາກລະດັບດ້ວຍລະບົບແມ່ນ 1 USDT.",
     "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "ຄ່າຕິດຕາມການຊອກຫຼືຄ່າຕິດຕາມການໄພບໍ່ມີຄ່າທີ່ການຈໍາເປັນຄວາມປອດ, ການປ່ຽນແປງໄດ້ປະກາດໃນການຕິດຕາມສະຫຼັບສະຫຼີບສຳລັບເວລາສະຫນາດແລະອອຟບເຕີ່ງຂອງດ້ວຍແຜ່ນ້ອຍຂອງເຄບແບບນ້ອຍ",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "ເວລາສຳລັບການຈໍາເຖິງ: 2 ນາທີ. ຖ້າທ່ານບໍ່ໄດ້ຮັບການຊອກຂອງທ່ານໃນ 15 ນາທີ, ກະລຸນາຕິດຕໍ່ກັບທີສະບັບຂໍ້ມູນຂອງພວກເຮົາທີ່ support@serepay.net",
     "pleaseLogInAgain": "ກະລຸນາເຂົ້າລະບົບຄືນ!",

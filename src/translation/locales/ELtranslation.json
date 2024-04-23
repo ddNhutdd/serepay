@@ -365,7 +365,7 @@
     "contact": "Επικοινωνία",
     "info": "Πληροφορίες",
     "currency": "Νόμισμα",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Πρέπει να διατηρείτε τουλάχιστον 0,02 BNB στο πορτοφόλι σας για να εξασφαλίσετε αρκετά τέλη αερίου για τη διαπραγμάτευση διακριτικών BEP20.",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Πρέπει να διατηρήσετε ένα ελάχιστο υπόλοιπο των 0,02 BNB στο πορτοφόλι σας για να καλύψετε τα απαραίτητα τέλη αερίου για τον εμπορία των τεκμηρίων BEP20. Επιπλέον, για άλλες συναλλαγές, όπως η μεταφορά κεφαλαίων εντός του οικοσυστήματος του πορτοφολιού, υπάρχει μια χρέωση 0,1%, ενώ η μεταφορά κεφαλαίων εκτός του οικοσυστήματος επιφέρει μια χρέωση 0,2%. Το τέλος ανάληψης από το σύστημα είναι 1 USDT.",
     "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Τα τέλη συναλλαγών ή τα τέλη αερίου δεν είναι σταθερά, υπόκεινται σε αλλαγές ανάλογα με τις ώρες αιχμής και εκτός αιχμής των δικτύων blockchain",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Εκτιμώμενος χρόνος ολοκλήρωσης: 2 λεπτά. Εάν δεν λάβετε την ανάληψή σας εντός 15 λεπτών, επικοινωνήστε με την ομάδα υποστήριξής μας στη διεύθυνση support@serepay.net",
     "pleaseLogInAgain": "Συνδεθείτε ξανά!",

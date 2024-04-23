@@ -365,7 +365,7 @@
   "contact": "Contato",
   "info": "Informação",
   "currency": "Moeda",
-  "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Você deve manter um mínimo de 0,02 BNB em sua carteira para garantir taxas de gás suficientes para negociar tokens BEP20.",
+  "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Você deve manter um saldo mínimo de 0,02 BNB em sua carteira para cobrir as taxas de gás necessárias para negociar tokens BEP20. Além disso, para outras transações, como transferência de fundos dentro do ecossistema da carteira, há uma taxa de 0,1%, enquanto a transferência de fundos fora do ecossistema incorre em uma taxa de 0,2%. A taxa de retirada do sistema é de 1 USDT.",
   "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "As taxas de transação ou taxas de gás não são fixas, estando sujeitas a alterações dependendo do horário de pico e fora de pico das redes blockchain.",
   "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tempo estimado de conclusão: 2 minutos. Se você não receber sua retirada em 15 minutos, entre em contato com nossa equipe de suporte em support@serepay.net",
   "pleaseLogInAgain": "Por favor, faça login novamente!",

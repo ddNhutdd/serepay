@@ -365,7 +365,7 @@
   "contact": "Contatto",
   "info": "Informazioni",
   "currency": "Valuta",
-  "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "È necessario mantenere un minimo di 0,02 BNB nel tuo wallet per garantire commissioni gas sufficienti per lo scambio di token BEP20.",
+  "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Devi mantenere un saldo minimo di 0,02 BNB nel tuo portafoglio per coprire le necessarie commissioni di gas per il trading di token BEP20. Inoltre, per altre transazioni, come il trasferimento di fondi all'interno dell'ecosistema del portafoglio, è prevista una commissione del 0,1%, mentre il trasferimento di fondi al di fuori dell'ecosistema comporta una commissione del 0,2%. La commissione di prelievo dal sistema è di 1 USDT.",
   "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Le commissioni di transazione o commissioni gas non sono fisse, possono variare a seconda delle ore di punta e di quelle fuori punta delle reti blockchain.",
   "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tempo di completamento stimato: 2 minuti. Se non hai ricevuto il tuo prelievo entro 15 minuti, contatta il nostro team di supporto a support@serepay.net",
   "pleaseLogInAgain": "Effettua nuovamente l'accesso!",

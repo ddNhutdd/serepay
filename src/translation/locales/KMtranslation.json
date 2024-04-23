@@ -365,7 +365,7 @@
     "contact": "ទំនាក់ទំនង",
     "info": "ព័ត៌មាន",
     "currency": "រូបិយប័ណ្ណ",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "អ្នកត្រូវតែរក្សាទុកប្រើប្រាស់យ៉ាងហោចណាស់ 0.02 BNB នៅក្នុងគណនីរបស់អ្នកដើម្បីធានាការប្រាក់ថ្លុកស្មើនឹងការធ្វើពិន្ទុ BEP20",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "អ្នកត្រូវបង្កើតសមតុល្យគណនីអប្បបរមាត្រូវសម្រាចការសំរេចលើការគិតថ្លៃក្នុងការធ្វើពន្យល់ BEP20 tokens។ ទីពីនេះទៅវិញអ្នកគិតថ្លៃសេវារយៈពេលផ្សារផ្សេងគ្នាដូចជាការប្តូរប្រាក់ក្នុងប្រព័ន្ធចង្អៀតផ្សេងៗ គឺជាការគិតថ្លៃកម្រិត 0.1% នៅពេលដែលប្រព័ន្ធគិតថ្លៃសេវាក្នុងសង្គមចន្លោះប្រព័ន្ធហុននិងប្រព័ន្ធផ្សេងៗ ហើយនៅពេលដែលផ្ញើទឹកប្រាក់ចូលពីសង្គមចន្លោះប្រព័ន្ធគិតថ្លៃសេវាក្នុងការចេញពីប្រព័ន្ធគឺគិតថ្លៃកម្រិត 0.2% គិតថ្លៃចេញពីប្រព័ន្ធគឺគិតថ្លៃកម្រិត 1 USDT។",
     "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "ថ្លុកប្រាក់ធ្វើពិន្ទុឬថ្លុកថ្លៃថ្លុកមិនបានកំណត់សម្រាប់ការផ្លាស់ប្តូរតាមពេលកំណត់និងក្រៅពេលរបស់បណ្តាញប្រភេទ Blockchain",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "ពេលបញ្ចប់បំផុត: 2 នាទី។ ប្រសិនបើអ្នកមិនបានទទួលការដកប្រាក់របស់អ្នកនៅក្នុង 15 នាទី សូមទាក់ទងមកក្រុមគាំទ្ររបស់យើងនៅលើគេហទំព័រគាំទ្រតាមរយៈសាកល្បង support@serepay.net",
     "pleaseLogInAgain": "សូមចូលព្រមទាំងម្ដងទៀត!",

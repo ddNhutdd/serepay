@@ -89,6 +89,11 @@
                                 color: $new-text-color-white;
 
                                 &:last-child {
+                                    &.active {
+                                        font-weight: 600;
+                                        color: $new-primary-color-6;
+                                    }
+
                                     &:hover {
                                         cursor: pointer;
                                     }

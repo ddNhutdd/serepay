@@ -1,5 +1,5 @@
-import {callToastSuccess} from "src/function/toast/callToast";
-import {availableLanguageCodeMapper} from "src/translation/i18n";
+import { callToastSuccess } from "src/function/toast/callToast";
+import { availableLanguageCodeMapper } from "src/translation/i18n";
 import * as XLSX from "xlsx/xlsx.mjs";
 
 export const setLocalStorage = (key, data) => {
@@ -92,6 +92,20 @@ export const roundDecimalValues = function (value, coinValue) {
 		decimalPlaces = 2;
 	}
 	const roundedValue = +value.toFixed(decimalPlaces);
+	return roundedValue;
+};
+export const roundDownDecimalValues = function (value, coinValue) {
+	let decimalPlaces;
+	if (coinValue > 10000) {
+		decimalPlaces = 8;
+	} else if (coinValue >= 100 && coinValue <= 9999) {
+		decimalPlaces = 6;
+	} else {
+		decimalPlaces = 2;
+	}
+
+	// Làm tròn xuống bằng cách thêm một số rất nhỏ vào trước khi làm tròn
+	const roundedValue = +(Math.floor(value * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces)).toFixed(decimalPlaces);
 	return roundedValue;
 };
 export const zoomImage = function (e) {
@@ -414,7 +428,7 @@ export const findMin = function (...params) {
 export const observeWidth = function (setWidth) {
 	return new ResizeObserver((entries) => {
 		for (let entry of entries) {
-			const {width, height} = entry.contentRect;
+			const { width, height } = entry.contentRect;
 			setWidth(width);
 		}
 	});
@@ -484,7 +498,7 @@ export const messageTransferHandle = (res, t) => {
 			default:
 				break;
 		}
-		return <span key={index} style={{fontWeight: 600, color: 'green'}}>{content}</span>
+		return <span key={index} style={{ fontWeight: 600, color: 'green' }}>{content}</span>
 	}
 	const mess = processString(t('ouGet1UsdtTFromUserNamePercy'), subStringList, process)
 	callToastSuccess(mess);

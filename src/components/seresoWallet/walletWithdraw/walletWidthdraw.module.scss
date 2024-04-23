@@ -92,6 +92,11 @@
                                 color: $new-text-color-white;
 
                                 &:last-child {
+                                    &.active {
+                                        color: $new-primary-color-6;
+                                        font-weight: 600;
+                                    }
+
                                     &:hover {
                                         cursor: pointer;
                                     }

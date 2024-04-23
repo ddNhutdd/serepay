@@ -5,6 +5,7 @@ import QRCode from "react-qr-code";
 import {
   api_status,
   coinString,
+  currencyMapper,
   deploy_domain,
   image_domain,
   localStorageVariable,
@@ -62,6 +63,7 @@ function Transfer() {
   const [coin, setCoin] = useState(
     getLocalStorage(localStorageVariable.coinFromWalletList)
   );
+  const [isMax, setIsMax] = useState(false);
 
   const userNameInputElement = useRef();
   const messageElement = useRef();
@@ -95,6 +97,7 @@ function Transfer() {
       userName: userNameInputElement.current.value,
       amount: inputAmountCurrency.toString().replaceAll(",", ""),
       note: messageElement.current.value,
+      max: isMax
     })
       .then((resp) => {
         callToastSuccess(t("transferSuccessful"));
@@ -303,6 +306,13 @@ function Transfer() {
     history.push(url.profile);
     return;
   };
+  const maxClickHandle = () => {
+    setIsMax(s => !s);
+    setInputAmountCurrency(formatNumber(getMaxAvailable() || 0, currencyMapper.USD, 8))
+  }
+  const renderIsMaxActive = () => {
+    return isMax ? css.active : '';
+  }
 
   useEffect(() => {
     Object.keys(listParams).length > 0 &&
@@ -372,10 +382,14 @@ function Transfer() {
                   value={inputAmountCurrency}
                   onChange={inputAmountCurrencyOnChangeHandles}
                   type={inputType.number}
-                  style={{ paddingRight: inputAmoutTransferPadding + 15 }}
+                  style={{ paddingRight: inputAmoutTransferPadding + 30 }}
+                  disabled={isMax}
                 />
                 <div id="transferListTag" className={css["list-tag"]}>
                   <span>{coin}</span>
+                  <span onClick={maxClickHandle} className={renderIsMaxActive()}>
+                    MAX
+                  </span>
                 </div>
               </div>
               <div className={css["max-available"]}>

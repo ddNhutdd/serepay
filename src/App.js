@@ -40,6 +40,7 @@ import {
   messageTransferHandle,
   removeLocalStorage,
   roundDecimalValues,
+  roundDownDecimalValues,
   setIsMainAccount
 } from "./util/common";
 import {
@@ -141,14 +142,14 @@ function App() {
                 (item) =>
                   item.name === name.replace("_balance", "").toUpperCase()
               )[0]?.price ?? 0;
-            result[name] = roundDecimalValues(value, price);
+            result[name] = roundDownDecimalValues(value, price);
           }
           if (Object.keys(result)) {
             userWallet.current = result;
             dispatch(coinUserWallet(result));
           }
         })
-        .catch((error) => { });
+        .catch(() => { });
     });
   };
   const getExchangeRateDisparityApi = function () {
