@@ -366,7 +366,6 @@
   "info": "Info",
   "currency": "Währung",
   "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Sie müssen einen Mindestguthaben von 0,02 BNB in Ihrer Brieftasche aufbewahren, um die erforderlichen Gasgebühren für den Handel mit BEP20-Token zu decken. Darüber hinaus fallen für andere Transaktionen wie die Übertragung von Geldern innerhalb des Brieftaschen-Ökosystems eine Gebühr von 0,1% an, während für die Übertragung von Geldern außerhalb des Ökosystems eine Gebühr von 0,2% anfällt. Die Abhebungsgebühr aus dem System beträgt 1 USDT.",
-  "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Transaktionsgebühren oder Gasgebühren sind nicht festgelegt und können sich je nach Spitzenzeit und Nebenzeit der Blockchain-Netzwerke ändern.",
   "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Geschätzte Abschlusszeit: 2 Minuten. Wenn Sie Ihre Auszahlung innerhalb von 15 Minuten nicht erhalten haben, wenden Sie sich bitte an unser Support-Team unter support@serepay.net.",
   "pleaseLogInAgain": "Bitte melden Sie sich erneut an!",
   "loginExpired": "Anmeldung abgelaufen",

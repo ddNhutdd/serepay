@@ -366,7 +366,6 @@
     "info": "信息",
     "currency": "货币",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "您必须在您的钱包中保持至少0.02个BNB的最低余额，以支付交易BEP20代币所需的足够的燃气费。此外，对于其他交易，例如在钱包生态系统内转移资金，会收取0.1％的费用，而在生态系统外转移资金则会产生0.2％的费用。从系统中提取的提款费为1 USDT。",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "交易费用或 Gas 费用并非固定，会根据区块链网络高峰期和非高峰期而有所变化。",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "估计完成时间：2 分钟。如果您在 15 分钟内未收到您的提款，请通过 support@serepay.net 联系我们的支持团队。",
     "pleaseLogInAgain": "请重新登录！",
     "loginExpired": "登录已过期",

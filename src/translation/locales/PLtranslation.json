@@ -366,7 +366,6 @@
     "info": "Informacje",
     "currency": "Waluta",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Aby pokryć niezbędne opłaty za gaz wymagane do handlu tokenami BEP20, musisz utrzymywać minimalny bilans 0.02 BNB w swoim portfelu. Dodatkowo, dla innych transakcji, takich jak transferowanie środków w ramach ekosystemu portfela, obowiązuje opłata w wysokości 0.1%, podczas gdy transferowanie środków poza ekosystem wiąże się z opłatą w wysokości 0.2%. Opłata za wypłatę ze systemu wynosi 1 USDT.",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Opłaty transakcyjne lub opłaty za gaz nie są stałe, mogą ulegać zmianom w zależności od szczytowych i poza szczytowych godzin pracy sieci blockchain.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Szacowany czas realizacji: 2 minuty. Jeśli nie otrzymasz wypłaty w ciągu 15 minut, skontaktuj się z naszym zespołem wsparcia pod adresem support@serepay.net",
     "pleaseLogInAgain": "Proszę ponownie się zalogować!",
     "loginExpired": "Sesja wygasła",

@@ -366,7 +366,6 @@
     "info": "معلومات",
     "currency": "العملة",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "يجب عليك الحفاظ على رصيد أدنى قدره 0.02 BNB في محفظتك لتغطية الرسوم اللازمة للغاز لتداول الرموز BEP20. بالإضافة إلى ذلك، للمعاملات الأخرى مثل نقل الأموال داخل نظام الحوسبة المحفظة، هناك رسم بنسبة 0.1٪، في حين أن نقل الأموال خارج النظام يتكبد رسم بنسبة 0.2٪. رسوم السحب من النظام هي 1 USDT.",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "رسوم المعاملات أو رسوم الغاز ليست ثابتة، وتخضع للتغييرات اعتمادًا على وقت الذروة وخارج الذروة لشبكات blockchain",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "الوقت المتوقع للإكمال: دقيقتان. إذا لم تتلق سحبك خلال 15 دقيقة، يرجى الاتصال بفريق الدعم الفني على support@serepay.net",
     "pleaseLogInAgain": "يرجى تسجيل الدخول مرة أخرى!",
     "loginExpired": "انتهت صلاحية تسجيل الدخول",

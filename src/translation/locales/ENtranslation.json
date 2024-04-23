@@ -368,7 +368,6 @@
     "soldToKCCCZZX": "Sold to KCCCZZX",
     "currency": "Currency",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "You must maintain a minimum balance of 0.02 BNB in your wallet to cover the necessary gas fees for trading BEP20 tokens. Additionally, for other transactions, such as transferring funds within the wallet ecosystem, there is a fee of 0.1%, while transferring funds outside the ecosystem incurs a fee of 0.2%. The withdrawal fee from the system is 1 USDT.",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Transaction fees or gas fees are not fixed, subject to changes depending on peak time and off peak of the blockchain networks",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Estimated completion time: 2 minutes. if you did not recieved your withdraw in 15 minutes, please contact our support team at support@serepay.net",
     "pleaseLogInAgain": "Please log in again!",
     "loginExpired": "Login expired",

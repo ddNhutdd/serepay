@@ -344,16 +344,7 @@ function FormWithdraw() {
                     )}
                   </p>
                 </li>
-                <li className={css["notify-item"]}>
-                  <span>
-                    <img src="./img/!.png" alt="" />
-                  </span>
-                  <p>
-                    {t(
-                      "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks"
-                    )}
-                  </p>
-                </li>
+                
                 <li className={css["notify-item"]}>
                   <span>
                     <img src="./img/!.png" alt="" />

@@ -366,7 +366,6 @@
     "info": "Информация",
     "currency": "Валюта",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Вы должны поддерживать минимальный баланс 0.02 BNB в своем кошельке, чтобы покрыть необходимые комиссии за газ при торговле токенами BEP20. Кроме того, для других транзакций, таких как перевод средств в пределах экосистемы кошелька, взимается комиссия 0.1%, а при переводе средств за пределы экосистемы взимается комиссия 0.2%. Комиссия за вывод с системы составляет 1 USDT.",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Комиссии за транзакции или комиссии за газ не являются фиксированными и могут меняться в зависимости от пикового и непикового времени работы сетей блокчейн.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Предполагаемое время завершения: 2 минуты. Если вы не получили свой вывод средств в течение 15 минут, пожалуйста, обратитесь в нашу службу поддержки по адресу support@serepay.net",
     "pleaseLogInAgain": "Пожалуйста, авторизуйтесь снова!",
     "loginExpired": "Срок действия сеанса истек",

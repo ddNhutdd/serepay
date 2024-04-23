@@ -366,7 +366,6 @@
     "info": "जानकारी",
     "currency": "मुद्रा",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "बीईपी20 टोकन ट्रेडिंग के लिए आवश्यक गैस शुल्क को कवर करने के लिए आपको अपने वॉलेट में कम से कम 0.02 बीएनबी का न्यूनतम शेष बनाए रखना चाहिए। इसके अतिरिक्त, अन्य लेन-देन के लिए, जैसे वॉलेट इकोसिस्टम के अंदर निधि हस्तांतरण, एक 0.1% का शुल्क है, जबकि इकोसिस्टम के बाहर निधि हस्तांतरण एक 0.2% का शुल्क लेता है। सिस्टम से निकासी शुल्क 1 USDT है।",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": " लेनदेन शुल्क या गैस शुल्क निश्चित नहीं हैं, ब्लॉकचेन नेटवर्क के व्यस्त और गैर-व्यस्त समय के आधार पर परिवर्तन के अधीन हैं।",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "अनुमानित समापन समय: 2 मिनट। यदि आपको 15 मिनट के भीतर अपनी निकासी नहीं मिली, तो कृपया support@serepay.net पर हमारी सहायता टीम से संपर्क करें",
     "pleaseLogInAgain": "कृपया पुनः लॉग इन करें!",
     "loginExpired": "लॉगिन समाप्त हो गया",

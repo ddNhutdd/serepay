@@ -368,7 +368,6 @@
     "soldToKCCCZZX": "Bán cho KCCCZZX",
     "currency": "Tiền tệ",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Bạn phải giữ ít nhất 0.02 BNB trong ví của bạn để đảm bảo có đủ phí gas cho việc giao dịch token BEP20. Ngoài ra, cho các giao dịch khác như chuyển tiền trong hệ thống ví con, có phí là 0.1%, trong khi chuyển tiền ra khỏi hệ thống ví con thì phí là 0.2%. Phí rút tiền ra khỏi hệ thống là 1 USDT.",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Phí giao dịch hoặc phí gas không cố định, có thể thay đổi tùy thuộc vào thời gian cao điểm và thấp điểm của các mạng blockchain.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Thời gian hoàn thành ước tính: 2 phút. Nếu bạn không nhận được khoản rút tiền trong vòng 15 phút, vui lòng liên hệ với đội ngũ hỗ trợ của chúng tôi qua support@serepay.net",
     "pleaseLogInAgain": "Vui lòng đăng nhập lại!",
     "loginExpired": "Phiên đăng nhập đã hết hạn",

@@ -366,7 +366,6 @@
     "info": "Info",
     "currency": "Devise",
     "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Vous devez maintenir un solde minimum de 0,02 BNB dans votre portefeuille pour couvrir les frais de gaz nécessaires pour le trading de jetons BEP20. De plus, pour d'autres transactions, telles que le transfert de fonds dans l'écosystème de portefeuille, des frais de 0,1% sont appliqués, tandis que le transfert de fonds en dehors de l'écosystème entraîne des frais de 0,2%. Les frais de retrait du système s'élèvent à 1 USDT.",
-    "transactionFeesOrGasFeesAreNotFixedSubjectToChangesDependingOnPeakTimeAndOffPeakOfTheBlockchainNetworks": "Les frais de transaction ou frais de gas ne sont pas fixes, ils peuvent varier en fonction des heures de pointe et des heures creuses des réseaux blockchain.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Temps d'exécution estimé : 2 minutes. Si vous n'avez pas reçu votre retrait dans les 15 minutes, veuillez contacter notre équipe d'assistance à support@serepay.net",
     "pleaseLogInAgain": "Veuillez vous reconnecter !",
     "loginExpired": "Connexion expirée",
