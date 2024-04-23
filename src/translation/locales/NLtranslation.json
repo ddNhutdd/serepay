@@ -365,7 +365,7 @@
     "contact": "Contact",
     "info": "Info",
     "currency": "Valuta",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "U moet een minimumsaldo van 0,02 BNB in uw portemonnee handhaven om de nodige gasvergoedingen te dekken voor het verhandelen van BEP20-tokens. Daarnaast is er voor andere transacties, zoals het overboeken van fondsen binnen het portefeuille-ecosysteem, een vergoeding van 0,1%, terwijl het overboeken van fondsen buiten het ecosysteem een vergoeding van 0,2% met zich meebrengt. De opnamekosten van het systeem bedragen 1 USDT.",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Het overboeken van fondsen binnen het portefeuille-ecosysteem brengt een vergoeding van 0,1% met zich mee. Het overboeken van fondsen buiten het portefeuille-ecosysteem brengt een vergoeding van 0,2% met zich mee. De opnamekosten uit het systeem bedragen 1 USDT.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Geschatte voltooiingstijd: 2 minuten. Als u uw opname binnen 15 minuten niet hebt ontvangen, neem dan contact op met ons supportteam via support@serepay.net",
     "pleaseLogInAgain": "Log alstublieft opnieuw in!",
     "loginExpired": "Sessie verlopen",

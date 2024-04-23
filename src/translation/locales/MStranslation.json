@@ -365,7 +365,7 @@
     "contact": "Hubungi",
     "info": "Maklumat",
     "currency": "Mata wang",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Anda perlu mengekalkan baki minimum 0.02 BNB dalam dompet anda untuk menampung yuran gas yang diperlukan untuk perdagangan token BEP20. Selain itu, untuk transaksi lain, seperti pemindahan dana dalam ekosistem dompet, terdapat yuran sebanyak 0.1%, manakala pemindahan dana di luar ekosistem mengakibatkan yuran sebanyak 0.2%. Yuran pengeluaran dari sistem adalah 1 USDT.",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Pemindahan dana dalam ekosistem dompet mengakibatkan biaya sebesar 0,1%. Pemindahan dana di luar ekosistem dompet mengakibatkan biaya sebesar 0,2%. Biaya penarikan dari sistem adalah 1 USDT.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Anggaran masa siap: 2 minit. Jika anda tidak menerima pengeluaran anda dalam masa 15 minit, sila hubungi pasukan sokongan kami di support@serepay.net",
     "pleaseLogInAgain": "Sila log masuk semula!",
     "loginExpired": "Sesi tamat tempoh",

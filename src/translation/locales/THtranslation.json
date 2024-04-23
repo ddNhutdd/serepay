@@ -363,7 +363,7 @@
     "contact": "ติดต่อ",
     "info": "ข้อมูล",
     "currency": "สกุลเงิน",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "คุณต้องรักษายอดเงินขั้นต่ำ 0.02 BNB ในกระเป๋าของคุณเพื่อป้องกันค่าธรรมเนียมแก๊สเพียงพอสำหรับการซื้อขายตั๊กัต BEP20 นอกจากนี้สำหรับธุรกรรมอื่น ๆ เช่น การโอนเงินภายในระบบกระเป๋าสตางค์ มีค่าธรรมเนียมอยู่ที่ 0.1% ในขณะที่การโอนเงินไปยังภูมิสารสนเทศนอกกระเป๋าสตางค์จะมีค่าธรรมเนียมอยู่ที่ 0.2% ค่าธรรมเนียมการถอนเงินจากระบบคือ 1 USDT",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "การโอนเงินภายในระบบกระเป๋าเงินจะมีค่าธรรมเนียม 0.1% การโอนเงินนอกจากระบบกระเป๋าเงินจะมีค่าธรรมเนียม 0.2% ค่าธรรมเนียมการถอนจากระบบคือ 1 USDT",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "ระยะเวลาโดยประมาณ: 2 นาที. กรุณาติดต่อทีมสนับสนุนของเราที่ support@serepay.net หากคุณไม่ได้รับเงินที่ถอนออกภายใน 15 นาที",
     "pleaseLogInAgain": "กรุณาล็อกอินอีกครั้ง!",
     "loginExpired": "การเข้าสู่ระบบหมดอายุ",

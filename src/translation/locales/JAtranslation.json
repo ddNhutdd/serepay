@@ -365,7 +365,7 @@
     "contact": "コンタクト",
     "info": "情報",
     "currency": "通貨",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "BEP20 トークンを取引するために必要なガス手数料をカバーするために、ウォレットには最低限0.02 BNBの残高を維持する必要があります。また、ウォレットエコシステム内で資金を移動するなど、他の取引には0.1％の手数料がかかりますが、エコシステム外で資金を移動する場合は0.2％の手数料がかかります。システムからの引き出し手数料は1 USDTです。",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "ウォレットエコシステム内で資金を移動する場合、手数料が0.1%発生します。ウォレットエコシステム外で資金を移動する場合、手数料が0.2%発生します。システムからの引き出し手数料は1 USDTです。",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "推定完了時間：2分。 15分以内に引き出しが完了しなかった場合は、support@serepay.netまでサポートチームにご連絡ください。",
     "pleaseLogInAgain": "再度ログインしてください！",
     "loginExpired": "ログインが期限切れになりました",

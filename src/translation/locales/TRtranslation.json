@@ -365,7 +365,7 @@
     "contact": "İletişim",
     "info": "Bilgi",
     "currency": "Para birimi",
-    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "BEP20 token ticareti için gerekli gaz ücretlerini karşılamak için cüzdanınızda minimum 0.02 BNB bakiyesini korumalısınız. Ayrıca, cüzdan ekosistemi içinde fon transferi gibi diğer işlemler için %0.1'lik bir ücret alınırken, ekosistem dışına fon transferi %0.2'lik bir ücret gerektirir. Sistemden çekme ücreti 1 USDT'dir.",
+    "youMustKeepAMinimum002BNBInYourWalletToSecureEnoughGasFeesForTradingBEP20Tokens": "Cüzdan ekosistemi içinde fon transferi yapmanın ücreti %0.1'dir. Cüzdan ekosistemi dışına fon transferi yapmanın ücreti %0.2'dir. Sistemden para çekme ücreti 1 USDT'dir.",
     "estimatedCompletionTime2MinutesIfYouDidNotRecievedYourWithdrawIn15MinutesPleaseContactOurSupportTeamAtSupportSerepayNet": "Tahmini tamamlanma süresi: 2 dakika. 15 dakika içinde çekiminizi almadıysanız, lütfen support@serepay.net adresindeki destek ekibimizle iletişime geçin.",
     "pleaseLogInAgain": "Lütfen tekrar giriş yapın!",
     "loginExpired": "Oturum süresi doldu",
