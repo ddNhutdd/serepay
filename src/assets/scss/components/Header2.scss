@@ -483,11 +483,9 @@
           background-color: $background-color-4;
         }
 
-        span {
-          &:last-child {
-            color: $green-16;
-            font-weight: bold;
-          }
+        .header2__accountList__coin {
+          color: $green-16;
+          font-weight: bold;
         }
 
         &.active {
@@ -513,6 +511,10 @@
       align-items: center;
       justify-content: flex-end;
       gap: 10px;
+    }
+
+    .header2__accountDetail {
+      padding: 15px;
     }
   }
 }

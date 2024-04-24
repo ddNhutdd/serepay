@@ -40,12 +40,14 @@ import { Button, buttonClassesType, htmlType } from "../Common/Button";
 import Kyc from "./kyc";
 import useForm from "src/hooks/use-form";
 import useLogout from "src/hooks/logout";
+import { useMainAccount } from "src/context/main-account";
 
 function Profile() {
   const logout = useLogout();
   const { t } = useTranslation();
   const history = useHistory();
   const { listBank, status: listBankStatus } = useSelector(getBankState);
+  const { isMainAccount } = useMainAccount();
 
   const [is2FAModalOpen, setIs2FAModalOpen] = useState(false);
   const [callApiLoadInfoUserStatus, setCallApiLoadInfoUserStatus] = useState(
@@ -455,12 +457,7 @@ function Profile() {
   };
   const closeChangePassModal = () => {
     setIsModalOpen(false);
-    resetChangePassForm();
-  };
-  const resetChangePassForm = function () {
-    oldPassElement.current.value = "";
-    newPassElement.current.value = "";
-    confirmPassElement.current.value = "";
+    changePassReset()
   };
   const callApiChangePass = async function () {
     try {
@@ -602,20 +599,22 @@ function Profile() {
         <div className=" profile__security">
           <div className="profile__card-container box">
             <div className="profile__title">{t("security")}</div>
-            <div className="profile__security-item">
-              <div className="profile__left">
-                <h4>{t("password")}</h4>
-                <p>{t("doYouWantToChangeYourPasswordClickHereToChange")}</p>
+            {
+              isMainAccount && <div className="profile__security-item">
+                <div className="profile__left">
+                  <h4>{t("password")}</h4>
+                  <p>{t("doYouWantToChangeYourPasswordClickHereToChange")}</p>
+                </div>
+                <div className="profile__right">
+                  <button
+                    onClick={showModalChangePass}
+                    className="profile__button"
+                  >
+                    {t("changePassword")}
+                  </button>
+                </div>
               </div>
-              <div className="profile__right">
-                <button
-                  onClick={showModalChangePass}
-                  className="profile__button"
-                >
-                  {t("changePassword")}
-                </button>
-              </div>
-            </div>
+            }
             <div className="profile__security-item">
               <div className="profile__left">
                 <h4>2FA</h4>

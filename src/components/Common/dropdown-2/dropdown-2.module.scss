@@ -1,0 +1,32 @@
+@import 'src/assets/scss/style.scss';
+
+.dropdown2 {
+	position: relative;
+
+	.dropdown2__menu {
+		position: absolute;
+		right: 0;
+		display: none;
+		border-radius: 8px;
+		padding: 8px 0;
+		background-color: $new-background-level-2;
+		
+
+		&.show {
+			display: block;
+			z-index: 9999;
+		}
+
+		.dropdown2__item {
+			padding: 4px 8px;
+			transition: background .2s;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $background-color-4;
+			}
+		}
+	}
+
+
+}

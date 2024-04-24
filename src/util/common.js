@@ -503,3 +503,10 @@ export const messageTransferHandle = (res, t) => {
 	const mess = processString(t('ouGet1UsdtTFromUserNamePercy'), subStringList, process)
 	callToastSuccess(mess);
 };
+export const checkKeyInObj = (key, obj) => {
+	if (key in obj) {
+		return true;
+	} else {
+		return false;
+	}
+}

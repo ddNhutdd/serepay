@@ -6,6 +6,7 @@ import {
 	setLocalStorage,
 	removeLocalStorage,
 	formatNumber,
+	checkKeyInObj,
 } from "../../util/common";
 import {
 	api_status,
@@ -27,10 +28,13 @@ import {
 import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import { Modal, Spin } from "antd";
-import { addWallet, loginWallet } from "src/util/userCallApi";
-import { Button } from "../Common/Button";
+import { addWallet, editNickNameWallet, loginWallet } from "src/util/userCallApi";
+import { Button, buttonClassesType, htmlType } from "../Common/Button";
 import { useMainAccount } from "../../context/main-account";
 import useLogout from "src/hooks/logout";
+import Dropdown2 from "../Common/dropdown-2";
+import { Input } from "../Common/Input";
+import useForm from "src/hooks/use-form";
 
 export default function Header2({ history }) {
 	const { isLogin, username, isAdmin } = useSelector(
@@ -57,11 +61,6 @@ export default function Header2({ history }) {
 	const [totalMoney, setTotalMoney] = useState(0); // it is the string it displays on the web
 	const [isModalLanguageOpen, setIsModalLanguageOpen] = useState(false);
 	const [isModalCurrencyOpen, setIsModalCurrencyOpen] = useState(false);
-
-	const [listWallet, setListWallet] = useState();
-	const [callApiLoginWalletStatus, setCallApiLoginWalletStatus] = useState(api_status.pending);
-
-	const [callApiAddWalletStatus, setCallApiAddWalletStatus] = useState(api_status.pending);
 
 	const dispatch = useDispatch();
 	const location = useLocation();
@@ -339,15 +338,20 @@ export default function Header2({ history }) {
 	}
 
 	// tài khoản phụ
+
 	// cho phần thông tin tài khoản
 	const [isModalAccInfoOpent, setIsModalAccInfoOpent] = useState(false);
 	const closeModalAccountInfo = () => setIsModalAccInfoOpent(false);
+	const [listWallet, setListWallet] = useState();
+	const [callApiLoginWalletStatus, setCallApiLoginWalletStatus] = useState(api_status.pending);
 	const renderAccountInfoContent = () => callApiLoginWalletStatus !== api_status.fetching ? '' : '--d-none';
 	const showModalAccountList = () => setIsShowModalAccountList(true);
 	const [currentWalletUsdtBalance, setCurrentWalletUsdtBalance] = useState(0);
 	const renderAccountInfoSpin = () => callApiLoginWalletStatus === api_status.fetching ? '' : '--d-none';
+
 	// cho phần list tài khoản phụ
 	const [isShowModalAccountList, setIsShowModalAccountList] = useState(false);
+	const [callApiAddWalletStatus, setCallApiAddWalletStatus] = useState(api_status.pending);
 	const closeModalAccountList = () => {
 		if (callApiAddWalletStatus === api_status.fetching) {
 			return;
@@ -409,6 +413,43 @@ export default function Header2({ history }) {
 			setCallApiAddWalletStatus(api_status.rejected);
 		}
 	}
+	const renderName = (item) => {
+		if (item.nickName === null) {
+			return item.username;
+		} else if (item.nickName !== null) {
+			return <>
+				{item.nickName}
+				{" "}
+				<span style={{ opacity: 0.3 }}>
+					({item.username})
+				</span>
+			</>
+		}
+	}
+	const [showMenuEdit, setShowMenuEdit] = useState({});
+	const dropdownClickHandle = (id) => {
+		const newState = {};
+		if (checkKeyInObj(id, showMenuEdit)) {
+			newState[id] = !showMenuEdit[id];
+		} else {
+			newState[id] = true;
+		}
+		setShowMenuEdit(newState);
+	}
+	const dropdownEditChange = (item) => {
+		const [id, name, parentUserIdWallet, nickName] = item?.value?.split('_');
+		const newObj = {
+			id,
+			name: nickName === 'null' ? name : nickName,
+			parentUserIdWallet
+		}
+		setEditUserName(newObj)
+
+		// đóng tất cả dropdown
+		setShowMenuEdit({});
+
+		setDetailModalShow(true);
+	}
 	const renderAccountList = () => {
 		if (!listWallet || listWallet.length <= 0) {
 			return;
@@ -416,20 +457,92 @@ export default function Header2({ history }) {
 		const setActive = (item) => {
 			return username === item.username ? 'active' : ''
 		}
-		return listWallet.map((item, index) => (
-			<div onClick={accountItemCLickHandle.bind(null, item)} key={index}
-				className={`header2__accountItem ${setActive(item)}`}>
-				<span>
-					{item.username}
-				</span>
-				<span>
-					{formatNumber(item.USDT_balance, i18n.language, 8)} USDT
-				</span>
-				{/*<Button style={{width: '32px', height:"32px"}} className="ml-a">
-          <i className="fa-solid fa-pen"></i>
-        </Button>*/}
-			</div>))
+		return listWallet.map((item, index) => {
+			return (
+				<div onClick={accountItemCLickHandle.bind(null, item)} key={index}
+					className={`header2__accountItem ${setActive(item)}`}>
+					<span>
+						{renderName(item)}
+					</span>
+					<span className={`header2__accountList__coin`}>
+						{formatNumber(item.USDT_balance, i18n.language, 8)} USDT
+					</span>
+					<div className="ml-a">
+						<Dropdown2
+							header={<Button
+								onClick={dropdownClickHandle.bind(null, item.id)}
+								style={{ width: '32px', height: "32px" }}
+							>
+								<i className="fa-solid fa-pen"></i>
+							</Button>}
+							option={[{
+								value: `${item.id}_${item.username}_${item.parentUserIdWallet}_${item.nickName}`,
+								content: (
+									<div className="d-flex alignItem-c gap-1">
+										<i className="fa-solid fa-circle-info"></i>
+										Detail
+									</div>
+								)
+							}]}
+							onChange={dropdownEditChange}
+							show={showMenuEdit[item.id]}
+						/>
+					</div>
+				</div >
+			)
+		})
 	}
+
+	// modal detail --> sửa tên
+	const accountDetailControl = {
+		nickname: 'nickname'
+	}
+	const [detailModalShow, setDetailModalShow] = useState(false);
+	const [editUsername, setEditUserName] = useState({});
+	const [editEnable, setEditEnable] = useState(false);
+	const [fetchApiChangeNickNameStatus, setFetchApiChangeNickNameStatus] = useState(api_status.pending);
+	const closeDetailModal = () => {
+		if (fetchApiChangeNickNameStatus === api_status.fetching) {
+			return;
+		}
+		setDetailModalShow(false)
+	};
+	const isButtonEditShow = editUsername?.id === editUsername?.parentUserIdWallet ? '--d-none' : '';
+	const renderEditEnableClass = (editEnable) => editEnable ? '' : '--d-none';
+	const enableEditClickHandle = () => {
+		setEditEnable(true);
+		reset({
+			[accountDetailControl.nickname]: editUsername?.name
+		})
+	};
+	const cancelEditClickHandle = () => setEditEnable(false);
+	const changeNicknameAction = async (allValues) => {
+		try {
+			if (fetchApiChangeNickNameStatus === api_status.fetching) {
+				return;
+			}
+			setFetchApiChangeNickNameStatus(api_status.fetching);
+			const postData = {
+				idUser: editUsername.id,
+				nickName: allValues[accountDetailControl.nickname]
+			}
+			await editNickNameWallet(postData);
+			setEditUserName(state => {
+				return {
+					...state,
+					name: allValues[accountDetailControl.nickname]
+				}
+			})
+			callApiLoginWallet();
+			setFetchApiChangeNickNameStatus(api_status.fulfilled);
+			callToastSuccess(t(commontString.success.toLocaleLowerCase()));
+		} catch (error) {
+			setFetchApiChangeNickNameStatus(api_status.rejected);
+		}
+	}
+	const [register, changeNicknameSubmit, errors, reset] = useForm(changeNicknameAction, {
+		[accountDetailControl.nickname]: editUsername?.name
+	});
 
 	// useEffect
 	useEffect(() => {
@@ -756,6 +869,62 @@ export default function Header2({ history }) {
 					<div className="header2__accountList__action">
 						<Button loading={callApiAddWalletStatus === api_status.fetching}
 							onClick={addMoreAccountCLickHandle}>Add more account</Button>
+					</div>
+				</ul>
+			</Modal>
+			<Modal
+				header={null}
+				footer={null}
+				wrapClassName="header2__LanguageModal"
+				open={detailModalShow}
+				onCancel={closeDetailModal}
+			>
+				<ul className="header2__LanguageModal__content">
+					<li
+						onClick={closeDetailModal}
+						key={-1}
+						className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+					>
+						<span></span>
+						<span className="hover-p">
+							<i className="fa-solid fa-xmark"></i>
+						</span>
+					</li>
+					<div className="header2__accountDetail">
+						<div className={`d-flex alignItem-c justify-sb gap-2 ${renderEditEnableClass(!editEnable)}`}>
+							<div>
+								{editUsername?.name}
+							</div>
+							<Button
+								onClick={enableEditClickHandle}
+								className={isButtonEditShow}
+							>
+								<i className="fa-solid fa-pen"></i>
+							</Button>
+						</div>
+						<form
+							onSubmit={changeNicknameSubmit}
+							className={`d-flex alignItem-start justify-sb gap-2 ${renderEditEnableClass(editEnable)}`}
+						>
+							<Input
+								{...register(accountDetailControl.nickname)}
+								require={[true, 'require']}
+								errorMes={t(errors[accountDetailControl.nickname])}
+							/>
+							<Button
+								loading={fetchApiChangeNickNameStatus === api_status.fetching}
+							>
+								<i className="fa-solid fa-check"></i>
+							</Button>
+							<Button
+								htmlSubmit={htmlType.button}
+								onClick={cancelEditClickHandle}
+								type={buttonClassesType.outline}
+								loading={fetchApiChangeNickNameStatus === api_status.fetching}
+							>
+								<i className="fa-solid fa-xmark"></i>
+							</Button>
+						</form>
 					</div>
 				</ul>
 			</Modal>

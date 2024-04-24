@@ -188,14 +188,20 @@ function useForm(submitHandle, initialValues) {
 
 		return {
 			onChange: handleChange.bind(null, actionFunction),
-			id: name
+			id: name,
+			value: values[name] || ''
 		}
 	}
 	const reset = (reInitialValue) => {
 		setErrors({});
 		errorsRuntime.current = {};
 		allowValidate.current = false;
-		setValues(reInitialValue || initialValues || {})
+		if (reInitialValue) {
+			setValues(initialValues)
+		} else {
+			setValues(initialValues || {})
+		}
+
 	}
 
 	return [register, onSubmit, errors, reset, values];
