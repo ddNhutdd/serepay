@@ -1,55 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import i18n, { availableLanguageMapper } from "../../translation/i18n";
+import React, {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
+import i18n, {availableLanguageMapper} from "../../translation/i18n";
 import {
-	getLocalStorage,
-	setLocalStorage,
-	removeLocalStorage,
-	formatNumber,
-	checkKeyInObj,
+	getLocalStorage, setLocalStorage, removeLocalStorage, formatNumber, checkKeyInObj,
 } from "../../util/common";
 import {
-	api_status,
-	commontString,
-	defaultCurrency,
-	defaultLanguage,
-	localStorageVariable,
-	url,
+	api_status, commontString, defaultCurrency, defaultLanguage, localStorageVariable, url,
 } from "../../constant";
-import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getCurrent, getExchange } from "src/redux/constant/currency.constant";
-import { currencySetCurrent } from "src/redux/actions/currency.action";
-import { callToastSuccess } from "src/function/toast/callToast";
+import {useLocation} from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux";
+import {getCurrent, getExchange} from "src/redux/constant/currency.constant";
+import {currencySetCurrent} from "src/redux/actions/currency.action";
+import {callToastSuccess} from "src/function/toast/callToast";
 import {
-	getTotalAssetsBtcRealTime,
-	getTotalAssetsRealTime,
+	getTotalAssetsBtcRealTime, getTotalAssetsRealTime,
 } from "src/redux/constant/listCoinRealTime.constant";
-import { getNotify } from "src/redux/reducers/notifiyP2pSlice";
-import { userWalletFetchCount } from "src/redux/actions/coin.action";
-import { Modal, Spin } from "antd";
-import { addWallet, editNickNameWallet, loginWallet } from "src/util/userCallApi";
-import { Button, buttonClassesType, htmlType } from "../Common/Button";
-import { useMainAccount } from "../../context/main-account";
+import {getNotify} from "src/redux/reducers/notifiyP2pSlice";
+import {userWalletFetchCount} from "src/redux/actions/coin.action";
+import {Modal, Spin} from "antd";
+import {addWallet, editNickNameWallet, loginWallet} from "src/util/userCallApi";
+import {Button, buttonClassesType, htmlType} from "../Common/Button";
+import {useMainAccount} from "../../context/main-account";
 import useLogout from "src/hooks/logout";
 import Dropdown2 from "../Common/dropdown-2";
-import { Input } from "../Common/Input";
+import {Input} from "../Common/Input";
 import useForm from "src/hooks/use-form";
 
-export default function Header2({ history }) {
-	const { isLogin, username, isAdmin } = useSelector(
-		(root) => root.loginReducer
-	);
+export default function Header2({history}) {
+	const {isLogin, username, isAdmin} = useSelector((root) => root.loginReducer);
+	console.log(username)
 	const notifyRedux = useSelector(getNotify);
-	const { isMainAccount } = useMainAccount();
+	const {isMainAccount} = useMainAccount();
 	const currencyFromRedux = useSelector(getCurrent);
-	const [currentLanguage, setCurrentLanguage] = useState(
-		getLocalStorage(localStorageVariable.lng) || defaultLanguage
-	);
-	const [currentCurrency, setCurrentCurrency] = useState(
-		currencyFromRedux || defaultCurrency
-	);
-	const { t } = useTranslation();
+	const [currentLanguage, setCurrentLanguage] = useState(getLocalStorage(localStorageVariable.lng) || defaultLanguage);
+	const [currentCurrency, setCurrentCurrency] = useState(currencyFromRedux || defaultCurrency);
+	const {t} = useTranslation();
 	const totalAssetsRealTime = useSelector(getTotalAssetsRealTime);
 	const totalAssetsBtcRealTime = useSelector(getTotalAssetsBtcRealTime);
 	const listExChange = useSelector(getExchange);
@@ -123,37 +108,31 @@ export default function Header2({ history }) {
 					break;
 				}
 			}
-			return (
-				<div
-					onClick={languageItemClickHandle.bind(codeContry)}
-					key={codeContry}
-					className={`header2__language-item ${codeContry === currentLanguage ? "active" : ""
-						}`}
-				>
+			return (<div
+				onClick={languageItemClickHandle.bind(codeContry)}
+				key={codeContry}
+				className={`header2__language-item ${codeContry === currentLanguage ? "active" : ""}`}
+			>
 					<span>
 						<img
 							src={process.env.PUBLIC_URL + `/img/icon${codeContry}.png`}
 							alt={codeContry}
 						/>
 					</span>
-					<span>{item}</span>
-				</div>
-			);
+				<span>{item}</span>
+			</div>);
 		});
 	};
 	const renderListCurrency = function () {
 		const listCurr = listExChange.map((item) => item.title);
 		const listCurrSorted = listCurr.sort();
-		return listCurrSorted.map((item, index) => (
-			<div
-				key={index}
-				onClick={currencyItemClickHandle.bind(item)}
-				className={`header2__currrency-item ${item === currentCurrency ? "active" : ""
-					} `}
-			>
-				{item}
-			</div>
-		));
+		return listCurrSorted.map((item, index) => (<div
+			key={index}
+			onClick={currencyItemClickHandle.bind(item)}
+			className={`header2__currrency-item ${item === currentCurrency ? "active" : ""} `}
+		>
+			{item}
+		</div>));
 	};
 	const currencyItemClickHandle = function () {
 		setLocalStorage(localStorageVariable.currency, this);
@@ -206,20 +185,18 @@ export default function Header2({ history }) {
 			setIsShowMenu(false);
 		};
 
-		return exchangeArray.map((item) => (
-			<li
-				key={item}
-				onClick={itemClickHandle.bind(null, item)}
-				className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
-			>
-				<div className="d-flex alignItem-c justify-start gap-2">
-					<span>{item}</span>
-				</div>
-				<div className={`header2__LanguageModal__stick ${setActive(item)}`}>
-					<i className="fa-solid fa-check"></i>
-				</div>
-			</li>
-		));
+		return exchangeArray.map((item) => (<li
+			key={item}
+			onClick={itemClickHandle.bind(null, item)}
+			className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
+		>
+			<div className="d-flex alignItem-c justify-start gap-2">
+				<span>{item}</span>
+			</div>
+			<div className={`header2__LanguageModal__stick ${setActive(item)}`}>
+				<i className="fa-solid fa-check"></i>
+			</div>
+		</li>));
 	};
 	const logout = () => {
 		logoutAction();
@@ -237,17 +214,8 @@ export default function Header2({ history }) {
 		return isLogin ? loggedInClass : notLoggedInYetClass;
 	};
 	const renderTotalMoney = function () {
-		if (
-			!totalAssetsRealTime ||
-			totalAssetsRealTime < 0 ||
-			!currentCurrency ||
-			!listExChange ||
-			listExChange.length <= 0
-		)
-			return;
-		const exchange = listExChange.find(
-			(item) => item.title === currentCurrency
-		);
+		if (!totalAssetsRealTime || totalAssetsRealTime < 0 || !currentCurrency || !listExChange || listExChange.length <= 0) return;
+		const exchange = listExChange.find((item) => item.title === currentCurrency);
 		if (!exchange) return;
 		const result = calcMoney(totalAssetsRealTime, exchange.rate);
 		setTotalMoney(() => result);
@@ -279,11 +247,9 @@ export default function Header2({ history }) {
 		setIsModalLanguageOpen(false);
 	};
 	const renderListLanguageModal = function () {
-		const countryArray = Object.entries(availableLanguageMapper).map(
-			([key, value]) => {
-				return { key, value };
-			}
-		);
+		const countryArray = Object.entries(availableLanguageMapper).map(([key, value]) => {
+			return {key, value};
+		});
 		const sortedLanguages = countryArray.sort((a, b) => {
 			const valueA = a.value.toLowerCase();
 			const valueB = b.value.toLowerCase();
@@ -301,27 +267,25 @@ export default function Header2({ history }) {
 			i18n.changeLanguage(language);
 		};
 
-		return sortedLanguages.map(({ key, value }) => {
-			return (
-				<li
-					key={key}
-					onClick={itemClickHandle.bind(null, key)}
-					className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
-				>
-					<div className="d-flex alignItem-c justify-start gap-2">
+		return sortedLanguages.map(({key, value}) => {
+			return (<li
+				key={key}
+				onClick={itemClickHandle.bind(null, key)}
+				className="p-3 d-flex alignItem-c justify-sb p-3 hover-p"
+			>
+				<div className="d-flex alignItem-c justify-start gap-2">
 						<span>
 							<img
 								alt={value}
 								src={process.env.PUBLIC_URL + `/img/icon${key}.png`}
 							/>
 						</span>
-						<span>{value}</span>
-					</div>
-					<div className={`header2__LanguageModal__stick ${setActive(key)}`}>
-						<i className="fa-solid fa-check"></i>
-					</div>
-				</li>
-			);
+					<span>{value}</span>
+				</div>
+				<div className={`header2__LanguageModal__stick ${setActive(key)}`}>
+					<i className="fa-solid fa-check"></i>
+				</div>
+			</li>);
 		});
 	};
 	const showModalCurrency = () => {
@@ -373,7 +337,7 @@ export default function Header2({ history }) {
 			const token = user.token;
 			setLocalStorage(localStorageVariable.user, user);
 			setLocalStorage(localStorageVariable.token, token);
-			dispatch({ type: "USER_LOGIN" });
+			dispatch({type: "USER_LOGIN"});
 			setCurrentWalletUsdtBalance(user.USDT_balance);
 			setCallApiLoginWalletStatus(api_status.fulfilled);
 			dispatch(userWalletFetchCount());
@@ -390,7 +354,7 @@ export default function Header2({ history }) {
 			if (callApiLoginWalletStatus === api_status.fetching) return;
 			setCallApiLoginWalletStatus(api_status.fetching);
 			const userId = getLocalStorage(localStorageVariable.user)?.id;
-			const resp = await loginWallet({ idUser: userId });
+			const resp = await loginWallet({idUser: userId});
 			const allWallet = [resp.data.data.infoUserLogin, ...resp.data.data.wallet];
 			const currentUsdtBalance = allWallet.find(item => item.id === +userId)?.USDT_balance;
 			setListWallet(allWallet);
@@ -420,7 +384,7 @@ export default function Header2({ history }) {
 			return <>
 				{item.nickName}
 				{" "}
-				<span style={{ opacity: 0.3 }}>
+				<span style={{opacity: 0.3}}>
 					({item.username})
 				</span>
 			</>
@@ -439,9 +403,7 @@ export default function Header2({ history }) {
 	const dropdownEditChange = (item) => {
 		const [id, name, parentUserIdWallet, nickName] = item?.value?.split('_');
 		const newObj = {
-			id,
-			name: nickName === 'null' ? name : nickName,
-			parentUserIdWallet
+			id, name: nickName === 'null' ? name : nickName, parentUserIdWallet
 		}
 		setEditUserName(newObj)
 
@@ -455,41 +417,37 @@ export default function Header2({ history }) {
 			return;
 		}
 		const setActive = (item) => {
-			return username === item.username ? 'active' : ''
+			return username === item.nickName || username === item.username ? 'active' : ''
 		}
 		return listWallet.map((item, index) => {
-			return (
-				<div onClick={accountItemCLickHandle.bind(null, item)} key={index}
-					className={`header2__accountItem ${setActive(item)}`}>
+			return (<div onClick={accountItemCLickHandle.bind(null, item)} key={index}
+						 className={`header2__accountItem ${setActive(item)}`}>
 					<span>
 						{renderName(item)}
 					</span>
-					<span className={`header2__accountList__coin`}>
+				<span className={`header2__accountList__coin`}>
 						{formatNumber(item.USDT_balance, i18n.language, 8)} USDT
 					</span>
-					<div className="ml-a">
-						<Dropdown2
-							header={<Button
-								onClick={dropdownClickHandle.bind(null, item.id)}
-								style={{ width: '32px', height: "32px" }}
-							>
-								<i className="fa-solid fa-pen"></i>
-							</Button>}
-							option={[{
-								value: `${item.id}_${item.username}_${item.parentUserIdWallet}_${item.nickName}`,
-								content: (
-									<div className="d-flex alignItem-c gap-1">
-										<i className="fa-solid fa-circle-info"></i>
-										Detail
-									</div>
-								)
-							}]}
-							onChange={dropdownEditChange}
-							show={showMenuEdit[item.id]}
-						/>
-					</div>
-				</div >
-			)
+				<div className="ml-a">
+					<Dropdown2
+						header={<Button
+							onClick={dropdownClickHandle.bind(null, item.id)}
+							style={{width: '32px', height: "32px"}}
+						>
+							<i className="fa-solid fa-pen"></i>
+						</Button>}
+						option={[{
+							value: `${item.id}_${item.username}_${item.parentUserIdWallet}_${item.nickName}`,
+							content: (<div className="d-flex alignItem-c gap-1">
+								<i className="fa-solid fa-circle-info"></i>
+								Detail
+							</div>)
+						}]}
+						onChange={dropdownEditChange}
+						show={showMenuEdit[item.id]}
+					/>
+				</div>
+			</div>)
 		})
 	}
 
@@ -523,17 +481,22 @@ export default function Header2({ history }) {
 			}
 			setFetchApiChangeNickNameStatus(api_status.fetching);
 			const postData = {
-				idUser: editUsername.id,
-				nickName: allValues[accountDetailControl.nickname]
+				idUser: editUsername.id, nickName: allValues[accountDetailControl.nickname]
 			}
 			await editNickNameWallet(postData);
 			setEditUserName(state => {
 				return {
-					...state,
-					name: allValues[accountDetailControl.nickname]
+					...state, name: allValues[accountDetailControl.nickname]
 				}
 			})
 			callApiLoginWallet();
+			// nếu user vừa edit là user đang đăng nhập thì chỉnh lại tên trong localstore
+			const userInLocalStorage = getLocalStorage(localStorageVariable.user);
+			if(+userInLocalStorage.id === +postData.idUser) {
+				userInLocalStorage.nickName = allValues[accountDetailControl.nickname];
+				setLocalStorage(localStorageVariable.user, userInLocalStorage);
+				dispatch({type: "USER_LOGIN"})
+			}
 			setFetchApiChangeNickNameStatus(api_status.fulfilled);
 			callToastSuccess(t(commontString.success.toLocaleLowerCase()));
 		} catch (error) {
@@ -546,8 +509,7 @@ export default function Header2({ history }) {
 
 	// useEffect
 	useEffect(() => {
-		const language =
-			getLocalStorage(localStorageVariable.lng) || defaultLanguage;
+		const language = getLocalStorage(localStorageVariable.lng) || defaultLanguage;
 		i18n.changeLanguage(language);
 		setCurrentLanguage(language);
 
@@ -565,369 +527,352 @@ export default function Header2({ history }) {
 		closeModalAccountInfo();
 	}, [location]);
 
-	return (
-		<>
-			<header className="header2 fadeInTopToBottom">
-				<div className="container">
-					<div className="logo" onClick={() => history.push(url.home)}>
-						<img src="/img/logowhite.png" alt="Remitano Logo" />
+	return (<>
+		<header className="header2 fadeInTopToBottom">
+			<div className="container">
+				<div className="logo" onClick={() => history.push(url.home)}>
+					<img src="/img/logowhite.png" alt="Remitano Logo"/>
+				</div>
+				<div className={`menu ${renderClassShowMenu()}`}>
+					{isMainAccount && <div
+						data-page={url.swap}
+						className="navlink"
+						onClick={redirectPageClickHandle}
+					>
+						{t("swap")}
+					</div>}
+					<div
+						onClick={redirectPageClickHandle}
+						className="navlink"
+						data-page={url.p2pTrading}
+					>
+						{t("p2pTrading")}
 					</div>
-					<div className={`menu ${renderClassShowMenu()}`}>
-						{
-							isMainAccount && <div
-								data-page={url.swap}
-								className="navlink"
-								onClick={redirectPageClickHandle}
-							>
-								{t("swap")}
-							</div>
-						}
+					<div
+						onClick={redirectPageClickHandle}
+						className={`navlink ${renderClassShowAdmin()}`}
+						data-page={url.admin_user}
+					>
+						{t("admin")}
+					</div>
+				</div>
+				<div onClick={barButtonClickHandle} className="bar-button">
+					<i className="fa-solid fa-bars-staggered"></i>
+				</div>
+				<div className={`header2__right ${renderClassShowMenu()}`}>
+					<div className="header2__language">
 						<div
-							onClick={redirectPageClickHandle}
-							className="navlink"
-							data-page={url.p2pTrading}
+							onClick={languageToggle}
+							className="header2__language-seletor"
 						>
-							{t("p2pTrading")}
+							<img
+								src={process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`}
+								alt="language"
+							/>
 						</div>
 						<div
-							onClick={redirectPageClickHandle}
-							className={`navlink ${renderClassShowAdmin()}`}
-							data-page={url.admin_user}
+							className={`header2__language-menu ${renderClassShowMenuLanguage()}`}
 						>
-							{t("admin")}
+							{renderMenuLanguage()}
 						</div>
 					</div>
-					<div onClick={barButtonClickHandle} className="bar-button">
-						<i className="fa-solid fa-bars-staggered"></i>
-					</div>
-					<div className={`header2__right ${renderClassShowMenu()}`}>
-						<div className="header2__language">
-							<div
-								onClick={languageToggle}
-								className="header2__language-seletor"
-							>
-								<img
-									src={
-										process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`
-									}
-									alt="language"
-								/>
-							</div>
-							<div
-								className={`header2__language-menu ${renderClassShowMenuLanguage()}`}
-							>
-								{renderMenuLanguage()}
-							</div>
-						</div>
-						<div
-							onClick={showModalLanguage}
-							className="header2__languageModalButton alignItem-c justify-sb py-2"
-						>
-							<div className="d-f gap-2 alignItem-c justify-start">
+					<div
+						onClick={showModalLanguage}
+						className="header2__languageModalButton alignItem-c justify-sb py-2"
+					>
+						<div className="d-f gap-2 alignItem-c justify-start">
 								<span>
 									<i className="fa-solid fa-globe"></i>
 								</span>
-								<span>{t("language")}</span>
-							</div>
-							<div className="d-flex gap-2">
+							<span>{t("language")}</span>
+						</div>
+						<div className="d-flex gap-2">
 								<span>
 									<img
-										src={
-											process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`
-										}
+										src={process.env.PUBLIC_URL + `/img/icon${currentLanguage}.png`}
 									/>
 								</span>
-								<span>{availableLanguageMapper[currentLanguage]}</span>
-								<span>
+							<span>{availableLanguageMapper[currentLanguage]}</span>
+							<span>
 									<i className="fa-solid fa-chevron-right"></i>
 								</span>
-							</div>
 						</div>
-						<div className={`header2__currency`}>
-							<div
-								onClick={currencyToggle}
-								className="header2__currency-selector"
-							>
-								{currentCurrency}
-							</div>
-							<div
-								className={`header2__currrency-menu ${renderClassShowMenuCurrency()}`}
-							>
-								{renderListCurrency()}
-							</div>
+					</div>
+					<div className={`header2__currency`}>
+						<div
+							onClick={currencyToggle}
+							className="header2__currency-selector"
+						>
+							{currentCurrency}
 						</div>
 						<div
-							onClick={showModalCurrency}
-							className="header2__languageModalButton alignItem-c justify-sb py-2"
+							className={`header2__currrency-menu ${renderClassShowMenuCurrency()}`}
 						>
-							<div className="d-flex alignItem-c justify-c gap-2">
+							{renderListCurrency()}
+						</div>
+					</div>
+					<div
+						onClick={showModalCurrency}
+						className="header2__languageModalButton alignItem-c justify-sb py-2"
+					>
+						<div className="d-flex alignItem-c justify-c gap-2">
 								<span>
 									<i className="fa-solid fa-money-bill-wheat"></i>
 								</span>
-								<span>{t("currency")}</span>
-							</div>
-							<div className="d-flex alignItem-c justify-c gap-2">
-								<span>{currentCurrency}</span>
-								<span>
+							<span>{t("currency")}</span>
+						</div>
+						<div className="d-flex alignItem-c justify-c gap-2">
+							<span>{currentCurrency}</span>
+							<span>
 									<i className="fa-solid fa-chevron-right"></i>
 								</span>
-							</div>
 						</div>
-						<div
-							className={`header2__wallet ${renderClassWithLogin(
-								"",
-								"--d-none"
-							)}`}
-						>
+					</div>
+					<div
+						className={`header2__wallet ${renderClassWithLogin("", "--d-none")}`}
+					>
 							<span
 								className={`${renderClassShowNotify()} header2__wallet__bag`}
 							>
 								<i className="fa-regular fa-clock"></i>
 							</span>
-							<div onClick={walletToggle} className="header2__wallet-title">
-								{t("wallet")}
+						<div onClick={walletToggle} className="header2__wallet-title">
+							{t("wallet")}
+						</div>
+						<div
+							className={`header2__wallet-menu ${renderClassShowMenuWallet()}`}
+						>
+							<div
+								onClick={redirectPageClickHandle}
+								data-page={url.wallet}
+								className="header2__wallet-item"
+							>
+								<i className="fa-solid fa-wallet"></i>
+								<span>{t("wallet")}</span>
 							</div>
 							<div
-								className={`header2__wallet-menu ${renderClassShowMenuWallet()}`}
+								onClick={redirectPageClickHandle}
+								data-page={url.ads_history}
+								className="header2__wallet-item"
 							>
-								<div
-									onClick={redirectPageClickHandle}
-									data-page={url.wallet}
-									className="header2__wallet-item"
-								>
-									<i className="fa-solid fa-wallet"></i>
-									<span>{t("wallet")}</span>
-								</div>
-								<div
-									onClick={redirectPageClickHandle}
-									data-page={url.ads_history}
-									className="header2__wallet-item"
-								>
-									<i className="fa-solid fa-rectangle-ad"></i>
-									<span>{t("advertisingHistory")}</span>
-								</div>
-								<div
-									onClick={redirectPageClickHandle}
-									data-page={url.p2p_management}
-									className="header2__wallet-item"
-								>
+								<i className="fa-solid fa-rectangle-ad"></i>
+								<span>{t("advertisingHistory")}</span>
+							</div>
+							<div
+								onClick={redirectPageClickHandle}
+								data-page={url.p2p_management}
+								className="header2__wallet-item"
+							>
 									<span
 										className={`${renderClassShowNotify()} header2__wallet-item-bag`}
 									>
 										{notifyRedux}
 									</span>
-									<i className="fa-solid fa-comments-dollar"></i>
-									<span>{t("p2PHistory")}</span>
-								</div>
+								<i className="fa-solid fa-comments-dollar"></i>
+								<span>{t("p2PHistory")}</span>
 							</div>
 						</div>
+					</div>
+					<div
+						className={`header2__user ${renderClassWithLogin("", "--d-none")}`}
+					>
+						<div onClick={userToggle} className="header2__username">
+							{username}
+						</div>
 						<div
-							className={`header2__user ${renderClassWithLogin(
-								"",
-								"--d-none"
-							)}`}
+							className={`header2__user-info ${renderClassShowMenuUser()}`}
 						>
-							<div onClick={userToggle} className="header2__username">
-								{username}
+							<div
+								onClick={redirectPageClickHandle}
+								data-page={url.profile}
+								className="header2__user-info-item"
+							>
+								<i className="fa-regular fa-user"></i>
+								<span>{t("profile")}</span>
 							</div>
 							<div
-								className={`header2__user-info ${renderClassShowMenuUser()}`}
+								onClick={showModalAccountInfo}
+								className="header2__user-info-item"
 							>
-								<div
-									onClick={redirectPageClickHandle}
-									data-page={url.profile}
-									className="header2__user-info-item"
-								>
-									<i className="fa-regular fa-user"></i>
-									<span>{t("profile")}</span>
-								</div>
-								<div
-									onClick={showModalAccountInfo}
-									className="header2__user-info-item"
-								>
-									<i className="fa-solid fa-id-badge"></i>
-									<span>{username}</span>
-								</div>
-								<div onClick={logout} className="header2__user-info-item">
-									<i className="fa-solid fa-arrow-right-from-bracket"></i>
-									<span>{t("logOut")}</span>
-								</div>
+								<i className="fa-solid fa-id-badge"></i>
+								<span>{username}</span>
+							</div>
+							<div onClick={logout} className="header2__user-info-item">
+								<i className="fa-solid fa-arrow-right-from-bracket"></i>
+								<span>{t("logOut")}</span>
 							</div>
 						</div>
-						<div
-							onClick={redirectLogin}
-							className={`header2__login ${renderClassWithLogin(
-								"--d-none",
-								""
-							)}`}
-						>
-							{t("login")}
-							{" / "}
-							{t("register")}
-						</div>
+					</div>
+					<div
+						onClick={redirectLogin}
+						className={`header2__login ${renderClassWithLogin("--d-none", "")}`}
+					>
+						{t("login")}
+						{" / "}
+						{t("register")}
 					</div>
 				</div>
-			</header>
-			<Modal
-				open={isModalLanguageOpen}
-				onCancel={closeModalLanguage}
-				header={null}
-				footer={null}
-				wrapClassName="header2__LanguageModal"
-			>
-				<ul className="header2__LanguageModal__content">
-					<li
-						onClick={closeModalLanguage}
-						key={-1}
-						className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
-					>
-						<span>{t("language")}</span>
-						<span className="hover-p">
+			</div>
+		</header>
+		<Modal
+			open={isModalLanguageOpen}
+			onCancel={closeModalLanguage}
+			header={null}
+			footer={null}
+			wrapClassName="header2__LanguageModal"
+		>
+			<ul className="header2__LanguageModal__content">
+				<li
+					onClick={closeModalLanguage}
+					key={-1}
+					className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+				>
+					<span>{t("language")}</span>
+					<span className="hover-p">
 							<i className="fa-solid fa-xmark"></i>
 						</span>
-					</li>
-					{renderListLanguageModal()}
-				</ul>
-			</Modal>
-			<Modal
-				header={null}
-				footer={null}
-				wrapClassName="header2__LanguageModal"
-				open={isModalCurrencyOpen}
-				onCancel={closeModalCurrency}
-			>
-				<ul className="header2__LanguageModal__content">
-					<li
-						onClick={closeModalCurrency}
-						key={-1}
-						className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
-					>
-						<span>{t("currency")}</span>
-						<span className="hover-p">
+				</li>
+				{renderListLanguageModal()}
+			</ul>
+		</Modal>
+		<Modal
+			header={null}
+			footer={null}
+			wrapClassName="header2__LanguageModal"
+			open={isModalCurrencyOpen}
+			onCancel={closeModalCurrency}
+		>
+			<ul className="header2__LanguageModal__content">
+				<li
+					onClick={closeModalCurrency}
+					key={-1}
+					className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+				>
+					<span>{t("currency")}</span>
+					<span className="hover-p">
 							<i className="fa-solid fa-xmark"></i>
 						</span>
-					</li>
-					{renderListCurrencyModal()}
-				</ul>
-			</Modal>
-			<Modal
-				header={null}
-				footer={null}
-				wrapClassName="header2__LanguageModal"
-				open={isModalAccInfoOpent}
-				onCancel={closeModalAccountInfo}
-			>
-				<ul className="header2__LanguageModal__content">
-					<li
-						onClick={closeModalAccountInfo}
-						key={-1}
-						className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
-					>
-						<span>{username}</span>
-						<span className="hover-p">
+				</li>
+				{renderListCurrencyModal()}
+			</ul>
+		</Modal>
+		<Modal
+			header={null}
+			footer={null}
+			wrapClassName="header2__LanguageModal"
+			open={isModalAccInfoOpent}
+			onCancel={closeModalAccountInfo}
+		>
+			<ul className="header2__LanguageModal__content">
+				<li
+					onClick={closeModalAccountInfo}
+					key={-1}
+					className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+				>
+					<span>{username}</span>
+					<span className="hover-p">
 							<i className="fa-solid fa-xmark"></i>
 						</span>
-					</li>
-					<div className="header2__accountInfo">
-						<div className={`header2__accountInfoContent ${renderAccountInfoContent()}`}>
-							<div onClick={showModalAccountList}>
-								<i className="fa-solid fa-user"></i>
-								{username}
-								<i className="fa-solid fa-angle-down"></i>
-							</div>
-							<div>{username}</div>
+				</li>
+				<div className="header2__accountInfo">
+					<div className={`header2__accountInfoContent ${renderAccountInfoContent()}`}>
+						<div onClick={showModalAccountList}>
+							<i className="fa-solid fa-user"></i>
+							{username}
+							<i className="fa-solid fa-angle-down"></i>
+						</div>
+						<div>{username}</div>
 
-							<div>{formatNumber(currentWalletUsdtBalance, i18n.language, 8)} USDT</div>
-						</div>
-						<div className={`spin-container ${renderAccountInfoSpin()}`}>
-							<Spin />
-						</div>
+						<div>{formatNumber(currentWalletUsdtBalance, i18n.language, 8)} USDT</div>
 					</div>
-				</ul>
-			</Modal>
-			<Modal
-				header={null}
-				footer={null}
-				wrapClassName="header2__LanguageModal"
-				open={isShowModalAccountList}
-				onCancel={closeModalAccountList}
-			>
-				<ul className="header2__LanguageModal__content">
-					<li
-						onClick={closeModalAccountList}
-						key={-1}
-						className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
-					>
-						<span>{username}</span>
-						<span className="hover-p">
+					<div className={`spin-container ${renderAccountInfoSpin()}`}>
+						<Spin/>
+					</div>
+				</div>
+			</ul>
+		</Modal>
+		<Modal
+			header={null}
+			footer={null}
+			wrapClassName="header2__LanguageModal"
+			open={isShowModalAccountList}
+			onCancel={closeModalAccountList}
+		>
+			<ul className="header2__LanguageModal__content">
+				<li
+					onClick={closeModalAccountList}
+					key={-1}
+					className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+				>
+					<span>{username}</span>
+					<span className="hover-p">
 							<i className="fa-solid fa-xmark"></i>
 						</span>
-					</li>
-					<div className="header2__accountList">
-						{renderAccountList()}
-					</div>
-					<div className="header2__accountList__action">
-						<Button loading={callApiAddWalletStatus === api_status.fetching}
+				</li>
+				<div className="header2__accountList">
+					{renderAccountList()}
+				</div>
+				<div className="header2__accountList__action">
+					<Button loading={callApiAddWalletStatus === api_status.fetching}
 							onClick={addMoreAccountCLickHandle}>Add more account</Button>
-					</div>
-				</ul>
-			</Modal>
-			<Modal
-				header={null}
-				footer={null}
-				wrapClassName="header2__LanguageModal"
-				open={detailModalShow}
-				onCancel={closeDetailModal}
-			>
-				<ul className="header2__LanguageModal__content">
-					<li
-						onClick={closeDetailModal}
-						key={-1}
-						className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
-					>
-						<span></span>
-						<span className="hover-p">
+				</div>
+			</ul>
+		</Modal>
+		<Modal
+			header={null}
+			footer={null}
+			wrapClassName="header2__LanguageModal"
+			open={detailModalShow}
+			onCancel={closeDetailModal}
+		>
+			<ul className="header2__LanguageModal__content">
+				<li
+					onClick={closeDetailModal}
+					key={-1}
+					className="header2__LanguageModal__header p-3 d-flex alignItem-c justify-sb p-3 bb-1"
+				>
+					<span></span>
+					<span className="hover-p">
 							<i className="fa-solid fa-xmark"></i>
 						</span>
-					</li>
-					<div className="header2__accountDetail">
-						<div className={`d-flex alignItem-c justify-sb gap-2 ${renderEditEnableClass(!editEnable)}`}>
-							<div>
-								{editUsername?.name}
-							</div>
-							<Button
-								onClick={enableEditClickHandle}
-								className={isButtonEditShow}
-							>
-								<i className="fa-solid fa-pen"></i>
-							</Button>
+				</li>
+				<div className="header2__accountDetail">
+					<div className={`d-flex alignItem-c justify-sb gap-2 ${renderEditEnableClass(!editEnable)}`}>
+						<div>
+							{editUsername?.name}
 						</div>
-						<form
-							onSubmit={changeNicknameSubmit}
-							className={`d-flex alignItem-start justify-sb gap-2 ${renderEditEnableClass(editEnable)}`}
+						<Button
+							onClick={enableEditClickHandle}
+							className={isButtonEditShow}
 						>
-							<Input
-								{...register(accountDetailControl.nickname)}
-								require={[true, 'require']}
-								errorMes={t(errors[accountDetailControl.nickname])}
-							/>
-							<Button
-								loading={fetchApiChangeNickNameStatus === api_status.fetching}
-							>
-								<i className="fa-solid fa-check"></i>
-							</Button>
-							<Button
-								htmlSubmit={htmlType.button}
-								onClick={cancelEditClickHandle}
-								type={buttonClassesType.outline}
-								loading={fetchApiChangeNickNameStatus === api_status.fetching}
-							>
-								<i className="fa-solid fa-xmark"></i>
-							</Button>
-						</form>
+							<i className="fa-solid fa-pen"></i>
+						</Button>
 					</div>
-				</ul>
-			</Modal>
-		</>
-	);
+					<form
+						onSubmit={changeNicknameSubmit}
+						className={`d-flex alignItem-start justify-sb gap-2 ${renderEditEnableClass(editEnable)}`}
+					>
+						<Input
+							{...register(accountDetailControl.nickname)}
+							require={[true, 'require']}
+							errorMes={t(errors[accountDetailControl.nickname])}
+						/>
+						<Button
+							loading={fetchApiChangeNickNameStatus === api_status.fetching}
+						>
+							<i className="fa-solid fa-check"></i>
+						</Button>
+						<Button
+							htmlSubmit={htmlType.button}
+							onClick={cancelEditClickHandle}
+							type={buttonClassesType.outline}
+							loading={fetchApiChangeNickNameStatus === api_status.fetching}
+						>
+							<i className="fa-solid fa-xmark"></i>
+						</Button>
+					</form>
+				</div>
+			</ul>
+		</Modal>
+	</>);
 }

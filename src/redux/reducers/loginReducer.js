@@ -18,7 +18,7 @@ const defaultState = {
     getLocalStorage(localStorageVariable.token) && getLocalStorage(localStorageVariable.user)
       ? true
       : false,
-  username: getLocalStorage(localStorageVariable.user)?.username,
+  username: getLocalStorage(localStorageVariable.user)?.nickName || getLocalStorage(localStorageVariable.user)?.username,
   isAdmin: setDefaultIsAdmin(),
 };
 
@@ -28,7 +28,7 @@ export const loginReducer = (state = defaultState, action) => {
       return {
         ...state,
         isLogin: true,
-        username: getLocalStorage(localStorageVariable.user)?.username,
+        username: getLocalStorage(localStorageVariable.user)?.nickName || getLocalStorage(localStorageVariable.user)?.username,
       };
     }
     case "USER_LOGOUT": {
