@@ -1,15 +1,15 @@
 @import "src/assets/scss/base/base.scss";
 @import "src/assets/scss/style.scss";
 
-.deposite {
+.deposit {
     color: $new-text-color-white;
 
-    .deposite__header {
-        .deposite__title {
+    .deposit__header {
+        .deposit__title {
             @extend .titleContainerAdmin;
         }
 
-        .deposite__paging {
+        .deposit__paging {
             padding-right: 0;
             text-align: right;
 
@@ -20,7 +20,7 @@
         }
     }
 
-    .deposite__content {
+    .deposit__content {
         overflow: hidden;
         overflow-x: auto;
 

@@ -1,5 +1,5 @@
 import { Pagination, Spin } from "antd";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { EmptyCustom } from "src/components/Common/Empty";
 import css from "./transferAdmin.module.scss";
 import { Button, buttonClassesType } from "src/components/Common/Button";
@@ -17,50 +17,117 @@ import {
 } from "src/util/common.js";
 import { availableLanguage } from "src/translation/i18n.js";
 import { Input } from "src/components/Common/Input";
+import Dropdown from "src/components/Common/dropdown/Dropdown";
+import { DOMAIN } from "src/util/service";
 
 export default function TransferAdmin() {
   const all = "ALL";
+  const allDropdownItem = { id: 'all', content: 'ALL' }
   const filterType = {
     coin: "coin",
     username: "username",
+    id: 'id'
   };
 
-  const [callApiMainApiStatus, setCallApiMainApiStatus] = useState(
-    api_status.pending
-  );
-  const [callApiListCoin, setCallApiListCoin] = useState(api_status.pending);
-  const [callApiExportExcelStatus, setCallApiExportExcelStatus] = useState(
-    api_status.pending
-  );
+  //filter
+  const filter = useRef(filterType.coin);
+  const filterByCoin = () => {
+    filter.current = filterType.coin;
+    setUserName('');
+    setUserId('');
+  }
+  const filterByUsername = () => {
+    filter.current = filterType.username;
+    setUserId('');
+    setSeletedCoin(allDropdownItem);
+  }
+  const filterByIdUser = () => {
+    filter.current = filterType.idUser;
+    setSeletedCoin(allDropdownItem);
+    setUserName('');
+  }
 
-  const [listCoin, setListCoin] = useState();
-  const [listTransfer, setListTransfer] = useState([]);
+  //paging
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItem, setTotalItem] = useState(1);
-  const [seletedCoin, setSeletedCoin] = useState(all);
-  const [userName, setUserName] = useState("");
-  const [filter, setFilter] = useState(filterType.coin);
+  const pageChangeHandle = function (page) {
+    fetchApiLoadData(page, seletedCoin.content, userName, filter.current, userId);
+  };
 
+  //dropdown list coin
+  const [listCoin, setListCoin] = useState([]);
+  const [seletedCoin, setSeletedCoin] = useState();
+  const genListCoinObj = () => {
+    const result = [];
+
+    listCoin?.map(item => {
+      if (item.image) {
+        result.push({
+          id: item.id,
+          image: DOMAIN + item.image,
+          content: item.name
+        })
+      } else {
+        result.push({
+          id: item.id,
+          content: item.name
+        })
+      }
+    })
+
+    return result
+  }
   const getListCoin = function () {
-    setCallApiListCoin(() => api_status.fetching);
     return new Promise((resolve, reject) => {
       socket.once("listCoin", (resp) => {
         resolve(resp);
-        setListCoin(() => resp);
-        setCallApiListCoin(() => api_status.fulfilled);
+        const result = [{ id: 'all', name: all }, ...resp];
+        setListCoin(result);
+        setSeletedCoin(allDropdownItem);
       });
     });
   };
+  const coinDropdownItemClickHandle = (item) => {
+    setSeletedCoin(item);
+    filterByCoin();
+    fetchApiLoadData(1, item.content, userName, filter.current, userId);
+  }
+
+  // inpupt username
+  const [userName, setUserName] = useState("");
+  const inputUserNameChangeHandle = function (e) {
+    const stringValue = e.target.value;
+    setUserName(stringValue);
+    filterByUsername();
+    fetchApiLoadDataDebounced(1, seletedCoin, stringValue, filterType.username);
+  };
+
+  // input user id
+  const [userId, setUserId] = useState('');
+  const userIdChangeHandle = function (ev) {
+    const stringValue = ev.target.value;
+    setUserId(stringValue);
+    filterByIdUser();
+    fetchApiLoadDataDebounced(1, seletedCoin, userName, filterType.id, stringValue);
+  }
+
+
+  // load data
+  const [callApiMainApiStatus, setCallApiMainApiStatus] = useState(
+    api_status.pending
+  );
   const fetchApiLoadData = function (
     page = 1,
     symbol = all,
     username = "",
-    filter = filterType.coin
+    filter = filterType.coin,
+    id = ""
   ) {
+    console.log(id)
     if (callApiMainApiStatus === api_status.fetching) return;
     setCallApiMainApiStatus(() => api_status.fetching);
     return new Promise((resolve, reject) => {
-      const obj = processQuery({ page, symbol, username, filter });
+      const obj = processQuery({ page, filter, symbol, username, id });
       historytransferAdmin(obj)
         .then((resp) => {
           const { array, total } = resp.data.data;
@@ -75,55 +142,63 @@ export default function TransferAdmin() {
         });
     });
   };
-  const processQuery = function ({ page, filter, symbol, username }) {
+  const processQuery = function ({ page, filter, symbol, username, id }) {
+
     const result = {
       limit: 10,
       page,
     };
 
-    if (filter === filterType.coin) {
-      if (symbol !== all)
+    switch (filter) {
+      case filterType.coin:
+        if (symbol !== all)
+          return {
+            ...result,
+            query: `coin_key = '${symbol}'`,
+          };
+        break;
+
+      case filterType.username:
         return {
           ...result,
-          query: `coin_key = '${symbol}'`,
+          query: `POSITION('${username}' IN address_form) OR POSITION('${username}' IN address_to)`,
         };
-    } else if (filter === filterType.username)
-      return {
-        ...result,
-        query: `POSITION('${username}' IN address_form) OR POSITION('${username}' IN address_to)`,
-      };
+
+      case filterType.id:
+        return {
+          ...result,
+          query: `user_id=${id} OR receive_id=${id}`
+        }
+
+      default:
+        break;
+    }
     return result;
   };
-  const renderListCoin = function (listCoin) {
-    if (!listCoin || listCoin.length <= 0) return;
-    const listCoinNew = [
-      {
-        id: all,
-        name: all.toUpperCase(),
-      },
-      ...listCoin,
-    ];
-    return listCoinNew.map((item) => (
-      <div key={item.id}>
-        <Button
-          onClick={coinClickHandle.bind(null, item.name)}
-          type={buttonClassesType.outline}
-          className={`${css["transferAdmin__coin-item"]}  ${setActiveListCoin(
-            item.name
-          )}`}
-        >
-          {item.name}
-        </Button>
-      </div>
-    ));
+
+
+  // excell
+  const [callApiExportExcelStatus, setCallApiExportExcelStatus] = useState(
+    api_status.pending
+  );
+  const [listTransfer, setListTransfer] = useState([]);
+  const exportExcelHandle = async function () {
+    try {
+      if (callApiExportExcelStatus === api_status.fetching) {
+        return;
+      }
+      setCallApiExportExcelStatus(api_status.fetching);
+      const resp = await historytransferAdminAll();
+      exportExcel(resp.data.data, "Transfer", "Transfer");
+      setCallApiExportExcelStatus(api_status.fulfilled);
+    } catch (error) {
+      setCallApiExportExcelStatus(api_status.reject);
+    }
   };
-  const setActiveListCoin = function (coinName) {
-    return coinName === seletedCoin ? css["active"] : "";
-  };
-  const coinClickHandle = function (coinName) {
-    setSeletedCoin(() => coinName);
-    fetchApiLoadData(1, coinName, undefined, filterType.coin);
-  };
+
+
+
+  // function cho table
   const renderTable = function (listTransfer) {
     if (
       !listTransfer ||
@@ -169,63 +244,15 @@ export default function TransferAdmin() {
       ? ""
       : "--d-none";
   };
-  const pageChangeHandle = function (page) {
-    fetchApiLoadData(page, seletedCoin, userName, filter);
-  };
-  const renderClassSpinListCoin = function () {
-    return callApiListCoin === api_status.pending ? "" : "--d-none";
-  };
+
+
+  // debouce cho fetch main data
   const fetchApiLoadDataDebounced = useCallback(
     debounce(fetchApiLoadData, 1000),
     []
   );
-  const inputUserNameChangeHandle = function (e) {
-    const stringValue = e.target.value;
-    setUserName(() => stringValue);
-    fetchApiLoadDataDebounced(1, seletedCoin, stringValue, filterType.username);
-  };
-  const tabCLickHandle = function (filter, ev) {
-    if (
-      callApiMainApiStatus === api_status.pending ||
-      callApiListCoin === api_status.pending
-    )
-      return;
 
-    const isNone = ev.currentTarget.dataset.tab === "none";
-    if (isNone) return;
-
-    const container = ev.currentTarget.closest(".row");
-    const classActive = css["active"];
-    for (const tab of container.children) {
-      tab.classList.remove(classActive);
-    }
-    ev.currentTarget.classList.add(classActive);
-
-    setFilter(() => filter);
-    filter === filterType.coin && setUserName(() => "");
-
-    fetchApiLoadData(1, seletedCoin, userName, filter);
-  };
-  const renderClassShowTabContentCoin = function () {
-    return filter === filterType.coin ? "" : "--d-none";
-  };
-  const renderClassShowTabContentUsername = function () {
-    return filter === filterType.username ? "" : "--d-none";
-  };
-  const exportExcelHandle = async function () {
-    try {
-      if (callApiExportExcelStatus === api_status.fetching) {
-        return;
-      }
-      setCallApiExportExcelStatus(api_status.fetching);
-      const resp = await historytransferAdminAll();
-      exportExcel(resp.data.data, "Transfer", "Transfer");
-      setCallApiExportExcelStatus(api_status.fulfilled);
-    } catch (error) {
-      setCallApiExportExcelStatus(api_status.reject);
-    }
-  };
-
+  // useEffect 
   useEffect(() => {
     getListCoin();
     fetchApiLoadData();
@@ -237,48 +264,36 @@ export default function TransferAdmin() {
         <div className={css["transferAdmin__title"]}>Transfer</div>
         <div className={`row ${css["transferAdmin__filter"]}`}>
           <div className={`col-md-12 col-7 pl-0 row`}>
-            <div className="col-12 row pl-0">
-              <div
-                data-tab={filterType.coin}
-                onClick={tabCLickHandle.bind(null, filterType.coin)}
-                className={`col-sm-6 col-lg-5 col-3 ${css["active"]} ${css["transferAdmin__tabItem"]}`}
-              >
-                Coin
-              </div>
-              <div
-                data-tab={filterType.username}
-                onClick={tabCLickHandle.bind(null, filterType.username)}
-                className={`col-sm-6 col-lg-5 col-3  ${css["transferAdmin__tabItem"]}`}
-              >
-                UserName
-              </div>
-              <div
-                data-tab={"none"}
-                className={`d-sm-0 col-lg-2 col-6 ${css["transferAdmin__tabItem"]}`}
-              ></div>
+            <div
+              className={`row ${css["transferAdmin__list-coin"]
+                }`}
+            >
+              <Dropdown
+                id={`dropdownListCoin`}
+                list={genListCoinObj()}
+                itemClickHandle={coinDropdownItemClickHandle}
+                itemSelected={seletedCoin}
+              />
             </div>
             <div
-              className={`row ${
-                css["transferAdmin__list-coin"]
-              } ${renderClassShowTabContentCoin()}`}
+              className={`col-12 row p-0 alignItem-c`}
             >
-              {renderListCoin(listCoin)}
-              <span
-                className={`${
-                  css["spin-container"]
-                } ${renderClassSpinListCoin()}`}
-              >
-                <Spin />
-              </span>
-            </div>
-            <div
-              className={`col-12 row p-0 alignItem-c ${renderClassShowTabContentUsername()}`}
-            >
-              <div className="col-12 pl-0">
+              <div className="col-12 px-0">
                 <Input
                   value={userName}
                   onChange={inputUserNameChangeHandle}
                   placeholder={"UserName"}
+                />
+              </div>
+            </div>
+            <div
+              className={`col-12 row p-0 alignItem-c`}
+            >
+              <div className="col-12 px-0 pt-0">
+                <Input
+                  value={userId}
+                  onChange={userIdChangeHandle}
+                  placeholder={"User Id"}
                 />
               </div>
             </div>
@@ -296,7 +311,8 @@ export default function TransferAdmin() {
               loading={callApiExportExcelStatus === api_status.fetching}
               onClick={exportExcelHandle}
             >
-              Export Excel All Transfer
+              <i className="fa-solid fa-download"></i>
+              Export Excel
             </Button>
           </div>
         </div>

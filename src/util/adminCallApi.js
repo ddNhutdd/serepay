@@ -168,3 +168,9 @@ export const AdminConfirmP2pCommand = (data) => {
   } catch (error) {
   }
 }
+export const getWalletToWithdrawWhere = (data) => {
+  try {
+    return axiosService.post("/api/adminv2/getWalletToWithdrawWhere", data);
+  } catch (error) {
+  }
+}

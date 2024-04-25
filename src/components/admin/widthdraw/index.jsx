@@ -17,91 +17,168 @@ import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input } from "src/components/Common/Input";
 import { TagCustom, TagType } from "src/components/Common/Tag";
 import { debounce } from "src/util/common";
-
-const tabList = {
-  coin: 'coin',
-  address: 'address'
-}
+import Dropdown from "src/components/Common/dropdown/Dropdown";
+import { DOMAIN } from "src/util/service";
 
 function Widthdraw() {
-  const [callApiLoadMainDataStatus, setCallApiLoadMainDataStatus] = useState(
-    api_status.pending
-  );
-  const [callApiLoadCoin, setCallApiLoadCoin] = useState(api_status.pending);
-  const [callApiAcceptStatus, setCallApiAcceptStatus] = useState(
-    api_status.pending
-  );
-  const [callApiRejectStatus, setCallApiRejectStatus] = useState(
-    api_status.pending
-  );
-  const [listCoin, setListCoin] = useState([]);
-  const [selectedCoin, setSelectedCoin] = useState("ALL");
+
+
+  // const
+  const all = 'ALL';
+  const allDropdownItem = { id: 'all', content: all }
+  const filterType = {
+    all: 'all',
+    coin: 'coin',
+    coinPending: 'coinPending',
+    address: 'address',
+    userId: 'userId'
+  };
+
+
+  // bộ lọc
+  const filter = useRef(filterType.all);
+  const allFilter = () => {
+    filter.current = filterType.all;
+    setInputSearchAddressValue('');
+    setUserIdSearchValue('');
+    setIsChecked(false);
+  }
+  const coinFilter = () => {
+    filter.current = filterType.coin;
+    setInputSearchAddressValue('');
+    setUserIdSearchValue('');
+    setIsChecked(false);
+  }
+  const coinPendingFilter = () => {
+    filter.current = filterType.coinPending;
+  }
+  const userIdFilter = () => {
+    filter.current = filterType.userId;
+  }
+
+
+  // phân trang
   const [totalItems, setTotalItems] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [mainData, setMainData] = useState([]);
-  const [isShowPending, setIsShowPending] = useState(false);
-  const [isShowModalConfirm, setIsShowModalConfirm] = useState(false);
-  const [isShowModalReject, setIsShowModalReject] = useState(false);
-  const [tabActive, setTabActive] = useState(tabList.coin);
-  const [inputSearchValue, setInputSearchValue] = useState('');
-
   const limit = useRef(10);
-  const isChecked = useRef(false);
-  const selectedWidthdraw = useRef();
-  const inputReasonElement = useRef();
+  const pageChangeHandle = function (page) {
+    loadData(filter.current, page, selectedCoin.content, inputSearchAddressValue, userIdSearchValue)
+  };
 
-  useEffect(() => {
-    fetchApiLoadDataAll(1);
-    fetchAllCoin();
-  }, []);
 
-  const fetchSearchTransferByAddress = async (limit, page, keyword) => {
-    try {
-      if (callApiLoadMainDataStatus === api_status.fetching) return;
-      setCallApiLoadMainDataStatus(api_status.fetching);
-      clearMainData();
-      const resp = await searchWalletToWithdraw(
-        {
-          limit,
-          page,
-          keyWork: keyword
-        }
-      )
-      const data = resp?.data?.data;
-      setMainData(data?.array);
-      setCurrentPage(page);
-      setTotalItems(data.total);
-      
-      setCallApiLoadMainDataStatus(api_status.fulfilled);
-    } catch (error) {
-      setCallApiLoadMainDataStatus(api_status.rejected);
-    }
+  // dropdown list coin
+  const [listCoin, setListCoin] = useState([]);
+  const [selectedCoin, setSelectedCoin] = useState(null);
+  const fetchAllCoin = function () {
+    socket.once("listCoin", (resp) => {
+      const result = [{ id: 'all', name: all }, ...resp];
+      setSelectedCoin(allDropdownItem)
+      setListCoin(result);
+    });
+  };
+  const genListCoinObj = () => {
+    const result = [];
+    listCoin?.map(item => {
+      if (item.image) {
+        result.push({
+          id: item.id,
+          image: DOMAIN + item.image,
+          content: item.name
+        })
+      } else {
+        result.push({
+          id: item.id,
+          content: item.name
+        })
+      }
+    })
+
+    return result;
   }
-  const fetchSearchTransferByAddressDebouced = useCallback(debounce(fetchSearchTransferByAddress, 1000), []);
+  const coinClickHandle = (coin) => {
+    setSelectedCoin(coin);
+    coinFilter();
+    loadData(filter.current, 1, coin.content, '');
+  }
+
+
+  // input address
+  const [inputSearchAddressValue, setInputSearchAddressValue] = useState('');
   const inputSearchChangeHandle = (ev) => {
-    setInputSearchValue(ev.target.value);
-    fetchSearchTransferByAddressDebouced(limit.current, 1, ev.target.value);
+    setInputSearchAddressValue(ev.target.value);
   }
-  const tabClickHandle = (tab) => {
-    setTabActive(tab);
-    switch (tab) {
-      case tabList.coin:
-        loadData(currentPage, selectedCoin);
+
+
+  // input userid
+  const [userIdSearchValue, setUserIdSearchValue] = useState('');
+  const userIdSearchValueChange = (ev) => {
+    setUserIdSearchValue(ev.target.value);
+  }
+
+
+  // checkbox pending
+  const [isChecked, setIsChecked] = useState(false);
+  const pendingChangeHandle = function (e) {
+    const isCheckedLc = e.target.checked;
+    if (
+      callApiLoadMainDataStatus === api_status.fetching
+    ) {
+      e.target.checked = !isCheckedLc;
+      return;
+    }
+    isChecked.current = isCheckedLc;
+    if (isCheckedLc) {
+      fetchApiLoadDataByCoinPending(1, selectedCoin);
+    } else {
+      fetchApiLoadDataByCoin(1, selectedCoin);
+    }
+  };
+  const showPending = !selectedCoin || selectedCoin.content === all ? '--d-none' : '';
+
+
+  // tải dữ liệu
+  const [callApiLoadMainDataStatus, setCallApiLoadMainDataStatus] = useState(api_status.pending);
+  const [mainData, setMainData] = useState([]);
+  const loadData = function (filter, page, coinName, address, userId) {
+    switch (filter) {
+      case filterType.all:
+        fetchApiLoadDataAll(page);
         break;
-      case tabList.address:
-        setInputSearchValue('');
-        fetchSearchTransferByAddress(limit.current, 1, '');
+
+
+      case filterType.coin:
+        if (coinName === all) {
+          fetchApiLoadDataAll(page);
+        } else if (coinName !== all) {
+          fetchApiLoadDataByCoin(page, coinName);
+        }
         break;
+
+
+      case filterType.coinPending:
+        fetchApiLoadDataByCoinPending(page, coinName);
+        break;
+
+
+      case filterType.address:
+        fetchSearchTransferByAddress(page, address);
+        break;
+
+
+      case filterType.userId:
+        fetchApiLoadDataBuyUserId(page, userId);
+        break;
+
+
       default:
         break;
     }
-  }
-  const renderClassActiveTab = (currentTab) => {
-    return tabActive === currentTab ? 'active' : '';
-  }
-  const renderClassShowContentTab = (currentTab) => {
-    return tabActive === currentTab ? '' : '--d-none';
-  }
+  };
+  const clearMainData = function () {
+    setMainData(() => []);
+    setCurrentPage(() => 1);
+    setTotalItems(() => 1);
+  };
   const fetchApiLoadDataAll = function (page) {
     return new Promise((resolve, reject) => {
       if (callApiLoadMainDataStatus === api_status.fetching) resolve([]);
@@ -127,113 +204,6 @@ function Widthdraw() {
           setCurrentPage(() => page);
         });
     });
-  };
-  const fetchAllCoin = function () {
-    return new Promise((resolve,) => {
-      if (callApiLoadCoin === api_status.fetching) resolve(false);
-      else setCallApiLoadCoin(() => api_status.fetching);
-      socket.once("listCoin", (resp) => {
-        setListCoin(() => resp);
-        setCallApiLoadCoin(() => api_status.fulfilled);
-      });
-    });
-  };
-  const renderClassSpin = function () {
-    return callApiLoadMainDataStatus === api_status.fetching ? "" : "--d-none";
-  };
-  const renderClassEmpty = function () {
-    if (
-      callApiLoadMainDataStatus !== api_status.fetching &&
-      (!mainData || mainData.length <= 0)
-    )
-      return "";
-    else return "--d-none";
-  };
-  const renderStatus = function (status) {
-    switch (status) {
-      case 0:
-        return <TagCustom type={TagType.error} />;
-      case 1:
-        return <TagCustom type={TagType.success} />;
-      case 2:
-        return <TagCustom type={TagType.pending} />;
-      default:
-        return null;
-    }
-  };
-  const renderDataTable = function () {
-    return mainData.map((record) => (
-      <tr key={record.id}>
-        <td>{record.coin_key.toUpperCase()}</td>
-        <td>{record.amount}</td>
-        <td>{record.to_address}</td>
-        <td>{record.form_address}</td>
-        <td>{record.created_at}</td>
-        <td>{record.note}</td>
-        <td>{record.username}</td>
-        <td>{record.email}</td>
-        <td>{record.phone}</td>
-        <td>{record.descriptions}</td>
-        <td>{record.withdraw_pay_percent}</td>
-        <td>{record.amount_pay_by_coin_key}</td>
-        <td>{record.amount_pay_by_coin}</td>
-        <td>{record.fee_amount}</td>
-        <td>{record.amount_after_fee}</td>
-        <td>{record.coin_rate}</td>
-        <td>{record.rate}</td>
-        <td>{renderStatus(record.status)}</td>
-        <td>{renderAction(record.id, record.status)}</td>
-      </tr>
-    ));
-  };
-  const renderClassCoinSpin = function () {
-    return callApiLoadCoin === api_status.fetching ? "" : "--d-none";
-  };
-  const renderListCoin = function () {
-    const newList = [{ name: "ALL" }, ...listCoin];
-    return newList.map((coin) => (
-      <div key={coin.name}>
-        <Button
-          onClick={coinClickHandle.bind(null, coin.name)}
-          type={buttonClassesType.outline}
-          className={`widthdraw__coin-item ${coin.name === selectedCoin ? "active" : ""
-            }`}
-        >
-          {coin.name}
-        </Button>
-      </div>
-    ));
-  };
-  const coinClickHandle = function (coinName) {
-    loadData(1, coinName);
-  };
-  const loadData = function (page, coinName) {
-    const all = "ALL";
-    if (
-      callApiLoadCoin === api_status.fetching ||
-      callApiLoadMainDataStatus === api_status.fetching
-    )
-      return;
-    setSelectedCoin(coinName);
-    if (coinName === all) {
-      setIsShowPending(() => false);
-      fetchApiLoadDataAll(page);
-    } else if (coinName !== all) {
-      setIsShowPending(() => true);
-      if (isChecked.current) {
-        fetchApiLoadDataByCoinPending(page, coinName);
-      } else {
-        fetchApiLoadDataByCoin(page, coinName);
-      }
-    }
-  };
-  const renderClassPending = function () {
-    return isShowPending ? "" : "--d-none";
-  };
-  const clearMainData = function () {
-    setMainData(() => []);
-    setCurrentPage(() => 1);
-    setTotalItems(() => 1);
   };
   const fetchApiLoadDataByCoin = function (page, symbol) {
     return new Promise((resolve, reject) => {
@@ -287,50 +257,53 @@ function Widthdraw() {
         });
     });
   };
-  const pendingChangeHandle = function (e) {
-    const isCheckedLc = e.target.checked;
-    if (
-      callApiLoadMainDataStatus === api_status.fetching ||
-      callApiLoadCoin === api_status.fetching
-    ) {
-      e.target.checked = !isCheckedLc;
-      return;
+  const fetchSearchTransferByAddress = async (limit, page, keyword) => {
+    try {
+      if (callApiLoadMainDataStatus === api_status.fetching) return;
+      setCallApiLoadMainDataStatus(api_status.fetching);
+      clearMainData();
+      const resp = await searchWalletToWithdraw(
+        {
+          limit,
+          page,
+          keyWork: keyword
+        }
+      )
+      const data = resp?.data?.data;
+      setMainData(data?.array);
+      setCurrentPage(page);
+      setTotalItems(data.total);
+
+      setCallApiLoadMainDataStatus(api_status.fulfilled);
+    } catch (error) {
+      setCallApiLoadMainDataStatus(api_status.rejected);
     }
-    isChecked.current = isCheckedLc;
-    if (isCheckedLc) {
-      fetchApiLoadDataByCoinPending(1, selectedCoin);
-    } else {
-      fetchApiLoadDataByCoin(1, selectedCoin);
+  }
+  const fetchApiLoadDataBuyUserId = async function (page, userId) {
+    try {
+      if (callApiLoadMainDataStatus === api_status.fetching) {
+        return;
+      }
+      setCallApiLoadMainDataStatus(api_status.fetching);
+
+      const resp = await getWalletToWithdrawWhere({
+        limit: limit.current,
+        page,
+        where: `user_id=${userId} OR from_id=${userId}`
+      });
+      console.log(resp);
+
+      setCallApiLoadMainDataStatus(api_status.fulfilled);
+    } catch (error) {
+      console.log(error);
+      setCallApiLoadMainDataStatus(api_status.rejected);
     }
-  };
-  const pageChangeHandle = function (page) {
-    switch (tabActive) {
-      case tabList.coin:
-        loadData(page, selectedCoin); // fetch data will reset the page, if fetch data fails the page is 1
-        break;
-      case tabList.address:
-        fetchSearchTransferByAddress(limit.current, page, inputSearchValue);
-        break;
-      default:
-        break;
-    }
-  };
-  const renderAction = function (id, status) {
-    if (status === 2) {
-      return (
-        <div className="widthdraw__action">
-          <Button
-            onClick={showModalConfirm.bind(null, id)}
-            children={"Confirm"}
-          />
-          <Button
-            onClick={showModalReject.bind(null, id)}
-            children={"Reject"}
-          />
-        </div>
-      );
-    }
-  };
+  }
+
+
+  // modal confirm 
+  const [isShowModalConfirm, setIsShowModalConfirm] = useState(false);
+  const [callApiAcceptStatus, setCallApiAcceptStatus] = useState(api_status.pending);
   const showModalConfirm = function (id) {
     selectedWidthdraw.current = id;
     setIsShowModalConfirm(() => true);
@@ -359,26 +332,18 @@ function Widthdraw() {
         });
     });
   };
+
+
+  // modal reject
+  const [isShowModalReject, setIsShowModalReject] = useState(false);
+  const [callApiRejectStatus, setCallApiRejectStatus] = useState(api_status.pending);
+  const inputReasonElement = useRef();
   const closeModalReject = function () {
     setIsShowModalReject(() => false);
   };
   const showModalReject = function (id) {
     selectedWidthdraw.current = id;
     setIsShowModalReject(() => true);
-  };
-  const renderContentModalReject = function () {
-    return (
-      <div className="modalRejectControl">
-        <label className="modalRejectLabel" htmlFor="widthdrawReason">
-          Reason
-        </label>
-        <Input
-          ref={inputReasonElement}
-          className="modalRejectInput"
-          id="widthdrawReason"
-        />
-      </div>
-    );
   };
   const fetchApiReject = function (id, note) {
     return new Promise((resolve, reject) => {
@@ -404,10 +369,110 @@ function Widthdraw() {
         });
     });
   };
+  const renderContentModalReject = function () {
+    return (
+      <div className="modalRejectControl">
+        <label className="modalRejectLabel" htmlFor="widthdrawReason">
+          Reason
+        </label>
+        <Input
+          ref={inputReasonElement}
+          className="modalRejectInput"
+          id="widthdrawReason"
+        />
+      </div>
+    );
+  };
   const buttonOKModalRejectClickHandle = function () {
     const note = inputReasonElement.current.value;
     fetchApiReject(selectedWidthdraw.current, note);
   };
+
+
+  // render table 
+  const renderClassSpin = function () {
+    return callApiLoadMainDataStatus === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassEmpty = function () {
+    if (
+      callApiLoadMainDataStatus !== api_status.fetching &&
+      (!mainData || mainData.length <= 0)
+    )
+      return "";
+    else return "--d-none";
+  };
+  const renderStatus = function (status) {
+    switch (status) {
+      case 0:
+        return <TagCustom type={TagType.error} />;
+      case 1:
+        return <TagCustom type={TagType.success} />;
+      case 2:
+        return <TagCustom type={TagType.pending} />;
+      default:
+        return null;
+    }
+  };
+  const renderDataTable = function () {
+    return mainData.map((record) => (
+      <tr key={record.id}>
+        <td>{record.coin_key.toUpperCase()}</td>
+        <td>{record.amount}</td>
+        <td>
+          <div style={{ wordBreak: 'break-all' }}>
+            {record.to_address}
+          </div>
+        </td>
+        <td>
+          <div style={{ wordBreak: 'break-all' }}>
+            {record.form_address}
+          </div>
+        </td>
+        <td>
+          <div style={{ wordBreak: "break-all" }}>
+            {record.hash}
+          </div>
+        </td>
+        <td>{record.created_at}</td>
+        <td>{record.note}</td>
+        <td>{record.username}</td>
+        <td>{record.email}</td>
+        <td>{record.phone}</td>
+        <td>{record.amount_pay_by_coin}</td>
+        <td>{record.fee_amount}</td>
+        <td>{renderStatus(record.status)}</td>
+        <td>{renderAction(record.id, record.status)}</td>
+      </tr>
+    ));
+  };
+  const renderAction = function (id, status) {
+    if (status === 2) {
+      return (
+        <div className="widthdraw__action">
+          <Button
+            onClick={showModalConfirm.bind(null, id)}
+            children={"Confirm"}
+          />
+          <Button
+            onClick={showModalReject.bind(null, id)}
+            children={"Reject"}
+          />
+        </div>
+      );
+    }
+  };
+
+
+  // useEffect
+  useEffect(() => {
+    fetchApiLoadDataAll(1);
+    fetchAllCoin();
+  }, []);
+
+
+  const selectedWidthdraw = useRef();
+  const fetchSearchTransferByAddressDebouced = useCallback(debounce(fetchSearchTransferByAddress, 1000), []);
+
 
   return (
     <div className="widthdraw">
@@ -415,45 +480,48 @@ function Widthdraw() {
         <div className="widthdraw__title">Widthdraw</div>
         <div className="row widthdraw__filter">
           <div className="col-md-12 col-7 pl-0">
-            <div className="widthdraw__tabs">
-              <div onClick={tabClickHandle.bind(null, tabList.coin)} className={`widthdraw__tabs__item ${renderClassActiveTab(tabList.coin)}`}>
-                Coin
-              </div>
-              <div onClick={tabClickHandle.bind(null, tabList.address)} className={`widthdraw__tabs__item ${renderClassActiveTab(tabList.address)}`}>
-                Address
-              </div>
-              <div className="widthdraw__tabs__item">
-
-              </div>
-            </div>
-            <div className={`row widthdraw__list-coin ${renderClassShowContentTab(tabList.coin)}`}>
-              {renderListCoin()}
-              <div className={renderClassCoinSpin()}>
-                <Spin />
-              </div>
-              <div className={`widthdraw__pending ` + renderClassPending()}>
-                <input
-                  onChange={pendingChangeHandle}
-                  className="--d-none"
-                  type="checkbox"
-                  id="widthdrawPending"
-                />
-                <label
-                  className="row widthdraw__pending-content"
-                  htmlFor="widthdrawPending"
-                >
-                  <div className="widthdraw__pending-square">
-                    <i className="fa-solid fa-check"></i>
-                  </div>
-                  <div>Pending</div>
-                </label>
+            <div className={`row widthdraw__list-coin`}>
+              <div className="w-100">
+                <div>
+                  <Dropdown
+                    id={`coinDropdown`}
+                    list={genListCoinObj()}
+                    itemSelected={selectedCoin}
+                    itemClickHandle={coinClickHandle}
+                  />
+                </div>
+                <div className={`widthdraw__pending mt-3 ${showPending}`}>
+                  <input
+                    onChange={pendingChangeHandle}
+                    className="--d-none"
+                    type="checkbox"
+                    id="widthdrawPending"
+                    checked={isChecked}
+                  />
+                  <label
+                    className="row widthdraw__pending-content"
+                    htmlFor="widthdrawPending"
+                  >
+                    <div className="widthdraw__pending-square">
+                      <i className="fa-solid fa-check"></i>
+                    </div>
+                    <div>Pending</div>
+                  </label>
+                </div>
               </div>
             </div>
-            <div className={renderClassShowContentTab(tabList.address)}>
+            <div className="mt-3">
               <Input
-                value={inputSearchValue}
+                value={inputSearchAddressValue}
                 onChange={inputSearchChangeHandle}
                 placeholder={`Input a Address`}
+              />
+            </div>
+            <div className="mt-3">
+              <Input
+                value={userIdSearchValue}
+                onChange={userIdSearchValueChange}
+                placeholder={`User Id`}
               />
             </div>
           </div>
@@ -475,19 +543,14 @@ function Widthdraw() {
               <th>Amount</th>
               <th>To Address</th>
               <th>From Address</th>
+              <th>Hash</th>
               <th>Time</th>
               <th>Note</th>
               <th>UserName</th>
               <th>Email</th>
               <th>Phone</th>
-              <th>Descriptions</th>
-              <th>Withdraw Pay Percent</th>
-              <th>Amount Pay By Coin Key</th>
               <th>Amount Pay By Coin</th>
               <th>Fee Amount</th>
-              <th>Amount After Fee</th>
-              <th>Coin Rate</th>
-              <th>Rate</th>
               <th>Status</th>
               <th>
                 <i className="fa-solid fa-gears"></i>

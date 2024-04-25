@@ -83,7 +83,8 @@ import P2p from "./components/p2p";
 import Deposite from "./components/admin/deposite";
 import KycAdmin from "./components/admin/kyc";
 import P2pAdmin from "./components/admin/p2p";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
+import UserDetail from "./components/admin/user/user-detail";
 
 const config = {};
 export const math = create(all, config);
@@ -330,8 +331,9 @@ function App() {
           <AdminTemplate path={url.admin_wallet} component={WalletAdmin} />
           <AdminTemplate path={url.admin_swap} component={SwapAdmin} />
           <AdminTemplate path={url.admin_kyc} component={KycAdmin} />
-          <AdminTemplate path={url.admin_deposite} component={Deposite} />
+          <AdminTemplate path={url.admin_deposit} component={Deposite} />
           <AdminTemplate path={url.admin_p2p} component={P2pAdmin} />
+          <AdminTemplate path={url.admin_userDetail} component={UserDetail} />
           <Route exact path="/" component={Home} />
         </Switch>
       </Config>

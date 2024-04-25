@@ -17,7 +17,13 @@ function Sidebar() {
 
   useEffect(() => {
     const urlList = location.pathname.split("/");
-    const page = urlList[urlList.length - 1];
+    let page = '';
+    if (urlList.find(item => item === 'user-detail')) {
+      page = 'user-detail';
+    } else {
+      page = urlList[urlList.length - 1];
+    }
+
     selectItem(page);
   }, []);
 
@@ -40,6 +46,7 @@ function Sidebar() {
         addClassToElementById("exchange", "active");
         break;
       case "user":
+      case "user-detail":
         addClassToElementById("user", "active");
         break;
       case "widthdraw":
@@ -127,7 +134,7 @@ function Sidebar() {
   const redirectDeposite = function (e) {
     clearSelectedItem();
     e.currentTarget.classList.add("active");
-    history.push(url.admin_deposite);
+    history.push(url.admin_deposit);
   };
   const redirectP2p = function (e) {
     clearSelectedItem();
@@ -203,11 +210,11 @@ function Sidebar() {
           </span>
           <span className="admin-sidebar__item">Swap</span>
         </li>
-        <li onClick={redirectDeposite} id="deposite">
+        <li onClick={redirectDeposite} id="deposit">
           <span className="admin-sidebar__icon">
             <i className="fa-solid fa-file-invoice"></i>
           </span>
-          <span className="admin-sidebar__item">Deposite</span>
+          <span className="admin-sidebar__item">Deposit</span>
         </li>
         <li onClick={redirectP2p} id="p2p">
           <span className="admin-sidebar__icon">

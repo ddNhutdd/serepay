@@ -60,6 +60,10 @@
     padding-bottom: $space * 2;
 }
 
+.py-3 {
+    padding-top: $space * 3;
+    padding-bottom: $space * 3;
+}
 
 @each $breakpoint, $width in $responsive {
     @media screen and (max-width: $width) {
@@ -121,6 +125,11 @@
         .py-#{$breakpoint}-2 {
             padding-top: $space * 2;
             padding-bottom: $space * 2;
+        }
+
+        .py-#{$breakpoint}-3 {
+            padding-top: $space * 3;
+            padding-bottom: $space * 3;
         }
     }
 }

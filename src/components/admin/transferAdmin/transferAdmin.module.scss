@@ -58,19 +58,12 @@
                 padding-left: 0;
                 gap: 10px;
                 flex-wrap: wrap;
-
-                .transferAdmin__coin-item {
-                    width: fit-content;
-
-                    &.active {
-                        background-color: $new-primary-color-6;
-                        color: $new-text-color-white;
-                    }
-                }
-
-                .spin-container {
-                    @extend .spin-container;
+                img {
+                    position: relative;
+                    top: -3px;
+                    width: 20px !important;
                     height: 20px;
+                    object-fit: cover;
                 }
             }
 

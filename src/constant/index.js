@@ -21,6 +21,10 @@ export const localStorageVariable = {
   reLoginR: "reLoginR",
 };
 
+export const urlParams = {
+  userId: ':userid'
+}
+
 export const url = {
   home: "/",
   signup: "/signup",
@@ -32,14 +36,11 @@ export const url = {
   p2pTrading: "/p2p-trading",
   create_ads_sell: "/create-ads/sell",
   create_ads_buy: "/create-ads/buy",
-  admin_ads: "/admin/ads",
-  admin_p2p: '/admin/p2p',
   ads_history: "/ads-history",
   transaction_sell: "/transaction-sell",
   transaction_buy: "/transaction-buy",
   confirm: "/confirm/:id",
   p2p_management: "/p2p-management",
-  admin_user: "/admin/user",
   recovery_password: "/recovery-password",
   forgot_password: "/forget-password/:token",
   confirm_email: "/confirm-email",
@@ -56,7 +57,11 @@ export const url = {
   admin_exchangeRateDisparity: "/admin/exchange-rate-disparity",
   admin_transfer: "/admin/transfer",
   admin_wallet: "/admin/wallet",
-  admin_deposite: "/admin/deposite"
+  admin_deposit: "/admin/deposit",
+  admin_userDetail: '/admin/user-detail/' + urlParams.userId,
+  admin_user: "/admin/user",
+  admin_ads: "/admin/ads",
+  admin_p2p: '/admin/p2p',
 };
 
 const currentDomain = window.location.href;

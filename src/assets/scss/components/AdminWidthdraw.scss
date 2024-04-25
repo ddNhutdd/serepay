@@ -57,13 +57,12 @@
                 gap: 10px;
                 flex-wrap: wrap;
 
-                .widthdraw__coin-item {
-                    width: fit-content;
-
-                    &.active {
-                        background-color: $new-primary-color-6;
-                        color: $new-text-color-white;
-                    }
+                img {
+                    width: 20px !important;
+                    height: 20px;
+                    object-fit: cover;
+                    position: relative;
+                    top: -3px;
                 }
 
                 .widthdraw__pending {

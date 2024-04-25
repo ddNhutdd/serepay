@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Spin, Pagination } from "antd";
 import {
   convertStringToNumber,
@@ -30,6 +30,7 @@ import { Button, buttonClassesType } from "src/components/Common/Button";
 import WalletTop, { titleWalletTop } from "../WalletTop";
 import css from "./walletWidthdraw.module.scss";
 import { useHistory } from "react-router-dom";
+import { userWalletFetchCount } from "src/redux/actions/coin.action";
 
 function FormWithdraw() {
   const withdrawType = {
@@ -38,9 +39,9 @@ function FormWithdraw() {
   };
   const { t } = useTranslation();
   const userWallet = useSelector(getUserWallet);
-  console.log('user wallet ', userWallet);
   const coin = getLocalStorage(localStorageVariable.coinFromWalletList);
   const isLogin = useSelector((root) => root.loginReducer.isLogin);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const [, setCallApiHistoryStatus] = useState(api_status.pending);
@@ -107,7 +108,7 @@ function FormWithdraw() {
       setCallApiSubmitStatus(api_status.fetching);
 
       const postObj = {
-        to_address: +addressElement.current.value,
+        to_address: addressElement.current.value,
         symbol: coin,
         amount: convertStringToNumber(inputAmountCurrency).toString(),
         note: inputNoteValue.current.value,
@@ -130,11 +131,12 @@ function FormWithdraw() {
           withdrawHistoryCurrentPage.current = 1;
           addressElement.current.value = "";
           fetchWithdrawHistory();
+          dispatch(userWalletFetchCount());
         })
         .catch((error) => {
-          console.log(error);
           const messageError =
-            error?.response?.data?.errors[0] || error?.response?.data?.message;
+            error?.response?.data?.errors?.at(0) || error?.response?.data?.message;
+
           switch (messageError) {
             case "Insufficient balance or incorrect withdrawal minimum amount.":
               callToastError(t("insufficientBalanceOrWithdrawalAmount"));
@@ -344,7 +346,7 @@ function FormWithdraw() {
                     )}
                   </p>
                 </li>
-                
+
                 <li className={css["notify-item"]}>
                   <span>
                     <img src="./img/!.png" alt="" />

@@ -1,19 +1,25 @@
 import { Pagination, Spin } from "antd";
 import React, { useState, useRef, useEffect } from "react";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "src/components/Common/Button";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Input } from "src/components/Common/Input";
-import { api_status, commontString } from "src/constant";
+import Switch from "src/components/Common/switch";
+import { api_status, commontString, url, urlParams } from "src/constant";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import {
   activeuser,
   getAllUser,
   getUserAllExcel,
+  getWalletToUserAdmin,
   searchUserFromUserName,
   turn2fa,
   typeAds,
 } from "src/util/adminCallApi";
 import { debounce, exportExcel } from "src/util/common";
+import socket from "src/util/socket";
+import CoinCells from "./coin-cell";
+import { TagCustom, TagType } from "src/components/Common/Tag";
 
 const User = function () {
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,9 +34,60 @@ const User = function () {
   const searchValue = useRef("");
   const limit = useRef(10);
 
+  // phần lấy list coin
+  const [listCoin, setListCoin] = useState();
+  const fetchListCoin = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        socket.once('listCoin', resp => {
+          resolve(resp)
+        })
+      } catch (error) {
+        reject(error);
+      }
+    })
+  }
+  const renderlistCoinForHeader = () => {
+    return listCoin?.map(item => {
+      return (
+        <th key={item?.name}>
+          {item?.name}
+        </th>
+      )
+    })
+  }
+
   useEffect(() => {
-    fetchApiGetListAllUser(1);
+    fetchFirst();
   }, []);
+
+  // load lần đầu cần load thêm list coin để render table
+  const fetchFirst = async () => {
+    try {
+      if (callApiMainDataStatus === api_status.fetching) {
+        return;
+      }
+      setCallApiMainDataStatus(api_status.fetching);
+      const resp = await Promise.all([
+        getAllUser({
+          limit: limit.current,
+          page: 1
+        }),
+        fetchListCoin()
+      ]);
+      const userData = resp[0]?.data?.data;
+      setCurrentPage(1);
+      setTotalItem(userData?.total);
+      setMainData(userData?.array);
+
+      const coinData = resp[1];
+      setListCoin(coinData);
+
+      setCallApiMainDataStatus(api_status.fulfilled);
+    } catch (error) {
+      setCallApiMainDataStatus(api_status.rejected);
+    }
+  }
 
   const fetchApiGetListAllUser = function (page) {
     return new Promise((resolve, reject) => {
@@ -65,9 +122,19 @@ const User = function () {
   };
   const renderTypeAdsButton = function (type, id) {
     if (type === 0) {
-      return <Button onClick={onAdsCLickHandle.bind(null, id)}>On</Button>;
+      return (
+        <Switch
+          on={false}
+          onClick={onAdsCLickHandle.bind(null, id)}
+        />
+      )
     } else {
-      return <Button onClick={offAdsClickHandle.bind(null, id)}>Off</Button>;
+      return (
+        <Switch
+          on={true}
+          onClick={offAdsClickHandle.bind(null, id)}
+        />
+      )
     }
   };
   const onAdsCLickHandle = function (id, event) {
@@ -111,10 +178,18 @@ const User = function () {
     if (!mainData || mainData.length <= 0) return;
     return mainData.map((item) => (
       <tr key={item.id}>
+        <td>
+          <NavLink to={(`${url.admin_userDetail.replace(urlParams.userId, item.id)}_${item.username}_${item.email}`)}>
+            {item.id}
+          </NavLink>
+        </td>
         <td>{item.username}</td>
         <td>{item.email}</td>
-        <td>{renderTypeAdsButton(item.type_ads, item.id)}</td>
+        <td>
+          {renderTypeAdsButton(item.type_ads, item.id)}
+        </td>
         <td>{renderAction2FA(item.enabled_twofa, item.id)}</td>
+        {renderCoinCell(item.id)}
         <td>{renderActiveSection(item.status, item.id)}</td>
       </tr>
     ));
@@ -123,6 +198,7 @@ const User = function () {
     loadData(page);
   };
   const loadData = function (page) {
+    setMainData([]);
     if (searchValue.current) {
       fetchApiSearchUser(page, searchValue.current);
     } else {
@@ -133,15 +209,17 @@ const User = function () {
     switch (enabled_twofa) {
       case 0:
         return (
-          <Button onClick={turnOn2FAClickHandle.bind(null, userid)}>
-            Turn On 2FA
-          </Button>
+          <Switch
+            on={false}
+            onClick={turnOn2FAClickHandle.bind(null, userid)}
+          />
         );
       case 1:
         return (
-          <Button onClick={turnOff2FAClickHandle.bind(null, userid)}>
-            Turn Off 2FA
-          </Button>
+          <Switch
+            on={true}
+            onClick={turnOff2FAClickHandle.bind(null, userid)}
+          />
         );
       default:
         break;
@@ -185,7 +263,10 @@ const User = function () {
           <Button onClick={activeUserClickHandle.bind(null, id)}>Active</Button>
         );
       case 1:
-        return <></>;
+        return <TagCustom
+          type={TagType.success}
+          content={`Verified`}
+        />
       default:
         break;
     }
@@ -255,8 +336,17 @@ const User = function () {
       const resp = await getUserAllExcel();
       const array = resp.data.data;
       return array;
-    } catch (error) {}
+    } catch (error) { }
   };
+
+  // table 
+  const totalColumn = listCoin ? listCoin.length + 6 : 6;
+  const renderCoinCell = (id) => {
+    return <CoinCells
+      id={id}
+      listCoinName={listCoin}
+    />
+  }
 
   return (
     <div className="adminUser">
@@ -281,7 +371,8 @@ const User = function () {
             loading={callApiExportExcelStatus === api_status.fetching}
             onClick={exportExcellHandle}
           >
-            Export Excell All Users
+            <i className="fa-solid fa-download"></i>
+            Export Excell
           </Button>
         </div>
       </div>
@@ -289,24 +380,26 @@ const User = function () {
         <table>
           <thead>
             <tr>
+              <th>Id</th>
               <th>UserName</th>
               <th>Email</th>
               <th>Create Ads</th>
               <th>Two FA</th>
+              {renderlistCoinForHeader()}
               <th>Active</th>
             </tr>
           </thead>
           <tbody>
             {renderTableData()}
             <tr className={renderClassSpin()}>
-              <td colSpan={5}>
+              <td colSpan={totalColumn}>
                 <div className="spin-container">
                   <Spin />
                 </div>
               </td>
             </tr>
             <tr className={renderClassEmpty()}>
-              <td colSpan={5}>
+              <td colSpan={totalColumn}>
                 <EmptyCustom />
               </td>
             </tr>
@@ -315,6 +408,6 @@ const User = function () {
       </div>
     </div>
   );
-};
+}
 
 export default User;

@@ -244,7 +244,6 @@ export const editNickNameWallet = (data) => {
   try {
     return axiosService.post("/api/user/editNickNameWallet", data)
   } catch (error) {
-    console.log(error);
   }
 }
 

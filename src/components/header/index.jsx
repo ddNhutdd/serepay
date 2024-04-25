@@ -28,7 +28,6 @@ import useForm from "src/hooks/use-form";
 
 export default function Header2({history}) {
 	const {isLogin, username, isAdmin} = useSelector((root) => root.loginReducer);
-	console.log(username)
 	const notifyRedux = useSelector(getNotify);
 	const {isMainAccount} = useMainAccount();
 	const currencyFromRedux = useSelector(getCurrent);

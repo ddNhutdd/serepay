@@ -48,9 +48,17 @@ function Deposite() {
         <td>{item.coin_key}</td>
         <td>{item.created_at}</td>
         <td>{item.message}</td>
-        <td>{formatNumber(item.before_amount, availableLanguageCodeMapper.en, -1)}</td>
         <td>{formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}</td>
-        <td>{formatNumber(item.after_amount, availableLanguageCodeMapper.en, -1)}</td>
+        <td>
+          <div style={{ wordBreak: 'break-all' }}>
+            {item.hash}
+          </div>
+        </td>
+        <td>
+          <div style={{ wordBreak: 'break-all' }}>
+            {item.address}
+          </div>
+        </td>
         <td>{item.userName}</td>
         <td>{item.email}</td>
       </tr>
@@ -103,10 +111,10 @@ function Deposite() {
   }, []);
 
   return (
-    <div className={css["deposite"]}>
-      <div className={css["deposite__header"]}>
-        <div className={css["deposite__title"]}>Deposite</div>
-        <div className={`row ${css["deposite__filter"]}`}>
+    <div className={css["deposit"]}>
+      <div className={css["deposit__header"]}>
+        <div className={css["deposit__title"]}>Deposit</div>
+        <div className={`row ${css["deposit__filter"]}`}>
           <div className={`col-md-12 col-6 pl-0`}>
             <Button
               loading={callApiExcelStatus === api_status.fetching}
@@ -115,7 +123,7 @@ function Deposite() {
               Export Excel All Transfer
             </Button>
           </div>
-          <div className={`col-md-12 col-6 ${css["deposite__paging"]}`}>
+          <div className={`col-md-12 col-6 ${css["deposit__paging"]}`}>
             <Pagination
               current={page}
               onChange={pageChangeHandle}
@@ -125,16 +133,16 @@ function Deposite() {
           </div>
         </div>
       </div>
-      <div className={css["deposite__content"]}>
+      <div className={css["deposit__content"]}>
         <table>
           <thead>
             <tr>
               <th>Coin Key</th>
               <th>Create At</th>
               <th>Message</th>
-              <th>Before Amount</th>
               <th>Amount</th>
-              <th>After Amount</th>
+              <th>Hash</th>
+              <th>Address</th>
               <th>UserName</th>
               <th>Email</th>
             </tr>
