@@ -13,7 +13,7 @@ import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import { callToastError, callToastSuccess } from 'src/function/toast/callToast';
 
 function P2p() {
-	const tabType = {
+	const filterType = {
 		name: 'name',
 		pending: 'pending',
 		success: 'success'
@@ -34,47 +34,35 @@ function P2p() {
 	const [searchInputValue, setSearchInputValue] = useState('');
 	const searchInputChangeHandle = (ev) => {
 		setSearchInputValue(ev.target.value);
-		fetchByNameDebounced(1, ev.target.value);
+		setFilter(filterType.name)
+		fetchMainDataDebounced(1, ev.target.value);
 	}
 
-	// tab
-	const listTab = [
-		{
-			header: 'Name',
-			value: tabType.name
-		},
-		{
-			header: 'Pending',
-			value: tabType.pending
-		},
-		{
-			header: 'Success',
-			value: tabType.success
-		}
-	]
-	const [selectedTab, setSelectedTab] = useState(listTab[0]);
-	const tabChangeHandle = (selectedTab) => {
-		if (fetchApiStatus === api_status.fetching) {
-			return;
-		}
-		setSelectedTab(selectedTab);
-		setSearchInputValue(() => '');
-		switch (selectedTab.value) {
-			case tabType.name:
-				fetchAll(1)
-				break;
-
-			case tabType.pending:
-				fetchPending(1);
-				break;
-
-			case tabType.success:
-				fetchSuccess(1);
-				break;
-			default:
-				break;
+	// filter
+	const [filter, setFilter] = useState(filterType.name);
+	const filterButtonType = (filterType) => {
+		return filter === filterType ? buttonClassesType.primary : buttonClassesType.outline;
+	}
+	const filterButtonTypeClickHandle = (filterValue) => {
+		setSearchInputValue("")
+		if (filter === filterValue) {
+			setFilter(filterType.name);
+			fetchAll(1);
+		} else {
+			setFilter(filterValue)
+			switch (filterValue) {
+				case filterType.pending:
+					fetchPending(1);
+					break;
+				case filterType.success:
+					fetchSuccess(1);
+					break;
+				default:
+					break;
+			}
 		}
 	}
+
 
 	// main data
 	const [mainData, setMainData] = useState([]);
@@ -193,10 +181,9 @@ function P2p() {
 			setFetchApiStatus(api_status.rejected);
 		}
 	}
-	const fetchByNameDebounced = useCallback(debounce(fetchByName, 1000), []);
-	const fetchMainData = (page) => {
-		switch (selectedTab.value) {
-			case tabType.name:
+	const fetchMainData = (page, searchInputValue = '') => {
+		switch (filter) {
+			case filterType.name:
 				if (searchInputValue) {
 					fetchByName(page, searchInputValue);
 				} else if (!searchInputValue) {
@@ -204,11 +191,11 @@ function P2p() {
 				}
 				break;
 
-			case tabType.pending:
+			case filterType.pending:
 				fetchPending(page);
 				break;
 
-			case tabType.success:
+			case filterType.success:
 				fetchSuccess(page);
 				break;
 
@@ -216,6 +203,9 @@ function P2p() {
 				break;
 		}
 	}
+	const fetchMainDataDebounced = useCallback(debounce(fetchMainData, 1000), []);
+
+	
 
 	// confirm
 	const [confirmModalShow, setConfirmModalShow] = useState(false);
@@ -249,7 +239,7 @@ function P2p() {
 		confirmModalClose();
 	}
 
-	//
+	// render table 
 	const renderClassDataTable = () => {
 		return (fetchApiStatus === api_status.fulfilled || fetchApiStatus === api_status.rejected) && mainData && mainData?.length > 0 ? '' : 'd-0';
 	}
@@ -263,6 +253,8 @@ function P2p() {
 			: "--d-none";
 	}
 
+
+	// useEffect
 	useEffect(() => {
 		fetchMainData(1);
 	}, [])
@@ -274,25 +266,25 @@ function P2p() {
 					<div className={css["p2p__title"]}>P2P</div>
 					<div className={`row ${css["p2p__filter"]}`}>
 						<div className={`col-md-12 col-6 pl-0`}>
-							<Tabs
-								listTab={listTab}
-								selected={selectedTab}
-								onChange={tabChangeHandle}
-							>
-								<div data-tab={`name`}>
-									<Input
-										value={searchInputValue}
-										onChange={searchInputChangeHandle}
-										placeholder="Type a name"
-									/>
-								</div>
-								<div data-tab={`pending`}>
-
-								</div>
-								<div data-tab={`success`}>
-
-								</div>
-							</Tabs>
+							<div className='d-flex alignItem-c gap-1 mb-2'>
+								<Button
+									type={filterButtonType(filterType.pending)}
+									onClick={filterButtonTypeClickHandle.bind(null, filterType.pending)}
+								>
+									Pending
+								</Button>
+								<Button
+									type={filterButtonType(filterType.success)}
+									onClick={filterButtonTypeClickHandle.bind(null, filterType.success)}
+								>
+									Success
+								</Button>
+							</div>
+							<Input
+								value={searchInputValue}
+								onChange={searchInputChangeHandle}
+								placeholder="Type a name"
+							/>
 						</div>
 						<div className={`col-md-12 col-6 ${css["p2p__paging"]}`}>
 							<Pagination
@@ -348,7 +340,7 @@ function P2p() {
 						</tbody>
 					</table>
 				</div>
-			</div>
+			</div >
 			<ModalConfirm
 				modalConfirmHandle={confirmHandle}
 				isShowModal={confirmModalShow}

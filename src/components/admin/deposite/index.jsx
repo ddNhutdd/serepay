@@ -9,61 +9,26 @@ import {
   getHistoryDepositAdmin,
   getHistoryDepositAdminAllExcel,
 } from "src/util/adminCallApi";
-import { exportExcel, formatNumber } from "src/util/common";
+import { exportExcel, formatNumber, shortenHash } from "src/util/common";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
+import CopyButton from "src/components/Common/copy-button";
 
 function Deposite() {
+
+  // phần phân trang
+  const [page, setPage] = useState(1);
+  const [totalItem, setTotalItem] = useState(1);
+  const limit = useRef(10);
+  const pageChangeHandle = function (page) {
+    fetApiGetHistoryDepositAdmin(page);
+  };
+
+
+  // phần main data
   const [mainData, setMainData] = useState();
   const [loadMainDataStatus, setLoadMainDataStatus] = useState(
     api_status.pending
   );
-  const [callApiExcelStatus, setCallApiExcelStatus] = useState(
-    api_status.pending
-  );
-  const [page, setPage] = useState(1);
-  const [totalItem, setTotalItem] = useState(1);
-
-  const limit = useRef(10);
-
-  const renderClassSpinComponent = function () {
-    return loadMainDataStatus === api_status.fetching ? "" : "--d-none";
-  };
-  const renderClassEmptyComponent = function () {
-    return loadMainDataStatus !== api_status.fetching &&
-      (!mainData || mainData.length <= 0)
-      ? ""
-      : "--d-none";
-  };
-  const renderClassDataTable = function () {
-    return loadMainDataStatus !== api_status.fetching &&
-      mainData &&
-      mainData.length > 0
-      ? ""
-      : "--d-none";
-  };
-  const renderTable = function () {
-    if (!mainData || mainData.length <= 0) return;
-    return mainData.map((item, index) => (
-      <tr key={index}>
-        <td>{item.coin_key}</td>
-        <td>{item.created_at}</td>
-        <td>{item.message}</td>
-        <td>{formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}</td>
-        <td>
-          <div style={{ wordBreak: 'break-all' }}>
-            {item.hash}
-          </div>
-        </td>
-        <td>
-          <div style={{ wordBreak: 'break-all' }}>
-            {item.address}
-          </div>
-        </td>
-        <td>{item.userName}</td>
-        <td>{item.email}</td>
-      </tr>
-    ));
-  };
   const fetApiGetHistoryDepositAdmin = async function (page = 1) {
     try {
       if (loadMainDataStatus === api_status.fetching) return;
@@ -82,8 +47,69 @@ function Deposite() {
       setLoadMainDataStatus(() => api_status.rejected);
     }
   };
-  const pageChangeHandle = function (page) {
-    fetApiGetHistoryDepositAdmin(page);
+
+
+  // phần render table
+  const renderTable = function () {
+    if (!mainData || mainData.length <= 0) return;
+    return mainData.map((item, index) => (
+      <tr key={index}>
+        <td>{item.coin_key}</td>
+        <td>{item.created_at}</td>
+        <td>{item.message}</td>
+        <td>{formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}</td>
+        <td>
+          {
+            item.hash && <div className="d-flex alignItem-c gap-1">
+              {shortenHash(item.hash)}
+              <CopyButton
+                value={item.hash}
+              />
+            </div>
+          }
+        </td>
+        <td>
+          {
+            item.address && <div className="d-flex alignItem-c gap-1">
+              {shortenHash(item.address)}
+              <CopyButton
+                value={item.address}
+              />
+            </div>
+          }
+        </td>
+        <td>{item.userName}</td>
+        <td>{item.email}</td>
+      </tr>
+    ));
+  };
+  const renderClassSpinComponent = function () {
+    return loadMainDataStatus === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassEmptyComponent = function () {
+    return loadMainDataStatus !== api_status.fetching &&
+      (!mainData || mainData.length <= 0)
+      ? ""
+      : "--d-none";
+  };
+  const renderClassDataTable = function () {
+    return loadMainDataStatus !== api_status.fetching &&
+      mainData &&
+      mainData.length > 0
+      ? ""
+      : "--d-none";
+  };
+
+
+  // phần xuất excel
+  const [callApiExcelStatus, setCallApiExcelStatus] = useState(api_status.pending);
+  const fetchTransferExcel = async function () {
+    try {
+      const resp = await getHistoryDepositAdminAllExcel();
+      return resp.data.data;
+    } catch (error) {
+      throw error;
+    }
   };
   const exportExcelClickHandle = async function () {
     try {
@@ -97,15 +123,8 @@ function Deposite() {
     }
   };
 
-  const fetchTransferExcel = async function () {
-    try {
-      const resp = await getHistoryDepositAdminAllExcel();
-      return resp.data.data;
-    } catch (error) {
-      throw error;
-    }
-  };
 
+  // useEffect
   useEffect(() => {
     fetApiGetHistoryDepositAdmin(1);
   }, []);
@@ -120,7 +139,8 @@ function Deposite() {
               loading={callApiExcelStatus === api_status.fetching}
               onClick={exportExcelClickHandle}
             >
-              Export Excel All Transfer
+              <i className="fa-solid fa-download"></i>
+              Export Excel
             </Button>
           </div>
           <div className={`col-md-12 col-6 ${css["deposit__paging"]}`}>

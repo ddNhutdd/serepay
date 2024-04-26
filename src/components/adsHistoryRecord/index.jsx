@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import css from "./adsHistoryRecord.module.scss";
 import {
-  currencyMapper,
   defaultLanguage,
   image_domain,
   localStorageVariable,
@@ -11,7 +10,6 @@ import i18n from "src/translation/i18n";
 import {
   formatNumber,
   getLocalStorage,
-  roundIntl,
   rountRange,
 } from "src/util/common";
 import { Button, buttonClassesType } from "../Common/Button";
@@ -28,20 +26,11 @@ function AdsHistoryRecord(props) {
     price,
     type = "",
     // for user
-    showModal = function () {},
-    cancelAdsId = function () {},
-    // for admin
-    rejectClickHandle = function () {},
-    acceptClickHandle = function () {},
+    showModal = function () { },
+    cancelAdsId = function () { },
   } = props;
   const { t } = useTranslation();
 
-  const renderActionByUser = function () {
-    return type === AdsHistoryRecordType.user ? "" : "--d-none";
-  };
-  const renderActionByAdmin = function () {
-    return type === AdsHistoryRecordType.admin ? "" : "--d-none";
-  };
   const renderStatus = function (type) {
     switch (type) {
       case 2:
@@ -52,28 +41,6 @@ function AdsHistoryRecord(props) {
         return <TagCustom type={TagType.error} />;
       default:
         break;
-    }
-  };
-  const renderClassLastCol = function () {
-    return type === AdsHistoryRecordType.admin ? "" : "--d-none";
-  };
-  const renderClassButonLastCoin = function () {
-    return item.type === 2 ? "" : "--visible-hidden";
-  };
-  const renderStyle = function () {
-    return type === AdsHistoryRecordType.admin
-      ? css["width-record-25"]
-      : css["width-record-33"];
-  };
-  const renderAction = function () {
-    if (type === AdsHistoryRecordType.admin) {
-      return (
-        <tr>
-          <td>{t("type")}:</td>
-          <td>{t(item.side)}</td>
-        </tr>
-      );
-    } else {
     }
   };
 
@@ -88,7 +55,7 @@ function AdsHistoryRecord(props) {
       key={item.id}
       className={`box fadeInBottomToTop ${css["ads-history__record"]}`}
     >
-      <div className={renderStyle()}>
+      <div className={css["width-record-33"]}>
         <table>
           <tbody>
             <tr>
@@ -117,11 +84,10 @@ function AdsHistoryRecord(props) {
                 )}
               </td>
             </tr>
-            {renderAction()}
           </tbody>
         </table>
       </div>
-      <div className={renderStyle()}>
+      <div className={css["width-record-33"]}>
         <table>
           <tbody>
             <tr>
@@ -151,7 +117,7 @@ function AdsHistoryRecord(props) {
           </tbody>
         </table>
       </div>
-      <div className={renderStyle()}>
+      <div className={css["width-record-33"]}>
         <table>
           <tbody>
             <tr>
@@ -160,18 +126,15 @@ function AdsHistoryRecord(props) {
             </tr>
             <tr>
               <td
-                className={`${
-                  css["ads-history-action"]
-                } ${renderActionByUser()}`}
+                className={`${css["ads-history-action"]}`}
                 id={"adsHistoryAction" + item.id}
                 colSpan="2"
               >
                 <div className={css["ads-history-action-container"]}>
                   <Button
                     type={buttonClassesType.outline}
-                    className={`${
-                      item.type === 1 || item.type === 2 ? "" : "--d-none"
-                    }`}
+                    className={`${item.type === 1 || item.type === 2 ? "" : "--d-none"
+                      }`}
                     onClick={() => {
                       cancelAdsId.current = item.id;
                       showModal();
@@ -179,37 +142,6 @@ function AdsHistoryRecord(props) {
                     id={"adsHistoryActionCancelButton" + item.id}
                   >
                     {t("cancel")}
-                  </Button>
-                </div>
-              </td>
-              <td
-                className={`${
-                  css["ads-history-action"]
-                }  ${renderActionByAdmin()}`}
-                colSpan="2"
-              >
-                <div className="d-flex alignItem-c justify-c">
-                  {renderStatus(item.type)}
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className={renderClassLastCol() + " " + renderStyle()}>
-        <table>
-          <tbody>
-            <tr className={renderClassButonLastCoin()}>
-              <td colSpan={2}>
-                <div className="d-flex alignItem-c justify-c f-w">
-                  <Button
-                    className={`m-1`}
-                    onClick={rejectClickHandle.bind(null, item.id)}
-                  >
-                    Reject
-                  </Button>
-                  <Button onClick={acceptClickHandle.bind(null, item.id)}>
-                    Accept
                   </Button>
                 </div>
               </td>

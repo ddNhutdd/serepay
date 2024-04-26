@@ -46,6 +46,7 @@ export const Button = ({
   type = buttonClassesType.primary,
   disabled,
   htmlSubmit = htmlType,
+  dataEdit,
 }) => {
   let typeClassesDefault = getButtonClasses(type);
   const renderClassLoader = function () {
@@ -63,6 +64,7 @@ export const Button = ({
       name={name}
       disabled={renderDisable()}
       type={htmlSubmit}
+      data-edit={dataEdit}
     >
       <div className={`loader ${renderClassLoader()}`}></div>
       {children}

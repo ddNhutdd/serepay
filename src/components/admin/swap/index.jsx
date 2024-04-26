@@ -4,106 +4,106 @@ import { Pagination, Spin } from "antd";
 import { Input } from "src/components/Common/Input";
 import { api_status } from "src/constant";
 import socket from "src/util/socket";
-import { Button, buttonClassesType } from "src/components/Common/Button";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { historySwapAdmin } from "src/util/adminCallApi";
 import { debounce, formatNumber } from "src/util/common";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
+import Dropdown from "src/components/Common/dropdown/Dropdown";
+import { DOMAIN } from "src/util/service";
 
 export default function SwapAdmin() {
   const all = "ALL";
+  const coinDropdownAllItem = { id: 'all', name: all }
   const filterType = {
     coin: "coin",
     username: "username",
   };
 
-  const [fetchListCoinStatus, setFetchListCoinStatus] = useState(
-    api_status.pending
-  );
-  const [fetchDataTableStatus, setFetchDataTableStatus] = useState(
-    api_status.pending
-  );
 
+
+  // phần phân trang
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItem, setTotalItem] = useState(1);
-  const [userName, setUserName] = useState();
-  const [filter, setFilter] = useState(filterType.coin);
-  const [listCoin, setListCoin] = useState([]);
-  const [seletedCoin, setSeletedCoin] = useState(all);
-  const [dataTable, setDataTable] = useState([]);
-
   const limit = useRef(10);
-
-  const tabCLickHandle = function (fillter, ev) {
-    ev.stopPropagation();
-    setFilter(() => fillter);
-    fetchHistorySwapAdmin(1, seletedCoin, userName, fillter);
-  };
   const pageChangeHandle = function (page) {
-    fetchHistorySwapAdmin(page, seletedCoin, userName, filter);
+    fetchHistorySwapAdmin(page, seletedCoin.content, userName, filter);
   };
-  const renderClassShowTabContentCoin = function () {
-    return filter === filterType.coin ? "" : "--d-none";
-  };
-  const renderClassShowTabContentUsername = function () {
-    return filter === filterType.username ? "" : "--d-none";
-  };
+
+
+
+  // phần filter 
+  const [filter, setFilter] = useState(filterType.coin);
+  const filterUserName = () => {
+    setFilter(filterType.username);
+    setSeletedCoin({ id: 'all', content: all });
+  }
+  const filterCoin = () => {
+    setFilter(filterType.coin);
+    setUserName('');
+  }
+
+
+
+
+  // input username
+  const [userName, setUserName] = useState();
   const inputUserNameChangeHandle = function (ev) {
     const value = ev.target.value;
     setUserName(() => value);
+    filterUserName();
     fetchHistorySwapAdminDebounced(1, undefined, value, filterType.username);
   };
-  const renderClassActiveTabCoin = function () {
-    return filter === filterType.coin ? css["active"] : "";
-  };
-  const renderClassActiveTabUserName = function () {
-    return filter === filterType.username ? css["active"] : "";
-  };
+
+
+
+  // phần list coin
+  const [fetchListCoinStatus, setFetchListCoinStatus] = useState(api_status.pending);
+  const [listCoin, setListCoin] = useState([]);
+  const [seletedCoin, setSeletedCoin] = useState(all);
   const fetchListCoin = function () {
     if (fetchListCoinStatus === api_status.fetching) return;
     setFetchListCoinStatus(() => api_status.fetching);
     try {
       socket.once("listCoin", (resp) => {
         setFetchListCoinStatus(() => api_status.fulfilled);
-        setListCoin(() => resp);
+        const result = [coinDropdownAllItem, ...resp];
+        setListCoin(result);
+        setSeletedCoin({ id: 'all', content: all })
       });
     } catch (error) {
       setFetchListCoinStatus(() => api_status.rejected);
     }
   };
-  const renderListCoinSpin = function () {
-    return fetchListCoinStatus === api_status.fetching ? "" : "--d-none";
-  };
-  const renderListCoin = function (listCoin) {
-    if (!listCoin || listCoin.length <= 0) return;
-    const listCoinNew = [
-      {
-        id: all,
-        name: all.toUpperCase(),
-      },
-      ...listCoin,
-    ];
-    return listCoinNew.map((item) => (
-      <div key={item.id}>
-        <Button
-          onClick={coinClickHandle.bind(null, item.name)}
-          type={buttonClassesType.outline}
-          className={`${css["swapAdmin__coin-item"]}  ${setActiveListCoin(
-            item.name
-          )}`}
-        >
-          {item.name}
-        </Button>
-      </div>
-    ));
-  };
-  const setActiveListCoin = function (coinName) {
-    return coinName === seletedCoin ? css["active"] : "";
-  };
   const coinClickHandle = function (coinName) {
-    setSeletedCoin(() => coinName);
-    fetchHistorySwapAdmin(1, coinName, undefined, filterType.coin);
+    setSeletedCoin(coinName);
+    filterCoin();
+    fetchHistorySwapAdmin(1, coinName.content, undefined, filterType.coin);
   };
+  const genListCoinObject = () => {
+    const result = [];
+    console.log(listCoin)
+    listCoin?.map(coin => {
+      if (coin.image) {
+        result.push({
+          id: coin.id,
+          image: DOMAIN + coin.image,
+          content: coin.name
+        })
+      } else {
+        result.push({
+          id: coin.id,
+          content: coin.name
+        })
+      }
+    })
+    return result;
+  }
+
+
+
+  // phần main data
+  const [dataTable, setDataTable] = useState([]);
+  const [fetchDataTableStatus, setFetchDataTableStatus] = useState(api_status.pending);
   const fetchHistorySwapAdmin = async function (
     page = 1,
     coinName = all,
@@ -138,6 +138,11 @@ export default function SwapAdmin() {
 
     return result;
   };
+
+
+
+
+  // phần render table
   const renderTable = function (table) {
     if (!table || table.length <= 0) return;
     return table.map((item) => (
@@ -168,11 +173,19 @@ export default function SwapAdmin() {
       ? ""
       : "--d-none";
   };
+
+
+
+
+  // debouce
   const fetchHistorySwapAdminDebounced = useCallback(
     debounce(fetchHistorySwapAdmin, 1000),
     []
   );
 
+
+
+  //useEffect
   useEffect(() => {
     fetchListCoin();
     fetchHistorySwapAdmin(1);
@@ -184,49 +197,18 @@ export default function SwapAdmin() {
         <div className={css["swapAdmin__title"]}>Swap</div>
         <div className={`row ${css["swapAdmin__filter"]}`}>
           <div className={`col-md-12 col-7 pl-0 row`}>
-            <div className="col-12 row pl-0">
-              <div
-                data-tab={filterType.coin}
-                onClick={tabCLickHandle.bind(null, filterType.coin)}
-                className={`col-sm-6 col-lg-5 col-3 ${renderClassActiveTabCoin()} ${css["swapAdmin__tabItem"]
-                  }`}
-              >
-                Coin
-              </div>
-              <div
-                data-tab={filterType.username}
-                onClick={tabCLickHandle.bind(null, filterType.username)}
-                className={`col-sm-6 col-lg-5 col-3 ${renderClassActiveTabUserName()} ${css["swapAdmin__tabItem"]
-                  }`}
-              >
-                UserName
-              </div>
-              <div
-                data-tab={"none"}
-                className={`d-sm-0 col-lg-2 col-6 ${css["swapAdmin__tabItem"]}`}
-              ></div>
-            </div>
-            <div
-              className={`row ${css["swapAdmin__list-coin"]
-                } ${renderClassShowTabContentCoin()}`}
-            >
-              {renderListCoin(listCoin)}
-              <span
-                className={`${css["spin-container"]} ${renderListCoinSpin()}`}
-              >
-                <Spin />
-              </span>
-            </div>
-            <div
-              className={`col-12 row p-0 alignItem-c ${renderClassShowTabContentUsername()}`}
-            >
-              <div className="col-12 pl-0">
-                <Input
-                  value={userName}
-                  onChange={inputUserNameChangeHandle}
-                  placeholder={"UserName"}
-                />
-              </div>
+            <Dropdown
+              list={genListCoinObject()}
+              itemClickHandle={coinClickHandle}
+              itemSelected={seletedCoin}
+              id={`coinDropdown`}
+            />
+            <div className="mt-2 w-100">
+              <Input
+                value={userName}
+                onChange={inputUserNameChangeHandle}
+                placeholder={"UserName"}
+              />
             </div>
           </div>
           <div className={`col-md-12 col-5 ${css["swapAdmin__paging"]}`}>

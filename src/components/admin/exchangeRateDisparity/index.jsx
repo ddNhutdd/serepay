@@ -9,7 +9,7 @@ import {
 import { api_status, commontString, regularExpress } from "src/constant";
 import { updateExchangeRateDisparity } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import { Button } from "src/components/Common/Button";
+import { Button, buttonClassesType } from "src/components/Common/Button";
 import { Input } from "src/components/Common/Input";
 import {
   fetchExchangeRateSell,
@@ -17,52 +17,41 @@ import {
   getExchangeRateSellApiStatus,
 } from "src/redux/reducers/exchangeRateSellSlice";
 function ExchangeRateDisparity() {
-  const rateFromRedux = useSelector(getExchangeRateDisparity);
-  const rateBuyStatusFromRedux = useSelector(exchangeRateDisparityApiStatus);
-  const rateSellFromRedux = useSelector(getExchangeRateSell);
-  const rateSellStatusFromRedux = useSelector(getExchangeRateSellApiStatus);
+
+  //
   const dispatch = useDispatch();
 
-  const [controlBuyErrors, setControlBuyErrors] = useState({});
-  const [controlSellErrors, setControlSellErrors] = useState({});
-  const [callApiSetBuyStatus, setCallApiSetBuyStatus] = useState(
-    api_status.pending
-  );
-  const [callApiSetSellStatus, setCallApiSetSellStatus] = useState(
-    api_status.pending
-  );
 
-  const controlsBuy = useRef({ newValueInput: "newValueInput" });
-  const controlsSell = useRef({ newValueInput: "newValueInput" });
-  const controlBuyTourched = useRef({});
-  const controlSellTourched = useRef({});
-  const inputBuyCurrent = useRef();
-  const inputBuyNew = useRef();
-  const inputSellCurrent = useRef();
-  const inputSellNew = useRef();
 
-  useEffect(() => {
-    return () => {
-      dispatch(fetchExchangeRateDisparity());
-      dispatch(fetchExchangeRateSell());
+  // format input 
+  const formatInput = function (inputValue) {
+    const inputValueWithoutComma = inputValue.replaceAll(/,/g, "");
+    if (inputValueWithoutComma === "-") return "-";
+
+    const format = function (numberString) {
+      if (numberString === "-") return "-";
+      const regex = /^(-?[0-9]+(\.[0-9]*)?)?$/;
+      if (!regex.test(numberString)) return;
+      const parts = numberString.split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parts.join(".");
     };
-  }, []);
-  useEffect(() => {
-    setRateBuy();
-  }, [rateFromRedux, rateBuyStatusFromRedux]);
-  useEffect(() => {
-    setRateSell();
-  }, [rateSellFromRedux, rateSellStatusFromRedux]);
 
-  const renderClassShowSpinBuy = function () {
-    return rateBuyStatusFromRedux === api_status.fetching ? "" : "--d-none";
+    const regex = /^(-?[0-9]+(\.[0-9]*)?)?$/;
+    if (!regex.test(inputValueWithoutComma)) {
+      return format(inputValueWithoutComma.slice(0, -1));
+    }
+    const inputValueFormated = format(inputValueWithoutComma);
+    return inputValueFormated;
   };
-  const renderClassShowContentLeft = function () {
-    return rateBuyStatusFromRedux === api_status.fetching ? "--d-none" : "";
-  };
-  const setRateBuy = function () {
-    inputBuyCurrent.current.value = rateFromRedux;
-  };
+
+
+  // tỉ lệ mua
+  const rateFromRedux = useSelector(getExchangeRateDisparity);
+  const rateBuyStatusFromRedux = useSelector(exchangeRateDisparityApiStatus);
+  const [typeBuyButton, setTypeBuyButton] = useState(buttonClassesType.outline);
+  const [callApiSetBuyStatus, setCallApiSetBuyStatus] = useState(api_status.pending);
+  const inputBuyNew = useRef();
   const validateBuy = function () {
     let valid = true;
     const newValueInputElement = inputBuyNew.current;
@@ -96,6 +85,59 @@ function ExchangeRateDisparity() {
     }
     return Object.keys(controlBuyTourched.current).length <= 0 ? false : valid;
   };
+  const newValueInputBuyChangeHandle = function (ev) {
+    const value = ev.target.value;
+    ev.target.value = formatInput(value);
+    validateBuy();
+    setTypeBuyButton(buttonClassesType.primary);
+  };
+  const newValueInputBuyFocusHandle = function () {
+    controlBuyTourched.current[controlsBuy.current.newValueInput] = true;
+    validateBuy();
+  };
+  const submitBuyHandle = function (event) {
+    event.preventDefault();
+    controlBuyTourched.current[controlsBuy.current.newValueInput] = true;
+    const valid = validateBuy();
+    if (!valid) {
+    } else {
+      // call api
+      if (callApiSetBuyStatus === api_status.fetching) return;
+      setCallApiSetBuyStatus(api_status.fetching);
+      const newValueElement = inputBuyNew.current;
+      if (!newValueElement) return;
+      updateExchangeRateDisparity({
+        name: "exchangeRate",
+        value: newValueElement.value.replaceAll(",", ""),
+      })
+        .then((resp) => {
+          callToastSuccess(commontString.success);
+          setCallApiSetBuyStatus(api_status.fulfilled);
+          setTypeBuyButton(buttonClassesType.outline)
+        })
+        .catch((error) => {
+          const mess = error?.response?.data?.message;
+          switch (mess) {
+            case "User does not have access":
+              callToastError(mess);
+              break;
+            default:
+              callToastError("Có lỗi trong quá trình xử lí");
+              break;
+          }
+          setCallApiSetBuyStatus(api_status.rejected);
+        });
+    }
+  };
+
+
+
+  // tỉ lệ bán
+  const rateSellFromRedux = useSelector(getExchangeRateSell);
+  const rateSellStatusFromRedux = useSelector(getExchangeRateSellApiStatus);
+  const [typeSellButton, setTypeSellButton] = useState(buttonClassesType.outline);
+  const [callApiSetSellStatus, setCallApiSetSellStatus] = useState(api_status.pending);
+  const inputSellNew = useRef();
   const validateSell = function () {
     let valid = true;
     const newValueInputElement = inputSellNew.current;
@@ -129,87 +171,15 @@ function ExchangeRateDisparity() {
     }
     return Object.keys(controlSellTourched.current).length <= 0 ? false : valid;
   };
-  const newValueInputBuyFocusHandle = function () {
-    controlBuyTourched.current[controlsBuy.current.newValueInput] = true;
-    validateBuy();
-  };
   const newValueInputSellFocusHandle = function () {
     controlSellTourched.current[controlsSell.current.newValueInput] = true;
     validateSell();
-  };
-  const newValueInputBuyChangeHandle = function (ev) {
-    const value = ev.target.value;
-    ev.target.value = formatInput(value);
-    validateBuy();
   };
   const newValueInputSellChangeHandle = function (ev) {
     const value = ev.target.value;
     ev.target.value = formatInput(value);
     validateSell();
-  };
-  const formatInput = function (inputValue) {
-    const inputValueWithoutComma = inputValue.replaceAll(/,/g, "");
-    if (inputValueWithoutComma === "-") return "-";
-
-    const format = function (numberString) {
-      if (numberString === "-") return "-";
-      const regex = /^(-?[0-9]+(\.[0-9]*)?)?$/;
-      if (!regex.test(numberString)) return;
-      const parts = numberString.split(".");
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      return parts.join(".");
-    };
-
-    const regex = /^(-?[0-9]+(\.[0-9]*)?)?$/;
-    if (!regex.test(inputValueWithoutComma)) {
-      return format(inputValueWithoutComma.slice(0, -1));
-    }
-    const inputValueFormated = format(inputValueWithoutComma);
-    return inputValueFormated;
-  };
-  const submitBuyHandle = function (event) {
-    event.preventDefault();
-    controlBuyTourched.current[controlsBuy.current.newValueInput] = true;
-    const valid = validateBuy();
-    if (!valid) {
-    } else {
-      // call api
-      if (callApiSetBuyStatus === api_status.fetching) return;
-      setCallApiSetBuyStatus(api_status.fetching);
-      const newValueElement = inputBuyNew.current;
-      if (!newValueElement) return;
-      updateExchangeRateDisparity({
-        name: "exchangeRate",
-        value: newValueElement.value.replaceAll(",", ""),
-      })
-        .then((resp) => {
-          callToastSuccess(commontString.success);
-          inputBuyCurrent.current.value = inputBuyNew.current.value;
-          inputBuyNew.current.value = "";
-          setCallApiSetBuyStatus(api_status.fulfilled);
-        })
-        .catch((error) => {
-          const mess = error?.response?.data?.message;
-          switch (mess) {
-            case "User does not have access":
-              callToastError(mess);
-              break;
-            default:
-              callToastError("Có lỗi trong quá trình xử lí");
-              break;
-          }
-          setCallApiSetBuyStatus(api_status.rejected);
-        });
-    }
-  };
-  const setRateSell = function () {
-    inputSellCurrent.current.value = rateSellFromRedux;
-  };
-  const renderClassShowSpinSell = function () {
-    return rateSellStatusFromRedux === api_status.fetching ? "" : "--d-none";
-  };
-  const renderClassShowContentRight = function () {
-    return rateSellStatusFromRedux !== api_status.fetching ? "" : "--d-none";
+    setTypeSellButton(buttonClassesType.primary);
   };
   const submitSellHandle = async function (ev) {
     try {
@@ -224,13 +194,70 @@ function ExchangeRateDisparity() {
         value: inputSellNew.current.value.replaceAll(",", ""),
       });
       callToastSuccess(commontString.success);
-      inputSellCurrent.current.value = inputSellNew.current.value;
-      inputSellNew.current.value = "";
+      setTypeSellButton(buttonClassesType.outline);
       setCallApiSetSellStatus(api_status.fulfilled);
     } catch (error) {
       setCallApiSetSellStatus(api_status.rejected);
     }
   };
+
+
+
+
+
+  // useEffect 
+  useEffect(() => {
+    return () => {
+      dispatch(fetchExchangeRateDisparity());
+      dispatch(fetchExchangeRateSell());
+    };
+  }, []);
+  useEffect(() => {
+    if (inputBuyNew && inputBuyNew.current) {
+      inputBuyNew.current.value = rateFromRedux;
+    }
+  }, [rateFromRedux])
+  useEffect(() => {
+    if (inputSellNew && inputSellNew.current) {
+      inputSellNew.current.value = rateSellFromRedux;
+    }
+  }, [rateSellFromRedux])
+
+
+
+
+
+  const [controlBuyErrors, setControlBuyErrors] = useState({});
+  const [controlSellErrors, setControlSellErrors] = useState({});
+  const controlsBuy = useRef({ newValueInput: "newValueInput" });
+  const controlsSell = useRef({ newValueInput: "newValueInput" });
+  const controlBuyTourched = useRef({});
+  const controlSellTourched = useRef({});
+
+
+
+
+
+
+  const renderClassShowSpinBuy = function () {
+    return rateBuyStatusFromRedux === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassShowContentLeft = function () {
+    return rateBuyStatusFromRedux === api_status.fetching ? "--d-none" : "";
+  };
+
+
+
+
+
+
+  const renderClassShowSpinSell = function () {
+    return rateSellStatusFromRedux === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassShowContentRight = function () {
+    return rateSellStatusFromRedux !== api_status.fetching ? "" : "--d-none";
+  };
+
 
   return (
     <div className="admin-exchange-rate-disparity">
@@ -246,15 +273,6 @@ function ExchangeRateDisparity() {
             className={`admin-exchange-rate-disparity__form ${renderClassShowContentLeft()}`}
           >
             <div className="admin-exchange-rate-disparity__control-input">
-              <label>Current Value:</label>
-              <Input
-                ref={inputBuyCurrent}
-                disabled
-                type="text"
-                className="disabled"
-              />
-            </div>
-            <div className="admin-exchange-rate-disparity__control-input">
               <label htmlFor="newValueInput">New Value:</label>
               <Input
                 onFocus={newValueInputBuyFocusHandle}
@@ -267,6 +285,7 @@ function ExchangeRateDisparity() {
               <Button
                 loading={callApiSetBuyStatus === api_status.fetching}
                 onClick={submitBuyHandle}
+                type={typeBuyButton}
               >
                 Save
               </Button>
@@ -282,15 +301,6 @@ function ExchangeRateDisparity() {
             className={`admin-exchange-rate-disparity__form ${renderClassShowContentRight()}`}
           >
             <div className="admin-exchange-rate-disparity__control-input">
-              <label>Current Value:</label>
-              <Input
-                ref={inputSellCurrent}
-                disabled
-                type="text"
-                className="disabled"
-              />
-            </div>
-            <div className="admin-exchange-rate-disparity__control-input">
               <label>New Value:</label>
               <Input
                 onFocus={newValueInputSellFocusHandle}
@@ -303,6 +313,7 @@ function ExchangeRateDisparity() {
               <Button
                 loading={callApiSetSellStatus === api_status.fetching}
                 onClick={submitSellHandle}
+                type={typeSellButton}
               >
                 Save
               </Button>

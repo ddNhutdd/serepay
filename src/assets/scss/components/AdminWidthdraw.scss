@@ -117,32 +117,38 @@
         overflow: hidden;
         overflow-x: auto;
 
-        thead {
-            tr {
-                th {
-                    white-space: nowrap;
-                }
-            }
-        }
+        table {
+            width: 100%;
 
-        tbody {
-            tr {
-                td {
-                    &:nth-of-type(6) {
-                        min-width: 300px;
-                    }
-
-                    &:nth-of-type(10) {
+            thead {
+                tr {
+                    th {
                         white-space: nowrap;
                     }
+                }
+            }
 
-                    .widthdraw__action {
-                        display: flex;
-                        gap: 10px;
+            tbody {
+                tr {
+                    td {
+                        &:nth-of-type(6) {
+                            min-width: 300px;
+                        }
+
+                        &:nth-of-type(10) {
+                            white-space: nowrap;
+                        }
+
+                        .widthdraw__action {
+                            display: flex;
+                            gap: 10px;
+                        }
                     }
                 }
             }
         }
+
+
     }
 }
 

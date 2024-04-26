@@ -510,3 +510,26 @@ export const checkKeyInObj = (key, obj) => {
 		return false;
 	}
 }
+export const shortenHash = (inputString) => {
+	if (typeof inputString !== 'string') {
+		return;
+	}
+	const length = inputString.length;
+	if (length < 14) {
+		return inputString;
+	}
+	const firstPart = inputString.substring(0, 8);
+	const lastPart = inputString.substring(length - 6);
+	const formattedString = firstPart.toUpperCase() + '...' + lastPart.toLowerCase();
+	return formattedString;
+}
+
+export const formatInputNumber = (inputValue) => {
+	const inputValueString = inputValue.toString();
+	const inputValueWithoutComma = inputValueString.replace(/,/g, "");
+	const regex = /^$|^[0-9]+(\.[0-9]*)?$/;
+	if (!regex.test(inputValueWithoutComma)) {
+		return inputValueString.slice(0, inputValueString.length - 1);
+	}
+	return formatStringNumberCultureUS(inputValueWithoutComma);
+};

@@ -1,6 +1,10 @@
 .ads {
     color: $white;
 
+    .ads--low-opacity {
+        opacity: 0.3;
+    }
+
     .ads__header {
         display: flex;
         flex-direction: column;
@@ -117,7 +121,11 @@
         width: 100%;
         overflow-x: auto;
 
+        table {
+            @include adminTable;
 
+            
+        }
     }
 }
 

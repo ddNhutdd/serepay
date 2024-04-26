@@ -10,68 +10,12 @@
         }
 
         .swapAdmin__filter {
-            .swapAdmin__tabItem {
-                border-bottom: 1px solid $background-color-4;
-                font-weight: bold;
-                transition: color .2s;
 
-                @media screen and (max-width:576px) {
-                    padding: 8px;
-                }
-
-                &:hover {
-                    cursor: pointer;
-                    border-bottom: none;
-                    border-top: 1px solid $background-color-4;
-                    border-right: 1px solid $background-color-4;
-                    border-left: 1px solid $background-color-4;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
-                    color: $new-primary-color-6;
-                }
-
-                &.active {
-                    border-bottom: none;
-                    border-top: 1px solid $background-color-4;
-                    border-right: 1px solid $background-color-4;
-                    border-left: 1px solid $background-color-4;
-                    border-top-left-radius: 5px;
-                    border-top-right-radius: 5px;
-                    color: $new-primary-color-6;
-                }
-
-                &:last-child {
-                    &:hover {
-                        cursor: default;
-                        border-bottom: 1px solid $background-color-4;
-                        border-top: none;
-                        border-right: none;
-                        border-left: none;
-                        border-top-left-radius: 0;
-                        border-top-right-radius: 0;
-                        color: $new-text-color-white;
-                    }
-                }
-            }
-
-            .swapAdmin__list-coin {
-                padding-left: 0;
-                gap: 10px;
-                flex-wrap: wrap;
-
-                .swapAdmin__coin-item {
-                    width: fit-content;
-
-                    &.active {
-                        background-color: $new-primary-color-6;
-                        color: $new-text-color-white;
-                    }
-                }
-
-                .spin-container {
-                    @extend .spin-container;
-                    height: 20px;
-                }
+            img {
+                width: 20px !important;
+                height: 20px;
+                position: relative;
+                top: -3px;
             }
 
             .swapAdmin__paging {

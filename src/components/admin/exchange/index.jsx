@@ -12,6 +12,7 @@ import {
   getExchangeFetchStatus,
 } from "src/redux/constant/currency.constant";
 import { addExchange, editExchange } from "src/util/adminCallApi";
+import Row from "./row";
 function Exchange() {
   const dispatch = useDispatch();
   const exchanges = useSelector(getExchange);
@@ -26,85 +27,15 @@ function Exchange() {
   const renderTableContent = function () {
     if (!mainData || mainData.length <= 0) return;
     return mainData.map((item) => (
-      <tr
-        onClick={tableRowClickHandle}
-        data-id={item.id}
-        data-title={item.title}
-        data-rate={item.rate}
+      <Row
         key={item.id}
-      >
-        <td>
-          <span data-container="title">{item.title}</span>
-          <Input className="--d-none" id={`title-${item.id}`} type="text" />
-        </td>
-        <td>
-          <span data-container="rate">{item.rate}</span>
-          <Input className="--d-none" id={`rate-${item.id}`} type="text" />
-        </td>
-        <td>
-          <div className="exchange__action">
-            <Button
-              onClick={editExchangeClickHandle}
-              id={`saveRecord-${item.id}`}
-              className="--d-none"
-              disabled={disableButtonWhenPending()}
-            >
-              Save
-            </Button>
-            <Button
-              disabled={disableButtonWhenPending()}
-              onClick={cancelCLickHandle}
-              type={buttonClassesType.outline}
-              className="--d-none"
-            >
-              Cancel
-            </Button>
-          </div>
-        </td>
-      </tr>
+        id={item.id}
+        title={item.title}
+        rate={item.rate}
+      />
     ));
   };
-  const cancelCLickHandle = function (e) {
-    e.stopPropagation();
-    if (callApiStatus === api_status.fetching) return;
-    const thisRow = e.target.closest("tr");
-    hideRow(thisRow);
-  };
-  const hideRow = function (row) {
-    const inputs = row.querySelectorAll("input");
-    const spans = row.querySelectorAll("span[data-container]");
-    const buttons = row.querySelectorAll("button");
-    for (const item of inputs) {
-      if (!item.classList.contains("--d-none")) item.classList.add("--d-none");
-    }
-    for (const item of spans) {
-      item.classList.remove("--d-none");
-    }
-    for (const item of buttons) {
-      if (!item.classList.contains("--d-none")) item.classList.add("--d-none");
-    }
-  };
-  const tableRowClickHandle = function (e) {
-    if (callApiStatus === api_status.fetching) return;
-    const buttons = e.currentTarget.querySelectorAll("button");
-    const inputs = e.currentTarget.querySelectorAll("input");
-    const title = e.currentTarget.dataset.title;
-    const rate = e.currentTarget.dataset.rate;
-    const firstButton = Array.from(buttons).at(0);
-    if (!firstButton.classList.contains("--d-none")) return;
-    for (const [index, item] of Object.entries(inputs)) {
-      item.classList.remove("--d-none");
-      if (+index === 0) item.value = title;
-      else item.value = rate;
-    }
-    for (const item of buttons) {
-      item.classList.remove("--d-none");
-    }
-    const spans = e.currentTarget.querySelectorAll("[data-container]");
-    for (const item of spans) {
-      if (!item.classList.contains("--d-none")) item.classList.add("--d-none");
-    }
-  };
+
   const renderClassTableSpin = function () {
     return exchangesFetchStatus === api_status.pending ? "" : "--d-none";
   };
@@ -114,48 +45,6 @@ function Exchange() {
       mainData.length <= 0
       ? ""
       : "--d-none";
-  };
-  const fetchApiEditExchange = function (title, rate, id) {
-    return new Promise((resolve, reject) => {
-      if (callApiStatus === api_status.pending) resolve(false);
-      else setCallApiStatus(() => api_status.fetching);
-      editExchange({ title, rate, id })
-        .then((resp) => {
-          setCallApiStatus(() => api_status.fulfilled);
-          resolve(true);
-          callToastSuccess(commontString.success);
-        })
-        .catch((error) => {
-          setCallApiStatus(() => api_status.rejected);
-          callToastError(commontString.error);
-          reject(false);
-        });
-    });
-  };
-  const editExchangeClickHandle = function (e) {
-    if (callApiStatus === api_status.fetching) return;
-    e.stopPropagation();
-    const thisRow = e.target.closest("tr");
-    const id = thisRow.dataset.id;
-    const newTitle = thisRow.querySelector("input#title-" + id).value;
-    const newRate = thisRow.querySelector("input#rate-" + id).value;
-    fetchApiEditExchange(newTitle, newRate, id)
-      .then((resp) => {
-        if (resp) {
-          setNewData(thisRow, newTitle, newRate);
-          hideRow(thisRow);
-        }
-      })
-      .catch((error) => {});
-  };
-  const setNewData = function (row, newTitle, newRate) {
-    row.dataset.title = newTitle;
-    row.dataset.rate = newRate;
-    const spans = row.querySelectorAll("span[data-container]");
-    for (const [index, item] of Object.entries(spans)) {
-      if (+index === 0) item.innerHTML = newTitle;
-      else item.innerHTML = newRate;
-    }
   };
   const disableButtonWhenPending = function () {
     return callApiStatus === api_status.fetching ? true : false;

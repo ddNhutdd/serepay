@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { currencyMapper } from "src/constant";
+import { currencyMapper, image_domain } from "src/constant";
 import { getWalletToUserAdmin } from "src/util/adminCallApi";
 import { formatNumber } from "src/util/common";
+import css from './coin-cell.module.scss';
 
 function CoinCells(props) {
   const {
@@ -23,11 +24,16 @@ function CoinCells(props) {
         userid: id
       });
       const result = [];
-      listCoinName.map(coinName => {
-        const coinNameBalance = (coinName.name + '_balance').toLowerCase(); 
+      listCoinName.map((coinName, index) => {
+
+        const coinNameBalance = (coinName.name + '_balance').toLowerCase();
         result.push(
-          <td>
-            { resp?.data?.data[coinNameBalance] ? formatNumber(resp?.data?.data[coinNameBalance], currencyMapper.USD, 8) : 0}
+          <td key={coinName.name + index}>
+            <div className={css.coinCells}>
+              <img src={image_domain.replace("USDT", coinName.name)} />
+              {" "}
+              {resp?.data?.data[coinNameBalance] ? formatNumber(resp?.data?.data[coinNameBalance], currencyMapper.USD, 8) : 0}
+            </div>
           </td>
         )
       })

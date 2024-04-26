@@ -72,7 +72,6 @@ import FormWithdraw from "./components/seresoWallet/walletWithdraw";
 import SerepayWalletDeposit from "./components/seresoWallet/walletDeposite";
 import SwapAdmin from "./components/admin/swap";
 import TransferAdmin from "./components/admin/transferAdmin";
-import WalletAdmin from "./components/admin/walletAdmin";
 import { setListBank, setStatus } from "./redux/reducers/bankSlice";
 import {
   getExchangeRateSellFetchCount,
@@ -328,7 +327,6 @@ function App() {
             component={ExchangeRateDisparity}
           />
           <AdminTemplate path={url.admin_transfer} component={TransferAdmin} />
-          <AdminTemplate path={url.admin_wallet} component={WalletAdmin} />
           <AdminTemplate path={url.admin_swap} component={SwapAdmin} />
           <AdminTemplate path={url.admin_kyc} component={KycAdmin} />
           <AdminTemplate path={url.admin_deposit} component={Deposite} />

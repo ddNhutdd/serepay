@@ -9,6 +9,7 @@ import {
   getListWidthdrawCoin,
   getListWidthdrawCoinAll,
   getListWidthdrawCoinPendding,
+  getWalletToWithdrawWhere,
   searchWalletToWithdraw,
 } from "src/util/adminCallApi";
 import socket from "src/util/socket";
@@ -16,9 +17,10 @@ import { ModalConfirm } from "src/components/Common/ModalConfirm";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input } from "src/components/Common/Input";
 import { TagCustom, TagType } from "src/components/Common/Tag";
-import { debounce } from "src/util/common";
+import { debounce, shortenHash } from "src/util/common";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
+import CopyButton from "src/components/Common/copy-button";
 
 function Widthdraw() {
 
@@ -51,9 +53,20 @@ function Widthdraw() {
   }
   const coinPendingFilter = () => {
     filter.current = filterType.coinPending;
+    setInputSearchAddressValue('');
+    setUserIdSearchValue('');
+  }
+  const addressSearchFilter = () => {
+    filter.current = filterType.address;
+    setUserIdSearchValue('');
+    setIsChecked(false);
+    setSelectedCoin(allDropdownItem);
   }
   const userIdFilter = () => {
     filter.current = filterType.userId;
+    setIsChecked(false);
+    setSelectedCoin(allDropdownItem);
+    setInputSearchAddressValue('');
   }
 
 
@@ -105,33 +118,44 @@ function Widthdraw() {
   // input address
   const [inputSearchAddressValue, setInputSearchAddressValue] = useState('');
   const inputSearchChangeHandle = (ev) => {
-    setInputSearchAddressValue(ev.target.value);
+    const address = ev.target.value;
+    setInputSearchAddressValue(address);
+    addressSearchFilter();
+    loadDataDebounced(filter.current, 1, '', address, '');
   }
 
 
   // input userid
   const [userIdSearchValue, setUserIdSearchValue] = useState('');
   const userIdSearchValueChange = (ev) => {
-    setUserIdSearchValue(ev.target.value);
+    const userId = ev.target.value;
+    setUserIdSearchValue(userId);
+    userIdFilter();
+    loadDataDebounced(filter.current, 1, '', '', userId);
   }
 
 
   // checkbox pending
   const [isChecked, setIsChecked] = useState(false);
-  const pendingChangeHandle = function (e) {
-    const isCheckedLc = e.target.checked;
-    if (
-      callApiLoadMainDataStatus === api_status.fetching
-    ) {
-      e.target.checked = !isCheckedLc;
-      return;
+  const pendingChangeHandle = function () {
+    const newValue = !isChecked;
+
+    switch (newValue) {
+      case true:
+        coinPendingFilter();
+        loadData(filter.current, 1, selectedCoin.content, '', '');
+        break;
+
+      case false:
+        coinFilter();
+        loadData(filter.current, 1, selectedCoin.content, '', '');
+        break;
+
+      default:
+        break;
     }
-    isChecked.current = isCheckedLc;
-    if (isCheckedLc) {
-      fetchApiLoadDataByCoinPending(1, selectedCoin);
-    } else {
-      fetchApiLoadDataByCoin(1, selectedCoin);
-    }
+
+    setIsChecked(newValue);
   };
   const showPending = !selectedCoin || selectedCoin.content === all ? '--d-none' : '';
 
@@ -161,12 +185,22 @@ function Widthdraw() {
 
 
       case filterType.address:
-        fetchSearchTransferByAddress(page, address);
+        if (address) {
+          fetchSearchTransferByAddress(limit.current, page, address);
+        } else {
+          allFilter();
+          fetchApiLoadDataAll(1);
+        }
         break;
 
 
       case filterType.userId:
-        fetchApiLoadDataBuyUserId(page, userId);
+        if (userId) {
+          fetchApiLoadDataBuyUserId(page, userId);
+        } else {
+          allFilter();
+          fetchApiLoadDataAll(1);
+        }
         break;
 
 
@@ -174,6 +208,7 @@ function Widthdraw() {
         break;
     }
   };
+  const loadDataDebounced = useCallback(debounce(loadData, 1000), []);
   const clearMainData = function () {
     setMainData(() => []);
     setCurrentPage(() => 1);
@@ -289,16 +324,25 @@ function Widthdraw() {
       const resp = await getWalletToWithdrawWhere({
         limit: limit.current,
         page,
-        where: `user_id=${userId} OR from_id=${userId}`
+        where: `user_id=${userId}`
       });
-      console.log(resp);
+
+
+      const { array, total } = resp?.data?.data;
+      setMainData(array);
+      setTotalItems(total);
+      setCurrentPage(page);
+
 
       setCallApiLoadMainDataStatus(api_status.fulfilled);
     } catch (error) {
-      console.log(error);
       setCallApiLoadMainDataStatus(api_status.rejected);
     }
   }
+
+
+  // khi mở modal confirm hoặc modal reject thì set id vào selectedWidthdraw
+  const selectedWidthdraw = useRef();
 
 
   // modal confirm 
@@ -323,7 +367,7 @@ function Widthdraw() {
           callToastSuccess("Success");
           setCallApiAcceptStatus(() => api_status.fulfilled);
           closeModalConfirm();
-          loadData(currentPage, selectedCoin);
+          loadData(filter.current, currentPage, selectedCoin.content, inputSearchAddressValue, userIdSearchValue);
         })
         .catch(() => {
           callToastError("Fail");
@@ -332,6 +376,8 @@ function Widthdraw() {
         });
     });
   };
+
+
 
 
   // modal reject
@@ -383,9 +429,10 @@ function Widthdraw() {
       </div>
     );
   };
-  const buttonOKModalRejectClickHandle = function () {
+  const buttonOKModalRejectClickHandle = async function () {
     const note = inputReasonElement.current.value;
-    fetchApiReject(selectedWidthdraw.current, note);
+    await fetchApiReject(selectedWidthdraw.current, note);
+    loadData(filter.current, currentPage, selectedCoin.content, inputSearchAddressValue, userIdSearchValue);
   };
 
 
@@ -419,19 +466,28 @@ function Widthdraw() {
         <td>{record.coin_key.toUpperCase()}</td>
         <td>{record.amount}</td>
         <td>
-          <div style={{ wordBreak: 'break-all' }}>
-            {record.to_address}
-          </div>
+          {record.to_address && <div className="d-flex alignItem-c gap-1">
+            {shortenHash(record.to_address)}
+            <CopyButton
+              value={record.to_address}
+            />
+          </div>}
         </td>
         <td>
-          <div style={{ wordBreak: 'break-all' }}>
-            {record.form_address}
-          </div>
+          {record.form_address && <div className="d-flex alignItem-c gap-1">
+            {shortenHash(record.form_address)}
+            <CopyButton
+              value={record.form_address}
+            />
+          </div>}
         </td>
         <td>
-          <div style={{ wordBreak: "break-all" }}>
-            {record.hash}
-          </div>
+          {record.hash && <div className="d-flex alignItem-c gap-1">
+            {shortenHash(record.hash)}
+            <CopyButton
+              value={record.hash}
+            />
+          </div>}
         </td>
         <td>{record.created_at}</td>
         <td>{record.note}</td>
@@ -470,8 +526,7 @@ function Widthdraw() {
   }, []);
 
 
-  const selectedWidthdraw = useRef();
-  const fetchSearchTransferByAddressDebouced = useCallback(debounce(fetchSearchTransferByAddress, 1000), []);
+
 
 
   return (

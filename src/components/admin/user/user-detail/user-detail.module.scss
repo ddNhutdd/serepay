@@ -29,12 +29,22 @@
 		margin-top: 20px;
 		border-radius: 8px;
 		border: 1px solid $background-color-4;
+
 		.userDetail__record {
 			display: grid;
-			grid-template-columns: 30% 70%;
+			grid-template-columns: 100px auto;
 
 			.userDetail__cell {
 				padding: 5px 10px;
+
+				&:first-child {
+					border-bottom: 1px solid $background-color-4;
+					border-right: 1px solid $background-color-4;
+				}
+
+				&:last-child {
+					border-bottom: 1px solid $background-color-4;
+				}
 			}
 		}
 	}

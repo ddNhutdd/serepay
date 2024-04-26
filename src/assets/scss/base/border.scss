@@ -10,6 +10,10 @@
     border-top: 1px solid $border-color;
 }
 
+.bb-0 {
+    border-bottom: none !important;
+}
+
 .bb-1 {
     border-bottom: 1px solid $border-color;
 }
@@ -26,6 +30,10 @@
 
         .bt-#{$breakpoint}-1 {
             border-top: 1px solid $border-color;
+        }
+
+        .bb-#{$breakpoint}-1 {
+            border-bottom: none !important;
         }
 
         .bb-#{$breakpoint}-1 {

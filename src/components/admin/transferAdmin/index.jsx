@@ -123,7 +123,6 @@ export default function TransferAdmin() {
     filter = filterType.coin,
     id = ""
   ) {
-    console.log(id)
     if (callApiMainApiStatus === api_status.fetching) return;
     setCallApiMainApiStatus(() => api_status.fetching);
     return new Promise((resolve, reject) => {
