@@ -7,6 +7,7 @@ import { getWalletToUserAdmin } from 'src/util/adminCallApi';
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import EditCoinModalContent from './edit-coin-modal-content';
 import HistoryTransferModalContent from './history-transfer-modal-content';
+import HistoryWidthdrawModalContent from './history-widthdraw-modal-content';
 function UserDetail() {
 	const {
 		userid
@@ -63,6 +64,19 @@ function UserDetail() {
 
 
 
+	// modal history widthdraw
+	const historyWidthdrawString = 'History Widthdraw';
+	const [historyWidthdrawModalShow, setHistoryWidthdrawModalShow] = useState(false);
+	const historyWidthdrawModalOpen = () => {
+		setHistoryWidthdrawModalShow(true);
+	}
+	const historyWidthdrawModalClose = () => {
+		setHistoryWidthdrawModalShow(false);
+	}
+
+
+
+
 
 	useEffect(() => {
 		fetchAllCoin();
@@ -70,6 +84,12 @@ function UserDetail() {
 	}, [])
 
 
+
+
+	// nếu email không phải là chuỗi null thì render email lên giao diện
+	const renderEmail = () => {
+		return email !== 'null' ? email : '_';
+	}
 
 
 	return (
@@ -85,7 +105,7 @@ function UserDetail() {
 							{name}
 						</div>
 						<div className={css.userDetail__image__right__email}>
-							{email}
+							{renderEmail()}
 						</div>
 					</div>
 				</div>
@@ -104,7 +124,7 @@ function UserDetail() {
 							Email:
 						</div>
 						<div className={`${css.userDetail__cell} bb-0`}>
-							{email}
+							{renderEmail()}
 						</div>
 					</div>
 				</div>
@@ -120,6 +140,11 @@ function UserDetail() {
 						onClick={historyTransferModalOpen}
 					>
 						{historyTransferString}
+					</Button>
+					<Button
+						onClick={historyWidthdrawModalOpen}
+					>
+						History Widthdraw
 					</Button>
 				</div>
 			</div>
@@ -138,6 +163,15 @@ function UserDetail() {
 				waiting={false}
 				isShowModal={historyTransferModalShow}
 				closeModalHandle={historyTransferModalClose}
+			/>
+			<ModalConfirm
+				title={historyWidthdrawString}
+				content={<HistoryWidthdrawModalContent />}
+				isHiddenOkButton={true}
+				waiting={false}
+				isShowModal={historyWidthdrawModalShow}
+				closeModalHandle={historyWidthdrawModalClose}
+
 			/>
 		</>
 	)

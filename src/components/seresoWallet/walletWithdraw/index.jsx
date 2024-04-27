@@ -135,7 +135,7 @@ function FormWithdraw() {
         })
         .catch((error) => {
           const messageError =
-            error?.response?.data?.errors?.at(0) || error?.response?.data?.message;
+            error?.response?.data?.errors?.[0] || error?.response?.data?.message;
 
           switch (messageError) {
             case "Insufficient balance or incorrect withdrawal minimum amount.":

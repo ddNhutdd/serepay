@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Pagination, Spin } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { api_status } from "src/constant";
+import { api_status, image_domain } from "src/constant";
 import {
   activeWidthdraw,
   cancelWidthdraw,
@@ -17,10 +17,11 @@ import { ModalConfirm } from "src/components/Common/ModalConfirm";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input } from "src/components/Common/Input";
 import { TagCustom, TagType } from "src/components/Common/Tag";
-import { debounce, shortenHash } from "src/util/common";
+import { debounce, formatNumber, shortenHash } from "src/util/common";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
 import CopyButton from "src/components/Common/copy-button";
+import { availableLanguage } from "src/translation/i18n";
 
 function Widthdraw() {
 
@@ -463,8 +464,12 @@ function Widthdraw() {
   const renderDataTable = function () {
     return mainData.map((record) => (
       <tr key={record.id}>
-        <td>{record.coin_key.toUpperCase()}</td>
-        <td>{record.amount}</td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
+            {formatNumber(record.amount, availableLanguage.vi, 8)}
+          </div>
+        </td>
         <td>
           {record.to_address && <div className="d-flex alignItem-c gap-1">
             {shortenHash(record.to_address)}
@@ -493,7 +498,11 @@ function Widthdraw() {
         <td>{record.note}</td>
         <td>{record.username}</td>
         <td>{record.email}</td>
-        <td>{record.amount_pay_by_coin}</td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            {record.amount_pay_by_coin}
+          </div>
+        </td>
         <td>{record.fee_amount}</td>
         <td>{renderStatus(record.status)}</td>
         <td>{renderAction(record.id, record.status)}</td>
@@ -509,6 +518,7 @@ function Widthdraw() {
             children={"Confirm"}
           />
           <Button
+            type={buttonClassesType.outline}
             onClick={showModalReject.bind(null, id)}
             children={"Reject"}
           />
@@ -593,7 +603,6 @@ function Widthdraw() {
         <table>
           <thead>
             <tr>
-              <th>Coin Key</th>
               <th>Amount</th>
               <th>To Address</th>
               <th>From Address</th>

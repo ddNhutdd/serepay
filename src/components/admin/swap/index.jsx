@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import css from "./swap.module.scss";
 import { Pagination, Spin } from "antd";
 import { Input } from "src/components/Common/Input";
-import { api_status } from "src/constant";
+import { api_status, image_domain } from "src/constant";
 import socket from "src/util/socket";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { historySwapAdmin } from "src/util/adminCallApi";
@@ -146,13 +146,33 @@ export default function SwapAdmin() {
     if (!table || table.length <= 0) return;
     return table.map((item) => (
       <tr key={item.id}>
-        <td>{item.wallet}</td>
-        <td>{item.coin_key}</td>
-        <td>{formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}</td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', item.wallet)} alt={item.wallet} />
+            {item.wallet}
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', item.coin_key)} alt={item.coin_key} />
+            {item.coin_key}
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', item.coin_key)} alt={item.coin_key} />
+            {formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}
+          </div>
+        </td>
         <td>{item.created_at}</td>
         <td>{item.userName}</td>
         <td>{item.email}</td>
-        <td>{formatNumber(item.wallet_amount, availableLanguageCodeMapper.en, -1)}</td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', item.wallet)} alt={item.wallet} />
+            {formatNumber(item.wallet_amount, availableLanguageCodeMapper.en, -1)}
+          </div>
+        </td>
       </tr>
     ));
   };
