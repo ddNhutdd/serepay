@@ -1,9 +1,12 @@
 .coinCells {
+	display: flex;
+	align-items: center;
+	gap: 5px;
 	img {
 		width: 20px;
 		height: 20px;
 		object-fit: cover;
 		position: relative;
-		top: -2px;
+		top: -1px;
 	}
 }

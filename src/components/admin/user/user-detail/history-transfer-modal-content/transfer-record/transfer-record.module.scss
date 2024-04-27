@@ -1,0 +1,38 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.transferRecord {
+	text-align: left;
+	padding: 15px;
+
+	.transferRecord__address {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+
+		span {
+			opacity: 0.5;
+		}
+	}
+
+	.transferRecord__amount {
+		font-weight: bold;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 5px;
+
+		color: $green-16; 
+		
+		img {
+			width: 20px;
+			height: 20px;
+			object-fit: cover;
+		}
+	}
+
+	.transferRecord__note {
+		font-size: 12px;
+		opacity: 0.7;
+	}
+}

@@ -11,7 +11,6 @@ import {
   activeuser,
   getAllUser,
   getUserAllExcel,
-  getWalletToUserAdmin,
   searchUserFromUserName,
   turn2fa,
   typeAds,

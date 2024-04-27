@@ -493,7 +493,6 @@ function Widthdraw() {
         <td>{record.note}</td>
         <td>{record.username}</td>
         <td>{record.email}</td>
-        <td>{record.phone}</td>
         <td>{record.amount_pay_by_coin}</td>
         <td>{record.fee_amount}</td>
         <td>{renderStatus(record.status)}</td>
@@ -603,7 +602,6 @@ function Widthdraw() {
               <th>Note</th>
               <th>UserName</th>
               <th>Email</th>
-              <th>Phone</th>
               <th>Amount Pay By Coin</th>
               <th>Fee Amount</th>
               <th>Status</th>

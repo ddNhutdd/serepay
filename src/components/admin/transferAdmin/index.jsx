@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { EmptyCustom } from "src/components/Common/Empty";
 import css from "./transferAdmin.module.scss";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { api_status } from "src/constant";
+import { api_status, image_domain } from "src/constant";
 import socket from "src/util/socket.js";
 import {
   historytransferAdmin,
@@ -14,11 +14,13 @@ import {
   exportExcel,
   formatNumber,
   rountRange,
+  shortenHash,
 } from "src/util/common.js";
 import { availableLanguage } from "src/translation/i18n.js";
 import { Input } from "src/components/Common/Input";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
+import CopyButton from "src/components/Common/copy-button";
 
 export default function TransferAdmin() {
   const all = "ALL";
@@ -208,20 +210,32 @@ export default function TransferAdmin() {
       return;
     return listTransfer.map((item) => (
       <tr key={item.id}>
-        <td>{item.coin_key.toUpperCase()}</td>
         <td>{item.created_at}</td>
         <td>
-          {formatNumber(
-            item.amount,
-            availableLanguage.en,
-            rountRange(
-              listCoin.find((coin) => coin.name === item.coin_key.toUpperCase())
-                ?.price || 10000
-            )
-          )}
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: "cover" }} src={image_domain.replace("USDT", item.coin_key.toUpperCase())} alt={item.coin_key} />
+            {formatNumber(
+              item.amount,
+              availableLanguage.en,
+              rountRange(
+                listCoin.find((coin) => coin.name === item.coin_key.toUpperCase())
+                  ?.price || 10000
+              )
+            )}
+          </div>
         </td>
-        <td>{item.address_form}</td>
-        <td>{item.address_to}</td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            {shortenHash(item.address_form)}
+            <CopyButton value={item.address_form} />
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            {shortenHash(item.address_to)}
+            <CopyButton value={item.address_to} />
+          </div>
+        </td>
         <td>{item.note}</td>
       </tr>
     ));
@@ -320,9 +334,8 @@ export default function TransferAdmin() {
         <table>
           <thead>
             <tr>
-              <th>Coin_key</th>
               <th>Create_at</th>
-              <th>Mount</th>
+              <th>Amount</th>
               <th>Address From</th>
               <th>Address To</th>
               <th>Note</th>

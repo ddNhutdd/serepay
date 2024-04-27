@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getWalletToUserAdmin } from 'src/util/adminCallApi';
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import EditCoinModalContent from './edit-coin-modal-content';
+import HistoryTransferModalContent from './history-transfer-modal-content';
 function UserDetail() {
 	const {
 		userid
@@ -45,6 +46,22 @@ function UserDetail() {
 	const editWalletModalShowClose = () => {
 		setEditWalletModalShow(false);
 	}
+
+
+
+
+	// modal history transfer
+	const historyTransferString = 'History Transfer';
+	const [historyTransferModalShow, setHistoryTransferModalShow] = useState(false);
+	const historyTransferModalOpen = () => {
+		setHistoryTransferModalShow(true);
+	}
+	const historyTransferModalClose = () => {
+		setHistoryTransferModalShow(false);
+	}
+
+
+
 
 
 	useEffect(() => {
@@ -91,7 +108,7 @@ function UserDetail() {
 						</div>
 					</div>
 				</div>
-				<div className={`${css.userDetail__changeCoin} mt-2`}>
+				<div className={`${css.userDetail__more}`}>
 					{
 						allCoin && userWallet && <Button
 							onClick={editWalletModalShowOpen}
@@ -99,7 +116,11 @@ function UserDetail() {
 							Edit Wallet
 						</Button>
 					}
-
+					<Button
+						onClick={historyTransferModalOpen}
+					>
+						{historyTransferString}
+					</Button>
 				</div>
 			</div>
 			<ModalConfirm
@@ -109,6 +130,14 @@ function UserDetail() {
 				waiting={false}
 				isShowModal={editWalletModalShow}
 				closeModalHandle={editWalletModalShowClose}
+			/>
+			<ModalConfirm
+				title={historyTransferString}
+				content={<HistoryTransferModalContent />}
+				isHiddenOkButton={true}
+				waiting={false}
+				isShowModal={historyTransferModalShow}
+				closeModalHandle={historyTransferModalClose}
 			/>
 		</>
 	)
