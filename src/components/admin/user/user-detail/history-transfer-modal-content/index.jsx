@@ -49,7 +49,6 @@ function HistoryTransferModalContent() {
 
 			setFetchStatus(api_status.fulfilled);
 		} catch (error) {
-			console.log(error);
 			setFetchStatus(api_status.rejected);
 		}
 	}

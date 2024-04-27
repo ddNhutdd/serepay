@@ -82,7 +82,6 @@ function WidthdrawRecord(props) {
 			setCallApiStatus(api_status.fulfilled);
 
 		} catch (error) {
-			console.log(error)
 			setCallApiStatus(api_status.rejected);
 		}
 	}
