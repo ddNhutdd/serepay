@@ -34,6 +34,105 @@ const User = function () {
 
 
 
+  // disable switch
+  const loadingSwitch = (id, setState, loading) => {
+    setState(prevState => {
+      const newState = [...prevState];
+      const findedItem = newState.find(item => item.id === id);
+      findedItem.loading = loading;
+      return newState;
+    })
+  }
+
+
+
+  // phần ads
+  const [adsValueList, setAdsValueList] = useState([]);
+  const onAdsCLickHandle = async function (id) {
+    loadingSwitch(id, setAdsValueList, true)
+    await fetchApiTypeAds(id, 1);
+    loadingSwitch(id, setAdsValueList, false)
+  };
+  const offAdsClickHandle = async function (id) {
+    loadingSwitch(id, setAdsValueList, true);
+    await fetchApiTypeAds(id, 0);
+    loadingSwitch(id, setAdsValueList, false);
+  };
+  const fetchApiTypeAds = function (id, type) {
+    return new Promise((resolve, reject) => {
+      typeAds({
+        id,
+        type,
+      })
+        .then((resp) => {
+          setCallApiMainDataStatus(() => api_status.fulfilled);
+          callToastSuccess(commontString.success);
+          resolve(true);
+          // nếu call api thành công thì udpate state
+          setAdsValueList(prevState => {
+            const newState = [...prevState];
+            for (const item of newState) {
+              if (item.id === id) {
+                item.type_ads = type;
+                break;
+              }
+            }
+            return newState;
+          })
+        })
+        .catch((error) => {
+          setCallApiMainDataStatus(() => api_status.rejected);
+          callToastError(commontString.error);
+          reject(false);
+        });
+    });
+  };
+
+
+
+  // phần 2fa
+  const [twofaValueList, setTwofaValueList] = useState([]);
+  const turnOn2FAClickHandle = async function (userid) {
+    loadingSwitch(userid, setTwofaValueList, true)
+    await fetchApiTurn2FA(userid, 1);
+    loadingSwitch(userid, setTwofaValueList, false)
+  };
+  const turnOff2FAClickHandle = async function (userid) {
+    loadingSwitch(userid, setTwofaValueList, true)
+    await fetchApiTurn2FA(userid, 0);
+    loadingSwitch(userid, setTwofaValueList, false)
+  };
+  const fetchApiTurn2FA = function (userid, flag) {
+    return new Promise((resolve, reject) => {
+      turn2fa({
+        userid,
+        flag,
+      })
+        .then((resp) => {
+          callToastSuccess(commontString.success);
+          // nếu call api thành công thì set lại state twofa
+          setTwofaValueList(prevState => {
+            const newStateTwofa = [...prevState];
+            for (const item of newStateTwofa) {
+              if (item.id === userid) {
+                item.enabled_twofa = flag;
+                break;
+              }
+            }
+            return newStateTwofa;
+          })
+          resolve(true);
+        })
+        .catch((error) => {
+          callToastError(commontString.error);
+          reject(true);
+        });
+    });
+  };
+
+
+
+
   // phần main data
   const [mainData, setMainData] = useState([]);
   const [callApiMainDataStatus, setCallApiMainDataStatus] = useState(api_status.pending);
@@ -51,6 +150,13 @@ const User = function () {
           setCurrentPage(() => page);
           setCallApiMainDataStatus(() => api_status.fulfilled);
           setTotalItem(() => data.total);
+
+          // lưu trữ thông tin về tạo quảng cáo của người dùng
+          saveAdsList(data.array);
+
+          // lưu trữ thông tin về twofa
+          saveTwofaList(data.array);
+
           resolve(data.array);
         })
         .catch((err) => {
@@ -58,6 +164,31 @@ const User = function () {
           reject(false);
         });
     });
+  };
+  const fetchApiSearchUser = async function (page = 1, username = "") {
+    try {
+      if (callApiMainDataStatus === api_status.fetching) return;
+      setCallApiMainDataStatus(() => api_status.fetching);
+      const resp = await searchUserFromUserName({
+        limit: limit.current,
+        page,
+        keywork: username,
+      });
+      const { array, total } = resp.data.data;
+      setCallApiMainDataStatus(() => api_status.fulfilled);
+      setMainData(() => array);
+      setTotalItem(() => total);
+      setCurrentPage(() => page);
+
+      // lưu trữ thông tin về tạo quảng cáo của người dùng
+      saveAdsList(array);
+
+      // lưu trữ thông tin về twofa
+      saveTwofaList(array);
+
+    } catch (error) {
+      setCallApiMainDataStatus(() => api_status.rejected);
+    }
   };
   const loadData = function (page) {
     setMainData([]);
@@ -67,6 +198,30 @@ const User = function () {
       fetchApiGetListAllUser(page);
     }
   };
+  const saveAdsList = (array) => {
+    const adsList = []
+    for (const item of array) {
+      const newobj = {
+        id: item.id,
+        type_ads: item.type_ads,
+        loading: false
+      }
+      adsList.push(newobj);
+    }
+    setAdsValueList(adsList);
+  }
+  const saveTwofaList = (array) => {
+    const twofaList = []
+    for (const item of array) {
+      const newobj = {
+        id: item.id,
+        enabled_twofa: item.enabled_twofa,
+        loading: false
+      }
+      twofaList.push(newobj);
+    }
+    setTwofaValueList(twofaList);
+  }
 
 
 
@@ -89,74 +244,6 @@ const User = function () {
       const array = resp.data.data;
       return array;
     } catch (error) { }
-  };
-
-
-
-  // phần render table
-  const renderTableData = function () {
-    if (!mainData || mainData.length <= 0) return;
-    return mainData.map((item) => (
-      <tr key={item.id}>
-        <td>
-          <NavLink to={(`${url.admin_userDetail.replace(urlParams.userId, item.id)}_${item.username}_${item.email}`)}>
-            {item.id}
-          </NavLink>
-        </td>
-        <td>{item.username}</td>
-        <td>{item.email}</td>
-        <td>
-          {renderTypeAdsButton(item.type_ads, item.id)}
-        </td>
-        <td>{renderAction2FA(item.enabled_twofa, item.id)}</td>
-        {renderCoinCell(item.id)}
-        <td>{renderActiveSection(item.status, item.id)}</td>
-      </tr>
-    ));
-  };
-  const renderClassSpin = function () {
-    return callApiMainDataStatus === api_status.fetching ? "" : "--d-none";
-  };
-  const renderClassEmpty = function () {
-    return callApiMainDataStatus !== api_status.fetching &&
-      (!mainData || mainData.length <= 0)
-      ? ""
-      : "--d-none";
-  };
-  const fetchApiSearchUser = async function (page = 1, username = "") {
-    try {
-      if (callApiMainDataStatus === api_status.fetching) return;
-      setCallApiMainDataStatus(() => api_status.fetching);
-      const resp = await searchUserFromUserName({
-        limit: limit.current,
-        page,
-        keywork: username,
-      });
-      const { array, total } = resp.data.data;
-      setCallApiMainDataStatus(() => api_status.fulfilled);
-      setMainData(() => array);
-      setTotalItem(() => total);
-      setCurrentPage(() => page);
-    } catch (error) {
-      setCallApiMainDataStatus(() => api_status.rejected);
-    }
-  };
-  const renderTypeAdsButton = function (type, id) {
-    if (type === 0) {
-      return (
-        <Switch
-          on={false}
-          onClick={onAdsCLickHandle.bind(null, id)}
-        />
-      )
-    } else {
-      return (
-        <Switch
-          on={true}
-          onClick={offAdsClickHandle.bind(null, id)}
-        />
-      )
-    }
   };
 
 
@@ -188,13 +275,59 @@ const User = function () {
 
 
 
-  // phần search 
 
-
-
-
-
-  // table 
+  // phần render table
+  const renderTableData = function () {
+    if (!mainData || mainData.length <= 0) return;
+    return mainData.map((item) => (
+      <tr key={item.id}>
+        <td>
+          <NavLink to={(`${url.admin_userDetail.replace(urlParams.userId, item.id)}_${item.username}_${item.email}`)}>
+            {item.id}
+          </NavLink>
+        </td>
+        <td>{item.username}</td>
+        <td>{item.email}</td>
+        <td>
+          {renderTypeAdsButton(adsValueList, item.id)}
+        </td>
+        <td>
+          {renderAction2FA(twofaValueList, item.id)}
+        </td>
+        {renderCoinCell(item.id)}
+        <td>{renderActiveSection(item.status, item.id)}</td>
+      </tr>
+    ));
+  };
+  const renderClassSpin = function () {
+    return callApiMainDataStatus === api_status.fetching ? "" : "--d-none";
+  };
+  const renderClassEmpty = function () {
+    return callApiMainDataStatus !== api_status.fetching &&
+      (!mainData || mainData.length <= 0)
+      ? ""
+      : "--d-none";
+  };
+  const renderTypeAdsButton = function (listType, id) {
+    const type = listType.find(item => item.id === id);
+    if (type.type_ads === 0) {
+      return (
+        <Switch
+          on={false}
+          onClick={onAdsCLickHandle.bind(null, id)}
+          loading={type.loading}
+        />
+      )
+    } else {
+      return (
+        <Switch
+          on={true}
+          onClick={offAdsClickHandle.bind(null, id)}
+          loading={type.loading}
+        />
+      )
+    }
+  };
   const totalColumn = listCoin ? listCoin.length + 6 : 6;
   const renderCoinCell = (id) => {
     return <CoinCells
@@ -217,13 +350,15 @@ const User = function () {
         break;
     }
   };
-  const renderAction2FA = function (enabled_twofa, userid) {
-    switch (enabled_twofa) {
+  const renderAction2FA = function (twofaList, userid) {
+    const currentValue = twofaList.find(item => item.id === userid);
+    switch (currentValue?.enabled_twofa) {
       case 0:
         return (
           <Switch
             on={false}
             onClick={turnOn2FAClickHandle.bind(null, userid)}
+            loading={currentValue.loading}
           />
         );
       case 1:
@@ -231,13 +366,13 @@ const User = function () {
           <Switch
             on={true}
             onClick={turnOff2FAClickHandle.bind(null, userid)}
+            loading={currentValue.loading}
           />
         );
       default:
         break;
     }
   };
-
 
 
 
@@ -276,81 +411,6 @@ const User = function () {
   };
 
 
-  // phần ads
-
-  const onAdsCLickHandle = function (id, event) {
-    event.persist();
-    const saveEvent = event.currentTarget;
-    if (event.currentTarget.disabled === true) return;
-    event.currentTarget.disabled = true;
-    fetchApiTypeAds(id, 1).finally(() => {
-      saveEvent.disabled = false;
-    });
-  };
-  const offAdsClickHandle = function (id, event) {
-    event.persist();
-    const saveEvent = event.currentTarget;
-    if (event.currentTarget.disabled === true) return;
-    event.currentTarget.disabled = true;
-    fetchApiTypeAds(id, 0).finally(() => {
-      saveEvent.disabled = false;
-    });
-  };
-  const fetchApiTypeAds = function (id, type) {
-    return new Promise((resolve, reject) => {
-      typeAds({
-        id,
-        type,
-      })
-        .then((resp) => {
-          setCallApiMainDataStatus(() => api_status.fulfilled);
-          callToastSuccess(commontString.success);
-          loadData(currentPage);
-          resolve(true);
-        })
-        .catch((error) => {
-          setCallApiMainDataStatus(() => api_status.rejected);
-          callToastError(commontString.error);
-          reject(false);
-        });
-    });
-  };
-
-
-  // phần 2fa
-  const turnOn2FAClickHandle = function (userid, e) {
-    e.persist();
-    const saveEvent = e.currentTarget;
-    if (saveEvent.disabled === true) return;
-    else saveEvent.disabled = true;
-    fetchApiTurn2FA(userid, 1).finally(() => (saveEvent.disabled = false));
-  };
-  const turnOff2FAClickHandle = function (userid, e) {
-    e.persist();
-    const saveEvent = e.currentTarget;
-    if (saveEvent.disabled === true) return;
-    else saveEvent.disabled = true;
-    fetchApiTurn2FA(userid, 0).finally(() => (saveEvent.disabled = false));
-  };
-  const fetchApiTurn2FA = function (userid, flag) {
-    return new Promise((resolve, reject) => {
-      turn2fa({
-        userid,
-        flag,
-      })
-        .then((resp) => {
-          callToastSuccess(commontString.success);
-          loadData(currentPage);
-          resolve(true);
-        })
-        .catch((error) => {
-          callToastError(commontString.error);
-          reject(true);
-        });
-    });
-  };
-
-
 
   // useEffect 
   useEffect(() => {
@@ -371,10 +431,14 @@ const User = function () {
         }),
         fetchListCoin()
       ]);
-      const userData = resp[0]?.data?.data;
+      const { total, array } = resp[0]?.data?.data;
       setCurrentPage(1);
-      setTotalItem(userData?.total);
-      setMainData(userData?.array);
+      setTotalItem(total);
+      setMainData(array);
+      // lưu trữ thông tin về tạo quảng cáo của người dùng
+      saveAdsList(array);
+      // lưu trữ thông tin về twofa
+      saveTwofaList(array);
 
       const coinData = resp[1];
       setListCoin(coinData);

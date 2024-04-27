@@ -81,7 +81,6 @@ export default function SwapAdmin() {
   };
   const genListCoinObject = () => {
     const result = [];
-    console.log(listCoin)
     listCoin?.map(coin => {
       if (coin.image) {
         result.push({

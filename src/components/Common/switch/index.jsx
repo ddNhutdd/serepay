@@ -2,9 +2,15 @@ import React, { useEffect, useState } from "react";
 import css from "./switch.module.scss";
 
 function Switch(props) {
-  const { on = false, onChange = () => {}, onClick = () => {} } = props;
+  const {
+    on = false,
+    onChange = () => { },
+    onClick = () => { },
+    loading = false,
+    disabled = false,
+  } = props;
 
-  const [checked, setChecked] = useState(on);
+
 
   const renderClassActiveContainer = function () {
     return checked ? css["active"] : "";
@@ -12,14 +18,25 @@ function Switch(props) {
   const renderClassActiveButton = function () {
     return checked ? css["active"] : "";
   };
+  const renderDisabled = () => {
+    return disabled ? css['disabled'] : '';
+  }
+  const renderLoading = () => {
+    return loading ? css.loading : ''
+  }
+
+
+  const [checked, setChecked] = useState(on);
+
+
   const onChangeHandle = function () {
     onChange(checked);
   };
-  const onCLickHandle = function (ev) {
-    ev.stopPropagation();
-    setChecked((s) => !s);
-    onClick(ev);
-  };
+
+  const onClickHandle = () => {
+    onClick();
+    setChecked(state => !state);
+  }
 
   useEffect(() => {
     onChangeHandle();
@@ -27,12 +44,19 @@ function Switch(props) {
 
   return (
     <div
-      onClick={onCLickHandle}
-      className={`${css["switchContainer"]} ${renderClassActiveContainer()}`}
+      onClick={onClickHandle}
+      className={`
+        ${css["switchContainer"]} 
+        ${renderClassActiveContainer()}
+        ${renderDisabled()}
+        ${renderLoading()}
+      `}
     >
       <div
         className={`${css["switchButton"]} ${renderClassActiveButton()}`}
-      ></div>
+      >
+        <div className={css.switchLoader}></div>
+      </div>
     </div>
   );
 }

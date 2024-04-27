@@ -12,7 +12,7 @@ function CoinCells(props) {
 
   const [list, setList] = useState(listCoinName?.map(item => {
     return (
-      <td>
+      <td key={item.id}>
         pending
       </td>
     )
@@ -24,11 +24,11 @@ function CoinCells(props) {
         userid: id
       });
       const result = [];
-      listCoinName.map((coinName, index) => {
+      listCoinName.map((coinName) => {
 
         const coinNameBalance = (coinName.name + '_balance').toLowerCase();
         result.push(
-          <td key={coinName.name + index}>
+          <td key={coinName.name}>
             <div className={css.coinCells}>
               <img src={image_domain.replace("USDT", coinName.name)} />
               {" "}
