@@ -1,0 +1,80 @@
+.switchContainer {
+
+    background-color: #3f3f3f;
+    width: 45px;
+    height: 25px;
+    border-radius: 50px;
+    border: 1px solid #3f3f3f;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    transition: .4s;
+
+    &.disabled {
+        opacity: 0.65;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    &.loading {
+        opacity: 0.65;
+        pointer-events: none;
+        cursor: not-allowed;
+
+        .switchButton {
+            cursor: not-allowed;
+            .switchLoader {
+                cursor: not-allowed;
+                display: block;
+            }
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: #cb9950;
+        border: 1px solid #cb9950;
+    }
+
+    .switchButton {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: white;
+        transition: .4s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.active {
+            transform: translate(18px, 0);
+        }
+
+
+        .switchLoader {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid transparent;
+            border-top: 2px solid #797979;
+            border-right: 2px solid #797979;
+            animation: spin 0.8s linear infinite;
+            border-radius: 18px;
+        }
+    }
+}
+
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

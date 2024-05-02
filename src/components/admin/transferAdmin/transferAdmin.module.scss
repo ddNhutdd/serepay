@@ -1,0 +1,98 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.transferAdmin {
+    color: $new-text-color-white;
+
+    .transferAdmin__header {
+        .transferAdmin__title {
+            @extend .titleContainerAdmin;
+        }
+
+        .transferAdmin__filter {
+            .transferAdmin__tabItem {
+                border-bottom: 1px solid $background-color-4;
+                font-weight: bold;
+                transition: color .2s;
+
+                @media screen and (max-width:576px) {
+                    padding: 8px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    border-bottom: none;
+                    border-top: 1px solid $background-color-4;
+                    border-right: 1px solid $background-color-4;
+                    border-left: 1px solid $background-color-4;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    color: $new-primary-color-6;
+                }
+
+                &.active {
+                    border-bottom: none;
+                    border-top: 1px solid $background-color-4;
+                    border-right: 1px solid $background-color-4;
+                    border-left: 1px solid $background-color-4;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                    color: $new-primary-color-6;
+                }
+
+                &:last-child {
+                    &:hover {
+                        cursor: default;
+                        border-bottom: 1px solid $background-color-4;
+                        border-top: none;
+                        border-right: none;
+                        border-left: none;
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                        color: $new-text-color-white;
+                    }
+                }
+            }
+
+            .transferAdmin__list-coin {
+                padding-left: 0;
+                gap: 10px;
+                flex-wrap: wrap;
+                img {
+                    position: relative;
+                    top: -3px;
+                    width: 20px !important;
+                    height: 20px;
+                    object-fit: cover;
+                }
+            }
+
+            .transferAdmin__paging {
+                padding-right: 0;
+                text-align: right;
+
+                @media screen and (max-width:768px) {
+                    text-align: left;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+    .transferAdmin__content {
+        overflow: hidden;
+        overflow-x: auto;
+
+        table {
+            @include adminTable;
+
+            thead {
+                tr {
+                    th {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

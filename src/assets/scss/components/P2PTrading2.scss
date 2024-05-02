@@ -1,0 +1,308 @@
+.p2ptrading2 {
+  margin: auto;
+  padding: 30px;
+  background: $new-background-level-0;
+  background: $new-background-level-0;
+
+  @media screen and (max-width: 576px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .container {
+    @include container;
+
+    #buyContent {
+      .record-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        font-size: 14px;
+        margin-top: 12px;
+        padding: 16px;
+        background-color: $new-background-level-2;
+
+        @media screen and (min-width: 768px) {
+          flex-direction: row;
+          align-items: center;
+          gap: 32px;
+        }
+
+        .row {
+          flex-grow: 1;
+          display: grid;
+          align-items: center;
+          column-gap: 8px;
+          row-gap: 16px;
+          grid-template-columns: repeat((1, 1fr));
+
+          @media screen and (min-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          @media screen and (min-width: 1280px) {
+            grid-template-columns: repeat(4, 1fr);
+          }
+
+          .col {
+            .key {
+              font-weight: 600;
+              color: #848e9c;
+            }
+
+            .value {
+              color: #fff;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+
+      .sell-coin {
+        @extend .buttonContainer--primary;
+        max-height: 35px;
+        white-space: nowrap;
+      }
+    }
+
+    #sellContent {
+      .record-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        font-size: 14px;
+        margin-top: 12px;
+        padding: 16px;
+        background-color: $new-background-level-2;
+
+        @media screen and (min-width: 768px) {
+          flex-direction: row;
+          align-items: center;
+          gap: 32px;
+        }
+
+        .row {
+          flex-grow: 1;
+          display: grid;
+          align-items: center;
+          gap: 16px;
+          grid-template-columns: repeat((1, 1fr));
+
+          @media screen and (min-width: 600px) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          @media screen and (min-width: 1024px) {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          .col {
+            @media screen and (min-width: 600px) {
+              &:nth-of-type(2) {
+                grid-column-start: span 2;
+              }
+            }
+
+            .key {
+              font-weight: 600;
+              color: #848e9c;
+            }
+
+            .value {
+              color: #fff;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+
+      .sell-coin {
+        @extend .buttonContainer--primary;
+        max-height: 35px;
+        white-space: nowrap;
+      }
+    }
+
+    .buy {
+      background-color: $new-background-level-1;
+      background-color: $new-background-level-1;
+      color: $new-text-color-white;
+      padding: 30px;
+      border-radius: 8px;
+
+      @media screen and (max-width: 576px) {
+        padding: 16px;
+      }
+
+      .buy-title {
+        @extend .titleContainer;
+
+        i {
+          color: $green;
+          margin-right: 8px;
+        }
+
+        span {
+          span {
+            color: $green;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .buy-ad {
+        margin-top: 16px;
+
+        .buyAdBtn {
+          background-color: $green;
+          border: none;
+          margin-top: 16px;
+          padding: 8px 16px;
+          border-radius: 8px;
+          transition: 0.2s;
+          color: $white;
+          cursor: pointer;
+          line-height: 1;
+
+          &:hover {
+            opacity: 0.8;
+          }
+
+          @media screen and (min-width: 480px) {
+            padding: 10px 20px;
+          }
+        }
+      }
+
+      .buy__filter {
+        margin: 16px 0;
+        width: 200px;
+        display: flex;
+        gap: 16px;
+        color: $new-text-color-black;
+        line-height: 1;
+
+        // button {
+        //   @extend .buttonContainer--primary;
+        //   padding-top: 10px;
+        //   padding-bottom: 10px;
+        // }
+      }
+    }
+
+    .sell {
+      background-color: $new-background-level-1;
+      color: $new-text-color-white;
+      margin-top: 30px;
+      padding: 30px;
+      border-radius: 8px;
+
+      @media screen and (max-width: 576px) {
+        padding: 16px;
+      }
+
+      .sell-title {
+        @extend .titleContainer;
+
+        i {
+          color: $red;
+          margin-right: 8px;
+        }
+
+        span {
+          span {
+            color: $red;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .sell-ad {
+        margin-top: 16px;
+
+        .sellAdBtn {
+          background-color: $red;
+          border: none;
+          border: none;
+          margin-top: 16px;
+          padding: 8px 16px;
+          border-radius: 8px;
+          transition: 0.2s;
+          color: $white;
+          cursor: pointer;
+          line-height: 1;
+
+          &:hover {
+            opacity: 0.8;
+          }
+
+          @media screen and (min-width: 480px) {
+            padding: 10px 20px;
+          }
+        }
+      }
+
+      .sell__filter {
+        margin: 16px 0;
+        // @include userInput;
+        width: 200px;
+        display: flex;
+        gap: 16px;
+        color: $new-text-color-black;
+        line-height: 1;
+
+        button {
+          @extend .buttonContainer--primary;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    .p2ptrading2__footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      @media screen and (max-width: 576px) {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+.p2ptrading2-coin-to-select-modal {
+  padding: 16px 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+
+  @media screen and (min-width: 425px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .p2ptrading2-coin-to-select-modal__item {
+    @extend .buttonContainer--outline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    img {
+      display: block;
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+    }
+
+    &.active {
+      @extend .buttonContainer--primary;
+    }
+  }
+}

@@ -1,0 +1,155 @@
+.wallet {
+  .container {
+    @include container1;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .left {
+      width: 40%;
+
+      .wallet-item {
+        display: flex;
+        border-radius: 5px;
+        padding: 10px;
+        transition: all 0.25s ease;
+
+        &:hover {
+          background-color: $primary-color-super-light;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+          min-width: 20px;
+          margin-right: 10px;
+          margin-top: 3px;
+        }
+
+        span.name {
+          font-weight: 500;
+          color: black;
+          margin-right: 20px;
+        }
+
+        span.amount {
+          margin: 5px 0;
+          display: block;
+        }
+
+        button.withdrawBtn {
+          margin-left: 10px;
+        }
+      }
+
+      .wallet-item + .wallet-item {
+        margin-top: 25px;
+      }
+
+      .wallet-item.active {
+        background-color: $primary-color-super-light;
+      }
+    }
+
+    .right {
+      width: 57%;
+      position: sticky;
+      top: 0;
+
+      .deposit-type,
+      .withdraw-type {
+        button + button {
+          margin-left: 5px;
+        }
+      }
+
+      .deposit-content {
+        margin: 60px 0;
+        text-align: center;
+
+        .address {
+          margin: 25px auto;
+          font-weight: 500;
+          max-width: 200px;
+          word-wrap: break-word;
+          text-align: center;
+        }
+
+        .fa-circle-check {
+          font-size: 20px;
+        }
+      }
+
+      .withdraw-content {
+        margin: 60px 0;
+
+        .field {
+          margin-bottom: 18px;
+        }
+
+        .field3 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .strong {
+            font-weight: 500;
+          }
+        }
+      }
+
+      .deposit-description {
+        dl {
+          padding: 0 30px;
+
+          div {
+            display: flex;
+            margin-bottom: 15px;
+
+            dt {
+              width: 40px;
+              min-width: 40px;
+
+              i {
+                font-size: 22px;
+                color: $primary-color-light;
+                opacity: 0.5;
+                margin-top: 3px;
+              }
+            }
+
+            dd {
+              color: grey;
+            }
+          }
+        }
+      }
+
+      .withdraw-description {
+        dl {
+          div {
+            display: flex;
+            margin-bottom: 15px;
+
+            dt {
+              width: 40px;
+              min-width: 40px;
+
+              i {
+                font-size: 22px;
+                color: $primary-color-light;
+                opacity: 0.5;
+                margin-top: 3px;
+              }
+            }
+
+            dd {
+              color: grey;
+            }
+          }
+        }
+      }
+    }
+  }
+}

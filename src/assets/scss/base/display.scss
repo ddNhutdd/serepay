@@ -1,0 +1,49 @@
+.d-0 {
+    display: none;
+}
+
+.d-f {
+    display: flex;
+}
+
+@each $breakpoint, $width in $responsive {
+    @media screen and (max-width: $width) {
+        .d-#{$breakpoint}-0 {
+            display: none;
+        }
+
+        .d-#{$breakpoint}-f {
+            display: flex;
+        }
+    }
+}
+
+// @media screen and (max-width:576px) {
+//     .d-sm-0 {
+//         display: none;
+//     }
+// }
+
+// @media screen and (max-width:768px) {
+//     .d-md-0 {
+//         display: none;
+//     }
+// }
+
+// @media screen and (max-width:992px) {
+//     .d-lg-0 {
+//         display: none;
+//     }
+// }
+
+// @media screen and (max-width:1200px) {
+//     .d-xl-0 {
+//         display: none;
+//     }
+// }
+
+// @media screen and (max-width:1400px) {
+//     .d-xxl-0 {
+//         display: none;
+//     }
+// }

@@ -1,0 +1,44 @@
+.login-register {
+  width: 100%;
+  min-height: 70vh;
+  padding-top: 90px;
+  background-color: $neutral-3;
+  color: $neutral-20;
+
+  .container {
+    @include container2;
+
+    h2.title {
+      color: $neutral-20;
+    }
+
+    form {
+      margin-top: 50px;
+
+      .field {
+        margin-bottom: 18px;
+        position: relative;
+      }
+
+      input {
+        height: 35.56px;
+      }
+    }
+
+    button.loginBtn {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .toSignUp {
+      text-align: center;
+      margin-top: 30px;
+      cursor: pointer;
+      font-size: 15px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.confirmEmail {
+    color: $new-text-color-white;
+    padding-top: 120px;
+
+    .container {
+        @include container;
+
+        .confirmEmail__title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .confirmEmail__content {
+            p {
+                margin-bottom: 0;
+            }
+
+            margin-bottom: 30px;
+        }
+
+        button {
+            margin-bottom: 30px;
+        }
+
+        .confirmEmail__note {
+            padding: 0 20px;
+
+            .confirmEmail__login {
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

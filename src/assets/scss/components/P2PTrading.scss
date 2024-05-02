@@ -1,0 +1,246 @@
+.p2ptrading {
+  width: 100%;
+  padding-top: 100px;
+  background: $neutral-1 url(../../../../public/img/background.png);
+  background-position: center 100%;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  color: $new-text-color-white;
+
+
+  .container {
+    @include container1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .top {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media screen and (max-width: 576px) {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 576px) {
+          align-items: flex-start;
+        }
+
+        img {
+          width: 30px;
+          height: 30px;
+          object-fit: cover;
+          margin-right: 10px;
+          display: block;
+        }
+
+        span {
+          font-weight: bold;
+          font-size: 20px;
+          color: $new-text-color-white;
+        }
+      }
+    }
+
+    .center {
+      margin-top: 15px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+
+      @media screen and (max-width: 576px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      @media screen and (min-width: 480px) {
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .left {
+        .left1 {
+          display: flex;
+          align-items: center;
+
+          i {
+            font-size: 20px;
+            color: $green;
+            margin-right: 10px;
+          }
+        }
+
+        .left2 {
+          margin-top: 10px;
+          font-weight: bold;
+          font-size: 18px;
+          color: $green;
+
+          @media screen and (min-width: 600px) {
+            font-size: 20px;
+          }
+
+          @media screen and (min-width: 768px) {
+            font-size: 24px;
+          }
+        }
+
+        .left3 {
+          margin-top: 20px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items: center;
+        }
+      }
+
+      .right {
+        .right1 {
+          display: flex;
+          align-items: center;
+
+          i {
+            font-size: 20px;
+            color: $red;
+            margin-right: 10px;
+          }
+        }
+
+        .right2 {
+          margin-top: 10px;
+          font-weight: bold;
+          font-size: 18px;
+          color: $red;
+
+          @media screen and (min-width: 600px) {
+            font-size: 20px;
+          }
+
+          @media screen and (min-width: 768px) {
+            font-size: 24px;
+          }
+        }
+
+        .right3 {
+          margin-top: 20px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items: center;
+
+          .sellNowBtn {
+            background-color: $red;
+          }
+
+          .p2pTrading__createAds {
+            @extend .buttonContainer--primary;
+          }
+        }
+
+      }
+    }
+
+    .bottom {
+      width: 100%;
+      margin-top: 15px;
+
+      @media screen and (min-width: 480px) {
+        margin-top: 30px;
+        font-size: 16px;
+      }
+
+      i {
+        margin-right: 8px;
+      }
+
+      span {
+        color: $green;
+        font-weight: bold;
+      }
+    }
+
+    .box {
+      background-color: $new-background-level-1;
+      padding: 15px;
+
+      @media screen and (min-width: 768px) {
+        padding: 30px;
+      }
+    }
+  }
+}
+
+.cardChooseCoin {
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.p2ptrading__table {
+  .ant-spin-nested-loading {
+    .ant-spin-container {
+      .ant-table {
+        .ant-table-container {
+          .ant-table-content {
+            table {
+              background-color: $new-background-header-modal-antd;
+
+              @media screen and (max-width: 576px) {
+                width: 100%;
+              }
+
+              .ant-table-thead {
+                background-color: $new-background-header-modal-antd;
+
+                .ant-table-cell {
+                  border-color: #797979;
+                  background-color: $new-background-header-modal-antd;
+                  color: #fff;
+                }
+              }
+
+              .ant-table-tbody {
+                .ant-table-row {
+                  &:hover {
+                    .ant-table-cell {
+                      cursor: pointer;
+                      background-color: $new-background-level-2;
+                    }
+                  }
+
+                  .ant-table-cell {
+                    background-color: $new-background-level-1;
+                    color: #fff;
+                    border: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.p2ptrading__model-spinner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 500px;
+}
+
+.p2ptrading__table-paging {
+  padding: 15px 10px;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,24 @@
+.verify {
+    padding-top: 120px;
+    color: $new-text-color-white;
+
+    .container {
+        @include container;
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 30px;
+            align-items: flex-start;
+
+            .verify__title {
+                font-size: 24px;
+                font-weight: 500;
+                margin-bottom: 30px;
+            }
+
+        }
+
+    }
+}

@@ -1,0 +1,39 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.p2p {
+	color: $new-text-color-white;
+
+	.p2p__header {
+		.p2p__title {
+			@extend .titleContainerAdmin;
+		}
+
+		.p2p__paging {
+			padding-right: 0;
+			text-align: right;
+
+			@media screen and (max-width:768px) {
+				text-align: left;
+				padding-left: 0;
+			}
+		}
+	}
+
+	.p2p__content {
+		overflow: hidden;
+		overflow-x: auto;
+
+		table {
+			@include adminTable;
+
+			thead {
+				tr {
+					th {
+						white-space: nowrap;
+					}
+				}
+			}
+		}
+	}
+}

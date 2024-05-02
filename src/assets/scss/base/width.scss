@@ -1,0 +1,20 @@
+.w-25 {
+    width: 25%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+
+@each $breakpoint, $width in $responsive {
+    @media screen and (max-width: $width) {
+        .w-#{$breakpoint}-25 {
+            width: 25%;
+        }
+
+        .w-#{$breakpoint}-100 {
+            width: 100%;
+        }
+    }
+}

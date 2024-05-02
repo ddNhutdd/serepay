@@ -1,0 +1,50 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.swapAdmin {
+    color: $new-text-color-white;
+
+    .swapAdmin__header {
+        .swapAdmin__title {
+            @extend .titleContainerAdmin;
+        }
+
+        .swapAdmin__filter {
+
+            img {
+                width: 20px !important;
+                height: 20px;
+                position: relative;
+                top: -3px;
+            }
+
+            .swapAdmin__paging {
+                padding-right: 0;
+                text-align: right;
+
+                @media screen and (max-width:768px) {
+                    text-align: left;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+    .swapAdmin__content {
+        overflow: hidden;
+        overflow-x: auto;
+
+        table {
+            @include adminTable;
+
+
+            thead {
+                tr {
+                    th {
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

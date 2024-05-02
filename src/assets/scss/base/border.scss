@@ -1,0 +1,43 @@
+.b-0 {
+    border: none;
+}
+
+.b-1 {
+    border: 1px solid $border-color;
+}
+
+.bt-1 {
+    border-top: 1px solid $border-color;
+}
+
+.bb-0 {
+    border-bottom: none !important;
+}
+
+.bb-1 {
+    border-bottom: 1px solid $border-color;
+}
+
+@each $breakpoint, $width in $responsive {
+    @media screen and (max-width: $width) {
+        .b-#{$breakpoint}-0 {
+            border: none;
+        }
+
+        .b-#{$breakpoint}-1 {
+            border: 1px solid $border-color;
+        }
+
+        .bt-#{$breakpoint}-1 {
+            border-top: 1px solid $border-color;
+        }
+
+        .bb-#{$breakpoint}-1 {
+            border-bottom: none !important;
+        }
+
+        .bb-#{$breakpoint}-1 {
+            border-bottom: 1px solid $border-color;
+        }
+    }
+}

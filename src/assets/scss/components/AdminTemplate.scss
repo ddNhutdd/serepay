@@ -1,0 +1,19 @@
+.adminTemplate {
+    background-color: $admin-background;
+    min-height: 100vh;
+    padding-top: 100px;
+
+    .adminTemplate__content {
+        @media screen and (max-width: 576px) {
+            overflow-x: hidden;
+        }
+        .adminTemplate__content-main {
+            padding: 0 30px 30px 30px;
+            transition: margin-left .6s;
+
+            &.small {
+                margin-left: 300px;
+            }
+        }
+    }
+}

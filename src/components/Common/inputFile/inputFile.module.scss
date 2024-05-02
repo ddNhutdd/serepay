@@ -1,0 +1,46 @@
+.fileInput {
+    .fileInput__preview {
+        width: 100%;
+        height: 200px;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 2px dashed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        i {
+            font-size: 50px;
+        }
+    }
+
+    .fileInput__fileName {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        border-radius: 15px;
+        background-color: rgb(36, 36, 36);
+
+        .fileInput__fileName__trash {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .fileInput__error {
+        font-weight: 600;
+        color: red;
+    }
+}
