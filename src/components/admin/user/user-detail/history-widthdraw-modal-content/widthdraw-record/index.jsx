@@ -7,12 +7,8 @@ import { api_status, commontString, image_domain } from 'src/constant';
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import { useState } from 'react';
 import { callToastSuccess } from 'src/function/toast/callToast';
-<<<<<<< HEAD
 import { activeWidthdraw, cancelWidthdraw } from 'src/util/adminCallApi';
 import { Input } from 'src/components/Common/Input';
-=======
-import { activeWidthdraw } from 'src/util/adminCallApi';
->>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
 
 function WidthdrawRecord(props) {
 	const {
@@ -43,10 +39,7 @@ function WidthdrawRecord(props) {
 						</Button>
 						<Button
 							type={buttonClassesType.outline}
-<<<<<<< HEAD
 							onClick={rejectModalOpen}
-=======
->>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
 						>
 							Reject
 						</Button>
@@ -102,7 +95,6 @@ function WidthdrawRecord(props) {
 
 
 	// modal reject
-<<<<<<< HEAD
 	const [rejectModalShow, setRejectModalShow] = useState();
 	const [reasonInputValue, setReasonInputValue] = useState();
 	const rejectModalOpen = () => {
@@ -134,8 +126,6 @@ function WidthdrawRecord(props) {
 	const reasonInputValueChangeHandle = (ev) => {
 		setReasonInputValue(ev.target.value);
 	}
-=======
->>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
 
 
 
@@ -215,7 +205,6 @@ function WidthdrawRecord(props) {
 				closeModalHandle={confirmModalClose}
 				isShowModal={confirmModalShow}
 			/>
-<<<<<<< HEAD
 			<ModalConfirm
 				title={`Reject`}
 				modalConfirmHandle={fetchRejectApi}
@@ -231,8 +220,6 @@ function WidthdrawRecord(props) {
 				)}
 				isShowModal={rejectModalShow}
 			/>
-=======
->>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
 		</>
 	)
 }
