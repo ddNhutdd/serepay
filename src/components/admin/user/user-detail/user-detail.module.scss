@@ -4,6 +4,32 @@
 .userDetail {
 	color: $new-text-color-white;
 
+	.userDetail--box {
+		padding: 15px;
+		border: 1px solid $bg-1;
+		background-color: $bg-1;
+		border-radius: 8px;
+		margin-bottom: 30px;
+
+		@media screen and (max-width: 768px) {
+			padding: 10px;
+		}
+
+		@media screen and (max-width: 576px) {
+			padding: 5px;
+		}
+	}
+
+	.userDetail--title {
+		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 18px;
+	}
+
+	.userDetail--tableContainer {
+		overflow-x: auto;
+	}
+
 	.userDetail__image {
 		display: flex;
 		gap: 20px;
@@ -40,6 +66,7 @@
 		border: 1px solid $background-color-4;
 		width: 100%;
 		overflow-x: auto;
+		margin-bottom: 30px;
 
 		.userDetail__record {
 			display: grid;
@@ -62,12 +89,47 @@
 		}
 	}
 
-	.userDetail__more {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		margin-top: 20px;
-		gap: 5px;
+	.userDetail__wallet {
+		.userDetail__walletContent {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 15px;
+
+			@media screen and (max-width: 768px) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			@media screen and (max-width: 576px) {
+				grid-template-columns: repeat(1, 1fr);
+			}
+
+			.userDetail__walletContent__row {
+				display: flex;
+				flex-direction: column;
+
+				.userDetail__walletContent__action {
+					display: flex;
+					gap: 10px;
+					align-items: center;
+
+					img {
+						width: 30px;
+						height: 30px;
+					}
+				}
+			}
+		}
 	}
 
+	.userDetail__sectionTable {
+		table {
+			@include adminTable;
+
+			img {
+				width: 20px;
+				height: 20px;
+				object-fit: cover;
+			}
+		}
+	}
 }

@@ -174,3 +174,10 @@ export const getWalletToWithdrawWhere = (data) => {
   } catch (error) {
   }
 }
+export const getAllUserWallet = (data) => {
+  try {
+    return axiosService.post("/api/adminv2/getAllUserWallet", data);
+  } catch (error) {
+    console.log(error)
+  }
+}

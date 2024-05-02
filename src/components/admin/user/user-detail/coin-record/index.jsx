@@ -70,12 +70,12 @@ function CoinRecord(props) {
 				{coinName}
 			</label>
 			<div className={css.coinRecord__inputContainer}>
+				<img src={image_domain.replace("USDT", coinName)} alt="" />
 				<Input
 					id={id + coinName}
 					value={formatInputNumber(inputValue)}
 					onChange={inputValueOnChange}
 				/>
-				<img src={image_domain.replace("USDT", coinName)} alt="" />
 				<Button
 					type={saveButtonType}
 					onClick={savebuttonClickHandle}

@@ -1,4 +1,4 @@
-import CoinRecord from "./coin-record";
+import CoinRecord from "../coin-record";
 
 
 function EditCoinModalContent(props) {

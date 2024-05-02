@@ -1,13 +1,18 @@
 import { useParams } from 'react-router-dom';
 import css from './user-detail.module.scss';
-import { Button } from 'src/components/Common/Button';
 import socket from 'src/util/socket';
 import { useEffect, useState } from 'react';
 import { getWalletToUserAdmin } from 'src/util/adminCallApi';
+
+import CoinRecord from './coin-record';
+import { Pagination, Spin } from 'antd';
+import { api_status, image_domain } from 'src/constant';
+import CopyButton from 'src/components/Common/copy-button';
+import { EmptyCustom } from 'src/components/Common/Empty';
+import { Button, buttonClassesType } from 'src/components/Common/Button';
+import { TagCustom, TagType } from 'src/components/Common/Tag';
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
-import EditCoinModalContent from './edit-coin-modal-content';
-import HistoryTransferModalContent from './history-transfer-modal-content';
-import HistoryWidthdrawModalContent from './history-widthdraw-modal-content';
+import { Input } from 'src/components/Common/Input';
 function UserDetail() {
 	const {
 		userid
@@ -29,7 +34,9 @@ function UserDetail() {
 
 
 
-	// user wallet 
+	// user wallet, nhiều ví liên quan
+	const [listUser, setListUser] = useState([]);
+	const [fetchListUserStatus, setFetchListUserStatus] = useState(api_status.fetching);
 	const [userWallet, setUserWallet] = useState([]);
 	const fetchUserWallet = async () => {
 		const resp = await getWalletToUserAdmin({
@@ -37,56 +44,62 @@ function UserDetail() {
 		});
 		setUserWallet(resp?.data?.data);
 	}
-
-
-	// modal change wallet
-	const [editWalletModalShow, setEditWalletModalShow] = useState(false);
-	const editWalletModalShowOpen = () => {
-		setEditWalletModalShow(true);
-	}
-	const editWalletModalShowClose = () => {
-		setEditWalletModalShow(false);
-	}
-
-
-
-
-	// modal history transfer
-	const historyTransferString = 'History Transfer';
-	const [historyTransferModalShow, setHistoryTransferModalShow] = useState(false);
-	const historyTransferModalOpen = () => {
-		setHistoryTransferModalShow(true);
-	}
-	const historyTransferModalClose = () => {
-		setHistoryTransferModalShow(false);
-	}
-
-
-
-
-	// modal history widthdraw
-	const historyWidthdrawString = 'History Widthdraw';
-	const [historyWidthdrawModalShow, setHistoryWidthdrawModalShow] = useState(false);
-	const historyWidthdrawModalOpen = () => {
-		setHistoryWidthdrawModalShow(true);
-	}
-	const historyWidthdrawModalClose = () => {
-		setHistoryWidthdrawModalShow(false);
+	const renderSpinListUser = () => {
+		return fetchListUserStatus === api_status.fetching ? '' : '--d-none';
 	}
 
 
 
 
 
-	useEffect(() => {
-		fetchAllCoin();
-		fetchUserWallet();
-	}, [])
-	useEffect(() => {
-		if (editWalletModalShow === true) {
-			fetchUserWallet();
+	//  phần transfer history
+
+
+
+
+
+
+
+
+	// phần withdraw history
+
+
+
+
+
+
+
+	// modal confirm cho withdraw
+
+
+
+
+
+
+	// modal reject cho withdraw
+
+
+
+
+
+	const fetchUserCoin = async () => {
+		try {
+			if (fetchListUserStatus === api_status.fetching) return;
+			setFetchListUserStatus(api_status.fetching);
+			const resp = Promise.all([fetchAllCoin, ]);
+
+
+			setFetchListUserStatus(api_status.fulfilled);
+		} catch (error) {
+			console.log(error);
+			setFetchListUserStatus(api_status.rejected);
 		}
-	}, [editWalletModalShow])
+	}
+	useEffect(() => {
+
+		fetchUserCoin();
+
+	}, [])
 
 
 
@@ -114,7 +127,6 @@ function UserDetail() {
 						</div>
 					</div>
 				</div>
-
 				<div className={css.userDetail__table}>
 					<div className={css.userDetail__record}>
 						<div className={`${css.userDetail__cell} ${css.header}`}>
@@ -133,54 +145,325 @@ function UserDetail() {
 						</div>
 					</div>
 				</div>
-				<div className={`${css.userDetail__more}`}>
-					{
-						allCoin && userWallet && <Button
-							onClick={editWalletModalShowOpen}
-						>
-							Edit Wallet
-						</Button>
-					}
-					<Button
-						onClick={historyTransferModalOpen}
-					>
-						{historyTransferString}
-					</Button>
-					<Button
-						onClick={historyWidthdrawModalOpen}
-					>
-						History Widthdraw
-					</Button>
+				<div className={css[`userDetail--box`]}>
+					<div className={css.userDetail__wallet}>
+						<div className={css[`userDetail--title`]}>
+							Wallet - <span>nickname (userName)</span>
+						</div>
+						<div className={css.userDetail__walletContent}>
+							<div className={css.userDetail__walletContent__row}>
+								<CoinRecord
+									id={`1`}
+									coinAmount={`123`}
+									coinName={`BTC`}
+								/>
+							</div>
+							<div className={css.userDetail__walletContent__row}>
+								<CoinRecord
+									id={`1`}
+									coinAmount={`123`}
+									coinName={`USDT`}
+								/>
+							</div>
+							<div className={css.userDetail__walletContent__row}>
+								<CoinRecord
+									id={`1`}
+									coinAmount={`123`}
+									coinName={`BNB`}
+								/>
+							</div>
+							<div className={css.userDetail__walletContent__row}>
+								<CoinRecord
+									id={`1`}
+									coinAmount={`123`}
+									coinName={`BTC`}
+								/>
+							</div>
+							<div className={css.userDetail__walletContent__row}>
+								<CoinRecord
+									id={`1`}
+									coinAmount={`123`}
+									coinName={`USDT`}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className={`spin-container ${renderSpinListUser()}`}>
+					<Spin />
+				</div>
+				<div className={css[`userDetail--box`]}>
+					<div className={css.userDetail__sectionTable}>
+						<div className='d-flex alignItem-c justify-sb mb-2 f-lg-c'>
+							<div className={css[`userDetail--title`]}>
+								Transfer History
+							</div>
+							<Pagination
+								showSizeChanger={false}
+								current={1}
+								onChange={() => { }}
+								total={100}
+							/>
+						</div>
+						<div className={css[`userDetail--tableContainer`]}>
+							<table>
+								<thead>
+									<tr>
+										<th>Create At</th>
+										<th>Amount</th>
+										<th>Address From</th>
+										<th>Amount Before From</th>
+										<th>Amount After From</th>
+										<th>Address To</th>
+										<th>Amount Before To</th>
+										<th>Amount After To</th>
+										<th>Create At</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>2/5/2024 13:57:52</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												12
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<div style={{ whiteSpace: 'nowrap' }}>
+													Hoài Thương
+												</div>
+												<CopyButton
+													value={`fdasfdsa`}
+												/>
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												2,102.97
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												2,102.97
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<div style={{ whiteSpace: 'nowrap' }}>
+													Hoài Thương
+												</div>
+												<CopyButton
+													value={`fdasfdsa`}
+												/>
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												2,102.97
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												2,102.97
+											</div>
+										</td>
+										<td>
+											ok nha
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td colSpan={9}>
+											<div className='spin-container'>
+												<Spin></Spin>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td colSpan={9}>
+											<div className='spin-container'>
+												<EmptyCustom />
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div className='spin-container'>
+						<Spin />
+					</div>
+				</div>
+				<div className={css[`userDetail--box`]}>
+					<div className={css.userDetail__sectionTable}>
+						<div className='d-flex alignItem-c justify-sb mb-2 f-lg-c'>
+							<div className={css[`userDetail--title`]}>
+								Withdraw History
+							</div>
+							<Pagination
+								showSizeChanger={false}
+								current={1}
+								onChange={() => { }}
+								total={100}
+							/>
+						</div>
+						<div className={css[`userDetail--tableContainer`]}>
+							<table>
+								<thead>
+									<tr>
+										<th>Amount</th>
+										<th>From Address</th>
+										<th>Amount Before From</th>
+										<th>Amount After From</th>
+										<th>To Address</th>
+										<th>Amount Before To</th>
+										<th>Amount After To</th>
+										<th>Hash</th>
+										<th>Time</th>
+										<th>Note</th>
+										<th>Status</th>
+										<th>
+											<i className="fa-solid fa-gears"></i>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												12
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<div style={{ whiteSpace: 'nowrap' }}>
+													Hoài Thương
+												</div>
+												<CopyButton
+													value={`fdasfdsa`}
+												/>
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												12
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												12
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<div style={{ whiteSpace: 'nowrap' }}>
+													Hoài Thương
+												</div>
+												<CopyButton
+													value={`fdasfdsa`}
+												/>
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												12
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<img src={image_domain} alt="usdt" />
+												12
+											</div>
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<div style={{ whiteSpace: 'nowrap' }}>
+													Hoài Thương
+												</div>
+												<CopyButton
+													value={`fdasfdsa`}
+												/>
+											</div>
+										</td>
+										<td>
+											2/5/2024 13:54:27
+										</td>
+										<td>
+											info
+										</td>
+										<td>
+											<TagCustom type={TagType.error} />
+										</td>
+										<td>
+											<div className='d-flex alignItem-c gap-1'>
+												<Button>Confirm</Button>
+												<Button type={buttonClassesType.outline}>Reject</Button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td colSpan={12}>
+											<div className='spin-container'>
+												<Spin></Spin>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<td colSpan={12}>
+											<div className='spin-container'>
+												<EmptyCustom />
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div className='spin-container'>
+						<Spin />
+					</div>
 				</div>
 			</div>
 			<ModalConfirm
-				title={name}
-				content={<EditCoinModalContent allCoin={allCoin} userCoin={userWallet} id={id} />}
-				isHiddenOkButton={true}
+				title="Confirm Transfer"
+				content="Are you sure ?"
+				modalConfirmHandle={() => { }}
 				waiting={false}
-				isShowModal={editWalletModalShow}
-				closeModalHandle={editWalletModalShowClose}
+				closeModalHandle={() => { }}
+				isShowModal={false}
 			/>
-			{
-				historyTransferModalShow && <ModalConfirm
-					title={historyTransferString}
-					content={<HistoryTransferModalContent />}
-					isHiddenOkButton={true}
-					waiting={false}
-					isShowModal={historyTransferModalShow}
-					closeModalHandle={historyTransferModalClose}
-				/>
-			}
-			{
-				historyWidthdrawModalShow && <ModalConfirm
-					title={historyWidthdrawString}
-					content={<HistoryWidthdrawModalContent />}
-					isHiddenOkButton={true}
-					waiting={false}
-					isShowModal={historyWidthdrawModalShow}
-					closeModalHandle={historyWidthdrawModalClose}
-				/>
-			}
+			<ModalConfirm
+				title="Reject Transfer"
+				content={(
+					<>
+						<label htmlFor="rejectTransferInputId">
+							Reason
+						</label>
+						<Input id={`rejectTransferInputId`} />
+					</>
+				)}
+				modalConfirmHandle={() => { }}
+				waiting={false}
+				closeModalHandle={() => { }}
+				isShowModal={false}
+			/>
 		</>
 	)
 }
