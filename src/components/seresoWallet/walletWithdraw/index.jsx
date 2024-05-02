@@ -44,6 +44,7 @@ function FormWithdraw() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+<<<<<<< HEAD
 
 
 
@@ -69,20 +70,35 @@ function FormWithdraw() {
 
 
 
+=======
+  const [, setCallApiHistoryStatus] = useState(api_status.pending);
+>>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
   const [callApiSubmitStatus, setCallApiSubmitStatus] = useState(
     api_status.pending
   );
 
   const [inputAmountCurrency, setInputAmountCurrency] = useState("");
+<<<<<<< HEAD
 
+=======
+  const [withdrawHistory, setWithdrawHistory] = useState([]);
+  const [withdrawHistoryTotalItems, setWithdrawHistoryTotalItems] = useState(1);
+>>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
   const [qrValue, setQrValue] = useState(deploy_domain);
   const [inputPadding, setInputPadding] = useState(0);
   const [withdrawTypeSelected, setWithdrawTypeSelected] = useState(
     withdrawType.bep20
   );
   const [isMax, setIsMax] = useState(false);
+<<<<<<< HEAD
   const inputNoteValue = useRef();
   const formWallet = useRef();
+=======
+
+  const inputNoteValue = useRef();
+  const formWallet = useRef();
+  const withdrawHistoryCurrentPage = useRef(1);
+>>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
   const addressElement = useRef();
 
   useEffect(() => {
@@ -394,6 +410,7 @@ function FormWithdraw() {
             <div className={css["formWithdraw__title"]}>
               {t("withdrawalHistory")}
             </div>
+<<<<<<< HEAD
             <div className={renderHistoryContent()}>
               {renderWithdrawHistory()}
             </div>
@@ -401,6 +418,13 @@ function FormWithdraw() {
               <Spin />
             </div>
             <div className={renderHistoryEmpty()}>
+=======
+            {renderWithdrawHistory()}
+            <div className={`spin-container ${renderClassSpin()}`}>
+              <Spin />0
+            </div>
+            <div className={renderClassEmpty()}>
+>>>>>>> 095da43c1150d0006b7569e6b84f63e360e60996
               <EmptyCustom stringData={t("noData")} />
             </div>
             <div className={css["paging"]}>
