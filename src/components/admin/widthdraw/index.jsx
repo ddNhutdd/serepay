@@ -462,12 +462,32 @@ function Widthdraw() {
     }
   };
   const renderDataTable = function () {
-    return mainData.map((record) => (
+    return mainData?.map((record) => (
       <tr key={record.id}>
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
             {formatNumber(record.amount, availableLanguage.vi, 8)}
+          </div>
+        </td>
+        <td>
+          {record.form_address && <div className="d-flex alignItem-c gap-1">
+            {shortenHash(record.form_address)}
+            <CopyButton
+              value={record.form_address}
+            />
+          </div>}
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
+            {formatNumber(record.amountBeforeFrom, availableLanguage.vi, 8)}
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
+            {formatNumber(record.amountAfterFrom, availableLanguage.vi, 8)}
           </div>
         </td>
         <td>
@@ -479,12 +499,16 @@ function Widthdraw() {
           </div>}
         </td>
         <td>
-          {record.form_address && <div className="d-flex alignItem-c gap-1">
-            {shortenHash(record.form_address)}
-            <CopyButton
-              value={record.form_address}
-            />
-          </div>}
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
+            {formatNumber(record.amountBeforeTo, availableLanguage.vi, 8)}
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
+            {formatNumber(record.amountAfterTo, availableLanguage.vi, 8)}
+          </div>
         </td>
         <td>
           {record.hash && <div className="d-flex alignItem-c gap-1">
@@ -495,15 +519,11 @@ function Widthdraw() {
           </div>}
         </td>
         <td>{record.created_at}</td>
-        <td>{record.note}</td>
+        <td>
+          {record?.note !== null && record?.note !== 'null' && record?.note}
+        </td>
         <td>{record.username}</td>
         <td>{record.email}</td>
-        <td>
-          <div className="d-flex alignItem-c gap-1">
-            {record.amount_pay_by_coin}
-          </div>
-        </td>
-        <td>{record.fee_amount}</td>
         <td>{renderStatus(record.status)}</td>
         <td>{renderAction(record.id, record.status)}</td>
       </tr>
@@ -604,15 +624,17 @@ function Widthdraw() {
           <thead>
             <tr>
               <th>Amount</th>
-              <th>To Address</th>
               <th>From Address</th>
+              <th>Amount Before From</th>
+              <th>Amount After From</th>
+              <th>To Address</th>
+              <th>Amount Before To</th>
+              <th>Amount After To</th>
               <th>Hash</th>
               <th>Time</th>
               <th>Note</th>
               <th>UserName</th>
               <th>Email</th>
-              <th>Amount Pay By Coin</th>
-              <th>Fee Amount</th>
               <th>Status</th>
               <th>
                 <i className="fa-solid fa-gears"></i>

@@ -140,24 +140,60 @@ function WidthdrawRecord(props) {
 					{content?.created_at}
 				</div>
 				{
-					content?.to_address && <div className={css.widthdrawRecord__row}>
-						<span className={css[`widthdrawRecord--second`]}>
-							To Address:
-						</span>
-						{" "}
-						{shortenHash(content?.to_address)}
-						<CopyButton value={content?.to_address} />
-					</div>
+					content?.form_address && (
+						<>
+							<div className={css.widthdrawRecord__row}>
+								<span className={css[`widthdrawRecord--second`]}>
+									From Address:
+								</span>
+								{" "}
+								{shortenHash(content?.form_address)}
+								<CopyButton value={content?.form_address} />
+							</div>
+							<div className={css.widthdrawRecord__row}>
+								<span className={css[`widthdrawRecord--second`]}>
+									Amount Before From:
+								</span>
+								<img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', content?.coin_key.toUpperCase())} alt={content?.coin_key} />
+								{content?.amountBeforeFrom}
+							</div>
+							<div className={css.widthdrawRecord__row}>
+								<span className={css[`widthdrawRecord--second`]}>
+									Amount After From:
+								</span>
+								<img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', content?.coin_key.toUpperCase())} alt={content?.coin_key} />
+								{content?.amountAfterFrom}
+							</div>
+						</>
+					)
 				}
 				{
-					content?.form_address && <div className={css.widthdrawRecord__row}>
-						<span className={css[`widthdrawRecord--second`]}>
-							From Address:
-						</span>
-						{" "}
-						{shortenHash(content?.form_address)}
-						<CopyButton value={content?.form_address} />
-					</div>
+					content?.to_address && (
+						<>
+							<div className={css.widthdrawRecord__row}>
+								<span className={css[`widthdrawRecord--second`]}>
+									To Address:
+								</span>
+								{" "}
+								{shortenHash(content?.to_address)}
+								<CopyButton value={content?.to_address} />
+							</div>
+							<div className={css.widthdrawRecord__row}>
+								<span className={css[`widthdrawRecord--second`]}>
+									Amount Before To:
+								</span>
+								<img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', content?.coin_key.toUpperCase())} alt={content?.coin_key} />
+								{content?.amountBeforeTo}
+							</div>
+							<div className={css.widthdrawRecord__row}>
+								<span className={css[`widthdrawRecord--second`]}>
+									Amount After To:
+								</span>
+								<img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', content?.coin_key.toUpperCase())} alt={content?.coin_key} />
+								{content?.amountAfterTo}
+							</div>
+						</>
+					)
 				}
 				{
 					content?.hash && <div className={css.widthdrawRecord__row}>
@@ -169,27 +205,12 @@ function WidthdrawRecord(props) {
 						<CopyButton value={content?.hash} />
 					</div>
 				}
-
 				<div className={css.widthdrawRecord__row}>
 					<span className={css[`widthdrawRecord--second`]}>
 						Amount:
 					</span>
 					<img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', content?.coin_key.toUpperCase())} alt={content?.coin_key} />
 					{content?.amount}
-				</div>
-				<div>
-					<span className={css[`widthdrawRecord--second`]}>
-						Amount Pay By Coin:
-					</span>
-					{" "}
-					{content?.amount_pay_by_coin}
-				</div>
-				<div>
-					<span className={css[`widthdrawRecord--second`]}>
-						Fee:
-					</span>
-					{" "}
-					{content?.fee_amount}
 				</div>
 				<div className={`${css.widthdrawRecord__row}`}>
 					{renderStatus(statusInner)}

@@ -19,14 +19,47 @@ function TransferRecord(props) {
         <CopyButton value={content?.address_form} />
       </div>
       <div className={css.transferRecord__address}>
+        <span>Amount Before From:</span> {shortenHash(content?.amountBeforeFrom)}
+        <img src={image_domain.replace("USDT", content?.coin_key?.toUpperCase())} alt={content?.coin_key} />
+        {
+          formatNumber(content?.amountBeforeFrom, availableLanguage.en, 8)
+        }
+      </div>
+      <div className={css.transferRecord__address}>
+        <span>Amount After From:</span> {shortenHash(content?.amountAfterFrom)}
+        <img src={image_domain.replace("USDT", content?.coin_key?.toUpperCase())} alt={content?.coin_key} />
+        {
+          formatNumber(content?.amountAfterFrom, availableLanguage.en, 8)
+        }
+      </div>
+      <div className={css.transferRecord__address}>
         <span>To:</span> {shortenHash(content?.address_to)}
         <CopyButton value={content?.address_to} />
       </div>
-      <div className={css.transferRecord__amount}>
+      <div className={css.transferRecord__address}>
+        <span>Amount After To:</span> {shortenHash(content?.amountBeforeTo)}
         <img src={image_domain.replace("USDT", content?.coin_key?.toUpperCase())} alt={content?.coin_key} />
         {
-          formatNumber(content?.amount, availableLanguage.en, 8)
+          formatNumber(content?.amountBeforeTo, availableLanguage.en, 8)
         }
+      </div>
+      <div className={css.transferRecord__address}>
+        <span>Amount After To:</span> {shortenHash(content?.amountAfterTo)}
+        <img src={image_domain.replace("USDT", content?.coin_key?.toUpperCase())} alt={content?.coin_key} />
+        {
+          formatNumber(content?.amountAfterTo, availableLanguage.en, 8)
+        }
+      </div>
+      <div className={css.transferRecord__amount}>
+        <span className={css.transferRecord__amount__title}>
+          Amount:
+        </span>
+        <img src={image_domain.replace("USDT", content?.coin_key?.toUpperCase())} alt={content?.coin_key} />
+        <span>
+          {
+            formatNumber(content?.amount, availableLanguage.en, 8)
+          }
+        </span>
       </div>
       <div className={css.transferRecord__note}>
         {content?.note}

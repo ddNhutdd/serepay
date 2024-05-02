@@ -232,8 +232,44 @@ export default function TransferAdmin() {
         </td>
         <td>
           <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: "cover" }} src={image_domain.replace("USDT", item.coin_key.toUpperCase())} alt={item.coin_key} />
+            {formatNumber(item?.amountBeforeFrom, availableLanguage.en, rountRange(
+              listCoin.find((coin) => coin.name === item.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: "cover" }} src={image_domain.replace("USDT", item.coin_key.toUpperCase())} alt={item.coin_key} />
+            {formatNumber(item?.amountAfterFrom, availableLanguage.en, rountRange(
+              listCoin.find((coin) => coin.name === item.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
             {shortenHash(item.address_to)}
             <CopyButton value={item.address_to} />
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: "cover" }} src={image_domain.replace("USDT", item.coin_key.toUpperCase())} alt={item.coin_key} />
+            {formatNumber(item?.amountBeforeTo, availableLanguage.en, rountRange(
+              listCoin.find((coin) => coin.name === item.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
+          </div>
+        </td>
+        <td>
+          <div className="d-flex alignItem-c gap-1">
+            <img style={{ width: 20, height: 20, objectFit: "cover" }} src={image_domain.replace("USDT", item.coin_key.toUpperCase())} alt={item.coin_key} />
+            {formatNumber(item?.amountAfterTo, availableLanguage.en, rountRange(
+              listCoin.find((coin) => coin.name === item.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
         <td>{item.note}</td>
@@ -337,7 +373,11 @@ export default function TransferAdmin() {
               <th>Create_at</th>
               <th>Amount</th>
               <th>Address From</th>
+              <th>Amount Before From</th>
+              <th>Amount After From</th>
               <th>Address To</th>
+              <th>Amount Before To</th>
+              <th>Amount After To</th>
               <th>Note</th>
             </tr>
           </thead>
@@ -346,7 +386,7 @@ export default function TransferAdmin() {
           </tbody>
           <tbody className={renderClassSpinComponent()}>
             <tr>
-              <td colSpan={6}>
+              <td colSpan={9}>
                 <div className="spin-container">
                   <Spin />
                 </div>
@@ -355,7 +395,7 @@ export default function TransferAdmin() {
           </tbody>
           <tbody className={renderClassEmptyComponent()}>
             <tr>
-              <td colSpan={6}>
+              <td colSpan={9}>
                 <div className="spin-container">
                   <EmptyCustom />
                 </div>

@@ -1,6 +1,13 @@
 @import "src/assets/scss/base/base.scss";
 @import "src/assets/scss/style.scss";
 
+@mixin image {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+	opacity: 1;
+}
+
 .transferRecord {
 	text-align: left;
 	padding: 15px;
@@ -13,21 +20,32 @@
 		span {
 			opacity: 0.5;
 		}
+
+		img {
+			@include image();
+		}
 	}
 
 	.transferRecord__amount {
-		font-weight: bold;
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
 		gap: 5px;
+		color: $green-16;
 
-		color: $green-16; 
-		
+		.transferRecord__amount__title {
+			color: $new-text-color-white;
+			font-weight: normal;
+			opacity: 0.5;
+		}
+
 		img {
-			width: 20px;
-			height: 20px;
-			object-fit: cover;
+			@include image();
+		}
+
+		span {
+			font-weight: bold;
+			opacity: 1;
 		}
 	}
 
