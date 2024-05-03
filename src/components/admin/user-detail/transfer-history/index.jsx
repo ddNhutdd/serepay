@@ -1,19 +1,21 @@
 import { Pagination, Spin } from 'antd';
 import css from '../user-detail.module.scss';
-import { api_status, image_domain } from 'src/constant';
+import { api_status, image_domain, url, urlParams } from 'src/constant';
 import { EmptyCustom } from 'src/components/Common/Empty';
 import CopyButton from 'src/components/Common/copy-button';
 import { useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { historytransferAdmin } from 'src/util/adminCallApi';
 import { formatNumber, shortenHash } from 'src/util/common';
 import { availableLanguage } from 'src/translation/i18n';
+import { DrillContext } from 'src/context/drill';
+import { NavLink } from 'react-router-dom';
 
 function TransferHistory() {
 	const {
-		userid
+		userid: id
 	} = useParams();
-	const [id, name, email] = userid.split('_')
+	const profile = useContext(DrillContext);
 
 
 
@@ -86,7 +88,9 @@ function TransferHistory() {
 						<td>
 							<div className='d-flex alignItem-c gap-1'>
 								<div style={{ whiteSpace: 'nowrap' }}>
-									{shortenHash(item?.address_form)}
+									<NavLink className={`--link`} to={url.admin_userDetail.replace(urlParams.userId, item.user_id)}>
+										{shortenHash(item?.address_form)}
+									</NavLink>
 								</div>
 								<CopyButton
 									value={item?.address_form}
@@ -108,7 +112,9 @@ function TransferHistory() {
 						<td>
 							<div className='d-flex alignItem-c gap-1'>
 								<div style={{ whiteSpace: 'nowrap' }}>
-									{shortenHash(item?.address_to)}
+									<NavLink className={`--link`} to={url.admin_userDetail.replace(urlParams.userId, item.receive_id)}>
+										{shortenHash(item?.address_to)}
+									</NavLink>
 								</div>
 								<CopyButton
 									value={item?.address_to}
@@ -148,12 +154,16 @@ function TransferHistory() {
 
 
 
+
+
+
+
 	return (
 		<div className={css[`userDetail--box`]}>
 			<div className={css.userDetail__sectionTable}>
 				<div className='d-flex alignItem-c justify-sb mb-2 f-lg-c'>
 					<div className={css[`userDetail--title`]}>
-						Transfer History - {name}
+						Transfer History - {profile.username}
 					</div>
 					<Pagination
 						showSizeChanger={false}

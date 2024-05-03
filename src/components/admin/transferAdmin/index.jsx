@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { EmptyCustom } from "src/components/Common/Empty";
 import css from "./transferAdmin.module.scss";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { api_status, image_domain } from "src/constant";
+import { api_status, image_domain, url, urlParams } from "src/constant";
 import socket from "src/util/socket.js";
 import {
   historytransferAdmin,
@@ -21,6 +21,7 @@ import { Input } from "src/components/Common/Input";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
 import CopyButton from "src/components/Common/copy-button";
+import { NavLink } from "react-router-dom";
 
 export default function TransferAdmin() {
   const all = "ALL";
@@ -226,7 +227,9 @@ export default function TransferAdmin() {
         </td>
         <td>
           <div className="d-flex alignItem-c gap-1">
-            {shortenHash(item.address_form)}
+            <NavLink className={`--link`} to={url.admin_userDetail.replace(urlParams.userId, item.user_id)}>
+              {shortenHash(item.address_form)}
+            </NavLink>
             <CopyButton value={item.address_form} />
           </div>
         </td>
@@ -250,7 +253,9 @@ export default function TransferAdmin() {
         </td>
         <td>
           <div className="d-flex alignItem-c gap-1">
-            {shortenHash(item.address_to)}
+            <NavLink className={`--link`} to={url.admin_userDetail.replace(urlParams.userId, item.receive_id)}>
+              {shortenHash(item.address_to)}
+            </NavLink>
             <CopyButton value={item.address_to} />
           </div>
         </td>

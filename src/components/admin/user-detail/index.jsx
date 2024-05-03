@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react';
 import ListWallet from './list-wallet';
 import { getUserToId } from 'src/util/adminCallApi';
 import { DrillContext } from 'src/context/drill';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { url, urlParams } from 'src/constant';
+
 
 
 function UserDetail() {
@@ -16,6 +17,7 @@ function UserDetail() {
 		userid
 	} = useParams();
 	let history = useHistory();
+	const location = useLocation();
 
 
 
@@ -27,6 +29,12 @@ function UserDetail() {
 		fetchUserDetail(item.id);
 		setKey(item.id);
 	}
+	useEffect(() => {
+		const newId = location?.pathname?.split('/')?.at(-1);
+		setKey(newId)
+		fetchUserDetail(newId);
+
+	}, [location])
 
 
 
@@ -44,7 +52,6 @@ function UserDetail() {
 			});
 			setUserInfo(resp?.data?.data?.at(0))
 		} catch (error) {
-			console.log(error)
 		}
 	}
 

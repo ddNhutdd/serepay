@@ -1,19 +1,21 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { api_status } from "src/constant";
-import { getAllUserWallet, getWalletToUserAdmin } from "src/util/adminCallApi";
-import { deepCopyObject, formatNumber } from "src/util/common";
+import { getWalletToUserAdmin } from "src/util/adminCallApi";
+import { formatNumber } from "src/util/common";
 import CoinRecord from "./coin-record";
 import { Spin } from "antd";
 import css from "../user-detail.module.scss"
 import socket from "src/util/socket";
 import { availableLanguage } from "src/translation/i18n";
+import { DrillContext } from "src/context/drill";
 
 function UserWallet(props) {
 	const {
 		userid
 	} = useParams();
-	const [id, name, email] = userid.split('_')
+	const profile = useContext(DrillContext);
+
 
 
 
@@ -23,11 +25,10 @@ function UserWallet(props) {
 	const fetchUserWallet = async () => {
 		try {
 			const resp = await getWalletToUserAdmin({
-				userid: id
+				userid: userid
 			});
 			setUserWallet(resp?.data?.data)
 		} catch (error) {
-			console.log(error)
 		}
 	}
 
@@ -43,7 +44,7 @@ function UserWallet(props) {
 			return (
 				<div key={coin.id} className={css.userDetail__walletContent__row}>
 					<CoinRecord
-						id={id}
+						id={userid}
 						coinAmount={coinAmount}
 						coinName={coin.name}
 					/>
@@ -89,7 +90,7 @@ function UserWallet(props) {
 		<div className={css[`userDetail--box`]}>
 			<div className={css.userDetail__wallet}>
 				<div className={css[`userDetail--title`]}>
-					Wallet - {name}
+					Wallet - {profile.username}
 				</div>
 				<div className={css.userDetail__walletContent}>
 					{renderWallet(allCoin.current, userWallet)}

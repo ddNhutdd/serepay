@@ -848,6 +848,15 @@ h2.title {
   visibility: hidden !important;
 }
 
+.--link {
+  color: $new-text-color-white;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 //===
 .spin-container {
   display: flex;

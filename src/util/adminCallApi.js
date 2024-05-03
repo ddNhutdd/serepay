@@ -184,6 +184,5 @@ export const getUserToId = (data) => {
   try {
     return axiosService.post("/api/adminv2/getUserToId", data);
   } catch (error) {
-    console.log(error)
   }
 }

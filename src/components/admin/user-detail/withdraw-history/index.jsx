@@ -1,26 +1,28 @@
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import css from '../user-detail.module.scss';
 import { Pagination, Spin } from 'antd';
-import { api_status, commontString, image_domain } from 'src/constant';
+import { api_status, commontString, image_domain, url, urlParams } from 'src/constant';
 import CopyButton from 'src/components/Common/copy-button';
 import { TagCustom, TagType } from 'src/components/Common/Tag';
 import { Button, buttonClassesType } from 'src/components/Common/Button';
 import { EmptyCustom } from 'src/components/Common/Empty';
 import { Input } from 'src/components/Common/Input';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { activeWidthdraw, cancelWidthdraw, getWalletToWithdrawWhere } from 'src/util/adminCallApi';
 import { deepCopyArray, deepCopyObject, formatNumber, shortenHash } from 'src/util/common';
 import { availableLanguage } from 'src/translation/i18n';
 import { callToastSuccess } from 'src/function/toast/callToast';
+import { DrillContext } from 'src/context/drill';
+import { NavLink } from 'react-router-dom';
 
 
 function WithdrawHistory() {
 
 	const {
-		userid
+		userid: id
 	} = useParams();
-	const [id, name,] = userid.split('_')
+	const profile = useContext(DrillContext);
 
 
 	// phần phân trang
@@ -55,7 +57,6 @@ function WithdrawHistory() {
 			setPage(page)
 			setFetchApiStatus(api_status.fulfilled)
 		} catch (error) {
-			console.log(error)
 			setFetchApiStatus(api_status.rejected)
 		}
 	}
@@ -87,14 +88,18 @@ function WithdrawHistory() {
 						</div>
 					</td>
 					<td>
-						<div className='d-flex alignItem-c gap-1'>
-							<div style={{ whiteSpace: 'nowrap' }}>
-								{shortenHash(item?.form_address)}
+						{
+							item?.form_address && <div className='d-flex alignItem-c gap-1'>
+								<div style={{ whiteSpace: 'nowrap' }}>
+									{shortenHash(item?.form_address)}
+								</div>
+								<CopyButton
+									value={item?.form_address}
+								/>
 							</div>
-							<CopyButton
-								value={item?.form_address}
-							/>
-						</div>
+
+						}
+
 					</td>
 					<td>
 						<div className='d-flex alignItem-c gap-1'>
@@ -111,7 +116,9 @@ function WithdrawHistory() {
 					<td>
 						<div className='d-flex alignItem-c gap-1'>
 							<div style={{ whiteSpace: 'nowrap' }}>
-								{shortenHash(item?.to_address)}
+								<NavLink className={`--link`} to={url.admin_userDetail.replace(urlParams.userId, item?.user_id)}>
+									{shortenHash(item?.to_address)}
+								</NavLink>
 							</div>
 							<CopyButton
 								value={item?.to_address}
@@ -131,14 +138,16 @@ function WithdrawHistory() {
 						</div>
 					</td>
 					<td>
-						<div className='d-flex alignItem-c gap-1'>
-							<div style={{ whiteSpace: 'nowrap' }}>
-								{shortenHash(item?.hash)}
+						{
+							item?.hash && <div className='d-flex alignItem-c gap-1'>
+								<div style={{ whiteSpace: 'nowrap' }}>
+									{shortenHash(item?.hash)}
+								</div>
+								<CopyButton
+									value={item?.hash}
+								/>
 							</div>
-							<CopyButton
-								value={item?.hash}
-							/>
-						</div>
+						}
 					</td>
 					<td>
 						{item?.created_at}
@@ -165,7 +174,7 @@ function WithdrawHistory() {
 						</div>}
 
 					</td>
-				</tr>
+				</tr >
 			)
 		})
 	}
@@ -210,7 +219,6 @@ function WithdrawHistory() {
 			setFetchApiConfirmStatus(api_status.fulfilled);
 
 		} catch (error) {
-			console.log(error)
 			setFetchApiConfirmStatus(api_status.rejected);
 		}
 	}
@@ -272,13 +280,14 @@ function WithdrawHistory() {
 	}, [])
 
 
+
 	return (
 		<>
 			<div className={css[`userDetail--box`]}>
 				<div className={css.userDetail__sectionTable}>
 					<div className='d-flex alignItem-c justify-sb mb-2 f-lg-c'>
 						<div className={css[`userDetail--title`]}>
-							Withdraw History - {name}
+							Withdraw History - {profile.username}
 						</div>
 						<Pagination
 							showSizeChanger={false}
