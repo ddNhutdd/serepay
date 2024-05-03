@@ -68,7 +68,7 @@ function Transfer() {
   const userNameInputElement = useRef();
   const messageElement = useRef();
   const transferHistoryCurrentPage = useRef(1);
-  const limit = useRef(10);
+  const limit = useRef(5);
 
   const usernameInputChangeHandle = function (e) {
     const username = e.target.value;
@@ -440,6 +440,7 @@ function Transfer() {
                   onChange={transferHistoryPagingOnChangeHandle}
                   current={transferHistoryCurrentPage.current}
                   total={transferHistoryTotalItems}
+                  pageSize={limit.current}
                 />
               </div>
             </div>

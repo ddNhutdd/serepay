@@ -3,23 +3,89 @@ import css from './user-detail.module.scss';
 import UserWallet from './user-wallet';
 import TransferHistory from './transfer-history';
 import WithdrawHistory from './withdraw-history';
-import { Drill } from 'src/context/drill';
+import { useEffect, useState } from 'react';
+import ListWallet from './list-wallet';
+import { getUserToId } from 'src/util/adminCallApi';
+import { DrillContext } from 'src/context/drill';
+import { useHistory } from "react-router-dom";
+import { url, urlParams } from 'src/constant';
+
+
 function UserDetail() {
 	const {
 		userid
 	} = useParams();
-	const [id, name, email] = userid.split('_')
+	let history = useHistory();
 
 
-	// nếu email không phải là chuỗi null thì render email lên giao diện
-	const renderEmail = () => {
-		return email !== 'null' ? email : '_';
+
+
+	// force reload 
+	const [key, setKey] = useState(userid);
+	const forceReload = (item) => {
+		history.push(url.admin_userDetail.replace(urlParams.userId, item.id));
+		fetchUserDetail(item.id);
+		setKey(item.id);
 	}
 
 
 
+
+
+
+
+
 	// lấy thông tin của user hiện tại
-	const [userInfo, setUserInfo] = useState();
+	const [userInfo, setUserInfo] = useState({});
+	const fetchUserDetail = async (userId) => {
+		try {
+			const resp = await getUserToId({
+				userid: userId
+			});
+			setUserInfo(resp?.data?.data?.at(0))
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
+
+
+
+
+
+	// nếu email có ý nghĩa thì render nó lên
+	const renderEmail = (email) => {
+		switch (email) {
+			case null:
+			case undefined:
+			case 'null':
+				return '--';
+
+			default:
+				return email;
+		}
+	}
+
+
+
+
+
+
+
+	// nếu nickname có ý nghĩa thì render nó lên
+	const renderNickname = (nickName) => {
+		switch (nickName) {
+			case null:
+			case undefined:
+			case 'null':
+				return '--';
+
+			default:
+				return nickName;
+		}
+	}
+
+
 
 
 
@@ -29,53 +95,58 @@ function UserDetail() {
 
 	// useEffect
 	useEffect(() => {
-		// lấy thông tin user theo id
-		
+		fetchUserDetail(userid);
 	}, [])
 
 	return (
-		<>
-			<div className={css.userDetail}>
-				<div className={css.userDetail__image}>
-					<div className={css.userDetail__image__left}>
-						<i className="fa-solid fa-circle-user"></i>
-					</div>
+		<div key={key} className={css.userDetail}>
+			<div className={css.userDetail__image}>
+				<div className={css.userDetail__image__left}>
+					<i className="fa-solid fa-circle-user"></i>
+				</div>
 
-					<div className={css.userDetail__image__right}>
-						<div className={css.userDetail__image__right__name}>
-							{name}
-						</div>
-						<div className={css.userDetail__image__right__email}>
-							{renderEmail()}
-						</div>
+				<div className={css.userDetail__image__right}>
+					<div className={css.userDetail__image__right__name}>
+						{userInfo?.username}
+					</div>
+					<div className={css.userDetail__image__right__email}>
+						{renderEmail(userInfo?.email)}
 					</div>
 				</div>
-				<div className={css.userDetail__table}>
-					<div className={css.userDetail__record}>
-						<div className={`${css.userDetail__cell} ${css.header}`}>
-							Username:
-						</div>
-						<div className={`${css.userDetail__cell}`}>
-							{name}
-						</div>
-					</div>
-					<div className={css.userDetail__record}>
-						<div className={`${css.userDetail__cell} ${css.header} bb-0`}>
-							Email:
-						</div>
-						<div className={`${css.userDetail__cell} bb-0`}>
-							{renderEmail()}
-						</div>
-					</div>
-				</div>
-				<Drill.Provider value={userInfo}>
-					<UserWallet />
-					<TransferHistory />
-					<WithdrawHistory />
-				</Drill.Provider>
 			</div>
-
-		</>
+			<div className={css.userDetail__table}>
+				<div className={css.userDetail__record}>
+					<div className={`${css.userDetail__cell} ${css.header}`}>
+						Username:
+					</div>
+					<div className={`${css.userDetail__cell}`}>
+						{userInfo?.username}
+					</div>
+				</div>
+				<div className={css.userDetail__record}>
+					<div className={`${css.userDetail__cell} ${css.header}`}>
+						Nick name:
+					</div>
+					<div className={`${css.userDetail__cell}`}>
+						{renderNickname(userInfo?.nickName)}
+					</div>
+				</div>
+				<div className={css.userDetail__record}>
+					<div className={`${css.userDetail__cell} ${css.header} bb-0`}>
+						Email:
+					</div>
+					<div className={`${css.userDetail__cell} bb-0`}>
+						{renderEmail(userInfo?.email)}
+					</div>
+				</div>
+			</div>
+			<DrillContext.Provider value={userInfo}>
+				<ListWallet forceReload={forceReload} />
+				<UserWallet />
+				<TransferHistory />
+				<WithdrawHistory />
+			</DrillContext.Provider>
+		</div>
 	)
 }
 

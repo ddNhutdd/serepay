@@ -281,7 +281,7 @@ const User = function () {
     return mainData.map((item) => (
       <tr key={item.id}>
         <td>
-          <NavLink to={(`${url.admin_userDetail.replace(urlParams.userId, item.id)}_${item.username}_${item.email}`)}>
+          <NavLink to={(`${url.admin_userDetail.replace(urlParams.userId, item.id)}`)}>
             {item.id}
           </NavLink>
         </td>

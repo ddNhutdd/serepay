@@ -10,6 +10,7 @@
 		background-color: $bg-1;
 		border-radius: 8px;
 		margin-bottom: 30px;
+		overflow-x: auto;
 
 		@media screen and (max-width: 768px) {
 			padding: 10px;
@@ -25,6 +26,7 @@
 		font-weight: 600;
 		font-size: 18px;
 		color: $new-primary-color-6;
+		margin-bottom: 10px;
 	}
 
 	.userDetail--tableContainer {
@@ -61,6 +63,16 @@
 		}
 	}
 
+	.userDetail__listWallet {
+		.userDetail__listWallet__dropdownContainer {
+			width: 50%;
+
+			@media screen and (max-width: 768px) {
+				width: 100%;
+			}
+		}
+	}
+
 	.userDetail__table {
 		margin-top: 20px;
 		border-radius: 8px;
@@ -71,7 +83,7 @@
 
 		.userDetail__record {
 			display: grid;
-			grid-template-columns: 100px auto;
+			grid-template-columns: 106px auto;
 			min-width: 300px;
 
 			.userDetail__cell {
@@ -133,4 +145,6 @@
 			}
 		}
 	}
+
+	
 }

@@ -180,3 +180,10 @@ export const getAllUserWallet = (data) => {
   } catch (error) {
   }
 }
+export const getUserToId = (data) => {
+  try {
+    return axiosService.post("/api/adminv2/getUserToId", data);
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -44,6 +44,8 @@ function FormWithdraw() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const limit = useRef(5)
+
 
 
 
@@ -179,7 +181,7 @@ function FormWithdraw() {
     setCallApiHistoryStatus(api_status.fetching);
     getHistoryWidthdraw({
       symbol: coin,
-      limit: "10",
+      limit: limit.current,
       page: withdrawHistoryCurrentPage.current,
     })
       .then((resp) => {
@@ -406,6 +408,7 @@ function FormWithdraw() {
               <Pagination
                 onChange={withdrawHistoryPagingOnChangeHandle}
                 total={withdrawHistoryTotalItems}
+                pageSize={limit.current}
               />
             </div>
           </div>

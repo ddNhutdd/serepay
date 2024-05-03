@@ -4,7 +4,6 @@ import {useDispatch} from "react-redux";
 import {axiosService} from "../util/service";
 import {
 	errorMessage,
-	commontString,
 	defaultLanguage,
 	localStorageVariable,
 	url,

@@ -17,74 +17,41 @@ function UserWallet(props) {
 
 
 
-	// user wallet, nhiều ví liên quan
-	const [allUserWallet, setAllUserWallet] = useState({});
-	const allUserName = useRef({});
-	const [fetchListUserStatus, setFetchListUserStatus] = useState(api_status.pending);
-
-	const fetchUserWallet = async (userid) => {
-		const resp = await getWalletToUserAdmin({
-			userid
-		});
-		setAllUserWallet(state => {
-			const newState = deepCopyObject(state);
-			newState[userid] = resp?.data?.data;
-			return newState;
-		})
-	}
-	const renderSpinListUser = () => {
-		return fetchListUserStatus === api_status.fetching ? '' : '--d-none';
-	}
-	const fetchAllUserWallet = async () => {
+	// user wallet
+	const [userWallet, setUserWallet] = useState({});
+	const [fetchWalletStatus, setFetchWalletStatus] = useState(api_status.pending);
+	const fetchUserWallet = async () => {
 		try {
-			const resp = await getAllUserWallet({
+			const resp = await getWalletToUserAdmin({
 				userid: id
 			});
-			const data = [{ id: +id, username: name }, ...resp?.data?.data];
-			allUserName.current = data;
-			data.forEach(async (item) => {
-				const id = item.id;
-				await fetchUserWallet(id);
-			})
-
+			setUserWallet(resp?.data?.data)
 		} catch (error) {
+			console.log(error)
 		}
 	}
-	const renderListUserWallet = (listUserWallet, listUserName, listCoin) => {
-		const result = [];
-		for (const [key, value] of Object.entries(listUserWallet)) {
-			const user = listUserName?.find(item => {
-				return item.id === +key;
-			});
-			result.push(
-				<div key={key} className={css[`userDetail--box`]}>
-					<div className={css.userDetail__wallet}>
-						<div className={css[`userDetail--title`]}>
-							Wallet - {user?.username}
-						</div>
-						<div className={css.userDetail__walletContent}>
-							{
-								listCoin?.map(coin => {
-									const coinWallet = coin?.name?.toLowerCase() + '_balance';
-									const coinAmount = formatNumber((+value[coinWallet]) || 0, availableLanguage.en, 8);
-									return (
-										<div key={coin.id} className={css.userDetail__walletContent__row}>
-											<CoinRecord
-												id={key}
-												coinAmount={coinAmount}
-												coinName={coin.name}
-											/>
-										</div>
-									)
-								})
-							}
-						</div>
-					</div>
+
+
+	// render main content
+	const renderSpinWalletUser = () => {
+		return fetchWalletStatus === api_status.fetching ? '' : '--d-none';
+	}
+	const renderWallet = (listCoin, wallet) => {
+		return listCoin?.map(coin => {
+			const coinWallet = coin?.name?.toLowerCase() + '_balance';
+			const coinAmount = formatNumber((+wallet[coinWallet]) || 0, availableLanguage.en, 8);
+			return (
+				<div key={coin.id} className={css.userDetail__walletContent__row}>
+					<CoinRecord
+						id={id}
+						coinAmount={coinAmount}
+						coinName={coin.name}
+					/>
 				</div>
 			)
-		}
-		return result;
+		})
 	}
+
 
 
 	// get all coin
@@ -103,13 +70,14 @@ function UserWallet(props) {
 	// phần useEffect
 	const fetchUserCoin = async () => {
 		try {
-			if (fetchListUserStatus === api_status.fetching) return;
-			setFetchListUserStatus(api_status.fetching);
-			await Promise.all([fetchAllCoin(), fetchAllUserWallet()]);
+			if (fetchWalletStatus === api_status.fetching) return;
+			setFetchWalletStatus(api_status.fetching);
 
-			setFetchListUserStatus(api_status.fulfilled);
+			await Promise.all([fetchAllCoin(), fetchUserWallet()]);
+
+			setFetchWalletStatus(api_status.fulfilled);
 		} catch (error) {
-			setFetchListUserStatus(api_status.rejected);
+			setFetchWalletStatus(api_status.rejected);
 		}
 	}
 	useEffect(() => {
@@ -118,12 +86,19 @@ function UserWallet(props) {
 
 
 	return (
-		<>
-			{renderListUserWallet(allUserWallet, allUserName.current, allCoin.current)}
-			<div className={`spin-container ${renderSpinListUser()}`}>
+		<div className={css[`userDetail--box`]}>
+			<div className={css.userDetail__wallet}>
+				<div className={css[`userDetail--title`]}>
+					Wallet - {name}
+				</div>
+				<div className={css.userDetail__walletContent}>
+					{renderWallet(allCoin.current, userWallet)}
+				</div>
+			</div>
+			<div className={`spin-container ${renderSpinWalletUser()}`}>
 				<Spin />
 			</div>
-		</>
+		</div>
 	)
 }
 
