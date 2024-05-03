@@ -533,3 +533,41 @@ export const formatInputNumber = (inputValue) => {
 	}
 	return formatStringNumberCultureUS(inputValueWithoutComma);
 };
+
+export const deepCopyArray = (arr) => {
+	let copy = [];
+
+	for (let i = 0; i < arr.length; i++) {
+		if (Array.isArray(arr[i])) {
+			// Nếu phần tử là một mảng, thực hiện deep copy bằng đệ quy
+			copy[i] = deepCopyArray(arr[i]);
+		} else if (typeof arr[i] === 'object' && arr[i] !== null) {
+			// Nếu phần tử là một đối tượng, thực hiện deep copy bằng cách sao chép từng thuộc tính
+			copy[i] = deepCopyObject(arr[i]);
+		} else {
+			// Nếu phần tử không phải mảng hoặc đối tượng, chỉ cần sao chép giá trị
+			copy[i] = arr[i];
+		}
+	}
+
+	return copy;
+}
+
+export const deepCopyObject = (obj) => {
+	let copy = {};
+
+	for (let key in obj) {
+		if (Array.isArray(obj[key])) {
+			// Nếu giá trị của thuộc tính là một mảng, thực hiện deep copy bằng đệ quy
+			copy[key] = deepCopyArray(obj[key]);
+		} else if (typeof obj[key] === 'object' && obj[key] !== null) {
+			// Nếu giá trị của thuộc tính là một đối tượng, thực hiện deep copy bằng cách sao chép từng thuộc tính
+			copy[key] = deepCopyObject(obj[key]);
+		} else {
+			// Nếu giá trị của thuộc tính không phải mảng hoặc đối tượng, chỉ cần sao chép giá trị
+			copy[key] = obj[key];
+		}
+	}
+
+	return copy;
+}

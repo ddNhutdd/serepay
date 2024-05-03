@@ -83,7 +83,7 @@ import Deposite from "./components/admin/deposite";
 import KycAdmin from "./components/admin/kyc";
 import P2pAdmin from "./components/admin/p2p";
 import { useTranslation } from "react-i18next";
-import UserDetail from "./components/admin/user/user-detail";
+import UserDetail from "./components/admin/user-detail";
 
 const config = {};
 export const math = create(all, config);
