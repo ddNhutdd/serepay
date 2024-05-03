@@ -14,9 +14,6 @@ import {
 import { TagCustom, TagType } from "src/components/Common/Tag";
 import { ModalConfirm } from "src/components/Common/ModalConfirm";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
-import AdsHistoryRecord, {
-  AdsHistoryRecordType,
-} from "src/components/adsHistoryRecord";
 
 function Ads() {
   const actionType = {
