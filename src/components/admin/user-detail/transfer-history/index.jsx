@@ -15,7 +15,7 @@ function TransferHistory() {
 	const {
 		userid: id
 	} = useParams();
-	const profile = useContext(DrillContext);
+	const [profile, renderTitle] = useContext(DrillContext);
 
 
 
@@ -163,7 +163,7 @@ function TransferHistory() {
 			<div className={css.userDetail__sectionTable}>
 				<div className='d-flex alignItem-c justify-sb mb-2 f-lg-c'>
 					<div className={css[`userDetail--title`]}>
-						Transfer History - {profile.username}
+						Transfer History {renderTitle(profile)}
 					</div>
 					<Pagination
 						showSizeChanger={false}

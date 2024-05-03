@@ -47,6 +47,7 @@ function UserDetail() {
 	const [userInfo, setUserInfo] = useState({});
 	const fetchUserDetail = async (userId) => {
 		try {
+			setUserInfo({})
 			const resp = await getUserToId({
 				userid: userId
 			});
@@ -96,6 +97,29 @@ function UserDetail() {
 
 
 
+	// hàm để truyền xuống context, hàm render title
+	const renderTitle = (profile) => {
+		if (profile?.nickName) {
+			return (
+				<span className={css[`userDetail--nickname`]}>
+					{`- ${profile.nickName}`}
+					{" "}
+					<span className={css[`userDetail--username`]}>
+						({`${profile.username}`})
+					</span>
+				</span>
+			)
+		} else {
+			return (
+				<span className={css[`userDetail--nickname`]}> {`- ${profile.username}`}</ span>
+			)
+		}
+	}
+
+
+
+
+
 
 
 
@@ -124,7 +148,7 @@ function UserDetail() {
 			<div className={css.userDetail__table}>
 				<div className={css.userDetail__record}>
 					<div className={`${css.userDetail__cell} ${css.header}`}>
-						Username:
+						User name:
 					</div>
 					<div className={`${css.userDetail__cell}`}>
 						{userInfo?.username}
@@ -147,7 +171,7 @@ function UserDetail() {
 					</div>
 				</div>
 			</div>
-			<DrillContext.Provider value={userInfo}>
+			<DrillContext.Provider value={[userInfo, renderTitle]}>
 				<ListWallet forceReload={forceReload} />
 				<UserWallet />
 				<TransferHistory />

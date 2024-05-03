@@ -22,7 +22,7 @@ function WithdrawHistory() {
 	const {
 		userid: id
 	} = useParams();
-	const profile = useContext(DrillContext);
+	const [profile, renderTitle] = useContext(DrillContext);
 
 
 	// phần phân trang
@@ -287,7 +287,7 @@ function WithdrawHistory() {
 				<div className={css.userDetail__sectionTable}>
 					<div className='d-flex alignItem-c justify-sb mb-2 f-lg-c'>
 						<div className={css[`userDetail--title`]}>
-							Withdraw History - {profile.username}
+							Withdraw History {renderTitle(profile)}
 						</div>
 						<Pagination
 							showSizeChanger={false}

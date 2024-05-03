@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Pagination, Spin } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { api_status, image_domain } from "src/constant";
+import { api_status, image_domain, url, urlParams } from "src/constant";
 import {
   activeWidthdraw,
   cancelWidthdraw,
@@ -22,6 +22,7 @@ import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
 import CopyButton from "src/components/Common/copy-button";
 import { availableLanguage } from "src/translation/i18n";
+import { NavLink } from "react-router-dom";
 
 function Widthdraw() {
 
@@ -492,7 +493,9 @@ function Widthdraw() {
         </td>
         <td>
           {record.to_address && <div className="d-flex alignItem-c gap-1">
-            {shortenHash(record.to_address)}
+            <NavLink className={`--link`} to={url.admin_userDetail.replace(urlParams.userId, record?.user_id)}>
+              {shortenHash(record.to_address)}
+            </NavLink>
             <CopyButton
               value={record.to_address}
             />
@@ -553,6 +556,7 @@ function Widthdraw() {
     fetchApiLoadDataAll(1);
     fetchAllCoin();
   }, []);
+
 
 
 

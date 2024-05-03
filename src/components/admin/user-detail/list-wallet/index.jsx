@@ -4,7 +4,6 @@ import Dropdown from 'src/components/Common/dropdown/Dropdown';
 import { getAllUserWallet } from 'src/util/adminCallApi';
 import { useParams } from 'react-router-dom';
 import { DrillContext } from 'src/context/drill';
-import { url, urlParams } from 'src/constant';
 
 
 
@@ -16,7 +15,7 @@ function ListWallet(props) {
 		userid
 	} = useParams();
 
-	const profile = useContext(DrillContext);
+	const [profile, renderTitle] = useContext(DrillContext);
 
 
 
@@ -40,16 +39,31 @@ function ListWallet(props) {
 
 
 	// phần dropdown
-	const selectedItem = {
-		id: profile?.id,
-		content: profile?.username
+	const renderItemContent = (item) => {
+		if (item?.nickName) {
+			return (
+				<span>
+					{item.nickName}
+					{" "}
+					{<span style={{ opacity: 0.5 }}>
+						({item?.username})
+					</span>}
+				</span>
+			)
+		} else {
+			return (
+				<span>
+					{item?.username}
+				</span>
+			)
+		}
 	}
 	const renderOption = (list) => {
 		return list?.map(item => {
 			return (
 				{
 					id: item.id,
-					content: item.username
+					content: renderItemContent(item)
 				}
 			)
 		})
@@ -57,6 +71,14 @@ function ListWallet(props) {
 	const itemDropdownClickHandle = (item) => {
 		forceReload(item)
 	}
+	const selectedItem = {
+		id: profile?.id,
+		content: renderItemContent(profile)
+	}
+
+
+
+
 
 
 
@@ -74,7 +96,7 @@ function ListWallet(props) {
 		<div className={css.userDetail__listWallet}>
 			<div style={{ overflow: 'visible' }} className={css['userDetail--box']}>
 				<div className={css['userDetail--title']}>
-					Wallet
+					Wallet {renderTitle(profile)}
 				</div>
 				<div className={css.userDetail__listWallet__dropdownContainer}>
 					<Dropdown

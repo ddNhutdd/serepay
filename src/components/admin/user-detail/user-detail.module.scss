@@ -27,7 +27,20 @@
 		font-size: 18px;
 		color: $new-primary-color-6;
 		margin-bottom: 10px;
+
+		.userDetail--nickname {
+			color: $new-text-color-white;
+			text-transform: none;
+		}
+
+		.userDetail--username {
+			color: $new-text-color-white;
+			text-transform: none;
+			opacity: 0.5;
+		}
 	}
+
+
 
 	.userDetail--tableContainer {
 		overflow-x: auto;
@@ -83,7 +96,7 @@
 
 		.userDetail__record {
 			display: grid;
-			grid-template-columns: 106px auto;
+			grid-template-columns: 107px auto;
 			min-width: 300px;
 
 			.userDetail__cell {
@@ -146,5 +159,5 @@
 		}
 	}
 
-	
+
 }

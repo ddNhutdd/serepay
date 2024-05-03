@@ -14,7 +14,7 @@ function UserWallet(props) {
 	const {
 		userid
 	} = useParams();
-	const profile = useContext(DrillContext);
+	const [profile, renderTitle] = useContext(DrillContext);
 
 
 
@@ -90,7 +90,7 @@ function UserWallet(props) {
 		<div className={css[`userDetail--box`]}>
 			<div className={css.userDetail__wallet}>
 				<div className={css[`userDetail--title`]}>
-					Wallet - {profile.username}
+					Wallet {renderTitle(profile)}
 				</div>
 				<div className={css.userDetail__walletContent}>
 					{renderWallet(allCoin.current, userWallet)}
