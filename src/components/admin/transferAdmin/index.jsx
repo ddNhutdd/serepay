@@ -211,7 +211,6 @@ export default function TransferAdmin() {
       return;
     return listTransfer.map((item) => (
       <tr key={item.id}>
-        <td>{item.created_at}</td>
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: "cover" }} src={image_domain.replace("USDT", item.coin_key.toUpperCase())} alt={item.coin_key} />
@@ -277,6 +276,7 @@ export default function TransferAdmin() {
             ))}
           </div>
         </td>
+        <td>{item.created_at}</td>
         <td>{item.note}</td>
       </tr>
     ));
@@ -375,7 +375,6 @@ export default function TransferAdmin() {
         <table>
           <thead>
             <tr>
-              <th>Create At</th>
               <th>Amount</th>
               <th>Address From</th>
               <th>Amount Before From</th>
@@ -383,6 +382,7 @@ export default function TransferAdmin() {
               <th>Address To</th>
               <th>Amount Before To</th>
               <th>Amount After To</th>
+              <th>Create At</th>
               <th>Note</th>
             </tr>
           </thead>

@@ -78,7 +78,7 @@ function TransferHistory() {
 			list?.map(item => {
 				return (
 					<tr key={item.id}>
-						<td>{item?.created_at}</td>
+
 						<td>
 							<div className='d-flex alignItem-c gap-1'>
 								<img src={image_domain.replace("USDT", item?.coin_key.toUpperCase())} alt={item?.coin_key} />
@@ -133,6 +133,7 @@ function TransferHistory() {
 								{formatNumber(item?.amountAfterTo, availableLanguage.en, 8)}
 							</div>
 						</td>
+						<td>{item?.created_at}</td>
 						<td>
 							{item?.note}
 						</td>
@@ -176,7 +177,6 @@ function TransferHistory() {
 					<table>
 						<thead>
 							<tr>
-								<th>Create At</th>
 								<th>Amount</th>
 								<th>Address From</th>
 								<th>Amount Before From</th>
@@ -185,6 +185,7 @@ function TransferHistory() {
 								<th>Amount Before To</th>
 								<th>Amount After To</th>
 								<th>Create At</th>
+								<th>Note</th>
 							</tr>
 						</thead>
 						<tbody className={classContent}>
