@@ -4,7 +4,6 @@ import css from "./switch.module.scss";
 function Switch(props) {
   const {
     on = false,
-    onChange = () => { },
     onClick = () => { },
     loading = false,
     disabled = false,
@@ -13,10 +12,10 @@ function Switch(props) {
 
 
   const renderClassActiveContainer = function () {
-    return checked ? css["active"] : "";
+    return on ? css["active"] : "";
   };
   const renderClassActiveButton = function () {
-    return checked ? css["active"] : "";
+    return on ? css["active"] : "";
   };
   const renderDisabled = () => {
     return disabled ? css['disabled'] : '';
@@ -25,22 +24,10 @@ function Switch(props) {
     return loading ? css.loading : ''
   }
 
-
-  const [checked, setChecked] = useState(on);
-
-
-  const onChangeHandle = function () {
-    onChange(checked);
-  };
-
   const onClickHandle = () => {
     onClick();
-    setChecked(state => !state);
   }
 
-  useEffect(() => {
-    onChangeHandle();
-  }, [checked]);
 
   return (
     <div

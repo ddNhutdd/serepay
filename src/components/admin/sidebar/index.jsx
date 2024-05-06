@@ -1,138 +1,110 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { localStorageVariable, url } from "src/constant";
+import { api_status, url } from "src/constant";
 import { callToastSuccess } from "src/function/toast/callToast";
-import {
-  addClassToElementById,
-  getElementById,
-  removeLocalStorage,
-} from "src/util/common";
 import useLogout from "src/hooks/logout";
+import useAsync from "src/hooks/call-api";
+import { checkAdmin } from "src/util/adminCallApi";
+import { setAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { useState } from "react";
+
+
+export const adminFunction = {
+  user: 'user',
+  ads: 'ads',
+  exchange: 'exchange',
+  widthdraw: 'widthdraw',
+  config: 'config',
+  transfer: 'transfer',
+  swap: 'swap',
+  deposit: 'deposit',
+  p2p: 'p2p'
+}
+
+
 
 function Sidebar() {
   const history = useHistory();
   const location = useLocation();
   const logoutAction = useLogout();
+  const dispatch = useDispatch();
+  const isLoaded = useRef(false);
 
+
+
+
+
+  // phần hiển thị chức năng theo quyền của admin
+  const [showFunction, setShowFunction] = useState({});
+  const setShowFunctionState = (name, data) => {
+    setShowFunction(state => {
+      return {
+        ...state,
+        [name]: data
+      }
+    })
+  }
+  const fetchCheckAdmin = async () => {
+    return await checkAdmin();
+  }
+  const [checkAdminData, , checkAdminStatus] = useAsync(fetchCheckAdmin);
   useEffect(() => {
-    const urlList = location.pathname.split("/");
-    let page = '';
-    if (urlList.find(item => item === 'user-detail')) {
-      page = 'user-detail';
-    } else {
-      page = urlList[urlList.length - 1];
+    if (checkAdminStatus === api_status.rejected) {
+      dispatch(setAuthenticationStatus(false))
     }
+    if (checkAdminStatus === api_status.fulfilled && !isLoaded.current) {
+      isLoaded.current = true;
+      const respData = checkAdminData?.data?.data;
+      dispatch(setAdminPermision(respData))
+      const { user, ads, exchange, widthdraw, config, transfer, swap, deposit, p2p } = respData;
+      setShowFunctionState(adminFunction.user, user);
+      setShowFunctionState(adminFunction.config, config);
+      setShowFunctionState(adminFunction.ads, ads);
+      setShowFunctionState(adminFunction.exchange, exchange);
+      setShowFunctionState(adminFunction.config, config);
+      setShowFunctionState(adminFunction.transfer, transfer);
+      setShowFunctionState(adminFunction.swap, swap);
+      setShowFunctionState(adminFunction.deposit, deposit);
+      setShowFunctionState(adminFunction.p2p, p2p);
+      setShowFunctionState(adminFunction.widthdraw, widthdraw);
+    }
+  }, [checkAdminData, checkAdminStatus])
 
-    selectItem(page);
-  }, []);
 
-  const clearSelectedItem = function () {
-    const element = getElementById("listItem");
-    for (const item of element.children) {
-      item.classList.remove("active");
+
+
+
+  // phần chuyển trang 
+  const redirectPage = (page) => {
+    history.push(page)
+  }
+
+
+
+
+  // setactive cho item
+  const setActive = (page) => {
+    const arrayPathname = location.pathname.split('/');
+
+
+    if (page === url.user) {
+      if (arrayPathname?.at(-1) === 'user' || arrayPathname?.at(-2) === 'user-detail') {
+        return 'active';
+      }
+      else return ''
+
+    } else if (page !== url.user) {
+      if (location.pathname === page)
+        return 'active'
+      else return ''
     }
-  };
-  const selectItem = function (page) {
-    clearSelectedItem();
-    switch (page) {
-      case "exchange-rate-disparity":
-        addClassToElementById("exchangeRateDisparity", "active");
-        break;
-      case "ads":
-        addClassToElementById("ads", "active");
-        break;
-      case "exchange":
-        addClassToElementById("exchange", "active");
-        break;
-      case "user":
-      case "user-detail":
-        addClassToElementById("user", "active");
-        break;
-      case "widthdraw":
-        addClassToElementById("widthdraw", "active");
-        break;
-      case "config-data":
-        addClassToElementById("config-data", "active");
-        break;
-      case "transfer":
-        addClassToElementById("transfer", "active");
-        break;
-      case "kyc":
-        addClassToElementById("kyc", "active");
-        break;
-      case "swap":
-        addClassToElementById("swap", "active");
-        break;
-      case "deposit":
-        addClassToElementById("deposit", "active");
-        break;
-      case "p2p":
-        addClassToElementById("p2p", "active");
-        break;
-      default:
-        break;
-    }
-  };
-  const redirectWidthdraw = function (e) {
-    clearSelectedItem();
-    e.currentTarget.classList.add("active");
-    history.push(url.admin_widthdraw);
-  };
-  const redirectExchangeRateDisparity = function (e) {
-    clearSelectedItem();
-    const element = e.target.closest("#exchangeRateDisparity");
-    element.classList.add("active");
-    history.push(url.admin_exchangeRateDisparity);
-  };
-  const redirectAds = function (e) {
-    clearSelectedItem();
-    const element = e.target.closest("#ads");
-    element.classList.add("active");
-    history.push(url.admin_ads);
-  };
-  const redirectUser = function (e) {
-    clearSelectedItem();
-    const element = e.target.closest("#user");
-    element.classList.add("active");
-    history.push(url.admin_user);
-  };
-  const redirectExchange = function (e) {
-    clearSelectedItem();
-    const element = e.target.closest("#exchange");
-    element.classList.add("active");
-    history.push(url.admin_exchange);
-  };
-  const redirectConfigData = function (e) {
-    clearSelectedItem();
-    e.currentTarget.classList.add("active");
-    history.push(url.admin_configData);
-  };
-  const redirectTransfer = function (e) {
-    clearSelectedItem();
-    e.currentTarget.classList.add("active");
-    history.push(url.admin_transfer);
-  };
-  const redirectSwap = function (e) {
-    clearSelectedItem();
-    e.currentTarget.classList.add("active");
-    history.push(url.admin_swap);
-  };
-  // const redirectKyc = function (e) {
-  //   clearSelectedItem();
-  //   e.currentTarget.classList.add("active");
-  //   history.push(url.admin_kyc);
-  // };
-  const redirectDeposite = function (e) {
-    clearSelectedItem();
-    e.currentTarget.classList.add("active");
-    history.push(url.admin_deposit);
-  };
-  const redirectP2p = function (e) {
-    clearSelectedItem();
-    e.currentTarget.classList.add("active");
-    history.push(url.admin_p2p);
-  };
+  }
+
+
+
+
+
   const logout = () => {
     logoutAction();
     history.push(url.home);
@@ -142,78 +114,148 @@ function Sidebar() {
   return (
     <div className="admin-sidebar show">
       <ul id="listItem">
-        <li onClick={redirectUser} id="user">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-user"></i>
-          </span>
-          <span className="admin-sidebar__item">Users</span>
-        </li>
+
+        {
+          showFunction[adminFunction.user] === 1 && <li
+            className={setActive(url.user)} onClick={redirectPage.bind(null, url.admin_user)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-user"></i>
+            </span>
+            <span className="admin-sidebar__item">Users</span>
+          </li>
+        }
+
+
+
         {/*<li onClick={redirectKyc} id="kyc">*/}
         {/*  <span className="admin-sidebar__icon">*/}
         {/*    <i className="fa-solid fa-user-shield"></i>*/}
         {/*  </span>*/}
         {/*  <span className="admin-sidebar__item">KYC</span>*/}
         {/*</li>*/}
-        <li onClick={redirectExchangeRateDisparity} id="exchangeRateDisparity">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-percent"></i>
-          </span>
-          <span className="admin-sidebar__item">Exchange Rate Disparity</span>
-        </li>
-        <li onClick={redirectAds} id="ads">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-rectangle-ad"></i>
-          </span>
-          <span className="admin-sidebar__item">Advertise</span>
-        </li>
-        <li onClick={redirectExchange} id="exchange">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-money-bill-transfer"></i>
-          </span>
-          <span className="admin-sidebar__item">Exchange</span>
-        </li>
-        <li onClick={redirectWidthdraw} id="widthdraw">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-money-bill"></i>
-          </span>
-          <span className="admin-sidebar__item">Widthdraw</span>
-        </li>
-        <li onClick={redirectConfigData} id="config-data">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-database"></i>
-          </span>
-          <span className="admin-sidebar__item">Config Data</span>
-        </li>
-        <li onClick={redirectTransfer} id="transfer">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-arrow-right-arrow-left"></i>
-          </span>
-          <span className="admin-sidebar__item">Transfer</span>
-        </li>
-        <li onClick={redirectSwap} id="swap">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-rotate"></i>
-          </span>
-          <span className="admin-sidebar__item">Swap</span>
-        </li>
-        <li onClick={redirectDeposite} id="deposit">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-file-invoice"></i>
-          </span>
-          <span className="admin-sidebar__item">Deposit</span>
-        </li>
-        <li onClick={redirectP2p} id="p2p">
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-file-lines"></i>
-          </span>
-          <span className="admin-sidebar__item">P2P</span>
-        </li>
+
+
+
+
+        {
+          showFunction[adminFunction.config] === 1 && <li className={setActive(url.admin_exchangeRateDisparity)} onClick={redirectPage.bind(null, url.admin_exchangeRateDisparity)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-percent"></i>
+            </span>
+            <span className="admin-sidebar__item">Exchange Rate Disparity</span>
+          </li>
+        }
+
+
+
+
+
+        {
+          showFunction[adminFunction.ads] === 1 && <li className={setActive(url.admin_ads)} onClick={redirectPage.bind(null, url.admin_ads)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-rectangle-ad"></i>
+            </span>
+            <span className="admin-sidebar__item">Advertise</span>
+          </li>
+        }
+
+
+
+
+
+        {
+          showFunction[adminFunction.exchange] === 1 && <li className={setActive(url.admin_exchange)} onClick={redirectPage.bind(null, url.admin_exchange)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-money-bill-transfer"></i>
+            </span>
+            <span className="admin-sidebar__item">Exchange</span>
+          </li>
+        }
+
+
+
+
+        {
+          showFunction[adminFunction.widthdraw] === 1 && <li className={setActive(url.admin_widthdraw)} onClick={redirectPage.bind(null, url.admin_widthdraw)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-money-bill"></i>
+            </span>
+            <span className="admin-sidebar__item">Widthdraw</span>
+          </li>
+        }
+
+
+
+        {
+          showFunction[adminFunction.config] === 1 && <li className={setActive(url.admin_configData)} onClick={redirectPage.bind(null, url.admin_configData)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-database"></i>
+            </span>
+            <span className="admin-sidebar__item">Config Data</span>
+          </li>
+        }
+
+
+
+
+        {
+          showFunction[adminFunction.transfer] === 1 && <li className={setActive(url.admin_transfer)} onClick={redirectPage.bind(null, url.admin_transfer)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-arrow-right-arrow-left"></i>
+            </span>
+            <span className="admin-sidebar__item">Transfer</span>
+          </li>
+        }
+
+
+
+
+
+        {
+          showFunction[adminFunction.swap] === 1 && <li className={setActive(url.admin_swap)} onClick={redirectPage.bind(null, url.admin_swap)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-rotate"></i>
+            </span>
+            <span className="admin-sidebar__item">Swap</span>
+          </li>
+        }
+
+
+
+        {
+          showFunction[adminFunction.deposit] === 1 && <li className={setActive(url.admin_deposit)} onClick={redirectPage.bind(null, url.admin_deposit)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-file-invoice"></i>
+            </span>
+            <span className="admin-sidebar__item">Deposit</span>
+          </li>
+        }
+
+
+
+
+
+        {
+          showFunction[adminFunction.p2p] === 1 && <li className={setActive(url.admin_p2p)} onClick={redirectPage.bind(null, url.admin_p2p)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-file-lines"></i>
+            </span>
+            <span className="admin-sidebar__item">P2P</span>
+          </li>
+        }
+
+
+
+
+
         <li onClick={logout}>
           <span className="admin-sidebar__icon">
             <i className="fa-solid fa-right-from-bracket"></i>
           </span>
           <span className="admin-sidebar__item">Log out</span>
         </li>
+
+
       </ul>
     </div>
   );

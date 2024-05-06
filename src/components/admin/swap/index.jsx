@@ -2,14 +2,18 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import css from "./swap.module.scss";
 import { Pagination, Spin } from "antd";
 import { Input } from "src/components/Common/Input";
-import { api_status, image_domain } from "src/constant";
+import { adminPermision, api_status, image_domain } from "src/constant";
 import socket from "src/util/socket";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { historySwapAdmin } from "src/util/adminCallApi";
-import { debounce, formatNumber } from "src/util/common";
+import { analysisAdminPermision, debounce, formatNumber } from "src/util/common";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
+import { adminFunction } from "../sidebar";
+import { useSelector } from "react-redux";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import NoPermision from "../no-permision";
 
 export default function SwapAdmin() {
   const all = "ALL";
@@ -18,6 +22,11 @@ export default function SwapAdmin() {
     coin: "coin",
     username: "username",
   };
+
+
+  // phần kiểm tra quyền của admin
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.swap, permision);
 
 
 
@@ -209,6 +218,20 @@ export default function SwapAdmin() {
     fetchListCoin();
     fetchHistorySwapAdmin(1);
   }, []);
+
+
+
+
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <NoPermision />
+    )
+  }
+
+
+
+
+
 
   return (
     <div className={css["swapAdmin"]}>

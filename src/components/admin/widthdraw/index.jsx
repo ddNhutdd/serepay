@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Pagination, Spin } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { api_status, image_domain, url, urlParams } from "src/constant";
+import { adminPermision, api_status, image_domain, url, urlParams } from "src/constant";
 import {
   activeWidthdraw,
   cancelWidthdraw,
@@ -17,12 +17,16 @@ import { ModalConfirm } from "src/components/Common/ModalConfirm";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input } from "src/components/Common/Input";
 import { TagCustom, TagType } from "src/components/Common/Tag";
-import { debounce, formatNumber, shortenHash } from "src/util/common";
+import { analysisAdminPermision, debounce, formatNumber, shortenHash } from "src/util/common";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
 import CopyButton from "src/components/Common/copy-button";
 import { availableLanguage } from "src/translation/i18n";
 import { NavLink } from "react-router-dom";
+import NoPermision from "../no-permision";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { useSelector } from "react-redux";
+import { adminFunction } from "../sidebar";
 
 function Widthdraw() {
 
@@ -37,6 +41,17 @@ function Widthdraw() {
     address: 'address',
     userId: 'userId'
   };
+
+
+
+  // phần kiểm tra quyền của admin
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.widthdraw, permision);
+
+
+
+
+
 
 
   // bộ lọc
@@ -528,7 +543,9 @@ function Widthdraw() {
         <td>{record.username}</td>
         <td>{record.email}</td>
         <td>{renderStatus(record.status)}</td>
-        <td>{renderAction(record.id, record.status)}</td>
+        {
+          currentPagePermision === adminPermision.edit && <td>{renderAction(record.id, record.status)}</td>
+        }
       </tr>
     ));
   };
@@ -558,6 +575,12 @@ function Widthdraw() {
   }, []);
 
 
+
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <NoPermision />
+    )
+  }
 
 
 
@@ -640,9 +663,11 @@ function Widthdraw() {
               <th>UserName</th>
               <th>Email</th>
               <th>Status</th>
-              <th>
-                <i className="fa-solid fa-gears"></i>
-              </th>
+              {
+                currentPagePermision === adminPermision.edit && <th>
+                  <i className="fa-solid fa-gears"></i>
+                </th>
+              }
             </tr>
           </thead>
           <tbody>{renderDataTable()}</tbody>

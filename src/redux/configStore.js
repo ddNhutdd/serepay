@@ -13,6 +13,7 @@ import notifyP2pSlice from "./reducers/notifiyP2pSlice";
 import bankSlice from "./reducers/bankSlice";
 import exchangeRateSellSlice from "./reducers/exchangeRateSellSlice";
 import adminUserSlice from "./reducers/admin-user-detail.slice";
+import adminPermision from './reducers/admin-permision.slice'
 
 const rootReducer = combineReducers({
   coinReducer,
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   notifyP2pSlice,
   bank: bankSlice,
   exchangeRateSell: exchangeRateSellSlice,
-  adminUserSlice
+  adminUserSlice,
+  adminPermision
 });
 
 const middleWare = applyMiddleware(reduxThunk);

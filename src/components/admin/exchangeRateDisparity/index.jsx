@@ -6,7 +6,7 @@ import {
   fetchExchangeRateDisparity,
   getExchangeRateDisparity,
 } from "src/redux/reducers/exchangeRateDisparitySlice";
-import { api_status, commontString, regularExpress } from "src/constant";
+import { adminPermision, api_status, commontString, regularExpress } from "src/constant";
 import { updateExchangeRateDisparity } from "src/util/userCallApi";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Button, buttonClassesType } from "src/components/Common/Button";
@@ -16,9 +16,28 @@ import {
   getExchangeRateSell,
   getExchangeRateSellApiStatus,
 } from "src/redux/reducers/exchangeRateSellSlice";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { adminFunction } from "../sidebar";
+import { analysisAdminPermision } from "src/util/common";
+
+
+
+
+
 function ExchangeRateDisparity() {
 
-  //
+  //kiểm tra quyền admin 
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.config, permision);
+
+
+
+
+
+
+
+
+
   const dispatch = useDispatch();
 
 
@@ -259,6 +278,24 @@ function ExchangeRateDisparity() {
   };
 
 
+
+
+
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <div className="adminUser">
+        <div className="row">
+          <div className="col-12 px-0 pt-0 adminUser__tittle" style={{ fontSize: 16 }}>No Permision</div>
+        </div>
+      </div>
+    )
+  }
+
+
+
+
+
+
   return (
     <div className="admin-exchange-rate-disparity">
       <div className="admin-exchange-rate-disparity__header">
@@ -282,13 +319,15 @@ function ExchangeRateDisparity() {
               />
             </div>
             <div className="admin-exchange-rate-disparity__action">
-              <Button
-                loading={callApiSetBuyStatus === api_status.fetching}
-                onClick={submitBuyHandle}
-                type={typeBuyButton}
-              >
-                Save
-              </Button>
+              {
+                currentPagePermision === adminPermision.edit && <Button
+                  loading={callApiSetBuyStatus === api_status.fetching}
+                  onClick={submitBuyHandle}
+                  type={typeBuyButton}
+                >
+                  Save
+                </Button>
+              }
             </div>
           </form>
           <div className={`spin-container  ${renderClassShowSpinBuy()}`}>
@@ -310,13 +349,15 @@ function ExchangeRateDisparity() {
               />
             </div>
             <div className="admin-exchange-rate-disparity__action">
-              <Button
-                loading={callApiSetSellStatus === api_status.fetching}
-                onClick={submitSellHandle}
-                type={typeSellButton}
-              >
-                Save
-              </Button>
+              {
+                currentPagePermision === adminPermision.edit && <Button
+                  loading={callApiSetSellStatus === api_status.fetching}
+                  onClick={submitSellHandle}
+                  type={typeSellButton}
+                >
+                  Save
+                </Button>
+              }
             </div>
           </form>
           <div className={`spin-container  ${renderClassShowSpinSell()}`}>

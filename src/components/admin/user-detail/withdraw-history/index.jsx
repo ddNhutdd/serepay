@@ -1,7 +1,7 @@
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import css from '../user-detail.module.scss';
 import { Pagination, Spin } from 'antd';
-import { api_status, commontString, image_domain, url, urlParams } from 'src/constant';
+import { adminPermision, api_status, commontString, image_domain, url, urlParams } from 'src/constant';
 import CopyButton from 'src/components/Common/copy-button';
 import { TagCustom, TagType } from 'src/components/Common/Tag';
 import { Button, buttonClassesType } from 'src/components/Common/Button';
@@ -10,11 +10,14 @@ import { Input } from 'src/components/Common/Input';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { activeWidthdraw, cancelWidthdraw, getWalletToWithdrawWhere } from 'src/util/adminCallApi';
-import { deepCopyArray, deepCopyObject, formatNumber, shortenHash } from 'src/util/common';
+import { analysisAdminPermision, deepCopyArray, deepCopyObject, formatNumber, shortenHash } from 'src/util/common';
 import { availableLanguage } from 'src/translation/i18n';
 import { callToastSuccess } from 'src/function/toast/callToast';
 import { DrillContext } from 'src/context/drill';
 import { NavLink } from 'react-router-dom';
+import { adminFunction } from '../../sidebar';
+import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
+import { useSelector } from 'react-redux';
 
 
 function WithdrawHistory() {
@@ -23,6 +26,16 @@ function WithdrawHistory() {
 		userid: id
 	} = useParams();
 	const [profile, renderTitle] = useContext(DrillContext);
+
+
+
+
+	// phần kiểm tra quyền của admin
+	const { permision } = useSelector(getAdminPermision);
+	const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
+
+
+
 
 
 	// phần phân trang
@@ -158,22 +171,24 @@ function WithdrawHistory() {
 					<td>
 						{renderStatus(item?.status)}
 					</td>
-					<td>
-						{item?.status === 2 && <div className='d-flex alignItem-c gap-1'>
-							<Button
-								onClick={confirmModalOpen.bind(null, item?.id)}
-							>
-								Confirm
-							</Button>
-							<Button
-								onClick={rejectModalOpen.bind(null, item?.id)}
-								type={buttonClassesType.outline}
-							>
-								Reject
-							</Button>
-						</div>}
+					{
+						currentPagePermision === adminPermision.edit && <td>
+							{item?.status === 2 && <div className='d-flex alignItem-c gap-1'>
+								<Button
+									onClick={confirmModalOpen.bind(null, item?.id)}
+								>
+									Confirm
+								</Button>
+								<Button
+									onClick={rejectModalOpen.bind(null, item?.id)}
+									type={buttonClassesType.outline}
+								>
+									Reject
+								</Button>
+							</div>}
 
-					</td>
+						</td>
+					}
 				</tr >
 			)
 		})
@@ -311,9 +326,11 @@ function WithdrawHistory() {
 									<th>Time</th>
 									<th>Note</th>
 									<th>Status</th>
-									<th>
-										<i className="fa-solid fa-gears"></i>
-									</th>
+									{
+										currentPagePermision === adminPermision.edit && <th>
+											<i className="fa-solid fa-gears"></i>
+										</th>
+									}
 								</tr>
 							</thead>
 							<tbody className={classContent}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Pagination, Spin, Modal } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
-import { api_status, image_domain } from "src/constant";
+import { adminPermision, api_status, commontString, image_domain } from "src/constant";
 import socket from "src/util/socket";
 import { Button, buttonClassesType } from "src/components/Common/Button";
 import {
@@ -14,6 +14,11 @@ import {
 import { TagCustom, TagType } from "src/components/Common/Tag";
 import { ModalConfirm } from "src/components/Common/ModalConfirm";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
+import NoPermision from "../no-permision";
+import { useSelector } from "react-redux";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { adminFunction } from "../sidebar";
+import { analysisAdminPermision } from "src/util/common";
 
 function Ads() {
   const actionType = {
@@ -25,6 +30,19 @@ function Ads() {
     confirm: 'confirm',
     reject: 'reject'
   }
+
+
+
+
+
+  //kiểm tra quyền admin 
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.ads, permision);
+
+
+
+
+
 
   // phần action
   const [actionFilterSelected, setActionFilterSelected] = useState(actionType.all);
@@ -318,25 +336,27 @@ function Ads() {
             {renderStatus(item.type)}
           </div>
         </td>
-        <td>
-          {
-            item.type === 2 && <div className="d-flex alignItem-c gap-1">
-              <Button
-                type={buttonClassesType.outline}
-                onClick={confirmModalOpen.bind(null, item.id, confirmType.reject)}
-              >
-                Reject
-              </Button>
-              <Button
-                type={buttonClassesType.primary}
-                onClick={confirmModalOpen.bind(null, item.id, confirmType.confirm)}
-              >
-                Confirm
-              </Button>
-            </div>
-          }
+        {
+          currentPagePermision === adminPermision.edit && <td>
+            {
+              item.type === 2 && <div className="d-flex alignItem-c gap-1">
+                <Button
+                  type={buttonClassesType.outline}
+                  onClick={confirmModalOpen.bind(null, item.id, confirmType.reject)}
+                >
+                  Reject
+                </Button>
+                <Button
+                  type={buttonClassesType.primary}
+                  onClick={confirmModalOpen.bind(null, item.id, confirmType.confirm)}
+                >
+                  Confirm
+                </Button>
+              </div>
+            }
+          </td>
+        }
 
-        </td>
       </tr>
     ));
   };
@@ -492,6 +512,13 @@ function Ads() {
   };
 
 
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <NoPermision />
+    )
+  }
+
+
   return (
     <div className="ads">
       <div className="ads__header">
@@ -586,7 +613,9 @@ function Ads() {
                 <th>Amount</th>
                 <th>Type of Ads</th>
                 <th>Info</th>
-                <th>Action</th>
+                {
+                  currentPagePermision === adminPermision.edit && <th>Action</th>
+                }
               </tr>
             </thead>
             <tbody>

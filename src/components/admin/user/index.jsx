@@ -5,7 +5,7 @@ import { Button } from "src/components/Common/Button";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Input } from "src/components/Common/Input";
 import Switch from "src/components/Common/switch";
-import { api_status, commontString, url, urlParams } from "src/constant";
+import { adminPermision, api_status, commontString, url, urlParams } from "src/constant";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import {
   activeuser,
@@ -15,12 +15,34 @@ import {
   turn2fa,
   typeAds,
 } from "src/util/adminCallApi";
-import { debounce, exportExcel } from "src/util/common";
+import { analysisAdminPermision, debounce, exportExcel } from "src/util/common";
 import socket from "src/util/socket";
 import CoinCells from "./coin-cell";
 import { TagCustom, TagType } from "src/components/Common/Tag";
+import { useSelector } from "react-redux";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { adminFunction } from "../sidebar";
+import NoPermision from "../no-permision";
 
 const User = function () {
+
+
+  // phần kiểm tra quyền của admin
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
+  const checkPermisionEdit = () => {
+    if (currentPagePermision !== adminPermision.edit) {
+      callToastError(commontString.noPermissions);
+      return false;
+    }
+    return true;
+  }
+
+
+
+
+
+
 
 
   // phần phân trang
@@ -48,11 +70,17 @@ const User = function () {
   // phần ads
   const [adsValueList, setAdsValueList] = useState([]);
   const onAdsCLickHandle = async function (id) {
+    // nếu không có quyền edit thì return
+    if (!checkPermisionEdit()) return;
+
     loadingSwitch(id, setAdsValueList, true)
     await fetchApiTypeAds(id, 1);
     loadingSwitch(id, setAdsValueList, false)
   };
   const offAdsClickHandle = async function (id) {
+    // nếu không có quyền edit thì return
+    if (!checkPermisionEdit()) return;
+
     loadingSwitch(id, setAdsValueList, true);
     await fetchApiTypeAds(id, 0);
     loadingSwitch(id, setAdsValueList, false);
@@ -92,11 +120,17 @@ const User = function () {
   // phần 2fa
   const [twofaValueList, setTwofaValueList] = useState([]);
   const turnOn2FAClickHandle = async function (userid) {
+    // nếu admin không có quyền edit
+    if (!checkPermisionEdit()) return;
+
     loadingSwitch(userid, setTwofaValueList, true)
     await fetchApiTurn2FA(userid, 1);
     loadingSwitch(userid, setTwofaValueList, false)
   };
   const turnOff2FAClickHandle = async function (userid) {
+    // nếu không có quyền edit thì return
+    if (!checkPermisionEdit()) return;
+
     loadingSwitch(userid, setTwofaValueList, true)
     await fetchApiTurn2FA(userid, 0);
     loadingSwitch(userid, setTwofaValueList, false)
@@ -384,6 +418,9 @@ const User = function () {
     fetchApiSearchUserDebouced(1, value);
   };
   const activeUserClickHandle = function (id, event) {
+    // nếu admin không có quyền edit thì thông báo lỗi
+    if (!checkPermisionEdit()) return;
+
     event.persist();
     const saveEvent = event.currentTarget;
     if (event.currentTarget.disabled === true) return;
@@ -448,6 +485,11 @@ const User = function () {
     }
   }
 
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <NoPermision />
+    )
+  }
 
   return (
     <div className="adminUser">

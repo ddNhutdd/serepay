@@ -113,6 +113,7 @@ export const commontString = {
   error: "Error",
   success: "Success",
   pleaseEnterReason: "Please enter reason",
+  noPermissions: 'No permissions'
 };
 
 export const coinString = {
@@ -131,3 +132,9 @@ export const errorMessage = {
   insufficientBalance: "Insufficient balance",
   imagesCannotBeLeftBlank: "Images cannot be left blank",
 };
+
+export const adminPermision = {
+  watch: 'watch',
+  edit: 'edit',
+  noPermision: 'noPermision'
+}

@@ -3,13 +3,14 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { EmptyCustom } from "src/components/Common/Empty";
 import css from "./transferAdmin.module.scss";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { api_status, image_domain, url, urlParams } from "src/constant";
+import { adminPermision, api_status, image_domain, url, urlParams } from "src/constant";
 import socket from "src/util/socket.js";
 import {
   historytransferAdmin,
   historytransferAdminAll,
 } from "src/util/adminCallApi.js";
 import {
+  analysisAdminPermision,
   debounce,
   exportExcel,
   formatNumber,
@@ -22,6 +23,10 @@ import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
 import CopyButton from "src/components/Common/copy-button";
 import { NavLink } from "react-router-dom";
+import { adminFunction } from "../sidebar";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { useSelector } from "react-redux";
+import NoPermision from "../no-permision";
 
 export default function TransferAdmin() {
   const all = "ALL";
@@ -31,6 +36,15 @@ export default function TransferAdmin() {
     username: "username",
     id: 'id'
   };
+
+
+
+
+  // phần kiểm tra quyền của admin
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.transfer, permision);
+
+
 
   //filter
   const filter = useRef(filterType.coin);
@@ -311,6 +325,19 @@ export default function TransferAdmin() {
     getListCoin();
     fetchApiLoadData();
   }, []);
+
+
+
+
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <NoPermision />
+    )
+  }
+
+
+
+
 
   return (
     <div className={css["transferAdmin"]}>

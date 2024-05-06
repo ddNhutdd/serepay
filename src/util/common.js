@@ -1,3 +1,4 @@
+import { adminPermision } from "src/constant";
 import { callToastSuccess } from "src/function/toast/callToast";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
 import * as XLSX from "xlsx/xlsx.mjs";
@@ -570,4 +571,22 @@ export const deepCopyObject = (obj) => {
 	}
 
 	return copy;
+}
+
+export const analysisAdminPermision = (functionName, permissionObject) => {
+	if (!functionName || !permissionObject) {
+		return adminPermision.noPermision;
+	}
+	const edit = permissionObject?.['edit' + capitalizeFirstLetter(functionName)];
+	const justWatch = permissionObject?.[functionName];
+	if (justWatch === 0) {
+		return adminPermision.noPermision;
+	}
+
+	if (edit === 1) {
+		return adminPermision.edit;
+	}
+
+
+	return adminPermision.watch;
 }

@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { Input } from 'src/components/Common/Input';
 import css from './coin-record.module.scss';
 import { Button, buttonClassesType } from 'src/components/Common/Button';
-import { api_status, commontString, image_domain } from 'src/constant';
-import { formatInputNumber, formatStringNumberCultureUS } from 'src/util/common';
+import { adminPermision, api_status, commontString, image_domain } from 'src/constant';
+import { analysisAdminPermision, formatInputNumber, formatStringNumberCultureUS } from 'src/util/common';
 import { updateAmountWalletToId } from 'src/util/adminCallApi';
 import { callToastError, callToastSuccess } from 'src/function/toast/callToast';
+import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
+import { adminFunction } from 'src/components/admin/sidebar';
+import { useSelector } from 'react-redux';
 
 function CoinRecord(props) {
 	const {
@@ -13,6 +16,13 @@ function CoinRecord(props) {
 		coinAmount,
 		coinName,
 	} = props;
+
+
+
+
+	const { permision } = useSelector(getAdminPermision);
+	const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
+
 
 
 
@@ -76,13 +86,15 @@ function CoinRecord(props) {
 					value={formatInputNumber(inputValue)}
 					onChange={inputValueOnChange}
 				/>
-				<Button
-					type={saveButtonType}
-					onClick={savebuttonClickHandle}
-					loading={callApiStatus === api_status.fetching}
-				>
-					<i className="fa-solid fa-floppy-disk"></i>
-				</Button>
+				{
+					currentPagePermision === adminPermision.edit && <Button
+						type={saveButtonType}
+						onClick={savebuttonClickHandle}
+						loading={callApiStatus === api_status.fetching}
+					>
+						<i className="fa-solid fa-floppy-disk"></i>
+					</Button>
+				}
 			</div>
 		</div>
 	)

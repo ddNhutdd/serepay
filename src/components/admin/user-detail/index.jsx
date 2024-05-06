@@ -8,7 +8,12 @@ import ListWallet from './list-wallet';
 import { getUserToId } from 'src/util/adminCallApi';
 import { DrillContext } from 'src/context/drill';
 import { useHistory, useLocation } from "react-router-dom";
-import { url, urlParams } from 'src/constant';
+import { adminPermision, url, urlParams } from 'src/constant';
+import { adminFunction } from '../sidebar';
+import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
+import { analysisAdminPermision } from 'src/util/common';
+import { useSelector } from 'react-redux';
+import NoPermision from '../no-permision';
 
 
 
@@ -18,6 +23,18 @@ function UserDetail() {
 	} = useParams();
 	let history = useHistory();
 	const location = useLocation();
+
+
+
+
+
+	// phần kiểm tra quyền của admin
+	const { permision } = useSelector(getAdminPermision);
+	const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
+
+
+
+
 
 
 
@@ -128,6 +145,21 @@ function UserDetail() {
 	useEffect(() => {
 		fetchUserDetail(userid);
 	}, [])
+
+
+
+
+
+
+	if (currentPagePermision === adminPermision.noPermision) {
+		return (
+			<NoPermision />
+		)
+	}
+
+
+
+
 
 	return (
 		<div key={key} className={css.userDetail}>

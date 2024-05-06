@@ -1,15 +1,28 @@
 import React, { useState } from 'react'
 import { Button, buttonClassesType } from 'src/components/Common/Button';
 import { Input } from 'src/components/Common/Input';
-import { api_status, commontString } from 'src/constant';
+import { adminPermision, api_status, commontString } from 'src/constant';
 import { callToastSuccess } from 'src/function/toast/callToast';
 import { updateConfigAdmin } from 'src/util/adminCallApi';
+import { analysisAdminPermision } from 'src/util/common';
+import { adminFunction } from '../../sidebar';
+import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
+import { useSelector } from 'react-redux';
 
 function Row(props) {
 	const {
 		name,
 		note,
 	} = props;
+
+
+
+
+	// phần kiểm tra quyền của admin
+	const { permision } = useSelector(getAdminPermision);
+	const currentPagePermision = analysisAdminPermision(adminFunction.config, permision);
+
+
 
 
 	// const 
@@ -85,34 +98,36 @@ function Row(props) {
 					{noteInner}
 				</div>
 			</td>
-			<td>
-				<div className='d-flex alignItem-c gap-1'>
-					<Button
-						style={{ width: 47 }}
-						className={renderClassEditStatus(!editStatus)}
-						onClick={editClickHandle}
-					>
-						<i className="fa-solid fa-pen"></i>
-					</Button>
-					<Button
-						loading={fetchApiStatus === api_status.fetching}
-						style={{ width: 90 }}
-						className={renderClassEditStatus(editStatus)}
-						onClick={saveClickHandle}
-					>
-						Save
-					</Button>
-					<Button
-						disabled={fetchApiStatus === api_status.fetching}
-						type={buttonClassesType.outline}
-						style={{ width: 90 }}
-						className={renderClassEditStatus(editStatus)}
-						onClick={setEditStatus.bind(null, false)}
-					>
-						Cancel
-					</Button>
-				</div>
-			</td>
+			{
+				currentPagePermision === adminPermision.edit && <td>
+					<div className='d-flex alignItem-c gap-1'>
+						<Button
+							style={{ width: 47 }}
+							className={renderClassEditStatus(!editStatus)}
+							onClick={editClickHandle}
+						>
+							<i className="fa-solid fa-pen"></i>
+						</Button>
+						<Button
+							loading={fetchApiStatus === api_status.fetching}
+							style={{ width: 90 }}
+							className={renderClassEditStatus(editStatus)}
+							onClick={saveClickHandle}
+						>
+							Save
+						</Button>
+						<Button
+							disabled={fetchApiStatus === api_status.fetching}
+							type={buttonClassesType.outline}
+							style={{ width: 90 }}
+							className={renderClassEditStatus(editStatus)}
+							onClick={setEditStatus.bind(null, false)}
+						>
+							Cancel
+						</Button>
+					</div>
+				</td>
+			}
 		</tr>
 	)
 }

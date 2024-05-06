@@ -1,10 +1,24 @@
 import { Spin } from "antd";
 import React, { useEffect, useState, useRef } from "react";
-import { api_status } from "src/constant";
+import { adminPermision, api_status } from "src/constant";
 import { getConfigAdmin, updateConfigAdmin } from "src/util/adminCallApi";
 import Row from "./row";
+import NoPermision from "../no-permision";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { useSelector } from "react-redux";
+import { analysisAdminPermision } from "src/util/common";
+import { adminFunction } from "../sidebar";
 
 function ConfigData() {
+
+	// phần kiểm tra quyền của admin
+	const { permision } = useSelector(getAdminPermision);
+	const currentPagePermision = analysisAdminPermision(adminFunction.config, permision);
+
+
+
+
+
 	const [loadMainDataStatus, setLoadMainDataStatus] = useState(
 		api_status.pending
 	);
@@ -59,6 +73,17 @@ function ConfigData() {
 		fetchApiLoadMainData();
 	}, []);
 
+
+
+	if (currentPagePermision === adminPermision.noPermision) {
+		return (
+			<NoPermision />
+		)
+	}
+
+
+
+
 	return (
 		<div className="configData">
 			<div className="configData__header">
@@ -70,7 +95,9 @@ function ConfigData() {
 						<tr>
 							<th>Name</th>
 							<th>Note</th>
-							<th>Action</th>
+							{
+								currentPagePermision === adminPermision.edit && <th>Action</th>
+							}
 						</tr>
 					</thead>
 					<tbody className={renderClassShowMainData()}>{renderTable()}</tbody>

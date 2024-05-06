@@ -1,24 +1,44 @@
 import { Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, buttonClassesType } from "src/components/Common/Button";
+import { Button } from "src/components/Common/Button";
 import { EmptyCustom } from "src/components/Common/Empty";
-import { Input } from "src/components/Common/Input";
-import { api_status, commontString } from "src/constant";
+import { adminPermision, api_status, commontString } from "src/constant";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { currencySetFetchExchangeCount } from "src/redux/actions/currency.action";
 import {
   getExchange,
   getExchangeFetchStatus,
 } from "src/redux/constant/currency.constant";
-import { addExchange, editExchange } from "src/util/adminCallApi";
+import { addExchange } from "src/util/adminCallApi";
 import Row from "./row";
+import NoPermision from "../no-permision";
+import { analysisAdminPermision } from "src/util/common";
+import { adminFunction } from "../sidebar";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+
+
+
+
 function Exchange() {
   const dispatch = useDispatch();
   const exchanges = useSelector(getExchange);
   const exchangesFetchStatus = useSelector(getExchangeFetchStatus);
   const [callApiStatus, setCallApiStatus] = useState(api_status.pending);
   const [mainData, setMainData] = useState([]);
+
+
+
+
+
+  // phần kiểm tra quyền của admin
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.exchange, permision);
+
+
+
+
+
 
   const addExchangeClickHandle = function () {
     if (callApiStatus === api_status.fetching) return;
@@ -35,7 +55,6 @@ function Exchange() {
       />
     ));
   };
-
   const renderClassTableSpin = function () {
     return exchangesFetchStatus === api_status.pending ? "" : "--d-none";
   };
@@ -71,6 +90,11 @@ function Exchange() {
     });
   };
 
+
+
+
+
+
   useEffect(() => {
     return () => {
       dispatch(currencySetFetchExchangeCount());
@@ -84,6 +108,23 @@ function Exchange() {
     )
       setMainData(() => exchanges.reverse());
   }, [exchanges, exchangesFetchStatus]);
+
+
+
+
+
+
+
+
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <NoPermision />
+    )
+  }
+
+
+
+
 
   return (
     <div className="admin-exchange">
@@ -105,9 +146,11 @@ function Exchange() {
               <th className="--d-none">Id</th>
               <th>Title</th>
               <th>Rate</th>
-              <th>
-                <i className="fa-solid fa-gears"></i>
-              </th>
+              {
+                currentPagePermision === adminPermision.edit && <th>
+                  <i className="fa-solid fa-gears"></i>
+                </th>
+              }
             </tr>
           </thead>
           <tbody>

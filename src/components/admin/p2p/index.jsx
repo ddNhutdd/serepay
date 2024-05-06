@@ -4,13 +4,17 @@ import { EmptyCustom } from 'src/components/Common/Empty';
 import Tabs from '../tabs';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Input } from 'src/components/Common/Input';
-import { api_status, commontString, currency } from 'src/constant';
+import { adminPermision, api_status, commontString, currency } from 'src/constant';
 import { AdminConfirmP2pCommand, getHistoryToWhereAdmin } from 'src/util/adminCallApi';
-import { debounce, formatCurrency } from 'src/util/common';
+import { analysisAdminPermision, debounce, formatCurrency } from 'src/util/common';
 import { availableLanguageCodeMapper } from 'src/translation/i18n';
 import { Button, buttonClassesType } from 'src/components/Common/Button';
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import { callToastError, callToastSuccess } from 'src/function/toast/callToast';
+import NoPermision from '../no-permision';
+import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
+import { useSelector } from 'react-redux';
+import { adminFunction } from '../sidebar';
 
 function P2p() {
 	const filterType = {
@@ -18,6 +22,17 @@ function P2p() {
 		pending: 'pending',
 		success: 'success'
 	}
+
+
+	// phần kiểm tra quyền của admin
+	const { permision } = useSelector(getAdminPermision);
+	//const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
+	const currentPagePermision = adminPermision.watch;
+
+
+
+
+
 
 	// paging
 	const [currentPage, setCurrentPage] = useState(1);
@@ -67,45 +82,6 @@ function P2p() {
 	// main data
 	const [mainData, setMainData] = useState([]);
 	const [fetchApiStatus, setFetchApiStatus] = useState(api_status.pending);
-	const renderTable = (list) => {
-		return list?.map((item) => {
-			return (
-				<tr key={item?.id}>
-					<td>{item?.userNameAds}</td>
-					<td>{item?.emailAds}</td>
-					<td>{item?.userName}</td>
-					<td>{item?.email}</td>
-					<td>{item?.side}</td>
-					<td>{item?.symbol}</td>
-					<td>{item?.amount}</td>
-					<td>
-						<div style={{ whiteSpace: 'nowrap' }}>
-							{item?.rate} $
-						</div>
-					</td>
-					<td>
-						<div style={{ whiteSpace: 'nowrap' }}>
-							{formatCurrency(availableLanguageCodeMapper.en, currency.vnd, item?.pay, false)} vnd
-						</div>
-					</td>
-					<td>{item?.created_at}</td>
-					<td>
-						<div style={{ whiteSpace: 'nowrap' }}>
-							{item?.bankName}
-						</div>
-					</td>
-					<td>{item?.ownerAccount}</td>
-					<td>{item?.numberBank}</td>
-					<td>{item?.code}</td>
-					<td>
-						{item?.typeP2p === 2 && (
-							<Button onClick={confirmModalOpen.bind(null, item?.id)} type={buttonClassesType.primary}>Confirm</Button>
-						)}
-					</td>
-				</tr >
-			)
-		})
-	}
 	const fetchAll = async (page) => {
 		try {
 			if (fetchApiStatus === api_status.fetching) {
@@ -205,7 +181,7 @@ function P2p() {
 	}
 	const fetchMainDataDebounced = useCallback(debounce(fetchMainData, 1000), []);
 
-	
+
 
 	// confirm
 	const [confirmModalShow, setConfirmModalShow] = useState(false);
@@ -252,12 +228,69 @@ function P2p() {
 			? ""
 			: "--d-none";
 	}
+	const renderTable = (list) => {
+		return list?.map((item) => {
+			return (
+				<tr key={item?.id}>
+					<td>{item?.userNameAds}</td>
+					<td>{item?.emailAds}</td>
+					<td>{item?.userName}</td>
+					<td>{item?.email}</td>
+					<td>{item?.side}</td>
+					<td>{item?.symbol}</td>
+					<td>{item?.amount}</td>
+					<td>
+						<div style={{ whiteSpace: 'nowrap' }}>
+							{item?.rate} $
+						</div>
+					</td>
+					<td>
+						<div style={{ whiteSpace: 'nowrap' }}>
+							{formatCurrency(availableLanguageCodeMapper.en, currency.vnd, item?.pay, false)} vnd
+						</div>
+					</td>
+					<td>{item?.created_at}</td>
+					<td>
+						<div style={{ whiteSpace: 'nowrap' }}>
+							{item?.bankName}
+						</div>
+					</td>
+					<td>{item?.ownerAccount}</td>
+					<td>{item?.numberBank}</td>
+					<td>{item?.code}</td>
+					{
+						currentPagePermision === adminPermision.edit && <td>
+							{item?.typeP2p === 2 && (
+								<Button onClick={confirmModalOpen.bind(null, item?.id)} type={buttonClassesType.primary}>Confirm</Button>
+							)}
+						</td>
+					}
+				</tr >
+			)
+		})
+	}
+
+
+
+
 
 
 	// useEffect
 	useEffect(() => {
 		fetchMainData(1);
 	}, [])
+
+
+
+
+	if (currentPagePermision === adminPermision.noPermision) {
+		return (
+			<NoPermision />
+		)
+	}
+
+
+
 
 	return (
 		<>
@@ -314,7 +347,9 @@ function P2p() {
 								<th>Account</th>
 								<th>Number Account</th>
 								<th>Code</th>
-								<th>Action</th>
+								{
+									currentPagePermision === adminPermision.edit && <th>Action</th>
+								}
 							</tr>
 						</thead>
 						<tbody className={renderClassDataTable()}>

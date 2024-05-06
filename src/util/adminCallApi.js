@@ -186,3 +186,9 @@ export const getUserToId = (data) => {
   } catch (error) {
   }
 }
+export const checkAdmin = () => {
+  try {
+    return axiosService.post("/api/adminv2/checkAdmin");
+  } catch (error) {
+  }
+}

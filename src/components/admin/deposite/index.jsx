@@ -4,16 +4,28 @@ import React, { useEffect } from "react";
 import { Button } from "src/components/Common/Button";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { useState, useRef } from "react";
-import { api_status } from "src/constant";
+import { adminPermision, api_status } from "src/constant";
 import {
   getHistoryDepositAdmin,
   getHistoryDepositAdminAllExcel,
 } from "src/util/adminCallApi";
-import { exportExcel, formatNumber, shortenHash } from "src/util/common";
+import { analysisAdminPermision, exportExcel, formatNumber, shortenHash } from "src/util/common";
 import { availableLanguageCodeMapper } from "src/translation/i18n";
 import CopyButton from "src/components/Common/copy-button";
+import NoPermision from "../no-permision";
+import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { adminFunction } from "../sidebar";
+import { useSelector } from "react-redux";
 
 function Deposite() {
+
+
+
+  // phần kiểm tra quyền của admin
+  const { permision } = useSelector(getAdminPermision);
+  const currentPagePermision = analysisAdminPermision(adminFunction.transfer, permision);
+
+
 
   // phần phân trang
   const [page, setPage] = useState(1);
@@ -128,6 +140,19 @@ function Deposite() {
   useEffect(() => {
     fetApiGetHistoryDepositAdmin(1);
   }, []);
+
+
+
+
+  if (currentPagePermision === adminPermision.noPermision) {
+    return (
+      <NoPermision />
+    )
+  }
+
+
+
+
 
   return (
     <div className={css["deposit"]}>
