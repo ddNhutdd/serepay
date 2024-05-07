@@ -1,0 +1,39 @@
+@import "src/assets/scss/base/base.scss";
+@import "src/assets/scss/style.scss";
+
+.adminManagement {
+	color: $new-text-color-white;
+	position: relative;
+
+	.adminManagement__header {
+		.adminManagement__title {
+			@extend .titleContainerAdmin;
+		}
+
+		.adminManagement__paging {
+			padding-right: 0;
+			text-align: right;
+
+			@media screen and (max-width:768px) {
+				text-align: left;
+				padding-left: 0;
+			}
+		}
+	}
+
+	.adminManagement__content {
+		overflow: auto;
+
+		table {
+			@include adminTable;
+
+			thead {
+				tr {
+					th {
+						white-space: nowrap;
+					}
+				}
+			}
+		}
+	}
+}

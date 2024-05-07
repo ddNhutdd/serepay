@@ -192,3 +192,24 @@ export const checkAdmin = () => {
   } catch (error) {
   }
 }
+export const getAdmin = (data) => {
+  try {
+    return axiosService.post("/api/adminv2/getAdmin", data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const addAdmin = (data) => {
+  try {
+    return axiosService.post("/api/adminv2/addAdmin", data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+export const deleteAdmin = (data) => {
+  try {
+    return axiosService.post("/api/adminv2/deleteAdmin", data);
+  } catch (error) {
+    console.log(error);
+  }
+}

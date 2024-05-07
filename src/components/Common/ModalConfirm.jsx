@@ -12,6 +12,7 @@ export const ModalConfirm = function (prop) {
     closeModalHandle,
     isShowModal,
     isHiddenOkButton = false,
+    isHiddenCancelButton = false,
   } = prop;
 
   const hiddenButtonOk = function () {
@@ -29,24 +30,23 @@ export const ModalConfirm = function (prop) {
           </div>
           <div className="modalConfirmContent">{content}</div>
           <div className="modalConfirmFooter">
-            <button
-              onClick={closeModalHandle}
-              className={`modalConfirmCancel ${
-                waiting === api_status.fetching ? "disabled" : ""
-              }`}
-            >
-              {buttonCancelText}
-            </button>
+            {
+              isHiddenCancelButton === false && <button
+                onClick={closeModalHandle}
+                className={`modalConfirmCancel ${waiting === api_status.fetching ? "disabled" : ""
+                  }`}
+              >
+                {buttonCancelText}
+              </button>
+            }
             <button
               onClick={modalConfirmHandle}
-              className={`modalConfirmOk ${hiddenButtonOk()} ${
-                waiting === api_status.fetching ? "disable" : ""
-              }`}
+              className={`modalConfirmOk ${hiddenButtonOk()} ${waiting === api_status.fetching ? "disable" : ""
+                }`}
             >
               <div
-                className={`loader ${
-                  waiting === api_status.fetching ? "" : "--d-none"
-                }`}
+                className={`loader ${waiting === api_status.fetching ? "" : "--d-none"
+                  }`}
               ></div>
               {buttonOkText}
             </button>

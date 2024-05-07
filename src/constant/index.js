@@ -61,6 +61,7 @@ export const url = {
   admin_user: "/admin/user",
   admin_ads: "/admin/ads",
   admin_p2p: '/admin/p2p',
+  admin_adminManagement: '/admin/management'
 };
 
 const currentDomain = window.location.href;

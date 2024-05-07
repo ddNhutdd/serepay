@@ -19,7 +19,8 @@ export const adminFunction = {
   transfer: 'transfer',
   swap: 'swap',
   deposit: 'deposit',
-  p2p: 'p2p'
+  p2p: 'p2p',
+  admin: 'admin'
 }
 
 
@@ -113,7 +114,7 @@ function Sidebar() {
 
   return (
     <div className="admin-sidebar show">
-      <ul id="listItem">
+      <ul>
 
         {
           showFunction[adminFunction.user] === 1 && <li
@@ -245,6 +246,12 @@ function Sidebar() {
         }
 
 
+        <li className={setActive(url.admin_adminManagement)} onClick={redirectPage.bind(null, url.admin_adminManagement)}>
+          <span className="admin-sidebar__icon">
+            <i className="fa-solid fa-user-tie"></i>
+          </span>
+          <span className="admin-sidebar__item">Admin</span>
+        </li>
 
 
 

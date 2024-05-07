@@ -96,7 +96,7 @@ function Dropdown(props) {
   };
 
   useEffect(() => {
-    document.addEventListener("click", closeDropdown);
+    document.addEventListener("click", closeDropdown, true);
     const observer = observeHeightSelector();
 
     const language =
