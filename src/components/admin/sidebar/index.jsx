@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { api_status, url } from "src/constant";
 import { callToastSuccess } from "src/function/toast/callToast";
 import useLogout from "src/hooks/logout";
 import useAsync from "src/hooks/call-api";
 import { checkAdmin } from "src/util/adminCallApi";
-import { setAdminPermision, setAuthenticationStatus } from "src/redux/reducers/admin-permision.slice";
+import { getReloadSideBar, setAdminPermision, setAuthenticationStatus } from "src/redux/reducers/admin-permision.slice";
 import { useState } from "react";
 
 
@@ -31,6 +31,7 @@ function Sidebar() {
   const logoutAction = useLogout();
   const dispatch = useDispatch();
   const isLoaded = useRef(false);
+  const reloadSideBar = useSelector(getReloadSideBar)
 
 
 
@@ -114,9 +115,8 @@ function Sidebar() {
   };
 
   return (
-    <div className="admin-sidebar show">
+    <div key={reloadSideBar} className="admin-sidebar show">
       <ul>
-
         {
           showFunction[adminFunction.user] === 1 && <li
             className={setActive(url.user)} onClick={redirectPage.bind(null, url.admin_user)}>

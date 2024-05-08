@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { currencyMapper, image_domain } from "src/constant";
 import { getWalletToUserAdmin } from "src/util/adminCallApi";
-import { formatNumber } from "src/util/common";
+import { formatNumber, rountRange } from "src/util/common";
 import css from './coin-cell.module.scss';
+import { availableLanguage } from "src/translation/i18n";
 
 function CoinCells(props) {
   const {
     id,
-    listCoinName
+    listCoinName,
+    listCoin
   } = props;
 
   const [list, setList] = useState(listCoinName?.map(item => {
@@ -32,7 +34,10 @@ function CoinCells(props) {
             <div className={css.coinCells}>
               <img src={image_domain.replace("USDT", coinName.name)} />
               {" "}
-              {resp?.data?.data[coinNameBalance] ? formatNumber(resp?.data?.data[coinNameBalance], currencyMapper.USD, 8) : 0}
+              {resp?.data?.data[coinNameBalance] ? formatNumber(resp?.data?.data[coinNameBalance], availableLanguage.en, rountRange(
+                listCoin?.find((coin) => coin?.name === coinName?.name?.toUpperCase())
+                  ?.price || 10000
+              )) : 0}
             </div>
           </td>
         )

@@ -365,6 +365,7 @@ const User = function () {
   const renderCoinCell = (id) => {
     return <CoinCells
       id={id}
+      listCoin={listCoin}
       listCoinName={listCoin}
     />
   }

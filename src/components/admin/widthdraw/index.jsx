@@ -17,7 +17,7 @@ import { ModalConfirm } from "src/components/Common/ModalConfirm";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { Input } from "src/components/Common/Input";
 import { TagCustom, TagType } from "src/components/Common/Tag";
-import { analysisAdminPermision, debounce, formatNumber, shortenHash } from "src/util/common";
+import { analysisAdminPermision, debounce, formatNumber, rountRange, shortenHash } from "src/util/common";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
 import CopyButton from "src/components/Common/copy-button";
@@ -248,9 +248,9 @@ function Widthdraw() {
           resolve(data.array);
         })
         .catch(() => {
-          setCallApiLoadMainDataStatus(() => api_status.rejected);
+          setCallApiLoadMainDataStatus(api_status.rejected);
           setTotalItems(1);
-          reject(false);
+          resolve([]);
         })
         .finally(() => {
           setCurrentPage(() => page);
@@ -483,7 +483,10 @@ function Widthdraw() {
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
-            {formatNumber(record.amount, availableLanguage.vi, 8)}
+            {formatNumber(record.amount, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === record.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
         <td>
@@ -497,13 +500,19 @@ function Widthdraw() {
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
-            {formatNumber(record.amountBeforeFrom, availableLanguage.vi, 8)}
+            {formatNumber(record.amountBeforeFrom, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === record.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
-            {formatNumber(record.amountAfterFrom, availableLanguage.vi, 8)}
+            {formatNumber(record.amountAfterFrom, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === record.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
         <td>
@@ -519,13 +528,19 @@ function Widthdraw() {
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
-            {formatNumber(record.amountBeforeTo, availableLanguage.vi, 8)}
+            {formatNumber(record.amountBeforeTo, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === record.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace("USDT", record.coin_key.toUpperCase())} alt={record.coin_key} />
-            {formatNumber(record.amountAfterTo, availableLanguage.vi, 8)}
+            {formatNumber(record.amountAfterTo, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === record.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
         <td>

@@ -10,7 +10,7 @@ import { Input } from 'src/components/Common/Input';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { activeWidthdraw, cancelWidthdraw, getWalletToWithdrawWhere } from 'src/util/adminCallApi';
-import { analysisAdminPermision, deepCopyArray, deepCopyObject, formatNumber, shortenHash } from 'src/util/common';
+import { analysisAdminPermision, deepCopyArray, deepCopyObject, formatNumber, rountRange, shortenHash } from 'src/util/common';
 import { availableLanguage } from 'src/translation/i18n';
 import { callToastSuccess } from 'src/function/toast/callToast';
 import { DrillContext } from 'src/context/drill';
@@ -25,7 +25,10 @@ function WithdrawHistory() {
 	const {
 		userid: id
 	} = useParams();
-	const [profile, renderTitle] = useContext(DrillContext);
+	const [profile, renderTitle, listCoin] = useContext(DrillContext);
+
+
+
 
 
 
@@ -97,7 +100,10 @@ function WithdrawHistory() {
 					<td>
 						<div className='d-flex alignItem-c gap-1'>
 							<img src={image_domain.replace("USDT", item?.coin_key.toUpperCase())} alt={item?.coin_key} />
-							{formatNumber(item?.amount, availableLanguage.en, 8)}
+							{formatNumber(item?.amount, availableLanguage.en, rountRange(
+								listCoin?.find((coin) => coin?.name === item?.coin_key?.toUpperCase())
+									?.price || 10000
+							))}
 						</div>
 					</td>
 					<td>
@@ -117,13 +123,19 @@ function WithdrawHistory() {
 					<td>
 						<div className='d-flex alignItem-c gap-1'>
 							<img src={image_domain.replace("USDT", item?.coin_key.toUpperCase())} alt={item?.coin_key} />
-							{formatNumber(item?.amountBeforeFrom, availableLanguage.en, 8)}
+							{formatNumber(item?.amountBeforeFrom, availableLanguage.en, rountRange(
+								listCoin?.find((coin) => coin?.name === item?.coin_key?.toUpperCase())
+									?.price || 10000
+							))}
 						</div>
 					</td>
 					<td>
 						<div className='d-flex alignItem-c gap-1'>
 							<img src={image_domain.replace("USDT", item?.coin_key.toUpperCase())} alt={item?.coin_key} />
-							{formatNumber(item?.amountAfterFrom, availableLanguage.en, 8)}
+							{formatNumber(item?.amountAfterFrom, availableLanguage.en, rountRange(
+								listCoin?.find((coin) => coin?.name === item?.coin_key?.toUpperCase())
+									?.price || 10000
+							))}
 						</div>
 					</td>
 					<td>
@@ -141,13 +153,19 @@ function WithdrawHistory() {
 					<td>
 						<div className='d-flex alignItem-c gap-1'>
 							<img src={image_domain.replace("USDT", item?.coin_key.toUpperCase())} alt={item?.coin_key} />
-							{formatNumber(item?.amountBeforeTo, availableLanguage.en, 8)}
+							{formatNumber(item?.amountBeforeTo, availableLanguage.en, rountRange(
+								listCoin?.find((coin) => coin?.name === item?.coin_key?.toUpperCase())
+									?.price || 10000
+							))}
 						</div>
 					</td>
 					<td>
 						<div className='d-flex alignItem-c gap-1'>
 							<img src={image_domain.replace("USDT", item?.coin_key.toUpperCase())} alt={item?.coin_key} />
-							{formatNumber(item?.amountAfterTo, availableLanguage.en, 8)}
+							{formatNumber(item?.amountAfterTo, availableLanguage.en, rountRange(
+								listCoin?.find((coin) => coin?.name === item?.coin_key?.toUpperCase())
+									?.price || 10000
+							))}
 						</div>
 					</td>
 					<td>

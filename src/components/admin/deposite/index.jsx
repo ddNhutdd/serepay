@@ -10,7 +10,7 @@ import {
   getHistoryDepositAdminAllExcel,
 } from "src/util/adminCallApi";
 import { analysisAdminPermision, exportExcel, formatNumber, shortenHash } from "src/util/common";
-import { availableLanguageCodeMapper } from "src/translation/i18n";
+import { availableLanguage, availableLanguageCodeMapper } from "src/translation/i18n";
 import CopyButton from "src/components/Common/copy-button";
 import NoPermision from "../no-permision";
 import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
@@ -69,7 +69,7 @@ function Deposite() {
         <td>{item.coin_key}</td>
         <td>{item.created_at}</td>
         <td>{item.message}</td>
-        <td>{formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}</td>
+        <td>{formatNumber(item.amount, availableLanguage.en, -1)}</td>
         <td>
           {
             item.hash && <div className="d-flex alignItem-c gap-1">

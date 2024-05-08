@@ -5,6 +5,7 @@ const adminPermision = createSlice({
 	initialState: {
 		permision: null,
 		authenticating: true,
+		reloadSideBar: Date.now()
 	},
 	reducers: {
 		setAdminPermision: (state, action) => {
@@ -13,10 +14,14 @@ const adminPermision = createSlice({
 		},
 		setAuthenticationStatus: (state, action) => {
 			state.authenticating = action.payload;
+		},
+		reloadSideBar: (state) => {
+			state.reloadSideBar = Date.now()
 		}
 	},
 });
 
 export default adminPermision.reducer;
-export const { setAdminPermision, setAuthenticationStatus } = adminPermision.actions;
+export const { setAdminPermision, setAuthenticationStatus, reloadSideBar } = adminPermision.actions;
 export const getAdminPermision = (state) => state?.adminPermision;
+export const getReloadSideBar = state => state?.adminPermision?.reloadSideBar;

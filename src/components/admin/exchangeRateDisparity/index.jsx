@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Spin } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -18,7 +18,7 @@ import {
 } from "src/redux/reducers/exchangeRateSellSlice";
 import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
 import { adminFunction } from "../sidebar";
-import { analysisAdminPermision } from "src/util/common";
+import { analysisAdminPermision, formatInputNumber } from "src/util/common";
 
 
 
@@ -70,25 +70,23 @@ function ExchangeRateDisparity() {
   const rateBuyStatusFromRedux = useSelector(exchangeRateDisparityApiStatus);
   const [typeBuyButton, setTypeBuyButton] = useState(buttonClassesType.outline);
   const [callApiSetBuyStatus, setCallApiSetBuyStatus] = useState(api_status.pending);
-  const inputBuyNew = useRef();
-  const validateBuy = function () {
+  const [inputBuyNew, setInputBuyNew] = useState('');
+  const validateBuy = function (value, params) {
     let valid = true;
-    const newValueInputElement = inputBuyNew.current;
+    const newValueInputElement = params ? value : inputBuyNew;
     if (
-      newValueInputElement &&
       controlBuyTourched.current[controlsBuy.current.newValueInput]
     ) {
       const checkNumber = regularExpress.checkNumber;
       if (
-        !checkNumber.test(newValueInputElement.value.replaceAll(",", "")) &&
-        newValueInputElement.value
+        !checkNumber.test(newValueInputElement.replaceAll(",", ""))
       ) {
         valid &= false;
         setControlBuyErrors((state) => ({
           ...state,
           [controlsBuy.current.newValueInput]: "Format incorect",
         }));
-      } else if (!newValueInputElement.value) {
+      } else if (!newValueInputElement) {
         valid &= false;
         setControlBuyErrors((state) => ({
           ...state,
@@ -106,8 +104,8 @@ function ExchangeRateDisparity() {
   };
   const newValueInputBuyChangeHandle = function (ev) {
     const value = ev.target.value;
-    ev.target.value = formatInput(value);
-    validateBuy();
+    setInputBuyNew(formatInput(value));
+    validateBuy(value, true);
     setTypeBuyButton(buttonClassesType.primary);
   };
   const newValueInputBuyFocusHandle = function () {
@@ -123,11 +121,10 @@ function ExchangeRateDisparity() {
       // call api
       if (callApiSetBuyStatus === api_status.fetching) return;
       setCallApiSetBuyStatus(api_status.fetching);
-      const newValueElement = inputBuyNew.current;
-      if (!newValueElement) return;
+      if (!inputBuyNew) return;
       updateExchangeRateDisparity({
         name: "exchangeRate",
-        value: newValueElement.value.replaceAll(",", ""),
+        value: inputBuyNew.replaceAll(",", ""),
       })
         .then((resp) => {
           callToastSuccess(commontString.success);
@@ -156,25 +153,26 @@ function ExchangeRateDisparity() {
   const rateSellStatusFromRedux = useSelector(getExchangeRateSellApiStatus);
   const [typeSellButton, setTypeSellButton] = useState(buttonClassesType.outline);
   const [callApiSetSellStatus, setCallApiSetSellStatus] = useState(api_status.pending);
-  const inputSellNew = useRef();
-  const validateSell = function () {
+  const [inputSellNew, setInputSellNew] = useState('');
+  const validateSell = function (value, params) {
     let valid = true;
-    const newValueInputElement = inputSellNew.current;
+    const newValueInputElement = params ? value : inputSellNew;
     if (
-      newValueInputElement &&
       controlSellTourched.current[controlsSell.current.newValueInput]
     ) {
       const checkNumber = regularExpress.checkNumber;
       if (
-        !checkNumber.test(newValueInputElement.value.replaceAll(",", "")) &&
-        newValueInputElement.value
+        !checkNumber.test(newValueInputElement.replaceAll(",", "")) &&
+        newValueInputElement
       ) {
+
         valid &= false;
         setControlSellErrors((state) => ({
           ...state,
           [controlsSell.current.newValueInput]: "Format incorect",
         }));
-      } else if (!newValueInputElement.value) {
+      } else if (!newValueInputElement) {
+
         valid &= false;
         setControlSellErrors((state) => ({
           ...state,
@@ -196,8 +194,8 @@ function ExchangeRateDisparity() {
   };
   const newValueInputSellChangeHandle = function (ev) {
     const value = ev.target.value;
-    ev.target.value = formatInput(value);
-    validateSell();
+    setInputSellNew(formatInput(value));
+    validateSell(value, true);
     setTypeSellButton(buttonClassesType.primary);
   };
   const submitSellHandle = async function (ev) {
@@ -210,7 +208,7 @@ function ExchangeRateDisparity() {
       setCallApiSetSellStatus(api_status.fetching);
       await updateExchangeRateDisparity({
         name: "exchangeRateSell",
-        value: inputSellNew.current.value.replaceAll(",", ""),
+        value: inputSellNew.replaceAll(",", ""),
       });
       callToastSuccess(commontString.success);
       setTypeSellButton(buttonClassesType.outline);
@@ -232,14 +230,10 @@ function ExchangeRateDisparity() {
     };
   }, []);
   useEffect(() => {
-    if (inputBuyNew && inputBuyNew.current) {
-      inputBuyNew.current.value = rateFromRedux;
-    }
+    setInputBuyNew(formatInputNumber(rateFromRedux))
   }, [rateFromRedux])
   useEffect(() => {
-    if (inputSellNew && inputSellNew.current) {
-      inputSellNew.current.value = rateSellFromRedux;
-    }
+    setInputSellNew(formatInputNumber(rateSellFromRedux))
   }, [rateSellFromRedux])
 
 
@@ -314,7 +308,7 @@ function ExchangeRateDisparity() {
               <Input
                 onFocus={newValueInputBuyFocusHandle}
                 onChange={newValueInputBuyChangeHandle}
-                ref={inputBuyNew}
+                value={inputBuyNew}
                 errorMes={controlBuyErrors[controlsBuy.current.newValueInput]}
               />
             </div>
@@ -343,7 +337,7 @@ function ExchangeRateDisparity() {
               <label>New Value:</label>
               <Input
                 onFocus={newValueInputSellFocusHandle}
-                ref={inputSellNew}
+                value={inputSellNew}
                 onChange={newValueInputSellChangeHandle}
                 errorMes={controlSellErrors[controlsSell.current.newValueInput]}
               />

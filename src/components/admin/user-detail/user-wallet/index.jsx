@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { api_status } from "src/constant";
 import { getWalletToUserAdmin } from "src/util/adminCallApi";
-import { formatNumber } from "src/util/common";
+import { formatNumber, rountRange } from "src/util/common";
 import CoinRecord from "./coin-record";
 import { Spin } from "antd";
 import css from "../user-detail.module.scss"
@@ -40,7 +40,7 @@ function UserWallet(props) {
 	const renderWallet = (listCoin, wallet) => {
 		return listCoin?.map(coin => {
 			const coinWallet = coin?.name?.toLowerCase() + '_balance';
-			const coinAmount = formatNumber((+wallet[coinWallet]) || 0, availableLanguage.en, 8);
+			const coinAmount = formatNumber((+wallet[coinWallet]) || 0, availableLanguage.en, -1);
 			return (
 				<div key={coin.id} className={css.userDetail__walletContent__row}>
 					<CoinRecord

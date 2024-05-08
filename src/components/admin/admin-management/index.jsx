@@ -1,6 +1,6 @@
 import { Pagination, Spin } from 'antd';
 import css from './admin-management.module.scss';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useAsync from 'src/hooks/call-api';
 import { addAdmin, deleteAdmin, editAdmin, getAdmin } from 'src/util/adminCallApi';
 import { adminPermision, api_status, commontString } from 'src/constant';
@@ -58,6 +58,13 @@ function AdminManagement() {
 		return data?.array
 	}
 	const [mainData, mainDataError, fetchMainDataStatus, fetchGetAdmin] = useAsync(getGetAdmin, 1);
+	useEffect(() => {
+		if (mainDataError) {
+			const mess = mainDataError?.response?.data?.message;
+			callToastError(mess)
+		}
+	}, [mainDataError])
+
 
 
 

@@ -4,10 +4,10 @@ import { EmptyCustom } from 'src/components/Common/Empty';
 import Tabs from '../tabs';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Input } from 'src/components/Common/Input';
-import { adminPermision, api_status, commontString, currency } from 'src/constant';
+import { adminPermision, api_status, commontString, currency, currencyMapper, image_domain } from 'src/constant';
 import { AdminConfirmP2pCommand, getHistoryToWhereAdmin } from 'src/util/adminCallApi';
-import { analysisAdminPermision, debounce, formatCurrency } from 'src/util/common';
-import { availableLanguageCodeMapper } from 'src/translation/i18n';
+import { analysisAdminPermision, debounce, formatCurrency, formatNumber, rountRange } from 'src/util/common';
+import { availableLanguage, availableLanguageCodeMapper } from 'src/translation/i18n';
 import { Button, buttonClassesType } from 'src/components/Common/Button';
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import { callToastError, callToastSuccess } from 'src/function/toast/callToast';
@@ -15,6 +15,7 @@ import NoPermision from '../no-permision';
 import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
 import { useSelector } from 'react-redux';
 import { adminFunction } from '../sidebar';
+import socket from 'src/util/socket';
 
 function P2p() {
 	const filterType = {
@@ -29,6 +30,17 @@ function P2p() {
 	const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
 
 
+
+	// list coin
+	const [listCoin, setListCoin] = useState();
+	const getListCoin = function () {
+		return new Promise((resolve, reject) => {
+			socket.once("listCoin", (resp) => {
+				setListCoin(resp);
+				resolve(resp);
+			});
+		});
+	};
 
 
 
@@ -236,16 +248,23 @@ function P2p() {
 					<td>{item?.userName}</td>
 					<td>{item?.email}</td>
 					<td>{item?.side}</td>
-					<td>{item?.symbol}</td>
-					<td>{item?.amount}</td>
 					<td>
-						<div style={{ whiteSpace: 'nowrap' }}>
-							{item?.rate} $
+						<div className='d-flex gap-1 alignItem-c'>
+							<img style={{ width: 20, height: 20 }} src={image_domain.replace("USDT", item?.symbol)} alt={item?.symbol} />
+							{formatNumber(item?.amount, availableLanguage.en, rountRange(
+								listCoin?.find((coin) => coin?.name === item?.symbol?.toUpperCase())
+									?.price || 10000
+							))}
 						</div>
 					</td>
 					<td>
 						<div style={{ whiteSpace: 'nowrap' }}>
-							{formatCurrency(availableLanguageCodeMapper.en, currency.vnd, item?.pay, false)} vnd
+							{formatCurrency(availableLanguage.en, currency.usd, item?.rate)} $
+						</div>
+					</td>
+					<td>
+						<div style={{ whiteSpace: 'nowrap' }}>
+							{formatCurrency(availableLanguage.en, currency.vnd, item?.pay, false)} vnd
 						</div>
 					</td>
 					<td>{item?.created_at}</td>
@@ -276,6 +295,7 @@ function P2p() {
 
 	// useEffect
 	useEffect(() => {
+		getListCoin();
 		fetchMainData(1);
 	}, [])
 
@@ -337,7 +357,6 @@ function P2p() {
 								<th>Trander</th>
 								<th>Email of the Trander</th>
 								<th>Ads action</th>
-								<th>Token</th>
 								<th>Amount</th>
 								<th>Rate</th>
 								<th>Pay</th>

@@ -19,23 +19,27 @@ const useAsync = (asyncFn, ...params) => {
 			const result = await asyncFn(...params);
 			setData(result);
 			setStatus(api_status.fulfilled);
+			setError(null);
 		} catch (err) {
 			setError(err);
 			setStatus(api_status.rejected);
 		}
 	};
 
-	if (!isFirst.current) {
-		isFirst.current = true;
-		fetchData(...params);
-	}
+
+	useEffect(() => {
+		if (!isFirst.current) {
+			isFirst.current = true;
+			fetchData(...params);
+		}
+	}, [])
 
 	const run = (...newParams) => {
 		fetchData(...newParams);
 	};
 
 
-	return  [data, error, status, run];
+	return [data, error, status, run];
 };
 
 export default useAsync;

@@ -1,28 +1,38 @@
-import {useTranslation} from "react-i18next";
-import React, {useState} from "react";
-import {useDispatch} from "react-redux";
-import {axiosService} from "../util/service";
+import { useTranslation } from "react-i18next";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { axiosService } from "../util/service";
 import {
 	errorMessage,
 	defaultLanguage,
 	localStorageVariable,
 	url,
 } from "src/constant";
-import {useEffect} from "react";
-import {getLocalStorage, messageTransferHandle, removeLocalStorage, setLocalStorage} from "src/util/common";
+import { useEffect } from "react";
+import { getLocalStorage, messageTransferHandle, removeLocalStorage, setLocalStorage } from "src/util/common";
 import i18n from "src/translation/i18n";
-import {userWalletFetchCount} from "src/redux/actions/coin.action";
-import {callToastError, callToastSuccess} from "src/function/toast/callToast";
+import { userWalletFetchCount } from "src/redux/actions/coin.action";
+import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import socket from "src/util/socket";
-import {Input, inputType} from "./Common/Input";
-import {Button} from "./Common/Button";
+import { Input, inputType } from "./Common/Input";
+import { Button } from "./Common/Button";
 import useForm from "src/hooks/use-form";
+import { checkAdmin as checkAdminCallApi } from "src/util/adminCallApi";
 
-export default function Login({history}) {
+export default function Login({ history }) {
 	const dispatch = useDispatch();
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 
 	const [isLoading, setIsLoading] = useState(false);
+
+	const checkAdmin = async () => {
+		try {
+			const resp = await checkAdminCallApi();
+			return true;
+		} catch (error) {
+			return false
+		}
+	}
 
 	const login = async (e, p) => {
 		setIsLoading(true);
@@ -32,17 +42,16 @@ export default function Login({history}) {
 				password: p,
 			});
 			removeLocalStorage(localStorageVariable.expireToken);
-			response?.data?.data?.id === 1
-				? dispatch({type: "USER_ADMIN", payload: true})
-				: dispatch({type: "USER_ADMIN", payload: false});
 			callToastSuccess(t("loggedInSuccessfully"));
 			setLocalStorage(localStorageVariable.token, response.data.data.token);
 			setLocalStorage(localStorageVariable.user, response.data.data);
-			dispatch({type: "USER_LOGIN"});
+			dispatch({ type: "USER_LOGIN" });
 			// menu load list mycoin
 			dispatch(userWalletFetchCount());
 			// search previos page and redirect
 			const previousPage = getLocalStorage(localStorageVariable.previousePage);
+
+			//
 			socket.emit("join", response.data.data.id);
 			socket.on("ok", (res) => {
 			});
@@ -57,6 +66,10 @@ export default function Login({history}) {
 			socket.on("messageTransfer", (res) => {
 				messageTransferHandle(res, t);
 			})
+			// call api nếu là để check xem người dùng có phải là admin hay không
+			await checkAdmin()
+				? dispatch({ type: "USER_ADMIN", payload: true })
+				: dispatch({ type: "USER_ADMIN", payload: false });
 			//redirect to admin
 			redirecToAdmin(response.data.data);
 			// chưa xác thực kyc thì chuyển trang profile
@@ -85,7 +98,7 @@ export default function Login({history}) {
 		}
 	};
 	const redirecToAdmin = function (userProfile) {
-		const {id} = userProfile;
+		const { id } = userProfile;
 		if (id === 1) history.push(url.admin_ads);
 		return;
 	};
@@ -143,7 +156,7 @@ export default function Login({history}) {
 					</form>
 					<div className="toSignUp" onClick={() => history.replace(url.signup)}>
 						{t("dontHaveAnAccount")}{" "}
-						<span style={{fontWeight: 500}}>{t("letsSignUp")}</span>
+						<span style={{ fontWeight: 500 }}>{t("letsSignUp")}</span>
 					</div>
 					<div
 						className="toSignUp"

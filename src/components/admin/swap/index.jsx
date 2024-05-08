@@ -6,8 +6,8 @@ import { adminPermision, api_status, image_domain } from "src/constant";
 import socket from "src/util/socket";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { historySwapAdmin } from "src/util/adminCallApi";
-import { analysisAdminPermision, debounce, formatNumber } from "src/util/common";
-import { availableLanguageCodeMapper } from "src/translation/i18n";
+import { analysisAdminPermision, debounce, formatNumber, rountRange } from "src/util/common";
+import { availableLanguage, availableLanguageCodeMapper } from "src/translation/i18n";
 import Dropdown from "src/components/Common/dropdown/Dropdown";
 import { DOMAIN } from "src/util/service";
 import { adminFunction } from "../sidebar";
@@ -170,7 +170,10 @@ export default function SwapAdmin() {
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', item.coin_key)} alt={item.coin_key} />
-            {formatNumber(item.amount, availableLanguageCodeMapper.en, -1)}
+            {formatNumber(item.amount, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === item?.coin_key.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
         <td>{item.created_at}</td>
@@ -179,7 +182,10 @@ export default function SwapAdmin() {
         <td>
           <div className="d-flex alignItem-c gap-1">
             <img style={{ width: 20, height: 20, objectFit: 'cover' }} src={image_domain.replace('USDT', item.wallet)} alt={item.wallet} />
-            {formatNumber(item.wallet_amount, availableLanguageCodeMapper.en, -1)}
+            {formatNumber(item.wallet_amount, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === item?.wallet.toUpperCase())
+                ?.price || 10000
+            ))}
           </div>
         </td>
       </tr>
@@ -215,8 +221,8 @@ export default function SwapAdmin() {
 
   //useEffect
   useEffect(() => {
-    fetchListCoin();
-    fetchHistorySwapAdmin(1);
+    fetchListCoin()
+    fetchHistorySwapAdmin()
   }, []);
 
 

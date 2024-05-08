@@ -14,6 +14,7 @@ import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
 import { analysisAdminPermision } from 'src/util/common';
 import { useSelector } from 'react-redux';
 import NoPermision from '../no-permision';
+import socket from 'src/util/socket';
 
 
 
@@ -23,6 +24,26 @@ function UserDetail() {
 	} = useParams();
 	let history = useHistory();
 	const location = useLocation();
+
+
+
+
+
+
+	// fetch list coin
+	const [listCoin, setListCoin] = useState();
+	const fetchListCoin = () => {
+		return new Promise((resolve, reject) => {
+			try {
+				socket.once('listCoin', resp => {
+					setListCoin(resp)
+					resolve(resp)
+				})
+			} catch (error) {
+				reject(error);
+			}
+		})
+	}
 
 
 
@@ -50,7 +71,6 @@ function UserDetail() {
 		const newId = location?.pathname?.split('/')?.at(-1);
 		setKey(newId)
 		fetchUserDetail(newId);
-
 	}, [location])
 
 
@@ -144,6 +164,7 @@ function UserDetail() {
 	// useEffect
 	useEffect(() => {
 		fetchUserDetail(userid);
+		fetchListCoin();
 	}, [])
 
 
@@ -203,7 +224,7 @@ function UserDetail() {
 					</div>
 				</div>
 			</div>
-			<DrillContext.Provider value={[userInfo, renderTitle]}>
+			<DrillContext.Provider value={[userInfo, renderTitle, listCoin]}>
 				<ListWallet forceReload={forceReload} />
 				<UserWallet />
 				<TransferHistory />

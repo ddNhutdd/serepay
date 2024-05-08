@@ -17,19 +17,17 @@ import css from "./reLogin.module.scss";
 import { Button } from "../Common/Button";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { currencySetCurrent } from "src/redux/actions/currency.action";
 import { callToastError, callToastSuccess } from "src/function/toast/callToast";
 import { axiosService } from "src/util/service";
-import { useLocation, useHistory } from "react-router-dom";
 import { userWalletFetchCount } from "src/redux/actions/coin.action";
 import socket from "src/util/socket";
 import useLogout from "src/hooks/logout";
+import { reloadSideBar } from "src/redux/reducers/admin-permision.slice";
+import { checkAdmin as checkAdminCallApi } from "src/util/adminCallApi";
 
 function ReLogin() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const location = useLocation();
-  const history = useHistory();
   const logout = useLogout();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,6 +66,14 @@ function ReLogin() {
     }
   };
   const handleCancel = () => { };
+  const checkAdmin = async () => {
+    try {
+      const resp = await checkAdminCallApi();
+      return true;
+    } catch (error) {
+      return false
+    }
+  }
   const login = async (e, p) => {
     setIsLoading(true);
     try {
@@ -76,9 +82,6 @@ function ReLogin() {
         password: p,
       });
       setIsModalOpen(false);
-      response?.data?.data?.id === 1
-        ? dispatch({ type: "USER_ADMIN", payload: true })
-        : dispatch({ type: "USER_ADMIN", payload: false });
       const profile = response.data.data;
       callToastSuccess(t("loggedInSuccessfully"));
       setIsModalOpen(false);
@@ -95,7 +98,16 @@ function ReLogin() {
       socket?.on("messageTransfer", (res) => {
         messageTransferHandle(res, t);
       })
+
+
+      // call api nếu là để check xem người dùng có phải là admin hay không
+      await checkAdmin()
+        ? dispatch({ type: "USER_ADMIN", payload: true })
+        : dispatch({ type: "USER_ADMIN", payload: false });
+      // reload lại side bar admin
+      dispatch(reloadSideBar);
     } catch (error) {
+      cốnl
       const mess =
         error?.response?.data?.errors[0]?.msg || error?.response?.data?.message;
       switch (mess) {

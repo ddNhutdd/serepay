@@ -18,7 +18,8 @@ import NoPermision from "../no-permision";
 import { useSelector } from "react-redux";
 import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
 import { adminFunction } from "../sidebar";
-import { analysisAdminPermision } from "src/util/common";
+import { analysisAdminPermision, formatNumber, rountRange } from "src/util/common";
+import { availableLanguage } from "src/translation/i18n";
 
 function Ads() {
   const actionType = {
@@ -289,7 +290,10 @@ function Ads() {
               Amount:
             </span>
             {" "}
-            {item.amount}
+            {formatNumber(item.amount, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === item?.symbol?.toUpperCase())
+                ?.price || 10000
+            ))}
             <img
               style={{ height: 20, width: 20, objectFit: 'cover' }}
               src={image_domain.replace("USDT", item.symbol.toUpperCase())}
@@ -301,7 +305,10 @@ function Ads() {
               Amount Minimum:
             </span>
             {" "}
-            {item.amountMinimum}
+            {formatNumber(item.amountMinimum, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === item?.symbol?.toUpperCase())
+                ?.price || 10000
+            ))}
             <img
               style={{ height: 20, width: 20, objectFit: 'cover' }}
               src={image_domain.replace("USDT", item.symbol.toUpperCase())}
@@ -313,7 +320,10 @@ function Ads() {
               Quantity Remaining:
             </span>
             {" "}
-            {item.amount - item.amountSuccess}
+            {formatNumber(item.amount - item.amountSuccess, availableLanguage.en, rountRange(
+              listCoin?.find((coin) => coin?.name === item?.symbol?.toUpperCase())
+                ?.price || 10000
+            ))}
             <img
               style={{ height: 20, width: 20, objectFit: 'cover' }}
               src={image_domain.replace("USDT", item.symbol.toUpperCase())}
