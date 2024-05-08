@@ -85,6 +85,7 @@ import P2pAdmin from "./components/admin/p2p";
 import { useTranslation } from "react-i18next";
 import UserDetail from "./components/admin/user-detail";
 import AdminManagement from "./components/admin/admin-management";
+import { checkAdmin } from "./util/adminCallApi";
 
 const config = {};
 export const math = create(all, config);
@@ -230,6 +231,11 @@ function App() {
       dispatch(setExchangeRateSellApiStatus(api_status.rejected));
     }
   };
+  const checkAccountAdmin = async () => {
+    await checkAdmin()
+      ? dispatch({ type: "USER_ADMIN", payload: true })
+      : dispatch({ type: "USER_ADMIN", payload: false });
+  }
 
   useEffect(() => {
     if (getLocalStorage(localStorageVariable.user)) {
@@ -255,6 +261,10 @@ function App() {
         messageTransferHandle(res, t)
       })
     }
+
+
+    // kiểm tra xem tài khoản đang đăng nhập có phải là admin hay không
+    checkAccountAdmin();
 
     fetchListBank();
 
