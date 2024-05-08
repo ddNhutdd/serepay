@@ -305,7 +305,7 @@ function Widthdraw() {
         })
         .catch(() => {
           setCallApiLoadMainDataStatus(() => api_status.rejected);
-          reject(false);
+          reject(`false`);
         });
     });
   };
@@ -389,7 +389,7 @@ function Widthdraw() {
         .catch(() => {
           callToastError("Fail");
           setCallApiAcceptStatus(() => api_status.rejected);
-          reject(false);
+          reject(`false`);
         });
     });
   };
@@ -428,7 +428,7 @@ function Widthdraw() {
           setCallApiRejectStatus(() => api_status.rejected);
 
           callToastError("Fail");
-          reject(false);
+          reject(`false`);
         });
     });
   };

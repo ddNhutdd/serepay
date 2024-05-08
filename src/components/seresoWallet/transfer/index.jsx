@@ -289,7 +289,7 @@ function Transfer() {
           resolve(true);
         })
         .catch((err) => {
-          reject(false);
+          reject(`false`);
           callToastError(t("noAccountInformationFound"));
           setCallApiProfileStatus(() => api_status.rejected);
           history.push(url.login);

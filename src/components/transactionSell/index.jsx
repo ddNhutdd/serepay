@@ -250,7 +250,7 @@ function TransactionSell() {
         })
         .catch((err) => {
           setCallApiLoadPaymentStatus(() => api_status.rejected);
-          return reject(false);
+          return reject(`false`);
         });
     });
   };
@@ -475,7 +475,7 @@ function TransactionSell() {
   };
   const fetchApiCreateP2p = function (amount, idP2p, idBankingUser) {
     return new Promise((resolve, reject) => {
-      if (callApiCreateP2p === api_status.fetching) reject(false);
+      if (callApiCreateP2p === api_status.fetching) reject(`false`);
       else setCallApiCreateP2p(() => api_status.fetching);
 
       createP2p({
@@ -516,7 +516,7 @@ function TransactionSell() {
               break;
           }
           setCallApiCreateP2p(() => api_status.rejected);
-          reject(false);
+          reject(`false`);
         });
     });
   };

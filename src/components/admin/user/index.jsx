@@ -30,13 +30,7 @@ const User = function () {
   // phần kiểm tra quyền của admin
   const { permision } = useSelector(getAdminPermision);
   const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
-  const checkPermisionEdit = () => {
-    if (currentPagePermision !== adminPermision.edit) {
-      callToastError(commontString.noPermissions);
-      return false;
-    }
-    return true;
-  }
+
 
 
 
@@ -70,17 +64,11 @@ const User = function () {
   // phần ads
   const [adsValueList, setAdsValueList] = useState([]);
   const onAdsCLickHandle = async function (id) {
-    // nếu không có quyền edit thì return
-    if (!checkPermisionEdit()) return;
-
     loadingSwitch(id, setAdsValueList, true)
     await fetchApiTypeAds(id, 1);
     loadingSwitch(id, setAdsValueList, false)
   };
   const offAdsClickHandle = async function (id) {
-    // nếu không có quyền edit thì return
-    if (!checkPermisionEdit()) return;
-
     loadingSwitch(id, setAdsValueList, true);
     await fetchApiTypeAds(id, 0);
     loadingSwitch(id, setAdsValueList, false);
@@ -110,7 +98,7 @@ const User = function () {
         .catch((error) => {
           setCallApiMainDataStatus(() => api_status.rejected);
           callToastError(commontString.error);
-          reject(false);
+          reject(`false`);
         });
     });
   };
@@ -120,17 +108,11 @@ const User = function () {
   // phần 2fa
   const [twofaValueList, setTwofaValueList] = useState([]);
   const turnOn2FAClickHandle = async function (userid) {
-    // nếu admin không có quyền edit
-    if (!checkPermisionEdit()) return;
-
     loadingSwitch(userid, setTwofaValueList, true)
     await fetchApiTurn2FA(userid, 1);
     loadingSwitch(userid, setTwofaValueList, false)
   };
   const turnOff2FAClickHandle = async function (userid) {
-    // nếu không có quyền edit thì return
-    if (!checkPermisionEdit()) return;
-
     loadingSwitch(userid, setTwofaValueList, true)
     await fetchApiTurn2FA(userid, 0);
     loadingSwitch(userid, setTwofaValueList, false)
@@ -194,7 +176,7 @@ const User = function () {
         })
         .catch((err) => {
           setCallApiMainDataStatus(() => api_status.rejected);
-          reject(false);
+          reject(`false`);
         });
     });
   };
@@ -344,19 +326,29 @@ const User = function () {
   const renderTypeAdsButton = function (listType, id) {
     const type = listType.find(item => item.id === id);
     if (type.type_ads === 0) {
-      return (
+      return currentPagePermision === adminPermision.edit ? (
         <Switch
           on={false}
           onClick={onAdsCLickHandle.bind(null, id)}
           loading={type.loading}
         />
+      ) : (
+        <TagCustom
+          type={TagType.error}
+          content={`Disabled`}
+        />
       )
     } else {
-      return (
+      return currentPagePermision === adminPermision.edit ? (
         <Switch
           on={true}
           onClick={offAdsClickHandle.bind(null, id)}
           loading={type.loading}
+        />
+      ) : (
+        <TagCustom
+          type={TagType.success}
+          content={`Enabled`}
         />
       )
     }
@@ -372,9 +364,10 @@ const User = function () {
   const renderActiveSection = function (status, id) {
     switch (status) {
       case 0 || null:
-        return (
-          <Button onClick={activeUserClickHandle.bind(null, id)}>Active</Button>
-        );
+        return currentPagePermision === adminPermision.edit ? <Button onClick={activeUserClickHandle.bind(null, id)}>Active</Button> : <TagCustom
+          type={TagType.pending}
+          content={`Pending`}
+        />;
       case 1:
         return <TagCustom
           type={TagType.success}
@@ -388,21 +381,33 @@ const User = function () {
     const currentValue = twofaList.find(item => item.id === userid);
     switch (currentValue?.enabled_twofa) {
       case 0:
-        return (
+        return currentPagePermision === adminPermision.edit ? (
           <Switch
             on={false}
             onClick={turnOn2FAClickHandle.bind(null, userid)}
             loading={currentValue.loading}
           />
-        );
+        ) : (
+          <TagCustom
+            type={TagType.error}
+            content={`Disabled`}
+          />
+        )
+
       case 1:
-        return (
+        return currentPagePermision === adminPermision.edit ? (
           <Switch
             on={true}
             onClick={turnOff2FAClickHandle.bind(null, userid)}
             loading={currentValue.loading}
           />
-        );
+        ) :
+          (
+            <TagCustom
+              type={TagType.success}
+              content={`Enabled`}
+            />
+          )
       default:
         break;
     }
@@ -419,9 +424,6 @@ const User = function () {
     fetchApiSearchUserDebouced(1, value);
   };
   const activeUserClickHandle = function (id, event) {
-    // nếu admin không có quyền edit thì thông báo lỗi
-    if (!checkPermisionEdit()) return;
-
     event.persist();
     const saveEvent = event.currentTarget;
     if (event.currentTarget.disabled === true) return;
@@ -442,7 +444,7 @@ const User = function () {
         })
         .catch((error) => {
           callToastError(commontString.error);
-          reject(false);
+          reject(`false`);
         });
     });
   };

@@ -162,7 +162,7 @@ function Ads() {
         })
         .catch((err) => {
           setCallApiMainDataStatus(() => api_status.rejected);
-          reject(false);
+          resolve([]);
         });
     });
   };
@@ -214,7 +214,7 @@ function Ads() {
           setTotalItems(() => data.total);
         })
         .catch((error) => {
-          reject(false);
+          reject(`false`);
           setCallApiMainDataStatus(() => api_status.rejected);
         });
     });
@@ -241,7 +241,7 @@ function Ads() {
         })
         .catch((err) => {
           setCallApiMainDataStatus(() => api_status.rejected);
-          reject(false);
+          reject(`false`);
         });
     });
   };
@@ -452,7 +452,7 @@ function Ads() {
           callToastError("Error");
           closeModalConfirm();
           setCallApiProcessStatus(() => api_status.rejected);
-          reject(false);
+          reject(`false`);
         });
     });
   };
@@ -474,7 +474,7 @@ function Ads() {
           callToastError("Error");
           closeModalConfirm();
           setCallApiProcessStatus(() => api_status.rejected);
-          reject(false);
+          reject(`false`);
         });
     });
   };

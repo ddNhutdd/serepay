@@ -27,7 +27,7 @@ function P2p() {
 
 	// phần kiểm tra quyền của admin
 	const { permision } = useSelector(getAdminPermision);
-	const currentPagePermision = analysisAdminPermision(adminFunction.user, permision);
+	const currentPagePermision = analysisAdminPermision(adminFunction.p2p, permision);
 
 
 

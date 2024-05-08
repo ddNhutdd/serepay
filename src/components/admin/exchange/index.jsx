@@ -85,7 +85,7 @@ function Exchange() {
         .catch((error) => {
           setCallApiStatus(() => api_status.rejected);
           callToastError(commontString.error);
-          reject(false);
+          resolve(false);
         });
     });
   };
