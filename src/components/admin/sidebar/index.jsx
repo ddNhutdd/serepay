@@ -6,7 +6,7 @@ import { callToastSuccess } from "src/function/toast/callToast";
 import useLogout from "src/hooks/logout";
 import useAsync from "src/hooks/call-api";
 import { checkAdmin } from "src/util/adminCallApi";
-import { setAdminPermision } from "src/redux/reducers/admin-permision.slice";
+import { setAdminPermision, setAuthenticationStatus } from "src/redux/reducers/admin-permision.slice";
 import { useState } from "react";
 
 
@@ -58,7 +58,7 @@ function Sidebar() {
       isLoaded.current = true;
       const respData = checkAdminData?.data?.data;
       dispatch(setAdminPermision(respData))
-      const { user, ads, exchange, widthdraw, config, transfer, swap, deposit, p2p } = respData;
+      const { user, ads, exchange, widthdraw, config, transfer, swap, deposit, p2p, admin } = respData;
       setShowFunctionState(adminFunction.user, user);
       setShowFunctionState(adminFunction.config, config);
       setShowFunctionState(adminFunction.ads, ads);
@@ -69,6 +69,7 @@ function Sidebar() {
       setShowFunctionState(adminFunction.deposit, deposit);
       setShowFunctionState(adminFunction.p2p, p2p);
       setShowFunctionState(adminFunction.widthdraw, widthdraw);
+      setShowFunctionState(adminFunction.admin, admin);
     }
   }, [checkAdminData, checkAdminStatus])
 
@@ -246,12 +247,16 @@ function Sidebar() {
         }
 
 
-        <li className={setActive(url.admin_adminManagement)} onClick={redirectPage.bind(null, url.admin_adminManagement)}>
-          <span className="admin-sidebar__icon">
-            <i className="fa-solid fa-user-tie"></i>
-          </span>
-          <span className="admin-sidebar__item">Admin</span>
-        </li>
+
+        {
+          showFunction[adminFunction.admin] === 1 && <li className={setActive(url.admin_adminManagement)} onClick={redirectPage.bind(null, url.admin_adminManagement)}>
+            <span className="admin-sidebar__icon">
+              <i className="fa-solid fa-user-tie"></i>
+            </span>
+            <span className="admin-sidebar__item">Admin</span>
+          </li>
+        }
+
 
 
 

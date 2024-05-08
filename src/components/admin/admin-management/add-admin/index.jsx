@@ -27,7 +27,6 @@ function AddAdmin(props) {
 				"userid": value.userId
 			})
 		} catch (error) {
-			console.log(error)
 		}
 	}
 

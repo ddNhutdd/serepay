@@ -2,8 +2,8 @@ import { Pagination, Spin } from 'antd';
 import css from './admin-management.module.scss';
 import { useRef, useState } from 'react';
 import useAsync from 'src/hooks/call-api';
-import { addAdmin, deleteAdmin, getAdmin } from 'src/util/adminCallApi';
-import { api_status, commontString } from 'src/constant';
+import { addAdmin, deleteAdmin, editAdmin, getAdmin } from 'src/util/adminCallApi';
+import { adminPermision, api_status, commontString } from 'src/constant';
 import { EmptyCustom } from 'src/components/Common/Empty';
 
 import { adminFunction } from '../sidebar';
@@ -13,9 +13,21 @@ import { callToastError, callToastSuccess } from 'src/function/toast/callToast';
 import { Button, buttonClassesType } from 'src/components/Common/Button';
 import { ModalConfirm } from 'src/components/Common/ModalConfirm';
 import EditPermistionContent from './edit-permision-content';
+import { getAdminPermision } from 'src/redux/reducers/admin-permision.slice';
+import { useSelector } from 'react-redux';
+import NoPermision from '../no-permision';
 
 
 function AdminManagement() {
+
+
+	// phần kiểm tra quyền của admin
+	const { permision } = useSelector(getAdminPermision);
+	const currentPagePermision = analysisAdminPermision(adminFunction.admin, permision);
+
+
+
+
 
 
 	// phần phân trang
@@ -58,6 +70,18 @@ function AdminManagement() {
 	const isFetching = fetchMainDataStatus === api_status.fetching ? '' : '--d-none';
 	const isEmpty = fetchMainDataStatus !== api_status.fetching && (!mainData || mainData.length <= 0) ? '' : '--d-none';
 	const isContent = fetchMainDataStatus !== api_status.fetching && mainData && mainData.length > 0 ? '' : '--d-none';
+	const renderPermisionInCell = (permision) => {
+		switch (permision) {
+			case adminPermision.noPermision:
+				return 'No Permision';
+			case adminPermision.watch:
+				return 'View Only';
+			case adminPermision.edit:
+				return 'Edit';
+			default:
+				break;
+		}
+	}
 	const renderTable = (mainData) => {
 		return mainData?.map(item => {
 			return (
@@ -65,51 +89,53 @@ function AdminManagement() {
 					<td>{item?.userName}</td>
 					<td>{item?.email}</td>
 					<td>
-						{analysisAdminPermision(adminFunction.user, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.user, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.ads)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.ads, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.exchange)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.exchange, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.widthdraw, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.widthdraw, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.config, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.config, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.transfer, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.transfer, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.swap, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.swap, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.deposit, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.deposit, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.p2p, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.p2p, item))}
 					</td>
 					<td>
-						{analysisAdminPermision(adminFunction.admin, item)}
+						{renderPermisionInCell(analysisAdminPermision(adminFunction.admin, item))}
 					</td>
-					<td>
-						<div className='d-flex gap-2'>
-							<Button
-								onClick={openModalPermistion.bind(null, item.userid)}
-							>
+					{
+						currentPagePermision === adminPermision.edit && <td>
+							<div className='d-flex gap-2 justify-c'>
+								<Button
+									onClick={openModalPermistion.bind(null, item.userid)}
+								>
 
-								<i className="fa-solid fa-pen"></i>
-							</Button>
-							<Button
-								onClick={fetchDeleteAdmin.bind(null, item.userid)}
-								type={buttonClassesType.outline}
-							>
-								<i className="fa-regular fa-trash-can"></i>
-							</Button>
-						</div>
-					</td>
+									<i className="fa-solid fa-pen"></i>
+								</Button>
+								<Button
+									onClick={fetchDeleteAdmin.bind(null, item.userid)}
+									type={buttonClassesType.outline}
+								>
+									<i className="fa-regular fa-trash-can"></i>
+								</Button>
+							</div>
+						</td>
+					}
 				</tr>
 			)
 		})
@@ -136,7 +162,6 @@ function AdminManagement() {
 			setFetchAddAdminStatus(api_status.fulfilled);
 
 		} catch (error) {
-			console.log(error);
 			const mes = error?.response?.data?.message
 			callToastError(mes || commontString.error);
 
@@ -155,7 +180,6 @@ function AdminManagement() {
 		fetchDeleteAdminStatus.current[id] = status;
 	}
 	const fetchDeleteAdmin = async (id) => {
-		console.log(id)
 		try {
 			if (fetchDeleteAdminStatus.current[id] === api_status.fetching) {
 				return;
@@ -171,7 +195,6 @@ function AdminManagement() {
 			setFetchDeleteAdminStatus(id, api_status.fulfilled);
 
 		} catch (error) {
-			console.log(error);
 			const mes = error?.response?.data?.message
 			callToastError(mes || commontString.error);
 
@@ -183,8 +206,31 @@ function AdminManagement() {
 
 
 
+	// cập nhật admin
+	const [fetchApiStatus, setFetchApiStatus] = useState(api_status.pending);
+	const fetchEditAdmin = async (data) => {
+		try {
+			if (fetchApiStatus === api_status.fetching) {
+				return;
+			}
+			setFetchApiStatus(api_status.fetching);
+			await editAdmin(data);
+			fetchGetAdmin(page)
+			callToastSuccess(commontString.success);
+			setFetchApiStatus(api_status.fulfilled);
+
+		} catch (error) {
+			setFetchApiStatus(api_status.rejected);
+		}
+	}
+
+
+
+
+
 
 	// modal update permission
+	const [keyEditPermistionContent, setKeyEditPermistionContent] = useState(0);
 	const selectedAdmin = useRef();
 	const [showModalPermision, setShowModalPermision] = useState(false);
 	const openModalPermistion = (id) => {
@@ -192,10 +238,21 @@ function AdminManagement() {
 		setShowModalPermision(true);
 	}
 	const closeModalPermistion = () => {
+		if (fetchApiStatus === api_status.fetching || fetchMainDataStatus === api_status.fetching) return;
 		setShowModalPermision(false);
+
+		setKeyEditPermistionContent(Date.now());
 	}
 
 
+
+
+
+	if (currentPagePermision === adminPermision.noPermision) {
+		return (
+			<NoPermision />
+		)
+	}
 
 
 
@@ -216,13 +273,15 @@ function AdminManagement() {
 						</div>
 					</div>
 				</div>
-				<div className={`mb-2 d-flex justify-start`}>
-					<AddAdmin
-						key={keyAddAdmin}
-						fetchAddAdmin={fetchAddAdmin}
-						fetchAddAdminStatus={fetchAddAdminStatus}
-					/>
-				</div>
+				{
+					currentPagePermision === adminPermision.edit && <div className={`mb-2 d-flex justify-start`}>
+						<AddAdmin
+							key={keyAddAdmin}
+							fetchAddAdmin={fetchAddAdmin}
+							fetchAddAdminStatus={fetchAddAdminStatus}
+						/>
+					</div>
+				}
 				<div className={css.adminManagement__content}>
 					<table>
 						<thead>
@@ -239,9 +298,11 @@ function AdminManagement() {
 								<th>Permistion Deposite At</th>
 								<th>Permistion P2p</th>
 								<th>Permistion Admin</th>
-								<th>
-									<i className="fa-solid fa-gear"></i>
-								</th>
+								{
+									currentPagePermision === adminPermision.edit && <th>
+										<i className="fa-solid fa-gear"></i>
+									</th>
+								}
 							</tr>
 						</thead>
 						<tbody className={isContent}>
@@ -271,13 +332,16 @@ function AdminManagement() {
 			<ModalConfirm
 				title="Edit Permission"
 				content={<EditPermistionContent
+					key={keyEditPermistionContent}
 					idUser={selectedAdmin.current}
-					permision={mainData?.find(item => item.userid === selectedAdmin.current) || {}}
+					initialPermision={mainData?.find(item => item.userid === selectedAdmin.current) || {}}
+					closeModalPermistion={closeModalPermistion}
+					updateAdmin={fetchEditAdmin}
 				/>}
-				waiting
 				closeModalHandle={closeModalPermistion}
 				isShowModal={showModalPermision}
 				isHiddenOkButton={true}
+				isHiddenCancelButton={true}
 			/>
 		</>
 	)

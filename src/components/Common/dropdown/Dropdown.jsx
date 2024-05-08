@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import css from "./dropdown.module.scss";
 import { getLocalStorage } from "src/util/common";
 import { defaultLanguage, localStorageVariable } from "src/constant";
@@ -8,6 +8,7 @@ import i18n from "src/translation/i18n";
 function Dropdown(props) {
   const { list, itemClickHandle, itemSelected, id } = props;
   const { t } = useTranslation();
+  const dropdownRef = useRef();
 
   const [isOpenDropdown, setIsOpentDropdown] = useState(false);
   const [dropdownSelectorHeight, setDropdownSelectorHeight] = useState(0);
@@ -80,8 +81,12 @@ function Dropdown(props) {
     ev.stopPropagation();
     setIsOpentDropdown((s) => !s);
   };
-  const closeDropdown = function () {
-    setIsOpentDropdown(false);
+  const closeDropdown = function (ev) {
+    if (dropdownRef?.current?.contains(ev.target)) {
+
+    } else {
+      setIsOpentDropdown(false);
+    }
   };
   const observeHeightSelector = function () {
     const setHeightSelector = function () {
@@ -110,7 +115,7 @@ function Dropdown(props) {
   }, []);
 
   return (
-    <div id={id} onClick={dropdownInnerCLickHandle} className={css["dropdown"]}>
+    <div ref={dropdownRef} id={id} onClick={dropdownInnerCLickHandle} className={css["dropdown"]}>
       {renderSelector()}
       <div
         style={{ top: dropdownSelectorHeight }}
