@@ -232,9 +232,13 @@ function App() {
     }
   };
   const checkAccountAdmin = async () => {
-    await checkAdmin()
-      ? dispatch({ type: "USER_ADMIN", payload: true })
-      : dispatch({ type: "USER_ADMIN", payload: false });
+    try {
+      await checkAdmin()
+        ? dispatch({ type: "USER_ADMIN", payload: true })
+        : dispatch({ type: "USER_ADMIN", payload: false });
+    } catch (error) {
+
+    }
   }
 
   useEffect(() => {
