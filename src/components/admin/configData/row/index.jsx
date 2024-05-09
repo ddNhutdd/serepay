@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, buttonClassesType } from 'src/components/Common/Button';
 import { Input } from 'src/components/Common/Input';
 import { adminPermision, api_status, commontString } from 'src/constant';
-import { callToastSuccess } from 'src/function/toast/callToast';
+import { callToastError, callToastSuccess } from 'src/function/toast/callToast';
 import { updateConfigAdmin } from 'src/util/adminCallApi';
 import { analysisAdminPermision } from 'src/util/common';
 import { adminFunction } from '../../sidebar';
@@ -57,6 +57,8 @@ function Row(props) {
 			setFetApiStatus(api_status.fulfilled)
 
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 			setFetApiStatus(api_status.rejected)
 		}
 	}

@@ -15,6 +15,7 @@ import { analysisAdminPermision } from 'src/util/common';
 import { useSelector } from 'react-redux';
 import NoPermision from '../no-permision';
 import socket from 'src/util/socket';
+import { callToastError } from 'src/function/toast/callToast';
 
 
 
@@ -40,7 +41,7 @@ function UserDetail() {
 					resolve(resp)
 				})
 			} catch (error) {
-				reject(error);
+				reject(`error`);
 			}
 		})
 	}
@@ -90,6 +91,8 @@ function UserDetail() {
 			});
 			setUserInfo(resp?.data?.data?.at(0))
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 		}
 	}
 

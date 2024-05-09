@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 import { activeWidthdraw, cancelWidthdraw, getWalletToWithdrawWhere } from 'src/util/adminCallApi';
 import { analysisAdminPermision, deepCopyArray, deepCopyObject, formatNumber, rountRange, shortenHash } from 'src/util/common';
 import { availableLanguage } from 'src/translation/i18n';
-import { callToastSuccess } from 'src/function/toast/callToast';
+import { callToastError, callToastSuccess } from 'src/function/toast/callToast';
 import { DrillContext } from 'src/context/drill';
 import { NavLink } from 'react-router-dom';
 import { adminFunction } from '../../sidebar';
@@ -73,6 +73,7 @@ function WithdrawHistory() {
 			setPage(page)
 			setFetchApiStatus(api_status.fulfilled)
 		} catch (error) {
+
 			setFetchApiStatus(api_status.rejected)
 		}
 	}
@@ -252,6 +253,8 @@ function WithdrawHistory() {
 			setFetchApiConfirmStatus(api_status.fulfilled);
 
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 			setFetchApiConfirmStatus(api_status.rejected);
 		}
 	}
@@ -296,6 +299,8 @@ function WithdrawHistory() {
 			setFetchApiRejectStatus(api_status.fulfilled);
 
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 			setFetchApiRejectStatus(api_status.rejected);
 		}
 	}

@@ -138,7 +138,7 @@ function ExchangeRateDisparity() {
               callToastError(mess);
               break;
             default:
-              callToastError("Có lỗi trong quá trình xử lí");
+              callToastError(mess || commontString.error);
               break;
           }
           setCallApiSetBuyStatus(api_status.rejected);
@@ -214,6 +214,8 @@ function ExchangeRateDisparity() {
       setTypeSellButton(buttonClassesType.outline);
       setCallApiSetSellStatus(api_status.fulfilled);
     } catch (error) {
+      const mess = error?.response?.data?.message;
+      callToastError(mess || commontString.error);
       setCallApiSetSellStatus(api_status.rejected);
     }
   };

@@ -10,6 +10,7 @@ import { formatNumber, rountRange, shortenHash } from 'src/util/common';
 import { availableLanguage } from 'src/translation/i18n';
 import { DrillContext } from 'src/context/drill';
 import { NavLink } from 'react-router-dom';
+import { callToastError } from 'src/function/toast/callToast';
 
 function TransferHistory() {
 	const {

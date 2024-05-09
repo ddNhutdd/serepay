@@ -4,6 +4,8 @@ import Dropdown from 'src/components/Common/dropdown/Dropdown';
 import { getAllUserWallet } from 'src/util/adminCallApi';
 import { useParams } from 'react-router-dom';
 import { DrillContext } from 'src/context/drill';
+import { callToastError } from 'src/function/toast/callToast';
+import { commontString } from 'src/constant';
 
 
 
@@ -27,9 +29,9 @@ function ListWallet(props) {
 				userid: userid
 			});
 			setMainData(resp?.data?.data);
-			setSelectedId(+userid);
 		} catch (error) {
-
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 		}
 	}
 

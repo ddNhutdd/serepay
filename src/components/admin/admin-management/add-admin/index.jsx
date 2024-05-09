@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Button } from 'src/components/Common/Button';
 import { Input } from 'src/components/Common/Input';
-import { api_status } from 'src/constant';
+import { api_status, commontString } from 'src/constant';
+import { callToastError } from 'src/function/toast/callToast';
 import useForm from 'src/hooks/use-form';
 
 function AddAdmin(props) {
@@ -27,6 +28,8 @@ function AddAdmin(props) {
 				"userid": value.userId
 			})
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 		}
 	}
 

@@ -9,6 +9,7 @@ import css from "../user-detail.module.scss"
 import socket from "src/util/socket";
 import { availableLanguage } from "src/translation/i18n";
 import { DrillContext } from "src/context/drill";
+import { callToastError } from "src/function/toast/callToast";
 
 function UserWallet(props) {
 	const {
@@ -29,6 +30,8 @@ function UserWallet(props) {
 			});
 			setUserWallet(resp?.data?.data)
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 		}
 	}
 
@@ -78,6 +81,8 @@ function UserWallet(props) {
 
 			setFetchWalletStatus(api_status.fulfilled);
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 			setFetchWalletStatus(api_status.rejected);
 		}
 	}

@@ -65,7 +65,8 @@ function CoinRecord(props) {
 			callToastSuccess(commontString.success);
 		} catch (error) {
 			setCallApiStatus(api_status.rejected);
-			callToastError(commontString.error);
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 		}
 	};
 

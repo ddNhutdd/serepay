@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Pagination, Spin } from "antd";
 import { EmptyCustom } from "src/components/Common/Empty";
 import { Button, buttonClassesType } from "src/components/Common/Button";
-import { adminPermision, api_status, image_domain, url, urlParams } from "src/constant";
+import { adminPermision, api_status, commontString, image_domain, url, urlParams } from "src/constant";
 import {
   activeWidthdraw,
   cancelWidthdraw,
@@ -247,7 +247,9 @@ function Widthdraw() {
           setTotalItems(() => data.total);
           resolve(data.array);
         })
-        .catch(() => {
+        .catch((error) => {
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
           setCallApiLoadMainDataStatus(api_status.rejected);
           setTotalItems(1);
           resolve([]);
@@ -277,9 +279,11 @@ function Widthdraw() {
           setCurrentPage(() => page);
           resolve(data.array);
         })
-        .catch(() => {
+        .catch((error) => {
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
           setCallApiLoadMainDataStatus(() => api_status.rejected);
-          reject(() => false);
+          reject(`false`);
         });
     });
   };
@@ -303,7 +307,9 @@ function Widthdraw() {
           setMainData(() => data.array);
           resolve(data.array);
         })
-        .catch(() => {
+        .catch((error) => {
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
           setCallApiLoadMainDataStatus(() => api_status.rejected);
           reject(`false`);
         });
@@ -328,6 +334,8 @@ function Widthdraw() {
 
       setCallApiLoadMainDataStatus(api_status.fulfilled);
     } catch (error) {
+      const mess = error?.response?.data?.message;
+      callToastError(mess || commontString.error);
       setCallApiLoadMainDataStatus(api_status.rejected);
     }
   }

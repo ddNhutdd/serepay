@@ -161,6 +161,8 @@ function Ads() {
           resolve(data.array);
         })
         .catch((err) => {
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
           setCallApiMainDataStatus(() => api_status.rejected);
           resolve([]);
         });
@@ -240,6 +242,8 @@ function Ads() {
           resolve(data.array);
         })
         .catch((err) => {
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
           setCallApiMainDataStatus(() => api_status.rejected);
           reject(`false`);
         });
@@ -449,8 +453,9 @@ function Ads() {
           resolve(true);
         })
         .catch((error) => {
-          callToastError("Error");
-          closeModalConfirm();
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
+          confirmModalClose();
           setCallApiProcessStatus(() => api_status.rejected);
           reject(`false`);
         });
@@ -471,8 +476,9 @@ function Ads() {
           resolve(true);
         })
         .catch((error) => {
-          callToastError("Error");
-          closeModalConfirm();
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
+          confirmModalClose();
           setCallApiProcessStatus(() => api_status.rejected);
           reject(`false`);
         });

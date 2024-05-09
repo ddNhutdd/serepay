@@ -227,6 +227,8 @@ function AdminManagement() {
 			setFetchApiStatus(api_status.fulfilled);
 
 		} catch (error) {
+			const mess = error?.response?.data?.message;
+			callToastError(mess || commontString.error);
 			setFetchApiStatus(api_status.rejected);
 		}
 	}

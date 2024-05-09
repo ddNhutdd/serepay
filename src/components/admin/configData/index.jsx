@@ -1,6 +1,6 @@
 import { Spin } from "antd";
 import React, { useEffect, useState, useRef } from "react";
-import { adminPermision, api_status } from "src/constant";
+import { adminPermision, api_status, commontString } from "src/constant";
 import { getConfigAdmin, updateConfigAdmin } from "src/util/adminCallApi";
 import Row from "./row";
 import NoPermision from "../no-permision";
@@ -8,6 +8,7 @@ import { getAdminPermision } from "src/redux/reducers/admin-permision.slice";
 import { useSelector } from "react-redux";
 import { analysisAdminPermision } from "src/util/common";
 import { adminFunction } from "../sidebar";
+import { callToastError } from "src/function/toast/callToast";
 
 function ConfigData() {
 
@@ -53,7 +54,7 @@ function ConfigData() {
 					setMainData(() => result);
 					setLoadMainDataStatus(() => api_status.fulfilled);
 				})
-				.catch((error) => {
+				.catch(() => {
 					setLoadMainDataStatus(() => api_status.rejected);
 				});
 		});

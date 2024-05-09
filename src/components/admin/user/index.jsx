@@ -96,8 +96,9 @@ const User = function () {
           })
         })
         .catch((error) => {
+          const mess = error?.response?.data?.message;
           setCallApiMainDataStatus(() => api_status.rejected);
-          callToastError(commontString.error);
+          callToastError(mess || commontString.error);
           reject(`false`);
         });
     });
@@ -139,8 +140,9 @@ const User = function () {
           resolve(true);
         })
         .catch((error) => {
-          callToastError(commontString.error);
-          reject(true);
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
+          reject(`false`);
         });
     });
   };
@@ -175,6 +177,8 @@ const User = function () {
           resolve(data.array);
         })
         .catch((err) => {
+          const mess = err?.response?.data?.message;
+          callToastError(mess || commontString.error);
           setCallApiMainDataStatus(() => api_status.rejected);
           reject(`false`);
         });
@@ -202,6 +206,8 @@ const User = function () {
       saveTwofaList(array);
 
     } catch (error) {
+      const mess = error?.response?.data?.message;
+      callToastError(mess || commontString.error);
       setCallApiMainDataStatus(() => api_status.rejected);
     }
   };
@@ -443,7 +449,8 @@ const User = function () {
           resolve(true);
         })
         .catch((error) => {
-          callToastError(commontString.error);
+          const mess = error?.response?.data?.message;
+          callToastError(mess || commontString.error);
           reject(`false`);
         });
     });

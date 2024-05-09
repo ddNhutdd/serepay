@@ -8,6 +8,7 @@ import { editExchange } from "src/util/adminCallApi";
 import { analysisAdminPermision, formatNumber } from "src/util/common";
 import { adminFunction } from "../../sidebar";
 import { useSelector } from "react-redux";
+import { message } from "antd";
 
 
 function Row(props) {
@@ -82,8 +83,9 @@ function Row(props) {
 			setEditStatus(false);
 
 		} catch (error) {
+			const mess = error?.response?.data?.message;
 			setCallApiStatus(() => api_status.rejected);
-			callToastError(commontString.error);
+			callToastError(mess || commontString.error);
 		}
 	};
 	const saveClickHandle = () => {
