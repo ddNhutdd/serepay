@@ -14,7 +14,6 @@
         font-weight: 500;
     }
 
-
     .container {
         @include container;
         border-radius: 5px;
@@ -234,10 +233,18 @@
                             grid-template-columns: repeat(2, 1fr);
                         }
 
+                        @media screen and (max-width: 576px) {
+                            grid-template-columns: repeat(1, 1fr);
+                        }
+
                         th {
                             padding: 10px 0px;
                             padding-right: 10px;
                             text-align: left;
+
+                            &:nth-of-type(2) {
+                                width: fit-content;
+                            }
 
                             @media screen and (max-width: 768px) {
                                 display: block;
@@ -252,10 +259,16 @@
 
                             @media screen and (max-width: 768px) {
                                 display: block;
-                                height: auto;
+                                max-height: unset;
 
                                 &:last-child {
                                     grid-column: span 2;
+                                }
+                            }
+
+                            @media screen and (max-width: 576px) {
+                                &:last-child {
+                                    grid-column: span 1;
                                 }
                             }
 
@@ -270,8 +283,6 @@
                                     background-color: $new-primary-color-6;
                                     color: $new-text-color-white;
                                 }
-
-
                             }
 
                             .p2pHistory__buton-success {

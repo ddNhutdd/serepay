@@ -23,7 +23,7 @@ import {
   getListHistoryP2pPendding,
   getListHistoryP2pWhere,
 } from "src/util/userCallApi";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   getCurrent,
   getExchange,
@@ -225,9 +225,8 @@ function P2pManagement() {
     return listAllCoin.map((item) => (
       <div
         key={item.name}
-        className={`p2pManagement__filter-item ${
-          item.name === selectedCoin ? "active" : ""
-        }`}
+        className={`p2pManagement__filter-item ${item.name === selectedCoin ? "active" : ""
+          }`}
         onClick={coinItemClickHandle.bind(null, item.name)}
       >
         {item.name}
@@ -382,8 +381,14 @@ function P2pManagement() {
         </td>
         <td>
           <div>
-            <div>{formatCurrency(i18n.language, "VND", item.pay)}</div>
+            <div>
+              {formatCurrency(i18n.language, "VND", item.pay)}
+            </div>
             <div>{item.created_at}</div>
+            <div>{item.bankName}</div>
+            <div>{item.ownerAccount}</div>
+            <div>{item.numberBank}</div>
+            <div>{t(`note`)}: {item.code}</div>
           </div>
         </td>
         <td>
@@ -480,9 +485,8 @@ function P2pManagement() {
             resolve(false);
           });
       } else {
-        const whereString = `side='${action}' AND typeP2p=2 ${
-          symbol === "All" ? "" : `AND symbol='${symbol}'`
-        } `;
+        const whereString = `side='${action}' AND typeP2p=2 ${symbol === "All" ? "" : `AND symbol='${symbol}'`
+          } `;
         const postObj = {
           limit: limit.current,
           page,
@@ -562,9 +566,8 @@ function P2pManagement() {
               <span>{t("all")}</span>
             </div>
             <div
-              className={`p2pManagement__header-menu ${
-                isShowDropdown ? "active" : ""
-              }`}
+              className={`p2pManagement__header-menu ${isShowDropdown ? "active" : ""
+                }`}
             >
               <div
                 className="p2pManagement__header-menu-item"
@@ -602,11 +605,10 @@ function P2pManagement() {
           </div>
         </div>
         <div
-          className={`p2pManagement__filter ${
-            advertisingStatus === advertisingStatusType.pending
-              ? ""
-              : "--d-none"
-          }`}
+          className={`p2pManagement__filter ${advertisingStatus === advertisingStatusType.pending
+            ? ""
+            : "--d-none"
+            }`}
         >
           <span className="p2pManagement__filter-radio">
             <input
@@ -657,15 +659,13 @@ function P2pManagement() {
             </label>
           </span>
           <div
-            className={`p2pManagement__filter-list-item ${
-              radioAction === radioAcitonType.all ? "--d-none" : ""
-            }`}
+            className={`p2pManagement__filter-list-item ${radioAction === radioAcitonType.all ? "--d-none" : ""
+              }`}
           >
             {renderListCoin()}
             <Spin
-              className={`${
-                callApiListCoinStatus === api_status.pending ? "" : "--d-none"
-              }`}
+              className={`${callApiListCoinStatus === api_status.pending ? "" : "--d-none"
+                }`}
             />
           </div>
         </div>
@@ -678,7 +678,7 @@ function P2pManagement() {
                   <th>{t("trader")}</th>
                   <th>{t("ads")}</th>
                   <th>{t("information")}</th>
-                  <th>{t("value")}</th>
+                  <th>{t("paymentInfo")}</th>
                   <th>{t("action")}</th>
                 </tr>
               </thead>
